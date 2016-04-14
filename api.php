@@ -31,6 +31,7 @@ if(empty($id)) {
 if (!empty($id)) {
 	$_W['account'] = account_fetch($id);
 }
+file_put_contents("./logs.txt",print_r($_W,true));
 if(empty($_W['account'])) {
 	exit('initial error hash or id');
 }
