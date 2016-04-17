@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>权限管理</title>
+<link href="{weimicms::RES}/images/main.css" type="text/css" rel="stylesheet">
+<script src="{weimicms::STATICS}/jquery-1.4.2.min.js" type="text/javascript"></script>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+</head>
+<body class="warp">
+<div id="artlist" class="addn">
+			<form action="{weimicms::U('Customs/edit')}" method="post" name="form" id="myform">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" id="addn">
+
+				 <tr>
+					<th colspan="4">设置<span class="red">{weimicms:$names}</span>导航：</th>
+				</tr>
+				<tr>
+					<td height="48" align="right"><strong>导航名称：</strong></td>
+					<td colspan="3" class="lt">
+						<input type="text" class="ipt" id="name" name="name" value="{weimicms:$list['name']}" style="width:300px" maxlength="6"/>
+						&nbsp;&nbsp;<span class="red">留空显示默认名称,最多设置6个字符。</span>
+					</td>
+				</tr> 
+				<tr>
+					<td height="48" align="right"><strong>链接地址：</strong></td>
+					<td colspan="3" class="lt">
+						<input type="text" class="ipt" id="url" name="url" value="{weimicms:$list['url']}" style="width:300px"/>
+						&nbsp;&nbsp;<span class="red">非本站链接地址前需加 http:// ,&nbsp;留空显示默认页。</span>
+					</td>
+				</tr>
+				<TR>
+                  <td height="48" align="right"><strong>打开方式：</strong></td>
+                  <TD>
+                  <input class="radio" type="radio" name="open" value="0"  <if condition="$list['open'] eq 0" >checked</if> >当前窗口打开&nbsp;&nbsp;&nbsp;&nbsp; 
+                  <input class="radio" type="radio" name="open" value="1"  <if condition="$list['open'] eq 1" >checked</if>>新窗口打开
+                </TR> 
+                <TR>
+                  <td height="48" align="right"><strong>显示 / 隐藏：</strong></td>
+                  <TD>
+                  <input class="radio" type="radio" name="dspl" value="0"  <if condition="$list['dspl'] eq 0" >checked</if> >显示&nbsp;&nbsp;&nbsp;&nbsp; 
+                  <input class="radio" type="radio" name="dspl" value="1"  <if condition="$list['dspl'] eq 1" >checked</if>>隐藏
+                </TR> 
+				<tr>
+					<td colspan="3" class="lt">
+						<input type="hidden" name="pid" class="ipt" value="{weimicms:$pid}" size="45"/>
+					</td>
+				</tr>
+				<input type="hidden" name="id" class="ipt" value="{weimicms:$id}" size="45"/>
+	<tr>
+		<td colspan="4">
+			&nbsp;&nbsp;	<input class="bginput" type="submit" value="确 定" />
+			&nbsp;
+			<input class="bginput" type="button" onclick="javascript:history.back(-1);" value="返 回" ></td>
+	</tr>
+</table>
+</form>
+<br />
+<br />
+<br />
+
+</div>
+</body>
+</html>

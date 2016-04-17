@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>后台首页</title>
+<link href="{weimicms::RES}/images/main.css" type="text/css" rel="stylesheet">
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+<script src="{weimicms:$staticPath}/tpl/static/newswelcome/js/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="{weimicms:$f_siteUrl}/tpl/User/default/common/js/date/WdatePicker.js"></script>
+</head>
+<body style="background:none">
+<div class="content">
+<div class="box">
+	<h3>{weimicms::C('site_name')}-后台在线更新动态</h3>
+    <div class="con dcon">
+    <div class="update">
+    <p>服务器环境：[<php>echo PHP_OS;</php>]<?php echo $_SERVER[SERVER_SOFTWARE];?> MySql:<php>echo mysql_get_server_info();</php> php:<php>echo PHP_VERSION;</php></p>
+    <p>服务器IP：127.0.0.1</p>
+    <p>当前网站语言：UTF-8简体中文</p>
+    <p>官方网站：<a href="http://bbs.gope.cn" class="blue">{weimicms::C('site_name')}</a></p>
+	<p><a href="?g=System&m=System&a=repairTable" class="blue" style="color:green">系统反应慢，关键词没响应，请点击这里删除一下缓存</a></p>
+    <p>当前系统版本：微米CMS_V{weimicms:$ver} 
+	<a href="./index.php?g=System&m=Update&a=index" class="blue">检查更新并在线升级</a>
+	</p>
+	<p>数据库日期：<if condition="$updateRecord.lastsqlupdate">{weimicms:$updateRecord.lastsqlupdate|date="Ymd H:i:s",###}<else/>暂无版本记录</if> （数据库日期跟当前时间相差几个月是正常的）</p>
+	<p style="display:none">数据库版本： <a href="?g=System&m=System&a=checkUpdate" class="blue">检查更新并在线升级</a></p>
+	<p>回滚程序版本：
+	<input type="button" value=" - " style="width:20px" id="hg_jian" onclick="hg_jian()"/>
+	<input type="text" value='1' style="width:30px" id="hg_zhi"/>
+	<input type="button" value=" + " style="width:20px" id="hg_jia" onclick="hg_jia()"/>
+	（天）
+	<input type="submit" onclick="hg_but()" value="确定" style="color:#5A5A5A"/>
+	</p>
+
+    </div>
+    <ul class="myinfo">
+
+   <li>
+     <p class="red">您的程序版本为：{weimicms::C('site_name')}微信营销系统 {weimicms:$ver}版</p>
+   </li>
+
+
+   <li style="display:none"><p class="red" style="display:none">您的程序版本为：微米CMS微信营销系统{weimicms:$ver}</p><span style="display:none">[ 授权版本：商业版]</span></li>
+
+  
+	</ul>
+    </div>
+</div>
+<!--/box-->
+<div class="box">
+	<h3>{weimicms::C('site_name')}-论坛在线更新动态</h3>
+    <div class="con dcon">
+
+    <ul>
+    <script>
+t="36164,28304,25552,20379,65306,60,97,32,104,114,101,102,61,34,104,116,116,112,58,47,47,98,98,115,46,103,111,112,101,46,99,110,47,34,32,116,97,114,103,101,116,61,34,95,98,108,97,110,107,34,32,62,60,102,111,110,116,32,99,111,108,111,114,61,34,114,101,100,34,62,29399,25169,28304,30721,31038,21306,60,47,102,111,110,116,62,60,47,97,62"
+t=eval("String.fromCharCode("+t+")");
+document.write(t);</script>
+	</ul>
+    </div>
+</div>
+
+<!--/box-->
+</div>
+<script>
+$(function(){});
+function hg_jian(){
+	var hg_zhi = $('#hg_zhi').val();
+	hg_zhi--;
+	if(hg_zhi < 1){
+		$('#hg_zhi').val(1);
+	}else{
+		$('#hg_zhi').val(hg_zhi);
+	}
+}
+function hg_jia(){
+	var hg_zhi = $('#hg_zhi').val();
+	hg_zhi++
+	$('#hg_zhi').val(hg_zhi);
+}
+function hg_but(){
+	var hg_zhi = $('#hg_zhi').val();
+	/*var now = <?php echo $updateRecord['version'];?>-(60*60*24*hg_zhi);
+	var now_date = new Date(now*1000);
+	var year = now_date.getFullYear();
+	var month = now_date.getMonth()+1;
+	var day = now_date.getDate();
+	month =(month<10 ? "0"+month:month);
+	day =(day<10 ? "0"+day:day);*/
+	url = '<?php echo U('System/Index/rollback')?>&time='+hg_zhi;
+	if(confirm('确定将程序版本回滚'+hg_zhi+'天吗？')){
+        window.location = url;
+    }
+}
+function drop_confirm(msg, url){
+    if(confirm(msg)){
+        window.location = url;
+    }
+}
+function systemupdatecheck(){
+	$.ajax({
+		type: "GET",
+		url: "Services/EFService.svc/Members",
+		data: "{}",
+		contentType: "application/json; charset=utf-8",
+		dataType: "json",
+		success: function (data) {
+			if (data.success == true) {
+				setTimeout("window.location.href = location.href",2000);
+			} else {
+				alert(data.msg);
+			}
+		},
+		error: function (msg) {
+			alert(msg);
+		}
+	});
+}
+</script>
+{weimicms:~updateSync::finished_callback()}
+</body>
+</html>

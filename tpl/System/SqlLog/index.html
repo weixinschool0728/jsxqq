@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<include file="common:public" />
+<div class="cr"></div>
+<div id="artlist">
+	 <div class="ksearch">
+        <div class="fl">
+			<b>升级状态：</b>
+			<a href="{weimicms::U('SqlLog/index', array('status'=>1))}" style="color:green;">成功</a>　
+			<a href="{weimicms::U('SqlLog/index', array('status'=>0))}" style="color:red;">异常</a>
+		</div>
+    </div>
+ 	
+</div>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" id="alist">
+	  <tr>
+		<td width="60">id</td>
+		<td width="150">版本日期</td>
+		<td width="150">校验值</td>
+		<td width="150">错误代码</td>
+		<td width="150">更新时间</td>
+		<td width="150">创建时间</td>
+		<td width="150">升级状态</td>
+		<td width="">操作</td>
+	  </tr>
+	    <volist name="info" id="vo">
+			<tr>
+				<td align='center'>{weimicms:$vo.id}</td>
+				<td align='center'>{weimicms:$vo.time|date="Y-m-d H:i",###}</td>
+				<td align='center'>{weimicms:$vo.hash}</td>
+				<td align='center' title="{weimicms:$vo.exception|default='升级成功'}">{weimicms:$vo.code}</td>
+				<td align='center'>{weimicms:$vo.update_time|date='Y-m-d H:i:s',###}</td>
+				<td align='center'>{weimicms:$vo.create_time|date='Y-m-d H:i:s',###}</td>
+				<td align='center'><if condition="$vo['status'] eq 1"><span style="color:green;">成功</span><else/><span style="color:red;">异常</span></if></td>
+				<td align='center'>
+					<a href="{weimicms::U('SqlLog/redo', array('id'=>$vo['id']))}">重新升级</a>
+				</td>
+
+			</tr>
+	    </volist>
+     <tr bgcolor="#FFFFFF"> 
+      <td colspan="8"><div class="listpage">{weimicms:$page}</div></td>
+    </tr>
+</table>
+</body>
+</html>
