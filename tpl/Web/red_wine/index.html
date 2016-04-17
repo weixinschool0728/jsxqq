@@ -1,0 +1,239 @@
+<?php if (!defined('THINK_PATH')) exit('deney Access! <a href="/">Click here go to the home page</a>'); if (!defined('APP_IS_WEB')) include(COMMON_PATH . 'Web/function.php');?><!DOCTYPE html PUBLIC
+    "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>{weimicms:$site_config.seo_title}</title>
+    <meta content="{weimicms:$site_config.seo_keywords}" name="keywords"/>
+    <meta content="{weimicms:$site_config.seo_description}" name="description"/>
+    <link rel="stylesheet" type="text/css" href="{weimicms:$mainhost}/tpl/Web/red_wine/Public/css/style.css?1351220518"/>
+    <script type="text/javascript" src="{weimicms:$mainhost}/tpl/Web/red_wine/Public/js/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="{weimicms:$mainhost}/tpl/Web/red_wine/Public/js/lang-chi.min.js"></script>
+    <script type="text/javascript" src="{weimicms:$mainhost}/tpl/Web/red_wine/Public/js/common.min.js"></script>
+    <script type="text/javascript" src="{weimicms:$mainhost}/tpl/Web/red_wine/Public/js/overlay.min.js"></script>
+</head>
+<body>
+<div id="doc"><!--hd begin-->
+    <div id="hd"><!--headtop begin-->
+        <div class="headtop"><!-- login begin-->
+            <div class="clearfix pagetitle logo01">
+                <h1 class="sitename"><a href=""
+                                        title="{weimicms:$site_config.site_name}"><img class="ifixpng"
+                                                                                     src="<if condition="$site_config['site_logo']">{weimicms:$site_config.site_logo}
+                        <else/>
+                        /tpl/Web/red_wine/Public/img/logo.png</if>" alt="{weimicms:$site_config.site_name}"
+                        /></a></h1>
+            </div>
+            <!-- login end-->
+            <div id="sys-banner">
+                <div id="banner-main" class="banner banner-main">
+                    <div class="banner-inner">
+                        <div id="flash" class="imgPlayer">
+                            <php>$flash_list = web_flash_list(array('key'=>'banner','default_img'=>2,'limit'=>5));</php>
+                            <volist name="flash_list" id="vo"><img src="{weimicms:$vo.pic}" url="{weimicms:$vo.url}"/>
+                            </volist>
+                        </div>
+                    </div>
+                </div>
+                <script type="text/javascript"
+                        src="{weimicms:$mainhost}/tpl/Web/red_wine/Public/js/jQuery.imgPlayer.js"></script>
+                <script>                //图片切换
+                    $(".imgPlayer").imgPlayer({
+                        height: 320,	//首页图片滚动-自定义高度
+                        width: 940,	//首页图片滚动-自定义宽度
+                        showTitle: false,//不显示标题
+                        bindEvent: 'click'//更改触发图片切换的鼠标事件为click,默认为mouseover
+                    });
+                </script>
+            </div>
+            <!--sitenav begin-->
+            <div class="clearfix sitenav">
+                <div class="clearfix menu-main">
+                    <ul id="menuSitenav" class="clearfix">
+                        <li class="first-item <if condition=" empty($page_key)
+                        ">open</if>" ><a href=""><span>首页</span></a></li>
+                        <php>$web_nav_list = web_nav_list(array('flimit'=>8,'all'=>true));</php>
+                        <volist name="web_nav_list" id="vo">
+                            <li
+                            <if condition="$page_key eq $vo['key']">class="open"</if>
+                            ><a href="{weimicms:$vo.url}" target="_self"><span>{weimicms:$vo.name}</span></a>
+                            <if condition="$vo['nav_list']">
+                                <div class="menu-child">
+                                    <volist name="vo['nav_list']" id="voo"><a href="{weimicms:$voo.url}" target="_self">{weimicms:$voo.name}</a>
+                                    </volist>
+                                </div>
+                            </if>
+                            </li></volist>
+                    </ul>
+                </div>
+            </div>
+            <!--sitenav end--></div>
+        <!--headtop end--></div>
+    <!--hd end--><!--中间区块-->
+    <div class="content-block-width">
+        <div id="bd">
+            <div id="homepg" class="bd-inner"><!--检查这里是否为一样-->
+                <div class="clearfix layout-home">
+                    <div class="main-layout clearfix"></div>
+                    <div class="col-main">
+                        <div class="main-wrap">
+                            <div class="col-main">
+                                <div class="main-wrap">
+                                    <div class="block first-block block-articles ">
+                                        <div class="block-head">
+                                            <div class="head-inner"><h2 class="title">新闻动态</h2>
+
+                                                <div class="links"><a class="more"
+                                                                      href="/newscat/all.html"
+                                                                      target="_blank">更多</a></div>
+                                            </div>
+                                        </div>
+                                        <div class="block-content clearfix">
+                                            <div class="item-list">
+                                                <php>$news_list = web_news_list(array('limit'=>6));</php>
+                                                <ul>
+                                                    <volist name="news_list" id="vo">
+                                                        <li><a title="{weimicms:$vo.title}" href="{weimicms:$vo.url}">{weimicms:$vo.title}</a>
+                                                        </li>
+                                                    </volist>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="block-foot">
+                                            <div>
+                                                <div>-</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-extra">
+                                <div class="block first-block block-articles ">
+                                    <div class="block-head">
+                                        <div class="head-inner"><h2 class="title">热门新闻</h2>
+
+                                            <div class="links"><a class="more"
+                                                                  href="/newscat/all.html"
+                                                                  target="_blank">更多</a></div>
+                                        </div>
+                                    </div>
+                                    <div class="block-content clearfix">
+                                        <div class="item-list">
+                                            <php>$news_list = web_news_list(array('limit'=>6,'order'=>'`hits` DESC'));
+                                            </php>
+                                            <ul>
+                                                <volist name="news_list" id="vo">
+                                                    <li><a title="{weimicms:$vo.title}" href="{weimicms:$vo.url}">{weimicms:$vo.title}</a>
+                                                    </li>
+                                                </volist>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="block-foot">
+                                        <div>
+                                            <div>-</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="main-layout clearfix">
+                                <div class="block first-block block-products list-410">
+                                    <php>$product_list = web_product_list(array('limit'=>5));</php>
+                                    <div class="block-head">
+                                        <div class="head-inner"><h2 class="title">产品中心</h2>
+
+                                            <div class="links"><a class="more"
+                                                                  href="/productcat/all.html">更多</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="block-content clearfix">
+                                        <ul class="list-gallery clearfix">
+                                            <volist name="product_list" id="vo">
+                                                <li>
+                                                    <div class="thumb"><a href="{weimicms:$vo.url}" target="_blank"><img
+                                                                src="{weimicms:$vo.pic}" alt="{weimicms:$vo.title}"
+                                                                width="100%"/></a></div>
+                                                    <div class="des"><p class="default"><a href="{weimicms:$vo.url}">{weimicms:$vo.title}</a>
+                                                        </p></div>
+                                                </li>
+                                            </volist>
+                                        </ul>
+                                    </div>
+                                    <div class="block-foot">
+                                        <div>
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sub">
+                        <div class="block last-block block-diy list-410">
+                            <php>$one_page = web_one_page(array('key'=>'about'));</php>
+                            <div class="block-head">
+                                <div class="head-inner"><h2 class="title">{weimicms:$one_page.title|default='公司介绍'}</h2>
+                                </div>
+                            </div>
+                            <div class="block-content clearfix">
+                                <div class="content-text"><img alt="{weimicms:$one_page.title|default='公司介绍'}"
+                                                               title="{weimicms:$one_page.title|default='公司介绍'}"
+                                                               src="{weimicms:$one_page.pic|default='/tpl/Web/red_wine/Public/'.'images/about.jpg'}"
+                                                               width="100" height="123" align="left" hspace="10"
+                                                               vspace="4"/><span style="font-size:13px;">{weimicms:$one_page.info|default='唯品葡萄酿酒公司是由唯品酒厂技术开发公司、贵州省轻纺集体工业联社、深圳清华大学研究院、中国食品发酵工业研究所、上海捷强烟草糖酒（集团）有限公司等八家公司共同发起.'}</span>
+                                </div>
+                            </div>
+                            <div class="block-foot">
+                                <div>
+                                    <div></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="block last-block block-articles  list-270">
+                            <php>$one_page = web_one_page(array('key'=>'contact'));</php>
+                            <div class="block-head">
+                                <div class="head-inner"><h2 class="title">{weimicms:$one_page.title|default='联系我们'}</h2>
+                                </div>
+                            </div>
+                            <div class="block-content clearfix">
+                                <div class="content-text"> 地址：{weimicms:$site_config.company_address}<br/>
+                                    电话：{weimicms:$site_config.site_phone_main}<br/> 邮箱：<a
+                                        href="mailto:{weimicms:$site_config.site_email}">{weimicms:$site_config.site_email}</a>
+                                </div>
+                            </div>
+                            <div class="block-foot">
+                                <div>
+                                    <div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--底部-->
+    <div id="doc">
+        <div id="ft">
+            <div class="ft-inner">
+                <div class="ft-menu" id="ft-menu">
+                    <php>$web_nav_list = web_nav_list(array('flimit'=>5));</php>
+                    <volist name="web_nav_list" id="vo"><a href="{weimicms:$vo.url}" target="_self">{weimicms:$vo.name}</a>
+                        |
+                    </volist>
+                </div>
+                <if condition="$site_config['site_icp']">
+                    <div class="siteinfo" id="ft-siteinfo"><p>公司地址：{weimicms:$site_config.company_address}&nbsp;&nbsp;&nbsp;&nbsp;邮箱：{weimicms:$site_config.site_email}&nbsp;&nbsp;&nbsp;&nbsp;电话：{weimicms:$site_config.site_phone_main}&nbsp;&nbsp;&nbsp;&nbsp;Q
+                            Q：{weimicms:$site_config.site_qq_main}</p>
+
+                        <p><a href="http://www.miibeian.gov.cn/" target="_blank">{weimicms:$site_config.site_icp}</a></p>
+                    </div>
+                </if>
+            </div>
+        </div>
+    </div>
+    {weimicms:$site_config.other_content}
+</div>
+</body>
+</html>
