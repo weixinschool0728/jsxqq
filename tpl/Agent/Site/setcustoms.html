@@ -1,0 +1,59 @@
+<include file="Frame:header"/>
+<script src="{weimicms::STATICS}/forum/js/jquery_min.js" ></script>
+<script type="text/javascript" src="tpl/Agent/Common/js/formCheck/lang/cn.js"> </script>
+<script type="text/javascript" src="tpl/Agent/Common/js/formCheck/formcheck.js"> </script>
+<link rel="stylesheet" href="tpl/Agent/Common/js/formCheck/theme/grey/formcheck.css" type="text/css" media="screen" />
+<link href="tpl/Agent/Common/style/calendar.css" type="text/css" rel="stylesheet">
+<script src="tpl/Agent/Common/js/calendar.js"></script>
+<script src="tpl/Agent/Common/js/artDialog4.1.6/artDialog.js?skin=default"></script>
+<script src="tpl/Agent/Common/js/artDialog4.1.6/plugins/iframeTools.js"></script>
+<script src="/tpl/static/upyun.js"></script>
+<script type="text/javascript">
+window.addEvent('domready', function(){
+	new FormCheck('myform');
+});
+</script>
+<div class="columntitle">设置<span class="red">{weimicms:$names}</span>导航：</div>
+   <form action="{weimicms::U('Site/setcustoms')}" method="post" name="form" id="myform">
+            <table class="addTable">
+				<tr>
+					<td height="48" align="right" style="width:150px"><strong>导航名称：</strong></td>
+					<td colspan="3" class="lt">
+						<input type="text" class="ipt" id="name" name="name" value="{weimicms:$list['name']}" style="width:300px" maxlength="6"/>
+						&nbsp;&nbsp;<span class="red">留空显示默认名称,最多设置6个字符。</span>
+					</td>
+				</tr> 
+				<tr>
+					<td height="48" align="right" style="width:150px"><strong>链接地址：</strong></td>
+					<td colspan="3" class="lt">
+						<input type="text" class="ipt" id="url" name="url" value="{weimicms:$list['url']}" style="width:300px"/>
+						&nbsp;&nbsp;<span class="red">链接地址前需加 http:// ,&nbsp;留空显示默认页。</span>
+					</td>
+				</tr>
+				<TR>
+                  <td height="48" align="right" style="width:150px"><strong>打开方式：</strong></td>
+                  <TD>
+                  <input class="radio" type="radio" name="open" value="0"  <if condition="$list['open'] eq 0" >checked</if> >当前窗口打开&nbsp;&nbsp;&nbsp;&nbsp; 
+                  <input class="radio" type="radio" name="open" value="1"  <if condition="$list['open'] eq 1" >checked</if>>新窗口打开
+                </TR> 
+                <TR>
+                  <td height="48" align="right" style="width:150px"><strong>显示 / 隐藏：</strong></td>
+                  <TD>
+                  <input class="radio" type="radio" name="dspl" value="0"  <if condition="$list['dspl'] eq 0" >checked</if> >显示&nbsp;&nbsp;&nbsp;&nbsp; 
+                  <input class="radio" type="radio" name="dspl" value="1"  <if condition="$list['dspl'] eq 1" >checked</if>>隐藏
+                </TR> 
+				<tr>
+					<td colspan="3" class="lt">
+						<input type="hidden" name="pid" class="ipt" value="{weimicms:$pid}" size="45"/>
+					</td>
+				</tr>
+				<input type="hidden" name="id" class="ipt" value="{weimicms:$id}" size="45"/>
+	<tr>
+		<td colspan="4">
+			&nbsp;&nbsp;&nbsp;	<input class="button" type="submit" value="确 定"  style="margin-left:150px"/>
+	</tr> 
+         
+        </table>
+        <input type="hidden" value="<?php echo $_SERVER['HTTP_REFERER'];?>" name="referer" />
+</form>
+<include file="Frame:footer"/>

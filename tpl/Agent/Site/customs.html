@@ -1,0 +1,130 @@
+<include file="Frame:header"/>
+<div class="columntitle">自定义导航管理</div>
+<div style="border:1px solid #E9EFF7;margin-top:10px;">
+
+  <table cellspacing="1" cellpadding="1" class="listtable">
+	  <tr>
+		<td width="150" >导航名称</td>
+		<td >链接地址</td>
+		<td >显示 / 隐藏</td>
+		<td >打开方式</td>
+		<td width="100" align=center>管理操作</td>
+	  </tr>
+
+		<tr style="height:50px">
+			<td >
+				<b><if condition="$fc['name'] == ''">功能介绍<else/>{weimicms:$fc['name']}</if></b>
+			</td>
+			<td >
+				<if condition="$fc['url'] == ''">{weimicms:$f_siteUrl}/index.php?g=Home&m=Index&a=fc<else/>{weimicms:$fc['url']}</if> 
+			</td>
+			<td>
+				<if condition="$fc['dspl'] == 0">显示<else/>隐藏</if>
+			</td>
+			<td>
+				<if condition="$fc['open'] == 0">当前窗口打开<else/>新窗口打开</if>
+			</td>
+			<td align='center'>
+				<a href="{weimicms::U('Site/setcustoms/',array('id'=>1,'pid'=>$pid))}">修改</a>
+			</td>
+		</tr>
+
+		<tr style="height:50px">
+			<td >
+				<b><if condition="$about['name'] == ''">关于我们<else/>{weimicms:$about['name']}</if></b>
+			</td>
+			<td >
+				<if condition="$about['url'] == ''">{weimicms:$f_siteUrl}/index.php?g=Home&m=Index&a=about<else/>{weimicms:$about['url']}</if> 
+			</td>
+			<td>
+				<if condition="$about['about_dspl'] == 0">显示<else/>隐藏</if>
+			</td>
+			<td>
+				<if condition="$about['about_open'] == 0">当前窗口打开<else/>新窗口打开</if>
+			</td>
+			<td align='center'>
+				<a href="{weimicms::U('Site/setcustoms/',array('id'=>2,'pid'=>$pid))}">修改</a>
+			</td>
+		</tr>
+
+		<tr style="height:50px">
+			<td >
+				<b><if condition="$price['name'] == ''">资费说明<else/>{weimicms:$price['name']}</if></b>
+			</td>
+			<td >
+				<if condition="$price['url'] == ''">{weimicms:$f_siteUrl}/index.php?g=Home&m=Index&a=price<else/>{weimicms:$price['url']}</if> 
+			</td>
+			<td>
+				<if condition="$price['dspl'] == 0">显示<else/>隐藏</if>
+			</td>
+			<td>
+				<if condition="$price['open'] == 0">当前窗口打开<else/>新窗口打开</if>
+			</td>
+			<td align='center'>
+				<a href="{weimicms::U('Site/setcustoms/',array('id'=>3,'pid'=>$pid))}">修改</a>
+			</td>
+		</tr>
+
+		<tr style="height:50px">
+			<td >
+				<b><if condition="$common['name'] == ''">产品案例<else/>{weimicms:$common['name']}</if></b>
+			</td>
+			<td >
+				<if condition="$common['url'] == ''">{weimicms:$f_siteUrl}/index.php?g=Home&m=Index&a=common<else/>{weimicms:$common['url']}</if> 
+			</td>
+			<td>
+				<if condition="$common['dspl'] == 0">显示<else/>隐藏</if>
+			</td>
+			<td>
+				<if condition="$common['open'] == 0">当前窗口打开<else/>新窗口打开</if>
+			</td>
+			<td align='center'>
+				<a href="{weimicms::U('Site/setcustoms/',array('id'=>4,'pid'=>$pid))}">修改</a>
+			</td>
+		</tr>
+
+		<tr style="height:50px">
+			<td >
+				<b><if condition="$login['name'] == ''">管理中心<else/>{weimicms:$login['name']}</if></b>
+			</td>
+			<td >
+				<if condition="$login['url'] == ''">{weimicms:$f_siteUrl}/index.php?g=Home&m=Index&a=login<else/>{weimicms:$login['url']}</if> 
+			</td>
+			<td>
+				<if condition="$login['dspl'] == 0">显示<else/>隐藏</if>
+			</td>
+			<td>
+				<if condition="$login['open'] == 0">当前窗口打开<else/>新窗口打开</if>
+			</td>
+			<td align='center'>
+				<a href="{weimicms::U('Site/setcustoms/',array('id'=>5,'pid'=>$pid))}">修改</a>
+			</td>
+		</tr>
+		
+		<tr style="height:50px">
+			<td >
+				<b><if condition="$help['name'] == ''">帮助中心<else/>{weimicms:$help['name']}</if></b>
+			</td>
+			<td >
+				<if condition="$help['url'] == ''">{weimicms:$f_siteUrl}/index.php?g=Home&m=Index&a=help<else/>{weimicms:$help['url']}</if> 
+			</td>
+			<td>
+				<if condition="$help['dspl'] == 0">显示<else/>隐藏</if>
+			</td>
+			<td>
+				<if condition="$help['open'] == 0">当前窗口打开<else/>新窗口打开</if>
+			</td>
+			<td align='center'>
+				<a href="{weimicms::U('Site/setcustoms/',array('id'=>6,'pid'=>$pid))}">修改</a>
+			</td>
+		</tr>
+
+     <tr bgcolor="#FFFFFF"> 
+      <td colspan="8"><div class="listpage">{weimicms:$page}</div></td>
+    </tr>
+
+</table>
+
+</div>
+<div class="pages">{weimicms:$page}</div>
+<include file="Frame:footer"/>
