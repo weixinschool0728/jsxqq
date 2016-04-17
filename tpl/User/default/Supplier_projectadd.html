@@ -1,0 +1,215 @@
+ <include file="Public:head" />
+<script src="./tpl/User/default/common/js/date/WdatePicker.js"></script>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<link rel="stylesheet" href="{weimicms::STATICS}/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="{weimicms::STATICS}/kindeditor/plugins/code/prettify.css" />
+<script src="{weimicms::STATICS}/kindeditor/kindeditor.js" type="text/javascript"></script>
+<script src="{weimicms::STATICS}/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+<script src="{weimicms::STATICS}/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script src="/tpl/static/upyun.js?2013"></script>
+<script>
+    var editor;
+    KindEditor.ready(function (K) {
+        editor = K.create('#estate_desc', {
+            resizeType: 1,
+            allowPreviewEmoticons: false,
+            allowImageUpload: true,
+            uploadJson: '/index.php?g=User&m=Upyun&a=kindedtiropic',
+            items: [
+'source', 'undo', 'plainpaste', 'wordpaste', 'clearhtml', 'quickformat', 'selectall', 'fullscreen', 'fontname', 'fontsize', 'subscript', 'superscript', 'indent', 'outdent', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'hr']
+        });
+        editor = K.create('#project_brief', {
+            resizeType: 1,
+            allowPreviewEmoticons: false,
+            allowImageUpload: true,
+            uploadJson: '/index.php?g=User&m=Upyun&a=kindedtiropic',
+            items: [
+'source', 'undo', 'plainpaste', 'wordpaste', 'clearhtml', 'quickformat', 'selectall', 'fullscreen', 'fontname', 'fontsize', 'subscript', 'superscript', 'indent', 'outdent', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'hr']
+        });
+        editor = K.create('#traffic_desc', {
+            resizeType: 1,
+            allowPreviewEmoticons: false,
+            allowImageUpload: true,
+            uploadJson: '/index.php?g=User&m=Upyun&a=kindedtiropic',
+            items: [
+'source', 'undo', 'plainpaste', 'wordpaste', 'clearhtml', 'quickformat', 'selectall', 'fullscreen', 'fontname', 'fontsize', 'subscript', 'superscript', 'indent', 'outdent', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'hr']
+        });
+    });
+</script> 
+ 
+<div class="content">
+
+<div class="cLineB">
+  <h4>添加房产信息</h4><a href="javascript:history.go(-1);" class="right btnGrayS vm" style="margin-top:-27px">返回</a>
+ </div> 
+    <div class="msgWrap bgfc" style="margin-top:10px;"> 
+        <form class="form" method="post" action=""  enctype="multipart/form-data"> 
+        <table class="userinfoArea" style="margin: 0;" border="0" cellspacing="0" cellpadding="0"
+            width="100%">
+            <tbody>
+                <tr>
+                    <th width="120" valign="top">
+                        项目名称：
+                    </th>
+                    <td>
+                        <input type="text" name="projectname" class="px projectname" style="width: 550px;">
+                    </td>
+                </tr>
+                <tr>
+                    <th width="120" valign="top">
+                        联系电话：
+                    </th>
+                    <td>
+                        <input type="text" name="tel" class="px " style="width: 550px;">
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        时间：
+                    </th>
+                    <td>
+                        <input type="input" class="px" id="Input1" value="" onclick="WdatePicker({startDate:'%y-%M-%d %H:mm:ss',dateFmt:'yyyy-MM-dd HH:mm:ss'})"
+                            name="publishTime" />
+                    </td>
+                </tr>
+                <tr>
+                    <th valign="top">
+                        地址：
+                    </th>
+                    <td>
+                        <input type="text" name="address" class="px" style="width: 550px;">
+                    </td>
+                </tr>
+                <tr>
+                    <th valign="top">
+                        地图标识：
+                    </th>
+                    <td>
+                    <script>
+					function setlatlng(longitude,latitude){
+					  art.dialog.data('longitude', longitude);
+					  art.dialog.data('latitude', latitude);
+					  // 此时 iframeA.html 页面可以使用 art.dialog.data('test') 获取到数据，如：
+					  // document.getElementById('aInput').value = art.dialog.data('test');
+					  art.dialog.open('{weimicms::U('Map/setLatLng')}',{lock:false,title:'设置经纬度',width:600,height:400,yesText:'关闭',background: '#000',opacity: 0.87});
+					}
+					</script> 
+                     经度 <input type="text" id="longitude"  name="lng" size="14" class="px" value="" /> 
+                     纬度 <input type="text"  name="lat" size="14" id="latitude" class="px" value="" /> 
+                     <a href="###" onclick="setlatlng($('#longitude').val(),$('#latitude').val())">在地图中查看/设置</a> 
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        佣金说明：
+                    </th>
+                    <td>
+                        <input name="projuctprice" class="px" value="" style="width: 350px;" type="text">
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        封面图片：
+                    </th>
+                    <td> 
+                        <input type="text" id="faceImg" name="faceImg" class="px" value="">
+                        <span class="help-inline"><a href="###" onclick="upyunPicUpload('faceImg',720,400,'{weimicms:$token}')"
+                            class="a_upload">上传</a> <a href="###" onclick="viewImg('faceImg')">预览</a> <span class="help-inline">
+                                建议尺寸：宽720像素，高350像素</span> </span>
+                                
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        楼盘介绍头部图片：
+                    </th>
+                    <td> 
+                        <input type="text" id="lp_banner" name="lp_banner" class="px" value="">
+                        <span class="help-inline"><a href="###" onclick="upyunPicUpload('lp_banner',720,400,'{weimicms:$token}')"
+                            class="a_upload">上传</a> <a href="###" onclick="viewImg('lp_banner')">预览</a> <span class="help-inline">
+                                建议尺寸：宽720像素，高350像素</span> </span>
+                    </td>
+                </tr>
+                <tr>
+                	<th>户型头部图片 ：</th>
+                    <td> 
+                        <input type="text" name="hx_banner" id="hx_banner" class="px" value="">
+                        <span class="help-inline">
+                             <script src="{weimicms::STATICS}/upyun.js"></script><a href="###" onclick="upyunPicUpload('hx_banner',720,400,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('hx_banner')">预览</a>
+                            <span class="help-inline">建议尺寸：宽720像素，高350像素</span>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                	 <th>
+                        相册名称：
+                    </th>
+                	 <td>
+                     	  <select id="photo_id" name="photo_id" class="input-medium">
+                            <option value="0">请选择相册</option>
+                                <volist name="photo" id="vo">
+                                    <option value="{weimicms:$vo['id']}" >{weimicms:$vo['title']}</option>
+                                </volist>
+                          </select>
+                     <a href="{weimicms::U('Photo/add',array('token'=>$token))}" class="btnGreen"><i class="icon-plus"></i>添加相册</a>
+                     </td>
+                </tr>
+                <tr>
+                <th>
+               		 楼盘视频
+                </th>
+                <td> 
+                   <input type="text" name="video" id="video" class="span4" style="width:480px" value=""><p>
+                   支持优酷视频地址如：http://v.youku.com/v_show/id_XNDA1ODEyNjE2.html <br>
+                   腾讯fash视频地址：如http://static.video.qq.com/TPout.swf?vid=v0119s27wd5&amp;auto=0 <br>
+                   也支持mp4和ogg 格式地址 http://www.w3school.com.cn/example/html5/mov_bbb.mp4 </p>
+                </td>
+                </tr>
+                <tr>
+                    <th>
+                        楼盘简介：
+                    </th>
+                    <td>
+                        <textarea class="px" id="estate_desc" name="estate_desc" style="width: 605px; height: 150px;"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        项目简介：
+                    </th>
+                    <td>
+                        <textarea class="px" id="project_brief" name="project_brief" style="width: 605px;
+                            height: 150px;"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        交通配套：
+                    </th>
+                    <td>
+                        <textarea class="px" id="traffic_desc" name="traffic_desc" style="width: 605px; height: 150px;"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        排序：
+                    </th>
+                    <td>
+                        <input name="sort" class="px" value="0" style="width: 350px;" type="text">
+                    </td>
+                </tr>
+                  <tr>
+				<th>&nbsp;</th>
+					<td>  
+						<button type="submit" name="button"  class="btnGreen">保存</button><!--
+						<a href="javascript:history.go(-1);" class="btnGray vm">取消</a>-->
+					</td>
+				</tr>
+            </tbody>
+        </table>
+        </form>
+  </div>  
+        </div> 
+<include file="Public:footer"/>

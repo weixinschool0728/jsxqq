@@ -1,0 +1,81 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />
+<div class="content">
+	<div class="cLineB">
+		<h4 class="left">集字游戏</h4>
+		<div class="clr"></div>
+	</div>
+	<div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-bottom:5px;font-size:12px;">
+		温馨提示：本功能必须开启网页授权并选择获取昵称头像等所有信息！<br/>
+		中奖算法如下：<br />
+		所有字集齐为中奖，抽中最后一个字的概率即为中奖概率。<br />
+		中奖概率 = （1 / 收集文字个数（4-8））*（每天发放奖品数 / 预计参与人数） <br />
+		注：1.每日发放的奖品数 = 剩余奖品数量 / 活动剩余天数；<br />
+		  　　2.每天发放奖品数大于预计人数时为中奖概率率为1，因为1人只能领取一个奖品。
+	</div>
+	<div class="cLine">
+		<div class="pageNavigator left"> <a href="{weimicms::U('Collectword/set',array('token'=>$token))}" title="添加活动" class="btnGrayS vm bigbtn"><img src="{weimicms::RES}/images/product/add.png" width="16" class="vm">添加活动</a></div>
+		<div class="searchbar right">
+			<input type="text" id="msgSearchInput" class="txt left" placeholder="输入活动名称搜索" name="search" value="<?php echo $_GET['name'];?>" style="margin-top:13px">
+			<a value="搜索" id="msgSearchBtn" href="javascript:search();" class="btnGrayS" title="搜索" style="margin-top:10px">搜索</a>
+		</div>
+		<div class="clr"></div>
+	</div>
+	<div class="msgWrap">
+		<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<thead>
+				<tr>
+					<th width="160">活动名称</th>
+					<th width="160">关键词</th>
+					<th width="130">添加时间</th>
+					<th width="80">活动状态</th>
+					<th width="80">打开次数</th>
+					<th width="330" class="norightborder">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+			<volist name='list' id='vo'>
+				<tr>
+					<td>{weimicms:$vo.title}</td>
+					<td>{weimicms:$vo.keyword}</td>
+					<td>{weimicms:$vo.addtime|date='Y-m-d H:i:s',###}</td>
+					<td>
+						<?php
+						if($vo['state'] == 0){
+							echo "<span style='color:red'>已关闭</span>";
+						}elseif($vo['state'] == 1){
+							echo "<span style='color:blue'>未开始</span>";
+						}elseif($vo['state'] == 2){
+							echo "<span style='color:blue'>已结束</span>";
+						}elseif($vo['state'] == 3){
+							echo "<span style='color:green'>活动中</span>";
+						}
+						?>
+					</td>
+					<td>{weimicms:$vo.share_count}</td>
+					<td class="norightborder">
+						<a href="{weimicms::U('Collectword/prize',array('id'=>$vo['id'],'token'=>$token))}">中奖名单</a>
+						<a href="{weimicms::U('Collectword/rank',array('id'=>$vo['id'],'token'=>$token))}">排行榜</a>
+						<a href="{weimicms::U('Collectword/set',array('id'=>$vo['id'],'token'=>$token))}">修改</a>
+						<a href="javascript:drop_confirm('您确定要删除吗?', '{weimicms::U('Collectword/del',array('id'=>$vo['id'],'token'=>$token))}');">删除</a></td>
+					</td>
+				</tr>
+			</volist>
+			</tbody>
+		</table>
+	</div>
+	<div class="cLine">
+		<div class="pageNavigator right">
+			<div class="pages">{weimicms:$page}</div>
+		</div>
+		<div class="clr"></div>
+	</div>
+</div>
+<script>
+$(function(){});
+function search(){
+	var name = $('input[name=search]').val();
+	window.location.href='<?php echo U('Collectword/index',array('token'=>$token));?>&name='+name;
+}
+</script>
+<include file="Public:footer"/>

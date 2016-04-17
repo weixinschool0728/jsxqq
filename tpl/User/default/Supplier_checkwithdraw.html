@@ -1,0 +1,40 @@
+<include file="Public:head"/> 
+
+<div class="content"> 
+<div class="cLineB">
+  <h4>提现审核</h4><a href="javascript:history.go(-1);" class="right btnGrayS vm" style="margin-top:-27px">返回</a>
+ </div> 
+    <div class="msgWrap bgfc" style="margin-top:10px;">
+	  <form class="form" method="post" action=""  enctype="multipart/form-data">	 
+		<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<tbody>
+            <tr>
+				  <th width="120" valign="top">备注：</th>
+				  <td>
+					  <textarea class="px" id="Hfcontent" name="remarks" style="width:580px;  height:100px"></textarea> 
+					</td>
+				</tr> 
+                <tr>
+					<th>审核状态：</th>
+					<td>
+						<select name="checkStatus">
+							<option value="1">待审核</option>
+							<option value="2">通过</option>
+							<option value="3">拒绝</option> 
+						</select>
+					 
+					</td>
+				</tr>
+                <tr>
+				<th>&nbsp;</th>
+					<td>  
+						<button type="submit" name="button"  class="btnGreen">保存</button>
+						<a href="javascript:history.go(-1);" class="btnGray vm">取消</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+  </div>  
+        </div> 
+<include file="Public:footer"/>

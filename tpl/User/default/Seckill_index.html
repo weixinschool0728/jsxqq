@@ -1,0 +1,115 @@
+<include file="Public:head"/>
+<include file="Business:public_menu"/>
+<!-- <script src="{weimicms::STATICS}/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{weimicms::STATICS}/artDialog/plugins/iframeTools.js"></script> -->
+
+ <style>
+.cLine {
+    overflow: hidden;
+    padding: 5px 0;
+  color:#000000;
+}
+.alert {
+padding: 8px 35px 0 10px;
+text-shadow: none;
+-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+-moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+background-color: #f9edbe;
+border: 1px solid #f0c36d;
+-webkit-border-radius: 2px;
+-moz-border-radius: 2px;
+border-radius: 2px;
+color: #333333;
+margin-top: 5px;
+}
+.alert p {
+margin: 0 0 10px;
+display: block;
+}
+.alert .bold{
+font-weight:bold;
+}
+ </style>
+
+
+<include file="Business:tips"/>
+
+<div class="msgWrap form">
+    <div class="content">
+		<div class="cLineC" style="line-height: 32px;"> 
+<a href="{weimicms::U('Seckill/action_add',array('token'=>$token,'type'=>$type))}" class="btnGrayS vm bigbtn"><if condition="$usertplid eq 2"><i class="fa fa-hand-o-right"></i><else /><img src="{weimicms::RES}/images/product/add.png" class="vm"></if> 添加微秒杀</a>
+</div>
+<if condition="$Think.session.is_syn neq 2">
+<div class="alert alert-success alert-dismissable">温馨提示：本功能使用了模板消息中的"订单完成通知"模板消息,模板消息编号OPENTM202521011。<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;开通微信支付功能的公众号在使用此功能的时候可以在"基本设置——微信模板消息"中配置对应的模板消息。
+</div>
+</if>
+        <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+          <thead>
+            <tr>
+  <th style=" width:15%;">活动标题</th>
+  <if condition="$_SESSION['is_syn'] eq 0">
+   <th style=" width:15%;">回复关键词</th>
+   </if>
+  <th style=" width:15%;">活动开始时间</th>
+  <th style=" width:15%;">活动结束时间</th>
+</th>
+              <th style=" width:120px;">操作</th>
+            </tr>
+          </thead>
+			<volist name="action" id="vo">
+					  <tbody><tr>
+						  <td>{weimicms:$vo.action_name}</td>
+						  <if condition="$_SESSION['is_syn'] eq 0">
+						  <td>{weimicms:$vo.reply_keyword}</td>
+						  </if>
+						  <td>{weimicms:$vo.action_sdate|date="Y-m-d H:i:s",###}</td>
+						  <td>{weimicms:$vo.action_edate|date="Y-m-d H:i:s",###}</td>
+						  <td class="norightborder">
+
+<if condition="$Think.session.is_syn eq 2">
+<if condition="$usertplid neq 2">
+						  <script type="text/javascript">
+   $(document).ready(function(){
+      var bheight=document.body.clientHeight;
+      $("#lay{weimicms:$vo.action_id}").click(function(){
+   $("#brg{weimicms:$vo.action_id}").css("display","block");
+   $("#showdiv{weimicms:$vo.action_id}").css("display","block");
+   //$("#testdiv").load("test.html");
+   });
+   $("#close{weimicms:$vo.action_id}").click(function(){
+      $("#brg{weimicms:$vo.action_id}").css("display","none");
+   $("#showdiv{weimicms:$vo.action_id}").css("display","none");
+   });
+   });
+ </script>
+ <style type="text/css">
+   #brg{weimicms:$vo.action_id}{ width:100%; height:100%; background:#333; position:absolute; top:0; left:0; filter:alpha(opacity=60); -moz-opacity:0.6; opacity: 0.6; position:absolute; top:0; left:0; display:none;}
+   #showdiv{weimicms:$vo.action_id}{z-index:20; display:none;position:fixed; *position:absolute;top:30%; left:50%; margin:-50px 0 0 -50px;}
+   #testdiv{weimicms:$vo.action_id}{ width:300px; height:300px; margin:0 auto; border:1px solid #4d4d4d; background:#f2f2f2;}
+   #close{weimicms:$vo.action_id}{width:300px; height:27px; line-height:27px; font-size:14px; font-weight:bold; border:1px solid #4d4d4d; text-align:center; cursor:pointer; margin:0 auto; background:#333; color:#fff;margin-top: 15%;}
+ </style>
+    <div id="brg{weimicms:$vo.action_id}"></div>
+ <div id="showdiv{weimicms:$vo.action_id}">
+   <div id="close{weimicms:$vo.action_id}">您想关闭就点我吧</div>
+   <div id="testdiv{weimicms:$vo.action_id}"><img src="{weimicms:$Think.session.source_domain}/wap.php?c=Wxapp&a=qrcode&id={weimicms:$vo.action_id}&modle=Seckill" width="300" height="300" class="cateimg_small"></div>
+ </div>
+   <a id="lay{weimicms:$vo.action_id}" style="width:70px;">查看二维码</a>
+</if>
+</if>
+						  <a href="{weimicms::U('Seckill/shop_detail',array('aid'=>$vo['action_id'], 'type'=>'seckill'))}" class="btnGreen">管理活动商品</a>
+						  <a href="{weimicms::U('Seckill/order_man',array('aid'=>$vo['action_id'], 'type'=>'seckill'))}" class="btnGreen">查看活动订单</a>
+						  <a href="{weimicms::U('Seckill/action_add',array('id'=>$vo['action_id'],'op'=>'mod', 'type'=>'seckill'))}" class="btnGreen">编辑</a>
+						  <a href="{weimicms::U('Seckill/action_del',array('id'=>$vo['action_id'],'type'=>'del', 'type'=>'seckill'))}" onclick="return(confirm('确定要删除吗？'))" class="btnGreen">删除</a> </td>
+						</tr>
+					  </tbody>
+			</volist> 
+            </table>
+			<div class="footactions" style="padding-left:10px">
+			  <div class="pages" style="text-align:right;"> {weimicms:$page}</div>
+			</div>
+    </div>
+  </div>
+</div>
+
+<include file="Public:footer"/>

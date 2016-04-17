@@ -1,0 +1,55 @@
+<include file="Public:head"/> 
+
+<div class="content"> 
+<div class="cLineB">
+  <h4>实名认证审核</h4><a href="javascript:history.go(-1);" class="right btnGrayS vm" style="margin-top:-27px">返回</a>
+ </div> 
+    <div class="msgWrap bgfc" style="margin-top:10px;">
+	  <form class="form" method="post" action=""  enctype="multipart/form-data">	 
+		<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<tbody>
+            <tr>
+				  <th width="120" valign="top">会员真实姓名：</th>
+				  <td><input type="text" name="judicial" class="px zhuti" value="{weimicms:$userinfo.judicial}" style="width:550px;">
+					</td>
+				</tr>
+                 <tr>
+				  <th width="120" valign="top">身份证号：</th>
+				  <td><input type="text" name="uid" class="px didian"  value="{weimicms:$userinfo.Uid}" style="width:550px;">
+					</td>
+				</tr>  
+				<TR>
+                  <TH valign="top"><label for="info">身份证正面照：</label></TH>  
+                  <TD>
+                  	<img src="{weimicms:$userinfo.UidimgeZ}" /></TD>
+                </TR>
+					<TR>
+                  <TH valign="top"><label for="info">身份证背面照：</label></TH>  
+                  <TD>
+                  	 <img src="{weimicms:$userinfo.UidimgeF}" /></TD>
+                </TR>
+				
+                <tr>
+					<th>审核状态：</th>
+					<td>
+						<select name="checkStatue">
+							<option value="1" <if condition="$userinfo['checkStatue'] eq '1'"> selected</if>>待审核</option>
+							<option value="2" <if condition="$userinfo['checkStatue'] eq '2'"> selected</if>>审核通过</option>
+							<option value="3" <if condition="$userinfo['checkStatue'] eq '3'"> selected</if>>审核失败</option> 
+						</select>
+					</td>
+				</tr>
+                <tr>
+				<th>&nbsp;</th>
+					<td> 
+					<input type="hidden" name="getid" value="{weimicms:$userinfo.id}" />
+						<button type="submit" name="button"  class="btnGreen">保存</button>
+						<a href="javascript:history.go(-1);" class="btnGray vm">取消</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+  </div>  
+        </div> 
+<include file="Public:footer"/>

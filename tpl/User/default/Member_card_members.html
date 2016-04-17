@@ -1,0 +1,107 @@
+<include file="Public:head"/>
+<script src="{weimicms::RES}/js/date/WdatePicker.js"></script>  
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="/tpl/static/upyun.js?{weimicms::date('YmdHis',time())}"></script>
+<div class="content">
+<include file="Member_card:menu"/>         
+<div class="cLine">
+	<div class="left" style="margin-right:10px;">
+	<form method="POST" action="{weimicms::U('Member_card/members',array('token'=>$token,'id'=>$cardid))}">
+		搜索：
+    <input  value="{weimicms:$searchkey}" name="searchkey" class="px" style="height:25px;line-height:25px;">
+    <input type="hidden" name="id" value="{weimicms:$cardid}">
+		<button type="submit" name="appidsubmit" value="true" class="btnGreen vm" ><strong>查询</strong></button>
+	</form>
+	</div>
+	<a class="right btnGrayS vm" href="{weimicms::U('Member_card/index',array('token'=>$token))}">返回</a>
+<span class="clr"></span>
+</div>
+          <div class="msgWrap">
+          <if condition="$usertplid eq 2">
+<div class="alert alert-success alert-dismissable" style="margin-top:20px;">
+<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+<else />
+           <div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-top:5px;"></if>注意:在每行的输入框里可以通过输入消费金额（可以填写负数）来增减会员消费金额，积分会根据“积分设置”中的消费积分比例变化</div>
+
+          <input name="delall"  type="hidden" value="del" />
+           <input name="wxid"  type="hidden" value="gh_423dwjkewad" />
+            <TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+              <THEAD>
+                <TR>
+				<TH>卡号</TH>
+				<TH>姓名</TH>
+		        <TH>联系电话</TH>
+		        <TH>领卡时间</TH>
+		        <TH width="120px">积分</TH>
+		        <TH>消费总额(元)</TH>  
+            <TH>余额</TH>             
+				<TH width="250px">操作</TH>
+                </TR>
+              </THEAD>
+              <TBODY>
+				 <volist id="list" name="members">
+                <TR>
+                  <TD>{weimicms:$list.number}</TD>
+                  <TD>{weimicms:$list.truename}</TD>
+                  <TD>{weimicms:$list.tel}</TD>
+                  <TD>
+                   <if condition="$list['getcardtime'] gt 0">
+                        {weimicms:$list.getcardtime|date='Y-m-d',###}
+                    <else/>
+                   		 无时间记录
+                    </if>                      
+                  </TD>
+                  <TD width="100">
+                  	{weimicms:$list.total_score}
+                  </TD> 
+                  <TD>
+                    {weimicms:$list.expensetotal}
+                    <form method="post"  action="/index.php?g=User&m=Member_card&a=memberExpense&token={weimicms:$Think.get.token}&id={weimicms:$thisCard.id}" >
+                      <input type="text" name="money" value="0" class="px" style="width:40px;">
+                      <input type="hidden" name="wecha_id" value="{weimicms:$list.wecha_id}">
+                      <button type="submit" style="cursor:pointer" class="btnGrayS vm">设置</button>
+                    </form>
+                  </TD>
+                  <TD>
+                  	{weimicms:$list.balance}
+                  </TD>
+                  <TD class="norightborder">				  
+				       <a href="javascript:void(0);" onclick="memberCardRecharge({weimicms:$list.uid},{weimicms:$thisCard.id})"><strong>充值</strong></a>
+				       |  
+				       <a href="{weimicms::U('Member_card/member',array('token'=>$token,'cardid'=>$thisCard['id'],'number'=>$list['number']))}" ><strong>消费记录</strong></a>
+				       |
+				       <a href="javascript:drop_confirm('您确定要删除吗?', '/index.php?g=User&m=Member_card&a=member_del&token={weimicms:$Think.get.token}&itemid={weimicms:$list.id}&id={weimicms:$thisCard.id}');"><strong>删除</strong></a> 
+                  </TD>
+                </TR>
+				</volist>
+              </TBODY>
+            </TABLE>
+          </div>
+            
+          <div class="cLine">
+            <div class="pageNavigator right">
+                <div class="pages">{weimicms:$page}</div>
+              </div>
+            <div class="clr"></div>
+          </div>
+        </div>
+
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+  <script>
+
+function checkAll(form, name) {
+for(var i = 0; i < form.elements.length; i++) {
+var e = form.elements[i];
+if(e.name.match(name)) {
+e.checked = form.elements['chkall'].checked;
+}
+}
+}
+  </script>
+  <!--底部-->
+  	</div>
+<include file="Public:footer"/>  

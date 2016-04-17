@@ -1,0 +1,186 @@
+<include file="Public:head"/>
+<script src="{weimicms:$staticPath}/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{weimicms:$staticPath}/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="{weimicms::RES}/js/date/WdatePicker.js"></script>
+<script src="{weimicms:$staticPath}/tpl/static/upyun.js"></script>
+<style type="text/css">
+.userinfoArea th{width:200px;}
+</style>
+<form class="frontpageform" method="post" action="{weimicms::U('FrontPage/addaction',array('token'=>$this->token))}">
+<div class="content">
+<div class="cLineB">
+  <h4>设置活动信息</h4><a href="{weimicms::U('FrontPage/index',array('token'=>$this->token))}" class="right btnGrayS vm" style="margin-top:-27px">返回活动列表</a></div>
+<div class="msgWrap bgfc">
+<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+<tbody>
+<tr>
+  <th valign="top"><span class="red">*</span>活动名称：</th>
+  <td><input type="input" class="px" id="action_name" value="<if condition="$set.action_name neq ''">{weimicms:$set.action_name}<else />我要上头条</if>" name="action_name" style="width:400px"></td> 	
+</tr>
+<tr>
+  <th valign="top"><span class="red">*</span>关键词：</th>
+  <td><input type="input" class="px" id="keyword" value="<if condition="$set.keyword neq ''">{weimicms:$set.keyword}<else />我要上头条</if>" name="keyword" style="width:400px"></td> 	
+</tr>
+<tr>
+  <th valign="top"><span class="red">*</span>回复标题：</th>
+  <td><input type="input" class="px" id="reply_title" value="{weimicms:$set.reply_title}" name="reply_title" style="width:400px"></td> 	
+</tr>
+<tr>
+  <th valign="top"><span class="red">*</span>回复内容：</th>
+  <td><textarea type="input" class="px" id="reply_content" name="reply_content" style="width: 560px; height: 100px;">{weimicms:$set.reply_content}</textarea></td> 	
+</tr>
+<tr>
+  <th valign="top"><span class="red">*</span>回复图片：</th>
+  <td>  <if condition="$set.reply_pic neq ''">
+	<img class="thumb_img" id="pic0_src" src="{weimicms:$set.reply_pic}" style="max-height:100px;max-width: 200px;">
+	<else />
+	<img class="thumb_img" id="pic0_src" src="{weimicms:$staticPath}/tpl/static/frontpage/images/frontpage.jpg" style="max-height:100px;max-width: 200px;">
+  </if>
+  <input type="text" name="reply_pic" value='<if condition="$set[\'reply_pic\'] neq ''">{weimicms:$set.reply_pic}<else/>{weimicms:$staticPath}/tpl/static/frontpage/images/frontpage.jpg</if>' id="pic0" class="px" style="width:200px;" >
+  <a href="###" onclick="upyunPicUpload('pic0',365,158,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('pic0')">预览</a>   &nbsp; 建议图片尺寸365*158，图片大小不超过300K</td> 	
+</tr>
+<tr>
+  <th valign="top"><span class="red">*</span>顶部广告语设置:</th>
+  <td><input type="input" class="px" id="remind_word" value="{weimicms:$set.remind_word}" name="remind_word" style="width:400px">&nbsp;&nbsp;&nbsp;&nbsp;不超过15个字 </td>
+</tr>
+<tr>
+  <th valign="top"><span class="red">*</span>顶部广告logo:</th>
+  <td><input type="text" name="remind_img" value='<if condition="$set[\'remind_img\'] neq ''">{weimicms:$set.remind_img}<else/>{weimicms:$staticPath}/tpl/static/frontpage/images/logo.png</if>' id="pic1" class="px" style="width:400px;">
+  <a href="###" onclick="upyunPicUpload('pic1',0,0,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('pic1')">预览</a></td>
+</tr>
+<tr>
+  <th valign="top"><span class="red">*</span>顶部广告跳转地址:</th>
+  <td><input type="input" class="px" id="remind_link" value="{weimicms:$set.remind_link}" name="remind_link" style="width:400px"> <if condition="session('isQcloud') neq true"><a href="###" onclick="addLink('remind_link',0)" class="a_choose">功能库添加</a></if></td>
+</tr>
+<tr>
+  <th valign="top">自定义分享标题：</th>
+  <td><input type="input" class="px" id="custom_sharetitle" value="{weimicms:$set.custom_sharetitle}" name="custom_sharetitle" style="width:470px"><br /> 	
+<p>不填则默认为：xx上新闻头条了！</p>
+<p>填写时可带参数{{username}}</p>
+<p>例如：{{username}}上新闻头条了！</p>
+<p>如果分享者是汪峰则分享标题变为：汪峰上新闻头条了！</p> </td> 	
+</tr>
+<tr>
+  <th valign="top">自定义分享描述：</th>
+  <td><input type="input" class="px" id="custom_sharedsc" value="{weimicms:$set.custom_sharedsc}" name="custom_sharedsc" style="width: 470px;"><br />
+<p>分享朋友圈或者分享给朋友时标题下面显示的描述，不填则默认为粉丝分享的头条新闻标题</p>
+<p>填写时可带参数{{title}}</p>
+<p>例如：新闻标题：{{title}}！</p>
+<p>描述变为：新闻标题：狐精女走红网络！</p></td> 	
+</tr>
+<tr>
+<th>活动时间：</th>
+<td><input type="input" class="px" id="start_time" value="{weimicms:$set.start_time|default=time()|date='Y-m-d H:i',###}" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" name="start_time">
+到
+<input type="input" class="px" id="end_time" value="{weimicms:$set.end_time|default=strtotime('+1 month')|date='Y-m-d H:i',###}" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" name="end_time"></td>
+</tr>
+<tr>
+  <th valign="top">手机端显示赞助商：</th>
+  <td><input type="input" class="px" id="sponsors" value="{weimicms:$set.sponsors}" name="sponsors" style="width: 200px;">&nbsp;&nbsp;&nbsp;&nbsp;不超过10个字</td> 	
+</tr>
+<tr>
+  <th valign="top"><span class="red">*</span>每人每天允许制作新闻条数：</th>
+  <td><input type="input" class="px" id="day_create" value="<if condition="$set.day_create neq ''">{weimicms:$set.day_create}<else />0</if>" name="day_create" style="width:120px">&nbsp;&nbsp;&nbsp;&nbsp;必须小于总共允许条数,可以为0,0表示不限制直到达到总共新闻条数为止,请输入整数</td> 	
+</tr>
+<tr>
+  <th valign="top"><span class="red">*</span>每人总共允许制作新闻条数：</th>
+  <td><input type="input" class="px" id="total_create" value="{weimicms:$set.total_create}" name="total_create" style="width:120px">&nbsp;&nbsp;&nbsp;&nbsp;请输入大于0的整数</td> 	
+</tr>
+<tr>
+  <th valign="top">轮播显示最新的新闻条数：</th>
+  <td><input type="input" class="px" id="latest_count" value="{weimicms:$set.latest_count}" name="latest_count" style="width:120px">&nbsp;&nbsp;&nbsp;&nbsp;请输入大于0的整数,不填默认显示最新的十条</td> 	
+</tr>
+<tr>
+<th>未关注是否可以参与：</th>
+<td>
+  <input type="radio" name="is_follow" value="1" <if condition="$set.is_follow eq '1'">checked</if>>
+  是&nbsp;&nbsp;<input type="radio" name="is_follow" value="0" <if condition="$set.is_follow eq '0' or $set.is_follow eq ''">checked</if>>否<span style="width:318px;">&nbsp;&nbsp;&nbsp;{weimicms:$__access_remind__}</span>
+</td>
+</tr>
+<tr>
+<th>是否需要粉丝信息：</th>
+<td>
+  <input type="radio" name="is_register" value="1" <if condition="$set.is_register eq '1' or $set.is_register eq ''">checked</if>>
+  是&nbsp;&nbsp;<input type="radio" name="is_register" value="0" <if condition="$set.is_register eq '0'">checked</if>>否
+  &nbsp;&nbsp;&nbsp;&nbsp;(没有粉丝详细信息参加活动的处理方式)
+</td>
+</tr>
+<tr>
+<th>活动状态：</th>
+<td>
+  <input type="radio" name="status" value="1" <if condition="$set.status eq '1' or $set.status eq ''">checked</if>>
+  开启&nbsp;&nbsp;<input type="radio" name="status" value="0" <if condition="$set.status eq '0'">checked</if>>关闭&nbsp;&nbsp;<span style="color:red;">如果配置信息未配置或配置的全部过期，则活动默认修改为关闭状态</span>&nbsp;&nbsp;&nbsp;<a href="{weimicms::U('FrontPage/listconfigure',array('token'=>$this->token))}" target="_blank"><span style="color:green;">配置信息</span></a>
+</td>
+</tr>
+<tr>
+<th>&nbsp;</th>
+<if condition="$set.id neq ''">
+<input type="hidden" name="id" value="{weimicms:$set.id}" />
+</if>
+<td><button type="submit" name="button" class="btnGreen sub" id="frontpagesubmit">保存</button>
+<a href="{weimicms::U('FrontPage/addaction',array('id'=>$set['id']))}" class="btnGray vm">取消</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+ </div>
+</form>
+<include file="Public:footer"/>
+<script type="text/javascript">
+$(function(){
+	$('.frontpageform').submit(function(){
+		var action_name = $("#action_name").val();
+		var keyword = $("#keyword").val();
+		var reply_title = $("#reply_title").val();
+		var reply_content = $("#reply_content").val();
+		var remind_word = $("#remind_word").val();
+		var remind_link = $("#remind_link").val();
+		var day_create = $("#day_create").val();
+		var total_create = $("#total_create").val();
+		var latest_count = $("#latest_count").val();
+		var sponsors = $("#sponsors").val();
+		var msg = '';
+		var reg = /^[1-9]\d*$/;
+		var number = /^[0-9]\d*$/;
+		if(action_name == ''){
+			msg += '活动名称不能为空\n';
+		}
+		if(keyword == ''){
+			msg += '关键词不能为空\n';
+		}
+		if(reply_title == ''){
+			msg += '回复标题不能为空\n';
+		}
+		if(reply_content == ''){
+			msg += '回复内容不能为空\n';
+		}
+		if(remind_word == ''){
+			msg += '自定义提示语不能为空\n';
+		}else if(remind_word.length > 15){
+			msg += '自定义提示语不超过15个字\n';
+		}
+		if(remind_link == ''){
+			msg += '自定义提示语跳转链接不能为空\n';
+		}
+		if(!number.test(day_create) && day_create != ""){
+			msg += '每人每天允许制作新闻条数请输入整数\n';
+		}
+		if(total_create == ""){
+			msg += '每人总共允许制作新闻条数不能为空\n';
+		}else if(!reg.test(total_create) && total_create != ""){
+			msg += '每人总共允许制作新闻条数请输入大于0的数字\n';
+		}
+		if(latest_count != "" && !reg.test(latest_count)){
+			msg += '轮播显示最新的新闻条数请输入大于0的数字';
+		}
+		if(sponsors != "" && sponsors.length > 10){
+			msg+= '赞助商不超过10个字';
+		}
+		if(msg != ""){
+			alert(msg);
+			return false;
+		}
+	});
+})
+</script>

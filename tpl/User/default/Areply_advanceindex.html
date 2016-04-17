@@ -1,0 +1,112 @@
+<include file="Public:head"/>
+<style>
+td,th{text-align:center;}
+</style>
+<script src="{weimicms:$staticPath}/tpl/static/upyun.js"></script>
+<script src="{weimicms:$staticPath}/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{weimicms:$staticPath}/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<div class="content">
+<div class="cLineB">
+<ul id="tags">
+	<li class="selectTag"><a href="">分时段关注自动回复</a> </li>
+	<li><a href="{weimicms::U('Areply/index',array('token'=>$_GET['token']))}">其他时段关注自动回复</a> </li>
+	<div class="clr"></div>
+</ul>
+<div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-top:10px;font-size:12px;">温馨提示：1.分时段关注自动回复，粉丝在不同时段关注会自动回复不同内容，支持单图文、多图文、文本回复、卡券、普通红包、裂变红包！<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+2.卡券和红包仅支持认证服务号，选择卡券作为关注回复时的回复信息时，请将公众号信息的微信卡券项开启！<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+3.卡券和红包的状态为‘不存在’表示源卡券、红包被删除，对应时段的卡券或红包将不能成功发送，请重新选择。<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+4.多图文状态为‘不存在’表示该多图文下选择的单图文被全部删除，请重新选择其他单图文。
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+5.如果粉丝的关注时间不在以下设置的任何一个时间段内，则回复'其他时段关注自动回复'里面的内容。
+</div>
+<div class="pageNavigator left"><a href="{weimicms::U('Areply/advanceadd',array('token'=>$_GET['token']))}" title="添加高级关注自动回复" class="btnGrayS vm bigbtn"><if condition="$usertplid eq 2"><i class="fa fa-hand-o-right"></i><else /><img src="{weimicms::RES}/images/product/add.png" width="16" class="vm"></if> 添加</a> </div>
+</div>
+<div class="clr"></div>
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<input name="delall" type="hidden" value="1">
+<input name="wxid" type="hidden" value="">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>                                 
+<th width="85">回复时段</th>
+<th width="100">回复类型</th>
+<th width="180">回复标题</th>
+<th width="95">添加时间</th>
+<th width="95">修改时间</th>
+<th width="60">状态</th>
+<th width="150"class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<weimicmsif where="$list">
+<weimicmslist array="list" foreach="list">
+<tr>
+	<td>{weimicms:$list.start_time}到{weimicms:$list.end_time}</td>
+	<td><if condition="$list['reply_type'] eq 1">单图文<elseif condition="$list['reply_type'] eq 2" />文本回复<elseif condition="$list['reply_type'] eq 3" />卡券({weimicms:$list['relevance_name']})<elseif condition="$list['reply_type'] eq 4" />普通红包({weimicms:$list['relevance_name']})<elseif condition="$list['reply_type'] eq 5" />多图文<elseif condition="$list['reply_type'] eq 6" />裂变红包({weimicms:$list['relevance_name']})<else />外链图文或营销活动</if></td>
+   <td><if condition="$list['title'] neq ''"><if condition="$list['reply_type'] eq 5">{weimicms:$list.title|html_entity_decode}<span style="color:red;">({weimicms:$list.lows}条)</span>&nbsp;&nbsp;<a href="javascript:;" style="color:green;" onclick="findall('{weimicms:$list['relevance_id']}');">查看全部</a><else />{weimicms:$list.title|html_entity_decode}</if><else />---</if></td>
+	<td>{weimicms:$list.add_time|date="Y-m-d H:i",###}</td>
+	<td><if condition="$list.update_time gt 0">{weimicms:$list.update_time|date="Y-m-d H:i",###}<else />---</if></td>
+	 <td><if condition="$list['status'] eq 1"><span style="color:red;">不存在</span><else /><span style="color:green;">正常</span></if></td>
+	<td class="norightborder" align="center">
+	<if condition="$Think.session.is_syn eq 2">
+<if condition="$usertplid neq 2">
+<script type="text/javascript">
+   $(document).ready(function(){
+      var bheight=document.body.clientHeight;
+      $("#lay{weimicms:$list.id}").click(function(){
+   $("#brg{weimicms:$list.id}").css("display","block");
+   $("#showdiv{weimicms:$list.id}").css("display","block");
+   //$("#testdiv").load("test.html");
+   });
+   $("#close{weimicms:$list.id}").click(function(){
+      $("#brg{weimicms:$list.id}").css("display","none");
+   $("#showdiv{weimicms:$list.id}").css("display","none");
+   });
+   });
+ </script>
+ <style type="text/css">
+   #brg{weimicms:$list.id}{ width:100%; height:100%; background:#333; position:absolute; top:0; left:0; filter:alpha(opacity=60); -moz-opacity:0.6; opacity: 0.6; position:absolute; top:0; left:0; display:none;}
+   #showdiv{weimicms:$list.id}{z-index:20; display:none;position:fixed; *position:absolute; width:100px; height:100px; top:20%; left:50%; margin:-50px 0 0 -50px;}
+   #testdiv{weimicms:$list.id}{ width:300px; height:300px; margin:0 auto; border:1px solid #4d4d4d; background:#f2f2f2;}
+   #close{weimicms:$list.id}{width:300px; height:27px; line-height:27px; font-size:14px; font-weight:bold; border:1px solid #4d4d4d; text-align:center; cursor:pointer; margin:0 auto; background:#333; color:#fff;margin-top: 15%;}
+ </style>
+	 <div id="brg{weimicms:$list.id}"></div>
+ <div id="showdiv{weimicms:$list.id}">
+   <div id="close{weimicms:$list.id}">您想关闭就点我吧</div>
+   <div id="testdiv{weimicms:$list.id}"><img src="{weimicms:$Think.session.source_domain}/wap.php?c=Wxapp&a=qrcode&id={weimicms:$list.id}&modle=CoinTree" width="300" height="300" class="cateimg_small"></div>
+ </div>
+	<a id="lay{weimicms:$list.id}"  style="width:191px;">查看二维码</a><br>
+</if>
+</if>
+	<a href="{weimicms::U('Areply/advanceadd',array('token'=>$list['token'],'id'=>$list['id'],'r_type'=>$list['r_type']))}">编辑</a>
+	|
+	<a href="javascript:drop_confirm('您确定要删除吗?', '{weimicms::U('Areply/del',array('token'=>$token,'id'=>$list['id']))}');">删除</a>
+    </td>
+</tr>
+</weimicmslist>
+<else />
+<tr><td colspan='7' style="text-align:center;">暂无记录</td></tr>
+</weimicmsif>
+</tbody>
+</table>
+</form>
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{weimicms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>	
+<script type="text/javascript">
+function findall(ids){
+	art.dialog.open('?g=User&m=Areply&a=multititle&ids='+ids+'&',{lock:true,title:'图文消息列表',width:600,height:400,yesText:'关闭',background: '#000',opacity: 0.45});
+}
+</script>

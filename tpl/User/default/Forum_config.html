@@ -1,0 +1,132 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />
+<!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>-->
+<script type="text/javascript" src="/tpl/User/default/common/js/select/js/jquery.js"></script>
+
+
+    
+<div class="content" <if condition="session('isQcloud') eq true">style="float:center;"</if>>
+
+<div class="cLineB">
+  <h4>讨论社区配置 </h4>
+ </div>
+<!--tab start-->
+<div class="tab">
+<ul>
+<include file="tabs"/> 
+</ul>
+</div>
+<!--tab end-->    
+    <div class="msgWrap bgfc">
+	  <form class="form" method="post" action="{weimicms::U('Forum/set')}" enctype="multipart/form-data">	 
+		<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<tbody>
+			<if condition="$Think.session.is_syn ELT 0">
+				<tr>
+				  <th valign="top"><span class="red">*</span>关键词：</th>
+				  <td>
+					<span class="red">论坛 或者 讨论社区 —— 当用户输入该关键词时，将会触发此回复。</span></td>
+				</tr>
+			</if>	
+				<tr>
+					<th width="120">讨论社区名字</th>
+					<td><input type="text" name="forumname" value="{weimicms:$conf.forumname|default=$wxname.'官方粉丝社区'}" class="px" style="width:250px;"></td>
+				</tr>
+				<tr>
+					<th>回复图片：</th>
+					<td><input type="text" name="picurl" id="picurl" value="{weimicms:$conf.picurl}" class="px" style="width:550px;"><script src="/tpl/static/upyun.js"></script>  <a href="###" onclick="upyunPicUpload('picurl',900,500,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('picurl')">预览</a><br/> </td>
+				</tr>
+				
+				<tr>
+					<th>讨论社区Logo：</th>
+					<td><input type="text" name="logo" id="logo" value="{weimicms:$conf.logo}" class="px" style="width:550px;">  <a href="###" onclick="upyunPicUpload('logo',300,300,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('logo')">预览</a><br/> </td>
+				</tr>				
+				<tr>
+					<th>自定义背景</th>
+					<td><input type="text" name="bgurl" id="bgurl" value="{weimicms:$conf.bgurl}" class="px" style="width:550px;">  <a href="###" onclick="upyunPicUpload('bgurl',558,896,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('bgurl')">预览</a><br/> </td>
+				</tr>
+				<tr>
+					<th width="120">图文回复介绍：</th>
+					<td><textarea style="width:560px;height:75px" name="intro" id="intro" class="px">{weimicms:$conf.intro}</textarea></td>
+				</tr>
+				
+				
+				<tr>
+					<th width="120">是否需要审核新帖</th>
+					<td>
+						<input type="radio" name="ischeck" id="nocheck" <if condition="$conf['ischeck'] eq 0">checked</if> value="0" /><label for="nocheck">不需要 &nbsp;</label>
+						<input type="radio" name="ischeck" id="check" <if condition="$conf['ischeck'] eq 1">checked</if> value="1" /><label for="check">需要</label>
+					</td>
+				</tr>
+								
+				<tr>
+					<th width="120">是否需要审核新评论</th>
+					<td>
+						<input type="radio" name="comcheck" id="nocomcheck" <if condition="$conf['comcheck'] eq 0">checked</if> value="0" /><label for="nocomcheck">不需要 &nbsp;</label>
+						<input type="radio" name="comcheck" id="comcheck" <if condition="$conf['comcheck'] eq 1">checked</if> value="1" /><label for="comcheck">需要</label>
+					</td>
+				</tr>
+				
+				<tr>
+					<th width="120">开启/关闭讨论社区</th>
+					<td>
+						<input type="radio" name="isopen" id="open" <if condition="$conf['isopen'] eq 1">checked</if> value="1" /><label for="open">开启 &nbsp;</label>
+						<input type="radio" name="isopen" id="noopen" <if condition="$conf['isopen'] eq 0">checked</if> value="0" /><label for="noopen">关闭</label>
+						 &nbsp; &nbsp; &nbsp;<tt style="color:red">(*选择关闭将不能打开讨论社区)</tt>
+					</td>
+				</tr>
+				<tr>
+				<th>&nbsp;</th>
+					<td>
+					
+<if condition="$Think.session.is_syn eq 2">
+<if condition="$usertplid neq 2">
+						<script type="text/javascript">
+   $(document).ready(function(){
+      var bheight=document.body.clientHeight;
+      $("#lay").click(function(){
+   $("#brg").css("display","block");
+   $("#showdiv").css("display","block");
+   //$("#testdiv").load("test.html");
+   });
+   $("#close").click(function(){
+      $("#brg").css("display","none");
+   $("#showdiv").css("display","none");
+   });
+   });
+ </script>
+ <style type="text/css">
+   #brg{ z-index:9999;width:100%; height:100%; background:#333; position:absolute; top:0; left:0; filter:alpha(opacity=60); -moz-opacity:0.6; opacity: 0.6; position:absolute; top:0; left:0; display:none;}
+   #showdiv{z-index:9999; display:none;position:fixed; *position:absolute;top:30%; left:50%; margin:-50px 0 0 -50px;}
+   #testdiv{ width:300px; height:300px; margin:0 auto; border:1px solid #4d4d4d; background:#f2f2f2;}
+   #close{width:300px; height:27px; line-height:27px; font-size:14px; font-weight:bold; border:1px solid #4d4d4d; text-align:center; cursor:pointer; margin:0 auto; background:#333; color:#fff;margin-top: 15%;}
+ </style>
+    <div id="brg"></div>
+ <div id="showdiv">
+   <div id="close">您想关闭就点我吧</div>
+   <div id="testdiv"><img src="{weimicms:$Think.session.source_domain}/wap.php?c=Wxapp&a=qrcode&token={weimicms:$conf.token}&modle=Forum" width="300" height="300" class="cateimg_small"></div>
+ </div>
+   <a id="lay{weimicms:$list.id}" class="btnGray" style="border: 1px solid #E6E7EC !important;padding: 4px 12px !important;overflow: visible !important;border-radius: 4px !important;background-color: #F4F5F9 !important;color: #222 !important;font-size: 14px !important;margin-top: 5px;margin-bottom: 5px;margin-left: 3px;">查看二维码</a><br>
+</if>
+</if>
+					</td>
+					</tr>
+				<th>&nbsp;</th>
+					<td>
+						<input type="hidden" name="token" value="{weimicms:$_GET['token']}" />
+						<button type="submit" class="btnGreen">保存</button>
+						<a href="javascript:history.go(-1);" class="btnGray vm">取消</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+  </div> 
+ 
+  
+        </div>
+<include file="Public:footer"/>
+<if condition="session('isQcloud') neq true">
+</if>

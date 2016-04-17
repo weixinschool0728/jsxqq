@@ -1,0 +1,90 @@
+<include file="Public:head"/>
+<script src="{weimicms::RES}/js/date/WdatePicker.js"></script>  
+<div class="content">
+         
+          <div class="cLineB">
+              <h4 class="left">当前位置：<a href="{weimicms::U('Member_card/index',array('token'=>$token))}">经纪人管理</a></h4>
+                 
+              <div class="clr"></div>
+          </div>
+		  <form method="post" action="#" id="info">
+     		<input type="text" placeholder="请输入用户名搜索词" value="{weimicms:$_POST['search']}" class="px" name="search" />
+			<button class="btnGreen-primary btn_submit  J_ajax_submit_btn"  style="height: 29px;">搜索</button>
+		  </form>
+            <TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+              <THEAD>
+                <TR>
+				<TH>用户名</TH>
+				<TH>会员类型</TH>
+				<TH>奖金</TH>
+				<TH>成交套数</TH>
+				<TH>微信号</TH>        	 
+                <TH>手机</TH>                                 
+                <TH>注册时间</TH>  
+               <!-- <TH>状态</TH>-->
+				<TH >操作</TH>
+                </TR>
+              </THEAD>
+              <TBODY>
+                <TR></TR> 
+				 <volist id="list" name="data">
+                <TR>
+                  <TD>{weimicms:$list.username}</TD>
+                  <TD>
+				  	<if condition="$list.typeid eq '1'">
+					大众经纪人
+					<elseif  condition="$list.typeid eq '2'" />
+					公司员工
+					<elseif  condition="$list.typeid eq '3'" />
+					中介公司
+					<elseif  condition="$list.typeid eq '4'" />
+					代理公司
+					<elseif  condition="$list.typeid eq '5'" />
+					合作伙伴 
+					</if>
+				  </TD>
+				  <TD>{weimicms:$list.money}</TD>
+				  <TD>{weimicms:$list.totalNum}</TD>
+                  <TD>{weimicms:$list.name}</TD>
+                  <TD>{weimicms:$list.phone}</TD>
+                  <TD>{weimicms:$list.zhucheshijian|date="Y-m-d h:i",###}</TD>  
+                 <!-- <TD>
+				  	<if condition="$list.statue eq '2'">
+						禁用
+					<else />
+						启用
+					</if>
+				  </TD>-->
+                  <TD class="norightborder">
+				<!--	<if condition='$list.statue eq 2'>
+					<a href="{weimicms::U('Supplier/stauser',array('id'=>$list['id'],'statue'=>'1','token'=>$token))}">启用 </a>
+					 </if>
+					 <if condition='$list.statue eq 1'>
+					<a href="{weimicms::U('Supplier/stauser',array('id'=>$list['id'],'statue'=>'2','token'=>$token))}">禁用 </a>
+					 </if>	-->  
+				    <a href="javascript:drop_confirm('您确定要删除吗?', '/index.php?g=User&m=Supplier&a=member_del&token={weimicms:$list.token}&itemid={weimicms:$list.id}');"><strong>删除</strong></a>
+                  </TD>
+                </TR>
+				</volist>
+
+
+              </TBODY>
+            </TABLE>
+          
+
+          </div> 
+          <div class="cLine">
+            <div class="pageNavigator right">
+                <div class="pages">{weimicms:$page}</div>
+              </div>
+            <div class="clr"></div>
+          </div>
+        </div>
+
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div> 
+  <!--底部-->
+  	</div>
+<include file="Public:footer"/>  

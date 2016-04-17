@@ -1,0 +1,46 @@
+<include file="Public:head"/> 
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" ><include file="Public:shangwu"/>
+<h4 class="left">无线打印</h4>
+<div class="clr"></div>
+</div>
+<div class="cLine">
+<div class="pageNavigator left">
+<p style="color:gray;">
+打印机填写URL：{weimicms::U('Home/Printer/index','',true,false,true)}<br />
+打印机测试：{weimicms::U('Home/Printer/preview','',true,false,true)}
+</p>
+<a href="{weimicms::U('Printer/set')}" title="添加" class="btnGrayS vm bigbtn"><img src="{weimicms::RES}/images/product/add.png" width="16" class="vm">添加打印机</a>
+</div>
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th>名称</th>
+<th>SN编号</th>
+<th>创建时间</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody align="center">
+<tr></tr>
+<volist name="list" id="vo"> 
+<tr>
+<td>{weimicms:$vo['name']}</td>
+<td>{weimicms:$vo['sn']|htmlspecialchars}</td>
+<td>{weimicms:$vo.create_time|date="Y-m-d H:i:s",###}</td> 
+<td><a href="{weimicms::U('Printer/set',array('id'=>$vo['id']))}">修改</a>　<a href="javascript:drop_confirm('您确定要删除吗?', '{weimicms::U('Printer/del',array('id'=>$vo['id']))}');">删除</a></td>
+</tr>
+</volist>
+</tbody>
+</table>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{weimicms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

@@ -1,0 +1,87 @@
+<include file="Public:head"/>
+
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+  <div class="cLineB">
+    <div  class="quick-actions_homepage">
+    <ul class="quick-actions">
+      <li class="bg_lb"> <a href="{weimicms::U('Taobao/index',array('token'=>$token))}"> <i class="icon-bullhorn"></i> 淘宝天猫 </a> </li>
+      <li class="bg_dy"> <a href="{weimicms::U('Api/index',array('token'=>$token))}"> <i class="icon-resize-full"></i> 第三方</a> </li>
+      <li class="bg_lg"> <a href="{weimicms::U('Reply/index',array('token'=>$token))}"> <i class="icon-book"></i> 留言板</a> </li>
+      <li class="bg_ly"> <a href="{weimicms::U('Greeting_card/index',array('token'=>$token))}"> <i class="icon-envelope"></i> 微贺卡 </a> </li>
+      <li class="bg_lo"> <a href="{weimicms::U('Shake/index',array('token'=>$token))}"> <i class="icon-bolt"></i> 摇一摇 </a> </li>
+      <li class="bg_ls"> <a href="{weimicms::U('Wewall/index',array('token'=>$token))}"> <i class="icon-reorder"></i> 微信墙</a> </li>
+      <li class="bg_db"> <a href="javascript:history.go(-1);"> <i class="icon-share-alt"></i> 返回</a> </li>
+    </ul>
+  </div>
+
+              <h4 class="left">活动结果</h4>
+
+              <div class="clr"></div>
+
+          </div>
+
+          
+
+          <div class="msgWrap">
+
+            <TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+
+              <THEAD>
+
+                <TR>
+
+					<TH class="keywords" width="80%">奖项</TH>
+
+					<TH class="edit norightborder">兑奖码</TH>
+
+                </TR>
+
+              </THEAD>
+
+              <TBODY id="ind">
+
+                <TR></TR>
+
+				<volist name="point" id="vo">
+
+				<tr>
+
+                  
+
+                  <td>{weimicms:$vo[0]}等奖</td>
+
+                  
+
+                   
+
+                   <td class="norightborder">
+
+                   {weimicms:$vo[1]}
+
+				   </td>
+
+          
+
+                </tr>
+
+				</volist>
+
+                              
+
+              </TBODY>
+
+            </TABLE>
+
+
+
+<script>
+
+	 
+
+</script>   
+
+  <!--底部-->
+
+  	</div>
+
+<include file="Public:footer"/>

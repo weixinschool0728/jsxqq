@@ -1,0 +1,74 @@
+<if condition="$ischild neq 1">
+<include file="Public:head" />
+<else />
+<include file="Repast:head" />
+</if>
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />  
+ <div class="content">
+<div class="cLineB">
+<h4 class="left">团购失败退款详细记录</h4>
+<div class="ftip" style="margin:30px auto 10px auto;">这里的已退款，意味着用户已经退款到了会员卡，如果你已手动转账给用户，修改状态将会扣除会员卡的余额！</div>
+<div class="clr"></div>
+</div>
+<!--tab start-->
+<div class="tab">
+<ul>
+	<li class="tabli" id="tab8"><a href="{weimicms::U('Storenew/grouponproduct',array('token'=>$token,'cid' => $cid))}">团购商品</a></li>
+	<li class="tabli" id="tab8"><a href="{weimicms::U('Storenew/groupon',array('token'=>$token,'cid' => $cid))}">团购管理</a></li>
+	<li class="tabli" id="tab2"><a href="{weimicms::U('Storenew/grouponorders',array('token'=>$token,'cid'=>$cid))}">团购订单</a></li>
+	<li class="current tabli" id="tab2"><a href="{weimicms::U('Storenew/groupontuikuan',array('token'=>$token,'cid'=>$cid))}">团购退款</a></li>
+</ul>
+</div>
+<!--tab end>
+<div class="cLine">
+	<div class="pageNavigator left">
+	<a href="{weimicms::U('Storenew/groupontuikuan', array('token' => $token, 'cid' => $cid,'tuikuan'=>1))}" title="已付款订单" class="btnGrayS vm bigbtn"><img src="{weimicms::RES}/images/product/arrow_switch.png" class="vm">审核中</a>
+	<a href="{weimicms::U('Storenew/groupontuikuan', array('token' => $token, 'cid' => $cid,'tuikuan'=>2))}" title="已付款订单" class="btnGrayS vm bigbtn"><img src="{weimicms::RES}/images/product/arrow_switch.png" class="vm">已退款</a>
+</div>
+	<div class="clr"></div>
+</div>
+<tab end-->
+<div class="cLine">
+	<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th width="100">申请人</th>
+<th width="120">参团日期</th>
+<th width="80">退款金额</th>
+<th width="150">团购商品</th>
+<th width="60">团购状态</th>
+<th width="100">团购ID</th>
+<th width="150">订单号</th>
+<th width="50">状态</th>
+<!--th width="50">操作</th-->
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="list" id="hostlist"> 
+<tr>
+<td>{weimicms:$hostlist['truename']}</td>
+<td>{weimicms:$hostlist['addtime']|date="Y-m-d H:i:s",###}</td> 
+<td>{weimicms:$hostlist['price']} 元</td>
+<td>{weimicms:$hostlist['name']}</td>
+<td><if condition="$hostlist['status'] eq 2">团购失败</if></td>
+<td>{weimicms:$hostlist['code']}</td>
+<td>{weimicms:$hostlist['orderid']}</td>
+<td><if condition="$hostlist['tuikuan'] eq 2"><span style="color:green">已提现</span><else/><span style="color:red">已退款</span></if></td>
+<!--td><if condition="$hostlist['tuikuan'] eq 1"><a href="javascript:drop_confirm('您确定已转账给该用户了吗?此操作一旦提交，不可更改！', '{weimicms::U('Storenew/groupontuikuanstatus',array('token' => $token, 'id' => $hostlist['id'], 'codeid' => $hostlist['code']))}');">转账修改</a><else/>无</if></td-->
+</tr>
+</volist>
+</tbody>
+</table>
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{weimicms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

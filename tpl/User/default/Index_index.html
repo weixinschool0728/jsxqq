@@ -1,0 +1,409 @@
+<include file="Index:header"/>
+<script src="/tpl/static/jquery-1.4.2.min.js"></script>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<link rel="stylesheet" type="text/css" href="{weimicms::Common}/default_user_com.css" media="all">
+<script language="JavaScript">
+if (window.top != self){
+  window.top.location = self.location;
+}
+</script>
+<script>
+function addFee(){
+  art.dialog.open('?g=User&m=Alipay&a=add',{lock:true,title:'充值续费',width:600,height:400,yesText:'关闭',background: '#000',opacity: 0.45});
+}
+function showApiInfo(id,name){
+  art.dialog.open('?g=User&m=Index&a=apiInfo&id='+id,{lock:true,title:name+'接口信息',width:830,height:270,yesText:'关闭',background: '#000',opacity: 0.45});
+}
+</script>
+<div class="content">
+<div class="usercontent">
+
+<ul>
+
+  <li class="addli">
+    <a class="addwx" style="background-color:#7CBAE5" title="添加公众号" href="#" onclick="addWeixin()">绑定公众号</a>
+
+  </li>
+
+  <li>
+    <a onclick="addFuwu()" title="绑定服务窗" class="goldbuy" href="#" style="background-color:#79CBE5">绑定服务窗</a>
+  </li>
+
+  <li class="addli">
+    <a class="addbiz" title="添加企业号" onclick="addbiz()" href="#" style="background-color:#66D2C6">添加企业号</a>
+  </li>
+
+  <li>
+    <a href="index.php?g=User&m=Alipay&a=index" class="gold" title="查看资金" style="background-color:#60D295" >
+      <p><strong>账户余额：</strong>{weimicms:$thisUser.moneybalance}</p>
+      <p>点击充值</p>
+    </a>
+  </li>
+
+  <li>
+  <a href="###">
+    <div class="qqqun" style="background-color:#4CC15D">
+      <div class="qt">官方QQ号</div>
+      <div class="qt2">{weimicms:$f_qq}</div>
+    </div>
+  </a>
+  </li>
+
+
+<script type="text/javascript">
+  function addbiz(){
+    <if condition="C('open_biz') eq 0">
+      alert('请联系站长在后台开启企业号');
+    <else />
+      location.href="{weimicms::U('Index/add',array('biz'=>1))}";
+    </if>
+  }
+
+  function addFuwu(){
+     <eq name="hasFuwu" value="0">
+        alert('您不可以使用服务窗功能，请联系您的网站管理员处理');
+     <else />
+        location.href="{weimicms::U('Index/add',array('token'=>$token,'goldbuy'=>1))}";
+     </eq>
+  }
+
+  function addWeixin(){
+    <eq name="hasWeixin" value="0">
+      alert('您不可以使用此功能，请联系您的网站管理员处理');
+    <else />
+         <if condition="$oauthUrl eq ''">
+            location.href="{weimicms::U('Index/add')}";
+          <else />
+             location.href="{weimicms:$oauthUrl}";
+         </if>
+    </eq>
+  }
+</script>
+
+<div class="clr"></div>
+</ul>
+        <div class="clr"></div>
+      </div>
+<if condition="$usertplid eq 2">
+<script src="{weimicms:$staticPath}/tpl/static/new/js/jquery-2.1.1.js"></script>
+      <div class="ibox-content">
+          <table class="table table-hover">
+              <thead>
+              <tr>
+                  <th>公众号名称</th>
+                  <th>VIP等级</th>
+                  <th>创建时间/到期时间</th>
+                  <th>已定义/上限</th>
+                  <th>请求数</th>
+                  <th>操作</th>
+              </tr>
+              </thead>
+           <TBODY>
+                <TR></TR>
+                 <volist name="info" id="vo">
+          <TR>
+            <TD>
+        <?php if($vo['qr'] == ""){?>
+        <p><a href="{weimicms::U('Function/index',array('id'=>$vo['id'],'token'=>$vo['token']))}" ><img src="{weimicms:$vo.headerpic}" width="40" height="40"></a></p><br><p style="float:left;margin-top:-15px;<?php if($vo['error'] != 0){echo "color:red";}?>" >{weimicms:$vo.wxname}</p>
+        <?php }else{?>
+        <p><a href="{weimicms::U('Function/index',array('id'=>$vo['id'],'token'=>$vo['token']))}" ><div class="cateimg"><img src="{weimicms:$vo.headerpic}" width="40" height="40" style="width:40px;height:40px" class="cateimg_small"><img src="{weimicms:$vo.qr}" class="cateimg_big"  /></div></a></p><br><br><br><p style="float:left;margin-top:-15px;<?php if($vo['error'] != 0){echo "color:red";}?>">{weimicms:$vo.wxname}</p>
+        <?php }?>
+      </TD>
+      <TD align="center" style="line-height: 93px;">{weimicms:$thisGroup.name}</TD>
+      <TD><p>创建时间:{weimicms:$vo.createtime|date="Y-m-d",###}</p><p>到期时间:{weimicms:$viptime|date="Y-m-d",###}</p><p><a href="###" onclick="addFee()" id="smemberss" class="green"><em>升级vip续费</em></a></p></Td>
+      <TD align="center" style="line-height: 93px;">图文：<php>echo $_SESSION['diynum'].'/'.$group[$_SESSION['gid']]['did'];</php></TD>
+      <TD><p style="margin-top: 18px;">总请求数:<php>echo $_SESSION['connectnum']</php></p><p> 本月请求数:<php>echo $group[$_SESSION['gid']]['cid'];</php></p></TD>
+
+      <TD class="norightborder">　
+      <div style="">
+      <a class="btnGrayS" href="{weimicms::U('Index/edit',array('id'=>$vo['id']))}<if condition='$vo.ifbiz eq 1'>&biz=1</if><if condition='$vo.goldbuy neq ""'>&goldbuy=1</if>">编辑</a>
+      <a class="btnGrayS" class="btnGrayS" href="javascript:drop_confirm('您确定要删除吗?', '{weimicms::U('Index/del',array('id'=>$vo['id']))}');">删除</a>
+          <if condition='$vo.ifbiz eq 1'>
+            <a class="btnGrayS" target="_blank" href="{weimicms::U('Index/qiye',array('id'=>$vo['id']))}" class="btnGreens" >功能管理</a>
+            <a class="btnGrayS" target="_blank" href="{weimicms::U('Index/qiye',array('id'=>$vo['id']))}" class="btnGreens" >企业号</a>
+          <else />
+  <?php if($vo['qr'] != '' || $topdomain == 'weimicms.cn'){?>
+      <a class="btnGrayS" <if condition="$usertplid eq 1">href="{weimicms::U('Function/welcome',array('id'=>$vo['id'],'token'=>$vo['token']))}" <elseif condition="$usertplid eq 2"/>href="{weimicms::U('Function/welcome',array('id'=>$vo['id'],'token'=>$vo['token']))}"<else />href="{weimicms::U('Function/index',array('id'=>$vo['id'],'token'=>$vo['token']))}" </if>class="btnGreens" >功能管理</a>
+    <?php }else{?>
+      <a class="btnGrayS" href="javascript:alert('请上传您的公众号二维码！');window.location.href='<?php echo U("User/Index/edit",array('id'=>$vo['id']));?>'" class="btnGreens" >功能管理</a>
+    <?php }?>
+      <a class="btnGrayS" onclick="showApiInfo({weimicms:$vo.id},'{weimicms:$vo.wxname}')" href="###" class="btnGreens" >API接口</a>
+
+     <!--自行增加 场景接入开始-->
+
+           <if condition="$vo.eqx eq '1'">
+
+           <a  href="{weimicms::U('Index/reeqx',array('id'=>$vo['id'],'token'=>$vo['token']))}" class="btnGreens"  target="_blank">重新同步</a><else/> <a  href="{weimicms::U('Index/eqx',array('id'=>$vo['id'],'token'=>$vo['token']))}" class="btnGreens"  target="_blank">同步场景</a>
+
+           </if>
+
+      <!--自行增加 场景接入结束-->
+
+      <if condition="$vo.type eq 1 and $oauthUrl neq ''">
+        <if condition="$vo.authorizer_refresh_token eq ''">
+          <a class="btnGrayS" href="{weimicms:$oauthUrl}&ac_id={weimicms:$vo.id}" class="btnGreens">重新授权</a>
+        </if>
+      <elseif condition="$vo.type eq 0 and $oauthUrl neq '' and $vo.fuwuappid neq ''"/>
+        <a class="btnGrayS" href="{weimicms:$oauthUrl}&ac_id={weimicms:$vo.id}" class="btnGreens">登陆授权</a>
+      </if>
+          </if>
+      </div>
+            </TD>
+          </TR>
+                  </volist>
+
+              </TBODY>
+          </table>
+      </div>
+<else />
+<div class="msgWrap">
+            <TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+              <THEAD>
+                <TR>
+                  <TH>公众号名称</TH>
+                  <TH style="text-align:center">VIP等级</TH>
+                  <TH>创建时间/到期时间</TH>
+                   <TH>已定义/上限</TH>
+                   <TH>请求数</TH>
+                  <TH>操作</TH>
+                </TR>
+              </THEAD>
+              <TBODY>
+                <TR></TR>
+                 <volist name="info" id="vo">
+          <TR>
+            <TD>
+        <?php if($vo['qr'] == ""){?>
+        <p><a href="{weimicms::U('Function/index',array('id'=>$vo['id'],'token'=>$vo['token']))}" ><img src="{weimicms:$vo.headerpic}" width="40" height="40"></a></p><br><p style="float:left;margin-top:-15px;<?php if($vo['error'] != 0){echo "color:red";}?>" >{weimicms:$vo.wxname}</p>
+        <?php }else{?>
+        <p><a href="{weimicms::U('Function/index',array('id'=>$vo['id'],'token'=>$vo['token']))}" ><div class="cateimg"><img src="{weimicms:$vo.headerpic}" width="40" height="40" style="width:40px;height:40px" class="cateimg_small"><img src="{weimicms:$vo.qr}" class="cateimg_big"  /></div></a></p><br><br><br><p style="float:left;margin-top:-15px;<?php if($vo['error'] != 0){echo "color:red";}?>">{weimicms:$vo.wxname}</p>
+        <?php }?>
+      </TD>
+      <TD align="center">{weimicms:$thisGroup.name}</TD>
+            <TD><p>创建时间:{weimicms:$vo.createtime|date="Y-m-d",###}</p><p>到期时间:{weimicms:$viptime|date="Y-m-d",###}</p><p><a href="###" onclick="addFee()" id="smemberss" class="green"><em>升级vip续费</em></a></p></Td>
+            <TD><p>图文：<php>echo $_SESSION['diynum'].'/'.$group[$_SESSION['gid']]['did'];</php></p></TD>
+             <TD><p>总请求数:<php>echo $_SESSION['connectnum']</php></p><p> 本月请求数:<php>echo $group[$_SESSION['gid']]['cid'];</php></p></TD>
+
+            <TD class="norightborder">　
+
+      <a href="{weimicms::U('Index/edit',array('id'=>$vo['id']))}<if condition='$vo.ifbiz eq 1'>&biz=1</if><if condition='$vo.goldbuy neq ""'>&goldbuy=1</if>">编辑</a>
+      <a  href="javascript:drop_confirm('您确定要删除吗?', '{weimicms::U('Index/del',array('id'=>$vo['id']))}');">删除</a>
+          <if condition='$vo.ifbiz eq 1'>
+            <a target="_blank" href="{weimicms::U('Index/qiye',array('id'=>$vo['id']))}" class="btnGreens" >功能管理</a>
+            <a target="_blank" href="{weimicms::U('Index/qiye',array('id'=>$vo['id']))}" class="btnGreens" >企业号</a>
+          <else />
+  <?php if($vo['qr'] != '' || $topdomain == 'weimicms.cn' || $vo['fuwuappid'] != ''){?>
+  <a href="javascript:" class="btnGreens" onclick="bomb_window('{weimicms:$vo[id]}','{weimicms:$vo[token]}');">功能管理</a>
+    <?php }else{?>
+      <a href="javascript:alert('请上传您的公众号二维码！');window.location.href='<?php echo U("User/Index/edit",array('id'=>$vo['id']));?>'" class="btnGreens" >功能管理</a>
+    <?php }?>
+      <a onclick="showApiInfo({weimicms:$vo.id},'{weimicms:$vo.wxname}')" href="###" class="btnGreens" >API接口</a>
+
+   <!--自行增加 场景接入开始-->
+
+           <if condition="$vo.eqx eq '1'">
+
+           <a  href="{weimicms::U('Index/reeqx',array('id'=>$vo['id'],'token'=>$vo['token']))}" class="btnGreens"  target="_blank">重新同步</a><else/> <a  href="{weimicms::U('Index/eqx',array('id'=>$vo['id'],'token'=>$vo['token']))}" class="btnGreens"  target="_blank">同步场景</a>
+
+           </if>
+
+      <!--自行增加 场景接入结束-->
+
+      <if condition="$vo.type eq 1 and $oauthUrl neq ''">
+        <if condition="$vo.authorizer_refresh_token eq ''">
+          <a href="{weimicms:$oauthUrl}&ac_id={weimicms:$vo.id}" class="btnGreens">重新授权</a>
+        </if>
+      <elseif condition="$vo.type eq 0 and $oauthUrl neq '' and $vo.fuwuappid neq ''"/>
+        <a href="{weimicms:$oauthUrl}&ac_id={weimicms:$vo.id}" class="btnGreens">登陆授权</a>
+      </if>
+          </if>
+
+            </TD>
+          </TR>
+                  </volist>
+
+              </TBODY>
+            </TABLE>
+
+          </div>
+</if>
+          <br>
+          <weimicmsif where="$demo eq 1">
+          <div class="alert">
+          <p><b>欢迎试用微米CMS微信多用户营销系统，为了您测试方便，我们已经自动创建了公众号并填充了各类数据，您只需要按照下面步骤操作即可进行测试：</b></p>
+          <p>1、<a href="{weimicms::U('Index/edit',array('id'=>$wxinfo['id']))}">点击这里修改您的公众号信息</a></p>
+          <p>2、登录您的微信公众平台，按照说明绑定您的微信公众号(<a href="{weimicms::U('User/Index/bindHelp',array('id'=>$wxinfo['id'],'token'=>$wxinfo['token']))}" target="_blank">点击这里查看帮助说明</a>)</p>
+          <p>3、如果您需要测试自定义菜单功能，请<a href="{weimicms::U('Function/index',array('id'=>$wxinfo['id'],'token'=>$wxinfo['token']))}">进入功能管理</a>，然后生成自定义菜单，重新关注公众号就会看到自定义菜单了</p>
+          <p>就这些，如果碰到任何问题，请您给我们留言，QQ：800022936</p>
+          </div>
+          </weimicmsif>
+          <div class="cLine">
+            <div class="pageNavigator right">
+              <div class="pages" <if condition="$usertplid eq 2">style="margin-right: 130px;"</if>>{weimicms:$page}</div>
+            </div>
+            <div class="clr"></div>
+          </div>
+        </div>
+
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+  <!--底部-->
+    </div>
+    <!--ad start-->
+    <weimicmsif where="$thisAD">
+    <div id="ad1" style="width: 100%; height: 100%; position: fixed; z-index: 1997; top: 0px; left: 0px; overflow: hidden;"><div style="height: 100%; background: none repeat scroll 0% 0% rgb(0, 0, 0); opacity: 0.65;filter:alpha(opacity=65);">
+
+    </div></div>
+    <div id="ad2" style="position:fixed; text-align:center; width:100%; top:140px; z-index:30001">
+    <a href="<?php if ($thisAD['url']){?>{weimicms:$thisAD.url}<?php }else{?>###<?php };?>" target="_blank"><img src="{weimicms:$thisAD.imgs}" /></a>
+    </div>
+    <div id="ad3" style="position:fixed; text-align:center; width:100%; top:140px;z-index:30012; background:#f80; opacity:0;filter:alpha(opacity=0);">
+    <div style="height:40px;width:700px;margin:0 auto;z-index:30012;">
+    <div onclick="closeAD()" style="height:45px;width:45px;margin:0 0 0 655px;cursor:pointer;"></div>
+    </div>
+    </div>
+    <script>
+    function closeAD(){
+      $('#ad1').animate({opacity: "hide"}, "slow");
+      $('#ad2').animate({opacity: "hide"}, "slow");
+      $('#ad3').animate({opacity: "hide"}, "slow");
+      $.ajax({url: "/index.php?g=User&m=Index&a=closeAD",dataType: "json"});
+    }
+    </script>
+    </weimicmsif>
+
+
+
+
+<script type="text/javascript">
+  function bomb_window(id,token){
+    var id=id;
+    var token=token;
+    var dmheight=$(document).height();
+      $('.rightBtn').attr({
+        id:id,
+        token:token
+      })
+      $.ajax({
+        type:"post",
+        url:"{weimicms::U('User/Index/bomb_ajax')}&id="+id+"&token="+token,
+        datatype:"json",
+        data:{
+          id:id,
+          token:token
+        },
+        success:function(sta){
+          if(sta.length<'4'){//判断是否超时
+            var obj = JSON.parse(sta);
+            if({weimicms:$usertplid}==1 || {weimicms:$usertplid}==2){//判断选择的模板
+              if(obj=='1'){
+                location="{weimicms::U('Function/welcome')}&id="+id+"&token="+token;
+              }else{
+                $('.window').css('display','block');
+                $('.fullBg').css({
+                  'display':'block',
+                  'height':dmheight
+                });
+                $('body,html').css('overflow', 'hidden');
+
+              }
+            }else{
+              if(obj=='1'){
+                location="{weimicms::U('Function/index')}&id="+id+"&token="+token;
+              }else{
+                $('.window').css('display','block');
+                $('.fullBg').css({
+                  'display':'block',
+                  'height':dmheight
+                });
+                $('body,html').css('overflow', 'hidden');
+              }
+            }
+          }else{
+            location="{weimicms::U('Home/Index/login')}";
+          }
+
+
+        }
+      })
+  }
+</script>
+
+<if condition="$pid_zw eq 1">
+<div class="fullBg"></div>
+
+<div class="window w0">
+
+    <div class="windowPo">
+
+        <img src="{weimicms:$staticPath}/tpl/User/default/common/images/bomb_window/yun.png" class="yun bounceInDown" />
+
+        <img src="{weimicms:$staticPath}/tpl/User/default/common/images/bomb_window/pigImg.png" class="pigImg bounceInLeft" />
+
+        <img src="{weimicms:$staticPath}/tpl/User/default/common/images/bomb_window/text00.png" class="text00"/>
+
+        <img src="{weimicms:$staticPath}/tpl/User/default/common/images/bomb_window/text01.png" class="text01"/>
+
+        <a href="javascript:;" class="leftBtn">查看如何设置</a>
+
+        <a href="javascript:;" class="rightBtn">我设置过了</a>
+
+        <a href="javascript:;" class="xClosed" onclick="xClosed()" style="display: none;"></a>
+
+    </div>
+
+</div>
+
+</if>
+
+<script type="text/javascript">
+  $('.rightBtn').click(function(){
+    var id=$('.rightBtn').attr('id');
+    var token=$('.rightBtn').attr('token');
+    $.ajax({
+      type:"post",
+      url:"{weimicms::U('User/Index/bomb_ajax')}&id="+id+"&token="+token,
+      datatype:"json",
+      data:{
+        id:id,
+        token:token,
+        set_id:1
+      },
+      success:function(shh){
+        if(shh){
+              $(".window").fadeOut();
+          $(".fullBg").css({
+            'display':'none',
+            'height':'0'
+          });
+          $('body,html').css('overflow', 'auto');
+          location="{weimicms::U('Function/index')}&id="+id+"&token="+token;
+        }
+      }
+      })
+  })
+</script>
+
+<script type="text/javascript">
+
+  $('.leftBtn').click(function(){
+
+    art.dialog.open('http://www.meihua.com/waphelp/pigcms.php',{lock:true,title:'设置帮助',width:800,height:600,yesText:'Y',background: '#000',opacity: 0.45});
+
+
+
+  })
+
+</script>
+
+<script type="text/javascript">
+
+  centerWindow(".window");
+</script>
+
+
+    <!--ad end-->
+<include file="Public:footer"/>

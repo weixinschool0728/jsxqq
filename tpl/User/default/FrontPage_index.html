@@ -1,0 +1,70 @@
+<include file="Public:head"/>
+<div class="content">
+<div class="cLineB">
+<h4 class="left">我要上头条</h4>
+<div class="clr"></div>
+</div>
+<style>
+th,td{text-align:center;}
+</style>
+<div class="cLine">
+<div class="pageNavigator left"><a href="{weimicms::U('FrontPage/addaction',array('token'=>$token))}" title="添加活动" class="btnGrayS vm bigbtn">添加活动</a> </div>  <div class="pageNavigator left"><a href="{weimicms::U('FrontPage/listconfigure',array('token'=>$token))}" title="配置信息" class="btnGrayS vm bigbtn">配置信息</a> </div>
+<div class="searchbar right">
+<form method="post" action="{weimicms::U('FrontPage/index',array('token'=>$token))}">
+<input type="text" id="msgSearchInput" class="txt left" placeholder="输入活动名称或关键词搜索" name="search_word" value="{weimicms:$search_word}" style="padding:6px;width:155px;">
+<input type="submit" value="搜索" id="msgSearchBtn" href="" class="btnGrayS" title="搜索">
+</form>
+</div>
+<div class="clr"></div>
+</div>
+<div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-bottom:5px;font-size:12px;"><p>温馨提示：需要在配置信息里面填写好相应信息才可正常使用。</p></div>
+<div class="msgWrap">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>                                 
+<th width="85">活动名称</th>
+<th width="70">关键词</th>
+<th width="55">转发数</th>
+<th width="52">活动状态</th>
+<th width="200"class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<if condition="$list neq ''">
+<weimicmslist array="list" foreach="list">
+<tr>
+	<td>{weimicms:$list.action_name}</td>
+	<td>{weimicms:$list.keyword}</td>
+	<td>{weimicms:$list.sharecount}</td>
+	<td>
+		<if condition="$list.status eq '1'">
+			<span style="color:green;">进行中</span>
+		<else/>
+			<span style="color:red;">已关闭</span>
+		</if>
+	</td>
+	<td class="norightborder" align="center">
+		<a href="{weimicms::U('FrontPage/fansnews',array('token'=>$list['token'],'id'=>$list['id'],'news_type'=>2))}">粉丝新闻列表</a>
+		|		
+		<a href="{weimicms::U('FrontPage/systemnews',array('token'=>$token,'id'=>$list['id'],'news_type'=>1))}">随机事件列表</a>
+		|
+		<a href="{weimicms::U('FrontPage/addaction',array('token'=>$list['token'],'id'=>$list['id']))}">编辑</a>
+		|
+		<a href="javascript:drop_confirm('您确定要删除吗?', '{weimicms::U('FrontPage/delaction',array('token'=>$token,'id'=>$list['id']))}');">删除</a>
+    </td>
+</tr>
+</weimicmslist>
+<else />
+<tr><td colspan="5">暂无记录</td></tr>
+</if>
+</tbody>
+</table>
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{weimicms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

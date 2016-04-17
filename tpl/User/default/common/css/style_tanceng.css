@@ -1,0 +1,24 @@
+.fullBg {  background-color: #000;  left: 0;  opacity: 0.8;  position: absolute;  top: 0;  z-index: 3;  filter: alpha(opacity=80);  -moz-opacity: 0.8;  -khtml-opacity: 0.8;  display: none;  z-index: 888;width: 100%;}
+.window{position: absolute;left:666.5px;top: 254px;z-index:999;display: none; }
+.w0{width: 587px; height: 349px;}
+.w0 .windowPo{ height: 349px;width: 100%;position: relative;}
+.w0 .windowPo a{position: absolute;text-align: center;font-size: 18px;color: #fff}
+.w0 .windowPo a.xClosed{width: 51px;height: 51px;background: url("../images/bomb_window/xclosed.png") no-repeat;right: 0;top: -50px}
+.w0 .windowPo a.leftBtn{height: 35px; width: 134px;line-height: 33px;background: url("../images/bomb_window/btnYellow.png") no-repeat;bottom: 54px;left: 237px;}
+.w0 .windowPo a.rightBtn{height: 35px;width: 106px;line-height: 33px;background: url("../images/bomb_window/btnBlue.png") no-repeat;bottom: 54px;right: 82px;}
+.w0 .windowPo img{position: absolute;top: 0;left: 0}
+.w0 .windowPo img.yun{    left: 68px;
+    top: 24px;}
+.w0 .windowPo img.pigImg{top: -29px;}
+.w0 .windowPo img.text00{top: 99px;left: 281px;}
+.w0 .windowPo img.text01{  left: 282px;top: 142px;}
+/*¶¯»­*/
+.bounceInDown{-webkit-animation: bounceInDown 1.2s ease 0.5s both;-moz-animation: bounceInDown 1.2s ease 0.5s both;}
+.bounceInLeft{-webkit-animation: bounceInLeft 1.5s ease 1s both;-moz-animation: bounceInLeft 1.5s ease 1s both;}
+.w0 .windowPo img.text00{-webkit-animation: bounceInDown 1.2s ease 2s both;-moz-animation: bounceInDown 1.2s ease 2s both;}
+.w0 .windowPo img.text01{-webkit-animation: bounceInDown 1.2s ease 2.5s both;-moz-animation: bounceInDown 1.2s ease 2.5s both;}
+.w0 .windowPo a.leftBtn{-webkit-animation: bounceInUp 1.5s ease 3.0s both;-moz-animation: bounceInUp 1.5s ease 3.0s both;}
+.w0 .windowPo a.rightBtn{-webkit-animation: bounceInUp 1.5s ease 3.5s both;-moz-animation: bounceInUp 1.5s ease 3.5s both;}
+.w0 .windowPo a.xClosed{-webkit-animation: lightSpeedIn 2s ease 4s both;-moz-animation: lightSpeedIn 2s ease 4s both;}
+
+

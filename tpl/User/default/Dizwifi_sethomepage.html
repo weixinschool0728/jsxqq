@@ -1,0 +1,78 @@
+<include file="Public:head"/>
+<script src="{weimicms:$staticPath}/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{weimicms:$staticPath}/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="{weimicms:$staticPath}/tpl/static/upyun.js"></script>
+<form class="form" method="post" action="{weimicms::U('Dizwifi/sethomepage')}" target="_top">
+<div class="content">
+<div class="cLineB">
+  <h4>设置商家主页</h4><a href="{weimicms::U('Dizwifi/index',array('token'=>$token))}" class="right btnGrayS vm" style="margin-top:-27px">返回设备列表</a></div>
+<div class="msgWrap bgfc">
+<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+<tbody>
+<tr>
+  <th width="120"><span class="red">*</span>被设置的门店：</th>
+  <td>
+	{weimicms:$shop_name}
+	<input type="hidden" name="shop_id" value="{weimicms:$shop_id}" />
+  </td>
+</tr>
+<tr>
+  <th valign="top"><span class="red">*</span>模板类型:</th>
+  <td><input type="radio" name="template_id" value="0" <if condition="$set.template_id eq '0' or $set.template_id eq ''">checked</if>>默认模板&nbsp;&nbsp;<input type="radio" name="template_id" value="1" <if condition="$set.template_id eq '1'">checked</if> />
+  自定义模板
+  </td>
+</tr>
+<tr id="seturl" style="display: none;">
+  <th valign="top"><span class="red">*</span>自定义链接:</th>
+  <td><input type="input" class="px" id="url" value="{weimicms:$set.url}" name="url" style="width:350px"> <if condition="session('isQcloud') neq true"><a href="###" onclick="addLink('url',0)" class="a_choose">从功能库添加</a></if>
+   <input type="hidden" id="homepage3" value="{weimicms:$staticPath}/tpl/static/images/homepage3.jpg" /><br /><span style="color:red;">(设置连接成功后或点击顶部文案后的显示模板)</span>
+<a href="###" onclick="viewImg('homepage3')"><span style="color:green;">查看默认模板</a>
+  </td>
+</tr>
+<tr>
+  <th valign="top"><span class="red">*</span>顶部文案显示:</th>
+  <td><input type="radio" name="bar_type" value="0" <if condition="$set.bar_type eq '0' or $set.bar_type eq ''">checked</if>>公众号名称&nbsp;&nbsp;<input type="radio" name="bar_type" value="1" <if condition="$set.bar_type eq '1'">checked</if> />
+  门店名称
+   <input type="hidden" id="homepage2" value="{weimicms:$staticPath}/tpl/static/images/homepage2.jpg" />&nbsp;&nbsp;<span style="color:red;">(设置顶部是显示公众号名称还是门店名称)</span>
+<a href="###" onclick="viewImg('homepage2')"><span style="color:green;">查看显示位置</a>
+  </td>
+</tr>
+<tr>
+	<th></th>
+	<td>
+		<input type="hidden" name="page_id" value="{weimicms:$set.id}" />
+		<button type="button" name="button" id="sethomepage" class="btnGreen">添加设置</button>　
+		<a href="" class="btnGray vm">取消</a>
+	</td>
+</tr>
+</tbody>
+</table>
+ </div>
+</div>
+</form>
+<script>
+//简单的表单验证
+$(function(){
+	var template_id = $(":input[name=template_id]:checked").val();
+	if(template_id == 1){
+		$("#seturl").show();
+	}
+	$("input[name=template_id]").click(function(){
+		if($(this).val() == 1){
+			$("#seturl").show();
+		}else{
+			$("#seturl").hide();
+		}
+	})
+	$("#sethomepage").click(function(){
+		var template_id = $("input[name=template_id]:checked").val();
+		var url = $("input[name=url]").val();
+		if(template_id == 1 && url == ''){
+			alert('自定义链接不能为空');
+			return false;
+		}
+		$(".form").submit();
+	});
+});
+</script>
+<include file="Public:footer"/>

@@ -1,0 +1,192 @@
+﻿<include file="Public:head"/>
+<link rel="stylesheet" href="{weimicms::STATICS}/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="{weimicms::STATICS}/kindeditor/plugins/code/prettify.css" />
+<!--link rel="stylesheet" href="{weimicms::STATICS}/vote/style.css" /-->
+<script src="{weimicms::STATICS}/kindeditor/kindeditor.js" type="text/javascript"></script>
+<script src="{weimicms::STATICS}/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+<script src="{weimicms::STATICS}/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+<script src="{weimicms::RES}/js/date/WdatePicker.js" type="text/javascript"></script>
+<script src="{weimicms::STATICS}/vote/common.js" type="text/javascript"></script>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default" type="text/javascript"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js" type="text/javascript"></script>
+<script type="text/javascript">
+var editor;
+KindEditor.ready(function(K) {
+editor = K.create('#info', {
+resizeType : 1,
+allowPreviewEmoticons : false,
+allowImageUpload : true,
+uploadJson : '/index.php?g=User&m=Upyun&a=kindedtiropic',
+items : [
+'source','undo','plainpaste','wordpaste','clearhtml','quickformat','selectall','fullscreen','fontname', 'fontsize','subscript','superscript','indent','outdent','|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline','hr']
+});
+});
+</script>
+<script type="text/javascript">
+var editor;
+KindEditor.ready(function(K) {
+editor = K.create('#gz', {
+resizeType : 1,
+allowPreviewEmoticons : false,
+allowImageUpload : true,
+uploadJson : '/index.php?g=User&m=Upyun&a=kindedtiropic',
+items : [
+'source','undo','plainpaste','wordpaste','clearhtml','quickformat','selectall','fullscreen','fontname', 'fontsize','subscript','superscript','indent','outdent','|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline','hr', '|', 'image']
+});
+
+});
+</script>
+<script src="{weimicms::RES}/js/cart/jscolor.js" type="text/javascript"></script>
+<script>
+		function ccolumns(value){
+		
+			if(value=='1'){
+		
+				$('.ali').css('display','');
+				$('.alis').css('display','none');
+		
+			}else{
+				$('.ali').css('display','none');
+				$('.alis').css('display','');
+				}
+		
+		}
+	</script>
+<div class="content">
+<div class="cLineB">
+  <h4>添加微助力活动</h4><a href="javascript:history.go(-1);"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a>
+ </div>
+  <div class="msgWrap bgfc">
+    <form class="form" method="post" action=""   enctype="multipart/form-data">
+      <if condition="$vo['id'] neq ''">
+        <input type="hidden" name="id" value="{weimicms:$vo['id']}">
+      </if>
+      <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+        <tbody>
+          <tr>
+            <th width="120">关键词：</th>
+            <td><input type="text" name="keyword" value="<if condition="$vo['keyword'] eq ''">微助力<else/>{weimicms:$vo.keyword}</if>" class="px" style="width:550px;"><br></td>
+          </tr>
+		  
+          <tr>
+            <th width="120">回复标题：</th>
+            <td><input type="text" name="title" value="{weimicms:$vo.title}" class="px" style="width:550px;"></td>
+          </tr>
+          <tr>
+            <th>回复图片：</th>
+            <td><if condition="$reslist['picurl'] neq ''"> <img class="thumb_img" id="picurl_src" src="{weimicms:$reslist['picurl']}" style="max-height:100px;"> </if>
+              <input type="text" name="picurl" value="{weimicms:$vo.picurl}" class="px" onclick="document.getElementById('picurl_src').src=this.value;" id="picurl" style="width:300px;">
+              <script src="/tpl/static/upyun.js"></script>
+              <a href="###" onclick="upyunPicUpload('picurl',700,400,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('picurl')">预览</a>&nbsp;填写图片外链地址，大小为720x400</td>
+          </tr>
+		  <tr>
+            <th width="120">回复内容：</th>
+            <td><textarea style="width:560px;height:75px" name="nr" id="nr" class="px">{weimicms:$vo.nr}</textarea></td>
+          </tr>
+		   <tr>
+            <th width="120">卡片名称：</th>
+            <td><input type="text" name="name" value="{weimicms:$vo.name}" class="px" style="width:550px;"></td>
+          </tr>
+		  
+		   <tr>
+            <th width="120">卡片提示语：</th>
+            <td><input type="text" name="tishi" value="{weimicms:$vo.tishi}" class="px" style="width:550px;"></td>
+          </tr>
+		   <tr>
+            <th width="120">卡片数量：</th>
+            <td><input type="text" name="shuliang" value="{weimicms:$vo.shuliang}" class="px" style="width:550px;"></td>
+          </tr>
+		   <tr>
+            <th width="120">背景颜色：</th>
+            <td><input type="text" name="bgcolor" value="{weimicms:$vo.bgcolor}" class="px color" style="width: 55px; background:{weimicms:$vo.bgcolor}; color: rgb(255, 255, 255);" /></td>
+          </tr>
+		
+		   <tr>
+            <th width="120">活动标题：</th>
+            <td><input type="text" name="biaoti" value="{weimicms:$vo.biaoti}" class="px" style="width:550px;"></td>
+          </tr>
+		  <tr>
+            <th>活动图片：</th>
+            <td> <img id="pic3_src" src="<if condition="$vo['hd'] eq ''">tpl/Wap/default/common/weizhuli/images/hd.jpg<else/>{weimicms:$vo.hd}</if>" style="max-width:300px;"></br></br>
+			<input class="px" name="hd" value="<if condition="$vo['hd'] eq ''">tpl/Wap/default/common/weizhuli/images/hd.jpg<else/>{weimicms:$vo.hd}</if>" onclick="document.getElementById('pic3_src').src=this.value;" style="width:363px;" id="pic3">
+            
+             <a href="###" onclick="upyunPicUpload('pic3',1000,500,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('pic3')">预览</a>&nbsp;活动图片图片</td>
+          </tr>
+		    <tr>
+            <th width="120">最高得分限制：</th>
+            <td><input style="width:55px;" type="text" name="dfxz" value="{weimicms:$vo.dfxz}" class="px" ></td>
+          </tr>
+		   <tr>
+            <th width="120">初始分值：</th>
+            <td><input style="width:55px;" type="text" name="csfz" value="{weimicms:$vo.csfz}" class="px" ></td>
+          </tr>
+		   <tr>
+            <th width="120">分值称呼：</th>
+            <td><input style="width:55px;" type="text" name="ch" value="{weimicms:$vo.ch}"  class="px" ></td>
+          </tr>
+		   <tr>
+            <th width="120">积分单位：</th>
+            <td><input style="width:55px;" type="text" name="jfdw" value="{weimicms:$vo.jfdw}" class="px" ></td>
+          </tr>
+		 
+		   <tr>
+            <th width="120">选择积分增加方式：</th>
+            <td><select name="mode" onchange="ccolumns(this.value)" class="px" style="width:550px;height:30px">
+								<option value="1" <if condition="$vo.mode eq '1'">selected</if>>固定增加积分</option>
+								<option value="0" <if condition="$vo.mode neq '1'">selected</if>>随机增加积分</option>
+							</select></td>
+          </tr>
+		   <tr class="ali" style="display:none">
+		   <th width="120">每次助力增加积分：</th>
+           
+            <td><input style="width:55px;" type="text" name="zjjf" value="{weimicms:$vo.zjjf}" class="px" ></td>
+          </tr>
+		 
+		   <tr class="alis" style="display:none">
+            <th width="120">随机助力分值范围：</th>
+            <td><input style="width:55px;" type="text" name="min" value="{weimicms:$vo.min}" class="px" >~~~~~~<input style="width:55px;" type="text" name="max" value="{weimicms:$vo.max}" class="px" ></td>
+          </tr>
+		   <tr>
+            <th width="120">活动背景：</th>
+            <td>  <img id="pic2_src" src="<if condition="$vo['hdbg'] eq ''">tpl/Wap/default/common/weizhuli/images/bg.jpg<else/>{weimicms:$vo.hdbg}</if>" style="max-width:300px;"></br></br>
+			<input class="px" name="hdbg" value="<if condition="$vo['hdbg'] eq ''">tpl/Wap/default/common/weizhuli/images/bg.jpg<else/>{weimicms:$vo.hdbg}</if>" onclick="document.getElementById('pic2_src').src=this.value;" style="width:363px;" id="pic2">
+            
+             <a href="###" onclick="upyunPicUpload('pic2',1000,500,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('pic2')">预览</a>&nbsp;活动背景图片</td>
+          </tr>
+         
+		  <tr>
+            <th valign="top">活动规则：</th>
+            <td valign="top"><textarea class="px" id="gz" name="gz" style="width: 560px; height: 120px; display: ;"><?php echo html_entity_decode(htmlspecialchars_decode($vo['gz'])); ?></textarea></td>
+          </tr>
+		  <tr>
+            <th width="120">朋友圈进入引导关注链接：</th>
+            <td><input type="text" name="lj" value="{weimicms:$vo.lj}" class="px" style="width:550px;"></td>
+          </tr>
+		    <tr>
+            <th width="120">分享内容：</th>
+            <td><input type="text" name="sharenr" value="{weimicms:$vo.sharenr}" class="px" style="width:550px;"></td>
+          </tr>
+		  <tr>
+            <th width="120">版权设置：</th>
+            <td><input type="text" name="banquan" value="{weimicms:$vo.banquan}" class="px" style="width:550px;"></td>
+          </tr>
+		
+          <tr>
+            <th>截至时间：</th>
+            <td><input type="input" class="px" id="statdate" value="<if condition="$vo['statdate'] neq ''">
+              {weimicms:$vo.statdate|date="Y-m-d",###}
+              </if>
+              " onClick="WdatePicker()" name="statdate">
+             </td>
+          </tr>
+          <tr>
+            <th>&nbsp;</th>
+            <td><button type="submit" name="button" class="btnGreen">保存</button>
+              <a href="{weimicms::U('Hvote/index')}" class="btnGreen">取消</a> </td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+</div>
+<include file="Public:footer"/>

@@ -1,0 +1,46 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />
+<div class="content">
+<!--规则开始-->
+    <div class="cLineB">
+  <h4>{weimicms:$infoType.name}充值规则 </h4><a href="javascript:history.go(-1);" class="right btnGrayS vm" style="margin-top:-27px">返回</a>
+    </div>
+    <div class="msgWrap bgfc">
+	  <form method="post" action="" enctype="multipart/form-data">	 
+      <input type="hidden" name="rule_id" value="{weimicms:$item.id}" />
+		<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<tbody>
+				<tr>
+				  <th valign="top">百分比返还规则：</th>
+				  <td>
+					<input type="text" name="percent_rule" value="{weimicms:$item.percent_rule}"class="px" style="width:50px;">%&nbsp;&nbsp;例：10% 充值任意金额均返还10%金额（如充100元返还10元）</td>
+				</tr>
+				<tr>
+
+				  <th valign="top">固定返还规则：</th>
+                    <td><textarea  class="px" id="fixed_rule" name="fixed_rule"  style="width:550px; height:100px" >{weimicms:$item.fixed_rule}</textarea><br/>
+					&nbsp;&nbsp;例：10% 充值任意金额均返还10%金额（如充100元返还10元）
+					</td>
+				</tr>
+				<tr>
+					<th></th>
+					<td><input type="hidden"  name="token" ivalue="{weimicms:$token}" class="px" style="width:550px;">
+					<button type="submit" name="button" class="btnGreen">保存</button> &nbsp;&nbsp;<a href="javascript:history.go(-1);" class="btnGray vm">取消</a>				
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+ 
+  
+        </div>
+<div class="clr"></div>
+</div>
+</div>  
+        <div class="clr"></div>
+<include file="Public:footer"/>
+      </div>
+    </div>
+  </div> 

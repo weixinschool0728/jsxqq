@@ -1,0 +1,71 @@
+<include file="Public:head"/>  
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+        <div class="content">
+ <div class="cLineB">
+              <h4 class="left">当前位置：<a href="">推荐客户管理</a></h4>
+                 
+              <div class="clr"></div>
+          </div>
+<div class="msgWrap">
+<form method="post" action="#" id="info">
+<div class="cLine">
+<div class="clr"></div>
+</div>
+	<input type="text" placeholder="请输入名称搜索词" value="{weimicms:$_POST['search']}" class="px" name="search" />
+	<button class="btnGreen-primary btn_submit  J_ajax_submit_btn"  style="height: 29px;">搜索</button>
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th width="150">名称</th>
+<th width="100">联系电话</th>
+<th width="100">经纪人</th>
+<th width="100">房产项目</th>
+<th width="150">创建日期</th>
+<!--<th width="80">备注</th>-->
+<th width="80">状态</th>
+<th width="80" class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="info" id="o"> 
+<tr> 
+<td>{weimicms:$o.custom}</td>
+<td>{weimicms:$o.customTel}</td>
+<td>{weimicms:$o.salername}</td>
+<td>{weimicms:$o.projectname}</td>
+<td>{weimicms:$o.creatTime|date="Y-m-d h:i",###}</td>
+<!--<td>{weimicms:$o.beizhu}</td>-->
+<td>
+	<switch name="o['status']" >
+		<case value="0">未登记</case>
+		<case value="1">已登记</case>
+		<case value="2">已到访</case>
+		<case value="3">已认筹</case>
+		<case value="4">已认购</case>
+		<case value="5">已签约</case>
+		<case value="6">已打款</case> 
+	</switch>
+</td>
+ <td>
+ <if condition="$o.status neq '6'">
+ 	<a href="{weimicms::U('Supplier/extendprice',array('id'=>$o['id'],'custom'=>$o['custom'],'salerid'=>$o['salerid'],pjid=>$o['projectid']))}">审核生成记录</a>
+    </if>
+ </td>
+</tr>
+</volist>
+</tbody>
+</table>
+</form>
+
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{weimicms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

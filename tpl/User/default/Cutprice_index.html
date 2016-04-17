@@ -1,0 +1,143 @@
+<include file="Public:head" />
+<link rel="stylesheet" type="text/css" href="{weimicms:$staticPath}/tpl/static/cutprice/css/cymain.css" />
+<div class="content">
+	<div class="cLineB">
+		<h4 class="left">降价拍</h4>
+		<div class="clr"></div>
+	</div>
+<if condition="$Think.session.is_syn neq 2">
+	<div class="alert alert-success alert-dismissable">
+		温馨提示：1、本功能使用了模板消息中的"订单发货提醒"模板消息,模板消息编号为OPENTM200565259。<br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		2、开通微信支付功能的公众号在使用此功能的时候可以在"基本设置——微信模板消息"中配置对应的模板消息。<br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		3、降价拍商品价格由高到低依次递减，直至竞买人以自己可承受价格抢单成功，活动结束。或者库存为零活动结束。又或者商品降价至底价活动结束。每位竞买人，均有一
+		次抢拍资格，抢拍以最先拍下者获得，否则视作放弃本次抢拍权利，拍下不买者30分钟后失效并返回库存。
+	</div>
+<else />
+	<div class="alert alert-success alert-dismissable">
+		1、降价拍商品价格由高到低依次递减，直至竞买人以自己可承受价格抢单成功，活动结束。或者库存为零活动结束。又或者商品降价至底价活动结束。每位竞买人，均有一次抢拍资格，抢拍以最先拍下者获得，否则视作放弃本次抢拍权利，拍下不买者30分钟后失效并返回库存。
+	</div>
+</if>
+	<div class="tab">
+		<ul>
+			<li class="current tabli" id="tab1"><a href="{weimicms::U('Cutprice/index',array('token'=>$token))}">商品</a></li>
+			<li class="tabli" id="tab2"><a href="{weimicms::U('Cutprice/order',array('token'=>$token))}">订单</a></li>
+		</ul>
+	</div>
+	
+	<div class="cLineB">
+		<h4 class="left">“降价拍”商品列表</h4>
+		<div class="clr"></div>
+	</div>
+	
+	<div class="cLine">
+		<div class="pageNavigator left">
+			<a href="{weimicms::U('Cutprice/add',array('token'=>$token))}" title="添加拍卖商品" class="btnGrayS vm bigbtn"><if condition="$usertplid eq 2"><i class="fa fa-hand-o-right"></i><else /><img src="{weimicms::RES}/images/product/add.png" class="vm"></if> 添加拍卖商品</a>
+		</div>
+		<div class="pageNavigator right">
+			<input type="text" id="name" class="px name" placeholder="输入拍卖商品名称"  name="name" value="{weimicms:$_GET['name']}" style="margin-top:10px">
+			<a href="javascript:seach()" id="seach" href="" class="btnGrayS" title="搜索">搜索</a>
+		</div>
+		<script>
+			
+		</script>
+		<div class="clr"></div>
+	</div>
+	
+	<div class="msgWrap">
+		<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<thead>
+				<tr>
+					<th width="100px">商品名称</th>					
+					<if condition="$_SESSION['is_syn'] eq 0">
+					<th width="100px">关键词</th>
+					</if>
+					<th width="160px">价格</th>
+					<th width="60px">库存</th>
+					<th width="60px">拍下人数</th>
+					<th <if condition="$usertplid eq 2">width="200px"</if>>操作</th>
+					<th width="240px" class="norightborder">时间</th>
+				</tr>
+			</thead>
+			<tbody>
+				<volist name="cutprice_list" id="vo">
+					<tr>
+						<td>{weimicms:$vo.name}</td>
+						<if condition="$_SESSION['is_syn'] eq 0">
+						<td>{weimicms:$vo.keyword}</td>
+						</if>
+						<td>
+							原价：￥{weimicms:$vo.original}<br/>
+							起拍价：￥{weimicms:$vo.startprice}<br/>
+							最低价：￥{weimicms:$vo.stopprice}<br/>
+							每{weimicms:$vo.cuttime}分钟下降{weimicms:$vo.cutprice}元<br/>
+						</td>
+						<td>{weimicms:$vo.inventory}</td>
+						<td>{weimicms:$vo.paycount}</td>
+						<td class="norightborder" style="border-right:1px solid #eee">
+<if condition="$Think.session.is_syn eq 2">
+<if condition="$usertplid neq 2">
+						<script type="text/javascript">
+   $(document).ready(function(){
+      var bheight=document.body.clientHeight;
+      $("#lay{weimicms:$vo.tp_id}").click(function(){
+   $("#brg{weimicms:$vo.tp_id}").css("display","block");
+   $("#showdiv{weimicms:$vo.tp_id}").css("display","block");
+   //$("#testdiv").load("test.html");
+   });
+   $("#close{weimicms:$vo.tp_id}").click(function(){
+      $("#brg{weimicms:$vo.tp_id}").css("display","none");
+   $("#showdiv{weimicms:$vo.tp_id}").css("display","none");
+   });
+   });
+ </script>
+ <style type="text/css">
+   #brg{weimicms:$vo.tp_id}{ width:100%; height:100%; background:#333; position:absolute; top:0; left:0; filter:alpha(opacity=60); -moz-opacity:0.6; opacity: 0.6; position:absolute; top:0; left:0; display:none;}
+   #showdiv{weimicms:$vo.tp_id}{z-index:20; display:none;position:fixed; *position:absolute;top:30%; left:50%; margin:-50px 0 0 -50px;}
+   #testdiv{weimicms:$vo.tp_id}{ width:300px; height:300px; margin:0 auto; border:1px solid #4d4d4d; background:#f2f2f2;}
+   #close{weimicms:$vo.tp_id}{width:300px; height:27px; line-height:27px; font-size:14px; font-weight:bold; border:1px solid #4d4d4d; text-align:center; cursor:pointer; margin:0 auto; background:#333; color:#fff;margin-top: 15%;}
+ </style>
+    <div id="brg{weimicms:$vo.tp_id}"></div>
+ <div id="showdiv{weimicms:$vo.tp_id}">
+   <div id="close{weimicms:$vo.tp_id}">您想关闭就点我吧</div>
+   <div id="testdiv{weimicms:$vo.tp_id}"><img src="{weimicms:$Think.session.source_domain}/wap.php?c=Wxapp&a=qrcode&id={weimicms:$vo.tp_id}&modle=Cutprice" width="300" height="300" class="cateimg_small"></div>
+ </div>
+   <a id="lay{weimicms:$vo.tp_id}" style="width:149px;"><center>查看二维码</center></a><br>
+</if>
+</if>
+							<a href="{weimicms::U('Cutprice/order',array('token'=>$token,'id'=>$vo['tp_id']))}">订单</a>
+							<a href="{weimicms::U('Cutprice/update',array('token'=>$token,'id'=>$vo['tp_id']))}">修改</a>
+							<a href="javascript:drop_confirm('您确定要删除【{weimicms:$vo.name}】吗?', '{weimicms::U('Cutprice/operate',array('token'=>$token,'id'=>$vo['tp_id'],'type'=>'del'))}')">删除</a>
+						</td>
+						<td  style="border-right:0">
+							拍卖开始时间：{weimicms:$vo.starttime|date="Y-m-d H:i:s",###}<br/>
+							预计结束时间：{weimicms:$vo.stoptime|date="Y-m-d H:i:s",###}<br/>
+							商品添加时间：{weimicms:$vo.addtime|date="Y-m-d H:i:s",###}<br/>
+						</td>
+					</tr>
+				</volist>
+			</tbody>
+		</table>
+	</div>
+	<div class="cLine">
+		<div class="pageNavigator right">
+			<div class="pages">{weimicms:$page}</div>
+		</div>
+		<div class="clr"></div>
+	</div>
+</div>
+<script>
+	$(document).ready(function(){
+		
+	});
+	function seach(){
+		var name = $("#name").val();
+		if(name != ""){
+			window.location.href="{weimicms::U('Cutprice/index',array('token'=>$token))}&name="+name;
+		}else{
+			window.location.href="{weimicms::U('Cutprice/index',array('token'=>$token))}";
+		}
+	}
+</script>
+<include file="Public:footer"/>

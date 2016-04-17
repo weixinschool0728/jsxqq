@@ -1,0 +1,168 @@
+<include file="Public:head"/>  
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="{weimicms::RES}/js/cart/jscolor.js" type="text/javascript"></script>
+<link rel="stylesheet" href="{weimicms:$staticPath}/tpl/static/card/css/card_dispel.css"/>
+<div class="content">
+<div class="cLineB">
+<h4 class="left">会员卡</h4>
+<div class="searchbar right">
+</div>
+<div class="clr"></div>
+</div>
+<div class="cLine">
+<div class="pageNavigator left"> 
+	<a href='/index.php?g=User&m=Member_card&a=design&token={weimicms:$token}' title='新增会员卡' class='btnGrayS vm bigbtn'>
+	<if condition="$usertplid eq 2">
+	<i class="fa fa-hand-o-right"></i>
+	<else />
+	<img class="vm" src="./tpl/User/default/common/images/product/add.png">
+	</if>
+	添加会员卡</a>
+</div>
+
+<div class="pageNavigator right"> 
+	<a href='javascript:void(0);' title='关注公众号赠送会员卡设置' class='btnGrayS vm bigbtn' id="addCard">关注公众号赠送会员卡设置</a>
+</div>
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<if condition="$usertplid eq 2">
+<div class="alert alert-success alert-dismissable" style="margin-top:20px;">
+<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+<else />
+ <div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-top:5px;"></if>
+ 	温馨提示：<br/>
+ 	　1、在这里可以添加多种级别的会员卡，比如：普通卡、银卡、金卡等，可以设置每个会员卡的最低积分要求，然会员根据不同的积分领取不同的卡
+ 	<br/>
+ 	　2、本功能使用了模板消息中的“充值成功”和“ 商品支付成功通知”通知模板消息，模板编号分别为TM00009和OPENTM202183094。 <br />
+  　　 开通微信支付功能的公众号在使用此功能的时候可以在”基本设置——微信模板消息“中配置对应的模板消息
+ </div>
+<form method="post"  action="" id="info" >
+<TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+<THEAD>
+<tr>
+<th width="50">卡ID</th>
+<th width="100">名称</th>
+<th width="80">卡片总数</th>
+<th width="80">已开卡会员</th>
+<th width="100">领卡短信验证</th>
+<th class="norightborder">操作</th>
+</tr>
+</THEAD>
+<TBODY>
+<TR></TR>
+<volist id="item" name="cards">
+<TR>
+<TD>{weimicms:$item.id}</TD>
+<TD>{weimicms:$item.cardname}</TD>
+<TD>{weimicms:$item.cardcount}</TD>
+<TD>{weimicms:$item.usercount}</TD>
+<TD> 
+<if condition="$item.is_check eq '1'">
+开启
+<else/>
+关闭
+</if>
+</TD>
+<TD class="norightborder">
+
+<a href="{weimicms::U('Member_card/members', array('token' => $token,'id'=>$item['id']))}">会员卡管理</a> 
+|
+<a href="{weimicms::U('Member_card/notice', array('token' => $token,'id'=>$item['id']))}">会员通知</a>
+|
+<a href="{weimicms::U('Member_card/exchange', array('token' => $token,'id'=>$item['id']))}">积分设置</a> 
+|
+<if condition="$item.is_donate eq 1">
+<a href="{weimicms::U('Member_card/donate', array('token' => $token,'id'=>$item['id']))}">充值赠送</a> 
+|
+</if>
+<if condition="$item.is_jfdhhb eq 2">
+<a href="{weimicms::U('Member_card/jfdhhb', array('token' => $token,'id'=>$item['id']))}">积分兑换红包</a> 
+|
+</if>
+<a href="{weimicms::U('Member_card/create', array('token' => $token,'id'=>$item['id']))}">会员开卡</a> 
+|
+<a href="{weimicms::U('Member_card/design', array('token' => $token,'id'=>$item['id']))}">修改</a> 
+|
+<a href="javascript:drop_confirm('您确定要删除吗?', '/index.php?g=User&m=Member_card&a=delete&token={weimicms:$token}&id={weimicms:$item.id}');">删除</a></TD>
+</TR>
+</volist>
+</TBODY>
+</TABLE>
+</form>
+
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages"></div>
+</div>
+<div class="clr"></div>
+</div>
+</div>  
+<div class="clr"></div>
+<include file="Public:footer"/>
+  
+ <div class="dialog_wrp " style="width: 526px; display: none; margin-left: -363px; margin-top: -250px;">
+	<div class="dialog">
+		<div class="dialog_hd">
+			<h3>赠送的会员卡</h3>
+			<!--#0001#-->
+			<a href="javascript:;" onclick="return false" class="icon16_opr closed pop_closed">关闭</a>
+			<!--%0001%-->
+		</div>
+		<div class="dialog_bd">
+			<div class="proc_put_tick" style="padding:0;">
+				<div class="frm_control_group radio_row">
+					<label for="" class="frm_label" style="width: auto;  float: left;">选择你要赠送的会员卡：</label>
+					<div class="frm_controls frm_vertical_lh" style="line-height:30px;  padding: 15px 0;">
+						<select id="card_id">
+						<option value="0|0">关闭</option>
+						<volist id="sitem" name="cards">
+						<option value="{weimicms:$sitem['id']}|{weimicms:$sitem['miniscore']}" <if condition="$sitem['sub_give'] eq 1">selected</if>>{weimicms:$sitem['cardname']}</option>
+						</volist>
+						</select>
+					</div>
+					<label class="frm_label" id="show_msg" style="color:red;display:none">选择你要创建的卡券类型</label>
+				</div>
+			</div>
+		</div>
+		<div class="dialog_ft">
+            <span class="btn btn_default btn_input js_btn_p">
+            	<button type="submit" name="button" class="btnGreen" id="sub" style="vertical-align:top;padding:4px 12px!important;">确认</button>
+            </span>
+            <span class="btn btn_default btn_input js_btn_p">
+            	<button type="button" class="btnGrayS pclosed" data-index="1">取消</button>
+            </span>  
+		</div>
+	</div>
+</div>
+<div class="mask" style="display: none;"><iframe frameborder="0" style="filter:progid:DXImageTransform.Microsoft.Alpha(opacity:0);position:absolute;top:0px;left:0px;width:100%;height:100%;" src="about:blank"></iframe></div>
+ <script>
+	$(function(){
+		$('#addCard').click(function(){
+			$('.mask,.dialog_wrp').show();
+		});
+
+		$('.pop_closed,.pclosed').click(function(){
+			$('.mask,.dialog_wrp').hide();
+		});
+		$("#card_id").change(function(){
+			var str = $(this).val().split('|');
+			var miniscore = parseInt(str[1]);
+			if (miniscore > 0) {
+				$('#show_msg').html('该会员卡您设置了最少领取积分是【' + miniscore + '】,如果您设置为关注回复，那么就在关注的时候没有积分也能领取！').show();
+			} else {
+				$('#show_msg').hide();
+			}
+		});
+		
+		$('#sub').click(function(){
+			var str = $("#card_id").val().split('|');
+			var cardid = parseInt(str[0]);
+			$.post("{weimicms::U('Member_card/change_card_set',array('token'=>$token))}", {'cardid':cardid}, function(data){
+				$('.mask,.dialog_wrp').hide();
+			}, 'json');
+		});
+	});
+</script>

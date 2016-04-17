@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>查看站内消息</title>
+
+<link href="{weimicms:$staticPath}{weimicms::ltrim(RES,'.')}/css/style-{weimicms:$usertplid}.css?id=103" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body style="background:#fff">
+
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="ListProduct">
+
+<tbody>
+
+<tr>
+
+	<td>发件人</td>
+
+	<td>{weimicms:$result.from}</td>	
+
+</tr>
+
+<tr>
+
+	<td width="30%">内容</td>
+
+	<td>{weimicms:$result.content}</td>	
+
+</tr>
+
+<tr>
+
+	<td>读取时间</td>
+
+	<td>{weimicms:$result.read_time|date="Y-m-d H:i:s",###}</td>	
+
+</tr>
+
+<tr>
+
+	<td>发送时间</td>
+
+	<td>{weimicms:$result.create_time|date="Y-m-d H:i:s",###}</td>	
+
+</tr>
+
+</tbody>
+
+</table>
+
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+﻿<include file="Public:head"/>
+<div class="content">
+          <div class="cLine">
+            <div class="pageNavigator left">
+            <a href="{weimicms::U('Sharetalent/add')}" title="添加分享活动" class="btnGrayS vm bigbtn"><img src="{weimicms::RES}/images/pic.png" class="vm">添加分享活动</a>
+             <a href="{weimicms::U('Sharetalent/sm')}" title="达人说明配置" class="btnGrayS vm bigbtn"><img src="{weimicms::RES}/images/pic.png" class="vm">达人说明配置</a>
+              <a href="{weimicms::U('Sharetalent/user')}" title="用户管理" class="btnGrayS vm bigbtn"><img src="{weimicms::RES}/images/pic.png" class="vm">用户管理</a>
+             <a href="{weimicms::U('Sharetalent/reply')}" title="首页回复配置" class="btnGrayS vm bigbtn"><img src="{weimicms::RES}/images/pic.png" class="vm">首页回复配置</a>
+            </div>
+          
+            <div class="clr"></div>
+          </div>
+          <div class="msgWrap">
+            <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <thead>
+                <tr>
+					
+					<th  width="25%" class="time"> 用户名称</th>
+					<th width="25%">联系方式</th>
+					
+					<th width="25%">注册时间</th>
+                    
+					
+					<th width="25%" class="norightborder">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr></tr>
+                  <volist id="list" name="info">
+                <tr>
+                  <td>{weimicms:$list.name}</td>
+                  <td>{weimicms:$list.tel}</td>
+                   <td>{weimicms:$list.date}</td>
+                
+                
+                  
+                  <td class="norightborder"> <a class="btnGrayS vm bigbtn" href="javascript:drop_confirm('您确定要删除吗？', '{weimicms::U('Sharetalent/userdel',array('id'=>$list['id'],'token'=>$list['token'],'wecha_id'=>$list['wecha_id']))}');">删除</a> 
+                   
+				   <a  class="btnGrayS vm bigbtn" href="{weimicms::U('Sharetalent/userhd',array('id'=>$list['id'],'token'=>$list['token'],'wecha_id'=>$list['wecha_id']))}">参与的活动</a> 
+                   </td>
+          
+                </tr>
+                  </volist>
+      			                
+                  
+              </tbody>
+            </table>
+            
+   </div> 
+          
+  </div>
+<include file="Public:footer"/>

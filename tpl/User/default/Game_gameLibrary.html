@@ -1,0 +1,64 @@
+<include file="Public:head"/>
+<if condition="$usertplid neq 2">
+<script src="{weimicms:$staticPath}/tpl/static/new/js/jquery-2.1.1.js"></script>
+</if>
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+<script src="{weimicms::$staticPath}/tpl/static/jquery.qrcode.min.js" type="text/javascript"></script>
+<script src="{weimicms::$staticPath}/tpl/static/layer/layer.js" type="text/javascript"></script>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+
+<div class="content">
+<include file="Game:tab"/>
+<div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-bottom:5px;font-size:12px;margin-top:5px;">微游戏是我们与第三方游戏平台合作功能，将会不断推出热门微信游戏</div>
+<div class="msgWrap form">
+<div class="bdrcontent">
+<div id="div_ptype">
+<table class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+<thead>
+<tr>
+<th style=" width:120px;">Logo</th>
+<th style=" width:100px;">名称</th>
+<th style=" width:190px;">介绍</th>              
+<th style=" width:50px;" class="norightborder">操作</th>
+</tr>
+</thead>
+<volist name="games" id="item">
+<tr>
+<td><img src="{weimicms:$item.logo}" width="60" /></td>
+<td>{weimicms:$item.title}</td>
+<td>{weimicms:$item.intro}</td>
+<td class="norightborder">
+<a onclick="qrcode('{changjingUrl}/index.php?m=Game&c=index&a=index&start=true&id={weimicms:$item.id}')" href="javascript:void(0)">预览此游戏</a>
+<a href="{weimicms::U('Game/gameSet',array('gameid'=>$item['id']))}" >使用此游戏</a>
+</td>
+</volist>
+</tr>
+</table>
+</div>
+</div>
+<div class="footactions" style="padding-left:10px">
+  <div class="pages">{weimicms:$page}</div>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+	function qrcode(url){
+		url = url.replace('{changjingUrl}','http://www.meihua.com');
+		layer.open({
+			type: 1,
+			title: false,
+			closeBtn: false,
+			shadeClose: true,
+			skin: 'yourclass',
+			content: '<div id="qrcode"></div>'
+		});
+		$("#qrcode").qrcode({
+			render: "canvas",
+			width: 200,
+			height:200,
+			text: url
+		});
+	}
+</script>
+<include file="Public:footer"/>

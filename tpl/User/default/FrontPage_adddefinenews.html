@@ -1,0 +1,79 @@
+<include file="Public:head"/>
+<script src="{weimicms:$staticPath}/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{weimicms:$staticPath}/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="{weimicms::RES}/js/date/WdatePicker.js"></script>
+<script src="{weimicms:$staticPath}/tpl/static/upyun.js"></script>
+<style type="text/css">
+.userinfoArea th{width:200px;}
+</style>
+<form class="frontpageform" method="post" action="{weimicms::U('FrontPage/adddefinenews',array('token'=>$this->token))}">
+<div class="content">
+<div class="cLineB">
+  <h4>添加随机事件</h4><a href="{weimicms::U('FrontPage/definenews',array('token'=>$this->token,'id'=>$_GET['cid'],'type'=>'mynews'))}" class="right btnGrayS vm" style="margin-top:-27px">返回随机事件列表</a></div>
+<div class="msgWrap bgfc">
+<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+<tbody>
+<tr>
+  <th valign="top"><span class="red">*</span>新闻标题：</th>
+  <td><input type="input" class="px" id="news_title" value="{weimicms:$set.news_title}" name="news_title" style="width:400px">&nbsp;&nbsp;&nbsp;不超过15个字</td> 	
+</tr>
+<tr>
+  <th valign="top"><span class="red">*</span>新闻内容：</th>
+  <td><textarea type="input" class="px" id="news_txt" value="{weimicms:$set.news_txt}" name="news_txt" style="width:400px;height:150px;">{weimicms:$set.news_txt}</textarea>&nbsp;&nbsp;&nbsp;不超过200个字</td> 	
+</tr>
+<!--tr>
+  <th valign="top">播报语速：</th>
+  <td><input type="radio" name="spd" value="0" />最慢 &nbsp;&nbsp;&nbsp;<input type="radio" name="spd" value="3" />较慢 &nbsp;&nbsp;&nbsp;<input type="radio" name="spd" value="5" <if condition="$set['spd'] eq 5 or $set['spd'] eq ''">checked</if>/>正常&nbsp;&nbsp;&nbsp; <input type="radio" name="spd" value="7" />较快 &nbsp;&nbsp;&nbsp;<input type="radio" name="spd" value="9" />最快</td> 	
+</tr-->
+<tr>
+  <th valign="top">适合人群：</th>
+  <td><input type="radio" name="per" value="1" <if condition="$set.per eq 1">checked</if>/>男 &nbsp;&nbsp;&nbsp;<input type="radio" name="per" value="0" <if condition="$set.per eq 0">checked</if>/>女&nbsp;&nbsp;&nbsp;<input type="radio" name="per" value="3" <if condition="$set.per eq 3">checked</if>/>男女不限</td> 	
+</tr>
+<tr>
+<th>是否开启：</th>
+<td>
+  <input type="radio" name="status" value="1" <if condition="$set.status eq '1' or $set.status eq ''">checked</if>>
+  开启&nbsp;&nbsp;&nbsp;<input type="radio" name="status" value="0" <if condition="$set.status eq '0'">checked</if>>关闭
+</td>
+</tr>
+<tr>
+<th>&nbsp;</th>
+<if condition="$set.id neq ''">
+<input type="hidden" name="id" value="{weimicms:$set.id}" />
+</if>
+<input type="hidden" name="cid" value="{weimicms:$cid}" />
+<td><button type="button" name="button" class="btnGreen sub">保存</button>
+<a href="" class="btnGray vm">取消</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+ </div>
+ </div>
+</form>
+<include file="Public:footer"/>
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".btnGreen").click(function(){
+		var news_title = $("#news_title").val();
+		var news_txt = $("#news_txt").val();
+		var msg = "";
+		if(news_title ==""){
+			msg += '新闻标题不能为空\n';
+		}else if(news_title.length > 15){
+			msg += '新闻标题不超过15个字\n';
+		}
+		if(news_txt ==""){
+			msg += '新闻内容不能为空\n';
+		}else if(news_txt.length > 200){
+			msg += '新闻内容不超过200个字\n';
+		}
+		if(msg != ""){
+			alert(msg);
+			return false;
+		}
+		$(".frontpageform").submit();
+	});
+});
+</script>

@@ -1,0 +1,101 @@
+<if condition="$ischild neq 1">
+<include file="Public:head" />
+<else />
+<include file="Repast:head" />
+</if>
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />
+ <script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="/tpl/static/upyun.js?{weimicms::date('YmdHis',time())}"></script>
+  <div class="content"> 
+   <div class="cLineB"> 
+    <h4>新版商城回复设置</h4> 
+    <a href="{weimicms::U('Storenew/index',array('token'=>$token))}" class="right  btnGreen" style="margin-top:-27px">返回</a> 
+   </div> 
+     <!--tab start-->
+<div class="tab">
+<ul>
+	<li class="tabli" id="tab2"><a href="{weimicms::U('Storenew/index',array('token'=>$token))}">商品分类管理</a></li>
+	<li class="tabli" id="tab0"><a href="{weimicms::U('Storenew/product',array('token'=>$token, 'cid'=>$cid))}">商品管理</a></li>
+	<li class="tabli" id="tab2"><a href="{weimicms::U('Storenew/orders',array('token'=>$token))}">订单管理</a></li>
+	<li class="current tabli" id="tab2"><a href="{weimicms::U('Storenew/set_reply',array('token'=>$token))}">商城回复设置</a></li>
+	<li class="tabli" id="tab2"><a href="{weimicms::U('Storenew/flash',array('token'=>$token))}">商城轮播图</a></li>
+	<li class="tabli" id="tab8"><a href="{weimicms::U('Storenew/jingpai',array('token'=>$token,'cid' => $cid))}">竞拍管理</a></li>
+</ul>
+</div>
+<!--tab end-->
+   <form class="form" method="post" action=""> 
+    <input type="hidden" name="id" value="{weimicms:$setting.id}" /> 
+    <input type="hidden" name="token" value="{weimicms:$token}" /> 
+    <input type="hidden" name="cid" value="{weimicms:$cid}" /> 
+     
+    <div class="msgWrap bgfc"> 
+     <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"> 
+      <tbody>
+       <tr>
+        <th>回复关键词</th> 
+        <td><input type="text" name="keyword" value="{weimicms:$setting.keyword}" class="px"/></td> 
+       </tr>
+       
+       <tr>
+        <th>回复标题：</th> 
+        <td><input type="text" name="title" value="{weimicms:$setting.title}" class="px"/></td> 
+       </tr>
+	   
+	   <tr>
+        <th>回复介绍：</th> 
+        <td><textarea style="width:560px;height:75px" name="info" id="info" class="px">{weimicms:$setting.info}</textarea><br/>最多填写120个字</td>
+       </tr>
+	   
+	   <tr> 
+        <th>回复缩略图：</th>
+        <td><input type="text" name="logourl" value="{weimicms:$setting.logourl}" class="px" id="pic" style="width:400px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('pic',700,700,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('pic')">预览</a></td> 
+       </tr>
+	   
+	   <tr>
+	   <th></th> 
+	   <td><b>↓↓客服微信号设置，用户购买商品，成功付款后，客服的微信号将收到信息提示↓↓</b></td>
+	   </tr>
+	   
+	   <tr>
+	   <th>预览粉丝的微信昵称：</th> 
+	   <td><input type="text" class="px" name="name" value="{weimicms:$setting.name}" id="name" style="width:150px;" />
+            <a href="javascript:void(0);" class="btnGrayS" id="search">立即获取</a>
+		</td>
+	   </tr>
+	   <tr>
+	   <th><span class="red">*</span>openid</th> 
+	   <td><input type="text" name="openid" value="{weimicms:$setting.wecha_id}" class="px" id="openid" style="width:260px;" /> （必须是已关注用户，此处自动获取）</td> 
+	   </tr>
+
+       <tr>         
+       <th>&nbsp;</th>
+       <td>
+       <button type="submit" name="button" class="btnGreen">保存</button> &nbsp; <a href="{weimicms::U('Storenew/set_reply',array('token' => $token))}" class="btnGray vm">取消</a></td> 
+       </tr> 
+      </tbody> 
+     </table> 
+     </div>
+   </form> 
+  </div>
+<script>
+  $(function(){
+
+    $('#search').click(function(){
+      var name  = $('#name').val();
+      if(name != ''){
+        $.getJSON("/index.php?g=User&m=Storenew&a=getOpenid&token=cafudx1427249125&name="+name,function(res){
+            if(res.error == 0){
+              $('#openid').val(res.openid);
+            }else{
+              alert(res.info);
+            }
+        },JSON)
+      }else{
+        alert('请填写粉丝昵称');
+      }
+    });
+  });
+</script>
+
+  <include file="Public:footer" />

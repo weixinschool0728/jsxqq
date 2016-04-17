@@ -1,0 +1,67 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<style>
+.platform_table td{text-align:center;height:40px;border-bottom:1px solid #E7E7E7;}
+</style>
+<div class="content">
+
+
+
+<div class="cLineB">
+	<h4>微信支付账单 </h4>
+	<div class="ftip" style="margin:10px 0">在此只能显示升级了可有多种选择微信支付后采用微信支付的账单，方便商家查看微信支付的流向。</div> 
+	<div class="left" style="margin-right:10px;">
+		<form method="POST" action="{weimicms::U('WeixinBill/index',array('token'=>$token))}">
+			搜索：
+			<select name="key">
+			<option value="orderid" <if condition="$key eq 'orderid'">selected</if>>订单号</option>
+			<option value="appid" <if condition="$key eq 'appid'">selected</if>>收款账号的APPID</option>
+			<option value="mchid" <if condition="$key eq 'mchid'">selected</if>>收款账号的商户号</option>
+			</select>　
+			<input  value="{weimicms:$searchkey}" name="searchkey" class="px" style="height:25px;line-height:25px;">
+			<button type="submit" name="appidsubmit" value="true" class="btnGreen vm" ><strong>查询</strong></button>
+		</form>
+	</div>
+</div>
+
+    <div class="msgWrap bgfc">
+	  <form class="form" method="post" action="" target="_top" enctype="multipart/form-data">	 
+		<table border="0" cellspacing="0" cellpadding="0" width="100%" class="platform_table">
+			<tr>
+				<td>订单来源</td>
+				<td>订单号</td>
+				<td>订单金额</td>
+				<td>产生时间</td>
+				<td>收款账号类型</td>
+				<td>收款账号的APPID</td>
+				<td>收款账号的商户号</td>
+			</tr>
+			<volist name="bill_list" id="vo">
+				<tr>
+					<td>{weimicms:$vo['from']}</td>
+					<td>{weimicms:$vo['orderid']}</td>
+					<td>{weimicms:$vo['price']}</td>
+					<td>{weimicms:$vo['time']|date='Y-m-d H:i:s',###}</td>
+					<td>{weimicms:$vo['plat_type_name']}</td>
+					<td>{weimicms:$vo['appid']}</td>
+					<td>{weimicms:$vo['mchid']}</td>
+				</tr>
+			</volist>
+			<tr>
+				<td colspan="7"></td>
+			</tr>
+			<tr>
+				<td colspan="7"><div style="float:left;">此页总计：总金额 (<font color="blue">{weimicms::floatval($bill_count['total'])}元</font>) ，本账号收款金额 (<font color="blue">{weimicms::floatval($bill_count['this'])}元</font>) ，其他账号收款金额 (<font color="red">{weimicms::floatval($bill_count['other'])}元</font>) ，平台账号收款金额 (<font color="red">{weimicms::floatval($bill_count['plat'])}元</font>)</div></td>
+			</tr>
+			<tr>
+				<td colspan="7"><div style="float:left;">全部总计：总金额 (<font color="blue">{weimicms::floatval($total_bill['total'])}元</font>) ，本账号收款金额 (<font color="blue">{weimicms::floatval($total_bill['this'])}元</font>) ，其他账号收款金额 (<font color="red">{weimicms::floatval($total_bill['other'])}元</font>) ，平台账号收款金额 (<font color="red">{weimicms::floatval($total_bill['plat'])}元</font>)</div></td>
+			</tr>
+			<tr>
+				<td colspan="7"><div style="float:right;">{weimicms:$page}</div></td>
+			</tr>
+		</table>
+	</form>
+  </div> 
+</div>
+<include file="Public:footer"/>

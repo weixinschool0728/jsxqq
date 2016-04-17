@@ -1,0 +1,59 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/default_user_com.css" media="all">
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />
+<script src="./tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="./tpl/static/artDialog/plugins/iframeTools.js"></script>
+<div class="content" style="width:98%; background:none; margin-left:15px; border:none; padding-top:30px;" >
+    <div  class="quick-actions_homepage">
+    <ul class="quick-actions">
+      <li class="bg_lb"> <a href="{weimicms::U('Lottery/index',array('token'=>$token))}"> <i class="icon-gift"></i> 大转盘 </a> </li>
+      <li class="bg_dy"> <a href="{weimicms::U('Coupon/index',array('token'=>$token))}"> <i class="icon-money"></i> 优惠券</a> </li>
+      <li class="bg_lg"> <a href="{weimicms::U('Guajiang/index',array('token'=>$token))}"> <i class="icon-cogs"></i> 刮刮卡</a> </li>
+      <li class="bg_lh"> <a href="{weimicms::U('LuckyFruit/index',array('token'=>$token))}"> <i class="icon-trophy"></i> 水果机 </a> </li>
+      <li class="bg_ly"> <a href="{weimicms::U('GoldenEgg/index',array('token'=>$token))}"> <i class="icon-trophy"></i> 砸金蛋 </a> </li>
+      <li class="bg_lo"> <a href="{weimicms::U('Wedding/index',array('token'=>$token))}"> <i class="icon-heart"></i> 微喜帖 </a> </li>
+      <li class="bg_ls"> <a href="{weimicms::U('Diaoyan/index',array('token'=>$token))}"> <i class="icon-bullhorn"></i> 微调研</a> </li>
+      <li class="bg_lr"> <a href="{weimicms::U('Vote/index',array('token'=>$token))}"> <i class="icon-bar-chart"></i> 微投票</a> </li>
+      <li class="bg_db"> <a href="javascript:history.go(-1);"> <i class="icon-share-alt"></i> 返回</a> </li>
+    </ul>
+    </div>
+    <h4 class="left">调研客户资料管理</h4>
+  </div>
+  <div class="msgWrap">
+    <form method="post" action="" id="info">
+      <input name="delall" type="hidden" value="del">
+      <input name="wxid" type="hidden" value="gh_423dwjkewad">
+      <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+        <thead>
+          <tr>
+            <th width="40">序号</th>
+            <th width="100">姓名</th>
+            <th class="55">电话</th>
+            <th class="125">留言建议</th>
+            <th width="150" class="norightborder">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr></tr>
+          <volist name="books" id="o">
+            <tr>
+              <td><div align="center">{weimicms:$o.id}</div></td>
+              <td><div align="center">{weimicms:$o.username}</div></td>
+              <td><div align="center">{weimicms:$o.phone}</div></td>
+              <td><div align="center">{weimicms:$o.jianyi}</div></td>
+              <td class="norightborder"><div align="center"><a class="btn" href="javascript:drop_confirm('您确定要删除吗?', '{weimicms::U('Diaoyan/manage_del',array('token'=>$o['token'],'id'=>$o['id']))}');"  title="删除">删除</a>&nbsp;<a class="btn" href="javascript:history.go(-1);"  title="删除">返回</a></div></td>
+            </tr>
+          </volist>
+        </tbody>
+      </table>
+      <input type="hidden" name="token" value="{weimicms:$_GET['token']}" />
+    </form>
+  </div>
+  <div class="cLine">
+    <div class="pageNavigator right">
+      <div class="pages">{weimicms:$page}</div>
+    </div>
+    <div class="clr"></div>
+  </div>
+</div>
+<include file="Public:footer"/>  

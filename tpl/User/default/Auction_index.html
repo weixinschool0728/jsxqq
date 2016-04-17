@@ -1,0 +1,118 @@
+<include file="Public:head" />
+<link rel="stylesheet" type="text/css" href="{weimicms:$staticPath}/tpl/static/bargain/css/cymain.css" />
+<div class="content">
+	<div class="cLineB">
+		<h4 class="left"><?php if($_GET['del'] == 1){echo "商品回收站";}else{echo "拍卖商品列表";}?></h4>
+		<?php if($_GET['del'] != 1){?>
+		<div class="clr"></div>
+		<?php }else{?>
+		<a href="{weimicms::U('Auction/index',array('token'=>$token))}"  class="right btnGreen" >返回</a>
+		<?php }?>
+	</div>
+	<?php if($_GET['del'] != 1){?>
+	<div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-bottom:5px;font-size:12px;">
+		温馨提示：本功能使用了模板消息中的"订单发货提醒"模板消息,模板消息编号为OPENTM200565259；<br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		"订单未支付通知"模板消息,模板消息编号为TM00184。<br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		开通微信支付功能的公众号在使用此功能的时候可以在"基本设置——微信模板消息"中配置对应的模板消息。<br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		模板消息中的订单号就是商品ID，可在商品列表页按照订单号搜索商品查看记录。<br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		若有网友在商品竞拍成功后超过付款期限，可以点击重新开始删除该商品所有竞拍记录重新开始，若商品时间已结束则自动增加一天时间，可以在修改中重新设置时间。
+	</div>
+	<?php }?>
+	<div class="cLine">
+		<?php if($_GET['del'] != 1){?>
+		<div class="pageNavigator left">
+			<a href="{weimicms::U('Auction/set',array('token'=>$token))}" title="添加商品" class="btnGrayS vm bigbtn"><img src="{weimicms::RES}/images/product/add.png" width="16" class="vm">添加商品</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="{weimicms::U('Auction/index',array('token'=>$token,'del'=>1))}" title="商品删除后可以在此找回">商品回收站</a>
+		</div>
+		<?php }?>
+		<div class="searchbar <?php if($_GET['del'] == 1){echo "left";}else{echo "right";}?>">
+			<input type="text" id="msgSearchInput" class="txt left" placeholder="输入名称或订单号搜索" name="search" value="<?php echo $_GET['search'];?>" style="margin-top:13px;width:200">
+			<a value="搜索" id="msgSearchBtn" href="javascript:search();" class="btnGrayS" title="搜索" style="margin-top:10px">搜索</a>
+		</div>
+		<div class="clr"></div>
+	</div>
+	<div class="msgWrap">
+		<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<thead>
+				<tr>
+					<th width="50px">商品ID</th>
+					<th width="150px">商品名称</th>
+					<th width="100px">关键词</th>
+					<th width="80px">最新价格</th>
+					<th width="200px">添加/修改时间</th>
+					<th width="100px">状态</th>
+					<th class="norightborder">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<volist name="list" id="list">
+					<tr>
+						<td>{weimicms:$list.id}</td>
+						<td>{weimicms:$list.name}</td>
+						<td>{weimicms:$list.keyword}</td>
+						<td>
+							<?php echo $list['price']?$list['price']:$list['startprice']; ?>元
+						</td>
+						<td>
+							添加时间：{weimicms:$list.addtime|date='Y-m-d H:i:s',###}
+							<br/>
+							修改时间：{weimicms:$list.settime|date='Y-m-d H:i:s',###}
+						</td>
+						<td>
+							<?php
+							if($_GET['del'] != 1){
+								if($list['state'] == 0){
+									echo "<span style='color:red'>已关闭</span>";
+								}elseif($list['state'] == 1){
+									echo "<span style='color:blue'>未开始</span>";
+								}elseif($list['state'] == 2){
+									echo "<span style='color:blue'>已结束</span>";
+								}elseif($list['state'] == 3){
+									echo "<span style='color:green'>竞拍中</span>";
+								}
+							}else{
+								echo "<span style='color:red'>已删除</span>";
+							}
+							?>
+						</td>
+						<td class="norightborder">
+							<?php if($_GET['del'] != 1){?>
+							<a href="{weimicms::U('Auction/data',array('token'=>$token,'id'=>$list['id']))}">竞拍记录</a>
+							<a href="{weimicms::U('Auction/set',array('token'=>$token,'id'=>$list['id']))}">修改</a>
+							<a href="javascript:drop_confirm('删除后可在商品回收站找回。','{weimicms::U('Auction/isdel',array('token'=>$token,'id'=>$list['id']))}');">删除</a>
+							<?php if($list['again'] == 1){?>
+							<a href="javascript:drop_confirm('重新开始将删除该商品所有竞拍记录重新开始。','{weimicms::U('Auction/isagain',array('token'=>$token,'id'=>$list['id']))}');">重新开始</a>
+							<?php }?>
+							<?php }else{?>
+							<a href="javascript:drop_confirm('恢复后可在商品列表中找到。','{weimicms::U('Auction/isdel',array('token'=>$token,'id'=>$list['id']))}');">恢复</a>
+							<?php }?>
+						</td>
+					</tr>
+				</volist>
+			</tbody>
+		</table>
+	</div>
+	<div class="cLine">
+		<div class="pageNavigator right">
+			<div class="pages">{weimicms:$page}</div>
+		</div>
+		<div class="clr"></div>
+	</div>
+</div>
+<script>
+	$(document).ready(function(){});
+	function search(){
+		var search = $("input[name='search']").val();
+		if(search != ""){
+			window.location.href="{weimicms::U('Auction/index',array('token'=>$token,'del'=>$_GET['del']))}&search="+search;
+		}else{
+			window.location.href="{weimicms::U('Auction/index',array('token'=>$token,'del'=>$_GET['del']))}";
+		}
+	}
+</script>
+<include file="Public:footer"/>

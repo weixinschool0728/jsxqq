@@ -1,0 +1,70 @@
+<include file="Public:head"/> 
+
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" ><include file="Public:shangwu"/>
+<h4 class="left">商城基本信息管理 ({weimicms:$page}) </h4>
+<div class="clr"></div>
+</div>
+<!--tab start-->
+<div class="tab">
+<ul>
+<li class="tabli" id="tab0"><a href="{weimicms::U('Product/index',array('token'=>$token,'dining'=>$isDining))}"><if condition="$isDining neq 1">商品<else/>菜品</if>管理</a></li>
+<li class="tabli" id="tab2"><a href="{weimicms::U('Product/cats',array('token'=>$token,'dining'=>$isDining))}"><if condition="$isDining neq 1">商品分类<else/>菜品分类</if>管理</a></li>
+<li class="tabli" id="tab2"><a href="{weimicms::U('Product/orders',array('token'=>$token,'dining'=>$isDining))}">订单管理</a></li>
+<li class="current tabli" id="tab2"><a href="{weimicms::U('Product/shop_set',array('token'=>$token,'dining'=>0))}">商城基本信息管理</a></li>
+<li class="tabli" id="tab5"><a href="{weimicms::U('Reply_info/set',array('token'=>$token,'infotype'=>'Shop'))}">商城回复配置</a></li>
+
+</ul>
+</div>
+<!--tab end-->
+
+<div class="msgWrap">
+ <form class="form" method="post" action="" enctype="multipart/form-data"> 
+<input type="hidden" name="id" value="{weimicms:$id}" />
+<input type="hidden" name="discount" id="discount" value="{weimicms:$set.discount}" />
+    <div class="msgWrap bgfc"> 
+     <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"> 
+      <tbody> 
+            <tr> 
+        <th><span class="red">*</span>店铺名称：</th> 
+        <td><input type="text" name="shop_name" value="{weimicms:$set.shop_name}" class="px" style="width:400px;" /></td> 
+       </tr>  
+        <tr> 
+        <th><span class="red">*</span>头部图片：</th>
+        <td><input type="text" name="head_bg" value="{weimicms:$set.head_bg}" class="px" id="pic" style="width:400px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('pic',700,700,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('pic')">预览</a></td> 
+       </tr>  
+      <tr> 
+        <th><span class="red">*</span>头部描述：</th> 
+        <td><input type="text" name="head_info" value="{weimicms:$set.head_info}" class="px" style="width:400px;" /></td> 
+       </tr>  
+        <tr> 
+        <th><span class="red">*</span>头像：</th>
+        <td><input type="text" name="head_pic" value="{weimicms:$set.head_pic}" class="px" id="pic2" style="width:400px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('pic2',700,700,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('pic2')">预览</a></td> 
+       </tr>
+       <tr> 
+        <th><span class="red">*</span>微信号：</th> 
+        <td><input type="text" name="weixin_number" value="{weimicms:$set.weixin_number}" class="px" style="width:400px;" /></td> 
+       </tr> 
+         
+       <tr>         
+       <th>&nbsp;</th>
+       <td>
+       <button type="submit" name="button" class="btn btn-success">保存</button></td> 
+       </tr> 
+      </tbody> 
+     </table> 
+     </div>
+    
+   </form> 
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{weimicms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

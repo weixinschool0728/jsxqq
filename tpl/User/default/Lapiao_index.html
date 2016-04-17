@@ -1,0 +1,207 @@
+<include file="Public:head"/>
+<script type="text/javascript" src="./tpl/static/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="{weimicms::RES}/js/date/WdatePicker.js"></script>
+
+	<div class="content" >
+<div class="cLineB">
+<h4 class="left">拉票营销</h4>
+<div class="clr"></div>
+ </div> 
+	<div class="alert alert-info">
+	  	<p><span class="bold">拉票规则：<br></span>
+	  		1.商家设置有奖拉票信息:关键字 奖品等<br>
+	  		2.微信用户关注公众账号后回复设置的关键字后，会领取一张选票(唯一票号)<br>
+	  		3.用户将票号告诉身边的朋友来关注您的公众账号并回复票号，系统自动给票号所属用户的拉票数量+1<br>
+	  		4.活动结束后，拉票数量最多的用户将按排名获得奖品<br>
+	  		5.同一个活动中，每个粉丝只能最多给三个人投票<br>
+	  		说明：该活动是利用粉丝帮助商家获取更多的粉丝，让粉丝替我们宣传公众账号<br>
+	  		注意：后台可以修改用户的得票数，谁能中奖?你懂的
+</p>
+	</div>
+<div class="cLine">
+
+
+ <div class="pageNavigator left">
+<a href="{weimicms::U('Lapiao/add',array('token'=>$token))}" title="添加" class="btnGrayS vm bigbtn"><img src="{weimicms::RES}/images/product/add.png" width="16" class="vm">添加拉票</a></div>
+
+
+
+<div class="clr"></div>
+
+
+
+</div>
+
+
+
+<div class="msgWrap">
+
+
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+
+
+
+<thead>
+
+
+
+<tr>
+
+
+
+<th width="140">拉票名称</th>
+
+
+
+<th width="160">关键字</th>
+
+
+
+<th width="140">时间</th>
+
+
+
+<th width="130">状态</th>
+
+
+<th width="250" class="norightborder">操作</th>
+
+
+
+</tr>
+
+
+
+</thead>
+
+
+
+<tbody>
+
+
+
+<tr></tr>
+
+
+
+<volist name="res" id="r"> 
+
+
+
+<tr>
+
+
+
+<td>{weimicms:$r['name']}</td>
+
+
+
+<td>{weimicms:$r['keyword']}</td>
+
+
+<td>{weimicms:$r['kssj']}</br>{weimicms:$r['jssj']}</td>
+
+<td><?php echo $r['status']; ?></td>
+
+
+
+<td class="norightborder"><a href="{weimicms::U('Lapiao/edit',array('token'=>$r['token'],'id'=>$r['id']))}">修改</a>&nbsp;&nbsp;<a href="{weimicms::U('Lapiao/listall',array('token'=>$r['token'],'id'=>$r['id']))}">数据</a>&nbsp;&nbsp;<a href="{weimicms::U('Lapiao/index',array('token'=>$r['token'],'id'=>$r['id'],'act'=>'del'))}">删除</a>  </td>
+
+
+
+</tr>
+
+
+
+</volist>
+
+
+
+</tbody>
+
+
+
+</table>
+
+
+
+
+
+</div>
+
+
+
+<div class="cLine">
+
+
+
+<div class="pageNavigator right">
+
+
+
+<div class="pages">{weimicms:$page}</div>
+
+
+
+</div>
+
+
+
+<div class="clr"></div>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<include file="Public:footer"/>
+
+
+
+<script type="text/javascript">
+$(function() {
+	$("#gotonext").click(function(){
+		window.parent.$('.menu-diaoyan').trigger('click');
+	});
+});
+
+function dellbs(id,o){
+	if(id=='a'){
+		if(confirm('确定删除这些拉票信息吗？')){
+			var ids = [];
+			$('td').find('input[type="checkbox"]:checked').each(function(){
+				ids[ids.length] = $(this).val();
+			});
+			ajax('lapiao-del.html',{ id:ids.join(',')},function(){
+				$('td').find('input[type="checkbox"]:checked').each(function(){
+					$(this).parent().parent().remove();
+				});
+			});	
+		}
+	}else{
+		if(confirm('确定删除此条拉票信息吗？')){
+			ajax('lapiao-del.html',{ id:id},function(){
+				$(o).parent().parent().parent().remove();
+			});	
+		}
+	}	
+}
+
+function selallck(o){
+	if($(o).prop('checked')){
+		$('td').find('input[type="checkbox"]').prop('checked',true);
+	}else{
+		$('td').find('input[type="checkbox"]').prop('checked',false);
+	}
+}
+</script>
+
+

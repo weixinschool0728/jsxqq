@@ -1,0 +1,88 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+<script type="text/javascript" src="./tpl/static/jquery.min.js"></script>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<div class="content">
+         
+          <div class="cLineB">
+              <h4 class="left">拉票营销活动数据</h4>
+                  <div>
+         
+          <a href="javascript:history.go(-1);" class="right btnGrayS vm">返回</a>
+          
+          </div>
+              <div class="clr"></div> 
+          </div>
+        
+  
+  <div class="cLine" style=" padding: 8px 0">
+          </div>
+          <div class="msgWrap">
+          <form method="post"  action="" id="info" >
+          <input name="delall"  type="hidden" value="" />
+           <input name="wxid"  type="hidden" value="" />
+            <TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+              <THEAD>
+                <TR style="text-align: center;">
+					<th>用户名称</th>
+					<th>用户电话</th>
+					<th>得票数量</th>
+					<th>参与时间</th>
+					<th>操作</th>
+                </TR>
+				
+              </THEAD>
+              <TBODY>
+				<volist name="info" id="r"> 		 
+			      <tr>
+						<td>{weimicms:$r['un']}</td>
+						<td>{weimicms:$r['tel']}</td>
+						<td>{weimicms:$r['sl']}</td>
+						<td>
+						{weimicms:$r['ctime'|date='Y-m-d',###]}
+						</td>
+						<td>
+						<span>
+						<a href="javascript:;" onclick="updateinfo({weimicms:$r['id']})">修改票数</a>						
+						</span>
+						</td>
+				  </tr>
+			</volist>
+			  </TBODY>
+            </TABLE>
+           </form> 
+
+          </div>
+            
+ 
+          <div class="cLine">
+            <div class="pageNavigator right">
+                 <div class="pages">{weimicms:$page}</div>
+              </div>
+            <div class="clr"></div>
+          </div>
+        </div>
+
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+  	</div>
+<script type="text/javascript">
+
+function updateinfo(id){
+	art.dialog.open('{weimicms::U('Lapiao/listall',array('token'=>$token,'act'=>'info','tid'=>$_GET['id']))}&id='+id,{lock:false,title:'修改票数',width:400,height:240,yesText:'关闭',background: '#000',opacity: 0.87});
+}
+</script>
+<include file="Public:footer"/>   
+
+
+
+
+
+
+
+
+
+

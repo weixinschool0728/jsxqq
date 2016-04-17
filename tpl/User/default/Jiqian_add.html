@@ -1,0 +1,218 @@
+<include file="Public:head"/>
+				<link rel="stylesheet" type="text/css" href="{weimicms::RES}/jiqian/css/style.css" />
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+				<script src="{weimicms::RES}/js/date/WdatePicker.js"></script>
+				<div id="{weimicms::MODULE_NAME}" class="content {weimicms::MODULE_NAME}">
+					<form class="form" method="post" action="" enctype="multipart/form-data" >
+						<!--activity start-->
+						<div class="cLineB">
+							<h4>编辑{weimicms:$activityname}活动开始内容</h4><a href="javascript:history.go(-1);" class="right btnGrayS vm">返回</a>
+							<div class="clr"></div>
+						</div>
+						<div class="cLine hide">
+							<div class="pageNavigator left"></div>
+							<div class="clr"></div>
+						</div>
+						<div class="msgWrap bgfc"> 
+							<table class="userinfoArea" cellSpacing="0" cellPadding="0">
+								<tbody>
+								<tr>
+									<th valign="top"><span class="red">*</span>关键词：</th>
+									<td>
+										<input type="input" class="px" id="keyword" value="<if condition="$vo['keyword'] eq ''">{weimicms:$activityname}<else/>{weimicms:$vo.keyword}</if>" name="keyword" style="width:400px" ><br /><span class="red">只能写一个关键词</span>，用户输入此关键词将会触发此活动。
+									</td>
+									<td rowspan="7" valign="top">
+										<div style="margin-left:20px">
+											<img id="startpic" src="<if condition="$vo['startpicurl'] eq ''">{weimicms:$f_siteUrl}/{weimicms::RES}/Jiqian/images/dbbanner.jpg<else/>{weimicms:$vo.startpicurl}</if>" width="373px" ><br />
+											<input class="px" id="startpicurl" name="startpicurl" value="<if condition="$vo['starpicurl'] eq ''">{weimicms:$f_siteUrl}/{weimicms::RES}/Jiqian/images/activity_start.jpg<else/>{weimicms:$vo.startpicurl}</if>"   onclick="document.getElementById('startpic').src=this.value;" style="width:361px;" /><br />
+											<input name="type" value="1" type="hidden" />
+		 <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('startpicurl',1000,500,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('startpicurl')">预览</a>&nbsp;活动开始图片
+		 
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th valign="top"><span class="red">*</span>活动名称：</th>
+									<td>
+										<input type="input" class="px" id="title" value="<if condition="$vo['title'] eq ''">{weimicms:$activityname}活动开始了<else/>{weimicms:$vo.title}</if>" name="title" /><br />请不要多于50字!
+									</td>
+								</tr>
+								<tr>
+									<th valign="top"><span class="red">*</span>活动规则：</th>
+									<td><textarea class="px" name="summary">{weimicms:$vo.summary}</textarea></td>
+									
+								</tr>
+								<tr>
+									<th><span class="red">*</span>活动时间：</th>
+									<td><input type="input" class="px w150" id="startdate" value="<if condition="$vo['startdate'] neq ''">{weimicms:$vo.startdate|date="Y-m-d",###}<else/><?php echo date('Y-m-d',mktime(0, 0, 0, date("m"),date("d"),date("Y")));?></if>" onClick="WdatePicker()" name="startdate" />&nbsp;到&nbsp;<input type="input" class="px w150" id="enddate" value="<if condition="$vo['enddate'] neq ''">{weimicms:$vo.enddate|date="Y-m-d",###}<else/><?php echo date('Y-m-d',mktime(0, 0, 0, date("m"), date("d")+3, date("Y")));?></if>" name="enddate" onClick="WdatePicker()" /></td>
+								</tr>
+								<tr>
+									<th valign="top">活动说明：</th>
+									<td><textarea class="px" id="info" name="info" style="height:125px" ><if condition="$vo['info'] eq ''">亲，请点击进入{weimicms:$activityname}抽奖活动页面，祝您好运哦！<else/>{weimicms:$vo.info}</if></textarea><br />换行请输入&lt;br&gt;</td>
+								</tr>
+								</tbody>
+							</table>
+						</div>
+						<!--//activite start area end-->
+						<div class="cLineB">
+							<h4>编辑{weimicms:$activityname}顶部banner图</h4>
+						</div>
+						<div class="msgWrap bgfc">
+							<table class="userinfoArea" cellspacing="0" cellpadding="0">
+								<tbody>
+									<tr>
+										<th valign="top"><span class="red">*</span>顶部外部链接：</th>
+										<td><input type="input" class="px" id="dbtite" value="<if condition="$vo['dbtite'] eq ''">{weimicms:$activityname}http://www.baidu.com<else/>{weimicms:$vo.dbtite}</if>" name="dbtite" style="width:400px" /><br />请不要多于50字! </td>
+										<td rowspan="4" valign="top">
+											<div style="margin-left:20px"><img id="dbpic" src="<if condition="$vo['dbpicurl'] eq ''">{weimicms::RES}/Jiqian/images/dbbanner.jpg<else/>{weimicms:$vo.dbpicurl}</if>" width="373px"/><br />
+											<input class="px" id="dbpicurl" name="dbpicurl" value="<if condition="$vo['dbpicurl'] eq ''">{weimicms::RES}/Jiqian/images/dbbanner.jpg<else/>{weimicms:$vo.dbpicurl}</if>"  onchange="document.getElementById('dbpicurl').src=this.value;" style="width:361px;" />
+											<br />
+		 <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('dbpicurl',1000,500,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('dbpicurl')">预览</a>&nbsp;活动开始图片
+
+											</div>
+										</td>
+									</tr>
+									<tr>
+								<th valign="top"><span class="red">*</span>滚动条内容</th>
+								<td><input type="input" class="px" id="gundong" name="gundong" value="{weimicms:$vo.gundong}" style="width:150px"/><span class='red'></span></td>
+							</tr>
+									</tbody>
+							</table>
+						</div>
+						
+						
+						<!--activite end area-->
+						<div class="cLineB">
+							<h4>编辑{weimicms:$activityname}底部广告详情页banner图</h4>
+						</div>
+						<div class="cLine hide">
+							<div class="pageNavigator left"></div>
+							<div class="clr"></div>
+						</div>
+						<div class="msgWrap bgfc">
+							<table class="userinfoArea" cellspacing="0" cellpadding="0">
+								<tbody>
+									<tr>
+										<th valign="top"><span class="red">*</span>底部图片链接：</th>
+										<td><input type="input" class="px" id="endtite" value="<if condition="$vo['endtite'] eq ''">{weimicms:$activityname}例如:http://www.baidu.com<else/>{weimicms:$vo.endtite}</if>" name="endtite" style="width:400px" /><br />请不要多于50字! </td>
+										<td rowspan="4" valign="top">
+											<div style="margin-left:20px"><img id="endpic" src="<if condition="$vo['endpicurl'] eq ''">{weimicms::RES}/Jiqian/images/activity_end.jpg<else/>{weimicms:$vo.endpicurl}</if>" width="373px"/><br />
+											<input class="px" id="endpicurl" name="endpicurl" value="<if condition="$vo['endpicurl'] eq ''">{weimicms::RES}/Jiqian/images/activity_end.jpg<else/>{weimicms:$vo.endpicurl}</if>"  onchange="document.getElementById('endpic').src=this.value;" style="width:361px;" />
+											<br />
+		 <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('endpicurl',1000,500,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('endpicurl')">预览</a>&nbsp;活动开始图片
+
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th valign="top">备注说明：</th>
+										<td valign="top"><textarea class="px" id="endinfo" name="endinfo" style="width:400px; height:125px" ><if condition="$vo['endinfo'] eq ''">手机产品链接<else/>{weimicms:$vo.endinfo}</if></textarea><br />换行请输入&lt;br&gt;</td>
+										</tr>
+									</tbody>
+							</table>
+						</div>
+						<!--//activite end area end-->
+
+						<!--awards set-->
+						<div class="cLineB">
+							<h4>奖品设置</h4>
+							<div class="clr"></div>
+						</div>
+						<div class="cLine hide">
+							<div class="pageNavigator left"></div>
+							<div class="clr"></div>
+						</div>
+						<div class="msgWrap bgfc">
+							<table class="userinfoArea" cellSpacing="0" cellPadding="0">
+								<tbody>
+									<tr>
+										<th valign="top"><span class="red">*</span>人数设置：</th>
+										<td><input type="input" class="px" id="first" name="first" value="{weimicms:$vo.first}" style="width:250px"/><br />人数越多,集钱越难! 比如1000个人,那么达到1000个人以后,才能集到设定的钱数</td>
+										<td rowspan="9" valign="top">&nbsp;</td>
+									</tr>
+									
+									<tr>
+										<th valign="top"><span class="red">*</span>首次领取基金</th>
+										<td><input type="input" class="px" id="five" name="five" value="{weimicms:$vo.five}" style="width:60px" /><span class="red"><br />参加活动首次领取的额度</span></td>
+									</tr>
+									
+									<tr>
+										<th valign="top"><span class="red">*</span>减钱最小额度：</th>
+										<td><input type="input" class="px" id="firstnums" name="firstnums" value="{weimicms:$vo.firstnums}" style="width:60px" /><span class="red"><br />如果达到设定人数,那么就每次减最小额度</span></td>
+									</tr>
+									<tr>
+										<th valign="top">减钱最大额度：</th>
+										<td><input type="input" class="px" id="second" name="second" value="{weimicms:$vo.second}" style="width:250px"/><br />最大减多少钱 </td>
+									</tr>
+									<tr>
+										<th valign="top">加钱最小额度：</th>
+										<td><input type="input" class="px" id="secondnums" name="secondnums" value="{weimicms:$vo.secondnums}" style="width:60px" /><br /></td>
+									</tr>
+									<tr>
+										<th valign="top">加钱最大额度：</th>
+										<td><input type="input" class="px" id="third" name="third"   value="{weimicms:$vo.third}" style="width:250px" /><br /> </td>
+									</tr>
+									
+									
+									
+									<tr>
+										<th valign="top">奖品数量：</th>
+										<td><input type="input" class="px" id="thirdnums" name="thirdnums" value="{weimicms:$vo.thirdnums}" style="width:60px" /><br /></td>
+									</tr>
+								</tbody>
+							<tbody>
+							<tr>
+								<th valign="top"><span class="red">*</span>奖品名称：</th>
+								<td><input type="input" class="px" id="allpeople" name="allpeople" value="{weimicms:$vo.allpeople}" style="width:150px"/><span class='red'></span></td>
+							</tr>
+							<tr>
+								<th valign="top"><span class="red">*</span>奖品总额度：</th>
+								<td><input type="input" class="px" id="canrqnums" name="canrqnums" value="{weimicms:$vo.canrqnums}" style="width:150px"/><br />如iPhone3000,则输入3000</td>
+							</tr>
+							<tr>
+										<th valign="top">微信关注的url链接</th>
+										<td><input type="input" class="px" id="four" name="four"   value="{weimicms:$vo.four}" style="width:250px" /><br /> </td>
+							</tr>
+							<!--<tr>
+								<th valign="top">是否允许多帮忙</th>
+								
+								<td><input class="radio" type="radio" name="displayjpnums" value="1" <if condition="$vo['displayjpnums'] eq 1">checked</if>>允许<input class="radio" type="radio" name="displayjpnums" value="0"  <if condition="$vo['displayjpnums'] eq 0">checked</if>>不允许</td> 
+								<th valign="top">比如投票,一个人可以给多个人投票,而如果不允许的话,只能给一个人投票.原理是一样的</th>
+							</tr>
+							
+							<tr>
+								<th valign="top">帮助的人是否必须关注公众号</th>
+								
+								<td><input class="radio" type="radio" name="cjgz" value="1" <if condition="$vo['cjgz'] eq 1">checked</if>>允许<input class="radio" type="radio" name="cjgz" value="0"  <if condition="$vo['cjgz'] eq 0">checked</if>>不允许</td> 
+								<th valign="top">如果开启的话,则帮助的人需关注公众号才可进行帮助</th>
+							</tr> 
+							-->
+							<tr>
+								<th valign="top">异常通知</th>
+								
+								<td><input class="radio" type="radio" name="cjgz" value="1" <if condition="$vo['cjgz'] eq 1">checked</if>>允许<input class="radio" type="radio" name="cjgz" value="0"  <if condition="$vo['cjgz'] eq 0">checked</if>>不允许</td> 
+								<th valign="top">开启后,参加活动的某个用户,如果出现大量集钱的情况,则微信通知到微信公众号上,需开启微信通知</th>
+							</tr> 
+							 
+							<tr>
+								<th>&nbsp;</th>
+								<td>
+									<button type="submit" class="btnGreen">保存</button>&nbsp;&nbsp;<a href="javascript:history.go(-1);" class="btnGray vm">取消</a>&nbsp;&nbsp;<span class="red">请确认功能管理已开启{weimicms:$activityname}功能</span></td>
+							</tbody>
+						</div>
+						<div class="cLine">
+							<div class="pageNavigator right"></div>
+							<div class="clr"></div>
+						</div>
+						<!--//awards set area end-->
+					</form>
+				</div>
+	<script type="text/javascript">
+	function onfocus(obj){
+		obj.html = '';
+	}
+	function onblur(obj,str){
+		obj.html = str;
+	}
+	</script>

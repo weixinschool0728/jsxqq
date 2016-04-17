@@ -1,0 +1,187 @@
+<include file="Public:head"/>
+
+<link rel="stylesheet" href="{weimicms::STATICS}/kindeditor/themes/default/default.css" />
+
+<link rel="stylesheet" href="{weimicms::STATICS}/kindeditor/plugins/code/prettify.css" />
+
+<!--link rel="stylesheet" href="{weimicms::STATICS}/vote/style.css" /-->
+
+<script src="{weimicms::STATICS}/kindeditor/kindeditor.js" type="text/javascript"></script>
+
+<script src="{weimicms::STATICS}/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+
+<script src="{weimicms::STATICS}/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+
+<script src="{weimicms::RES}/js/date/WdatePicker.js" type="text/javascript"></script>
+
+<script src="{weimicms::STATICS}/vote/common.js" type="text/javascript"></script>
+
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default" type="text/javascript"></script>
+
+<script src="/tpl/static/artDialog/plugins/iframeTools.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+var editor;
+
+KindEditor.ready(function(K) {
+
+editor = K.create('#info', {
+
+resizeType : 1,
+
+allowPreviewEmoticons : false,
+
+allowImageUpload : true,
+
+uploadJson : '/index.php?g=User&m=Upyun&a=kindedtiropic',
+
+items : [
+
+'source','undo','plainpaste','wordpaste','clearhtml','quickformat','selectall','fullscreen','fontname', 'fontsize','subscript','superscript','indent','outdent','|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline','hr']
+
+});
+
+});
+
+</script>
+
+<script type="text/javascript">
+
+var editor;
+
+KindEditor.ready(function(K) {
+
+editor = K.create('#gz', {
+
+resizeType : 1,
+
+allowPreviewEmoticons : false,
+
+allowImageUpload : true,
+
+uploadJson : '/index.php?g=User&m=Upyun&a=kindedtiropic',
+
+items : [
+
+'source','undo','plainpaste','wordpaste','clearhtml','quickformat','selectall','fullscreen','fontname', 'fontsize','subscript','superscript','indent','outdent','|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline','hr', '|', 'image']
+
+});
+
+
+
+});
+
+</script>
+
+<div class="content">
+<div class="cLineB">
+
+  <h4>添加女神选项</h4><a href="javascript:history.go(-1);"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a>
+
+ </div>
+
+  <div class="msgWrap bgfc">
+
+    <form class="form" method="post" action="/index.php?g=User&m=Hvotes&a=save_item&id={weimicms:$item.id}&vid={weimicms:$vid}"  enctype="multipart/form-data">
+
+     
+
+      <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+
+        <tbody>
+
+          <tr>
+
+            <th width="120">姓名：</th>
+
+            <td><input type="text" name="item" value="{weimicms:$item.item}" class="px" style="width:550px;"><br></td>
+
+          </tr>
+          
+          <tr>
+
+            <th width="120">编号：</th>
+
+            <td><input type="text" name="rank" value="{weimicms:$item.rank}" class="px" style="width:550px;"><br></td>
+
+          </tr>
+
+          <tr>
+
+            <th width="120">电话：</th>
+
+            <td><input type="text" name="phone" value="{weimicms:$item.phone}" class="px" style="width:550px;"></td>
+
+          </tr>
+          
+          
+          <tr>
+
+            <th width="120">票数：</th>
+
+            <td><input type="text"  value="<if condition="$item['vcount'] eq ''">0<else/>{weimicms:$item.vcount}</if>" name="vcount" class="px"/></td>
+
+          </tr>
+          <tr>
+
+            <th width="120">视频：</th>
+
+            <td> <input class="px" name="movie_link" value="{weimicms:$item.movie_link}" id="movie_link" style="width:500px;"><br />
+	  支持优酷视频地址如;http://v.youku.com/v_show/id_XNjI4ODk5NDQ4.html <br />
+腾讯fash视频地址：如http://static.video.qq.com/TPout.swf?vid=v0119s27wd5&auto=0 <br />
+也支持mp4和ogg 格式地址 http://www.w3school.com.cn/example/html5/mov_bbb.mp4 <br />
+直接复制以上文本连接，会自动加视频播放器!</td>
+
+          </tr>
+
+          <tr>
+
+            <th>照片：</th>
+
+            <td><if condition="$reslist['picurl'] neq ''"> <img class="thumb_img" id="picurl_src" src="{weimicms:$reslist['picurl']}" style="max-height:100px;"> </if>
+
+              <input type="text" name="startpicurl" value="{weimicms:$item.startpicurl}" class="px" onclick="document.getElementById('picurl_src').src=this.value;" id="picurl" style="width:300px;">
+
+              <script src="/tpl/static/upyun.js"></script>
+
+              <a href="###" onclick="upyunPicUpload('picurl',700,400,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('picurl')">预览</a>&nbsp;填写图片外链地址，大小为720x400</td>
+
+          </tr>
+
+          <tr>
+
+            <th valign="top">详情：</th>
+
+            <td valign="top"><textarea class="px" id="info" name="content" style="width: 560px; height: 120px; display: ;"><?php echo html_entity_decode(htmlspecialchars_decode($item['content'])); ?></textarea></td>
+
+          </tr>
+
+		  
+
+		
+
+		
+
+        
+          <tr>
+
+            <th>&nbsp;</th>
+
+            <td><button type="submit" name="button" class="btn btn-success">保存</button>
+
+              <a href="{weimicms::U('Hvotes/item',array('id'=>$item['vid']))}" class="btn btn-danger">取消</a> </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </form>
+
+  </div>
+
+</div>
+
+<include file="Public:footer"/>

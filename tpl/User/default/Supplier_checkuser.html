@@ -1,0 +1,57 @@
+<include file="Public:head"/> 
+<div class="content">
+         
+          <div class="cLineB">
+              <h4 class="left">当前位置：<a href="{weimicms::U('Member_card/index',array('token'=>$token))}">实名认证管理</a></h4>
+                 
+              <div class="clr"></div>
+          </div> 
+            <TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+              <THEAD>
+                <TR>
+				<TH>身份证号码</TH>
+				<TH>真实姓名</TH>
+				<TH>认证状态</TH>
+				<TH >操作</TH>
+                </TR>
+              </THEAD>
+              <TBODY>
+                <TR></TR> 
+				 <volist id="list" name="data">
+                <TR>
+                  <TD>{weimicms:$list.Uid}</TD>
+				   <TD>{weimicms:$list.judicial}</TD>
+                  <TD>
+				  	<if condition="$list.checkStatue eq '1'">
+					待认证
+					<elseif  condition="$list.checkStatue eq '2'" />
+					已认证
+					<elseif  condition="$list.checkStatue eq '3'" />
+					认证失败 
+					</if>
+				  </TD>  
+                  <TD class="norightborder"> 
+				  <if condition="$list.checkStatue neq '2'">
+				    <a href="/index.php?g=User&m=Supplier&a=authen&id={weimicms:$list.id}"><strong>查看审核</strong></a>
+					</if>
+                  </TD>
+                </TR>
+				</volist> 
+              </TBODY>
+            </TABLE> 
+          </div> 
+          <div class="cLine">
+            <div class="pageNavigator right">
+                <div class="pages">{weimicms:$page}</div>
+              </div>
+            <div class="clr"></div>
+          </div>
+        </div>
+
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div> 
+  <!--底部-->
+  	</div>
+<include file="Public:footer"/>  

@@ -1,0 +1,116 @@
+<include file="LivingCircle:head" />
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />
+<div class="content">
+<div class="cLineB">
+    <div  class="quick-actions_homepage">
+    <ul class="quick-actions">
+      <li class="bg_lr"> <a href="{weimicms::U('LivingCircle/myseller',array('token'=>$token))}"> <i class="icon-cog"></i> 商家信息</a> </li>
+      <li class="bg_lg"> <a href="{weimicms::U('LivingCircle/mysellergoods',array('token'=>$token))}"> <i class="icon-book"></i> 商品管理</a> </li>
+      <li class="bg_lb"> <a href="{weimicms::U('LivingCircle/mysellerorder',array('token'=>$token))}"> <i class="icon-gift"></i> 订单管理 </a> </li>
+      <li class="bg_db"> <a href="javascript:history.go(-1);"> <i class="icon-share-alt"></i> 返回</a> </li>
+    </ul>
+  </div>
+		<h4 class="left">微信生活圈</h4>
+		<div class="clr"></div>
+	</div>
+	
+	<div class="tab">
+		<ul>
+			<li class="tabli" id="tab2"><a href="{weimicms::U('LivingCircle/myseller',array('token'=>$token))}">商家信息</a></li>
+			<li class="current tabli" id="tab2"><a href="{weimicms::U('LivingCircle/mysellergoods',array('token'=>$token))}">商品管理</a></li>
+			<li class="tabli" id="tab2"><a href="{weimicms::U('LivingCircle/mysellerorder',array('token'=>$token))}">订单管理</a></li>
+		</ul>
+	</div>
+	
+	<div class="cLineB">
+		<h4 class="left">商品</h4>
+		<div class="clr"></div>
+	</div>
+	
+	<div class="cLine">
+		<div class="pageNavigator left">
+			<a href="{weimicms::U('LivingCircle/mysellergoodsadd',array('token'=>$token))}" title="添加商品" class="btnGrayS vm bigbtn">添加商品</a>
+		</div>
+		<div class="pageNavigator right">
+			<input type="text" id="name" class="px name" placeholder="输入商品名称"  name="name" value="{weimicms:$_GET['name']}" style="margin-top:10px">
+			<a href="javascript:seach()" id="seach" href="" class="btnGrayS" title="搜索">搜索</a>
+		</div>
+		<script>
+			
+		</script>
+		<div class="clr"></div>
+	</div>
+	
+	<div class="msgWrap">
+		<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<thead>
+				<tr>
+					<th width="60px">显示顺序</th>
+					<th width="120px">商品名称</th>
+					<th width="60px">商品价格</th>
+					<th width="60px">是否显示</th>
+					<th>操作</th>
+					<th width="120px" class="norightborder">添加时间</th>
+				</tr>
+			</thead>
+			<tbody>
+				<volist name="goods_list" id="vo">
+					<tr>
+						<td>{weimicms:$vo.num}</td>
+						<td>{weimicms:$vo.name}</td>
+						<td>￥{weimicms:$vo.price}元</td>
+						<if condition="$vo.display eq 1">
+						<td><a href="javascript:display({weimicms:$vo.tp_id})"><img id="display{weimicms:$vo.tp_id}" src="{weimicms:$staticPath}/tpl/static/livingcircle/images/start.png" width="100%"/></a></td>
+						<else />
+						<td><a href="javascript:display({weimicms:$vo.tp_id})"><img id="display{weimicms:$vo.tp_id}" src="{weimicms:$staticPath}/tpl/static/livingcircle/images/stop.png" width="100%"/></a></td>
+						</if>
+						<td class="norightborder" style="border-right:1px solid #eee">
+							<a href="{weimicms::U('LivingCircle/mysellergoodsupdate',array('token'=>$token,'goodsid'=>$vo['tp_id']))}">修改</a>
+							<a href="javascript:drop_confirm('您确定要删除【{weimicms:$vo.name}】吗?', '{weimicms::U('LivingCircle/selleroperate',array('token'=>$token,'goodsid'=>$vo['tp_id'],'type'=>'goodsdel'))}')">删除</a>
+						</td>
+						<td  style="border-right:0">{weimicms:$vo.addtime|date="Y-m-d H:i:s",###}</td>
+					</tr>
+				</volist>
+			</tbody>
+		</table>
+	</div>
+	<div class="cLine">
+		<div class="pageNavigator right">
+			<div class="pages">{weimicms:$page}</div>
+		</div>
+		<div class="clr"></div>
+	</div>
+</div>
+<script>
+	$(document).ready(function(){
+		
+	});
+	function display(id){
+		$.ajax({
+			type:"POST",
+			url:"{weimicms::U('LivingCircle/sellerajax',array('token'=>$token))}",
+			dataType:"json",
+			data:{
+				type:"goodsdisplay",
+				id:id,
+				token:"{weimicms:$token}"
+			},
+			success:function(data){
+				if(data.error == 0){
+					$("#display"+id).attr("src","{weimicms:$staticPath}/tpl/static/livingcircle/images/stop.png");
+				}else if(data.error == 1){
+					$("#display"+id).attr("src","{weimicms:$staticPath}/tpl/static/livingcircle/images/start.png");
+				}
+			}
+		});
+	}
+	function seach(){
+		var name = $("#name").val();
+		if(name != ""){
+			window.location.href="{weimicms::U('LivingCircle/mysellergoods',array('token'=>$token))}&name="+name;
+		}else{
+			window.location.href="{weimicms::U('LivingCircle/mysellergoods',array('token'=>$token))}";
+		}
+	}
+</script>
+<include file="Public:footer"/>

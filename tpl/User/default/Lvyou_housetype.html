@@ -1,0 +1,63 @@
+<include file="Public:head"/>
+
+<link rel="stylesheet" type="text/css" href="{weimicms::STATICS}/default_user_com.css" media="all">
+<div class="content"  <if condition="session('isQcloud') eq true">style="float:center;"</if> >
+<include file="Public:hangye"/>
+<include file="Lvyou:menu"/>
+</div>
+          
+          <div class="cLine">
+</div>
+          
+          <div class="cLine">
+            <div class="pageNavigator left" >
+                <a href="{weimicms::U('Lvyou/housetype_add',array('token'=>$token))}" class="btnGrayS vm bigbtn">
+                    <img src="tpl/User/default/common/images/pic.png" class="vm">添加景点
+                </a>
+            </div>
+            <div class="clr"></div>
+          </div>
+          <div class="msgWrap">
+          <form method="post" action="" id="info">
+          <input name="delall" type="hidden" value="del">
+           <input name="wxid" type="hidden" value="gh_423dwjkewad">
+            <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <thead>
+             <tr>
+                                             
+                                            <th class="span3">景点名称</th>
+                                            <th class="span3">所属景区</th>
+                                            <th class="span1">显示顺序</th>
+                                            <th class="span3">操作</th>
+                                        </tr>
+                                       </thead>
+                                                  <tbody>
+                                        <if condition="$housetype eq ''">
+                                        <tr>
+                                        <td colspan="6" style="text-align:center; height:30px;"><strong>没有景点信息.</strong></td>
+                                        </tr>
+                                    <else/>
+                                    <volist name="housetype" id="list">
+                                        <tr>
+                                        <td style="">{weimicms:$list['name']}</td>
+                                        <td style=""><span class="label"> {weimicms:$list['title']|default=""}</span></td>
+                                        <td style="">{weimicms:$list['sort']}</td>
+                                        <td style="">
+                                        <a href="{weimicms::U('Lvyou/housetype_add',array('id'=>$list['id'],'token'=>$list['token']))}" class="btn">编辑</a>
+                                        <a href="{weimicms::U('Lvyou/housetype_del',array('id'=>$list['id'],'token'=>$list['token']))}" onclick="return(confirm('确定要删除吗？'))" class="btn">删除</a></a>
+                                        </td>
+                                        </tr>
+                                    </volist>
+                                    </if>
+                                    </tbody>
+            </table>
+           </form> 
+          </div>
+          <div class="cLine">
+            <div class="pageNavigator right">
+                 <div class="pages">{weimicms:$page}</div>
+            </div>
+            <div class="clr"></div>
+          </div>
+        </div>  
+<include file="Public:footer"/>

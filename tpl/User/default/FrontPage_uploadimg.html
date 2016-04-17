@@ -1,0 +1,56 @@
+<include file="Public:head"/>
+<script src="{weimicms:$staticPath}/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{weimicms:$staticPath}/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="{weimicms::RES}/js/date/WdatePicker.js"></script>
+<script src="{weimicms:$staticPath}/tpl/static/upyun.js"></script>
+<style type="text/css">
+.userinfoArea th{width:200px;}
+</style>
+<form class="imgform" method="post" action="{weimicms::U('FrontPage/uploadimg')}">
+<div class="content">
+<div class="cLineB">
+  <h4>为系统默认事件添加图片</h4><a href="{weimicms::U('FrontPage/systemnews',array('token'=>$_GET['token'],'id'=>$_GET['cid'],'type'=>'default'))}" class="right btnGrayS vm" style="margin-top:-27px">返回系统默认事件列表</a></div>
+<div class="msgWrap bgfc">
+<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+<tbody>
+<tr>
+  <th valign="top">新闻标题：</th>
+  <td>{weimicms:$news.news_title}</td> 	
+</tr>
+<tr>
+  <th valign="top">新闻内容：</th>
+  <td>{weimicms:$news.news_txt}</td> 	
+</tr>
+<tr>
+  <th valign="top"><span class="red">*</span>添加图片:</th>
+  <td><input type="text" name="default_img" value='{weimicms:$default_img}' id="pic1" class="px" style="width:400px;">
+  <a href="###" onclick="upyunPicUpload('pic1',0,0,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('pic1')">预览</a></td>
+</tr>
+<tr>
+<th>&nbsp;</th>
+<input type="hidden" name="cid" value="{weimicms:$cid}" />
+<input type="hidden" name="token" value="{weimicms:$token}" />
+<input type="hidden" name="news_id" value="{weimicms:$news_id}" />
+<td><button type="button" name="button" class="btnGreen sub">保存</button>
+<a href="" class="btnGray vm">取消</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+ </div>
+ </div>
+</form>
+<include file="Public:footer"/>
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".btnGreen").click(function(){
+		var default_img = $("#pic1").val();
+		if(default_img == ""){
+			alert('图片地址不能为空');
+			return false;
+		}
+		$(".imgform").submit();
+	});
+});
+</script>

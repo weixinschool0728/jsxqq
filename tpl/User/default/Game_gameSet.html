@@ -1,0 +1,435 @@
+<include file="Public:head"/>
+<if condition="$usertplid neq 2">
+<script src="{weimicms:$staticPath}/tpl/static/new/js/jquery-2.1.1.js"></script>
+<link href="{weimicms:$staticPath}/tpl/static/new/css/bootstrap.css" rel="stylesheet">
+<link href="{weimicms:$staticPath}/tpl/static/new/css/style.css" rel="stylesheet">
+</if>
+<link rel="stylesheet" href="{weimicms::STATICS}/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="{weimicms::STATICS}/kindeditor/plugins/code/prettify.css" />
+<script src="{weimicms::STATICS}/kindeditor/kindeditor.js" type="text/javascript"></script>
+<script src="{weimicms:$staticPath}/tpl/static/new/js/bootstrap.min.js"></script>
+<script src="{weimicms::RES}/js/date/WdatePicker.js"></script>
+<script src="{weimicms::STATICS}/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+<script src="{weimicms::STATICS}/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="{weimicms::$staticPath}/tpl/static/jquery.qrcode.min.js" type="text/javascript"></script>
+<script src="{weimicms::$staticPath}/tpl/static/layer/layer.js" type="text/javascript"></script>
+<style>
+  .btn1{ width:191px; height:27px; line-height:27px; font-size:14px; font-weight:bold; border:1px solid #4d4d4d; text-align:center; cursor:pointer;}
+</style>
+<script>
+var editor,editor1,editor2;
+KindEditor.ready(function(K) {
+editor = K.create('#info', {
+resizeType : 1,
+allowPreviewEmoticons : false,
+allowImageUpload : true,
+uploadJson : '/index.php?g=User&m=Upyun&a=kindedtiropic',
+items : [
+            'source','fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',  'underline',
+            'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+            'insertunorderedlist', '|', 'emoticons', 'image', 'link', ]
+});
+editor1 = K.create('#rule', {
+resizeType : 1,
+allowPreviewEmoticons : false,
+allowImageUpload : true,
+uploadJson : '/index.php?g=User&m=Upyun&a=kindedtiropic',
+items : [
+            'source','fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',  'underline',
+            'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+            'insertunorderedlist', '|', 'emoticons', 'image', 'link', ]
+});
+editor2 = K.create('#awards', {
+resizeType : 1,
+allowPreviewEmoticons : false,
+allowImageUpload : true,
+uploadJson : '/index.php?g=User&m=Upyun&a=kindedtiropic',
+items : [
+            'source','fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',  'underline',
+            'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+            'insertunorderedlist', '|', 'emoticons', 'image', 'link', ]
+});
+});
+</script>
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />
+<div class="tab">
+<ul>
+  <li class="current tabli" id="tab0"><a href="#" onclick="game0()">游戏设置</a></li>
+  <li class="tabli" id="tab1"><a href="#" onclick="game1()">游戏定制</a></li>
+</ul>
+</div>
+<div class="content" <if condition="session('isQcloud') eq true">style="float:center;"</if>>
+  <div class="cLineB"><h4>{weimicms:$thisGame.title}游戏设置</h4><a href="javascript:history.go(-1);"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a></div>
+  <form method="post" enctype="multipart/form-data" >
+    <div class="msgWrap form" style="border-top-width: 1px;border-top-style: solid;border-top-color: rgb(215, 221, 230);">
+      <TABLE class="userinfoArea" border="0" cellSpacing="0" cellPadding="0" width="100%">
+        <if condition="$Think.session.is_syn ELT 0">
+        <THEAD id="game0">
+          <TR>
+            <TH style="width:120px" valign="top"><label for="keyword">关键词：</label></TH>
+            <TD><input type="text" class="px" id="keyword" value="{weimicms:$info.keyword}"  name="keyword" style="width:580px;"></TD>
+          </TR>
+        </THEAD>
+        </if>
+        <TBODY id="game1">
+          <TR>
+            <TH><span class="red">*</span><label for="title">标题：</label></TH>
+            <TD><input type="text" class="px" id="title" value="{weimicms:$info.title}"    name="title" style="width:580px;"> </TD>
+          </TR>
+          <TR>
+            <TH valign="top"><label for="text">简介：</label></TH>
+            <TD><textarea  class="px" id="intro" name="intro" style="width:580px;  height:100px">{weimicms:$info.intro}</textarea><br />限制200字内</TD>
+          </TR>
+        <TR>
+          <TH valign="top"><label for="pic">封面图片地址：</label></TH>
+          <TD><input type="text" class="px" id="picurl"  name="picurl" value="{weimicms:$info.picurl}" style="width:580px;"  />  <script src="/tpl/static/upyun.js?{weimicms::date('YmdHis',time())}"></script><a href="###" onclick="upyunPicUpload('picurl',700,420,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('picurl')">预览</a></TD>
+        </TR>
+        <TR>
+          <TH valign="top"><label for="text">游戏规则：</label></TH>
+          <TD><textarea  class="px" id="rule" name="gameSet_rule" style="width:500px;  height:300px">{weimicms:$info.rule}</textarea><br /></TD>
+        </TR>
+        <TR>
+          <TH valign="top"><label for="text">游戏奖项：</label></TH>
+          <TD><textarea  class="px" id="awards" name="gameSet_awards" style="width:500px;  height:300px">{weimicms:$info.awards}</textarea><br /><font color="red">* 不填，则不显示奖项</font></TD>
+        </TR>
+        <!-- <if condition="$gameid gt 99999">
+        <tr>
+          <th>每人限玩次数：</th>
+          <td>
+              <input type="text" class="px" value="{weimicms:$info.limit_num}"  name="limit_num" style="width:130px;">&nbsp;&nbsp;&nbsp;次
+          </td>
+        </tr>
+        </if> -->
+        <tr>
+          <th>游戏时间限制：</th>
+          <td>
+              <input type="input" class="px" id="start_time" value="{weimicms:$info.start_time|default=time()|date='Y-m-d H:i',###}" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" name="start_time">&nbsp;&nbsp;&nbsp;到&nbsp;&nbsp;&nbsp;
+              <input type="input" class="px" id="end_time" value="{weimicms:$info.end_time|default=strtotime('+1 month')|date="Y-m-d H:i",###}" name="end_time" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})">
+          </td>
+        </tr>
+		
+		    <!-- <tr>
+          <th>游戏分享回调设置：</th>
+          <td>
+            <select name="share_callback" style="width:100px;" onchange="select_change(this)">
+              <volist name="share_options" id="option">
+               <option value="{weimicms:$key}" <if condition="$info['share_callback']==$key">selected="selected"</if>>{weimicms:$option}</option>
+              </volist> 
+            </select>
+            <if condition="$info['share_callback']==2">
+              <input type="text" style="width:60px;height:24px;line-height:24px;text-align:center;border:solid 1px #AAAAAA;" value="{weimicms:$info['share_title']}" name="share_title" id="clone">
+            </if>  
+            <if condition="$info['share_callback'] == 1">
+            <input type="text" style="width:60px;height:24px;line-height:24px;text-align:center;border:solid 1px #AAAAAA;" title="最小红包金额为1元" id="minmoney" name="share_min" value="{weimicms:$info['share_min']}"/><span id="sep">&nbsp;-&nbsp;</span>
+            </if>
+
+            <input <if condition="$info['share_callback']==2">type="hidden"<else/>type="text"</if> style="width:60px;height:24px;line-height:24px;text-align:center;border:solid 1px #AAAAAA;" id="share_input" value="<if condition='$info'>{weimicms:$info['share_value']}<else/>1</if>" name="share_value" title="最大红包金额"/>&nbsp;<span class="unit">
+              <if condition="$info['share_callback']==0">次</if>
+              <if condition="$info['share_callback']==1">元</if>
+              <if condition="$info['share_callback']==3">积分</if>
+            </span>
+          </td>
+        </tr>		
+ -->
+        
+        <php>if(session('is_syn') !== '2'){</php>
+        <tr>
+          <th>是否需要关注：</th>
+          <td>
+            <input type="radio" name="is_attention" <if condition="$info['is_attention']"><if condition="$info['is_attention'] eq 0">checked="checked"</if><else/>checked="checked"</if> value="0" checked="">否
+            &nbsp;&nbsp;&nbsp;
+            <input type="radio" name="is_attention" <if condition="$info['is_attention'] eq 1">checked="checked"</if> value="1">是
+            <div style="color:red"> &nbsp;（该选项仅适用于认证服务号）</div>
+          </td>
+        </tr>
+        <php>}else{</php>
+        <tr hidden="hidden">
+          <th>是否需要关注：</th>
+          <td>
+            <input type="radio" name="is_attention" checked="checked" value="0" >
+          </td>
+        </tr>
+        <php>}</php>
+        <tr>
+          <th>是否需要填写手机号：</th>
+          <td>
+            <input type="radio" name="is_phone" <if condition="$info['is_phone']"><if condition="$info['is_phone'] eq 0">checked="checked"</if><else/>checked="checked"</if> value="0" checked="">否
+            &nbsp;&nbsp;&nbsp;
+            <input type="radio" name="is_phone" <if condition="$info['is_phone'] eq 1">checked="checked"</if> value="1">是
+          </td>
+        </tr>
+        </TBODY>
+        <weimicmsif where="$selfs">
+            <div class="fh-column" style="width:193px;display:none;" id="game2">
+              <ul class="elements-list">
+                <volist name="selfs" id="item">
+                  <li class="list-group-item" style="border-bottom:1px solid #d7dde6;">
+                    <a data-toggle="tab" href="#tab-{weimicms:$item.id}">
+                    <strong><font size="2">{weimicms:$item.name}：</font></strong></a>
+                  </li>
+                </volist>
+                  <script>
+                  function qrcode(url){
+                    url = url.replace('{changjingUrl}','http://www.meihua.com');
+                    layer.open({
+                      type: 1,
+                      title: false,
+                      closeBtn: false,
+                      shadeClose: true,
+                      skin: 'yourclass',
+                      content: '<div id="qrcode"></div>'
+                    });
+                    $("#qrcode").qrcode({
+                      render: "canvas",
+                      width: 200,
+                      height:200,
+                      text: url
+                    });
+                    var dataString ={
+                      <volist name="selfs" id="item">
+                      "{weimicms:$item.id}":$("#self_{weimicms:$item.id}").val(),
+                      </volist>
+                    }
+                    $.ajax({           
+                      type: "POST", 
+                      url: "/index.php?g=User&m=Game&a=gamearr&id={weimicms:$gameid}&token={weimicms:$token}",           
+                      data: dataString,
+                      cache:false,
+                    });
+                  }
+                  </script>
+                </ul>
+            </div>
+            <div class="element-detail-box" style="width:75%;float:left;display:none;"  id="game3">
+              <div class="tab-content">
+                <volist name="selfs" id="item">
+                  <div id="tab-{weimicms:$item.id}" class="tab-pane <if condition = '$i eq 1'>active</if>">
+                    <?php if ($item['property'] == 'starbtn') { ?>
+                    <label for="starbtn_1">
+                    <div style="width:105px;height:230px;float:left;margin-left:50px;">
+                    <img src="{weimicms:$staticPath}/tpl/static/game/1.png" alt="" style="width:100px;height:200px;"><br>
+                    <center><input type="radio" id="starbtn_1" name="self_{weimicms:$item.id}" value="1" <if condition="$item['defaultvalue']  eq '1' || $item['defaultvalue']  eq ''">checked</if>> 按钮1</center>
+                    </div>
+                    </label>
+                    <label for="starbtn_2">
+                    <div style="width:105px;height:230px;float:left;margin-left:50px;">
+                    <img src="{weimicms:$staticPath}/tpl/static/game/2.png" alt="" style="width:100px;height:200px;"><br>
+                    <center><input type="radio" id="starbtn_2" name="self_{weimicms:$item.id}" value="2" <if condition="$item['defaultvalue']  eq '2'">checked</if>> 按钮2</center>
+                    </div>
+                    </label>
+                    <label for="starbtn_3">
+                    <div style="width:105px;height:230px;float:left;margin-left:50px;">
+                    <img src="{weimicms:$staticPath}/tpl/static/game/3.png" alt="" style="width:100px;height:200px;"><br>
+                    <center><input type="radio" id="starbtn_3" name="self_{weimicms:$item.id}" value="3" <if condition="$item['defaultvalue']  eq '3'">checked</if>> 按钮3</center>
+                    </div>
+                    </label>
+                    <label for="starbtn_4">
+                    <div style="width:105px;height:230px;float:left;margin-left:50px;">
+                    <img src="{weimicms:$staticPath}/tpl/static/game/4.png" alt="" style="width:100px;height:200px;"><br>
+                    <center><input type="radio" id="starbtn_4" name="self_{weimicms:$item.id}" value="4" <if condition="$item['defaultvalue']  eq '4'">checked</if>> 按钮4</center>
+                    </div>
+                    </label>
+                    <label for="starbtn_5">
+                    <div style="width:105px;height:230px;float:left;margin-left:50px;">
+                    <img src="{weimicms:$staticPath}/tpl/static/game/5.png" alt="" style="width:100px;height:200px;"><br>
+                    <center><input type="radio" id="starbtn_5" name="self_{weimicms:$item.id}" value="5" <if condition="$item['defaultvalue']  eq '5'">checked</if>> 按钮5</center>
+                    </div>
+                    </label>
+                    <label for="starbtn_6">
+                    <div style="width:105px;height:230px;float:left;margin-left:50px;">
+                    <img src="{weimicms:$staticPath}/tpl/static/game/6.png" alt="" style="width:100px;height:200px;"><br>
+                    <center><input type="radio" id="starbtn_6" name="self_{weimicms:$item.id}" value="6" <if condition="$item['defaultvalue']  eq '6'">checked</if>> 按钮6</center>
+                    </div>
+                    </label>
+                    <label for="starbtn_7">
+                    <div style="width:105px;height:230px;float:left;margin-left:50px;">
+                    <img src="{weimicms:$staticPath}/tpl/static/game/7.png" alt="" style="width:100px;height:200px;"><br>
+                    <center><input type="radio" id="starbtn_7" name="self_{weimicms:$item.id}" value="7" <if condition="$item['defaultvalue']  eq '7'">checked</if>> 按钮7</center>
+                    </div>
+                    </label>
+                    <label for="starbtn_8">
+                    <div style="width:105px;height:230px;float:left;margin-left:50px;">
+                    <img src="{weimicms:$staticPath}/tpl/static/game/8.png" alt="" style="width:100px;height:200px;"><br>
+                    <center><input type="radio" id="starbtn_8" name="self_{weimicms:$item.id}" value="8" <if condition="$item['defaultvalue']  eq '8'">checked</if>> 按钮8</center>
+                    </div>
+                    </label>
+                    <?php }else{ ?>
+                    <div style="margin-left:20px;height: 100%;float:left;">
+                    <if condition = "$item['infotype'] eq 'img'">
+
+                      <img id="self_{weimicms:$item.id}_src" src="{weimicms:$item.defaultvalue}"
+                      <if condition="$item['property'] eq 'logo'">width="300px" height="150px" style="margin-left: 15px;"
+                      <elseif condition="$item['property'] eq 'starbg'"/>width="180px" height="299px" style="margin-left: 75px;margin-bottom: 20px;"
+                      <else />width="330px" height="272px"
+                      </if>>
+                    </if>
+                    <br />
+                    <input type="text" class='px <if condition = "$item['property'] eq 'logo'">star_logo</if>' id="self_{weimicms:$item.id}" value="{weimicms:$item.defaultvalue}" name="self_{weimicms:$item.id}" <if condition="$usertplid eq 2">style="width:305px;"<else />style="width:321px;"</if>>
+                    <if condition = "$item['infotype'] eq 'img'">
+                    <a href="###" onclick="upyunPicUpload('self_{weimicms:$item.id}',{weimicms:$item.width},{weimicms:$item.height},'{weimicms:$token}')" class="a_upload" onchange="previewImage(this)">替换图片</a>
+                    </if>
+                    <if condition = "$item['infotype'] eq img">
+                      <if condition="$item['property'] eq 'logo'">
+                        建议宽度：300px&nbsp;&nbsp;&nbsp;
+                        建议高度：150px&nbsp;&nbsp;&nbsp;
+                      <elseif condition="$item['property'] eq 'starbg'"/>    建议宽度：720px&nbsp;&nbsp;&nbsp;
+                        建议高度：1195px&nbsp;&nbsp;&nbsp;
+                      <else />
+                        建议宽度：{weimicms:$item.width}px&nbsp;&nbsp;&nbsp;
+                        建议高度：{weimicms:$item.height}px&nbsp;&nbsp;&nbsp;
+                      </if>
+                    </if>{weimicms:$item.info} <br><br>
+                    <if condition = "$item['example']">
+                      <input type='hidden' id='self_{weimicms:$item.id}_example' value='{weimicms:$item.example}' /><a href="###" onclick="viewImg('self_{weimicms:$item.id}_example')" class="a_upload">查看示例图片</a>
+                    <if condition = "$item['infotype'] eq img">
+                    <if condition = "$item['property'] neq logo">
+                    <a onclick="qrcode('{changjingUrl}/index.php?m=Game&c=index&a=index&start=true&id={weimicms:$gameid}&uuu=1&token={weimicms:$token}&url={weimicms:$url}')" href="javascript:void(0)" class="a_upload" style="margin-left: 30px;">点击预览游戏</a>
+                    </if>
+                    </if>
+                    </if>
+                  </div>
+                  <?php }?>
+                  </div>
+                </volist>
+                </div>
+              </div>
+            </div>
+          </weimicmsif>
+          <TFOOT>
+            <TR>
+              <TH></TH>
+              <TD>
+              <weimicmsif where="$id">
+                <input type="hidden" value="{weimicms:$id}" name="id" />
+              </weimicmsif>
+              <input type="submit" value="保存" name="sbmt" class="btnGreen left">　</TD>
+            </TR>
+          </TFOOT>
+        </TABLE>
+       </div>
+      </form>
+     </div>     
+     <div class="clr"></div>
+     </div>
+     </div>
+     </div> 
+     </div>
+<!--底部-->
+<!--弹出层-->
+    <div class="popWin">
+        <div class="pw-container">
+            <p class="p b">卡券列表 <span class="close" onclick="popHide();">X</span></p>
+            <div class="wrapper">
+              <volist name="coupon" id="cp">
+                <div class="p item">[{weimicms:$cp['id']}].{weimicms:$cp['title']}&nbsp;<span class="chose" coupon="{weimicms:$cp['id']}" ctitle="{weimicms:$cp['title']}" onclick="chose_coupon(this)">选中</span>&nbsp;[{weimicms:$cp['statdate']|date="Y-m-d H:i:s",###}-{weimicms:$cp['enddate']|date="Y-m-d H:i:s",###}]</div>
+              </volist>  
+            </div>
+        </div>
+    </div>
+
+     <style type="text/css">
+        .popWin{position:fixed;top:0;left:0;width:100%;height:100%;z-index:10;display:none;}
+        .popWin .pw-container{width:380px;height:440px;border:solid 6px #AAAAAA;margin:0 auto;padding:0 10px;background:#EEEEEE;position:relative;padding-bottom:10px;overflow:hidden;}
+        .popWin .p{width:100%;font-size:13px;white-space:nowrap;}
+        .popWin .wrapper{position:absolute;top:45px;left:-10px;bottom:10px;width:90%;overflow:auto;}
+        .popWin .b{border-bottom:solid 1px #AAAAAA;height:40px;line-height:40px;padding-bottom:5px;}
+        .popWin .item{height:32px;line-height:32px;margin:0;padding:0;}
+        .popWin .close{display:inline-block;width:20px;height:20px;background:#888888;color:#EEEEEE;float:right;text-align:center;line-height:20px;font-size:13px;margin-top:10px;}
+        .popWin .close:hover{background:#555555;}
+        .popWin .chose{color: #F00;cursor:pointer;display:inline;}
+    </style>
+
+    <script>
+        !function(){
+            var h = (document.body.clientHeight - 450)/2;
+            document.querySelector('.popWin .pw-container').style.marginTop = h+'px';
+        }();
+        function popHide(){
+            with(document){
+                querySelector('.popWin').style.display="none";
+            }
+        }
+        function popShow(){
+            with(document){
+                querySelector('.popWin').style.display="block";
+            }
+        }
+        function select_change(obj){
+            var val = obj.value, unit = document.querySelector('.unit'),
+                clone = document.getElementById('clone'),
+                share_input = document.getElementById('share_input');
+            switch(val){
+                case '0': unit.style.display="inline";unit.innerHTML="次";break;
+                case '1': unit.style.display="inline";unit.innerHTML="元";
+                          var min = share_input.cloneNode(true);
+                              min.type  = "text";
+                              min.value = 1; 
+                              min.name = "share_min";
+                              min.id = "minmoney";
+                              share_input.parentNode.insertBefore(min,share_input);
+                              var span = document.createElement('span');
+                              span.id = "sep";
+                              span.innerHTML = "&nbsp;-&nbsp;";
+                              share_input.parentNode.insertBefore(span,share_input);
+                          break;
+                case '2': unit.style.display="none";popShow();break;
+                case '3': unit.style.display="inline";unit.innerHTML="积分";break;
+            }
+            if(val != 1){
+                share_input.setAttribute('title', '');
+                var minmoney = document.getElementById('minmoney'),
+                    span = document.getElementById('sep');
+                if(minmoney){
+                  share_input.parentNode.removeChild(minmoney);
+                  share_input.parentNode.removeChild(sep);
+                }
+            }
+            if(clone){
+               share_input.parentNode.removeChild(clone);
+               share_input.type = "text";
+               share_input.value = 1;
+            }
+        }
+        function chose_coupon(obj){
+          var coupon_id = obj.getAttribute('coupon'),
+              ctitle    = obj.getAttribute('ctitle'),
+              share_input = document.getElementById('share_input');
+              if(!document.getElementById('clone')){
+                var clone = share_input.cloneNode(true);
+                clone.type = "text";
+                clone.id = "clone";
+                clone.setAttribute('name','share_title');
+                clone.style.paddingLeft = "3px";
+                clone.style.paddingRight = "3px";
+                clone.setAttribute('readonly', true);
+                share_input.parentNode.insertBefore(clone,share_input);
+              }
+              share_input.type="hidden";
+              share_input.value = coupon_id;
+              clone.value = ctitle;
+              popHide();
+        }
+    </script>
+<script>
+$('.fh-column').css('min-height','400px');
+$('.fh-column').css('border-right','1px solid #d7dde6');
+function game0(){
+  $('#tab0').addClass('current');
+  $("#tab1").removeClass("current");
+  $('#game0').css('display','');
+  $('#game1').css('display','');
+  $('#game2').css('display','none');
+  $('#game3').css('display','none');
+}
+function game1(){
+  $('#tab1').addClass('current');
+  $("#tab0").removeClass("current");
+  $('#game0').css('display','none');
+  $('#game1').css('display','none');
+  $('#game2').css('display','');
+  $('#game3').css('display','');
+}
+</script>
+<include file="Public:footer"/>

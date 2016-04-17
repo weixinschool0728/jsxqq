@@ -1,0 +1,168 @@
+<include file="Public:head"/>
+<div class="content">
+<div class="cLineB">
+<h4 class="left">微信红包</h4>
+<div class="clr"></div>
+</div>
+<div class="cLine">
+<div class="pageNavigator left"><a href="{weimicms::U('Red_packet/set',array('token'=>$this->token))}" title="添加活动" class="btnGrayS vm bigbtn"><if condition="$usertplid eq 2"><i class="fa fa-hand-o-right"></i><else /><img src="{weimicms::RES}/images/product/add.png" width="16" class="vm"></if> 添加活动</a> </div>
+<div class="searchbar right">
+<form method="post" action="">
+<input type="text" id="msgSearchInput" class="txt left" placeholder="输入关键词搜索" name="searchkey" value="">
+<input type="submit" value="搜索" id="msgSearchBtn" href="" class="btnGrayS" title="搜索">
+</form>
+</div>
+<div class="clr"></div>
+</div>
+<div class="ftip">非认证服务号，该功能的分享失效？非认证服务号无法使用本分享功能！
+		借用高级APPID的方法：<a href="http://wm.b2ctui.com/forum.php?mod=viewthread&tid=1636&page=1&extra=#pid7517" target="_blank">点击详情教程</a>
+		</div>
+		<style>
+		.ftip {
+		background: #fefbe4 url(/tpl/User/default/common/images/icons/lightbulb.gif) no-repeat 10px 16px;
+		border: 1px solid #F3ECB9;
+		padding: 6px 20px 6px 36px;
+		height: 36px;
+		font-size: 14px;
+		margin: 10px;
+		color: #993300;
+		line-height: 36px;
+		}
+		</style>
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<input name="delall" type="hidden" value="1">
+<input name="wxid" type="hidden" value="">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>                                 
+	<th width="100">活动名称</th>
+	<if condition="$_SESSION['is_syn'] eq 0">
+	<th width="70">关键词</th>
+	</if>
+	<th width="50">红包类型</th>
+	<th width="100">红包属性</th>
+	<th width="75">领取人数</th>
+ 	<th width="75">领取次数</th>
+ 	<th width="135">活动时间</th>
+ 	<th width="50">是否开启</th>
+	<th width="110"class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<weimicmslist array="list" foreach="list">
+<tr>
+	<td>{weimicms:$list.title}</td>
+	<if condition="$_SESSION['is_syn'] eq 0">
+	<td>{weimicms:$list.keyword}</td>
+	</if>
+	<td>
+		<if condition="$list.packet_type eq '1'">
+		手气红包
+		<else />
+		普通红包
+		</if>
+	</td>
+	<td>
+		发放个数：{weimicms:$list.item_num}<br/>
+		<if condition="$list.packet_type eq '1'">
+		　总金额：{weimicms:$list.item_sum}<br />
+		面额上限：{weimicms:$list.item_max}
+		<else />
+		单个面额：{weimicms:$list.item_unit}
+		</if>
+	</td>
+	<td>
+		可领：{weimicms:$list.people}人<br />
+		<if condition="$list.people gt 0">
+			已领：{weimicms:$list.pcount}人
+		</if>
+	</td>
+	<td>
+		{weimicms:$list.get_number}/人<br />
+	</td>
+	<td>{weimicms:$list.start_time|date="Y-m-d H:i",###}<br/>{weimicms:$list.end_time|date="Y-m-d H:i",###}</td>
+	<td>
+		<if condition="$list.is_open eq '1'">
+			已开启
+		<else/>
+			未开启
+		</if>
+	</td>
+	<td class="norightborder" align="center">
+<if condition="$Think.session.is_syn eq 2">
+<if condition="$usertplid neq 2">
+	<script type="text/javascript">
+   $(document).ready(function(){
+      var bheight=document.body.clientHeight;
+      $("#lay{weimicms:$list.id}").click(function(){
+   $("#brg{weimicms:$list.id}").css("display","block");
+   $("#showdiv{weimicms:$list.id}").css("display","block");
+   //$("#testdiv").load("test.html");
+   });
+   $("#close{weimicms:$list.id}").click(function(){
+      $("#brg{weimicms:$list.id}").css("display","none");
+   $("#showdiv{weimicms:$list.id}").css("display","none");
+   });
+   });
+ </script>
+ <style type="text/css">
+   #brg{weimicms:$list.id}{ width:100%; height:100%; background:#333; position:absolute; top:0; left:0; filter:alpha(opacity=60); -moz-opacity:0.6; opacity: 0.6; position:absolute; top:0; left:0; display:none;}
+   #showdiv{weimicms:$list.id}{z-index:20; display:none;position:fixed; *position:absolute; width:100px; height:100px; top:30%; left:50%; margin:-50px 0 0 -50px;}
+   #testdiv{weimicms:$list.id}{ width:300px; height:300px; margin:0 auto; border:1px solid #4d4d4d; background:#f2f2f2;}
+   #close{weimicms:$list.id}{width:300px; height:27px; line-height:27px; font-size:14px; font-weight:bold; border:1px solid #4d4d4d; text-align:center; cursor:pointer; margin:0 auto; background:#333; color:#fff;margin-top: 15%;}
+ </style>
+    <div id="brg{weimicms:$list.id}"></div>
+ <div id="showdiv{weimicms:$list.id}">
+   <div id="close{weimicms:$list.id}">您想关闭就点我吧</div>
+   <div id="testdiv{weimicms:$list.id}"><img src="{weimicms:$Think.session.source_domain}/wap.php?c=Wxapp&a=qrcode&id={weimicms:$list.id}&modle=Red_packet" width="300" height="300" class="cateimg_small"></div>
+ </div>
+   <a id="lay{weimicms:$list.id}"  style="width:151px;">查看二维码</a><br>
+</if>
+</if>
+		<a href="{weimicms::U('Red_packet/prize_log',array('token'=>$token,'id'=>$list['id']))}">领取记录</a>
+		|
+		<a href="{weimicms::U('Red_packet/exchange',array('token'=>$token,'id'=>$list['id']))}">兑换记录</a><br />
+		<!--
+		<a href="{weimicms::U('Red_packet/prize_list',array('token'=>$token,'id'=>$list['id']))}">红包管理</a>
+		|
+		-->
+		<a href="{weimicms::U('Red_packet/set',array('token'=>$token,'id'=>$list['id']))}">修改</a>
+		|
+		<a href="javascript:drop_confirm('您确定要删除吗?', '{weimicms::U('Red_packet/del',array('token'=>$token,'id'=>$list['id']))}');">删除</a>
+    </td>
+</tr>
+
+</weimicmslist>
+</tbody>
+</table>
+</form>
+<script>
+
+function checkvotethis() {
+var aa=document.getElementsByName('del_id[]');
+var mnum = aa.length;
+j=0;
+for(i=0;i<mnum;i++){
+if(aa[i].checked){
+j++;
+}
+}
+if(j>0) {
+document.getElementById('info').submit();
+} else {
+alert('未选中任何文章或回复！')
+}
+}
+
+   </script> 
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages"></div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

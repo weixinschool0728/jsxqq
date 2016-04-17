@@ -1,0 +1,80 @@
+<include file="Public:head"/> 
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />
+        <div class="content">
+<div class="cLineB">
+<h4 class="left">排行榜</h4>
+<a href="<?php echo U('Collectword/index',array('token'=>$token));?>" class="right btnGrayS vm">返回</a>
+<div class="clr"></div>
+</div>
+<style type="text/css">
+.down-up {
+	padding:8px;
+	background:url({weimicms::STATICS}/collectword/images/down.gif) no-repeat 65px 18px;
+}
+.down-up2 {
+	background:url({weimicms::STATICS}/collectword/images/up.gif) no-repeat 70px 10px;
+}
+.down {	
+	padding:8px;
+	background:url({weimicms::STATICS}/collectword/images/down.gif) no-repeat 65px center;		
+}
+.up {	
+	padding:8px;
+	background:url({weimicms::STATICS}/collectword/images/up.gif) no-repeat 65px center;	
+}
+</style>
+<?php
+function desc($order) {
+	if(empty($order)) return 'down-up';
+	return 'desc' == $order ? 'down' : 'up';
+}
+?>
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<input name="delall" type="hidden" value="">
+<input name="wxid" type="hidden" value="">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th width="160">序号</th>
+<th width="160">昵称</th>
+<th width="160">手机号码</th>
+<th width="100" class="<?= desc($_GET['word_count']);?>2"><a class="<?= desc($_GET['word_count']);?>" href="<?= U('Collectword/rank', array('token'=>$token, 'id'=>$_GET['id'], 'word_count'=>'desc' == $_GET['word_count'] ? 'asc' : 'desc'));?>">收集字数</a></th>
+<th width="100" class="<?= desc($_GET['share_num']);?>2"><a class="<?= desc($_GET['share_num']);?>" href="<?= U('Collectword/rank', array('token'=>$token, 'id'=>$_GET['id'], 'share_num'=>'desc' == $_GET['share_num'] ? 'asc' : 'desc'));?>">打开次数</a></th>
+<th width="150" class="<?= desc($_GET['addtime']);?>2"><a class="<?= desc($_GET['addtime']);?>" href="<?= U('Collectword/rank', array('token'=>$token, 'id'=>$_GET['id'], 'addtime'=>'desc' == $_GET['addtime'] ? 'asc' : 'desc'));?>">参与时间</a></th>
+<th width="160" class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="list" id="item" key="key"> 
+<tr>
+<?php 
+$p = $_GET['p']?$_GET['p']:1;
+$p = $p - 1;
+$i = $key + ($p*15);
+?>
+<td>{weimicms:$i}</td>
+<td>{weimicms:$item.nickname}</td>
+<td>{weimicms:$item.mobile}</td>
+<td>{weimicms:$item.word_count}</td>
+<td>{weimicms:$item.share_num}</td>
+<td>{weimicms:$item.addtime|date="Y-m-d H:i:s",###}</td> 
+<td class="norightborder">
+	<a href="javascript:drop_confirm('您确定要删除吗?', '{weimicms::U('Collectword/rank_del',array('id'=>$item['id'],'token'=>$token))}');">删除</a>
+</td>
+</tr>
+</volist>
+</tbody>
+</table>
+</form>
+
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{weimicms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

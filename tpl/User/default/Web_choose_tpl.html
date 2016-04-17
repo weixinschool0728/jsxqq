@@ -1,0 +1,76 @@
+
+<include file="Public:head"/>
+<!-- top ↑ -->
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+
+
+<script type="text/javascript" src="/tpl/User/default/common/js/select/js/jquery.js"></script>
+<script type="text/javascript" src="/tpl/static/audioplayer/inc/jquery.jplayer.min.js"></script>
+<script type="text/javascript" src="/tpl/static/audioplayer/inc/jquery.mb.miniPlayer.js"></script>
+<link rel="stylesheet" type="text/css" href="/tpl/static/audioplayer/css/miniplayer.css" title="style" media="screen"/>
+
+    
+<div class="content" <if condition="session('isQcloud') eq true">style="float:center;"</if>>
+	<div class="cLineB">
+	 	<h4>选择模板 </h4>
+	</div>
+    <div class="msgWrap bgfc">
+	  <form class="form" method="post" action="" enctype="multipart/form-data">
+		<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<tbody>
+				<tr>
+					<th>当前模板：</th>
+					<td>
+					<div style="float:left;">
+						模板名称：&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">{weimicms:$tplinfo['tpl_name']}</font><br/><br/><br/>
+						模板预览：&nbsp;&nbsp;&nbsp;&nbsp;<img src="/tpl/Web/{weimicms:$tplinfo['tpl_file']}/preview.jpg" style="vertical-align:middle;border:1px solid #ccc;"/>
+					</div>
+					<div style="float:left;margin-left:280px;padding-top:60px;">
+						<a href="http://{weimicms:$first_pc_site}" target="_blank"><img src="/tpl/Web/see_web.png" style="width:120px;"/></a>
+					</div>
+						<!--div id="now_tpl" style="border:1px solid #ccc;padding:20px 30px;overflow:hidden;margin-bottom:20px;"></div-->
+					</td>
+				</tr>
+				
+				<tr style="margin-bottom:20px;border-top:1px solid #ccc;">
+					<th>模板列表</th>
+					<td><br/>&nbsp;<br/>&nbsp;</td>
+				</tr>
+				<volist name="tpllist" id="tpllist">
+				<tr style="margin-bottom:10px;border-top:1px solid #ccc;">
+					<th>模板名称</th>
+					<td><font color="red">{weimicms:$tpllist['tpl_name']}</font>
+					</td>
+				</tr>
+				<tr>
+					<th>模板预览：</th>
+					<td>
+						<div style="float:left;">
+							<img src="/tpl/Web/{weimicms:$tpllist['tpl_file']}/preview.jpg" style="vertical-align:middle;border:1px solid #ccc;"/>
+						</div>
+						<div style="float:left;margin-left:280px;padding-top:60px;">
+								<input type="radio" name="id" value="{weimicms:$tpllist.id}" <if condition="$tpllist['id'] eq $pc_config['tplid']">checked</if>>
+						</div>
+					</td>
+				</tr>
+				</volist>
+				<tr style="margin-bottom:10px;border-top:1px solid #ccc;">
+					<th>提交选择：</th>
+					<td style="text-align:center;">
+						<button type="submit" class="btnGreen">保存</button>
+						<a href="javascript:history.go(-1);" class="btnGray vm">取消</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+	</div> 
+ 
+  
+        </div>
+<if condition="session('isQcloud') neq true">
+
+	<include file="Public:footer"/>
+	
+</if>

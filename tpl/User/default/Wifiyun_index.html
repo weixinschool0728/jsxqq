@@ -1,0 +1,80 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />
+<script src="{weimicms::RES}/js/date/WdatePicker.js"></script>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<div class="content">
+
+<div class="cLineB">
+  <h4>wifi云端管理配置 </h4>
+   <div class="ftip" style="margin:10px 0">可通过后台云系统管理远程路由器，配置认证的相关信息</div> 
+ </div>
+<div class="tab">
+<ul>
+   <li class="<if condition="$isRouter neq 1">current</if> tabli" id="tab0"><a href="{weimicms::U('Wifiyun/index',array('token'=>$token))}">基本信息</a></li>
+   <li class="<if condition="$isRouter eq 1">current</if> tabli" id="tab2"><a href="{weimicms::U('Wifiyun/router',array('token'=>$token,'isRouter'=>1))}">设备管理</a></li>
+
+</ul>
+</div>
+    <div class="msgWrap bgfc">
+	  <form class="form" method="post" action="">	 
+	  
+		<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<tbody>
+			<tr class="tenpay">
+					<th>授权码：</th>
+					<td><input type="text" name="authcode" required=""value="{weimicms:$config.authcode}" class="px" style="width:350px;"> 此授权码由管理授权给用户，请先向管理员申请</td>
+			</tr>
+			<tr>
+			
+					<th>认证开关：</th>
+					<td>
+					<select name="open">
+					<option value="2" <if condition="$config.open eq 2">selected</if>>开启微信认证</option>
+					<option value="0" <if condition="$config.open eq 0"> selected</if>>关闭微信认证</option>
+					</select>
+					开启微信认证后，登录wifi时需要关注微信号才能上网</td>
+				</tr>
+
+				
+				<tr class="tenpay" >
+					<th>微信号：</th>
+					<td><input type="text" name="wxcode" value="{weimicms:$config.wxcode}" class="px" style="width:350px;"> 用于生产微信认证接口</td>
+				</tr>
+				<tr class="tenpay" >
+					<th>微信名称：</th>
+					<td><input type="text" name="wxname" required="" value="{weimicms:$config.wxname}" class="px" style="width:350px;"> 填写后出现在portal页面中，便于上网者查看</td>
+				</tr>
+				<tr class="tenpay" >
+					<th>店铺名称：</th>
+					<td><input type="text" name="shopname" required="" value="{weimicms:$config.shopname}" class="px" style="width:350px;"></td>
+				</tr>
+				<tr class="tenpay">
+					<th>认证后跳转地址：</th>
+					<td><input type="text" name="url" value="{weimicms:$config.url}" class="px" style="width:350px;"> 认证通过后自动跳转的url地址</td>
+				</tr>
+				
+				<tr class="tenpay">
+					<th>投放广告：</th>
+					<td><input type="text" name="picurl" value="{weimicms:$config.picurl}" id="pic" class="px" style="width:350px;"> <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('pic',700,420,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('pic')">预览</a>（管理审核后才能展示）</td>
+				</tr>
+				
+				<tr class="tenpay">
+					<th>微信上网地址：</th>
+					<td>http://portal.solarsys.cn/v2/weimicms?{weimicms:$config.wxcode} 请将此链接复制在您的微信公众平台</td>
+				</tr>
+				<th>&nbsp;</th>
+					<td>
+					<input type="hidden" name="token" value="{weimicms:$token}" />
+						<button type="submit" name="button" class="btnGreen">保存</button>
+						<a href="javascript:history.go(-1);" class="btnGray vm">取消</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+  </div> 
+ 
+  
+        </div>
+<include file="Public:footer"/>

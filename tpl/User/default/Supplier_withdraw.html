@@ -1,0 +1,62 @@
+<include file="Public:head"/> 
+<div class="content">
+         
+          <div class="cLineB">
+              <h4 class="left">当前位置：<a>奖金提现管理</a></h4>
+                 
+              <div class="clr"></div>
+          </div> 
+            <TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+              <THEAD>
+                <TR>
+				<TH>会员</TH>
+				<TH>提现金额</TH>
+				<TH>提现时间</TH>
+				<TH >前台提现留言</TH>		
+				<TH>审核状态</TH>
+				<TH >审核时间</TH>
+				<TH >审核备注</TH>
+				<TH >操作</TH>				
+                </TR>
+              </THEAD>
+              <TBODY>
+                <TR></TR> 
+				 <volist id="list" name="data">
+                <TR> 
+                  <TD>{weimicms:$list.username}</TD>
+				   <TD>{weimicms:$list.withdraw}</TD>
+                    <TD>{weimicms:$list.withdrawtime|date="Y-m-d H:i:s",###}</TD>
+				   <TD>{weimicms:$list.note}</TD>
+				   
+                    <TD><if condition="$list.status eq '1'"> 待审核
+							<elseif condition="$list.status eq '2'" /> 通过
+							<elseif condition="$list.status eq '3'" /> 拒绝</if></TD>
+					
+				   <TD>{weimicms:$list.checktime|date="Y-m-d H:i:s",###}</TD> 
+				   <td>{weimicms:$list.remarks}
+				   </td>
+                  <TD class="norightborder"> 
+				  	<if condition="$list.status eq '1'">
+				    <a href="/index.php?g=User&m=Supplier&a=checkwithdraw&id={weimicms:$list.id}"><strong>审核</strong></a>
+					</if>
+                  </TD>
+                </TR>
+				</volist> 
+              </TBODY>
+            </TABLE> 
+          </div> 
+          <div class="cLine">
+            <div class="pageNavigator right">
+                <div class="pages">{weimicms:$page}</div>
+              </div>
+            <div class="clr"></div>
+          </div>
+        </div>
+
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div> 
+  <!--底部-->
+  	</div>
+<include file="Public:footer"/>  

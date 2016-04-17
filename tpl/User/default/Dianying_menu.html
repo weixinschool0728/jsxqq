@@ -1,0 +1,12 @@
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+  
+<div class="tab">
+<ul>
+<li class="<if condition="ACTION_NAME EQ 'index'">current</if> tabli" id="tab0"><a href="{weimicms::U('Dianying/index',array('token'=>$token))}">电影院介绍</a></li>
+<li class="<if condition="ACTION_NAME EQ 'son' ">current</if> tabli" id="tab2"><a href="{weimicms::U('Dianying/son',array('token'=>$token))}">影厅介绍</a></li>
+<li class="<if condition="ACTION_NAME EQ 'housetype' ">current</if> tabli" id="tab2"><a href="{weimicms::U('Dianying/housetype',array('token'=>$token))}">最新上映</a></li>
+<li class="<if condition="ACTION_NAME EQ 'album' or ACTION_NAME EQ 'album_add'">current</if> tabli" id="tab5"><a href="{weimicms::U('Dianying/album',array('token'=>$token))}">电影海报</a></li>
+<li class="<if condition="ACTION_NAME EQ 'expert'">current</if> tabli" id="tab5"><a href="{weimicms::U('Dianying/expert',array('token'=>$token))}">精彩影评</a></li>
+<li class="<if condition="ACTION_NAME EQ 'ktvindex'">current</if> tabli" id="tab6"><a href="{weimicms::U('Reservation/ktvindex',array('token'=>$token))}">预约管理</a></li>
+</ul>
+</div>

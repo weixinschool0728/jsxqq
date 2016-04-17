@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>微信公众平台源码,微信机器人源码,微信自动回复源码 weimicms多用户微信营销系统</title>
+
+<meta http-equiv="MSThemeCompatible" content="Yes" />
+
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/style_2_common.css?BPm" />
+
+<script src="{weimicms::RES}/js/common.js" type="text/javascript"></script>
+
+<link href="{weimicms::RES}/css/style.css" rel="stylesheet" type="text/css" />
+
+ <script src="{weimicms::STATICS}/jquery-1.4.2.min.js" type="text/javascript"></script>
+
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak={weimicms::$apikey}"></script>
+
+ <link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />
+
+ <script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+
+<style>
+
+body{line-height:180%;}
+
+ul.modules li{padding:4px 10px;margin:4px;background:#efefef;float:left;width:27%;}
+
+ul.modules li div.mleft{float:left;width:40%}
+
+ul.modules li div.mright{float:right;width:55%;text-align:right;}
+
+</style>
+
+</head>
+
+<body style="background:#fff;padding:20px 20px;">
+
+<if condition="$usertplid eq 2">
+
+<div class="alert alert-success alert-dismissable" style="margin-top:20px;padding: 8px 35px 8px 14px;margin-bottom: 20px;text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);  border-color: #d6e9c6;background-color:#dff0d8;color: #468847;">
+
+<else />
+
+<div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-bottom:5px;"></if>使用方法：1、点击对应内容后面的“选中”即可将粉丝添加到输入框中<br/>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2、可以多选，重复选择无效。点击右上的X关闭弹框完成选择。</div>
+
+<form action="" method="post">
+
+	<input type="text" class="px" name="name" placeholder="请输入用户昵称" value="{weimicms:$name}"/>
+
+	<input type="submit" value="搜索" class="btnGrayS"/><if condition="$name neq ''">&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:clearsearch()'><span style="color:green;"></span>清空搜索条件</a></if>
+
+</form>
+
+<table class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+
+<thead>
+
+<tr>
+
+	<th>粉丝昵称</th>
+
+	<th>分组名称</th>
+
+	<th style=" width:80px;">操作 <span class="tooltips" ><if condition="$usertplid eq 2"><i class="fa fa-bullhorn" style="color:#1ab394;"></i><else /><img src="{weimicms::RES}/images/price_help.png" align="absmiddle" /></if><span>
+
+	<p>点击“选中”即可</p>
+
+	</span></span>
+
+	</th>
+
+</tr>
+
+</thead>
+
+<weimicmsif where="$list">
+
+<volist name="list" id="m">
+
+<tr>
+
+	<td>{weimicms:$m.nickname}</td>
+
+	<td>{weimicms:$m.group_name}</td>
+
+	<td class="norightborder">
+
+		<a href="###" onclick="returnHomepage('{weimicms:$m.openid}','{weimicms:$m.nickname}',this)">选中</a>
+
+	</td>
+
+</tr>
+
+</volist>
+
+<else/>
+
+<tr>
+
+	<td colspan="3" align="center"><a href="javascript:void(0);" target="_blank" style="color:#369">没有找到粉丝信息</a></td>
+
+</tr>
+
+</weimicmsif>
+
+</table>
+
+<div class="footactions" style="padding-left:10px">
+
+  <div class="pages">{weimicms:$page}</div>
+
+</div>
+
+<script type="text/javascript">
+
+// 返回数据到主页面
+
+function returnHomepage(openid,nickname,obj){
+
+	var origin = artDialog.open.origin;
+
+	var list = origin.document.getElementById('fans_id').value;
+
+	var listname = origin.document.getElementById('fans_id_name').value;
+
+	var original_name =listname.split(",");
+
+	for(var i=0;i<original_name.length;i++){
+
+	  if(original_name[i] == nickname){
+
+			return false;
+
+	  }
+
+	}
+
+	origin.document.getElementById('fans_id_name').value = listname+nickname+',';
+
+	//if(listname.indexOf(nickname) == -1){
+
+		//origin.document.getElementById('fans_id_name').value = listname+nickname+',';
+
+	//}
+
+	if(list.indexOf(openid) == -1){
+
+		origin.document.getElementById('fans_id').value = list+openid+',';
+
+	}
+
+	$(obj).parent().parent().css('background-color','#fcfcea');
+
+}
+
+function clearsearch(){
+
+	$(":input[name='name']").val('');
+
+	$(".btnGrayS").click();
+
+}
+
+</script>
+
+</body>
+
+</html>

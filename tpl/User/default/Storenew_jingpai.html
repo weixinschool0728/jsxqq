@@ -1,0 +1,91 @@
+<if condition="$ischild neq 1">
+<include file="Public:head" />
+<else />
+<include file="Repast:head" />
+</if>
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />
+<div class="content">
+<div class="cLineB">
+<h4 class="left">竞拍商品管理({weimicms:$page})</h4>
+<div class="clr"></div>
+</div>
+<!--tab start-->
+<div class="tab">
+<ul>
+	<li class="tabli" id="tab2"><a href="{weimicms::U('Storenew/jingpaiset', array('token' => $token, 'cid' => $cid))}">添加竞拍商品</a></li>
+	<li class="current tabli" id="tab8"><a href="{weimicms::U('Storenew/jingpai',array('token'=>$token,'cid' => $cid))}">竞拍管理</a></li>
+	<li class="tabli" id="tab2"><a href="{weimicms::U('Storenew/jingpaiorders',array('token'=>$token,'cid'=>$cid))}">竞拍订单</a></li>
+	<!--<li class="tabli" id="tab2"><a href="{weimicms::U('Storenew/xin',array('token'=>$token,'cid'=>$cid))}">竞拍设置</a></li>-->
+</ul>
+</div>
+<!--tab end-->
+<div class="cLine">
+<div class="pageNavigator left">
+<a href="{weimicms::U('Storenew/jingpaiset', array('token' => $token, 'cid' => $cid))}" title="添加" class="btnGrayS vm bigbtn">
+<img src="{weimicms::RES}/images/product/add.png" width="16" class="vm">添加竞拍商品</a>
+</div>
+<div class="pageNavigator right">
+	<a href="{weimicms::U('Storenew/jingpaiorders',array('token'=>$token,'cid'=>$cid))}" class="btnGrayS vm bigbtn">查看竞拍订单</a>
+</div>
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<input name="delall" type="hidden" value="">
+<input name="wxid" type="hidden" value="">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th width="40">排序ID</th>
+<th width="100">商品名称</th>
+<th width="60">起始价</th>
+<th width="60">每次加价</th>
+<th width="60">当前价格</th>
+<th width="80">最后出价人</th>
+<th width="80">最后出价时间</th>
+<th width="60">竞拍次数</th>
+<th width="160">时间</th>
+<th width="120" class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="list" id="hostlist"> 
+<tr>
+<td>{weimicms:$hostlist.sort}</td>
+<td>{weimicms:$hostlist.name}<if condition="$hostlist.status eq '1'"><br><font color="red">[已下架]</font></if></td>
+<td>{weimicms:$hostlist.lowprice}元</td>
+<td>{weimicms:$hostlist.increase}元</td>
+<td>{weimicms:$hostlist.price}</td>
+<td>{weimicms:$hostlist.truename}</td>
+<td>{weimicms:$hostlist.lasttime|date="Y-m-d",###}<br>{weimicms:$hostlist.lasttime|date="H:i:s",###}</td>
+<td>{weimicms:$hostlist.allcount}</td>
+<td>创建时间:{weimicms:$hostlist.time|date="Y-m-d H:i:s",###}<br>起拍时间:{weimicms:$hostlist.starttime|date="Y-m-d H:i:s",###}<br>结束时间:{weimicms:$hostlist.endtime|date="Y-m-d H:i:s",###}</td> 
+<td class="norightborder" align="center">
+	<a href="{weimicms::U('Storenew/jingpaiset',array('id' => $hostlist['id'], 'token' => $token,'cid' => $cid))}">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	<if condition="$hostlist.endtime gt time() && $hostlist.is_order neq '1'">
+	<a href="javascript:drop_confirm('您确定要删除吗?', '{weimicms::U('Storenew/deljingpai',array('id'=>$hostlist['id'],'token'=>$token,'cid'=>$cid))}');">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	</if>
+	<a href="{weimicms::U('Storenew/jingpairule', array('pid'=>$hostlist['id'],'token'=>$token,'cid'=>$cid))}">竞拍记录</a>
+	<if condition="$hostlist.endtime lt time() && $hostlist.is_order neq '1'">
+	<br/>
+	<a href="javascript:drop_confirm('您确定要生成订单吗?一旦生成，无法删除用户订单记录', '{weimicms::U('Storenew/addjingpaiorder',array('id'=>$hostlist['id'],'token'=>$token,'cid'=>$cid))}');">生成用户订单</a>
+	<elseif condition="$hostlist.endtime lt time() && $hostlist.is_order eq '1'"/>
+	<br/>
+	<a href="javascript:0);">订单已生成</a>
+	</if>
+</td>
+</tr>
+</volist>
+</tbody>
+</table>
+</form>
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{weimicms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

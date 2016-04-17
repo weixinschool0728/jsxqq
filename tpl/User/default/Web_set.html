@@ -1,0 +1,167 @@
+
+<include file="Public:head"/>
+<!-- top ↑ -->
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+
+
+<script type="text/javascript" src="/tpl/User/default/common/js/select/js/jquery.js"></script>
+<script type="text/javascript" src="/tpl/static/audioplayer/inc/jquery.jplayer.min.js"></script>
+<script type="text/javascript" src="/tpl/static/audioplayer/inc/jquery.mb.miniPlayer.js"></script>
+<link rel="stylesheet" type="text/css" href="/tpl/static/audioplayer/css/miniplayer.css" title="style" media="screen"/>
+<script type="text/javascript">
+	var tpl_iframe;
+	var site_url = "{weimicms:$first_pc_site}";
+    $(function(){
+        $(".audio").mb_miniPlayer({
+            width: 200,
+            inLine: false,
+            onEnd: playNext
+        });
+
+        function playNext(player) {
+            var players = $(".audio");
+            document.playerIDX = player.idx + 1 <= players.length - 1 ? player.idx + 1 : 0;
+            players.eq(document.playerIDX).mb_miniPlayer_play();
+        }
+    });
+</script>
+    
+<div class="content" <if condition="session('isQcloud') eq true">style="float:center;"</if>>
+	<div class="cLineB">
+	 	<h4>电脑网站基本设置 </h4>
+	 	<a href="javascript:history.go(-1);" class="right btnGrayS vm" style="margin-top:-27px">返回</a>
+	</div>
+    <div class="msgWrap bgfc">
+	  <form class="form" method="post" action="" enctype="multipart/form-data">	 
+		<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<tbody>
+				<tr>
+					<th colspan="2" style="color:red;"><div style="margin:0 0 10px;">以下为网站信息设置</div></th>
+				</tr>
+				<tr>
+					<th width="120">网站名称：</th>
+					<td><input type="text" name="site_name" value="{weimicms:$pc_config.site_name}" class="px" style="width:350px;height:24px;"></td>
+				</tr>
+				<tr>
+					<th>绑定域名：</th>
+					<td>
+					{weimicms:$pc_site} &nbsp;&nbsp;
+					<?php
+					if ($_SERVER['HTTP_HOST']=='demo.weimicms.cn'){
+						echo '<span style="color:red">演示站自动分配域名，购买后可以指定任意域名</span>';
+						echo '<span style="display:none"><input type="text" name="pc_site" id="pc_site" value="'.$pc_site.'" class="px" style="width:350px;height:24px;"/>&nbsp;&nbsp;&nbsp;请填写域名，不支持二级目录，不包含（http://）或（/）</span>';
+					}else {
+						echo '<span><input type="text" name="pc_site" id="pc_site" value="'.$pc_site.'" class="px" style="width:350px;height:24px;"/>&nbsp;&nbsp;&nbsp;请填写域名，不支持二级目录，不包含（http://）或（/）</span>';
+					}
+						
+					
+					?>
+					</td>
+					<!--td><textarea style="width:350px;height:75px" name="pc_site" id="pc_site" class="px">{weimicms:$pc_site}</textarea>&nbsp;&nbsp;&nbsp;一行一个域名，不支持二级目录，不包含（http://）或（/）。最多三个。</td-->
+				</tr>
+				<tr>
+					<th>网站LOGO：</th>
+					<td>
+						<input type="text" name="site_logo" id="site_logo" value="{weimicms:$pc_config.site_logo}" class="px" style="width:350px;height:24px;"/>
+						<script src="/tpl/static/upyun.js?{weimicms::date('YmdHis',time())}"></script>
+						&nbsp;&nbsp;<a href="###" onclick="upyunPicUpload('site_logo',700,420,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('site_logo')">预览</a>
+					</td>
+				</tr>
+				<tr>
+					<th>备案信息：</th>
+					<td>
+						<input type="text" name="site_icp" id="site_icp" value="{weimicms:$pc_config.site_icp}" class="px" style="width:350px;height:24px;"/>&nbsp;&nbsp;&nbsp;网站备案信息
+					</td>
+				</tr>
+				<tr>
+					<th>CNZZ统计 siteid：</th>
+					<td><textarea style="width:350px;height:75px" name="site_count" id="site_count" class="px">{weimicms:$pc_config.site_count}</textarea>&nbsp;&nbsp;&nbsp;纯数字<br/><br/>CNZZ站点列表 -> 统计代码 -> 查看网址中的例如： siteid=5556057 ，则填写“5556057”<br/><br/><br/></td>
+				</tr>
+				<tr>
+					<th colspan="2" style="color:red;"><div style="margin:0 0 10px;">以下为公司信息设置</div></th>
+				</tr>
+				<tr>
+					<th>公司名称：</th>
+					<td>
+						<input type="text" name="company_name" id="company_name" value="{weimicms:$pc_config.company_name}" class="px" style="width:350px;height:24px;"/> 
+					</td>
+				</tr>
+				<tr>
+					<th>联系QQ：</th>
+					<td>
+						<input type="text" name="site_qq" id="site_qq" value="{weimicms:$pc_config.site_qq}" class="px" style="width:350px;height:24px;"/> &nbsp;&nbsp;若模板中需使用到多个QQ，请使用空格分隔。
+					</td>
+				</tr>
+				<tr>
+					<th>联系电话：</th>
+					<td>
+						<input type="text" name="site_phone" id="site_phone" value="{weimicms:$pc_config.site_phone}" class="px" style="width:350px;height:24px;"/> &nbsp;&nbsp;若模板中需使用到多个电话，请使用空格分隔。
+					</td>
+				</tr>
+				<tr>
+					<th>联系邮箱：</th>
+					<td>
+						<input type="text" name="site_email" id="site_email" value="{weimicms:$pc_config.site_email}" class="px" style="width:350px;height:24px;"/>
+					</td>
+				</tr>
+				<tr>
+					<th>公司地址：</th>
+					<td>
+						<input type="text" name="company_address" id="company_address" value="{weimicms:$pc_config.company_address}" class="px" style="width:350px;height:24px;"/> &nbsp;&nbsp;公司/商家 地址。
+					</td>
+				</tr>
+				<tr>
+					<th colspan="2" style="color:red;"><div style="margin:20px 0;">以下为网站SEO设置</div></th>
+				</tr>
+				<tr>
+					<th>SEO标题：</th>
+					<td>
+						<input type="text" name="seo_title" id="seo_title" value="{weimicms:$pc_config.seo_title}" class="px" style="width:350px;height:24px;"/>
+					</td>
+				</tr>
+				<tr>
+					<th>SEO关键词：</th>
+					<td><textarea style="width:350px;height:50px" name="seo_keywords" id="seo_keywords" class="px">{weimicms:$pc_config.seo_keywords}</textarea></td>
+				</tr>
+				<tr>
+					<th>SEO描述：</th>
+					<td><textarea style="width:350px;height:60px" name="seo_description" id="seo_description" class="px">{weimicms:$pc_config.seo_description}</textarea></td>
+				</tr>
+				<if condition="$pc_config['other_info']">
+					<tr>
+						<th colspan="2" style="color:red;"><div style="margin:20px 0;">以下为您正在使用模板的私有设置项</div></th>
+					</tr>
+					<volist name="pc_config['other_info']" id="vo">
+						<tr>
+							<th>{weimicms:$vo.name}：</th>
+							<td>
+								<if condition="$vo['type'] eq 'text'">
+									<input type="text" name="other_info[{weimicms:$key}]" id="tpl_{weimicms:$key}" value="{weimicms:$vo.info}" class="px" style="width:350px;height:24px;"/><if condition="$vo['tips']">&nbsp;&nbsp;&nbsp;{weimicms:$vo.tips}</if>
+								<elseif condition="$vo['type'] eq 'textarea'"/>	
+									<textarea style="width:350px;height:50px" name="other_info[{weimicms:$key}]" id="tpl_{weimicms:$key}" class="px">{weimicms:$vo.info}</textarea>
+									<if condition="$vo['tips']">&nbsp;&nbsp;&nbsp;{weimicms:$vo.tips}</if>
+								</if>
+							</td>
+						</tr>
+					</volist>
+				</if>
+				<th>&nbsp;</th>
+					<td>
+						<button type="submit" class="btnGreen">保存</button>
+						<a href="javascript:history.go(-1);" class="btnGray vm">取消</a>
+					</td>
+				</tr>
+				
+			</tbody>
+		</table>
+	</form>
+  </div> 
+ 
+  
+        </div>
+<if condition="session('isQcloud') neq true">
+
+	<include file="Public:footer"/>
+	
+</if>

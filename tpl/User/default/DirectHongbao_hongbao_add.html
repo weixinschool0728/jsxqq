@@ -1,0 +1,262 @@
+<include file="Public:head"/>
+<script src="{weimicms:$staticPath}/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{weimicms:$staticPath}/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="{weimicms::RES}/js/date/WdatePicker.js"></script>
+<script src="{weimicms:$staticPath}/tpl/static/upyun.js"></script>
+<form class="form" method="post" action="{weimicms::U('DirectHongbao/hongbao_add',array('token'=>$token))}"  target="_top">
+<div class="content">
+<!--活动开始-->
+<div class="cLineB">
+  <h4><if condition="$send_type eq 4 && $hb_type neq ''">粉丝关注时的<if condition="$hb_type eq 1">普通红包<else />裂变红包</if><else />设置粉丝红包</if></h4><a href="{weimicms::U('DirectHongbao/index',array('token'=>$token))}" class="right btnGrayS vm" style="margin-top:-27px">返回列表</a></div>
+   <div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-bottom:5px;font-size:12px;"></if>温馨提示：1.如果您在微信公众平台的用户管理中修改了粉丝的分组，请先去<a href="{weimicms::U('Wechat_group/index',array('token'=>$token))}" target="_blank"><span style="color:green;">粉丝管理</span></a>里刷新所有粉丝信息。<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.如果您在微信公众平台的用户管理中新建了一个分组请在<a href="{weimicms::U('Wechat_group/groups',array('token'=>$token))}" target="_blank"><span style="color:green;">分组管理</span></a>做同步操作并在<a href="{weimicms::U('Wechat_group/index',array('token'=>$token))}" target="_blank"><span style="color:green;">粉丝管理</span></a>里刷新所有粉丝信息。
+</div>
+<div class="msgWrap bgfc">
+<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+<tbody>
+<tr>
+  <th valign="top"><span class="red">*</span>红包发送者名称：</th>
+  <input type="hidden" id="hongbao1" value="{weimicms:$staticPath}/tpl/static/hongbao/images/hongbao1.jpg" />
+  <td><input type="input" class="px" id="send_name" value="{weimicms:$set.send_name}" name="send_name" style="width:400px" />
+  	<br>也就是商户名称,不超过30个字。<a href="###" onclick="viewImg('hongbao1')"><span style="color:green;">查看显示位置</a>
+  	</td> 	
+</tr>
+ <tr>
+  <th valign="top"><span class="red">*</span>活动名称：</th>
+  <td><input type="input" class="px" id="act_name" value="{weimicms:$set.act_name}" name="act_name" style="width:400px" />
+  	<br>发送红包这个活动的名称，不超过30个字
+  	</td> 	
+</tr>     
+<tr>
+  <th valign="top"><span class="red">*</span>红包祝福语：</th>
+  <input type="hidden" id="hongbao2" value="{weimicms:$staticPath}/tpl/static/hongbao/images/hongbao2.jpg" />
+  <td><input type="input" class="px" id="wishing" value="{weimicms:$set.wishing}" name="wishing" style="width:400px" />
+  	<br>
+  	红包祝福语，例如“恭喜发财,新年快乐”,不超过125个字。<a href="###" onclick="viewImg('hongbao2')"><span style="color:green;">查看显示位置</a>
+  	</td> 	
+</tr>
+<if condition="$send_type neq 4">
+<tr>
+  <th valign="top"><span class="red">*</span>红包总金额：</th>
+  <td>
+	<input type="input" class="px" id="total_money" name="total_money"   value="{weimicms:$set.total_money}" />/元
+  </td>
+  </tr>
+ </if>
+<tr>
+  <th valign="top"><span class="red">*</span>单个红包金额范围：</th>
+  <td>
+	<input type="input" class="px" id="min_money" name="min_money"  value="{weimicms:$set.min_money}" placeholder="最小金额"/>  到
+	
+	 <input type="input" class="px" id="max_money" name="max_money"  value="{weimicms:$set.max_money}" placeholder="最大金额"/> /元 &nbsp;&nbsp;&nbsp;随机取最小金额和最大金额之间的数,结果保留2位小数
+  </td>
+  </tr>
+<if condition="$send_type eq 4 && $hb_type neq ''">
+	<input type="hidden" value="{weimicms:$hb_type}" name="hb_type" checked />
+<else />
+	<tr>
+	<th>红包类型：</th>
+	<td>
+		<input type="radio" name="hb_type" value="2" id="t2"  <if condition="$set.hb_type eq 2 || $set.hb_type eq ''"> checked </if>>裂变红包&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="radio" name="hb_type" value="1" id="t1" <if condition="$set.hb_type eq 1"> checked </if>>普通红包<br />裂变红包是指<span style="color:red;">粉丝收到的红包可以被自己分享</span>，分享的人数由下面的“裂变人数”决定，而自己和被分享的粉丝领取到的金额是随机分配的，总金额由“随机金额范围”得到的值决定，裂变后的红包头像、发送者名称、红包祝福语和源红包相同。普通红包是指<span style="color:red;">粉丝收到的红包不可以被自己分享</span>，红包金额等于“随机金额范围”得到的值。
+	</td>
+</tr>
+</if>
+ <tr id="group_hongbao" style="display:none">
+  <th valign="top"><span class="red">*</span>裂变人数：</th>
+  <td>
+	<input type="input" class="px" id="group_nums" name="group_nums" value='<if condition="$set['group_nums'] gt 0">{weimicms:$set.group_nums}<else />3</if>' />&nbsp;&nbsp;&nbsp;为保证每个裂变粉丝收到的红包金额在1块或以上，<span style="color:red;">最小金额数必须大于裂变人数</span>，裂变人数不能小于3
+  </td>
+  </tr>
+<if condition="$send_type eq 4 && $hb_type neq ''">
+	<input type="hidden" value="4" name="send_type" checked />
+<else />
+  <TR>
+  <th valign="top">指定粉丝方式:</th>
+  <TD>
+		<input type="radio" value="1" name="send_type" class="send_type" checked>分组群发
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="radio" value="2" name="send_type" class="send_type">指定粉丝
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="radio" value="3" name="send_type" class="send_type">全部粉丝	
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="radio" value="4" name="send_type" class="send_type">关注公众号时的粉丝	
+  </TD>
+</tr>
+<TR class="group_show">
+	<th>请选择分组：</th>
+	<td>
+		<weimicmsif where="$groups">
+				<select name="wechatgroupid" id="group"  style="width:150px;">
+					<weimicmslist array="groups" foreach="g">
+					<option value="{weimicms:$g.wechatgroupid}" <if condition="$g['wechatgroupid'] eq $set['gid']">selected = 'selected'</if>>{weimicms:$g.name}<span style="color:red;">({weimicms:$g.fanscount}人)</span></option>
+					</weimicmslist>
+				</select>
+			<else/>
+				<a href="{weimicms::U('Wechat_group/groups')}">还没有同步公众平台的粉丝分组，点击这里进行分组设置</a>
+		</weimicmsif>
+	</td>
+</TR>
+	<TR style="display:none;" class="fans_show">
+	<th valign="top">请选择粉丝：</th>
+		<td colspan="2">
+			<a href="javascript:void(0);" class="a_choose" id="add_fans">选择粉丝</a>
+				&nbsp;
+			<a href="javascript:void(0);" id="clear_fans">清空</a><br />
+			<textarea id="fans_id_name" class="px" style="width:402px;height:120px;float:left;" name="fans_name" value="{weimicms:$set.fans_name}" readonly>{weimicms:$set.fans_name}</textarea>&nbsp;&nbsp;&nbsp;<span id="reply_content_msg"></span>以英文逗号分隔，本输入框禁用了手动编辑操作<br />&nbsp;&nbsp;&nbsp;如果想要修改粉丝请清空然后重新选择<br />&nbsp;&nbsp;&nbsp;如果想要增加粉丝请点“选择粉丝”按钮累加粉丝</td>
+			<input type="hidden" name="openid" id="fans_id" value="{weimicms:$set.fans_id}" />
+		</td>
+	</TR>
+</if>
+	<tr>
+		<th width="120"><span class="red">*</span>备注：</th>
+		<td><textarea class="px" id="remark" name="remark" style="width: 402px; height: 120px;" value="{weimicms:$set.remark}">{weimicms:$set.remark}</textarea>&nbsp;&nbsp;&nbsp;<span id="reply_content_msg"></span>红包的备注信息，不超过250个字</td>
+	</tr>
+	<tr>
+		<th></th>
+		<td>
+		<input type="hidden" name="id" value="{weimicms:$set.id}">
+		<button type="button" name="button" id="hongbao_add" class="btnGreen">保存</button>　
+		<a href="" class="btnGray vm">取消</a>
+		</td>
+	</tr>
+  	</tbody>
+  	</table>
+ </div>
+</div>
+</form>
+<script type="text/javascript">
+//简单的表单验证
+$(function(){
+	var send_type = '{weimicms:$set.send_type}' ? '{weimicms:$set.send_type}' : '{weimicms:$send_type}';
+	if(send_type == 1){
+		$('.group_show').css('display','');
+		$('.fans_show').css('display','none');
+		$('.send_type:eq(0)').attr('checked',true);
+	}else if(send_type == 2){
+		$('.group_show').css('display','none');
+		$('.fans_show').css('display','');
+		$('.send_type:eq(1)').attr('checked',true);
+	}else if(send_type == 3){
+		$('.group_show').css('display','none');
+		$('.fans_show').css('display','none');
+		$('.send_type:eq(2)').attr('checked',true);
+	}else if(send_type == 4){
+		$('.group_show').css('display','none');
+		$('.fans_show').css('display','none');
+		$('.send_type:eq(3)').attr('checked',true);
+	}
+
+	$('.send_type').change(function(){
+		if($(this).val() == 1){
+			$('.group_show').css('display','');
+			$('.fans_show').css('display','none');
+		}else if($(this).val() == 2){
+			$('.group_show').css('display','none');
+			$('.fans_show').css('display','');
+		}else if($(this).val() == 3){
+			$('.group_show').css('display','none');
+			$('.fans_show').css('display','none');
+		}else if($(this).val() == 4){
+			$('.group_show').css('display','none');
+			$('.fans_show').css('display','none');
+		}
+	});
+	$('#add_fans').click(function(){
+		var token 	= '{weimicms:$token}';
+		art.dialog.open('?g=User&m=DirectHongbao&a=select_fans&token='+token+'&',{lock:true,title:'选择粉丝',width:600,height:400,yesText:'关闭',background: '#000',opacity: 0.45});
+	});
+
+	$('#clear_fans').click(function(){
+		$('#fans_id').val('');
+		$("#fans_id_name").val('');
+	});
+	$("#t1").click(function(){
+		$("#group_hongbao").hide();
+	});
+	$("#t2").click(function(){
+		$("#group_hongbao").show();
+	});
+	if($("#t1").attr("checked") == true){
+		$("#group_hongbao").hide();
+	}else{
+		$("#group_hongbao").show();
+	}
+	var hb_type = '{weimicms:$hb_type}';
+	if(hb_type != "" && hb_type == 2){
+		$("#group_hongbao").show();
+	}else{
+		$("#group_hongbao").hide();
+	}
+	
+	$("#hongbao_add").click(function(){
+		var send_name = $("#send_name").val();
+		var act_name = $("#act_name").val();
+		var wishing = $("#wishing").val();
+		var total_money = $("#total_money").val();
+		var min_money = $("#min_money").val();
+		var max_money = $("#max_money").val();
+		var group_nums = $("#group_nums").val();
+		var fans_id_name = $("#fans_id_name").val();
+		var remark = $("#remark").val();
+		var fans_id = $("#fans_id").val();
+		var hb_type = $(":input[name='hb_type']:checked").val();
+		var send_type = $(":input[name='send_type']:checked").val();
+		var groupid = $("#group").val();
+		var reg = /^[1-9]+[0-9]*]*$/;
+		var msg = '';
+		if(groupid == "" && send_type == 1 && confirm('您选择的分组在微信端不存在,请到粉丝分组管理里做同步操作')){
+			window.location.href= "{weimicms::U('Wechat_group/groups')}";
+			return false;
+		}
+		if(send_name == ''){
+			msg += '红包发送者不能为空\n';
+		}else if(send_name.length > 30){
+			msg += '红包发送者名称不超过30个字\n';
+		}
+		if(act_name == ''){
+			msg += '活动名称不能为空\n';
+		}else if(act_name.length > 30){
+			msg += '活动名称不超过30个字\n';
+		}
+		if(wishing == ''){
+			msg += '红包祝福语不能为空\n';
+		}else if(wishing.length > 125){
+			msg += '红包祝福语不超过125个字\n';
+		}
+		if(total_money == '' && send_type != 4){
+			msg += '红包总金额不能为空\n';
+		}
+		if(min_money == ''){
+			msg += '最小红包金额不能为空\n';
+		}
+		if(max_money == ''){
+			msg += '最大红包金额不能为空\n';
+		}
+		if(group_nums == '' && hb_type == 2){
+			msg += '裂变红包时，裂变人数不能为空\n';
+		}else if(!reg.test(group_nums) && hb_type == 2){
+			msg += '裂变人数请输入大于或等于3的整数\n';
+		}else if(parseInt(group_nums) < 3 && hb_type == 2){
+			msg += '裂变人数请输入大于或等于3的整数\n';
+		}else if(parseInt(group_nums) > min_money && hb_type == 2){
+			msg += '最小金额数必须大于裂变人数\n';
+		}
+		if(hb_type == 1 && min_money < 1){
+			msg += '普通红包,最小金额数必须大于等于1\n';
+		}
+		if((fans_id_name == '' || fans_id == "") && send_type == 2){
+			msg += '请选择粉丝\n';
+		}
+		if(remark == ''){
+			msg += '红包备注不能为空\n';
+		}
+		if(msg != ''){
+			alert(msg);
+			return false;
+		}
+		$(".form").submit();
+	});
+});
+</script>
+<include file="Public:footer"/>

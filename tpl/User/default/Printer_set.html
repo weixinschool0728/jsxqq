@@ -1,0 +1,43 @@
+<include file="Public:head" /> 
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" ><include file="Public:shangwu"/>
+    <h4>打印机设置</h4> 
+    <a href="{weimicms::U('Printer/index')}" class="right  btnGreen" style="margin-top:-27px">返回</a> 
+   </div> 
+   <form class="form" method="post" action=""> 
+	<input type="hidden" name="id" value="{weimicms:$printer['id']}" />
+    <div class="msgWrap bgfc"> 
+     <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"> 
+      <tbody> 
+       <tr> 
+        <th>名称：</th> 
+        <td><input type="text" name="name" value="{weimicms:$printer['name']}" class="px" style="width:400px;" /></td> 
+       </tr> 
+       <tr> 
+        <th>SN编号：</th> 
+        <td><input type="text" name="sn" value="{weimicms:$printer['sn']|htmlspecialchars}" class="px" style="width:400px;" /></td> 
+       </tr>
+       <tr> 
+        <th>打印联数：</th> 
+        <td><input type="text" name="print_count" value="{weimicms:$printer['print_count']}" class="px" style="width:400px;" /></td> 
+       </tr>
+       <tr> 
+        <th>订单处理：</th> 
+        <td><input id="deal_order" type="checkbox" name="deal_order" <if condition="$printer['deal_order']">checked="checked"</if> value="1" /> <label for="deal_order">打印成功后，订单状态标记为已处理</label></td> 
+       </tr>
+       <tr> 
+        <th>打印模版：</th> 
+        <td><textarea name="template" class="px" style="width:400px; height: 300px;font-family: monospace;">{weimicms:$printer['template']|htmlspecialchars}</textarea></td> 
+       </tr>
+       <tr>         
+       <th>&nbsp;</th>
+       <td>
+       <button type="submit" name="button" class="btnGreen"><if condition="$_GET['id']">保存<else />添加</if></button> &nbsp; <a href="{weimicms::U('Printer/index')}" class="btnGray vm">取消</a>
+       　	　　<input type="submit" name="preview" class="btnGreen" value="打印预览" />
+       </td>
+       </tr> 
+      </tbody> 
+     </table> 
+     </div>
+   </form> 
+  </div> 
+  <include file="Public:footer" />

@@ -1,0 +1,73 @@
+<include file="Public:head"/> 
+<div class="content">
+         
+          <div class="cLineB">
+              <h4 class="left">当前位置：<a href="{weimicms::U('Member_card/index',array('token'=>$token))}">奖金管理</a></h4>
+                 
+              <div class="clr"></div>
+          </div> 
+            <TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+              <THEAD>
+                <TR>
+				<TH>房产名称</TH>
+				<TH>经济人</TH>
+				<TH>客户</TH>
+				<TH>奖金金额</TH>
+				<TH>奖金类型</TH>		
+				<TH>审核状态</TH>
+				<TH >审核时间</TH>
+				<th>备注</th> 				
+                </TR>
+              </THEAD>
+              <TBODY>
+                <TR></TR> 
+				 <volist name="data" id="list">
+                <TR>
+                  <TD>{weimicms:$list.projectname}</TD>
+				   <TD>{weimicms:$list.username}</TD> 
+					<TD>{weimicms:$list.custom}</TD>
+					 <TD>{weimicms:$list.bonusamount}</TD> 
+				   <TD>
+				   <if condition="$list.status eq '1'">
+						已登记
+					<elseif condition="$list.status eq '2'" />
+						已到访
+						<elseif condition="$list.status eq '3'" />
+						已认筹
+						<elseif condition="$list.status eq '4'" />
+						已认购
+						<elseif condition="$list.status eq '5'" />
+						已签约
+						<elseif condition="$list.status eq '6'" />
+						已打款
+					</if> 
+				   </TD> 
+                    <TD>
+					<if condition="$list.checkstatus eq '2'">
+						通过
+					<elseif condition="$list.checkstatus eq '3'" />
+						拒绝
+					</if>
+					</TD>
+				   <TD>{weimicms:$list.checktime|date="Y-m-d H:i:s",###}</TD> 
+				    <TD>{weimicms:$list.note}</TD> 
+                </TR>
+				</volist> 
+              </TBODY>
+            </TABLE> 
+          </div> 
+          <div class="cLine">
+            <div class="pageNavigator right">
+                <div class="pages">{weimicms:$page}</div>
+              </div>
+            <div class="clr"></div>
+          </div>
+        </div>
+
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div> 
+  <!--底部-->
+  	</div>
+<include file="Public:footer"/>  

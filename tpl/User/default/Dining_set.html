@@ -1,0 +1,325 @@
+<include file="Public:head" /> 
+<script type="text/javascript" charset="utf-8" src="./tpl/static/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="./tpl/static/ueditor/ueditor.all.min.js"> </script>
+<script type="text/javascript" charset="utf-8" src="./tpl/static/ueditor/lang/zh-cn/zh-cn.js"></script>
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />
+<script src="{weimicms::STATICS}/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{weimicms::STATICS}/artDialog/plugins/iframeTools.js"></script>
+<script src="{weimicms::STATICS}/upyun.js"></script>
+<script>
+var editor;
+KindEditor.ready(function(K) {
+editor = K.create('#intro', {
+resizeType : 1,
+allowPreviewEmoticons : false,
+allowImageUpload : true,
+uploadJson : SITEURL+'/index.php?g=User&m=Upyun&a=kindedtiropic',
+items : [
+'source','undo','clearhtml','hr',
+'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+'insertunorderedlist', '|', 'emoticons', 'image','link', 'unlink','baidumap','lineheight','table','anchor','preview','print','template','code','cut']
+});
+
+});
+</script>
+<script>
+function showChildCats(value){
+	$("#catid").html('<option value="0">请选择...</option>');
+	if(value==0){
+		document.getElementById('catid').disabled=true;
+	}else{
+		$.ajax({
+			url: $('#catUrl').attr("value")+'&parentid='+value,
+			success: function( data ) {
+				document.getElementById('catid').disabled=false;
+				$("#catid").html($("#catid").html()+data);
+			}
+		});
+	}
+}
+function toDecimal(x) {  
+            var f = parseFloat(x);  
+            if (isNaN(f)) {  
+                return;  
+            }  
+            f = Math.round(x*10)/10;  
+            return f;  
+        }  
+function calDiscount(){
+	var price=$('#price').attr('value');
+	var oprice=$('#oprice').attr('value');
+	if(oprice!=0&&oprice!=''){
+		var dis=oprice-price;
+		var discount=10-toDecimal((dis/oprice)*10);
+	}else{
+		discount=10;
+	}
+	$('#discount').attr('value',discount);
+}
+</script>
+<input type="hidden" id="catUrl" value="{weimicms::U('Dining/ajaxCatOptions',array('token'=>$token))}" />
+<div class="content"  <if condition="session('isQcloud') eq true">style="float:center;"</if> >
+<include file="Public:hangye"/>
+<!--tab start-->
+<div class="tab">
+<ul>
+<li class="tabli" id="tab2"><a href="{weimicms::U('Dining/ComQuyu',array('token'=>$token))}">店铺区域</a></li>
+<li class="tabli" id="tab2"><a href="{weimicms::U('Dining/ComFenlei',array('token'=>$token))}">店铺分类</a></li>
+<li class="tabli" id="tab2"><a href="{weimicms::U('Dining/ComBranches',array('token'=>$token))}">店铺信息</a></li>
+<li class="current tabli" id="tab0"><a href="{weimicms::U('Dining/index',array('token'=>$token,'dining'=>1))}">菜品管理</a></li>
+<li class="tabli" id="tab2"><a href="{weimicms::U('Dining/cats',array('token'=>$token,'dining'=>1))}">菜品分类管理</a></li>
+<li class="tabli" id="tab2"><a href="{weimicms::U('Dining/orders',array('token'=>$token,'dining'=>1))}">订单管理</a></li>
+<li class="tabli" id="tab2"><a href="{weimicms::U('Dining/tables',array('token'=>$token,'dining'=>1))}">桌台管理</a></li>
+<li class="tabli" id="tab2"><a href="{weimicms::U('Dining/sumOrder',array('token'=>$token,'dining'=>1))}">统计金额</a></li>
+<li class="tabli" id="tab5"><a href="{weimicms::U('Reply_info/set',array('token'=>$token,'infotype'=>'Dining'))}">订餐回复配置</a></li>
+</ul>
+</div>
+<div class="clr"></div>
+<!--tab end-->
+    <h4>菜品设置</h4> 
+    <a href="{weimicms::U('Dining/index',array('token'=>$token,'dining'=>$isDining))}" class="right  btn btn-info" style="margin-top:-27px">返回</a> 
+   </div> 
+   <form class="form" method="post" action="" enctype="multipart/form-data"> 
+<if condition="$isUpdate eq 1">
+<input type="hidden" name="id" value="{weimicms:$set.id}" />
+</if>
+<input type="hidden" name="discount" id="discount" value="{weimicms:$set.discount}" />
+    <div class="msgWrap bgfc"> 
+     <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"> 
+      <tbody> 
+       <tr> 
+        <th><span class="red">*</span>名称：</th> 
+        <td><input type="text" name="name" value="{weimicms:$set.name}" class="px" style="width:400px;" /></td> 
+       </tr> 
+       <tr> 
+        <th><span class="red">*</span>类别：</th> 
+        <td>
+			<select id="catid" style="width:120px;"><option value="0">请选择分类...</option>{weimicms:$catsOptions}</select>
+			<select id="ParCatid" style="width:120px;"><option value="0">二级分类...{weimicms:$childCatsOptions}</option></select>   
+			您的选择是：<span id="cartName" style="color:#999; ">没有选择分类</span>
+			<input type="hidden" id="inpCartID" name="catid" value="0"/>
+		</td> 
+       </tr>
+        <tr> 
+        <th><span class="red">*</span>店铺：</th> 
+        <td><select id="storeid" name="storeid" class="px">
+        <volist id="v" name="Companys">
+        <option value="{weimicms:$v.id}" <if condition="$set['storeid'] eq $v['id']">selected</if>>{weimicms:$v.shortname}</option>
+        </volist>
+        </select></td> 
+       </tr>
+        <tr> 
+        <th><span class="red">*</span>价格：</th>
+        <td><input type="text" id="price" onchange="calDiscount();" name="price" value="{weimicms:$set.price}" class="px" style="width:100px;" /> 元</td> 
+       </tr>
+       <tr> 
+        <th><span class="red">*</span>原价：</th> 
+        <td><input type="text" id="oprice" onchange="calDiscount();" name="oprice" value="{weimicms:$set.oprice}" class="px" style="width:100px;" /> 元</td> 
+       </tr>
+	   <tr> 
+        <th><span class="red">*</span>单位：</th>
+        <td><input type="text" id="ftype" name="ftype" value="{weimicms:$set.ftype}" class="px" style="width:100px;" />如：份</td> 
+       </tr>
+        <tr> 
+        <th><span class="red">*</span>关键词：</th>
+        <td><input type="text" name="keyword" value="{weimicms:$set.keyword}" class="px" style="width:400px;" /></td> 
+       </tr>
+        <tr> 
+        <th><span class="red">*</span>Logo地址：</th>
+        <td><input type="text" name="logourl" value="{weimicms:$set.logourl}" class="px" id="pic" style="width:400px;" /> <a href="###" onclick="upyunPicUpload('pic',700,700,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('pic')">预览</a></td> 
+       </tr>
+        <TR>
+                  <TH valign="top"><label for="info">图文详细页内容：</label></TH>
+				  <script id="editor" name="intro" type="text/plain" style="width:590px;height:360px;">{weimicms:$set.intro}</script>
+                </TR>  
+       <tr>         
+       <th>&nbsp;</th>
+       <td>
+       <if condition="$isDining neq 1"><input type="hidden" value="0" name="dining" /><else/><input type="hidden" value="1" name="dining" /></if>
+       <button type="submit" name="button" class="btn btn-success">保存</button> &nbsp; <a href="{weimicms::U('Dining/index',array('token'=>$token))}" class="btn btn-danger">取消</a></td> 
+       </tr> 
+      </tbody> 
+     </table> 
+     </div>
+    
+   </form> 
+  </div> 
+  <script type="text/javascript">
+
+    //实例化编辑器
+    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+    UE.getEditor('editor');
+	
+	$(document).ready(function (){
+		var catid = $("#catid").val();
+		if(catid == 0){
+			$("#ParCatid").html("<option value=''>没有二级分类...</option>");
+			$("#cartName").text("没有选择分类");
+			$("#inpCartID").val(catid);
+		}else{
+			$("#cartName").text($("#catid option:selected").text());
+			$("#inpCartID").val(catid);
+		}
+		
+		var ParCatid = $("#ParCatid").val();
+		if(ParCatid == 0){
+			$("#cartName").text($("#catid option:selected").text());
+			$("#inpCartID").val(catid);
+		}else{
+			$("#cartName").text($("#ParCatid option:selected").text());
+			$("#inpCartID").val(ParCatid);
+		}
+	});
+	
+	//触发顶级分类
+	$("#catid").change(function (){
+		var catid = $("#catid").val();
+		if(catid == 0){
+			$("#ParCatid").html("<option value=''>没有二级分类...</option>");
+			$("#cartName").text("没有选择分类");
+			$("#inpCartID").val(catid);
+			return;
+		}else{
+			$("#cartName").text($("#catid option:selected").text());
+			$("#inpCartID").val(catid);
+		}
+		$.ajax({
+              url:"?g=User&m=Dining&a=ajaxParCats&catid="+catid,
+			  dataType:"html",//可有可无
+			  error:function(){//可有可无
+                  alert("当前ajax操作出错！");
+              },
+              success:function(data){
+				var obj = eval('('+data+')');
+				var rtPhone = obj.info;
+				if(rtPhone == "" || rtPhone == null){
+					$("#ParCatid").html("<option value=''>没有二级分类...</option>");
+				}else{
+					$("#ParCatid").html("<option value=''>请选择二级分类</option>" + rtPhone);
+				}
+              }
+          });
+		  
+	});
+	//触发二级分类
+	$("#ParCatid").change(function (){
+		var catid = $("#catid").val();
+		var ParCatid = $("#ParCatid").val();
+		if(ParCatid == 0){
+			$("#cartName").text($("#catid option:selected").text());
+			$("#inpCartID").val(catid);
+			return;
+		}else{
+			$("#cartName").text($("#ParCatid option:selected").text());
+			$("#inpCartID").val(ParCatid);
+		}
+	});
+
+    function isFocus(e){
+        alert(UE.getEditor('editor').isFocus());
+        UE.dom.domUtils.preventDefault(e)
+    }
+    function setblur(e){
+        UE.getEditor('editor').blur();
+        UE.dom.domUtils.preventDefault(e)
+    }
+    function insertHtml() {
+        var value = prompt('插入html代码', '');
+        UE.getEditor('editor').execCommand('insertHtml', value)
+    }
+    function createEditor() {
+        enableBtn();
+        UE.getEditor('editor');
+    }
+    function getAllHtml() {
+        alert(UE.getEditor('editor').getAllHtml())
+    }
+    function getContent() {
+        var arr = [];
+        arr.push("使用editor.getContent()方法可以获得编辑器的内容");
+        arr.push("内容为：");
+        arr.push(UE.getEditor('editor').getContent());
+        alert(arr.join("\n"));
+    }
+    function getPlainTxt() {
+        var arr = [];
+        arr.push("使用editor.getPlainTxt()方法可以获得编辑器的带格式的纯文本内容");
+        arr.push("内容为：");
+        arr.push(UE.getEditor('editor').getPlainTxt());
+        alert(arr.join('\n'))
+    }
+    function setContent(isAppendTo) {
+        var arr = [];
+        arr.push("使用editor.setContent('欢迎使用ueditor')方法可以设置编辑器的内容");
+        UE.getEditor('editor').setContent('欢迎使用ueditor', isAppendTo);
+        alert(arr.join("\n"));
+    }
+    function setDisabled() {
+        UE.getEditor('editor').setDisabled('fullscreen');
+        disableBtn("enable");
+    }
+
+    function setEnabled() {
+        UE.getEditor('editor').setEnabled();
+        enableBtn();
+    }
+
+    function getText() {
+        //当你点击按钮时编辑区域已经失去了焦点，如果直接用getText将不会得到内容，所以要在选回来，然后取得内容
+        var range = UE.getEditor('editor').selection.getRange();
+        range.select();
+        var txt = UE.getEditor('editor').selection.getText();
+        alert(txt)
+    }
+
+    function getContentTxt() {
+        var arr = [];
+        arr.push("使用editor.getContentTxt()方法可以获得编辑器的纯文本内容");
+        arr.push("编辑器的纯文本内容为：");
+        arr.push(UE.getEditor('editor').getContentTxt());
+        alert(arr.join("\n"));
+    }
+    function hasContent() {
+        var arr = [];
+        arr.push("使用editor.hasContents()方法判断编辑器里是否有内容");
+        arr.push("判断结果为：");
+        arr.push(UE.getEditor('editor').hasContents());
+        alert(arr.join("\n"));
+    }
+    function setFocus() {
+        UE.getEditor('editor').focus();
+    }
+    function deleteEditor() {
+        disableBtn();
+        UE.getEditor('editor').destroy();
+    }
+    function disableBtn(str) {
+        var div = document.getElementById('btns');
+        var btns = domUtils.getElementsByTagName(div, "button");
+        for (var i = 0, btn; btn = btns[i++];) {
+            if (btn.id == str) {
+                domUtils.removeAttributes(btn, ["disabled"]);
+            } else {
+                btn.setAttribute("disabled", "true");
+            }
+        }
+    }
+    function enableBtn() {
+        var div = document.getElementById('btns');
+        var btns = domUtils.getElementsByTagName(div, "button");
+        for (var i = 0, btn; btn = btns[i++];) {
+            domUtils.removeAttributes(btn, ["disabled"]);
+        }
+    }
+
+    function getLocalData () {
+        alert(UE.getEditor('editor').execCommand( "getlocaldata" ));
+    }
+
+    function clearLocalData () {
+        UE.getEditor('editor').execCommand( "clearlocaldata" );
+        alert("已清空草稿箱")
+    }
+
+</script>
+  <include file="Public:footer" />

@@ -1,0 +1,133 @@
+<include file="Public:head"/>
+<div class="content">
+<style>
+th,td{text-align:center;}
+.btncurry{
+    background-color: #ebf3e4 !important;
+    background-image: none !important;
+    border: 1px solid #e6e7ec !important;
+    border-radius: 4px !important;
+    color: #222 !important;
+    cursor: pointer !important;
+    display: inline-block !important;
+    font-size: 14px !important;
+    overflow: visible !important;
+    padding: 4px 12px !important;
+    text-shadow: none !important;
+}
+.btnnocurry{
+    background-color: #f4f5f9 !important;
+    background-image: none !important;
+    border: 1px solid #e6e7ec !important;
+    border-radius: 4px !important;
+    color: #222 !important;
+    cursor: pointer !important;
+    display: inline-block !important;
+    font-size: 14px !important;
+    overflow: visible !important;
+    padding: 4px 12px !important;
+    text-shadow: none !important;
+}
+</style>
+<div class="cLine">
+<a href="{weimicms::U('FrontPage/systemnews',array('token'=>$token,'type'=>'default','id'=>$_GET['id']))}" class="<php>if($type == 'default' || $type == ''){ echo 'btncurry';}else{ echo 'btnnocurry';}</php> vm">系统默认随机事件</a>  <a href="{weimicms::U('FrontPage/definenews',array('token'=>$token,'id'=>$_GET['id'],'type'=>'mynews'))}" class="<php>if($type == 'mynews'){ echo 'btncurry';}else{ echo 'btnnocurry';}</php> vm">我添加的随机事件</a>  
+<a href="{weimicms::U('FrontPage/index',array('token'=>$token))}" class="right btnGrayS" style="margin-top:-1px;height:24px;">返回活动列表</a>
+<div class="clr"></div>
+</div>
+<if condition="$news_type eq 1">
+  <div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-bottom:5px;font-size:12px;"><p>温馨提示：1、新闻标题和新闻内容中出现的姓名如果用[name]表示,[name]会被替换为手机端生成新闻时粉丝设置的姓名。例如：'[name]说大家好！'会被替换为'某某说大家好！'
+  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;2、设置图片的作用是粉丝手机端选择随机事件后生成的新闻，在播放的时候右上角作为新闻主角或新闻主题图片显示，不上传默认为生成新闻的粉丝的微信头像。
+</p>
+</div>
+</if>
+<div class="msgWrap">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>   
+<th>&nbsp;</th>                    
+<th width="164">新闻标题</th>
+<th width="255">新闻内容</th>
+<th width="120">适合人群</th>
+<th width="100">状态</th>
+<th class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<if condition="$frontpagenews neq ''">
+<weimicmslist array="frontpagenews" foreach="list">
+<tr>
+	<td><input type="checkbox" name="news_id[]" value="{weimicms:$list['id']}"/></td>
+	<td>{weimicms:$list.news_title}</td>
+	<td title="{weimicms:$list.news_txt}">{weimicms:$list.news_txt|mb_substr=0,50,'utf-8'}</td>
+	<td><if condition="$list['per'] eq 'm'">男性<elseif condition="$list['per'] eq 'f'"/>女性<else />男女不限</if></td>
+	<td><php> if($list['status'] == 1){ echo '<span style="color:green">开启</span>';}else{ echo '<span style="color:red">关闭</span>';}</php></td>
+	<td class="norightborder" align="center">
+		<if condition="$list['type'] neq 3">
+		<a href="javascript:drop_confirm('您确定要删除吗?', '{weimicms::U('FrontPage/deldefinenews',array('token'=>$token,'id'=>$list['id'],'news_type'=>$news_type,'cid'=>$_GET['id']))}');">删除事件</a></if>
+		<if condition="$list['type'] eq 3">
+			<a href="{weimicms::U('FrontPage/uploadimg',array('token'=>$token,'id'=>$list['id'],'cid'=>$_GET['id']))}">设置图片</a>
+			<?php 
+			if($list['status'] == 1){ ?>
+			<a href="javascript:drop_confirm('您确定要关闭该事件吗?', '{weimicms::U('FrontPage/deldefinenews',array('token'=>$token,'id'=>$list['id'],'news_type'=>$news_type,'cid'=>$_GET['id'],'default_type'=>'close'))}');">关闭事件</a>
+			<?php	}else{ ?>
+			<a href="javascript:drop_confirm('您确定要开启该事件吗?', '{weimicms::U('FrontPage/deldefinenews',array('token'=>$token,'id'=>$list['id'],'news_type'=>$news_type,'cid'=>$_GET['id'],'default_type'=>'open'))}');">开启事件</a>
+			<?php }?>
+		</if>
+    </td>
+</tr>
+</weimicmslist>
+<else />
+<tr><td colspan="8">暂无记录</td></tr>
+</if>
+</tbody>
+</table>
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="clr"></div>
+</div>
+	 <div style="float:left;">  <input type="checkbox" id="checkall" onclick="selectAll(this);" /><label for="checkall"> 全选 / 全不选  <button class="btnGrayS" onclick="batch_close()">批量关闭</button> <button class="btnGrayS" onclick="unbatch_open()">批量开启</button></div>
+</div>
+<include file="Public:footer"/>
+<script>
+function selectAll(checkbox) { 
+	$('input[type=checkbox]').attr('checked', $(checkbox).attr('checked')); 
+} 
+function batch_close(){
+	if(confirm('确定批量关闭这些事件吗？')){
+		var ids = new Array();
+		$(":input[name=news_id[]]").each(function(i,d){
+			if(d.checked){
+				ids.push(d.value);
+			}
+		});
+		$.post("/index.php?g=User&m=FrontPage&a=batch_close&cid={weimicms:$_GET['id']}&token={weimicms:$_GET['token']}",{'ids':ids},function(data){
+			if(data == 'done'){
+				alert('批量关闭成功');
+			}else{
+				alert('批量关闭失败');
+			}
+			window.location.reload();
+		});
+	}
+}
+
+function unbatch_open(){
+if(confirm('确定批量开启这些事件吗？')){
+		var unids = new Array();
+		$(":input[name=news_id[]]").each(function(i,d){
+			if(d.checked){
+				unids.push(d.value);
+			}
+		});
+		$.post("/index.php?g=User&m=FrontPage&a=unbatch_open&cid={weimicms:$_GET['id']}&token={weimicms:$_GET['token']}",{'unids':unids},function(data){
+			if(data == 'done'){
+				alert('批量开启成功');
+			}else{
+				alert('批量开启失败');
+			}
+			window.location.reload();
+		});
+	}
+}
+</script>

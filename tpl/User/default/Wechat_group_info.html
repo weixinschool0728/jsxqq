@@ -1,0 +1,122 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+<script src="/tpl/static/fushionCharts/JSClass/FusionCharts.js" type="text/javascript"></script>   
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+<div class="content">
+         
+          <div class="cLineB" style="border-bottom: 1px">
+                    <div class="msgWrap form">
+<ul id="tags" style="width:100%">
+  <if condition="$fuwu == ''">
+      <li <if condition="$_GET['tip'] == NULL">class="selectTag"</if>>
+        <a href="?g=User&m=Wechat_group&a=info">微信会员信息</a> 
+      </li>
+  <else />
+      <li <if condition="$_GET['tip'] == NULL">class="selectTag"</if>>
+        <a href="?g=User&m=Wechat_group&a=info">微信会员信息</a> 
+      </li>
+      <li <if condition="$_GET['tip'] == '2'">class="selectTag"</if>>
+        <a href="?g=User&m=Wechat_group&a=info&tip=2">服务窗会员信息</a> 
+      </li>
+  </if>
+            <div class="clr" style="height:1px;background:#eee;margin-bottom:20px;"></div>
+    </ul>
+</div> 
+
+</div>
+          <form method="post" onsubmit="return beforeSubmit(this)" action="{weimicms::U('User/Wechat_group/dltinfo')}" id="info">
+ <div class="cLineD">
+        <input type="submit"  value="一键删除" id="delete" href="" class="btnGrayS" title="删除">&nbsp;&nbsp;&nbsp;&nbsp;<b>删除所有选中项</b> 
+  </form>  
+        <div style="float:right;margin-left:10%">
+<form method="post" action="">
+                  <b class="kserico">搜索类型：</b>
+      <select name="type">
+        <option value="1" <if condition="$type eq 1">selected</if>>会员昵称</option>
+        <option value="2" <if condition="$type eq 2">selected</if>>手机号</option>
+      </select> 
+<input type="text" id="msgSearchInput" class="px" placeholder="输入搜索内容" name="keyword" value="{weimicms:$keyword}">
+<input type="text" id="tip" class="px" name="tip" value="{weimicms:$tip}" style="display:none;">
+<input type="submit" value="搜索" id="msgSearchBtn" href="" class="btnGrayS" title="搜索">
+<a href="?g=User&m=Wechat_group&a=exportmember" class="btnGrayS vm">导出会员信息</a>
+</form>   
+</div>
+
+
+  <weimicmsif where="$showStatistics eq 1">
+<div id="chartdiv1" align="center"></div>
+          <script type="text/javascript">
+          var chart = new FusionCharts("/tpl/static/fushionCharts/Charts/Pie3D.swf", "ChartId", "600", "400", "0", "1");
+          //chart.setTransparent("false");
+          chart.setDataXML('{weimicms:$xml}');
+          //chart.setDataURL("data.html");
+          chart.render("chartdiv1");
+          </script>
+</weimicmsif>         
+          
+          <div class="msgWrap" style="border-top:1px solid #ccc;padding-top:10px;margin-top:10px;">
+
+          <div style="margin:10px 0">
+<div style="clear:both"></div>
+</div>
+          
+            <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <thead>
+                <tr>
+           <th class="select"><input type="checkbox" value="" id="check_box" onclick="selectall('id[]');"></th> 
+          <th style="width:55px;text-align:center;">头像</th>        
+          <th style="width:130px;text-align:center;">会员昵称 </th>
+          <th style="width:100px;text-align:center;">联系电话</th>
+          <th style="width:120px;text-align:center;">分组</th>
+          <th style="width:150px;text-align:center;">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+        <weimicmslist array="list" foreach="list">
+                <tr>
+                  <td><input type="checkbox" name='test[]' value="{weimicms:$list['id']}"/></td>
+                  <td>
+				  	<div class="cateimg">
+						<a href="{weimicms:$list['portrait']}" target="_blank"><img src="{weimicms:$list['portrait']}" class="cateimg_small" style="margin-left:2px"/></a></div>
+					</td>
+				  </td>
+                  <td>{weimicms:$list.wechaname}</td>
+                  <td>{weimicms:$list.tel}</td>
+                  <td>{weimicms:$list.wechatname}</td>
+                  <td class="norightborder" style="text-align:center;">
+            <a href="{weimicms::U('Wechat_group/setinfo',array('id'=>$list['id'],'token'=>$token))}">修改</a>&nbsp;&nbsp;|&nbsp;
+            <a href="javascript:void(0)" onclick="if(confirm('确定删除吗')){location.href='{weimicms::U('Wechat_group/delinfo',array('id'=>$list['id'],'token'=>$token))}'}">删除</a>
+           </td>
+                </tr>
+            </weimicmslist>
+                 <tr>
+
+                </tr>
+              </tbody>
+            </table>
+            </form>
+          </div>
+          <div class="cLine">
+            <div class="pageNavigator right">
+                 <div class="pages">{weimicms:$page}</div>
+            </div>
+            <div class="clr"></div>
+          </div>
+        </div>  
+<include file="Public:footer"/>
+<script type="text/javascript">
+  $(function(){
+    $('#check_box').click(function(){
+      if($(this).attr('checked')){
+        $(':checkbox').attr('checked','true');
+      }else{
+        $(':checkbox').removeAttr('checked');
+      }
+    });
+  });
+</script>
+<script type=" text/javascript">
+  function beforeSubmit(form){
+    return confirm('确认删除所选粉丝信息？');
+  }
+</script>

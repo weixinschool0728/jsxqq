@@ -1,0 +1,38 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />
+
+<div class="content">
+
+<div class="cLineB">
+  <h4>添加主题活动</h4><a href="javascript:history.go(-1);"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a>
+ </div>
+ <!--tab start-->
+<div class="tab">
+<ul>
+<li class="tabli" id="tab2"><a href="{weimicms::U('Xinniannq/index')}">新年年签</a></li>
+<li class="tabli" id="tab20"><a href="{weimicms::U('Xinniannq/replay')}">回复信息配置</a></li>
+<li class="current tabli" id="tab2"><a href="#">添加新年年签</a></li>
+</ul>
+</div>
+<!--tab end-->        
+    <div class="msgWrap bgfc" style="margin-top:10px;">
+	  <form class="form" method="post" action=""  enctype="multipart/form-data">	 
+		<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<tbody>
+			 <tr>
+				  <th valign="top"><span class="red">*</span>年签引导链接：</th>
+				  <td><input type="text" name="nq" value="{weimicms:$info.nq}" class="px" style="width:550px;">
+					</td>
+				</tr>
+                <tr>
+				<th>&nbsp;</th>
+					<td><button type="submit" class="btnGreen" >保存</button>　<a href=""  class="btnGray vm">取消</a>　</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+  </div> 
+ 
+  
+        </div>
+<include file="Public:footer"/>

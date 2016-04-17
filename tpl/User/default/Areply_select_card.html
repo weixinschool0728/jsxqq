@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微信公众平台源码,微信机器人源码,微信自动回复源码 weimicms多用户微信营销系统</title>
+<meta http-equiv="MSThemeCompatible" content="Yes" />
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/style_2_common.css?BPm" />
+<script src="{weimicms::RES}/js/common.js" type="text/javascript"></script>
+<link href="{weimicms::RES}/css/style.css" rel="stylesheet" type="text/css" />
+ <script src="{weimicms::STATICS}/jquery-1.4.2.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak={weimicms::$apikey}"></script>
+ <link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />
+ <script src="{weimicms:$staticPath}/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{weimicms:$staticPath}/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<style>
+body{line-height:180%;}
+ul.modules li{padding:4px 10px;margin:4px;background:#efefef;float:left;width:27%;}
+ul.modules li div.mleft{float:left;width:40%}
+ul.modules li div.mright{float:right;width:55%;text-align:right;}
+</style>
+</head>
+<body style="background:#fff;padding:20px 20px;">
+<div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-bottom:5px;">使用方法：点击对应内容后面的“选中”即可完成选择。</div>
+<form action="" method="post">
+	<input type="text" class="px" name="name" placeholder="请输入卡券名称搜索" value="{weimicms:$name}"/>
+	<input type="submit" value="搜索" class="btnGrayS"/><if condition="$name neq ''">&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:clearsearch()'><span style="color:green;"></span>清空搜索条件</a></if>
+</form>
+<table class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+<thead>
+<tr>
+	<th>卡券标题</th>
+	<th>卡券介绍</th>
+	<th>所属门店</th>
+	<th style=" width:80px;">操作 <span class="tooltips" ><if condition="$usertplid eq 2"><i class="fa fa-bullhorn" style="color:#1ab394;"></i><else /><img src="{weimicms::RES}/images/price_help.png" align="absmiddle" /></if><span>
+	<p>点击“选中”即可</p>
+	</span></span>
+	</th>
+</tr>
+</thead>
+<weimicmsif where="$cardlist">
+<volist name="cardlist" id="m">
+<tr>
+	<td>{weimicms:$m.title}</td>
+	<td title="{weimicms:$m.info}">{weimicms:$m.info|mb_substr='0,10,utf-8'}</td>
+	<td>{weimicms:$m.brand_name}</td>
+	<td class="norightborder">
+		<a href="###" onclick="returnCard('{weimicms:$m.id}','{weimicms:$m.title}')">选中</a>
+	</td>
+</tr>
+</volist>
+<else/>
+<tr>
+	<td colspan="4" align="center"><a href="{weimicms::U('Member_card/coupons',array('token'=>$token))}" target="_blank" style="color:#369">没有找到回复卡券,去添加</a></td>
+</tr>
+</weimicmsif>
+</table>
+<div class="footactions" style="padding-left:10px">
+  <div class="pages">{weimicms:$page}</div>
+</div>
+<script type="text/javascript">
+// 返回数据到主页面
+function returnCard(id,title){
+	var origin = artDialog.open.origin;
+	origin.document.getElementById('card_name').value = title;
+	origin.document.getElementById('card_id').value = id;
+	setTimeout("art.dialog.close()", 100 );	
+}
+
+function clearsearch(){
+	$(":input[name='name']").val('');
+	$(".btnGrayS").click();
+}
+</script>
+</body>
+</html>

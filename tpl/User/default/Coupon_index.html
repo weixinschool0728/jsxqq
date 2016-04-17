@@ -1,0 +1,149 @@
+<include file="Public:head"/>  
+        <div class="content">
+          <div class="cLineB">
+              <h4 class="left">优惠券列表 ({weimicms:$count}) 条<span class="FAQ">你本月有 {weimicms:$group.activitynum} 次机会可免收活动创建费，已经使用了 {weimicms:$activitynum} 次机会!</span></h4>
+                 
+              <div class="clr"></div>
+          </div>
+          <div class="cLine">
+            <div class="pageNavigator left">
+  <a href='{weimicms::U('Coupon/add',array('token'=>$token))}' title='新增优惠券' class='btnGrayS vm bigbtn'><if condition="$usertplid eq 2"><i class="fa fa-hand-o-right"></i><else /><img src="{weimicms::RES}/images/product/add.png" width="16" class="vm"></if> 新增优惠券</a>
+              
+            </div>
+          
+            <div class="clr"></div>
+          </div>
+          <if condition="$usertplid eq 2">
+<div class="alert alert-success alert-dismissable" style="margin-top:20px;">
+<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+<else />
+		<div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-top:5px;"></if>
+			此优惠券活动是用会员卡中的优惠券做活动，在添加此优惠券活动前，请确认会员卡中有优惠券。
+			<br>
+			如果网友没有会员卡，在进入活动时会提醒并跳转到会员卡中心。
+			<br>
+			注：不支持微信卡券
+		</div>
+          <div class="msgWrap">
+          <form method="post"  action="" id="info" >
+          <input name="delall"  type="hidden" value="" />
+           <input name="wxid"  type="hidden" value="" />
+            <TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+              <THEAD>
+                <TR>
+<TH>名称</TH>
+<TH>关键字</TH>
+<TH>参与数</TH>
+<TH>开始/结束时间</TH>
+<TH>状态</TH>
+<TH>外链代码</TH>
+<TH class="norightborder">操作</TH>
+                </TR>
+              </THEAD>
+              <TBODY>
+                <TR></TR>
+                  <volist id="list" name="list">
+                <TR>
+   
+                  <TD>{weimicms:$list.title}</TD>
+                  <TD>{weimicms:$list.keyword}</TD> 
+                  <TD>{weimicms:$list.joinnum}</TD>                  
+                  <TD>{weimicms:$list.statdate|date='Y-m-d H:i',###}<br />{weimicms:$list.enddate|date='Y-m-d H:i',###}</TD>
+                  <TD>
+				  <if condition="$list['status'] eq 0"><span class="red">未开始</span><elseif condition="$list['status'] eq 2"/><span class="red">已经结束</span><else/><span class="green">已经开始</span></if>
+				  
+				 </TD>
+                  <TD>优惠券 {weimicms:$list.id}</TD>
+                   <TD class="norightborder">
+                   <if condition="$Think.session.is_syn eq 2">
+<if condition="$usertplid neq 2">
+                   <script type="text/javascript">
+   $(document).ready(function(){
+      var bheight=document.body.clientHeight;
+      $("#lay{weimicms:$list.id}").click(function(){
+   $("#brg{weimicms:$list.id}").css("display","block");
+   $("#showdiv{weimicms:$list.id}").css("display","block");
+   //$("#testdiv").load("test.html");
+   });
+   $("#close{weimicms:$list.id}").click(function(){
+      $("#brg{weimicms:$list.id}").css("display","none");
+   $("#showdiv{weimicms:$list.id}").css("display","none");
+   });
+   });
+ </script>
+ <style type="text/css">
+   #brg{weimicms:$list.id}{ width:100%; height:100%; background:#333; position:absolute; top:0; left:0; filter:alpha(opacity=60); -moz-opacity:0.6; opacity: 0.6; position:absolute; top:0; left:0; display:none;}
+   #showdiv{weimicms:$list.id}{z-index:20; display:none;position:fixed; *position:absolute; width:100px; height:100px; top:30%; left:50%; margin:-50px 0 0 -50px;}
+   #testdiv{weimicms:$list.id}{ width:300px; height:300px; margin:0 auto; border:1px solid #4d4d4d; background:#f2f2f2;}
+   #close{weimicms:$list.id}{width:300px; height:27px; line-height:27px; font-size:14px; font-weight:bold; border:1px solid #4d4d4d; text-align:center; cursor:pointer; margin:0 auto; background:#333; color:#fff;margin-top: 15%;}
+ </style>
+    <div id="brg{weimicms:$list.id}"></div>
+ <div id="showdiv{weimicms:$list.id}">
+   <div id="close{weimicms:$list.id}">您想关闭就点我吧</div>
+   <div id="testdiv{weimicms:$list.id}"><img src="{weimicms:$Think.session.source_domain}/wap.php?c=Wxapp&a=qrcode&id={weimicms:$list.id}&modle=Coupon" width="300" height="300" class="cateimg_small"></div>
+ </div>
+   <a id="lay{weimicms:$list.id}"  style="width:303px;">查看二维码</a><br>
+</if>
+</if>
+				   <a href="index.php?g=User&m=Coupon&a=sn&id={weimicms:$list.id}&type=3">SN码管理</a> 
+				   <a href="index.php?g=User&m=Lottery&a=cheat&id={weimicms:$list.id}">作弊</a> 
+				   <a href="index.php?g=User&m=Coupon&a=edit&id={weimicms:$list.id}">编辑</a>  
+				   <a href="
+				   <if condition="$list['status'] eq 1">				   
+				   javascript:drop_confirm('你确定要结束活动吗，结束后不可再开启本活动!', 'index.php?g=User&m=Coupon&a=endLottery&id={weimicms:$list.id}');<else/>index.php?g=User&m=Coupon&a=startLottery&id={weimicms:$list.id}   
+				   </if>">
+				   <if condition="$list['status'] eq 0">开始<else/>结束</if>				   
+				   </a>
+				  
+				   <a href="index.php?g=User&m=Coupon&a=del&id={weimicms:$list.id}">删除</a></TD>
+                </TR>
+				</volist>
+              </TBODY>
+            </TABLE>
+           </form> 
+           <script>
+   function checkvotethis() {
+var aa=document.getElementsByName('del_id[]');
+var mnum = aa.length;
+j=0;
+for(i=0;i<mnum;i++){
+if(aa[i].checked){
+j++;
+}
+}
+if(j>0) {
+document.getElementById('info').submit();
+} else {
+alert('未选中任何文章或回复！')
+}
+}
+
+   </script>
+          </div>
+            
+ 
+          <div class="cLine">
+            <div class="pageNavigator right">
+                 <div class="pages"></div>
+              </div>
+            <div class="clr"></div>
+          </div>
+        </div>
+
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+  <script>
+
+function checkAll(form, name) {
+for(var i = 0; i < form.elements.length; i++) {
+var e = form.elements[i];
+if(e.name.match(name)) {
+e.checked = form.elements['chkall'].checked;
+}
+}
+}</script>
+  <!--底部-->
+  	</div>
+<include file="Public:footer"/>

@@ -1,0 +1,82 @@
+<include file="Public:head" />
+<style>
+	.album_list {
+	overflow: hidden;
+	padding-top: 15px;
+	}
+	.album_list li {
+	border: 1px #DDD solid;
+	width: 250px;
+	float: left;
+	margin-left: 15px;
+	margin-bottom: 10px;
+	}
+	.album_list li .album_pic {
+	display: block;
+	width: 250px;
+	height: 365px;
+	overflow: hidden;
+	}
+	.album_list li .album_pic img {
+	width: 250px;
+	}
+	.album_list li .album_main {
+	padding: 10px;
+	overflow: hidden;
+	}
+	.album_list li .album_main .album_title {
+	font-size: 16px;
+	height: 20px;
+	width: 250px;
+	overflow: hidden;
+	}
+	.pull-right {
+	float: right;
+	}
+</style>
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />
+<div class="content">
+	<div class="cLineB">
+		
+<h4 class="left">新增场景 </h4>
+	</div>
+	<div class="tab">
+		<ul>
+			<li class="tabli" id="tab2"><a href="{weimicms::U('Scenes/add')}">新增场景</a>
+			</li>
+			<li class="current tabli" id="tab20"><a href="{weimicms::U('Scenes/index')}">场景管理</a>
+			</li>
+		</ul>
+	</div>
+	<div>
+		<ul class="unstyled album_list">
+			<volist name="set" id="item">
+				<li>
+					<a href="{weimicms::U('Scenes/addtp',array('id'=>$item['id'],'token'=>$token))}" class="album_pic">
+						<img src="{weimicms:$item.catp}">
+					</a>
+					<div class="album_main">
+						<p class="album_title">{weimicms:$item.name}</p>
+						<p class="album_title">浏览量：{weimicms:$item['click']/3}</p>
+						<p>	<span class="pull-right">
+				<a class="btnGray vm" href="{weimicms::U('Scenes/addtp',array('id'=>$item['id'],'token'=>$token))}" title="内页">内页</a>
+				<a class="btnGray vm" rel="tooltip" href="{weimicms::U('Scenes/edit',array('id'=>$item['id'],'token'=>$token))}" title="编辑">编辑</a>
+				
+				<a class="btnGray vm" rel="tooltip" href="#" onclick="drop_confirm('您确定要删除吗?删除不可恢复', '{weimicms::U('Scenes/del',array('id'=>$item['id'],'token'=>$token))}');" title="删除">删除</a>
+				<a class="btnGray vm" target="_blank" href="{weimicms:$f_siteUrl}/index.php?g=Wap&m=Scenes&a=index&token={weimicms:$token}&id={weimicms:$item.id}" >预览</a>
+				</span>
+
+						</p>
+					</div>
+				</li>
+			</volist>
+		</ul>
+	</div>
+	<div class="cLine">
+		<div class="pageNavigator right">
+			<div class="pages">{weimicms:$page}</div>
+		</div>
+		<div class="clr"></div>
+	</div>
+</div>
+<include file="Public:footer" />

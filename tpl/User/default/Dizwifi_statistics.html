@@ -1,0 +1,52 @@
+<include file="Public:head"/>
+<script src="{weimicms:$staticPath}/tpl/static/myChart/js/echarts-plain.js"></script>
+<div class="content">
+<div class="clr" style="height:30px;"></div>
+<div class="shuju">
+<a href="{weimicms::U('Dizwifi/index',array('token'=>$token))}" class="right btnGrayS vm" style="margin-right: 46px;margin-top: -40px;">返回设备列表</a>
+	<h2 style="font-size:20px;margin-bottom:10px;">昨日数据统计</h2>
+<div class="clr"></div>
+<div style="float:right;margin-right:45px;margin-top:-40px;">
+选择月份:
+<select name="month" id="month">
+<for start="1" end="12">
+<option value="{weimicms:$i}" <if condition="$i eq $current_month"> selected = selected </if>>{weimicms:$i}月</option>
+</for>
+</select>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+选择门店：
+<select name="shop_id" id="shop_id">
+<volist name="devices" id="vo">
+<option value="{weimicms:$vo.shop_id}">{weimicms:$vo.shop_name}</option>
+</volist>
+</select>
+</div>
+<div id="dizwifi_index" style="height:400px;width:960px;text-align:center; margin-bottom: 50px;"></div>
+</div>
+</div>
+	<div class="clr"></div>
+<script type="text/javascript">
+  $(function(){
+	var month = $("#month").val();
+	var shop_id = $("#shop_id").val();
+	$("#dizwifi_index").html("<img src='{weimicms:$staticPath}/tpl/static/seckill/images/loading.gif'/>");
+	$("#dizwifi_index").load("/index.php?g=User&m=Dizwifi&a=statistics_success&shop_id="+shop_id+"&token={weimicms:$token}&month="+month);
+
+	//设备统计变更月份
+	$("#month").change(function(){
+		var month = $("#month").val();
+		var shop_id = $("#shop_id").val();
+		$("#dizwifi_index").html("<img src='{weimicms:$staticPath}/tpl/static/seckill/images/loading.gif'/>");
+		$("#dizwifi_index").load("/index.php?g=User&m=Dizwifi&a=statistics_success&shop_id="+shop_id+"&token={weimicms:$token}&month="+month);
+	});
+	
+	//设备统计变更设备
+	$("#shop_id").change(function(){
+		var month = $("#month").val();
+		var shop_id = $("#shop_id").val();
+		$("#dizwifi_index").html("<img src='{weimicms:$staticPath}/tpl/static/seckill/images/loading.gif'/>");
+		$("#dizwifi_index").load("/index.php?g=User&m=Shakearound&a=statistics_by_device&device_id="+device_id+"&token={weimicms:$token}&month="+month);
+	});
+  });
+</script>
+<include file="Public:footer"/> 

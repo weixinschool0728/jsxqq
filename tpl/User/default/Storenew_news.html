@@ -1,0 +1,68 @@
+<if condition="$ischild neq 1">
+<include file="Public:head" />
+<else />
+<include file="Repast:head" />
+</if>
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />
+<div class="content">
+<div class="cLineB">
+<h4 class="left">新闻管理({weimicms:$page})</h4>
+<div class="clr"></div>
+</div>
+<!--tab start-->
+<div class="tab">
+<ul>
+	<li class="tabli" id="tab2"><a href="{weimicms::U('Storenew/index',array('token'=>$token))}">商品分类管理</a></li>
+	<li class="tabli" id="tab0"><a href="{weimicms::U('Storenew/product',array('token'=>$token, 'cid'=>$cid))}">商品管理</a></li>
+	<li class="tabli" id="tab2"><a href="{weimicms::U('Storenew/orders',array('token'=>$token))}">订单管理</a></li>
+	<li class="tabli" id="tab2"><a href="{weimicms::U('Storenew/set_reply',array('token'=>$token))}">新版商城回复设置</a></li>
+	<li class="tabli" id="tab2"><a href="{weimicms::U('Storenew/flash',array('token'=>$token))}">商城背景与轮播图</a></li>
+	<li class="tabli" id="tab8"><a href="{weimicms::U('Storenew/twitter',array('token'=>$token))}">商城分佣管理</a></li>
+	<li class="current tabli" id="tab8"><a href="{weimicms::U('Storenew/news',array('token'=>$token,'cid' => $cid))}">新闻管理</a></li>
+</ul>
+</div>
+<!--tab end-->
+<div class="cLine">
+<div class="pageNavigator left">
+<a href="{weimicms::U('Storenew/newsset', array('token' => $token, 'cid' => $cid))}" title="添加" class="btnGrayS vm bigbtn">
+<img src="{weimicms::RES}/images/product/add.png" width="16" class="vm">添加新闻</a>
+</div>
+<div class="pageNavigator right">
+	<a href="{weimicms::U('Storenew/news',array('token'=>$token,'cid'=>$cid))}" class="btnGrayS vm bigbtn">查看新闻</a>
+</div>
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th width="50">排序ID</th>
+<th width="200">文章标题</th>
+<th width="100">创建时间</th>
+<th width="120" class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="news" id="news"> 
+<tr>
+<td>{weimicms:$news.sort}</td> 
+<td>{weimicms:$news.title}<if condition="$news.status eq '1'"><br><font color="red">[已隐藏]</font></if></td>
+<td>{weimicms:$news.add_time|date="Y-m-d H:i:s",###}</td> 
+<td class="norightborder" align="center">
+	<a href="{weimicms::U('Storenew/newsset',array('id' => $news['id'], 'token' => $token,'cid' => $cid))}">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	<a href="javascript:drop_confirm('您确定要删除吗?', '{weimicms::U('Storenew/delnews',array('id'=>$news['id'],'token'=>$token,'cid'=>$cid))}');">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;
+</td>
+</tr>
+</volist>
+</tbody>
+</table>
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{weimicms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

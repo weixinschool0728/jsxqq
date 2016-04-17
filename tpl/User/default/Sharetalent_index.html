@@ -1,0 +1,70 @@
+﻿<include file="Public:head"/>
+<div class="content">
+          <div class="cLine">
+            <div class="pageNavigator left">
+            <a href="{weimicms::U('Sharetalent/add')}" title="添加分享活动" class="btnGrayS vm bigbtn"><img src="{weimicms::RES}/images/pic.png" class="vm">添加分享活动</a>
+             <a href="{weimicms::U('Sharetalent/sm')}" title="达人说明配置" class="btnGrayS vm bigbtn"><img src="{weimicms::RES}/images/pic.png" class="vm">达人说明配置</a>
+              <a href="{weimicms::U('Sharetalent/user')}" title="用户管理" class="btnGrayS vm bigbtn"><img src="{weimicms::RES}/images/pic.png" class="vm">用户管理</a>
+             <a href="{weimicms::U('Sharetalent/reply')}" title="首页回复配置" class="btnGrayS vm bigbtn"><img src="{weimicms::RES}/images/pic.png" class="vm">首页回复配置</a>
+            </div>
+            <div class="clr"></div>
+          </div>
+		<div class="ftip">非认证服务号，该功能的分享失效？非认证服务号无法使用本分享功能！
+		借用高级APPID的方法：<a href="http://wm.b2ctui.com/forum.php?mod=viewthread&tid=1636&page=1&extra=#pid7517" target="_blank">点击详情教程</a>
+		</div>
+		<style>
+		.ftip {
+		background: #fefbe4 url(/tpl/User/default/common/images/icons/lightbulb.gif) no-repeat 10px 16px;
+		border: 1px solid #F3ECB9;
+		padding: 6px 20px 6px 36px;
+		height: 36px;
+		font-size: 14px;
+		margin: 10px;
+		color: #993300;
+		line-height: 36px;
+		}
+		</style>
+          <div class="msgWrap">
+            <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <thead>
+                <tr>
+					
+					<th  width="20%" class="time"> 活动介绍标题</th>
+					<th width="15%">活动奖励</th>
+					
+					<th width="10%">奖励规则</th>
+                    <th width="10%">截至时间</th>
+                      <th width="10%">剩余奖品数量</th>
+                      <th width="10%">总浏览量</th>
+					
+					<th width="25%" class="norightborder">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr></tr>
+                  <volist id="list" name="info">
+                <tr>
+                  <td>{weimicms:$list.title}</td>
+                  <td>{weimicms:$list.prize}</td>
+                   <td>浏览量达到<span style="color:red">{weimicms:$list.rule}</span>人</td>
+                
+                  <td>{weimicms:$list.statdate|date='Y-m-d',###}</td>
+                  <td><span style="color:red">{weimicms:$list.number}</span></td>
+                  <td><span style="color:red">{weimicms:$list.click}</span></td>
+                  
+                  <td class="norightborder"><a class="btnGrayS vm bigbtn" href="{weimicms::U('Sharetalent/edit',array('id'=>$list['id']))}" title="编辑">编辑</a> <a class="btnGrayS vm bigbtn" href="javascript:drop_confirm('您确定要删除吗？', '{weimicms::U('Sharetalent/del',array('id'=>$list['id']))}');">删除</a> 
+                   
+				   <a  class="btnGrayS vm bigbtn" href="{weimicms::U('Sharetalent/prize',array('id'=>$list['id']))}">奖品发放</a> 
+                   </td>
+          
+                </tr>
+                  </volist>
+      			                
+                  
+              </tbody>
+            </table>
+            
+   </div> 
+          
+  </div>
+<include file="Public:footer"/>

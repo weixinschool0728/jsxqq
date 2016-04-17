@@ -1,0 +1,65 @@
+<include file="Public:head"/>
+<div class="content">
+<style>th,td{text-align:center;}</style>
+<div class="cLine">
+<div class="pageNavigator left"><a href="{weimicms::U('FrontPage/addconfigure',array('token'=>$token))}" title="配置信息" class="btnGrayS vm bigbtn">添加配置</a> </div>
+<a href="{weimicms::U('FrontPage/index',array('token'=>$token))}" class="right btnGrayS" style="margin-top:-1px;height:24px;">返回活动列表</a>
+<div class="searchbar right">
+<form method="post" action="{weimicms::U('FrontPage/listconfigure',array('token'=>$token))}">
+<input type="text" id="msgSearchInput" class="txt left" placeholder="请输入apikey搜索" name="search_word" value="{weimicms:$search_word}" style="padding:6px;width:155px;">
+<input type="submit" value="搜索" id="msgSearchBtn" href="" class="btnGrayS" title="搜索">
+</form>
+</div>
+<div class="clr"></div>
+</div>
+<div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-bottom:5px;font-size:12px;"><p>温馨提示：请登陆<a href="http://yuyin.baidu.com" target="_blank"><span style="color:red;">语音合成官网</span></a>注册成为百度开发者，点‘管理应用’填写开发者信息，填写完成后创建新应用，创建完应用后必须开通应用。</p><p style="text-indent:5em;">在创建的应用列表最上方有查看key，将key和secret key复制下来填写到添加配置里，即可完成配置。</p>
+<p style="text-indent:5em;">新创建或从未开通语音合成服务的应用，<span style="color:red;">需要开通语音合成服务之后才可以使用</span>。点击应用卡片上的”开通服务“按钮，选择 “语音合成” 服务进行开通。</p>
+</div>
+<div class="msgWrap">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>                                 
+<th width="164">请求的Key</th>
+<th width="150">请求的Secret Key</th>
+<th width="200">令牌号</th>
+<th width="50">状态</th>
+<th width="120">过期时间</th>
+<th class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<if condition="$list neq ''">
+<weimicmslist array="list" foreach="list">
+<tr>
+	<td>{weimicms:$list.apikey}</td>
+	<td>{weimicms:$list.secretkey}</td>
+	<td>{weimicms:$list.access_token}</td>
+	<?php if(time() - $list['addtime'] >  $list['expires_in']){ ?>
+	<td><span style="color:red;">已过期</span></td>
+	<?php }else{ ?>
+	<td><span style="color:green;">正常</span></td>
+	<?php } ?>
+	<td><?php echo date('Y-m-d H:i:s',($list['addtime']+ $list['expires_in']));?></td>
+	<td class="norightborder" align="center">
+		<?php if(time() - $list['addtime'] >  $list['expires_in']){ ?><a href="{weimicms::U('FrontPage/updateconfigure',array('token'=>$list['token'],'id'=>$list['id']))}">更新令牌</a>
+		| <?php } ?>
+		<a href="{weimicms::U('FrontPage/addconfigure',array('token'=>$list['token'],'id'=>$list['id']))}">编辑</a>
+		|
+		<a href="javascript:drop_confirm('您确定要删除吗?', '{weimicms::U('FrontPage/delconfigure',array('token'=>$token,'id'=>$list['id']))}');">删除</a>
+    </td>
+</tr>
+</weimicmslist>
+<else />
+<tr><td colspan="8">暂无记录</td></tr>
+</if>
+</tbody>
+</table>
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{weimicms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

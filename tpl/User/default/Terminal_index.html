@@ -1,0 +1,112 @@
+<include file="Public:head"/>  
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+  <div class="cLineB">
+    <div  class="quick-actions_homepage">
+    <ul class="quick-actions">
+      <li class="bg_lb"> <a href="/index.php?g=User&amp;m=AP&amp;a=index&amp;tab=09"> <i class="icon-rss"></i> 设备列表 </a> </li>
+      <li class="bg_dy"> <a href="/index.php?g=User&m=Policy&a=index&tab=09"> <i class="icon-cogs"></i> 策略设置</a> </li>
+      <li class="bg_lg"> <a href="/index.php?g=User&m=Terminal&a=index&tab=09"> <i class="icon-cloud"></i> 终端管理</a> </li>
+      <li class="bg_ly"> <a href="#"> <i class="icon-group"></i> 用户管理 </a> </li>
+      <li class="bg_db"> <a href="javascript:history.go(-1);"> <i class="icon-share-alt"></i> 返回</a> </li>
+    </ul>
+  </div>
+          
+              <h4 class="left">终端列表</h4>
+                  <div class="searchbar right">  <form method="get" action="index.php">
+                  <input type="text" id="msgSearchInput" class="txt left" placeholder="输入关键词搜索" name="keyz" value="">
+                  
+                  <input type="hidden" name="ac" value="mp3list">
+                  <input type="hidden" name="id" value="9878">
+                  <input type="hidden" name="wxid" value="gh_423dwjkewad">
+                 
+                  <input type="submit" value="搜索" id="msgSearchBtn" href="javascript:;" class="btn btn-info" title="搜索">
+                  </form>
+                  </div>
+              <div class="clr"></div>
+          </div>
+         
+          <div class="msgWrap">
+          <form method="post" action="index.php?ac=apilist&amp;id=9878&amp;wxid=gh_423dwjkewad" id="info">
+          <input name="delall" type="hidden" value="del">
+           <input name="wxid" type="hidden" value="gh_423dwjkewad">
+            <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <thead>
+                <tr>
+					<th class="select">选择</th>
+					<th class="">名称</th>
+					<th class="" title='将来要统计同一mac的轨迹'>MAC</th>
+					<th class="">IP</th>
+					<th class="">手机</th>
+					<th class="">性别</th>
+					<th class="">位置</th>
+					<th class="">登陆方式</th>
+					<th class="">头像</th>
+
+					<th class="">时间</th>
+					<th class="">状态</th>
+				 
+                </tr>
+              </thead>
+              <tbody>
+			  <script>
+				function delete_confirm(e) 
+					{
+						if (event.srcElement.outerText == "删除") 
+						{
+							event.returnValue = confirm("删除是不可恢复的，你确认要删除吗？");
+						}
+					}
+			  </script>
+			  <volist name="list" id="o">
+                <tr>
+                  <td>  <input type="checkbox" name="del_id[]" value="{weimicms:$o.id}" class="checkitem"></td>
+                  <td>{weimicms:$o.name}</td>
+                  <td>{weimicms:$o.mac}</td>
+                   <td>{weimicms:$o.ip}</td>
+                    <td>{weimicms:$o.mobile}</td>
+					 <td>{weimicms:$o.gender}</td>
+					<td>{weimicms:$o.apnode_id}</td>
+					<td>{weimicms:$o.auth_type}</td>
+					 <td>{weimicms:$o.head}</td>
+                    <td>{weimicms:$o.start}</td>
+                    <td><if condition="$o['type'] eq 'online'">在线<else/><i style='color:#cccccc'>离线</i></if></td>
+                   
+				</tr>
+				</volist>
+              
+              </tbody>
+            </table>
+           </form> 
+           <script>
+   function checkvotethis() {
+var aa=document.getElementsByName('del_id[]');
+var mnum = aa.length;
+j=0;
+for(i=0;i<mnum;i++){
+if(aa[i].checked){
+j++;
+}
+}
+if(j>0) {
+document.getElementById('info').submit();
+} else {
+alert('未选中任何文章或回复！')
+}
+}
+
+   </script>
+          </div>
+            
+
+
+ 
+ 
+          <div class="cLine">
+            <div class="pageNavigator right">
+                 <div class="pages"></div>
+              </div>
+            <div class="clr"></div>
+          </div>
+        </div>  <!--底部-->
+  	</div>
+<include file="Public:footer"/>

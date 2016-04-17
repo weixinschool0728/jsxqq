@@ -1,0 +1,52 @@
+<include file="Public:head"/>  
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+        <div class="content">
+<div class="cLineB">
+<h4 class="left">添加新年年签管理</h4>
+<div class="clr"></div>
+</div>
+<!--tab start-->
+<div class="tab">
+<ul>
+<li class="tabli current" id="tab0"><a href="#">新年年签</a></li>
+<li class="tabli" id="tab2"><a href="{weimicms::U('Xinniannq/replay')}">回复配置信息</a></li>
+</ul>
+</div>
+<!--tab end-->
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<div class="cLine">
+<div class="pageNavigator left"> <a href="{weimicms::U('Xinniannq/add')}" title="" class="btnGrayS vm bigbtn"><img src="{weimicms::RES}/images/product/add.png" class="vm">添加新年年签</a></div>
+<div class="clr"></div>
+</div>
+
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th width="120">新年年签</th>
+<th width="80" class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="info" id="o"> 
+<tr>
+<td>{weimicms:$o.nq}</td>
+<td class="norightborder">&nbsp;&nbsp;<a href="{weimicms::U('Xinniannq/edit',array('id'=>$o['id']))}">修改</a> <a href="javascript:drop_confirm('您确定要删除吗?', '{weimicms::U('Xinniannq/delete',array('id'=>$o['id']))}');">删除</a></td>
+</tr>
+</volist>
+</tbody>
+</table>
+</form>
+
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{weimicms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

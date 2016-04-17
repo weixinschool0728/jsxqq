@@ -1,0 +1,102 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<link rel="stylesheet" type="text/css" href="{weiwo::RES}/css/cymain.css" />
+<script src="{weiwo::STATICS}/kindeditor/kindeditor.js" type="text/javascript"></script>
+<script src="{weiwo::STATICS}/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+<script src="{weiwo::STATICS}/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script>
+var editor;
+KindEditor.ready(function(K) {
+editor = K.create('#info', {
+resizeType : 1,
+allowPreviewEmoticons : false,
+allowImageUpload : true,
+uploadJson : '/index.php?g=Apps&m=Upyun&a=kindedtiropic',
+items : [
+						'source','fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+						'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+						'insertunorderedlist', '|', 'emoticons', 'image', 'link', 'music', 'video']
+});
+});
+</script>
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top: -30px; " >
+<include file="Public:hudong"/>
+  <h4>销售顾问编辑</h4>
+ </div>
+ <!--tab start-->
+<div class="tab">
+<ul id="tags">
+<li class="tabli" id="tab2"><a href="{weiwo::U('Xiaoshou/index')}">销售顾问列表</a></li
+>
+<li class="current tabli" id="tab2"><a href="#">编辑销售顾问</a></li>
+<li class="tabli" id="tab20"><a href="{weiwo::U('Xiaoshou/index')}">回复信息配置</a></li>
+<li class="tabli" id="tab2"><a href="{weiwo::U('Xiaoshou/styleSet')}">模板选择</a></li>
+</ul>
+</div>
+<!--tab end-->        
+    <div class="msgWrap bgfc" style="">
+	  <form class="form" method="post" action=""  enctype="multipart/form-data">	 
+		<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<tbody>
+             <tr>
+				  <th width="120" valign="top"><span class="red">*</span>销售姓名：</th>
+				  <td><input type="text" value="{weiwo:$info.name}" name="name" class="px" style="width:550px;">
+					</td>
+				</tr>
+             <tr>
+					<th><span class="red">*</span>销售头像：</th>
+					<td><input type="text" id="pic" name="banner"  value="{weiwo:$info.banner}" class="px" style="width:550px;"> <script src="/tpl/static/upyun.js?2013"></script>
+<a href="javascript:void(0)" onclick="upyunPicUpload('pic',700,420,'{weiwo:$token}')" class="ChooseImage">上传</a>
+<a href="#" onclick="viewImg('pic')" class="ChooseImage">预览</a>&nbsp;&nbsp;&nbsp;&nbsp;
+					</td>
+				</tr>
+                <tr>
+				  <th valign="top"><span class="red">*</span>手机：</th>
+				  <td><input type="text" value="{weiwo:$info.mb}" name="mb" class="px" style="width:550px;">
+					</td>
+				</tr>
+                <tr>
+				  <th valign="top">微信：</th>
+				  <td><input type="text" value="{weiwo:$info.weixin}" name="weixin" class="px" style="width:550px;">
+					</td>
+				</tr>
+                <tr>
+				  <th valign="top">电话：</th>
+				  <td><input type="text" value="{weiwo:$info.tel}" name="tel" class="px" style="width:550px;">
+					</td>
+				</tr>
+                <tr>
+				  <th valign="top">邮箱：</th>
+				  <td><input type="text" value="{weiwo:$info.email}" name="email" class="px" style="width:550px;">
+					</td>
+				</tr>
+                <tr>
+				  <th valign="top">微博：</th>
+				  <td><input type="text" value="{weiwo:$info.weibo}" name="weibo" class="px" style="width:550px;">
+					</td>
+				</tr>
+                <tr>
+				  <th valign="top">地址：</th>
+				  <td><input type="text" value="{weiwo:$info.ad}" name="ad" class="px" style="width:550px;">
+					</td>
+				</tr>
+                <tr>
+					<th>排序：</th>
+					<td><input name="sort" class="px" value="{weiwo:$info.sort}" style="width:350px;" type="text"></td>
+				</tr>
+                <tr>
+				<th>&nbsp;</th>
+					<td>
+						<button type="submit" name="button" class="btn btn-success">保存</button>
+						<a href="javascript:history.go(-1);" class="btn btn-danger">取消</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+  </div> 
+        </div>
+<include file="Public:footer"/>

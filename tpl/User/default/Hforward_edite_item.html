@@ -1,0 +1,24 @@
+<include file="Public:head"/>
+<script src="{weimicms::RES}/js/date/WdatePicker.js" type="text/javascript"></script>
+<script src="{weimicms::STATICS}/vote/common.js" type="text/javascript"></script>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default" type="text/javascript"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js" type="text/javascript"></script>
+
+<div class="content">
+        
+<div class="msgWrap">
+      
+  <form action="" method="post" enctype="multipart/form-data">
+  <input type="hidden" name="fid" value="{weimicms:$item.fid}" />
+  <input type="hidden" name="id" value="{weimicms:$item.id}" />
+  姓名：<input type="text"  value="{weimicms:$item.name}" name="name"/><br/>
+  电话：<input type="text"  value="{weimicms:$item.phone}" name="phone"/><br/>
+  点击数：<input type="text"  value="<if condition="$item['tongji'] eq ''">0<else/>{weimicms:$item.tongji}</if>" name="tongji"/><br/> 
+  ip:<textarea class="px" id="ip" name="ip" style="width: 560px; height: 120px; ">{weimicms:$item.ip}</textarea><br /> 
+  <input type="submit" name="提交" value="提交" class="btn btn-primary btn_submit J_ajax_submit_btn"/>
+  </form>          
+
+</div> 
+          
+  </div>
+<include file="Public:footer"/>

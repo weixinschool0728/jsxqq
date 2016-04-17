@@ -1,0 +1,107 @@
+<include file="Public:head"/> 
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />
+        <div class="content">
+<div class="cLineB">
+<h4 class="left">玩家列表</h4>
+<a href="<?php echo U('User/YouSetDiscount/index',array('token'=>$token));?>" class="right btnGrayS vm">返回</a>
+<div class="clr"></div>
+</div>
+<div class="tab">
+	<ul>
+		<li class="<?php if($_GET['ydj'] != 'go'){echo 'current ';}?>tabli" id="tab1"><a href="{weimicms::U('User/YouSetDiscount/data',array('token'=>$token,'id'=>$_GET['id']))}">未兑奖</a></li>
+		<li class="<?php if($_GET['ydj'] == 'go'){echo 'current ';}?>tabli" id="tab2"><a href="{weimicms::U('User/YouSetDiscount/data',array('token'=>$token,'id'=>$_GET['id'],'ydj'=>'go'))}">取消兑奖</a></li>
+	</ul>
+</div>
+<div class="cLine">
+	<div class="searchbar left">
+		<input type="text" id="msgSearchInput" class="txt left" placeholder="输入兑奖码搜索" name="search" value="<?php echo $_GET['search'];?>" style="margin-top:13px">
+		<a value="搜索" id="msgSearchBtn" href="javascript:search();" class="btnGrayS" title="搜索" style="margin-top:10px">搜索</a>
+	</div>
+	<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<input name="delall" type="hidden" value="">
+<input name="wxid" type="hidden" value="">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th width="160">兑奖码</th>
+<th width="160">昵称</th>
+<th width="160">手机号码</th>
+<th width="100">优惠值</th>
+<th width="150">参与时间</th>
+<?php if($info['discount_type']==1){?>
+<th width="150">兑换档次</th>
+<?php }?>
+<th width="160" class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="list" id="item" key="key"> 
+<tr>
+	<td><?php echo 10000000 + $item['id'];?></td>
+	<td><?php echo $item['userinfo']['wechaname']?$item['userinfo']['wechaname']:'匿名';?></td>
+	<td><?php echo $item['userinfo']['tel']?$item['userinfo']['tel']:'无';?></td>
+	<td>
+	<?php if($info['discount_type']==1){?>
+	<?php echo round($item['discount'],2).'元';?>
+	<?php }else{?>
+		<?php if((10 - $item['discount']) < $info['discount_min']){?>
+		<?php echo $info['discount_min'].'折';?>
+		<?php }else{?>
+		<?php echo round((10 - $item['discount']),2).'折';?>
+		<?php }?>
+	<?php }?>
+	</td>
+	<td>{weimicms:$item.addtime|date="Y-m-d H:i:s",###}</td>
+	<?php if($info['discount_type']==1){?>
+	<td>
+		<select name="direction{weimicms:$item.id}" id="direction{weimicms:$item.id}">
+			<option value="">请选择优惠兑换档次</option>
+			<volist name="direction" id="div">
+				<option value="{weimicms:$div.id}" <?php if($item['did'] == $div['id']){echo 'selected';}?>>满{weimicms:$div.at_least}元可抵{weimicms:$div.discount}元</option>
+			</volist>
+		</select>
+	</td>
+	<?php }?>
+	<td class="norightborder">
+	<?php if($info['discount_type']==1){?>
+		<a href="javascript:jineduihuan('{weimicms:$item.id}','是否更改此人兑奖状态？','<?php echo U('User/YouSetDiscount/duijiang',array('token'=>$token,'yid'=>$_GET['id'],'id'=>$item['id'],'state'=>$item['state'],'ydj'=>$_GET['ydj']));?>')"><?php echo $item['state']?'已兑奖':'兑奖';?></a>
+	<?php }else{?>
+		<a href="javascript:drop_confirm('是否更改此人兑奖状态？','<?php echo U('User/YouSetDiscount/duijiang',array('token'=>$token,'yid'=>$_GET['id'],'id'=>$item['id'],'state'=>$item['state'],'ydj'=>$_GET['ydj']));?>')"><?php echo $item['state']?'已兑奖':'兑奖';?></a>
+	<?php }?>
+	</td>
+</tr>
+</volist>
+</tbody>
+</table>
+</form>
+
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{weimicms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<script>
+$(function(){});
+function search(){
+	var search = $('input[name=search]').val();
+	window.location.href='<?php echo U('User/YouSetDiscount/data',array('token'=>$token,'id'=>$_GET['id'],'ydj'=>$_GET['ydj']));?>&search='+search;
+}
+function jineduihuan(id, msg, url){
+    if(confirm(msg)){
+		var direction_id = $("#direction"+id).val();
+		if(direction_id == ''){
+			alert('请选择优惠兑换档次');
+		}else{
+			window.location = url+'&direction_id='+direction_id;
+		}
+    }
+}
+</script>
+<include file="Public:footer"/>

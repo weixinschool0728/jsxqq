@@ -1,0 +1,91 @@
+<include file="Public:head"/>
+<include file="Public:hudong"/>
+  <h4>现场赛马活动设置<span class="FAQ">每次只能开启一个活动，上个活动未结束不能创建下个活动!使用方法：发送sm+名字进入活动现场，例如:yyy张三</span></h4>
+  
+ </div>
+         <div class="cLineC" style="line-height: 32px;">
+ <a href="{weimicms::U('Horse/add')}" class="btnGrayS vm bigbtn" >添加活动</a>　 
+</div>
+ 
+ <div class="msgWrap form">
+
+<div class="bdrcontent">
+<div id="div_ptype">
+<table class="ListProduct" border="0" style="margin-bottom:20px; border:2px #333 solid" cellSpacing="0" cellPadding="0" width="100%">
+<thead>
+<tr>
+<th style=" width:180px;">正在进行的活动名称</th>                 
+<th style=" width:110px;">客户端发送间隔</th>
+<th>前台发送间隔</th>
+<th>前台显示人数</th>
+<th>前台背景图片</th>
+<th>摇晃类型</th>
+<th style=" width:150px;" class="norightborder">操作</th>
+</tr>
+</thead>
+
+<tr>
+<if condition="$actinfo neq NULL">
+<td>{weimicms:$actinfo.acttitle}</td>
+<td>{weimicms:$actinfo.clienttime}</td>
+<td>{weimicms:$actinfo.showtime}</td>
+<td>{weimicms:$actinfo.shownum}</td>
+<td><img style="width:100px" src="{weimicms:$actinfo.pass}"></td>
+<td>{weimicms:$actinfo.shaketype}</td>
+<td class="norightborder">
+    <if condition="$actinfo['isopen'] eq 0"> 
+    <a href="{weimicms::U('Horse/change',array('id'=>$actinfo['id'],'actid'=>0,'token'=>$_SESSION['token']))}">启动</a>
+    <else /> <a href="{weimicms::U('Horse/change',array('id'=>$actinfo['id'],'actid'=>1,'token'=>$_SESSION['token']))}">停止</a>
+    <a target="_blank" href="{weimicms::U('Horse/show',array('token'=>$_SESSION['token']))}">前台</a>
+    </if>
+    <a href="{weimicms::U('Horse/edit',array('id'=>$actinfo['id'],'token'=>$_SESSION['token']))}" >编辑</a>
+    <a href="{weimicms::U('Horse/change',array('id'=>$actinfo['id'],'actid'=>2,'token'=>$_SESSION['token']))}" title="统计活动人数并关闭活动，无法再次开启">关闭</a>
+</td>
+<else />
+<td colspan="7" style="text-align:center">目前没有进行中的活动哦</td>
+</if>
+</tr>
+
+</table>
+
+<table class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+<thead>
+<tr>
+<th style=" width:120px;">过往活动名称</th>                 
+<th style=" width:70px;">结束时间</th>
+<th>参与人数</th>
+<th>摇晃类型</th>
+<th style=" width:100px;" class="norightborder">操作</th>
+</tr>
+</thead>
+<volist name="info" id="vo">
+<tr>
+<td>{weimicms:$vo.acttitle}</td>
+<td>{weimicms:$vo.endtime|date="Y-m-d",###}</td>
+<td>{weimicms:$vo.joinnum}</td>
+<td>{weimicms:$vo.shaketype}</td>
+<td class="norightborder">
+	<a target="ddd" href="{weimicms::U('Horse/check',array('id'=>$vo['id'],'token'=>$_SESSION['token']))}">查看成绩</a>
+	<a href="{weimicms::U('Horse/delold',array('id'=>$vo['id']))}">删除</a>
+</td>
+</tr>
+</volist>
+               
+  </table>
+</div>
+</div>
+<div class="footactions" style="padding-left:10px">
+  <div class="pages">{weimicms:$page}</div>
+</div>
+          </div>
+  
+        </div>
+   
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div> 
+  <!--底部-->
+  	</div>
+
+<include file="Public:footer"/>

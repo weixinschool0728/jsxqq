@@ -1,0 +1,71 @@
+<include file="Public:head"/> 
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />
+        <div class="content">
+<div class="cLineB">
+<h4 class="left">助力排行榜</h4>
+<a href="<?php echo U('User/Helping/index',array('token'=>$token));?>" class="right btnGrayS vm">返回</a>
+<div class="clr"></div>
+</div>
+<div class="cLine">
+	<div class="searchbar left">
+		<input type="text" id="msgSearchInput" class="txt left" placeholder="输入手机号搜索" name="search" value="<?php echo $_GET['search'];?>" style="margin-top:13px">
+		<a value="搜索" id="msgSearchBtn" href="javascript:search();" class="btnGrayS" title="搜索" style="margin-top:10px">搜索</a>
+	</div>
+	<div class="searchbar right">
+		<a value="导出Excel" id="msgSearchBtn" href="<?php echo U('User/Helping/excel',array('token'=>$token,'id'=>$_GET['id']));?>" class="btnGrayS" title="导出Excel" style="margin-top:10px">导出Excel</a>
+	</div>
+	<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<input name="delall" type="hidden" value="">
+<input name="wxid" type="hidden" value="">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th width="160">排名</th>
+<th width="160">昵称</th>
+<th width="160">手机号码</th>
+<th width="100">转发数</th>
+<th width="100">浏览量</th>
+<th width="100">助力值</th>
+<th width="150">参与时间</th>
+<th width="160" class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="list" id="item" key="key"> 
+<tr>
+<td>{weimicms:$paiming[$item['id']]}</td>
+<td>{weimicms:$item.nickname}</td>
+<td>{weimicms:$item.mobile}</td>
+<td>{weimicms:$item.share_num}</td>
+<td>{weimicms:$item.pv}</td>
+<td>{weimicms:$item.help_count}点</td>
+<td>{weimicms:$item.add_time|date="Y-m-d H:i:s",###}</td> 
+<td class="norightborder">
+	<a href="javascript:drop_confirm('您确定要删除吗?', '{weimicms::U('Helping/rank_del',array('id'=>$item['id'],'token'=>$token))}');">删除</a>
+</td>
+</tr>
+</volist>
+</tbody>
+</table>
+</form>
+
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{weimicms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<script>
+$(function(){});
+function search(){
+	var search = $('input[name=search]').val();
+	window.location.href='<?php echo U('Helping/rank',array('token'=>$token,'id'=>$_GET['id']));?>&search='+search;
+}
+</script>
+<include file="Public:footer"/>

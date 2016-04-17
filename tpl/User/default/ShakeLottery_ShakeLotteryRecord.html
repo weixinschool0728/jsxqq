@@ -1,0 +1,267 @@
+<include file="Public:head"/>
+
+<div class="content">
+
+<div class="cLineB">
+
+<h4 class="left">摇奖记录</h4><a href="{weimicms::U('ShakeLottery/index')}" class="right btnGrayS vm" style="margin-top:-7px">返回活动列表</a>
+
+<div class="clr"></div>
+
+</div>
+
+<style>
+
+th,td{text-align:center;}
+
+.btncurry{
+
+    background-color: #ebf3e4 !important;
+
+    background-image: none !important;
+
+    border: 1px solid #e6e7ec !important;
+
+    border-radius: 4px !important;
+
+    color: #222 !important;
+
+    cursor: pointer !important;
+
+    display: inline-block !important;
+
+    font-size: 14px !important;
+
+    overflow: visible !important;
+
+    padding: 4px 12px !important;
+
+    text-shadow: none !important;
+
+}
+
+.btnnocurry{
+
+    background-color: #f4f5f9 !important;
+
+    background-image: none !important;
+
+    border: 1px solid #e6e7ec !important;
+
+    border-radius: 4px !important;
+
+    color: #222 !important;
+
+    cursor: pointer !important;
+
+    display: inline-block !important;
+
+    font-size: 14px !important;
+
+    overflow: visible !important;
+
+    padding: 4px 12px !important;
+
+    text-shadow: none !important;
+
+}
+
+</style>
+
+<div class="cLine">
+
+<a href="{weimicms::U('ShakeLottery/ShakeLotteryRecord',array('token'=>$token,'aid'=>$id,'type'=>'win','prize_type'=>1))}" class="<php>if($type == 'win' || $type == ''){ echo 'btncurry';}else{ echo 'btnnocurry';}</php> vm">其他奖品中奖记录</a><if condition="$winxintype eq 3">  <a href="{weimicms::U('ShakeLottery/ShakeLotteryRecord',array('token'=>$token,'aid'=>$id,'type'=>'hongbao','prize_type'=>2))}" class="<php>if($type == 'hongbao'){ echo 'btncurry';}else{ echo 'btnnocurry';}</php> vm">红包中奖记录</a></if> <a href="{weimicms::U('ShakeLottery/ShakeLotteryRecord',array('token'=>$token,'aid'=>$id,'type'=>'lose'))}" class="<php>if($type == 'lose'){ echo 'btncurry';}else{ echo 'btnnocurry';}</php> vm">未中奖记录</a>  
+
+<div class="searchbar right">
+
+<form method="post" action="{weimicms::U('ShakeLottery/ShakeLotteryRecord',array('token'=>$token,'aid'=>$id,'type'=>$type,'prize_type'=>1))}">
+
+<input type="text" id="msgSearchInput" class="txt left" placeholder="输入微信昵称搜索" name="search_word" value="{weimicms:$search_word}" style="padding:6px;width:155px;">
+
+<input type="submit" value="搜索" id="msgSearchBtn" href="" class="btnGrayS" title="搜索">
+
+</form>
+
+</div>
+
+<div class="clr"></div>
+
+</div>
+
+<div class="msgWrap">
+
+<if condition="$type == 'win' || $type == ''">
+
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+
+<thead>
+
+<tr>                                 
+
+<th width="30">序号</th>
+
+<th width="70">奖品名称</th>
+
+<th width="70">微信昵称</th>
+
+<th width="70">手机号</th>
+
+<th width="100">摇奖时间</th>
+
+<th width="52">是否中奖</th>
+
+<th width="52">是否领取</th>
+
+<th width="100">领取时间</th>
+
+<th class="norightborder" width="200">操作</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr></tr>
+
+<if condition="$list neq ''">
+
+<volist name="list" id="list" key="k">
+
+<tr>
+
+	<td><php>echo ($k+$firstRow);</php></td>
+
+	<td>{weimicms:$list.prizename}</td>
+
+	<td>{weimicms:$list.wecha_name}</td>
+
+	<td>{weimicms:$list.phone}</td>
+
+	<td>{weimicms:$list.shaketime|date="Y-m-d H:i:s",###}</td>
+
+	<td><if condition="$list.iswin eq 1">中奖<else />未中奖</if></td>
+
+	<td>
+
+		<if condition="$list.isaccept eq 1 ">
+
+			<span style="color:green;">已领取</span>
+
+		<else/>
+
+			<span style="color:red;">未领取</span>
+
+		</if>
+
+	</td>
+
+	<td><if condition="$list.isaccept eq 1">{weimicms:$list.accepttime|date="Y-m-d H:i:s",###}<else />---</if></td>
+
+	<td class="norightborder" align="center">
+
+	<a href="{weimicms::U('ShakeLottery/EditRecord',array('id'=>$list['id'],'aid'=>$list['aid']))}">编辑领取状态</a>|
+
+		<a href="javascript:drop_confirm('您确定要删除吗?', '{weimicms::U('ShakeLottery/DelRecord',array('id'=>$list['id'],'aid'=>$list['aid'],'type'=>$type,'prize_type'=>1))}');">删除</a>
+
+    </td>
+
+</tr>
+
+</volist>
+
+<else />
+
+<tr><td colspan="9">暂无记录</td></tr>
+
+</if>
+
+</tbody>
+
+</table>
+
+</if>
+
+<if condition="$type == 'lose'">
+
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+
+<thead>
+
+<tr>                                 
+
+<th width="30">序号</th>
+
+<th width="70">微信昵称</th>
+
+<th width="70">手机号</th>
+
+<th width="100">摇奖时间</th>
+
+<th width="52">是否中奖</th>
+
+<th class="norightborder" width="200">操作</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr></tr>
+
+<if condition="$list neq ''">
+
+<volist name="list" id="list" key="k">
+
+<tr>
+
+	<td><php>echo ($k+$firstRow);</php></td>
+
+	<td>{weimicms:$list.wecha_name}</td>
+
+	<td>{weimicms:$list.phone}</td>
+
+	<td>{weimicms:$list.shaketime|date="Y-m-d H:i:s",###}</td>
+
+	<td><if condition="$list.iswin eq 1">中奖<else />未中奖</if></td>
+
+	<td class="norightborder" align="center">
+
+	<a href="javascript:drop_confirm('您确定要删除吗?', '{weimicms::U('ShakeLottery/DelRecord',array('id'=>$list['id'],'aid'=>$list['aid'],'type'=>$type))}');">删除</a>
+
+    </td>
+
+</tr>
+
+</volist>
+
+<else />
+
+<tr><td colspan="9">暂无记录</td></tr>
+
+</if>
+
+</tbody>
+
+</table>
+
+</if>
+
+</div>
+
+<div class="cLine">
+
+<div class="pageNavigator right">
+
+<div class="pages">{weimicms:$page}</div>
+
+</div>
+
+<div class="clr"></div>
+
+</div>
+
+</div>
+
+<include file="Public:footer"/>

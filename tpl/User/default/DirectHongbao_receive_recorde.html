@@ -1,0 +1,115 @@
+<include file="Public:head"/>
+
+<div class="content">
+
+<div class="cLineB">
+
+  <h4>红包领取记录列表</h4><a href="{weimicms::U('DirectHongbao/index',array('token'=>$token))}" class="right btnGrayS vm" style="margin-top:-27px">返回红包列表</a></div>
+
+<div class="cLine">
+
+<div class="searchbar right">
+
+<form method="post" action="{weimicms::U('DirectHongbao/receive_recorde',array('token'=>$token,'hid'=>$hid))}">
+
+<input type="text" id="msgSearchInput" class="txt left" placeholder="输入号单或昵称搜索" name="search_word" value="{weimicms:$search_word}" style=" width: 175px;height:25px;">
+
+<input type="submit" value="搜索" id="msgSearchBtn" href="" class="btnGrayS" title="搜索">
+
+</form>
+
+</div>
+
+<div class="clr"></div>
+
+</div>
+
+   <div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-bottom:5px;font-size:12px;"></if>温馨提示：红包未领取会退款到您的微信商户平台账户中，退款日期一般是在发送红包日期的3天后，可能有延迟。
+
+</div>
+
+<div class="msgWrap">
+
+<form method="post" action="" id="info">
+
+<input name="delall" type="hidden" value="1">
+
+<input name="wxid" type="hidden" value="">
+
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+
+<thead>
+
+<tr>                                 
+
+	<th width="110">商户号单</th>
+
+	<th width="80">粉丝昵称</th>
+
+	<th width="60">金额</th>
+
+	<th width="50">红包类型</th>
+
+	<th width="200"class="norightborder">操作</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<if condition="$list neq ''">
+
+<weimicmslist array="list" foreach="list">
+
+<tr>
+
+	<td>{weimicms:$list.mch_billno}</td>
+
+	<td>{weimicms:$list.fans_nickname}</td>
+
+	<td>{weimicms:$list.money}</td>
+
+	<td><if condition="$list['hb_type'] eq 1">普通红包<else />裂变红包</if></td>
+
+	<td class="norightborder" align="center">
+
+	<a href="{weimicms::U('DirectHongbao/record_details',array('token'=>$token,'id'=>$list['id'],'hid'=>$hid))}">领取详情</a>
+
+	<a href="javascript:drop_confirm('您确定要删除吗?', '{weimicms::U('DirectHongbao/del_record',array('token'=>$token,'hid'=>$list['hid'],'id'=>$list['id']))}');">删除</a>
+
+    </td>
+
+</tr>
+
+</weimicmslist>
+
+<else />
+
+<tr><td align="center" colspan="6">暂无记录</td></tr>
+
+</if>
+
+</tbody>
+
+</table>
+
+</form>
+
+</div>
+
+<div class="cLine">
+
+<div class="pageNavigator right">
+
+<div class="pages">{weimicms:$page}</div>
+
+</div>
+
+<div class="clr"></div>
+
+</div>
+
+</div>
+
+<include file="Public:footer"/>

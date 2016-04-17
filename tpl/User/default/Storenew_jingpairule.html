@@ -1,0 +1,74 @@
+<if condition="$ischild neq 1">
+<include file="Public:head" />
+<else />
+<include file="Repast:head" />
+</if>
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />
+<div class="content">
+<div class="cLineB">
+<h4 class="left">竞拍出价详情({weimicms:$page})</h4>
+<div class="clr"></div>
+</div>
+<!--tab start-->
+<div class="tab">
+<ul>
+	<li class="tabli" id="tab2"><a href="{weimicms::U('Storenew/jingpaiset', array('token' => $token, 'cid' => $cid))}">添加竞拍商品</a></li>
+	<li class="current tabli" id="tab8"><a href="{weimicms::U('Storenew/jingpai',array('token'=>$token,'cid' => $cid))}">竞拍管理</a></li>
+	<li class="tabli" id="tab2"><a href="{weimicms::U('Storenew/jingpaiorders',array('token'=>$token,'cid'=>$cid))}">竞拍订单</a></li>
+	<li class="tabli" id="tab2"><a href="{weimicms::U('Storenew/xin',array('token'=>$token,'cid'=>$cid))}">竞拍设置</a></li>
+</ul>
+</div>
+<!--tab end-->
+<div class="cLine">
+<div class="pageNavigator left">
+<a href="{weimicms::U('Storenew/jingpaiset', array('token' => $token, 'cid' => $cid))}" title="添加" class="btnGrayS vm bigbtn">
+<img src="{weimicms::RES}/images/product/add.png" width="16" class="vm">添加竞拍商品</a>
+</div>
+<div class="pageNavigator right">
+	<a href="{weimicms::U('Storenew/jingpai',array('token'=>$token,'cid'=>$cid))}" class="btnGrayS vm bigbtn">返回</a>
+</div>
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<input name="delall" type="hidden" value="">
+<input name="wxid" type="hidden" value="">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th class="select">选择</th>
+<th width="200">最后出价人</th>
+<th width="120">手机</th>
+<th width="100">竞拍出价</th>
+<th width="80">状态</th>
+<th width="120">出价时间</th>
+<th width="150" class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="list" id="hostlist"> 
+<tr>
+<td><input type="checkbox" name="del_id[{weimicms:$i}]" value="285" class="checkitem"></td>
+<td>{weimicms:$hostlist.truename}<if condition="$hostlist.sub neq 1"><font color=red> (未关注)</font></if></td>
+<td>{weimicms:$hostlist.tel}</td>
+<td>{weimicms:$hostlist.price}</td>
+<td><if condition="$hostlist.is_frist eq '1'">领先<else/>出局</if></td>
+<td>{weimicms:$hostlist.dateline|date="Y-m-d H:i:s",###}</td> 
+<td class="norightborder" align="center">
+	<a href="javascript:drop_confirm('您确定要删除吗?', '{weimicms::U('Storenew/deljingpaiuser',array('pid'=>$hostlist['pid'],'token'=>$token,'cid'=>$cid,'id'=>$hostlist['id']))}');">删除</a>
+</td>
+</tr>
+</volist>
+</tbody>
+</table>
+</form>
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{weimicms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

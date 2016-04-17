@@ -1,0 +1,64 @@
+<include file="Index:header"/>
+<div id="content" style="margin-top:80px; margin-left:15px;">
+  <div id="content-header">
+  </div>
+  <div  class="quick-actions_homepage">
+    <ul class="quick-actions">
+      <li class="bg_lb"> <a href="{weiwin::U('Index/add')}"> <i class="icon-plus-sign"></i> 添加微信公众帐号 </br> 体验智能微信 </a> </li>
+      <li class="bg_lg"> <a href="{weiwin::U('Index/autobind_add')}"> <i class="icon-user"></i> 一键智能绑定公众号 </br> 高效快速</a> </li>
+      <li class="bg_ly"> <a href="http://shang.qq.com/wpa/qunwpa?idkey=b750c63204f476015aa374228fff5ba9f82e8d863dec74e5b772011d32500740"> <i class=" icon-thumbs-up"></i> 官方QQ群 </br> {weiwin::C('site_qq')} </a> </li>
+      <li class="bg_lo"> <a href="{weiwin::U('Alipay/index')}"> <i class="icon-money"></i> 在线充值 </br> 体验更多功能 </a> </li>
+      <li class="bg_ls"> <a href="{weiwin::U('Home/Index/help',array('id'=>$vo['id'],'token'=>$vo['token']))}"> <i class="icon-random"></i> 手动绑定帐号 </br> 查看手动绑定教程</a> </li>
+    </ul>
+  </div>
+  </div>
+  <div class="widget-box">
+            <div class="alert alert-error">
+              <button class="close" data-dismiss="alert">×</button>
+              <strong>{weiwin::C('site_name')}申明!</strong> {weiwin::C('site_name')}没有在淘宝等平台售卖任何源码，任何以{weiwin::C('site_name')}名义进行交易的都是骗子，请不要上当受骗。使用破解版会带来各种服务器的不稳定安全因素。唯一官网：{weiwin::C('site_url')}</div>
+    <div class="row-fluid">
+      <div class="span6">
+        <div class="widget-box">
+          <div class="widget-title bg_ly" data-toggle="collapse" href="#collapseG2"><span class="icon"><a href="#" target="_blank" class="vipimg vip-icon<php>echo $userinfo['taxisid']-1;</php>" title=""></a></span>
+            <h5>用户：{weiwin:$Think.session.uname}</h5>
+          </div>
+          <div class="widget-content nopadding collapse in" id="collapseG2">
+            <ul class="recent-posts">
+            
+            <volist name="info" id="vo"> 
+              <li>
+                <div class="user-thumb"><img src="{weiwin:$vo.headerpic}" width="40" height="40"></div>
+                <div class="article-post"><div class="fr"><a href="{weiwin::U('Index/edit',array('id'=>$vo['id']))}" class="btn btn-primary btn-mini">编辑</a> <a href="{weiwin::U('Function/index',array('id'=>$vo['id'],'token'=>$vo['token']))}" class="btn btn-success btn-mini">功能管理</a> <a href="javascript:drop_confirm('你确定要删除本帐号吗，删除会清除所有资料和设置!', 'index.php?g=User&m=Index&a=del&id={weiwin:$vo.id}');" class="btn btn-danger btn-mini">删除</a></div><span class="user-info"><span class="by label">{weiwin:$vo.wxname}</span> 等级：<img src="{weiwin::RES}/images/vip.png" /> 到期时间 / <span class="date badge badge-important">{weiwin:$viptime|date="Y-m-d",###}</span>
+                  <p><a href="{weiwin::U('Alipay/index')}" class="btn btn-danger btn-mini"><em>升级VIP套餐</em></a> <a href="{weiwin::U('Home/Index/help',array('id'=>$vo['id'],'token'=>$vo['token']))}" target="_blank" class="btn btn-success btn-mini">微信绑定TOKEN</a> <a href="{weiwin::U('Home/Index/helpyx',array('id'=>$vo['id'],'token'=>$vo['token']))}" target="_blank" class="btn btn-success btn-mini">易信绑定TOKEN</a></p>
+                </div>
+              </li>
+            </volist>
+                <button class="btn btn-warning btn-mini">VIP有效时间：<if condition="$_SESSION['viptime'] neq 0">{weiwin:$thisUser.viptime|date="Y-m-d",###}<else/>vip0不限时间</if></button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="span6">
+        <div class="widget-box">
+          <div class="widget-title bg_lo"  data-toggle="collapse" href="#collapseG3" > <span class="icon"> <i class="icon-chevron-down"></i> </span>
+            <h5>官方最新动态</h5>
+          </div>
+          <div class="widget-content nopadding updates collapse in" id="collapseG3">
+            <div class="new-update clearfix"><i class="icon-rss"></i>
+              <div class="update-done"><a title="" href="{weiwin::U('Home/Index/news_4')}" target="_blank"><strong>什么是{weiwin::C('site_name')}智慧WIFI系统？</strong></a> <span>{weiwin::C('site_name')}WIFI是由无线wifi广告路由器+智能营销管理系统+CRM客户关系管理系统+PC/Web网站组成……</span> </div>
+              <div class="update-date"><span class="update-day">20</span>jan</div>
+            </div>
+            <div class="new-update clearfix"> <i class="icon-gift"></i> <span class="update-notice"> <a title="" href="{weiwin::U('Home/Index/news_2')}" target="_blank"><strong>{weiwin::C('site_name')}WIFI有什么作用？ </strong></a> <span>{weiwin::C('site_name')}WIFI 之七大看家武器,1、wifi热点认证管理系统2、PCRM(员工/客户管理)3、在线预定、结账平台4、电子代金券(会员卡)5、商家电脑手机版微站系统6、WIFI在线客服机器人(智能客服)7、WIFI智能推广平台(智能互动营销) </span> </span> <span class="update-date"><span class="update-day">11</span>jan</span> </div>
+            <div class="new-update clearfix"> <i class="icon-move"></i> <span class="update-alert"> <a title="" href="{weiwin::U('Home/Index/help')}" target="_blank"><strong>如何手动绑定微信公众帐号！</strong></a> <span>1、注册并登录{weiwin::C('site_name')}接口平台 2、添加公众号 → 功能管理 → 勾选要开启的功能 ...</span> </span> <span class="update-date"><span class="update-day">07</span>Jan</span> </div>
+            <div class="new-update clearfix"> <i class="icon-leaf"></i> <span class="update-done"> <a title="" href="{weiwin::U('Home/Index/ap')}" target="_blank"><strong>点击查看{weiwin::C('site_name')}智慧WIFI专题</strong></a> <span>{weiwin::C('site_name')}智慧WIFI不仅仅是一个wifi，{weiwin::C('site_name')}智慧WIFI是商家的一个24小时的免费广告机+客户的微信营销平台+饭店的点餐系统+客户营销管理系统。</span> </span> <span class="update-date"><span class="update-day">05</span>jan</span> </div>
+            <div class="new-update clearfix"> <i class="icon-question-sign"></i> <span class="update-notice"> <a title="" href="http://sighttp.qq.com/authd?IDKEY=7f34d741a6fb98a20e7070e67f2f3f6eb0daebfeb3ffc8ad" target="_blank"><strong>点击联系在线客服</strong></a> <span>技术支持QQ：{weiwin::C('site_qq')}</span> </span> <span class="update-date"><span class="update-day">01</span>jan</span> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <div class="alert alert-success alert-block"> <a class="close" data-dismiss="alert" href="#">×</a>
+              <h4 class="alert-heading">欢迎您 {weiwin:$Think.session.uname}</h4>
+              在任何地方，在任何时间 ！ {weiwin::C('site_name')}，帮你打造最专业、最智能的微信智能公众平台 我们的追求，只为更加完美的你！</div>
+
+<include file="Public:footer"/>

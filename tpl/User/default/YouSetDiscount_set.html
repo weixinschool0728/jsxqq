@@ -1,0 +1,530 @@
+<include file="Public:head" />
+<script src="{weimicms:$staticPath}/tpl/static/jquery.min.js"></script>
+<script src="{weimicms:$staticPath}/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{weimicms:$staticPath}/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script language="javascript" type="text/javascript" src="{weimicms:$staticPath}/tpl/static/cutprice/js/DatePicker/WdatePicker.js"></script>
+<link rel="stylesheet" type="text/css" href="{weimicms:$staticPath}/tpl/static/cutprice/css/cymain.css" />
+<script type="text/javascript" src="{weimicms::RES}/js/formCheck/formcheck.js"></script>
+<script src="{weimicms:$staticPath}/tpl/static/upyun.js"></script>
+<link rel="stylesheet" href="{weimicms::STATICS}/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="{weimicms::STATICS}/kindeditor/plugins/code/prettify.css" />
+<script src="{weimicms::STATICS}/kindeditor/kindeditor.js" type="text/javascript"></script>
+<script src="{weimicms::STATICS}/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+<script src="{weimicms::STATICS}/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+<script>
+var editor;
+KindEditor.ready(function(K) {
+	editor = K.create('#info', {	
+	resizeType : 1,
+	allowPreviewEmoticons : false,
+	allowImageUpload : true,
+	allowUpload : true,
+	uploadJson : '/index.php?g=User&m=Upyun&a=kindedtiropic',
+	items : [
+	'source','undo','plainpaste','wordpaste','clearhtml','quickformat','selectall','fullscreen','fontname', 'fontsize','subscript','superscript','indent','outdent','|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline','hr']
+	});
+});
+</script>
+<form class="form" method="post" action="" enctype="multipart/form-data" >
+<div class="content">
+	<div class="cLineB">
+		<h4 class="left"><?php if($set == ''){echo "添加一个活动";}else{echo "修改【".$set['name']."】";}?></h4>
+		<a href="{weimicms::U('User/YouSetDiscount/index',array('token'=>$token))}"  class="right btnGreen" >返回</a>
+	</div>
+	<div class="msgWrap bgfc">
+		<table class="userinfoArea" style=" margin:0;" border="0" cellSpacing="0" cellPadding="0" width="100%">
+			<tr>
+				<th valign="top"><span class="red">*</span>关键词：</th>
+				<td>
+					<input type="input" class="px" id="keyword" value="<?php if($set == ''){echo '优惠接力';}else{?>{weimicms:$set.keyword}<?php }?>" name="keyword" style="width:400px" />
+				</td>
+				<td rowspan="4" valign="top">
+					<div style="margin-left:20px">
+						<img id="wxpic_src" src="<if condition="$set['wxpic'] eq ''">{weimicms:$staticPath}/tpl/static/yousetdiscount/images/wxpic.jpg<else/>{weimicms:$set.wxpic}</if>" width="373px" >
+						<br/>
+						<br/>
+						<input class="px"  name="wxpic" value="<if condition="$set['wxpic'] eq ''">{weimicms:$staticPath}/tpl/static/yousetdiscount/images/wxpic.jpg<else/>{weimicms:$set.wxpic}</if>" id="wxpic" style="width:348px;"  />
+						<a href="###" onclick="upyunPicUpload('wxpic',900,500,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('wxpic')">预览</a>&nbsp;<span class="red"><strong>*</strong></span>微信图文信息图片，推荐尺寸：900*500
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th valign="top"><span class="red">*</span>活动名称：</th>
+				<td>
+					<input type="input" class="px" id="name" value="<?php if($set == ''){echo '优惠你说了算';}else{?>{weimicms:$set.name}<?php }?>" name="name" style="width:400px" />
+				</td>
+			</tr>
+			<tr>
+				<th valign="top"><span class="red">*</span>回复标题：</th>
+				<td>
+					<input type="input" class="px" id="wxtitle" value="<?php if($set == ''){echo '优惠你说了算';}else{?>{weimicms:$set.wxtitle}<?php }?>" name="wxtitle" style="width:400px" />
+				</td>
+			</tr>
+			<tr>
+				<th valign="top">回复信息描述：</th>
+				<td>
+					<textarea  class="px" id="wxinfo" name="wxinfo"  style="width:400px; height:125px" >{weimicms:$set.wxinfo}</textarea>
+				</td>
+			</tr>
+			<tr>
+				<th valign="top"><span class="red">*</span>活动时间：</th>
+				<td colspan="2">
+					<input type="input" class="px" id="startdate" value="<if condition="$set['startdate'] neq ''">{weimicms:$set.startdate|date="Y-m-d H:i",###}<else/><?php echo date('Y-m-d H:i',time());?></if>" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" name="startdate" />
+					到
+					<input type="input" class="px" id="enddate" value="<if condition="$set['enddate'] neq ''">{weimicms:$set.enddate|date="Y-m-d H:i",###}<else/><?php echo date('Y-m-d H:i',time()+2592000);?></if>" name="enddate"  onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})"  />
+				</td>
+			</tr>
+			<tr>
+				<th valign="top"><span class="red"></span>活动规则：</th>
+				<td colspan="2">
+					<textarea  class="px" id="info" name="info"  style="width:400px; height:200px" >{weimicms:$set.info}</textarea>
+				</td>
+			</tr>
+			<tr>
+				<th valign="top">分享图片自定义：</th>
+				<td colspan="2">
+					<input type="input" class="px" id="fxpic"  name="fxpic" value="{weimicms:$set.fxpic}"  style="width:250px"/>
+					<a href="###" onclick="upyunPicUpload('fxpic',500,500,'{weimicms:$token}')" class="a_upload">上传</a>
+					&nbsp;
+					<a href="###" onclick="viewImg('fxpic')">预览</a>
+					&nbsp;建议尺寸500*500，不填则默认为回复图片
+				</td>
+			</tr>
+			<tr>
+				<th valign="top">分享标题自定义：</th>
+				<td colspan="2">
+					<input type="input" class="px" id="fxtitle" value="{weimicms:$set.fxtitle}" name="fxtitle" style="width:500px" />
+					<br />
+					不填则默认为：我正在参加“{{活动名称}}”活动，快来帮我拿优惠！<br>
+					填写时可带参数{{活动名称}}和{{优惠值}}<br>
+					例如：我正在参加“{{活动名称}}”活动，已获得{{优惠值}}的优惠，快来帮我拿优惠！<br>
+					变为：我正在参加“优惠接力”活动，已获得99元的优惠，快来帮我拿优惠！
+				</td>
+			</tr>
+			<tr>
+				<th valign="top">分享描述自定义：</th>
+				<td colspan="2">
+					<input type="input" class="px" id="fxinfo" value="{weimicms:$set.fxinfo}" name="fxinfo" style="width:500px" />
+					<br />
+					分享给一个朋友时标题下显示的描述，或者分享到朋友圈时显示的描述，不填则默认为回复信息描述，使用方法同上。
+				</td>
+			</tr>
+			<tr>
+				<th valign="top">游戏中分享标题自定义：</th>
+				<td colspan="2">
+					<input type="input" class="px" id="fxtitle2" value="{weimicms:$set.fxtitle2}" name="fxtitle2" style="width:500px" />
+					<br />
+					不填则默认为：我在{{时间}}秒内获得了{{优惠值}}的优惠，手都快抽筋，你也来试试看！<br>
+					填写时可带参数{{时间}}和{{优惠值}}<br>
+					例如：我在{{时间}}秒内获得了{{优惠值}}的优惠，手都快抽筋，你也来试试看！<br>
+					变为：我在10秒内获得了12.3元的优惠，手都快抽筋，你也来试试看！
+				</td>
+			</tr>
+			<tr>
+				<th valign="top">游戏中分享描述自定义：</th>
+				<td colspan="2">
+					<input type="input" class="px" id="fxinfo2" value="{weimicms:$set.fxinfo2}" name="fxinfo2" style="width:500px" />
+					<br />
+					分享给一个朋友时标题下显示的描述，或者分享到朋友圈时显示的描述，不填则默认为回复信息描述，使用方法同上。
+				</td>
+			</tr>
+			<tr>
+				<th valign="top">修改背景图片1：</th>
+				<td colspan="2">
+					<input type="input" class="px" id="bg1"  name="bg1" value="<if condition="$set['bg1'] eq ''">{weimicms:$staticPath}/tpl/static/yousetdiscount/images/bn.png<else/>{weimicms:$set.bg1}</if>"  style="width:250px"/>
+					<a href="###" onclick="upyunPicUpload('bg1',0,0,'{weimicms:$token}')" class="a_upload">上传</a>
+					&nbsp;
+					<a href="###" onclick="viewImg('bg1')">预览</a>
+					&nbsp;请严格使用下载的示例图片的尺寸
+					&nbsp;<a href="{weimicms:$staticPath}/tpl/static/yousetdiscount/images/bn.png" target="_blank" class="red">下载示例图片</a>
+				</td>
+			</tr>
+			<tr>
+				<th valign="top">修改背景图片2：</th>
+				<td colspan="2">
+					<input type="input" class="px" id="bg2"  name="bg2" value="<if condition="$set['bg2'] eq ''">{weimicms:$staticPath}/tpl/static/yousetdiscount/images/bannertit.png<else/>{weimicms:$set.bg2}</if>"  style="width:250px"/>
+					<input type="hidden" id="bg3" name="bg3" value="{weimicms:$staticPath}/tpl/static/yousetdiscount/images/yellowtit.png"/>
+					<input type="hidden" id="gamepic1"  name="gamepic1" value="/tpl/static/yousetdiscount/img/m0.png"/>
+					<input type="hidden" id="gamepic2"  name="gamepic2" value="/tpl/static/yousetdiscount/img/mb0.png"/>
+					<a href="###" onclick="upyunPicUpload('bg2',0,0,'{weimicms:$token}')" class="a_upload">上传</a>
+					&nbsp;
+					<a href="###" onclick="viewImg('bg2')">预览</a>
+					&nbsp;请严格使用下载的示例图片的尺寸
+					&nbsp;<a href="{weimicms:$staticPath}/tpl/static/yousetdiscount/images/bannertit.png" target="_blank" class="red">下载示例图片</a>
+				</td>
+			</tr>
+			<!-- <tr>
+				<th valign="top"><span class="red">*</span>游戏中钱包图片1：</th>
+				<td colspan="2">
+					<input type="input" class="px" id="gamepic1"  name="gamepic1" value="<if condition="$set['gamepic1'] eq ''">{weimicms:$staticPath}/tpl/static/yousetdiscount/img/m0.png<else/>{weimicms:$set.gamepic1}</if>"  style="width:250px"/>
+					<a href="###" onclick="upyunPicUpload('gamepic1',0,0,'{weimicms:$token}')" class="a_upload">上传</a>
+					&nbsp;
+					<a href="###" onclick="viewImg('gamepic1')">预览</a>
+					&nbsp;请严格使用下载的示例图片的尺寸
+					&nbsp;<a href="{weimicms:$staticPath}/tpl/static/yousetdiscount/img/m0.png" target="_blank" class="red">下载示例图片</a>
+				</td>
+			</tr>
+			<tr>
+				<th valign="top"><span class="red">*</span>游戏中钱包图片2：</th>
+				<td colspan="2">
+					<input type="input" class="px" id="gamepic2"  name="gamepic2" value="<if condition="$set['gamepic2'] eq ''">{weimicms:$staticPath}/tpl/static/yousetdiscount/img/mb0.png<else/>{weimicms:$set.gamepic2}</if>"  style="width:250px"/>
+					<a href="###" onclick="upyunPicUpload('gamepic2',0,0,'{weimicms:$token}')" class="a_upload">上传</a>
+					&nbsp;
+					<a href="###" onclick="viewImg('gamepic2')">预览</a>
+					&nbsp;请严格使用下载的示例图片的尺寸
+					&nbsp;<a href="{weimicms:$staticPath}/tpl/static/yousetdiscount/img/mb0.png" target="_blank" class="red">下载示例图片</a>
+					<br/>（游戏中钱包图片可以在图片中加上文字或者logo）
+				</td>
+			</tr> -->
+			<tr>
+				<th valign="top">自己玩耍次数：</th>
+				<td colspan="2">
+					<input type="input" class="px" id="my_count" value="<if condition='$set.my_count eq null'>1<else/>{weimicms:$set.my_count}</if>" name="my_count" style="width:100px" />
+				</td>
+			</tr>
+			<tr>
+				<th valign="top">每个朋友玩耍次数：</th>
+				<td colspan="2">
+					<input type="input" class="px" id="friends_count" value="<if condition='$set.friends_count eq null'>1<else/>{weimicms:$set.friends_count}</if>" name="friends_count" style="width:100px" />
+				</td>
+			</tr>
+			<tr>
+				<th valign="top">每次玩耍时间：</th>
+				<td colspan="2">
+					<input type="input" class="px" id="playtime" value="<if condition='$set.playtime eq null'>10<else/>{weimicms:$set.playtime}</if>" name="playtime" style="width:100px" />
+					（秒）
+				</td>
+			</tr>
+			<tr>
+				<th valign="top"><span class="red">*</span>优惠券有效期：</th>
+				<td colspan="2">
+					<input type="input" class="px" id="discount_endtime" value="<if condition="$set['discount_endtime'] neq ''">{weimicms:$set.discount_endtime|date="Y-m-d",###}<else/><?php echo date('Y-m-d',time()+2592000);?></if>" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" name="discount_endtime" />
+					（到此有效期为止）
+				</td>
+			</tr>
+			<tr>
+				<th valign="top">选择优惠方式：</th>
+				<td colspan="2">
+					<input type="radio" name="discount_type" id="discount_type1" <if condition="($set['discount_type'] eq 1) OR ($set['discount_type'] eq '')">checked</if> value="1"  <?php echo $set?'disabled':'';?>><label for="discount_type1">金额</label>
+					&nbsp;&nbsp;&nbsp;
+					<input type="radio" name="discount_type" id="discount_type2" <if condition="$set['discount_type'] eq 2">checked</if> value="2"  <?php echo $set?'disabled':'';?>><label for="discount_type2">折扣</label>
+					&nbsp;（选定后不可更改）
+				</td>
+			</tr>
+			<tr class="money">
+				<th valign="top"><span class="red">*</span>每轮最大优惠金额：</th>
+				<td colspan="2">
+					<input type="hidden" id="money_start" value="0" name="money_start"/>
+					<input type="input" class="px" id="money_end" value="{weimicms:$set.money_end}" name="money_end" style="width:50px" />
+					&nbsp;（每次往上滑动时出现的金额不一样，这里设置的就是每轮机会最终获得的最大优惠金额，每轮无论怎么玩都不会超过最大值）
+				</td>
+			</tr>
+			<?php if($set == ''){?>
+			<tr class="money direction">
+				<th valign="top"><span class="red">*</span>优惠使用档次(1)：</th>
+				<td colspan="2">
+					满&nbsp;<input type="input" class="px" id="at_least_1" value="" name="at_least[]" style="width:50px" />&nbsp;元可以抵&nbsp;<input type="input" class="px discountjilu" id="discount_1" value="" name="discount[]" style="width:50px" />&nbsp;元优惠
+					&nbsp;（请多设置些使用档次，玩家获得优惠过多时可以选择接近的档次）
+				</td>
+			</tr>
+			<tr class="money direction">
+				<th valign="top"><span class="red">*</span>优惠使用档次(2)：</th>
+				<td colspan="2">
+					满&nbsp;<input type="input" class="px" id="at_least_2" value="" name="at_least[]" style="width:50px" />&nbsp;元可以抵&nbsp;<input type="input" class="px discountjilu" id="discount_2" value="" name="discount[]" style="width:50px" />&nbsp;元优惠
+				</td>
+			</tr>
+			<?php }else{?>
+			<volist name="direction_list" id="direction" key="direction_i">
+			<tr class="money direction">
+				<th valign="top"><?php if($direction_i < 3){?><span class="red">*</span><?php }?>优惠使用档次({weimicms:$direction_i})：</th>
+				<td colspan="2">
+					满&nbsp;<input type="input" class="px" id="at_least_{weimicms:$direction_i}" value="{weimicms:$direction.at_least}" name="at_least[]" style="width:50px" />&nbsp;元可以抵&nbsp;<input type="input" class="px discountjilu" id="discount_{weimicms:$direction_i}" value="{weimicms:$direction.discount}" name="discount[]" style="width:50px" />&nbsp;元优惠
+					<?php if($direction_i == 1){?>
+					&nbsp;（请多设置些使用档次，玩家获得优惠过多时可以选择接近的档次）
+					<?php }?>
+				</td>
+			</tr>
+			</volist>
+			<?php }?>
+			<tr class="money">
+				<td></td>
+				<td colspan="2"><a href="javascript:direction_more()" class="a_choose">+&nbsp;添加更多档次</a>&nbsp;<a href="javascript:direction_del()" class="a_choose">-&nbsp;删除一个档次</a></td>
+			</tr>
+			<tr class="discount">
+				<th valign="top"><span class="red">*</span>每轮最大优惠折扣：</th>
+				<td colspan="2">
+					<input type="hidden" id="discount_start" value="0" name="discount_start" />
+					<input type="input" class="px" id="discount_end" value="{weimicms:$set.discount_end}" name="discount_end" style="width:50px" />
+					&nbsp;（这里的最大折扣数值乘以我或者每个朋友玩耍的次数不能大于10）
+				</td>
+			</tr>
+			<tr class="discount">
+				<th valign="top"><span class="red">*</span>最高折扣：</th>
+				<td colspan="2">
+					<input type="input" class="px" id="discount_min" value="{weimicms:$set.discount_min}" name="discount_min" style="width:50px" />
+					&nbsp;（无论玩了多少折扣，若高于最高折扣则只显示最高折扣）
+				</td>
+			</tr>
+			<tr>
+				<th valign="top">是否需要短信验证：</th>
+				<td colspan="2">
+					<input type="radio" name="is_sms" id="is_sms1" value="1" <if condition="$set['is_sms'] eq 1">checked</if>><label for="is_sms1">是</label>
+					&nbsp;&nbsp;&nbsp;
+					<input type="radio" name="is_sms" id="is_sms0" value="0" <if condition="$set['is_sms'] eq 0">checked</if>><label for="is_sms0">否</label>
+					&nbsp;&nbsp;&nbsp;<span class="red">（需要购买短信）</span>
+				</td>
+			</tr>
+			<tr>
+				<th valign="top"><span class="red"></span>未关注是否可以参与：</th>
+				<td colspan="2">
+					<input type="radio" name="is_attention" id="is_attention0" value="0" <if condition="($set['is_attention'] eq 0)AND($set neq '')">checked</if>><label for="is_attention0">是</label>
+					&nbsp;&nbsp;&nbsp;
+					<input type="radio" name="is_attention" id="is_attention1" value="1" <if condition="($set['is_attention'] eq 1)OR($set eq '')">checked</if>><label for="is_attention1">否</label>
+					&nbsp;&nbsp;&nbsp;{weimicms:$__access_remind__}
+				</td>
+			</tr>
+			<tr>
+				<th valign="top"><span class="red"></span>是否需要粉丝信息：</th>
+				<td colspan="2">
+					<input type="radio" name="is_reg" id="is_reg1" value="1" <if condition="($set['is_reg'] eq 1)OR($set eq '')">checked</if>><label for="is_reg1">是</label>
+					&nbsp;&nbsp;&nbsp;
+					<input type="radio" name="is_reg" id="is_reg0" value="0" <if condition="($set['is_reg'] eq 0)AND($set neq '')">checked</if>><label for="is_reg0">否</label>
+					&nbsp;&nbsp;&nbsp;（没有粉丝信息参加活动的处理方式）
+				</td>
+			</tr>
+			<tr>
+				<th valign="top"><span class="red"></span>是否开启：</th>
+				<td colspan="2">
+					<input type="radio" name="is_open" id="is_open0" value="0" <if condition="$set['is_open'] eq 0">checked</if>><label for="is_open0">开启</label>&nbsp;&nbsp;&nbsp;
+					<input type="radio" name="is_open" id="is_open1" value="1" <if condition="$set['is_open'] eq 1">checked</if>><label for="is_open1">关闭</label>
+				</td>
+			</tr>
+			<tr>    
+				<th valign="top"></th>     
+				<td colspan="2">
+					<input  type="hidden" name="id" value="{weimicms:$set.id}" />
+					<button type="submit" name="button" class="btnGreen">保存</button>
+					&nbsp;&nbsp;&nbsp; 
+					<a href="" class="btnGray vm">取消</a>
+				</td> 
+			</tr>
+		</table>
+	</div>
+</div>
+</form>
+<script>
+$(function(){
+	var discount_type = <?php echo $set['discount_type']?$set['discount_type']:1;?>;
+	display_discount(discount_type);
+	$('input[name="discount_type"]').click(function(){
+		var this_type = $(this).val();
+		display_discount(this_type);
+	});
+	$("form").submit(function(){
+		var is_error = true;
+		var is_error_msg = "";
+		var keyword = $('#keyword').val();
+		if(keyword == ''){
+			is_error_msg += "请填写关键词！\n";
+			buterror("#keyword");
+			is_error = false;
+		}
+		var name = $('#name').val();
+		if(name == ''){
+			is_error_msg += "请填写活动名称！\n";
+			buterror("#name");
+			is_error = false;
+		}
+		var wxtitle = $('#wxtitle').val();
+		if(wxtitle == ''){
+			is_error_msg += "请填写回复标题！\n";
+			buterror("#wxtitle");
+			is_error = false;
+		}
+		var startdate = $('#startdate').val();
+		if(startdate == ''){
+			is_error_msg += "请填写开始时间！\n";
+			buterror("#startdate");
+			is_error = false;
+		}
+		var enddate = $('#enddate').val();
+		if(enddate == ''){
+			is_error_msg += "请填写结束时间！\n";
+			buterror("#enddate");
+			is_error = false;
+		}
+		var bg1 = $('#bg1').val();
+		if(bg1 == ''){
+			is_error_msg += "请填背景图片1！\n";
+			buterror("#bg1");
+			is_error = false;
+		}
+		var bg2 = $('#bg2').val();
+		if(bg2 == ''){
+			is_error_msg += "请填背景图片2！\n";
+			buterror("#bg2");
+			is_error = false;
+		}
+		var bg3 = $('#bg3').val();
+		if(bg3 == ''){
+			is_error_msg += "请填背景图片3！\n";
+			buterror("#bg3");
+			is_error = false;
+		}
+		var my_count = $('#my_count').val();
+		my_count = my_count*1
+		if(my_count <= 0){
+			is_error_msg += "自己玩耍次数请大于零！\n";
+			buterror("#my_count");
+			is_error = false;
+		}
+		var friends_count = $('#friends_count').val();
+		friends_count = friends_count*1
+		if(friends_count <= 0){
+			is_error_msg += "每个朋友玩耍次数请大于零！\n";
+			buterror("#friends_count");
+			is_error = false;
+		}
+		var playtime = $('#playtime').val();
+		playtime = playtime*1
+		if(playtime <= 0){
+			is_error_msg += "每次玩耍时间请大于零！\n";
+			buterror("#playtime");
+			is_error = false;
+		}
+		var discount_endtime = $('#discount_endtime').val();
+		if(discount_endtime == ''){
+			is_error_msg += "请填写优惠券有效期！\n";
+			buterror("#discount_endtime");
+			is_error = false;
+		}
+		var discount_type_form = $('input[name="discount_type"]:checked').val();
+		if(discount_type_form*1 == 1){
+			/*var money_start = $('#money_start').val();
+			if(money_start*1 <= 0){
+				is_error_msg += "请填写每次玩耍的金额范围最小值！\n";
+				buterror("#money_start");
+				is_error = false;
+			}*/
+			var money_end = $('#money_end').val();
+			if(money_end*1 <= 0){
+				is_error_msg += "请填写每次玩耍的金额范围最大值！\n";
+				buterror("#money_end");
+				is_error = false;
+			}
+			if(money_start*1 >= money_end*1){
+				is_error_msg += "每次玩耍的金额范围最大值请大于最小值！\n";
+				buterror("#money_end");
+				is_error = false;
+			}
+			for(i=1;i<=direction_num;i++){
+				var at_least = $('#at_least_'+i).val();
+				if(at_least*1 <= 0){
+					is_error_msg += "请填写优惠使用档次("+i+")满多少元！\n";
+					buterror("#at_least_"+i);
+					is_error = false;
+				}
+				var discount = $('#discount_'+i).val();
+				if(discount*1 <= 0){
+					is_error_msg += "请填写优惠使用档次("+i+")优惠多少元！\n";
+					buterror("#discount_"+i);
+					is_error = false;
+				}
+				if(at_least*1 < discount*1){
+					is_error_msg += "优惠使用档次("+i+")优惠多少元请小于满多少元！\n";
+					buterror("#discount_"+i);
+					is_error = false;
+				}
+			}
+		}else if(discount_type_form*1 == 2){
+			/*var discount_start = $('#discount_start').val();
+			if(discount_start*1 <= 0){
+				is_error_msg += "请填写每次玩耍的折扣范围最小值！\n";
+				buterror("#discount_start");
+				is_error = false;
+			}*/
+			var discount_end = $('#discount_end').val();
+			if(discount_end*1 < 1){
+				is_error_msg += "请填写每次玩耍的折扣范围最大值，不能小于1\n";
+				buterror("#discount_end");
+				is_error = false;
+			}
+			if(discount_end*1*friends_count >= 10 || discount_end*1*my_count >= 10){
+				is_error_msg += "每次玩耍的折扣范围最大值乘以我或者每个朋友玩耍的次数要小于10折！\n";
+				buterror("#discount_end");
+				is_error = false;
+			}
+			/*if(discount_end*1 > 1){
+				is_error_msg += "每次玩耍的折扣范围不能大于1！\n";
+				buterror("#discount_end");
+				is_error = false;
+			}
+			if(discount_start*1 >= discount_end*1){
+				is_error_msg += "每次玩耍的折扣范围最大值请大于最小值！\n";
+				buterror("#discount_end");
+				is_error = false;
+			}*/
+			var discount_min = $('#discount_min').val();
+			if(discount_min*1 <= 0){
+				is_error_msg += "请填写最高折扣！\n";
+				buterror("#discount_min");
+				is_error = false;
+			}
+			if(discount_min*1 >= 10){
+				is_error_msg += "最高折扣要小于10折！\n";
+				buterror("#discount_min");
+				is_error = false;
+			}
+		}
+		if(is_error == false){
+			alert(is_error_msg);
+			return false;
+		}else{
+			return true;
+		}
+	});
+});
+function buterror(id){
+	$(id).css("border","2px solid red");
+	$(id).css("background-color","rgb(255, 223, 221)");
+	$(id).focus(function(){
+		$(id).css("background-color","#fff");
+		$(id).css("border","1px solid");
+		$(id).css("border-color","#848484 #E0E0E0 #E0E0E0 #848484");
+	});
+}
+
+function display_discount(type){
+	if(type == 1){
+		$('.money').show();
+		$('.discount').hide();
+	}
+	else if(type == 2){
+		$('.discount').show();
+		$('.money').hide();
+	}
+}
+var direction_num = <?php echo $direction_num?$direction_num:2;?>;
+function direction_more(){
+	//if(direction_num < 10){
+	//var discountjilu = $('.discountjilu').last().val();
+	//if(discountjilu != 0){
+		direction_num++;
+		var direction_html = '<tr class="money direction"><th valign="top">优惠使用档次('+direction_num+')：</th><td colspan="2">满&nbsp;<input type="input" class="px" id="at_least_'+direction_num+'" value="" name="at_least[]" style="width:50px" />&nbsp;元可以抵&nbsp;<input type="input" class="px discountjilu" id="discount_'+direction_num+'" value="" name="discount[]" style="width:50px" />&nbsp;元优惠</td></tr>';
+		$('.direction').last().after(direction_html);
+	//}else{
+	//	alert('只可有一个档次优惠值为0');
+	//}
+	$('.money').show();
+}
+function direction_del(){
+	if(direction_num > 2){
+		direction_num--;
+		$('.direction').last().detach();
+	}else{
+		alert('必须有两个档次');
+	}
+	$('.money').show();
+}
+</script>
+<include file="Public:footer" />

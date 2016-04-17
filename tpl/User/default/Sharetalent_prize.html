@@ -1,0 +1,58 @@
+﻿<include file="Public:head"/>
+<div class="content">
+          <div class="cLine">
+            <div class="pageNavigator left">
+            <a href="{weimicms::U('Sharetalent/index')}" title="活动列表" class="btnGrayS vm bigbtn"><img src="{weimicms::RES}/images/pic.png" class="vm">活动列表</a>
+             <a href="{weimicms::U('Sharetalent/sm')}" title="达人说明配置" class="btnGrayS vm bigbtn"><img src="{weimicms::RES}/images/pic.png" class="vm">达人说明配置</a>
+              <a href="{weimicms::U('Sharetalent/user')}" title="用户管理" class="btnGrayS vm bigbtn"><img src="{weimicms::RES}/images/pic.png" class="vm">用户管理</a>
+             <a href="{weimicms::U('Sharetalent/reply')}" title="首页回复配置" class="btnGrayS vm bigbtn"><img src="{weimicms::RES}/images/pic.png" class="vm">首页回复配置</a>
+            </div>
+          
+            <div class="clr"></div>
+          </div>
+          <div class="msgWrap">
+            <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <thead>
+                <tr>
+					
+					<th  width="18%" class="time"> 达到资格的用户</th>
+					<th width="10%">联系方式</th>
+                    <th width="17%">参与的活动名称</th>
+                    <th width="10%">获得的浏览量</th>
+					
+					<th width="15%">奖品</th>
+                    <th width="10%">兑奖状态</th>
+                    
+					
+					<th width="20%" class="norightborder">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr></tr>
+                  <volist id="list" name="info">
+                <tr>
+                  <td>{weimicms:$list.name}</td>
+                  <td>{weimicms:$list.tel}</td>
+                   <td>{weimicms:$list.title}</td>
+                   <td>{weimicms:$list.click}</td>
+                   <td>{weimicms:$list.prize}</td>
+                   <td> <if condition="$list.statu eq '1'  "><span style=" color:#29CA0A;font-size: 20px;">已兑奖</span><else/><span style="color:red;font-size: 20px;">未兑奖</span></if></td>
+                
+                
+                  
+                  <td class="norightborder"> <a class="btnGrayS vm bigbtn" href="javascript:drop_confirm('您确定要删除吗？', '{weimicms::U('Sharetalent/userdel',array('id'=>$list['id'],'token'=>$list['token'],'wecha_id'=>$list['wecha_id']))}');">删除</a> 
+                   <if condition="$list.statu neq '1'  ">
+				   <a  class="btnGrayS vm bigbtn" href="{weimicms::U('Sharetalent/sendprize',array('id'=>$list['id'],'token'=>$list['token'],'wecha_id'=>$list['wecha_id'],'id'=>$list['id'],'pid'=>$list['pid']))}">发奖</a></if> 
+                   </td>
+          
+                </tr>
+                  </volist>
+      			                
+                  
+              </tbody>
+            </table>
+            
+   </div> 
+          
+  </div>
+<include file="Public:footer"/>

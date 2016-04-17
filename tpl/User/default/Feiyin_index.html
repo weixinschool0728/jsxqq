@@ -1,0 +1,80 @@
+<include file="Public:head"/>
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:10px; margin-top:10px;" >
+<include file="Public:jichu"/>
+  <h4>飞印无线打印平台设置</h4>
+ </div>
+         <div class="zdhuifu">
+                  <form method="post"  action="{weimicms::U('Feiyin/insert')}">
+  
+  <table cellspacing="0" cellpadding="0" border="0" width="100%">
+  <tr><td height="5"></td><td></td></tr>
+ <tr>
+	<th style="text-align: left;width: 130px;font-size: 14px;font-weight: bold;line-height: 1.5;padding: 8px 0;"><span class="red"></span>商户编码：</th>
+	<td>
+		<input type="text" class="px require" style="width:420px;" value="{weimicms:$feiyin.member_code}" name="member_code">
+	</td>	
+</tr>
+ <tr>
+	<th style="text-align: left;width: 130px;font-size: 14px;font-weight: bold;line-height: 1.5;padding: 8px 0;"><span class="red"></span>API密钥：</th>
+	<td>
+		<input type="text" class="px require" style="width:420px;" value="{weimicms:$feiyin.feyin_key}" name="feyin_key">
+	</td>	
+</tr>
+ <tr>
+	<th style="text-align: left;width: 130px;font-size: 14px;font-weight: bold;line-height: 1.5;padding: 8px 0;"><span class="red"></span>设备编码：</th>
+	<td>
+		<input type="text" class="px require" style="width:420px;" value="{weimicms:$feiyin.device_no}" name="device_no">
+	</td>	
+</tr>
+<!--
+<tr>
+	<th style="text-align: left;width: 130px;font-size: 14px;font-weight: bold;line-height: 1.5;padding: 8px 0;"><span class="red"></span>打印状态：</th>
+	<td>
+		<label for="statu-1">
+			开启
+		</label>
+		<input type="radio" name="emailstatus" <if condition="($info.emailstatus eq 1) OR ($info['emailstatus'] eq '')">checked</if> id="statu-1" value="1">
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<label for="statu-0">
+			关闭
+		</label>
+		<input type="radio" name="emailstatus" <if condition="$info.emailstatus eq 0">checked</if> id="statu-0" value="0">
+	</td>	
+</tr>-->
+<tr>
+<td height="50">
+       
+<input type="submit" value="保存" class="btn btn-success"  />
+<script type="text/javascript">
+function jsbq(srt){
+document.getElementById("Hfcontent").value=document.getElementById("Hfcontent").value+"/"+srt;
+}
+</script>
+
+
+</td><td valign="top">
+</tr>
+</table>
+</form>
+                   
+               </div>
+        </div>
+
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+  <script>
+$(document).ready( function(){ 
+$('.checkall').click(function(){
+
+$('.checkitem').each(function(){
+$(this).attr('checked',$('.checkall').attr('checked'));
+});
+});
+
+});
+  </script>
+  <!--底部-->
+  	</div>
+<include file="Public:footer"/>	

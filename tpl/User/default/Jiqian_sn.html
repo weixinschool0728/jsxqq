@@ -1,0 +1,43 @@
+<include file="Public:head"/>
+				<div class="content">
+					<div class="cLineB">
+						<h4 class="left">{weimicms:$activityname}参与管理</h4>
+						<div class="clr"></div> 
+					</div>
+					<div class="cLineB">
+						本次活动奖品总数：<span class="redamount">{weimicms:$datacount}</span>个&nbsp;&nbsp;中奖人数：<span class="redamount">{weimicms:$recordcount}</span>个&nbsp;&nbsp;已领取奖品：<span class="redamount">{weimicms::$sendCount}</span>个</div>
+					<div class="cLine" style=" padding: 8px 0"></div>
+					<div class="msgWrap">
+						<table class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+							<thead>
+								<tr style="text-align: center;">
+									<th style="text-align:center">序号</th>
+									<th style="text-align:center">奖项</th>
+									<th style="text-align:center">中奖者手机号</th>
+								
+								</tr>
+							</thead>
+							<tbody>
+								<volist name="record" id="val">
+								<tr style="line-height:30px;height: 43px;line-height: 59px;">
+									<td align="center">{weimicms:$val['id']}</td>
+									<td align="center">{weimicms:$val['username']}</td>
+									<td align="center">{weimicms:$val['phone']}</td>
+								</tr>
+								</volist>
+							</tbody>
+						</table>
+					</div>
+					<div class="cLine">
+						<div class="pageNavigator right">
+							<div class="pages"></div>
+						</div>
+						<div class="clr"></div>
+					</div>
+				</div>
+			</div>
+			<div class="clr"></div>
+		</div>
+	</div>
+	<div class="clr"></div>
+<include file="Public:footer"/>

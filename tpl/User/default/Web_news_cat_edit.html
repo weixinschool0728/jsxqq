@@ -1,0 +1,54 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+ <div class="content" <if condition="session('isQcloud') eq true">style="float:center;"</if>>
+          <div class="cLineB"><h4>编辑文章分类</h4><a href="{weimicms::U('Web/news')}"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a></div> 
+<div class="msgWrap">
+  <form class="form" method="post" name="addform" action="{weimicms::U('Web/news',array('act'=>'news_cat_amend'))}" enctype="multipart/form-data" >
+  <input type="hidden" name="cat_id" value="{weimicms:$news_category.cat_id}"/>
+<TABLE class="userinfoArea" style=" margin:20px 0 0 0;" border="0" cellSpacing="0" cellPadding="0" width="100%">
+  <THEAD>
+<TR>
+  <TH valign="top"><label for="cat_name">分类名称：</label></TH>
+  <TD><input type="text" class="px" id="cat_name" value="{weimicms:$news_category.cat_name}" name="cat_name" style="width:300px" /><br />
+                  </TD>
+  <TD>&nbsp;</TD>
+</TR>
+                            </THEAD>
+  <TBODY>
+<TR>
+  <TH valign="top"><label for="cat_key">关键词：</label></TH>
+  <TD><input type="text" class="px" id="cat_key" value="{weimicms:$news_category.cat_key}" name="cat_key" style="width:300px" /><br />
+                   </TD>
+  <TD>&nbsp;</TD>
+</TR>
+<TR>
+  <TH valign="top"><label for="cat_sort">排序：</label></TH>
+  <TD><input type="text" class="px" id="cat_sort" value="{weimicms:$news_category.cat_sort}" name="cat_sort" style="width:100px" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数值越大，排序越前。（默认添加越早，排序越前）<br />
+                   </TD>
+  <TD>&nbsp;</TD>
+</TR>
+
+<TR>
+  <TH></TH>
+  <TD><button type="submit"  name="button"  class="btnGreen left" >保存</button>
+  	<div class="clr"></div>
+  	</TD>
+  </TR>
+  </TBODY>
+</TABLE>
+  </form>
+  </div> 
+
+        </div>
+        
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div> 
+
+<!--底部-->
+  	</div>
+<if condition="session('isQcloud') neq true">
+<include file="Public:footer"/>
+</if>

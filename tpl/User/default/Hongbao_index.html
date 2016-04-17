@@ -1,0 +1,99 @@
+<include file="Public:head"/>
+<div class="content">
+<div class="cLineB">
+<h4 class="left">微信合体红包</h4>
+<div class="clr"></div>
+</div>
+<div class="cLine">
+<div class="pageNavigator left"><a href="{weimicms::U('Hongbao/action_add',array('token'=>$token))}" title="添加活动" class="btnGrayS vm bigbtn"><if condition="$usertplid eq 2"><i class="fa fa-hand-o-right"></i><else /><img src="{weimicms::RES}/images/product/add.png" width="16" class="vm"></if> 添加活动</a> </div>
+<div class="searchbar right">
+<form method="post" action="{weimicms::U('Hongbao/index',array('token'=>$token))}">
+<input type="text" id="msgSearchInput" class="txt left" placeholder="输入关键词搜索" name="search_word" value="{weimicms:$search_word}">
+<input type="submit" value="搜索" id="msgSearchBtn" href="" class="btnGrayS" title="搜索">
+</form>
+</div>
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<input name="delall" type="hidden" value="1">
+<input name="wxid" type="hidden" value="">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>                                 
+	<th width="85">活动名称</th>
+	<th width="70">关键词</th>
+	<th width="50">分享人数</th>
+	<th width="55">红包总金额</th>
+ 	<th width="170">活动时间</th>
+ 	<th width="50">是否开启</th>
+	<th width="200"class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<weimicmslist array="list" foreach="list">
+<tr>
+	<td>{weimicms:$list.action_name}</td>
+	<td>{weimicms:$list.keyword}</td>
+	<td>{weimicms:$list.sharetimes}</td>
+	<td>{weimicms:$list.total_money}</td>
+	<td>{weimicms:$list.start_time|date="Y-m-d H:i",###} 至  {weimicms:$list.end_time|date="Y-m-d H:i",###}</td>
+	<td>
+		<if condition="$list.status eq '1'">
+			已开启
+		<else/>
+			未开启
+		</if>
+	</td>
+	<td class="norightborder" align="center">
+<if condition="$Think.session.is_syn eq 2">
+<if condition="$usertplid neq 2">
+	<script type="text/javascript">
+   $(document).ready(function(){
+      var bheight=document.body.clientHeight;
+      $("#lay{weimicms:$list.id}").click(function(){
+   $("#brg{weimicms:$list.id}").css("display","block");
+   $("#showdiv{weimicms:$list.id}").css("display","block");
+   //$("#testdiv").load("test.html");
+   });
+   $("#close{weimicms:$list.id}").click(function(){
+      $("#brg{weimicms:$list.id}").css("display","none");
+   $("#showdiv{weimicms:$list.id}").css("display","none");
+   });
+   });
+ </script>
+ <style type="text/css">
+   #brg{weimicms:$list.id}{ width:100%; height:100%; background:#333; position:absolute; top:0; left:0; filter:alpha(opacity=60); -moz-opacity:0.6; opacity: 0.6; position:absolute; top:0; left:0; display:none;}
+   #showdiv{weimicms:$list.id}{z-index:20; display:none;position:fixed; *position:absolute; width:100px; height:100px; top:30%; left:50%; margin:-50px 0 0 -50px;}
+   #testdiv{weimicms:$list.id}{ width:300px; height:300px; margin:0 auto; border:1px solid #4d4d4d; background:#f2f2f2;}
+   #close{weimicms:$list.id}{width:300px; height:27px; line-height:27px; font-size:14px; font-weight:bold; border:1px solid #4d4d4d; text-align:center; cursor:pointer; margin:0 auto; background:#333; color:#fff;margin-top: 15%;}
+ </style>
+	 <div id="brg{weimicms:$list.id}"></div>
+ <div id="showdiv{weimicms:$list.id}">
+   <div id="close{weimicms:$list.id}">您想关闭就点我吧</div>
+   <div id="testdiv{weimicms:$list.id}"><img src="{weimicms:$Think.session.source_domain}/wap.php?c=Wxapp&a=qrcode&id={weimicms:$list.id}&modle=Hongbao" width="300" height="300" class="cateimg_small"></div>
+ </div>
+	<a id="lay{weimicms:$list.id}"  style="width:191px;">查看二维码</a><br>
+</if>
+</if>
+		<a href="{weimicms::U('Hongbao/get_packet_list',array('token'=>$token,'id'=>$list['id']))}">领取记录</a>
+		|
+		<a href="{weimicms::U('Hongbao/action_add',array('token'=>$token,'id'=>$list['id']))}">修改</a>
+		|
+		<a href="javascript:drop_confirm('您确定要删除吗?', '{weimicms::U('Hongbao/del',array('token'=>$token,'id'=>$list['id']))}');">删除</a>
+    </td>
+</tr>
+</weimicmslist>
+</tbody>
+</table>
+</form>
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{weimicms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

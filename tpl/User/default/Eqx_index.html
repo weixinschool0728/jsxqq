@@ -1,0 +1,147 @@
+<include file="Public:head" />
+<style>
+	.album_list {
+	overflow: hidden;
+	padding-top: 15px;
+	}
+	.album_list li {
+	border: 1px #DDD solid;
+	width: 250px;
+	float: left;
+	margin-left: 59px;
+	margin-bottom: 10px;
+	}
+	.album_list li .album_pic {
+	display: block;
+	width: 250px;
+	height: 365px;
+	overflow: hidden;
+	}
+	.album_list li .album_pic img {
+	width: 250px;
+	}
+	.album_list li .album_main {
+	padding: 10px;
+	overflow: hidden;
+	}
+	.album_list li .album_main .album_title {
+	font-size: 16px;
+	
+	width: 250px;
+	overflow: hidden;
+	}
+	.pull-right {
+	float: right;
+	}
+</style>
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />
+<div class="content">
+	<div class="cLineB">
+		
+<h4 class="left">我的高级场景 </h4>
+
+	</div>
+
+	<a  target="_blank"href="{weimicms:$eqx_siteUrl}/index.php?c=user&a=wfclogin&user={weimicms:$token}&password={weimicms:$users.eqxpassword}" class="right btnGrayS vm" style="margin-top:-47px">登入场景</a>
+    <div class="info" style="height:150px;border: 1px solid rgb(239, 237, 237);"><!-- 
+            <h3>我的场景</h3> -->
+            <ul style="padding: 35px 20px;
+background-color: #FFF;" ng-show="showScene" ng-init="showScene=true;showCustomer=false" class="clearfix">
+                <li style="float:right;">
+                    <a target="_blank" href="{weimicms:$eqx_siteUrl}/index.php?c=user&a=wfccreat&user={weimicms:$token}&password={weimicms:$users.eqxpassword}" alt="创建场景" title="创建场景"><div class="chuangjian"><img ng-src="{weimicms:$eqx_siteUrl}/Public/css/images/chuangjian.png" src="{weimicms:$eqx_siteUrl}/Public/css/images/chuangjian.png"></div></a>
+                </li>                 
+                <li style="display: inline-block;
+float: left;
+margin-right: 30px;">
+                    <div class="phone"  style="background: url(tpl/static/eqx/phone.png) 0 center no-repeat;
+height: 80px;
+padding-left: 100px;">
+                        <h1 class="baseColor ng-binding" style="color: #08a1ef;font-size: 30px;
+">{weimicms:$num}</h1>
+                        <h2 style="font-size: 14px;
+color: #9a9a9a;">场景总计</h2>
+                    </div>
+                </li>
+                <li style="display: inline-block;
+float: left;
+margin-right: 30px;"><a href="#/main/spread">
+                    <div class="eye" style="background: url(tpl/static/eqx/eye.png) 0 center no-repeat;
+height: 80px;
+padding-left: 100px;">
+                        <h1 class="secondaryColor"><span class="ng-binding" style="color: #68dcc7;font-size: 30px;
+padding: 10px 0;">{weimicms:$sum}</span></h1>
+                        <h2 style="font-size: 14px;
+color: #9a9a9a;">场景展示</h2>
+                    </div></a>
+                </li>
+                <li style="display: inline-block;
+float: left;
+margin-right: 30px;">
+                    <div class="show" style=" background: url(tpl/static/eqx/show.png) 0 center no-repeat;
+height: 80px;
+padding-left: 100px;">
+                        <h1 class="secondaryColor"><span class="ng-binding" style="color: #9ad64b;font-size: 30px;
+padding: 10px 0;">{weimicms:$date_count}</span></h1>
+                        <h2 style="font-size: 14px;
+color: #9a9a9a;">收集数据</h2>
+                    </div>
+                </li>               
+            </ul>
+        </div>
+	<div>
+		<ul class="unstyled album_list">
+			<volist name="info" id="item">
+				<li>
+					<a target="_blank" href="{weimicms:$eqx_siteUrl}/v-{weimicms:$item.scenecode_varchar}" class="album_pic" style="height:250px">
+
+<!--原声php判断输出-->
+<?php
+$d=substr($item['thumbnail_varchar'],0,1);
+$a=$item['thumbnail_varchar']; //变量d赋值
+
+if($d==1){
+ echo "<img   src='$eqx_siteUrl/userfiles/$a', style='height:250px' >"; //变量d等于p时输出的值
+}else{
+ echo "<img src='$eqx_siteUrl/Uploads/$a', style='height:250px'>"; //不等于s时输出的值
+}
+?>
+<!--end-->
+<?php
+$d=substr($item['thumbnail_varchar'],0,1);
+$a=$item['thumbnail_varchar']; //变量d赋值
+
+if($d==1){
+ $pic=''.$eqx_siteUrl.'/userfiles/'.$a.''; //变量d等于p时输出的值
+}else{
+ $pic=''.$eqx_siteUrl.'/Uploads/'.$a.''; //不等于s时输出的值
+}
+?>
+
+					</a>
+                    <div style="height:50px; background-color:#08a1ef; line-height:50px; text-align:center; color:white;text-indent: 15px;font-size: 22px;"> {weimicms:$item.scenename_varchar}</div>
+					<div class="album_main">
+						<p class="album_title">场景展示：<a href="{weimicms:$eqx_siteUrl}/index.php#/main/spread/statistics/{weimicms:$item['sceneid_bigint']}" target="_blank" title="场景展示次数"><span style="color:#999">{weimicms:$item.hitcount_int}次</span></a></p>
+						<p class="album_title">收集数据：<a href="{weimicms:$eqx_siteUrl}/index.php#/my/scene/{weimicms:$item['sceneid_bigint']}#collectData" target="_blank" title="数据收集条数"><span style="color:#999">{weimicms:$item.datacount_int}条</span></a></p>
+                       
+                        <p class="album_title">预览地址:<input style="border:none" class="px" value="{weimicms:$eqx_siteUrl}/v-{weimicms:$item.scenecode_varchar}" type="text"></p>
+                         <p class="album_title"><a style="margin-left:0px" href="{weimicms::U('Eqx/set',array('url'=>''.$eqx_siteUrl.'/v-'.$item['scenecode_varchar'].'','token'=>$token,'name'=>$item['scenename_varchar'],'desc_varchar'=>$item['desc_varchar'],'id'=>$item['sceneid_bigint'],'pic'=>$pic,'sceneid_bigint'=>$item['sceneid_bigint']))}" title="回复配置" class="btnGrayS vm bigbtn">回复</a>
+                         <a style="margin-left:20px" href="{weimicms:$eqx_siteUrl}/index.php#/scene/create/{weimicms:$item['sceneid_bigint']}?pageId=1"  title="回复配置" class="btnGrayS vm bigbtn" target="_blank">编辑</a>
+                         <a style="margin-left:20px" href="javascript:drop_confirm('您确定要删除吗?', '{weimicms::U('Eqx/del',array('id'=>$item['sceneid_bigint'],'token'=>$token,'pid'=>$pid['id']))}')" title="删除场景" class="btnGrayS vm bigbtn">删除</a></p>
+                        
+                       
+                       
+						
+					</div>
+                    
+				</li>
+			</volist>
+		</ul>
+	</div>
+	<div class="cLine">
+		<div class="pageNavigator right">
+			<div class="pages">{weimicms:$page}</div>
+		</div>
+		<div class="clr"></div>
+	</div>
+</div>
+<include file="Public:footer" />

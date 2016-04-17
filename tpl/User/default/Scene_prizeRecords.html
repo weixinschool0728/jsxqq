@@ -1,0 +1,47 @@
+<include file="Public:head"/>
+<div class="content" >  
+<div class="cLineB">
+  <h4>{weimicms:$info.name}中奖名单</h4><a href="javascript:history.go(-1);"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a>
+ </div>
+
+ <div class="msgWrap form">
+<div class="bdrcontent">
+<div id="div_ptype">
+  
+<table class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+<thead>
+<tr>
+<th style=" width:180px;">昵称</th>
+<th style=" width:180px;">奖项</th>             
+<th style=" width:150px;" class="norightborder">中奖时间</th>
+</tr>
+</thead>
+<volist name="records" id="actinfo">
+<tr>
+<td>
+  <img src="{weimicms:$actinfo.portrait}" width="50" height="50" alt="{weimicms:$actinfo.nickname}" class="left">
+  {weimicms:$actinfo.nickname}
+</td>
+<td>{weimicms:$actinfo.prize_name}</td>
+<td>{weimicms:$actinfo.time|date="Y-m-d H:i:s",###}</td>
+</volist>
+</tr>
+</table>
+
+</div>
+</div>
+<div class="footactions" style="padding-left:10px">
+  <div class="pages">{weimicms:$page}</div>
+</div>
+          </div>
+  
+        </div>
+   
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div> 
+  <!--底部-->
+  	</div>
+
+<include file="Public:footer"/>

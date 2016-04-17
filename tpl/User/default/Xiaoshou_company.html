@@ -1,0 +1,91 @@
+<include file="Public:head"/>
+<link rel="stylesheet" href="{weiwo::STATICS}/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="{weiwo::STATICS}/kindeditor/plugins/code/prettify.css" />
+<script src="{weiwo::STATICS}/kindeditor/kindeditor.js" type="text/javascript"></script>
+<script src="{weiwo::STATICS}/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+<script src="{weiwo::STATICS}/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script>
+var diyTool   = "{weiwo::U('Imgedit/diyTool')}";//素材页面   items 添加diyTool
+var editor;
+KindEditor.ready(function(K) {
+editor = K.create('#info', {
+filterMode: false,
+resizeType : 1,
+allowPreviewEmoticons : false,
+allowImageUpload : true,
+postParams:{'PHPSESSID':"<?php echo session_id();?>"},uploadJson : '/index.php?g=Apps&m=Upyun&a=kindedtiropic',
+items : [<include file="Public:editorToolbar" />]
+});
+
+});
+</script>
+<link rel="stylesheet" type="text/css" href="{weiwo::RES}/css/cymain.css" />
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top: -30px; " >
+<include file="Public:hudong"/>
+  <h4>回复信息配置 </h4><a href="javascript:history.go(-1);" class="right ChooseImage" style="margin-top:-27px">返回</a>
+ </div>
+<div class="tab">
+<ul id="tags">
+<li class="tabli" id="tab2"><a href="{weiwo::U('Xiaoshou/index')}">销售顾问列表</a></li>
+<li class="current tabli" id="tab20"><a href="{weiwo::U('Xiaoshou/index')}">回复信息配置</a></li>
+<li class="tabli" id="tab2"><a href="{weiwo::U('Xiaoshou/styleSet')}">模板选择</a></li>
+</ul>
+</div>
+<!--tab end-->        
+    <div class="msgWrap bgfc" style="">
+	  <form class="form" method="post" action="" enctype="multipart/form-data">	 
+		<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<tbody>
+             <tr>
+				  <th valign="top"><span class="red"></span></th>
+				  <td><span class="red">销售顾问</span>————微信里输入关键字"销售顾问"即可看到效果
+					</td>
+				</tr>
+            <tr>
+				  <th valign="top"><span class="red">*</span>回复标题：</th>
+				  <td><input type="text" name="title" value="{weiwo:$info.title}" class="px" style="width:550px;">
+					</td>
+				</tr>
+                <tr>
+				  <th valign="top"><span class="red">*</span>回复简介：</th>
+				  <td><input type="text" name="jianjie" value="{weiwo:$info.jianjie}" class="px" style="width:550px;">
+					</td>
+				</tr>
+                 <tr>
+					<th><span class="red">*</span>回复图片：</th>
+					<td><img id="showpic3" src="<if condition="$info['tp'] eq ''">{weiwo:$f_siteUrl}/tpl/Apps/default/common/images/bg-home.jpg<else/>{weiwo:$info.tp}</if>" class="cateimg_small" style="width:320px;" /><input type="text" id="picurl1" value="<if condition="$info['tp'] eq ''">{weiwo:$f_siteUrl}/tpl/Apps/default/common/images/bg-home.jpg<else/>{weiwo:$info.tp}</if>" name="tp" class="px" style="width:150px;"> 
+<script src="/tpl/static/upyun.js"></script>
+<a href="javascript:void(0)" onclick="upyunPicUpload('picurl1',700,420,'{weiwo:$token}')" class="ChooseImage">上传</a>
+<a href="###" onclick="viewImg('picurl1')" class="ChooseImage">预览</a>
+					</td>
+				</tr>
+				<tr>
+				  <th valign="top"><span class="red">*</span>公司名称：</th>
+				  <td><input type="text" name="company" value="{weiwo:$info.company}" class="px" style="width:550px;">
+					</td>
+				</tr>
+				<tr>
+					<th>公司logo：</th>
+					<td><input type="text" id="logo" value="{weiwo:$info.logo}" name="logo" class="px" style="width:550px;">  
+<a href="javascript:void(0)" onclick="upyunPicUpload('logo',700,420,'{weiwo:$token}')" class="ChooseImage">上传</a>
+<a href="###" onclick="viewImg('logo')" class="ChooseImage">预览</a>
+					</td>
+				</tr>
+				<tr>
+					<th width="120"><span class="red">*</span>公司简介：</th>
+					<td><textarea style="width:560px;height:75px" name="info" id="info" class="px" onkeydown='countChar("info","counter");' onkeyup="countChar('info','counter');">{weiwo:$info.info}</textarea><br/><font color="red">可以输入<span id="counter">400</span>字<br></font></td>
+				</tr>
+				<th>&nbsp;</th>
+					<td>
+						<button type="submit" name="button" class="btn btn-success">保存</button>
+						<a href="javascript:history.go(-1);" class="btn btn-danger">取消</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+  </div> 
+        </div>
+<include file="Public:footer"/>

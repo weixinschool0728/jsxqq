@@ -1,0 +1,456 @@
+<include file="Public:head" />
+
+<link rel="stylesheet" href="{weimicms::STATICS}/kindeditor/themes/default/default.css" />
+
+<link rel="stylesheet" href="{weimicms::STATICS}/kindeditor/plugins/code/prettify.css" />
+
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />
+
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+
+<link rel="stylesheet" href="{weimicms::STATICS}/kindeditor/themes/default/default.css" />
+
+<link rel="stylesheet" href="{weimicms::STATICS}/kindeditor/plugins/code/prettify.css" />
+
+<script src="{weimicms::STATICS}/kindeditor/kindeditor.js" type="text/javascript"></script>
+
+<script src="{weimicms::STATICS}/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+
+<script src="{weimicms::STATICS}/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+
+<script src="{weimicms::RES}/js/date/WdatePicker.js"></script>
+
+<script type="text/javascript" src="{weimicms::RES}/js/formCheck/formcheck.js">
+
+</script>
+
+<script src="{weimicms::STATICS}/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+
+
+<div class="content">
+
+	<div class="cLineB">
+
+		 <h4>基础配置</h4>  
+
+	</div>
+
+	
+
+	<form class="form" method="post" id="form" action="" enctype="multipart/form-data">
+
+		
+
+		<div class="msgWrap bgfc">
+ 
+			<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+
+				<tbody>
+                 <tr>
+          <th valign="top">点赚客入口:</th>
+          <td><span class="red">http://<?php echo $_SERVER['HTTP_HOST'] ?>/index.php?g=Wap&m=Adcms&a=index&token={weimicms:$token}</span></td>
+        </tr>
+		<tr>
+          <th valign="top">点赚客入口二维码:</th>
+		  <td><img style="width: 120px;" src="/index.php?g=User&m=Adcms&a=QRcode&token={weimicms:$token}" /></td>
+        </tr>
+         <tr>
+          <th valign="top">我的邀请码入口:</th>
+          <td><span class="red">http://<?php echo $_SERVER['HTTP_HOST'] ?>/index.php?g=Wap&m=Adcms&a=invite&token={weimicms:$token}</span></td>
+        </tr>
+		<tr>
+          <th valign="top">邀请码入口二维码:</th>
+		  <td><img style="width: 120px;" src="/index.php?g=User&m=Adcms&a=QRcode2&token={weimicms:$token}" /></td>
+        </tr>
+                   <tr>
+                   <th>公众号名称</th>
+                   <td><input type="text" id="wxname" name="wxname" placeholder=" 请输入公众号名称" value="{weimicms:$set.wxname}" class="px" style="width:400px;" /></td>
+                   </tr>
+                    <tr>
+
+						<th>打款通知模板id：</th>
+
+						<td>
+
+							<input type="text" id="mbid" name="mbid" placeholder=" 请输入模板ID" value="{weimicms:$set.mbid}" class="px" style="width:400px;" />编号为：OPENTM202967310
+
+						</td>
+
+					</tr>
+                    <tr>
+
+						<th>新下线加入通知模板id：</th>
+
+						<td>
+
+							<input type="text" id="xiaxianid" name="xiaxianid" placeholder=" 请输入模板ID" value="{weimicms:$set.xiaxianid}" class="px" style="width:400px;" />编号为：OPENTM202425107
+
+						</td>
+
+					</tr>
+                     <tr>
+
+						<th><span class="red">*</span>限制活动区域(省)：</th>
+
+						<td>
+
+							<input type="text" id="adrmb" name="quyus" placeholder=" 限制活动区域" value="{weimicms:$set.quyus}" class="px" style="width:400px;" />只限该省的用户参与，通过ip定位,多个用‘、’隔开
+						</td>
+
+					</tr>
+                     <tr>
+
+						<th><span class="red">*</span>限制活动区域(市)：</th>
+
+						<td>
+
+							<input type="text" id="adrmb" name="quyu" placeholder=" 限制活动区域" value="{weimicms:$set.quyu}" class="px" style="width:400px;" />只限该市的用户参与，通过ip定位，多个用‘、’隔开
+						</td>
+
+					</tr>
+                     <tr>
+
+						<th><span class="red">*</span>限制活动区域(县)：</th>
+
+						<td>
+
+							<input type="text" id="adrmb" name="quyux" placeholder=" 限制活动区域" value="{weimicms:$set.quyux}" class="px" style="width:400px;" />只限该县的用户参与，通过ip定位，多个用‘、’隔开
+						</td>
+
+					</tr>
+                    <tr>
+                   <th>公众号引导链接</th>
+                   <td><input type="text" id="wxurl" name="wxurl" placeholder=" 请输入公众号引导链接" value="{weimicms:$set.wxurl}" class="px" style="width:400px;" /></td>
+                   </tr>
+					
+                    <tr>
+
+						<th>商家推广链接：</th>
+
+						<td>
+
+							<input type="text" id="sjtg" name="sjtg" placeholder=" 请输入商家推广链接" value="{weimicms:$set.sjtg}" class="px" style="width:400px;" />
+
+						</td>
+
+					</tr>
+
+
+					<tr>
+
+						 <TH valign="top"><label for="pic">新手指导链接：</label></TH>
+
+						 <TD><input type="text" id="xszd" name="xszd" placeholder=" 请输入新手指导链接" value="{weimicms:$set.xszd}" class="px" style="width:400px;" />
+
+</TD>
+
+					</tr>
+                    	<tr>
+
+						 <TH valign="top"><label for="pic">分享点击可赚：</label></TH>
+
+						 <TD><input type="text" id="name" name="rmb" placeholder=" 请输入金额" value="{weimicms:$set.rmb}" class="px" style="width:200px;" />元
+
+</TD>
+
+					</tr>
+                   
+                     <tr>
+
+						 <TH valign="top"><label for="pic">下线佣金：</label></TH>
+
+						 <TD><input type="text" id="name" name="yj" placeholder=" 请输入佣金" value="{weimicms:$set.yj}" class="px" style="width:200px;" />%
+
+</TD>
+
+					</tr>
+                      <tr>
+
+						 <TH valign="top"><label for="pic">提现方式：</label></TH>
+
+						 <TD><select name="txtype" id="auth2nd" class="input-medium">
+					<option value="1" <if condition="$set.txtype eq '1'">selected="selected"</if>>微信红包提现</option>
+					<option value="2" <if condition="$set.txtype eq '2'">selected="selected"</if> >手动打款</option>
+					
+				</select>
+
+</TD>
+
+					</tr>
+
+
+					
+
+				
+
+					
+
+					
+
+					
+
+		
+		
+		
+		
+			<tr>
+
+				<th>&nbsp;</th>
+
+				<td>
+
+					<!--input type="hidden" name="time" value="{weimicms:$set.time}" /-->
+
+					<button type="submit" class="btnGreen">保存</button>&nbsp; <a href="{weimicms::U('Nr/index',array('token'=>$token))}" class="btnGray vm">取消</a>
+
+				</td>
+
+			</tr>
+
+			</tbody>
+
+			</table>
+
+</div>
+
+</form>
+
+</div>
+
+<script language="javascript">
+
+	$(function(){
+
+	
+
+	
+
+	
+
+		$("#form").valid([
+
+	
+
+	
+
+	
+
+		{ name:"name",simple:"名称",require:true},
+
+	
+
+	
+
+	
+
+		
+
+	
+
+	
+
+	
+
+			
+
+	
+
+	
+
+	
+
+		],true,true);
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	});
+
+</script>
+
+<script language="javascript">
+
+	function ShowInfo(Id){
+
+	
+
+	
+
+	
+
+		
+
+	
+
+	
+
+	
+
+		$('[name="lbbb"]').attr("style","display:none");
+
+	
+
+	
+
+	
+
+		$("#la"+Id).attr("style","");
+
+	
+
+	
+
+	
+
+		$("#lb"+Id).attr("style","");
+
+	
+
+	
+
+	
+
+		$("#lc"+Id).attr("style","");
+
+	
+
+	
+
+	
+
+		
+
+	
+
+	
+
+	
+
+	}
+
+</script>
+
+<script language="javascript">
+
+	$("input[type='radio']").click(function(){
+
+	
+
+	
+
+	
+
+		var i = $(this).val();
+
+	
+
+	
+
+	
+
+		if(i==1){
+
+	
+
+	
+
+	
+
+			$('[name="lbss"]').attr("style","display:none");
+
+	
+
+	
+
+	
+
+			$('[name="lbb"]').attr("style","");
+
+	
+
+	
+
+	
+
+			$("#la1").attr("style","");
+
+	
+
+	
+
+	
+
+			$("#lb1").attr("style","");
+
+	
+
+	
+
+	
+
+			$("#lc1").attr("style","");
+
+	
+
+	
+
+	
+
+		}else{
+
+	
+
+	
+
+	
+
+			$('[name="lbss"]').attr("style","");
+
+	
+
+	
+
+	
+
+			$('[name="lbb"]').attr("style","display:none");
+
+	
+
+	
+
+	
+
+			$('[name="lbbb"]').attr("style","display:none");
+
+	
+
+	
+
+	
+
+		}
+
+	
+
+	
+
+	
+
+	})
+
+</script>
+
+<include file="Public:footer" />

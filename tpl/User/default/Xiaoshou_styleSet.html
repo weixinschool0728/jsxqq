@@ -1,0 +1,112 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="{weiwo::RES}/css/cymain.css" />
+<div class="content" style="width:98%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top: -30px; " >
+  <div class="cLineB">
+<include file="Public:hudong"/>
+  </div>
+          <h4>模板选择</h4>
+        </div>
+<div class="tab">
+<ul id="tags">
+<li class="tabli" id="tab2"><a href="{weiwo::U('Xiaoshou/index')}">销售顾问列表</a></li>
+<li class="tabli" id="tab20"><a href="{weiwo::U('Xiaoshou/index')}">回复信息配置</a></li>
+<li class="current tabli" id="tab2"><a href="{weiwo::U('Xiaoshou/styleSet')}">模板选择</a></li>
+</ul>
+</div>
+        <div class="msgWrap">
+          <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+            <tbody>
+              <tr>
+                <td><form id="form1" name="form1" method="post" action="">
+                    <ul class="cateradio">
+                      <li <if condition="$radiogroup eq 1"> class="active" </if>>
+                        <label><img src="{weiwo::RES}/css/Xiaoshou-style/001.png">
+                          <input class="radio" type="radio" name="radiogroup" value="1" id="radiogroup_1" <if condition="$radiogroup eq 1"> checked </if>>
+                          1</label>
+                      </li>
+                      <li <if condition="$radiogroup eq 2"> class="active" </if>>
+                        <label><img src="{weiwo::RES}/css/Xiaoshou-style/002.png">
+                          <input class="radio" type="radio" name="radiogroup" value="2" id="radiogroup_2" <if condition="$radiogroup eq 2"> checked </if>>
+                          2</label>
+                      </li>
+                      <li <if condition="$radiogroup eq 3"> class="active" </if>>
+                        <label><img src="{weiwo::RES}/css/Xiaoshou-style/003.png">
+                          <input class="radio" type="radio" name="radiogroup" value="3" id="radiogroup_3" <if condition="$radiogroup eq 3"> checked </if>>
+                          3</label>
+                      </li>
+                      <li <if condition="$radiogroup eq 4"> class="active" </if>>
+                        <label><img src="{weiwo::RES}/css/Xiaoshou-style/004.png">
+                          <input class="radio" type="radio" name="radiogroup" value="4" id="radiogroup_4" <if condition="$radiogroup eq 4"> checked </if>>
+                          4</label>
+                      </li>
+                      <li <if condition="$radiogroup eq 5"> class="active" </if>>
+                        <label><img src="{weiwo::RES}/css/Xiaoshou-style/005.png">
+                          <input class="radio" type="radio" name="radiogroup" value="5" id="radiogroup_5" <if condition="$radiogroup eq 5"> checked </if>>
+                          5</label>
+                      </li>
+                      <li <if condition="$radiogroup eq 6"> class="active" </if>> 
+                        <label><img src="{weiwo::RES}/css/Xiaoshou-style/006.png">
+                          <input class="radio" type="radio" name="radiogroup" value="6" id="radiogroup_6" <if condition="$radiogroup eq 6"> checked </if>>
+                          6</label>
+                      </li>
+                      <li <if condition="$radiogroup eq 7"> class="active" </if>>
+                        <label><img src="{weiwo::RES}/css/Xiaoshou-style/007.png">
+                          <input class="radio" type="radio" name="radiogroup" value="7" id="radiogroup_7" <if condition="$radiogroup eq 7"> checked </if>>
+                          7</label>
+                      </li>
+                      <li <if condition="$radiogroup eq 8"> class="active" </if>>
+                        <label><img src="{weiwo::RES}/css/Xiaoshou-style/008.png">
+                          <input class="radio" type="radio" name="radiogroup" value="8" id="radiogroup_8" <if condition="$radiogroup eq 8"> checked </if>>
+                          8</label>
+                      </li>
+                      <li <if condition="$radiogroup eq 9"> class="active" </if>>
+                        <label><img src="{weiwo::RES}/css/Xiaoshou-style/009.png">
+                          <input class="radio" type="radio" name="radiogroup" value="9" id="radiogroup_9" <if condition="$radiogroup eq 9"> checked </if>>
+                          9</label>
+                      </li>
+                      <li <if condition="$radiogroup eq 10"> class="active" </if>>
+                        <label><img src="{weiwo::RES}/css/Xiaoshou-style/010.png">
+                          <input class="radio" type="radio" name="radiogroup" value="10" id="radiogroup_10" <if condition="$radiogroup eq 10"> checked </if>>
+                          10</label>
+                      </li>
+                      <li <if condition="$radiogroup eq 11"> class="active" </if>>
+                        <label><img src="{weiwo::RES}/css/Xiaoshou-style/011.png">
+                          <input class="radio" type="radio" name="radiogroup" value="11" id="radiogroup_11" <if condition="$radiogroup eq 11"> checked </if>>
+                          11</label>
+                      </li>
+                      <li <if condition="$radiogroup eq 12"> class="active" </if>>
+                        <label><img src="{weiwo::RES}/css/Xiaoshou-style/012.png">
+                          <input class="radio" type="radio" name="radiogroup" value="12" id="radiogroup_12" <if condition="$radiogroup eq 12"> checked </if>>
+                          12</label>
+                      </li>
+                    </ul>
+                    <script>
+                    $(document).ready(function(){
+                      $(".radio").click(function(){
+                          var radiostyle=$(this).val();
+                          //alert(radiostyle);
+                          $(".cateradio li").each(function(){
+                            $(this).removeClass("active");
+                          });
+                          $(this).parents("li").addClass("active");
+                          $.ajax({
+                              type:"get",
+                              url:"index.php?g=Apps&m=Xiaoshou&a=styleChange&radiogroup="+radiostyle,
+                              dataType:"json",
+                          });
+                      });
+                    });
+                    </script>
+
+                  </form></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="clr"></div>
+    </div>
+  </div>
+</div>
+<!--底部-->   </div>
+  <include file="Public:footer"/>

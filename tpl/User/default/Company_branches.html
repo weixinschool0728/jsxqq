@@ -1,0 +1,115 @@
+<include file="Public:head"/>  
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+
+        <div class="content">
+<div class="cLineB">
+<h4 class="left">分支机构</h4>
+<div class="searchbar right">
+<form method="post" action="">
+<script>
+function selectall(name) {
+	var checkItems=$('.cbitem');
+	if ($("#check_box").attr('checked')==false) {
+		$.each(checkItems, function(i,val){
+			val.checked=false;
+		});
+		
+	} else {
+		$.each(checkItems, function(i,val){
+			val.checked=true;
+		});
+	}
+}
+</script>
+
+</form>
+</div>
+<div class="clr"></div>
+</div>
+<if condition="$wxuser.wx_coupons eq 1">
+<!--div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-top:5px;">
+    使用“微信门店导”入门店前请检查门店的“名称”、“行业”等信息设置完整。需要更新门店信息时候，请登陆您的公众号将已导入的门店信息清除，以免出现重复的门店信息。
+</div-->
+</if>
+<!--tab start-->
+<div class="tab">
+<ul>
+
+<li class="tabli" id="tab0"><a href="{weimicms::U('Company/index',array('token'=>$token))}">公司信息</a></li>
+
+<li class="<if condition="$isBranch eq 1">current</if> tabli" id="tab2"><a href="{weimicms::U('Company/branches',array('token'=>$token,'isBranch'=>1))}">分支机构</a></li>
+<if condition="$wxuser.wx_coupons eq 1">
+	<!--li  style="float:right;"><a href="{weimicms::U('Company/updateallpoi',array('token'=>$token))}">更新同步门店</a></li-->
+</if>
+
+</ul>
+</div>
+<!--tab end-->
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<div class="cLine">
+<div class="pageNavigator left"> <a href="{weimicms::U('Company/index',array('token'=>$token,'isBranch'=>1))}" title="" class="btnGrayS vm bigbtn"><if condition="$usertplid eq 2"><i class="fa fa-hand-o-right"></i><else /><img src="{weimicms::RES}/images/product/add.png" class="vm"></if> 添加</a></div>
+<div class="clr"></div>
+</div>
+<if condition="$wxuser.winxintype eq 3">
+	<div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-top:5px;">
+温馨提示：1、新添加的门店将在5个工作日内审核完成，微信会通过下面填写的电话或者手机对您的门店进行确认，未接到电话会导致门店审核失败。
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+2、如果审核状态为‘审核驳回’，请删除该门店重新申请。
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+3、审核中的门店暂不支持修改和删除。
+</div>
+</if>
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th class="select" style="display:none"><input type="checkbox" value="" id="check_box" onclick="selectall('id[]');"></th>
+<th width="50">商户ID</th>
+<th width="70">名称</th>
+<th width="70">行业分类</th>
+<th width="85">电话</th>
+<th width="160">地址</th>
+<th width="280">分支登陆地址</th>
+<th width="135">添加时间</th>
+<if condition="$wxuser.winxintype eq 3">
+<th width="80">状态</th></if>
+<th class="norightborder" width="80">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="branches" id="c"> 
+<tr>
+<td style="display:none"><input type="checkbox" value="{weimicms:$o.id}" class="cbitem" name="id_{weimicms:$i}"></td>
+<td>{weimicms:$c.id}</td>
+<td>{weimicms:$c.name}</td>
+<td>{weimicms:$c.cat_name}</td>
+<td>{weimicms:$c.tel}</td>
+<td>{weimicms:$c.province}{weimicms:$c.city}{weimicms:$c.district}{weimicms:$c.address}</td>
+<td>{weimicms:$c.url}</td>
+<td><if condition="$c.add_time neq 0">{weimicms:$c.add_time|date='Y-m-d H:i:s',###}<else />---</if></td>
+<if condition="$wxuser.winxintype eq 3"><td><if condition="$c['available_state'] eq 2"><span style="color:red;">审核中</span><elseif condition="$c['available_state'] eq 3 || $c['available_state'] eq 0" /><span style="color:green;">审核通过</span><elseif condition="$c['available_state'] eq 4" /><span style="color:red;">审核驳回</span></if></td></if>
+<td class="norightborder"><a href="{weimicms::U('Company/index',array('token'=>$token,'id'=>$c['id'],'isBranch'=>1))}">修改</a> <a href="javascript:drop_confirm('您确定要删除吗?', '{weimicms::U('Company/delete',array('token'=>$token,'id'=>$c['id'],'isBranch'=>1))}');">删除</a></td>
+</tr>
+</volist>
+</tbody>
+</table>
+<input type="hidden" name="token" value="{weimicms:$_GET['token']}" />
+</form>
+
+   <script>
+function showIntroDetail(id){
+	art.dialog.open('{weimicms::U('Product/orderInfo',array('token'=>$token,'dining'=>$isDining))}&id='+id,{lock:false,title:'订单详情',width:700,height:420,yesText:'关闭',background: '#000',opacity: 0.87});
+}
+</script>
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{weimicms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

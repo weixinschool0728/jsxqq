@@ -1,0 +1,125 @@
+<include file="Public:head"/> 
+<script>
+function setdiaplay(){
+	if(document.modifyform.peruserbw_1.checked){
+		document.getElementById("peruserbwpara").style.display="";
+	}else{
+		document.getElementById("peruserbwpara").style.display="none";
+	}
+}
+</script> 
+<div class="content" style="width:98%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+  <div class="cLineB">
+    <div  class="quick-actions_homepage">
+    <ul class="quick-actions">
+      <li class="bg_lb"> <a href="/index.php?g=User&amp;m=AP&amp;a=index&amp;tab=09"> <i class="icon-rss"></i> 设备列表 </a> </li>
+      <li class="bg_dy"> <a href="/index.php?g=User&m=Policy&a=index&tab=09"> <i class="icon-cogs"></i> 策略设置</a> </li>
+      <li class="bg_lg"> <a href="/index.php?g=User&m=Terminal&a=index&tab=09"> <i class="icon-cloud"></i> 终端管理</a> </li>
+      <li class="bg_ly"> <a href="#"> <i class="icon-group"></i> 用户管理 </a> </li>
+      <li class="bg_db"> <a href="javascript:history.go(-1);"> <i class="icon-share-alt"></i> 返回</a> </li>
+    </ul>
+  </div>
+          <h4>策略设置</h4>
+		  </div> 
+<div class="msgWrap">
+   <form class="form" method="post" action="" name="modifyform"  > 
+   <table class="userinfoArea" style=" margin:20px 0 20px 0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+  <!--  
+	<tr>
+	  <th valign="top"><label for="name">规则名称：</label></th>
+	  <td>
+		<input type="input" class="px" id="name" value="{weimicms:$ap.name}" name="name" style="width:300px"><br></td>
+	</tr>
+ -->
+
+  <tbody>
+  
+      <tr>
+        <th>硬性断开时间：</th>
+        <td><input size="10" id="forcetimeout" class="px" name="forcetimeout" value="86400" />
+          秒 *用户上网累计时间到达此值时，将强制下线。必须大于100，修改会使认证模块重启。</td>
+      </tr>
+      <tr>
+        <th>认证超时：</th>
+        <td><input size="10" id="timeout"  class="px" name="timeout" value="600" />
+          秒 *用户登录后，如超过此时间，将自动下线。必须大于100，修改会使认证模块重启。</td>
+      </tr>
+   <!--  <tr>
+        <th valign="top">单IP限速：</th>
+        <td><input type="radio" id="peruserbw_0"  class="px" name="peruserbw" value="0" onclick="setdiaplay();" />
+          不启用 
+          <input type="radio" id="peruserbw_1"  class="px" name="peruserbw" value="1" checked="checked" onclick="setdiaplay();" />
+          启用 *全局流量管理，你也可以在<a href="#">[用户管理]</a>对特定的用户设置<br />
+          <table id="peruserbwpara">
+            <tbody>
+              <tr>
+                <td>总下载带宽：</td>
+                <td><input type="text" class="px" name="bwdown" value="4096" />
+                  Kb *必填 设备的总下载带宽，如ADSL的4Mb，请填写4096Kb</td>
+                </tr>
+              <tr>
+                <td>总上传带宽：</td>
+                <td><input type="text" class="px" name="bwup" value="512" />
+                  Kb *必填 设备的总上传带宽，如ADSL的512Kb，请填写512Kb</td>
+                </tr>
+              <tr>
+                <td>每用户下载带宽：</td>
+                <td><input type="text" class="px" name="downdefault" value="1204" />
+                  Kb *0则不限制</td>
+                </tr>
+              <tr>
+                <td>每用户上传带宽：</td>
+                <td><input type="text" class="px" name="updefault" value="512" />
+                  Kb *0则不限制</td>
+                </tr>
+              </tbody>
+            </table></td>
+      </tr>
+       -->
+<tr>
+  <th valign="top">认证方式：</th>
+  <td>
+     手机
+      <input type="checkbox"  name="authtype" value="x"  />
+       QQ
+       <input type="checkbox"  name="authtype" value="x"  />
+       微博
+<input type="checkbox"  name="authtype" value="x"  />
+       
+微信
+<input type="checkbox" id="authtype" name="authtype" value="x"  />
+
+</td>
+</tr>
+<tr>
+  <th valign="top">IP白名单：</th>
+  <td><textarea name="hotspot_whiteip" cols="60" rows="5"  class="px"></textarea>
+    IP白名单, 多个IP请用, 隔开</td>
+</tr>
+<tr>
+  <th valign="top">域名白名单：</th>
+  <td><textarea name="hotspot_whiteurl" cols="60" rows="5"  class="px"></textarea>
+    无需认证可访问的域名 ,多个域名请用, 隔开</td>
+</tr>
+<tr>
+  <th valign="top">MAC 白名单：</th>
+  <td><textarea name="hotspot_whitemac" cols="60" rows="5"  class="px"></textarea> 多个MAC请用, 隔开 </td>
+</tr>
+
+<tr>
+                            
+  <th></th>
+  <td><button type="submit" name="button" class="btn btn-success left">保存</button>　　<a href="{weimicms::U('Ap/index',array('token'=>$token))}" class="btn btn-info">取消</a>
+  <div class="clr"></div>
+</td>
+</tr>
+  </tbody>
+</table>
+    </form> 
+
+  </div> 
+
+        </div>
+ <!--底部-->
+  	</div>
+<include file="Public:footer"/>

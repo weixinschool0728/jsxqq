@@ -1,0 +1,145 @@
+﻿<include file="Public:head"/>
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+  <div class="cLineB">
+<include file="Public:3g"/>
+              <div class="clr"></div>
+          </div>
+          <div class="cLine">
+              <div class="pageNavigator left">
+  <a href='{weimicms::U("Text/add")}' title='新增文本自定义回复' class='btnGrayS vm bigbtn'><img src="{weimicms::RES}/images/text.png" class="vm" />新增文本自定义回复</a>　
+  <a href='{weimicms::U("Img/add")}' title='新增图文自定义回复' class='btnGrayS vm bigbtn'><img src="{weimicms::RES}/images/pic.png" class="vm" />新增图文自定义回复</a>　
+              
+            </div>
+    <select name="classid" onchange="MM_jumpMenu('parent',this,0)" style="margin-top:5px; width:auto;"  > 
+
+                    <option  value="0">请选择图文分类</option>
+                    <option value="{weimicms::U('Img/index',array('token'=>$token))}"> 全部分类</option>
+                      <volist name="res" id="vo">
+                     <option value=" {weimicms::U('Img/index1',array('classid'=>$vo['id']))}"  <if condition="$info['id'] eq $vo['id']" >selected</if>> {weimicms:$vo.name}</option>
+                      </volist>      
+                    </select>
+            <div class="clr"></div>
+			<div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-bottom:5px;font-size:12px;">温馨提示：修改排序直接点击图文消息对应的排序单元格修改即可。数值越大排在越上面</div>
+          </div>
+          <div class="msgWrap">
+            <TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+              <THEAD>
+                <TR>
+					<TH class="answer">标题</TH>
+					<TH class="keywords">关键词</TH>
+					
+                    <TH  class="category" >分类</TH>
+                    <TH class="time">排序</TH>
+                    <TH class="time">浏览次数</TH>
+					<TH class="time">时间</TH>
+					<TH class="edit norightborder">操作</TH>
+                </TR>
+              </THEAD>
+              <TBODY>
+                <TR></TR>
+				<volist name="info" id="vo">
+				<tr>
+                  <td><div class="answer_text"><img src="{weimicms::RES}/images/pic.png" class="vm" title="图文自定义内容">{weimicms:$vo.title}</div></td>
+                  <td>{weimicms:$vo.keyword}</td>
+                  
+                  <td>{weimicms:$vo.classname}</td>
+                  <td onclick="editUsort({weimicms:$vo.id})" id="edit-{weimicms:$vo.id}" title="点击编修改排序" style="cursor:pointer;">
+					<span class="usort-{weimicms:$vo.id}">{weimicms:$vo.usort}</span>
+				  </td>
+                  <td>{weimicms:$vo.click}</td>
+                    <td><php>echo date('Y-m-d',$vo['uptatetime']);</php></td>
+                   
+                   <td class="norightborder">
+				   <a href="{weimicms::U('Wap/Index/content',array('token'=>$_SESSION['token'],'id'=>$vo['id']))}" target="_blank">查看</a> 
+				   <a href="{weimicms::U('Img/edit',array('id'=>$vo['id']))}" title="编辑图文自定义回复">编辑</a>
+				   <a href="{weimicms::U('Img/del',array('id'=>$vo['id']))}">删除</a></td>
+          
+                </tr>
+				</volist>
+                              
+              </TBODY>
+            </TABLE>
+<style>
+	.usort {
+		width:45px;
+		height:25px;
+	}
+</style>
+           <script>
+   function checkvotethis() {
+var aa=document.getElementsByName('del_id[]');
+var mnum = aa.length;
+j=0;
+for(i=0;i<mnum;i++){
+if(aa[i].checked){
+j++;
+}
+}
+if(j>0) {
+document.getElementById('info').submit();
+} else {
+alert('未选中任何文章或回复！')
+}
+}
+
+			//edit-usort
+		
+					function editUsort(id){
+						if(document.activeElement.id != 'usortinp'){
+							var val = $(".usort-"+id).html();
+							$(".usort-"+id).html('<input type="number" class="usort" id="usortinp" name="usort" value="'+val+'" onkeydown="if(event.keyCode==13){ upUsort('+id+',$(this).val());}" onblur="upUsort('+id+',$(this).val())" />');
+							$("input[name=usort]").focus();
+						}
+
+						
+					}
+					
+					function upUsort(id,b){
+						$.ajax({
+							url:'{weimicms::U("Img/editUsort")}',
+							data:{"id":id,"v":b,"token":"{weimicms:$Think.session.token}"},
+							type:'POST',
+							dataType:'text',
+							success:function(obj){
+								if(obj != 'error'){
+									$(".usort-"+id).html(obj);
+								}else{
+									$(".usort-"+id).html(b);
+								}
+							}
+						});
+						
+					}
+
+
+   </script>
+          </div>
+          <div class="cLine">
+            <div class="pageNavigator right">
+                 <div class="pages">{weimicms:$page}</div>
+              </div>
+            <div class="clr"></div>
+          </div>
+        </div>
+
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+  <script>
+
+function checkAll(form, name) {
+for(var i = 0; i < form.elements.length; i++) {
+var e = form.elements[i];
+if(e.name.match(name)) {
+e.checked = form.elements['chkall'].checked;
+}
+}
+}
+
+
+  </script>
+  <!--底部-->
+  	  <SCRIPT language=JavaScript>function MM_jumpMenu(targ,selObj,restore){  eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'");  if (restore) selObj.selectedIndex=0;}</SCRIPT>
+  	</div>
+<include file="Public:footer"/>

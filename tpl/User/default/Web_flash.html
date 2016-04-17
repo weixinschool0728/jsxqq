@@ -1,0 +1,66 @@
+<include file="Public:head"/>
+<script>
+$(function(){
+	$('.del_confirm').click(function(){
+		if(!confirm('分类下的内容会连同删除！请确认：是否确认删除该分类？')){
+			return false;
+		}
+	});
+});
+</script>
+<div class="content" <if condition="session('isQcloud') eq true">style="float:center;"</if>>
+
+<div class="cLineB">
+  <h4>图集分类管理  <span class="FAQ"></span></h4>
+ <if condition="$_GET['fid'] neq ''"> <a href="javascript:history.go(-1);"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a></if>
+ </div>
+         <div class="cLineC" style="line-height: 32px;">
+ <a href="{weimicms::U('Web/flash',array('act'=>'cat_add'))}" class="btnGrayS vm bigbtn">添加分类</a>　 
+</div>
+ 
+ <div class="msgWrap form">
+
+<div class="bdrcontent">
+<div id="div_ptype">
+<table class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+<thead>
+<tr>
+                    <th style=" width:200px;">分类名称</th>
+<th>分类关键词 <a target="999" class="tooltips" ><img src="{weimicms::RES}/images/price_help.png" align="absmiddle" /><span>
+<p>分类关键词是网站获取分类下轮播图的唯一标识</p>
+</span></a></th>
+                        <th class="norightborder">操作</th>
+</tr>
+</thead>
+<volist name="pc_flash_cat" id="vo">
+<tr>
+<td>{weimicms:$vo.cat_name}</td>
+<td>{weimicms:$vo.cat_key}</td>
+<td class="norightborder" width="200">
+	<a href="{weimicms::U('Web/flash',array('act'=>'flash_list','cat_id'=>$vo['cat_id']))}">图片列表</a>&nbsp;&nbsp;&nbsp;
+	<a href="{weimicms::U('Web/flash',array('act'=>'cat_edit','cat_id'=>$vo['cat_id']))}">编辑</a>&nbsp;&nbsp;&nbsp;
+	<a href="{weimicms::U('Web/flash',array('act'=>'cat_del','cat_id'=>$vo['cat_id']))}" class="del_confirm">删除</a>
+	</nobr>
+</td>
+</tr>
+</volist>
+               
+  </table>
+</div>
+</div>
+<div class="footactions" style="padding-left:10px">
+  <div class="pages">{weimicms:$page}</div>
+</div>
+          </div>
+  
+        </div>
+   
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div> 
+  <!--底部-->
+  	</div>
+<if condition="session('isQcloud') neq true">
+<include file="Public:footer"/>
+</if>

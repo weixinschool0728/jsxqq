@@ -1,0 +1,102 @@
+<include file="Public:head"/>
+<script src="{weimicms:$staticPath}/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{weimicms:$staticPath}/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="{weimicms::RES}/js/date/WdatePicker.js"></script>
+<div class="content">
+	<div class="cLineB"><h4>修改会员信息</h4><a href="javascript:history.go(-1);"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a></div>
+	<form method="post" action=""  enctype="multipart/form-data" >
+		<div class="msgWrap form">
+			<table class="userinfoArea" border="0" cellSpacing="0" cellPadding="0" width="100%">
+				<!--tr>
+					<th valign="top"><label>会员昵称：</label></th>
+					<td><input class="px" name="wechaname" id="wechaname" value="{weimicms:$list['wechaname']}" style="width:300px;"/></td>
+				</tr>
+				<tr>
+					<th valign="top"><label>联系电话：</label></th>
+					<td><input class="px" name="tel" id="tel" value="{weimicms:$list['tel']}" style="width:300px;"  required="required"/></td>
+				</tr>  
+				
+				<tr>
+					<th valign="top"><label>性别：</label></th>
+					<td>
+						<input class="radio" type="radio" name="sex" value="1"  <if condition="$list['sex'] eq 1" >checked</if> >男&nbsp;&nbsp;&nbsp; 
+						<input class="radio" type="radio" name="sex" value="2"  <if condition="$list['sex'] eq 2" >checked</if>>女&nbsp;&nbsp;&nbsp;
+						<input class="radio" type="radio" name="sex" value="0"  <if condition="$list['sex'] eq 0" >checked</if>>未知
+					</td>
+				</tr> 
+				<tr>
+					<th valign="top"><label for="info">头像：</label></th>
+					<td>
+						<input class="px"  name="portrait" value="{weimicms:$list['portrait']}" id="portrait" style="width:363px;"  />
+						<script src="{weimicms:$staticPath}/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('portrait',0,0,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('portrait')">预览</a>
+					</td>
+				</tr-->
+				{weimicms:$formData}
+				<!--tr>
+					<th valign="top"><label for="info">地址：</label></th>
+					<td><textarea class="px" id="address" name="address" style="width:400px;height:80px">{weimicms:$list.address}</textarea></td>
+				</tr-->
+				<tr>
+					<th><input class="px" name="wecha_id" id="wecha_idd" value="{weimicms:$list['wecha_id']}" type="hidden" /></th>
+					<td><input type="hidden" name="id" value="{weimicms:$list['id']}" /><input type="button" id="showcard" value="保存" name="sbmt" class="btnGreen left"></td>
+				</tr>
+            </table>
+		</div>
+	</form>
+</div>     
+ 
+<div class="clr"></div>
+</div>
+</div>
+</div> 
+<!--底部-->
+</div>
+<script>
+$(document).ready(function(){
+	$("#showcard").bind("click", function() {
+	    var wechaname = $("#wechaname").val();
+		var tel 	  = $("#tel").val();
+		var sex 	  = $(".radio:checked").val();
+		var portrait  = $("#portrait").val();
+		var data = new Array();
+	 	<volist name="verify" id="item">
+		<if condition="$item['item_name'] eq 'portrait'">
+			data[{weimicms:$i}] = {'id':$("#field_{weimicms:$item['id']}").val(), 'val':$('#portrait').val(), 'type':"{weimicms:$item['type']}", 'item_name':"{weimicms:$item['item_name']}"};		
+		<elseif condition="$item['type'] eq 'checkbox'" />	
+				var val = '', pre = '';
+				$(".field_id_{weimicms:$item['id']}").each(function(){
+					if ($(this).attr('checked')) {
+						val += pre + $(this).val();
+						pre = '|';
+					}
+				});
+				data[{weimicms:$i}] = {'id':$("#field_{weimicms:$item['id']}").val(), 'val':val, 'type':"{weimicms:$item['type']}", 'item_name':"{weimicms:$item['item_name']}"};
+			<elseif condition="$item['type'] eq 'radio'" />	
+				data[{weimicms:$i}] = {'id':$("#field_{weimicms:$item['id']}").val(), 'val':$(".field_id_{weimicms:$item['id']}:checked").val(), 'type':"{weimicms:$item['type']}", 'item_name':"{weimicms:$item['item_name']}"};
+			<else />
+				data[{weimicms:$i}] = {'id':$("#field_{weimicms:$item['id']}").val(), 'val':$("#field_id_{weimicms:$item['id']}").val(), 'type':"{weimicms:$item['type']}", 'item_name':"{weimicms:$item['item_name']}"};
+			</if>
+		</volist>
+
+		var submitData = {
+	        /*wechaname : wechaname,
+	        tel 	  : tel,
+	        sex 	  : sex,
+	        address   : data[1].val,
+	        portrait  : portrait,
+	        origin	  : data[2].val,*/
+	        data	  : data
+	    };
+		$.post('index.php?g=User&m=Wechat_group&a=setinfo&id={weimicms:$list['id']}', submitData, function(data) {
+			if (data.error) {
+				alert(data.msg);
+				return false;
+			} else {
+				alert('信息修改成功');
+				setTimeout(function(){location.href = "{weimicms::U('Wechat_group/info')}";},1000);
+			}
+		}, "json");
+	});
+});
+</script>
+<include file="Public:footer"/>

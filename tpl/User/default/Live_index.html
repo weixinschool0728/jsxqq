@@ -1,0 +1,103 @@
+<include file="Public:head"/> 
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />
+        <div class="content">
+<div class="cLineB">
+<h4 class="left">微场景</h4>
+<div class="clr"></div>
+</div>
+
+<div class="cLine">
+<div class="pageNavigator left"> <a href="{weimicms::U('Live/add',array('token'=>$token))}" title="添加场景" class="btnGrayS vm bigbtn"><if condition="$usertplid eq 2"><i class="fa fa-hand-o-right"></i><else /><img src="{weimicms::RES}/images/product/add.png" class="vm"></if> 添加场景</a></div>
+<div class="searchbar right">
+	<form method="post" action="">
+		<input type="text" id="msgSearchInput" class="txt left" placeholder="输入关键词搜索" name="search" value="">
+		<input type="hidden" name="ac" value="hotels-list">
+		<input type="hidden" name="id" value="9878">
+		<input type="hidden" name="wxid" value="gh_423dwjkewad">
+		<input type="submit" value="搜索" id="msgSearchBtn" href="" class="btnGrayS" title="搜索">
+	</form>
+</div>
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<input name="delall" type="hidden" value="">
+<input name="wxid" type="hidden" value="">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th width="160">场景名称</th>
+<th width="160">关键词</th>
+<th width="130">添加时间</th>
+ <th width="80">是否开启</th>
+<th width="260" class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="list" id="item"> 
+<tr>
+<td>{weimicms:$item.name}</td>
+<td>{weimicms:$item.keyword}</td>
+<td>{weimicms:$item.add_time|date="Y-m-d H:i:s",###}</td> 
+<td>
+	<if condition="$item.is_open eq '1'">
+		已开启
+	<else/>	
+		未开启
+	</if>
+</td> 
+
+<td class="norightborder">
+<script type="text/javascript">
+   $(document).ready(function(){
+      var bheight=document.body.clientHeight;
+      $("#lay{weimicms:$item.id}").click(function(){
+   $("#brg{weimicms:$item.id}").css("display","block");
+   $("#showdiv{weimicms:$item.id}").css("display","block");
+   //$("#testdiv").load("test.html");
+   });
+   $("#close{weimicms:$item.id}").click(function(){
+      $("#brg{weimicms:$item.id}").css("display","none");
+   $("#showdiv{weimicms:$item.id}").css("display","none");
+   });
+   });
+ </script>
+ <style type="text/css">
+   #brg{weimicms:$item.id}{ z-index:9999;width:100%; height:100%; background:#333; position:absolute; top:0; left:0; filter:alpha(opacity=60); -moz-opacity:0.6; opacity: 0.6; position:absolute; top:0; left:0; display:none;}
+   #showdiv{weimicms:$item.id}{z-index:9999; display:none;position:fixed; *position:absolute;top:30%; left:50%; margin:-50px 0 0 -50px;}
+   #testdiv{weimicms:$item.id}{ width:300px; height:300px; margin:0 auto; border:1px solid #4d4d4d; background:#f2f2f2;}
+   #close{weimicms:$item.id}{width:300px; height:27px; line-height:27px; font-size:14px; font-weight:bold; border:1px solid #4d4d4d; text-align:center; cursor:pointer; margin:0 auto; background:#333; color:#fff;margin-top: 15%;}
+ </style>
+    <div id="brg{weimicms:$item.id}"></div>
+ <div id="showdiv{weimicms:$item.id}">
+   <div id="close{weimicms:$item.id}">您想关闭就点我吧</div>
+   <div id="testdiv{weimicms:$item.id}"><img src="{weimicms:$Think.session.source_domain}/wap.php?c=Wxapp&a=qrcode&id={weimicms:$item.id}&modle=Live" width="300" height="300" class="cateimg_small"></div>
+ </div>
+<if condition="$Think.session.is_syn eq 2">
+<if condition="$usertplid neq 2">
+   <a id="lay{weimicms:$item.id}" style="width:191px;">查看二维码</a><br>
+</if>
+</if>
+	<a href="{weimicms::U('Live/content',array('id'=>$item['id'],'token'=>$token))}">场景内容</a>
+<if condition="$item.show_company eq '1'">
+	<!--<a href="{weimicms::U('Company/branches',array('id'=>$item['id'],'token'=>$token,'isBranch'=>1))}">公司分支信息</a>-->
+	<a href="{weimicms::U('Live/company',array('id'=>$item['id'],'token'=>$token))}">商家展示</a>
+</if>
+	<a href="{weimicms::U('Live/add',array('id'=>$item['id'],'token'=>$token))}">修改</a>
+	<a href="javascript:drop_confirm('您确定要删除吗?', '{weimicms::U('Live/del',array('id'=>$item['id'],'token'=>$token))}');">删除</a></td>
+</tr>
+</volist>
+</tbody>
+</table>
+</form>
+
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{weimicms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

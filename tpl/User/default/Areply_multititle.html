@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微信公众平台源码,微信机器人源码,微信自动回复源码 weimicms多用户微信营销系统</title>
+<meta http-equiv="MSThemeCompatible" content="Yes" />
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/style_2_common.css?BPm" />
+<script src="{weimicms::RES}/js/common.js" type="text/javascript"></script>
+<link href="{weimicms::RES}/css/style.css" rel="stylesheet" type="text/css" />
+ <script src="{weimicms::STATICS}/jquery-1.4.2.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak={weimicms::$apikey}"></script>
+ <link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />
+ <script src="{weimicms:$staticPath}/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{weimicms:$staticPath}/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<style>
+body{line-height:180%;}
+ul.modules li{padding:4px 10px;margin:4px;background:#efefef;float:left;width:27%;}
+ul.modules li div.mleft{float:left;width:40%}
+ul.modules li div.mright{float:right;width:55%;text-align:right;}
+</style>
+</head>
+<body style="background:#fff;padding:20px 20px;">
+<table class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+<thead>
+<tr>
+	<th>图文编号</th>
+	<th>图文封面图片</th>
+	<th>图文标题</th>
+</tr>
+</thead>
+<weimicmsif where="$list">
+<volist name="list" id="m">
+<tr>
+	<td>{weimicms:$m.id}</td>
+	<td><img src="{weimicms:$m.pic}" width="50" height="50" /></td>
+	<td>{weimicms:$m.title}</td>
+</tr>
+</volist>
+<else/>
+<tr>
+	<td colspan="4" align="center">赞无记录</td>
+</tr>
+</weimicmsif>
+</table>
+</body>
+</html>

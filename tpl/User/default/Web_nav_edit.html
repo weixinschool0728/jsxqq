@@ -1,0 +1,135 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script>
+$(function(){
+	var dialog;
+	var nav_select_html = '<ul><li id="page" class="bg_2">自定义页面</li><li id="single_page" class="bg_00">单页面链接</li><li id="news_cat" class="bg_d">文章分类</li><li id="news" class="bg_0">文章</li><li id="product_cat" class="bg_d">产品分类</li><li id="product" class="bg_0">产品</li><li id="down_cat" class="bg_d">下载分类</li><li id="down" class="bg_0">下载内容</li></ul>';
+	$('#nav_select').click(function(){
+		dialog = $.dialog({
+			title:'根据模型选择链接',
+			content:'<div class="nav_select_div">'+nav_select_html+'</div>',
+
+			lock:true,
+			ok:false
+		});
+		return false;
+	});
+	$('.nav_select_div li').live('click',function(){
+		var html_txt = '<div class="nav_title"><div class="left">'+$(this).html()+'</div><div class="right">返回</div><div style="clear:both;"></div></div>';
+		var type = $(this).attr('id');
+		$.getJSON("{weimicms::U('Web/get_nav_list')}",{type:type},function(result){
+			if(result.error == 1){
+				alert(result.msg);
+				$('.nav_select_div').html(nav_select_html);
+			}else{
+				html_txt += '<div class="nav_content">';
+				$.each(result.list,function(i,item){
+					html_txt += '<a url="'+item.url+'" key="'+item.key+'">'+item.name+'</a>';
+				});
+				html_txt += '</div>';
+				$('.nav_select_div').html(html_txt);
+			}
+		});
+	});
+	$('.nav_select_div .nav_title .right').live('click',function(){
+		$('.nav_select_div').html(nav_select_html);
+	});
+	$('.nav_select_div .nav_content a').live('click',function(){
+		$('#url').val($(this).attr('url'));
+		if($('#key').val() == ''){$('#key').val($(this).attr('key'))};
+		dialog.close();
+	});
+});
+</script>
+<style>
+.nav_select_div{padding:8px;width:520px;}
+.nav_select_div li{width: 124px;height: 80px;float: left;text-align: center;margin: 0 2px 5px;line-height:80px;color:white;cursor:pointer;}
+.nav_select_div li.bg_2{background-color:#297AED;}
+.nav_select_div li.bg_d{background:#D34827;}
+.nav_select_div li.bg_b{background:#B91E48;}
+.nav_select_div li.bg_0{background:#033846;}
+.nav_select_div li.bg_00{background:#00991B;}
+.nav_select_div li.h_146{height:146px;line-height:146px;}
+.nav_select_div li.w_196 {width:194px;}
+.nav_select_div .nav_title .left{font-size:14px;font-weight:bold;}
+.nav_select_div .nav_title .right{color:blue;cursor:pointer;}
+.nav_select_div .nav_content{clear:both;margin-top:10px;}
+.nav_select_div .nav_content a{display:block;margin-top:5px;background:#EBEEF1;color: #464D6A;padding:0.5em;cursor:pointer;text-decoration:none;}
+</style>
+
+ <div class="content" <if condition="session('isQcloud') eq true">style="float:center;"</if>>
+          <div class="cLineB"><h4>编辑导航</h4><a href="{weimicms::U('Web/nav')}"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a></div> 
+<div class="msgWrap">
+  <form class="form" method="post" name="addform" action="{weimicms::U('Web/nav',array('act'=>'nav_add_amend'))}" enctype="multipart/form-data" >
+	<input type="hidden" name="id" value="{weimicms:$now_nav.id}"/>
+<TABLE class="userinfoArea" style=" margin:20px 0 0 0;" border="0" cellSpacing="0" cellPadding="0" width="100%">
+  <THEAD>
+<TR>
+  <TH valign="top"><label for="name">导航名称：</label></TH>
+  <TD><input type="text" class="px" id="name" value="{weimicms:$now_nav.name}" name="name" style="width:300px" /><br />
+                  </TD>
+  <TD>&nbsp;</TD>
+</TR>
+                            </THEAD>
+  <TBODY>
+  <TR>
+  <TH valign="top"><label for="name">第二名称：</label></TH>
+  <TD><input type="text" class="px" id="s_name" value="{weimicms:$now_nav.s_name}" name="s_name" style="width:300px" /> &nbsp;大多都是模板中设定导航名称的英文词语<br />
+                  </TD>
+  <TD>&nbsp;</TD>
+</TR>
+<TR>
+	<TH valign="top"><label for="">父级导航：</label></TH>
+	<TD>
+		<select name="fid">
+			<option value="0">顶级分类</option>
+			<volist name="pc_nav" id="vo">
+				<option value="{weimicms:$vo.id}" <if condition="$now_nav['fid'] eq $vo['id']">selected="selected"</if>>{weimicms:$vo.name}</option>
+			</volist>
+		</select>
+    </TD>
+  <TD>&nbsp;</TD>
+</TR>
+<TR>
+  <TH valign="top"><label for="url">链接地址：</label></TH>
+  <TD><input type="text" class="px" id="url" value="{weimicms:$now_nav.url}" name="url" style="width:300px" />&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id="nav_select" class="a_upload" style="color:red;">根据模型选择链接</a>
+                   </TD>
+  <TD>&nbsp;</TD>
+</TR>
+<TR>
+  <TH valign="top"><label for="key">关键词：</label></TH>
+  <TD><input type="text" class="px" id="key" value="{weimicms:$now_nav.key}" name="key" style="width:300px" /><br />
+                   </TD>
+  <TD>&nbsp;</TD>
+</TR>
+<TR>
+  <TH valign="top"><label for="sort">排序：</label></TH>
+  <TD><input type="text" class="px" id="sort" value="{weimicms:$now_nav.sort}" name="sort" style="width:100px" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数值越大，排序越前。（默认添加越早，排序越前）<br />
+                   </TD>
+  <TD>&nbsp;</TD>
+</TR>
+
+<TR>
+  <TH></TH>
+  <TD><button type="submit"  name="button"  class="btnGreen left" >保存</button>
+  	<div class="clr"></div>
+  	</TD>
+  </TR>
+  </TBODY>
+</TABLE>
+  </form>
+  </div> 
+
+        </div>
+        
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div> 
+
+<!--底部-->
+  	</div>
+<if condition="session('isQcloud') neq true">
+<include file="Public:footer"/>
+</if>

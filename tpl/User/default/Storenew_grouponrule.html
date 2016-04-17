@@ -1,0 +1,81 @@
+<if condition="$ischild neq 1">
+<include file="Public:head" />
+<else />
+<include file="Repast:head" />
+</if>
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<div class="content">
+<div class="cLineB">
+<h4 class="left">团购商品管理({weimicms:$page})</h4>
+<div class="clr"></div>
+</div>
+<!--tab start-->
+<div class="tab">
+<ul>
+	<li class="tabli" id="tab8"><a href="{weimicms::U('Storenew/grouponproduct',array('token'=>$token,'cid' => $cid))}">团购商品</a></li>
+	<li class="current tabli" id="tab8"><a href="{weimicms::U('Storenew/groupon',array('token'=>$token,'cid' => $cid))}">团购管理</a></li>
+	<li class="tabli" id="tab2"><a href="{weimicms::U('Storenew/grouponorders',array('token'=>$token,'cid'=>$cid))}">团购订单</a></li>
+	<li class="tabli" id="tab2"><a href="{weimicms::U('Storenew/groupontuikuan',array('token'=>$token,'cid'=>$cid))}">团购退款</a></li>
+</ul>
+</div>
+<!--tab end-->
+<div class="cLine">
+<div class="pageNavigator left">
+<a href="{weimicms::U('Storenew/addnew', array('token' => $token, 'cid' => $cid))}" title="添加" class="btnGrayS vm bigbtn">
+<img src="{weimicms::RES}/images/product/add.png" width="16" class="vm">查看团购商品</a>
+</div>
+<div class="pageNavigator right">
+	<a href="{weimicms::U('Storenew/grouponorders',array('token'=>$token,'cid'=>$cid))}" class="btnGrayS vm bigbtn">查看团购订单</a>
+</div>
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<input name="delall" type="hidden" value="">
+<input name="wxid" type="hidden" value="">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th width="40">排序ID</th>
+<th width="100">会员名</th>
+<th width="120">商品名称</th>
+<th width="60">团购价格</th>
+<th width="100">是否付款</th>
+<th width="180">付款时间</th>
+<th width="120" class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="orders" id="hostlist"> 
+<tr>
+<td>{weimicms:$hostlist.id}</td>
+<td>{weimicms:$hostlist.name}<if condition="$hostlist.status eq '1'"><br><font color="red">[已下架]</font></if></td>
+<td>{weimicms:$hostlist.title}</td>
+<td>{weimicms:$hostlist.price}</td>
+<td><if condition="$hostlist.paid eq '1'"><font color="red">已付款</font></if></td>
+<td>创建时间:{weimicms:$hostlist.addtime|date="Y-m-d H:i:s",###}<br>结束时间:{weimicms:$hostlist.endtime|date="Y-m-d H:i:s",###}</td> 
+<td class="norightborder" align="center">
+	<a href="###" onclick="showIntroDetail({weimicms:$hostlist.cartid})">详细</a>
+</td>
+</tr>
+</volist>
+</tbody>
+</table>
+</form>
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{weimicms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<script>
+function showIntroDetail(id){
+	art.dialog.open('{weimicms::U('Storenew/grouponordersInfo',array('token'=>$token,'dining'=>$isDining))}&id='+id,{lock:false,title:'订单详情',width:1000,height:620,yesText:'关闭',background: '#000',opacity: 0.87, close: function(){location.reload();}});
+}
+</script>
+<include file="Public:footer"/>

@@ -1,0 +1,64 @@
+﻿<include file="Public:head"/>
+<div class="content">
+<div class="cLineB">
+  <h4>微助力</h4>
+ </div>
+          <div class="cLine">
+            <div class="pageNavigator left">
+            <a href="{weimicms::U('Weizhuli/add',array('token'=>$token))}" title="添加微助力活动" class="btnGrayS vm bigbtn"><img src="{weimicms::RES}/images/pic.png" class="vm">添加微助力活动</a>
+            </div>
+            <div class="clr"></div>
+          </div>
+		  <div class="ftip">非认证服务号，该功能的分享失效？非认证服务号无法使用本分享功能！
+		借用高级APPID的方法：<a href="http://wm.b2ctui.com/forum.php?mod=viewthread&tid=1636&page=1&extra=#pid7517" target="_blank">点击详情教程</a>
+		</div>
+		<style>
+		.ftip {
+		background: #fefbe4 url(/tpl/User/default/common/images/icons/lightbulb.gif) no-repeat 10px 16px;
+		border: 1px solid #F3ECB9;
+		padding: 6px 20px 6px 36px;
+		height: 36px;
+		font-size: 14px;
+		margin: 10px;
+		color: #993300;
+		line-height: 36px;
+		}
+		</style>
+          <div class="msgWrap">
+            <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <thead>
+                <tr>
+					
+					<th  width="25%" class="time">关键词</th>
+					<th width="25%">标题</th>
+					
+					<th width="25%">结束时间</th>
+					
+					<th width="25%" class="norightborder">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr></tr>
+                  <volist id="list" name="list">
+                <tr>
+                  <td>{weimicms:$list.keyword}</td>
+                  <td>{weimicms:$list.title}</td>
+                
+                  <td>{weimicms:$list.statdate|date='Y-m-d',###}</td>
+                  
+                  <td class="norightborder"><a class="btnGreen" href="{weimicms::U('Weizhuli/edit',array('id'=>$list['id']))}" title="编辑">编辑</a> <a class="btnGreen" href="javascript:drop_confirm('您确定要删除吗?删除会把活动数据全部一起删除！', '{weimicms::U('Weizhuli/del',array('id'=>$list['id']))}');">删除</a> 
+                   
+				   <a  class="btnGreen" href="{weimicms::U('Weizhuli/item',array('id'=>$list['id']))}">参与者信息</a> 
+                   </td>
+          
+                </tr>
+                  </volist>
+      			                
+                  
+              </tbody>
+            </table>
+            
+   </div> 
+          
+  </div>
+<include file="Public:footer"/>

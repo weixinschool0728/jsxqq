@@ -1,0 +1,155 @@
+<include file="Public:head"/>
+<script src="{weimicms:$staticPath}/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{weimicms:$staticPath}/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="{weimicms:$staticPath}/tpl/static/upyun.js"></script>
+<script>
+$(document).ready(function(){
+	$('#add_fans').click(function(){
+		var token 	= '{weimicms:$token}';
+		var group 	= $('#group').val();
+		art.dialog.open('?g=User&m=Service&a=service_fans&token='+token+'&group='+group,{lock:true,title:'选择粉丝',width:600,height:400,yesText:'关闭',background: '#000',opacity: 0.45});
+	});
+	$('#clear_fans').click(function(){
+		$('#fans_id').val('');
+	});
+});
+</script>
+<style>
+.userinfoArea td { padding: 8px 2px;}
+#func_table td{float: left;overflow: hidden;table-layout: fixed;text-overflow: ellipsis;white-space: nowrap;width: 120px;}
+</style>
+<div class="content">
+<div class="cLineB">
+	<h4>设置店员</h4>
+	<a href="javascript:history.go(-1);" class="right btnGrayS vm" style="margin-top:-27px">返回</a>
+</div>   
+<div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-bottom:5px;font-size:12px;">温馨提示：手机端目前只有微排号开通了店员管理,其他功能正在持续更新中...</a>
+</div> 
+<form method="POST" action="{weimicms::U('Assistente/add')}">
+<TABLE class="userinfoArea" style=" margin:20px 0 0 0;" border="0" cellSpacing="0" cellPadding="0" width="100%">
+  <THEAD>
+<TR>
+  <TH valign="top"><span class="red">*</span><label for="keyword">姓名：</label></TH>
+  <TD width="320"><input type="input" class="px" id="name" value="{weimicms:$staff_info.name}" name="name" style="width:300px" ></TD>
+  </TR>
+  </THEAD>
+  <TBODY>
+  <TR>
+  	<TH><span class="red">*</span>用户名：</TH>
+  	<TD><input type="input" class="px" id="username" name="username"  value="<if condition="$staff_info.username neq ''">{weimicms:$staff_info.username}</if>"  style="width:300px" autocomplete="off"/><td><span id="errorinfo" style="color:red;"></span></td></TD>
+	</TR>
+  <TR>
+  	<TH><span class="red">*</span>密码：</TH>
+	<input type="password" style="display:none">
+  	<TD><input type="password" class="px" id="password" name="password" value=""  style="width:300px" AUTOCOMPLETE="off"/> <td>(修改时如果不想修改密码请留空)</td></TD>
+    </TR>                           							 
+   <TR>
+  	<th>电话：</th>
+  	<td><input type="input" class="px" id="tel" value="{weimicms:$staff_info.tel}"  name="tel" style="width:300px" /></td>
+  	</TR>
+	<!--选择粉丝-->
+	<tr>
+		<th>选择店员微信openid：</th>
+		<td colspan="2">
+			<input name="wecha_id" id="fans_id" class="px" value="{weimicms:$staff_info.wecha_id}" style="width:250px;"/>
+			<a href="javascript:void(0);" class="a_choose" id="add_fans">选择粉丝</a>
+			<a href="javascript:void(0);" id="clear_fans">清空</a>
+		</td>
+	</tr>
+	<!--选择粉丝-->
+   <TR>
+  	<th><span class="red">*</span>权限类型：</th>
+  	<td>
+	<input type="checkbox" name="pcorwap[]" value="1" <if condition="$staff_info.pcorwap neq 2 || $staff_info.pcorwap eq ''"> checked</if>/>电脑端&nbsp;&nbsp;&nbsp;&nbsp;
+	<input type="checkbox" name="pcorwap[]" value="2" <if condition="$staff_info.pcorwap neq 1 || $staff_info.pcorwap eq ''"> checked</if>/>手机端
+	<!--select name="pcorwap" style="width:120px;" multiple="multiple">
+	<option value="1" <if condition="$staff_info.pcorwap eq 1 || $staff_info.pcorwap eq 3"> selected='selected'</if>>电脑端</option>
+	<option value="2" <if condition="$staff_info.pcorwap eq 2 || $staff_info.pcorwap eq 3"> selected='selected'</if>>手机端</option>
+	</select-->&nbsp;&nbsp;&nbsp;(至少选一个类型,可以多选)
+	</td>
+  	</TR>
+	<tr id="select_func">
+	<th><span class="red">*</span>分配功能模块：</th>
+	<td colspan="3" class="lt">
+	<input type="checkbox" id="checkall" onclick="selectAll(this);" /><label for="checkall"> 全选 / 全不选 </label>
+	<table style="margin-left:-12px;" cellpadding="10" cellspacing="8" id="func_table">
+	<if condition="$staff_info neq ''">
+	<volist id="f" name="func">
+	<if condition="$i%6 eq 1"><tr></if>
+	<td title="{weimicms:$f.name}">
+		<input type="checkbox" style="cursor:pointer" name="func[]" value="{weimicms:$f.funname}" id="func_{weimicms:$f.id}" <in name="f['funname']" value="$staff_info['func']">checked</in> /> 
+		<label for="func_{weimicms:$f.id}" style="cursor:pointer">{weimicms:$f.name}</label> 
+	</td>
+	<if condition="$i%6 == 0 || $i == count($func)"></tr></if>
+	</volist>
+	<else />
+	<volist id="f" name="func">
+	<if condition="$i%6 eq 1"><tr></if>
+	<td title="{weimicms:$f.name}">
+		<input type="checkbox" style="cursor:pointer" name="func[]" value="{weimicms:$f.funname}" id="func_{weimicms:$f.id}"/> 
+		<label for="func_{weimicms:$f.id}" style="cursor:pointer">{weimicms:$f.name}</label> 
+	</td>
+	<if condition="$i%6 == 0 || $i == count($func)"></tr></if>
+	</volist>
+	</if>
+	</table>							
+	</div>	
+	</td>
+	</tr>
+   <tr>
+  	<th></th>
+	<input type="hidden" name="id" value="{weimicms:$staff_info.id}" />
+  	<td><button type="submit"  name="button"  class="btnGreen left" >保存</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<a href="{weimicms::U('Assistente/add',array('id'=>$_GET['id'],'token'=>$token))}" class="btnGreen">取消</a></td>
+  	<td>&nbsp;</td>
+  	<td>&nbsp;</td>
+  	</tr>
+  </TBODY>
+</TABLE>
+</form>   
+</div>
+<include file="Public:footer"/>
+<script>
+function selectAll(checkbox) { 
+	$("#select_func").find("input[type=checkbox]").attr('checked', $(checkbox).attr('checked')); 
+}
+//如果3G首页没选中,则状态根据H5动态自定义模板状态决定
+$(function(){
+	var shouye = $(":checkbox[value=shouye]").attr('checked');
+	var huiyuanka = $(":checkbox[value=huiyuanka]").attr('checked');
+	if(shouye == false){
+		$(":checkbox[value=CustomTmpls]").click(function(){
+			if($(this).attr('checked') == true){
+				$(":checkbox[value=shouye]").attr('checked',true);
+			}else{
+				$(":checkbox[value=shouye]").attr('checked',false);
+			}
+		});
+	}
+	if(huiyuanka == false){
+		$(":checkbox[value=choujiang]").click(function(){
+			if($(this).attr('checked') == true){
+				$(":checkbox[value=huiyuanka]").attr('checked',true);
+			}else{
+				$(":checkbox[value=huiyuanka]").attr('checked',false);
+			}
+		});
+	}
+	//ajax判断用户名是否存在
+	$("#username").blur(function(){
+		var username = $(this).val();
+		var id = '{weimicms:$staff_info.id}';
+		if(username == ""){
+			$("#errorinfo").text('用户名不能为空');
+		}else{
+			$.post("/index.php?g=User&m=Assistente&a=ajaxCheckname",{"username":username,"id":id},function(data){
+				if(data == 1){
+					$("#errorinfo").text('该用户名已存在,请重新输入');
+				}else{
+					$("#errorinfo").text('');
+				}
+			});
+		}
+	});
+}) ;
+</script>		

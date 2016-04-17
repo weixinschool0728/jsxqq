@@ -1,0 +1,201 @@
+<include file="Public:head"/>
+<link rel="stylesheet" href="{weimicms::STATICS}/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="{weimicms::STATICS}/kindeditor/plugins/code/prettify.css" />
+<script src="{weimicms::STATICS}/kindeditor/kindeditor.js" type="text/javascript"></script>
+<script src="{weimicms::STATICS}/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+<script src="{weimicms::STATICS}/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="{weimicms::RES}/js/date/WdatePicker.js"></script>
+<script>
+
+var editor;
+KindEditor.ready(function(K) {
+editor = K.create('#tbtx', {
+resizeType : 1,
+allowPreviewEmoticons : false,
+allowImageUpload : true,
+postParams:{'PHPSESSID':"<?php echo session_id();?>"},
+uploadJson : '/index.php?g=User&m=Upyun&a=kindedtiropic',
+items : [
+						'source','fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+						'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+						'insertunorderedlist', '|', 'emoticons', 'image','multiimage', 'link', 'music', 'video']
+});
+
+});
+</script>
+ <form class="form" method="post" id="lbsForm" action="" enctype="multipart/form-data"> 	
+<div class="content"  >
+	<div class="cLineB">
+    <h4>拉票内容添加编辑</h4><a href="javascript:history.go(-1);"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a>
+</div>
+	<div class="alert alert-info">
+	  	<p><span class="bold">拉票规则：<br></span>
+	  		1.商家设置有奖拉票信息:关键字 奖品等<br>
+	  		2.微信用户关注公众账号后回复设置的关键字后，会领取一张选票(唯一票号)<br>
+	  		3.用户将票号告诉身边的朋友来关注您的公众账号并回复票号，系统自动给票号所属用户的拉票数量+1<br>
+	  		4.活动结束后，拉票数量最多的用户将按排名获得奖品<br>
+	  		5.同一个活动中，每个粉丝只能最多给三个人投票<br>
+	  		说明：该活动是利用粉丝帮助商家获取更多的粉丝，让粉丝替我们宣传公众账号<br>
+	  		注意：后台可以修改用户的得票数，谁能中奖?你懂的
+</p>
+	</div>
+
+
+<input type="hidden" name="id" value="{weimicms:$info.id}" />
+<input type="hidden" name="token" value="{weimicms:$token}" />
+<input type="hidden" name="uid" value="{weimicms:$uid}" />
+  <div class="msgWrap bgfc"> 
+
+
+
+     <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"> 
+
+
+
+      <tbody> 
+
+
+
+       
+
+
+       <tr> 
+
+
+
+        <th ><span class="red">*</span>关键字：</th> 
+
+        <td><input  type="text" id="keyword" name="keyword" value="{weimicms:$info.keyword}" class="px" style="width:400px;" /></td> 
+
+
+
+       </tr> 
+	 
+	   <tr> 
+
+
+
+        <th ><span class="red">*</span>奖品名称：</th> 
+
+        <td><input  type="text" id="name" name="name" value="{weimicms:$info.name}" class="px" style="width:400px;" /></td> 
+
+
+
+       </tr> 
+	    <tr> 
+
+
+
+        <th >数量(整数)：</th> 
+
+        <td><input  type="text" id="sl" name="sl" value="{weimicms:$info.sl}" class="px" style="width:400px;" /></td> 
+
+
+
+       </tr> 
+	   <tr> 
+
+
+
+        <th >市场价格：</th> 
+
+        <td><input  type="text" id="scjg" name="scjg" value="{weimicms:$info.scjg}" class="px" style="width:400px;" /></td> 
+
+
+
+       </tr> 
+        <TR>
+	<th><span class="red">*</span>活动时间：</th>
+	<td><input type="input" class="px" id="kssj" value="<if condition="$info['kssj'] neq ''"><?php echo $info['kssj'];?></if>" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" name="kssj" />
+		到
+		<input type="input" class="px" id="jssj" value="<if condition="$info['jssj'] neq ''"><?php echo $info['jssj'];?></if>" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" name="jssj" />
+	</td>
+</TR>
+
+
+
+	   
+
+
+
+	   <tr> 
+
+
+
+        <th><span class="red"></span>奖品图片：</th>
+
+
+
+        <td><input type="text" name="pic" value="{weimicms:$info.pic}" id="pic" class="px" style="width:400px;"  readonly="readonly"/><script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('pic',700,420,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('pic')">预览</a>   &nbsp; 大小为720x400</td>
+
+
+
+       </tr>
+
+
+        <TR>
+
+
+
+			<TH valign="top"><label for="info">活动简述：</label></TH>
+            <TD><textarea name="ms" class="px" id="ms"  rows="3" style="width:500px;height:150px">{weimicms:$info.ms}</textarea></TD>
+                
+
+
+
+        </TR>  
+
+ <tr> 
+
+
+
+        <th ><span class="red">*</span>活动规则：</th> 
+
+
+
+        <td><textarea class="px" id="tbtx" name="tbtx" style="width:600px; height: 300px;">{weimicms:$info.tbtx}</textarea></td> 
+
+
+
+       </tr> 
+       <tr> 
+
+
+
+        <th >推广信息地址：</th> 
+
+        <td><input  type="text" id="moreurl" name="moreurl" value="{weimicms:$info.moreurl}" class="px" style="width:400px;" /><if condition="session('isQcloud') neq true"><a href="###" onclick="addLink('moreurl',0)" class="a_choose">从功能库添加</a></if></td> 
+
+
+
+       </tr> 
+		
+
+
+
+
+<th>&nbsp;</th>
+<td><button type="submit" name="button" class="btnGreen">保存</button></td>
+</TBODY>
+</TABLE>
+
+
+
+
+  </div>
+
+
+        </div>
+</form>
+
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+
+<!--底部-->
+  	</div>
+
+<include file="Public:footer"/>

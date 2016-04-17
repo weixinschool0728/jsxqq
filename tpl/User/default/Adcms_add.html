@@ -1,0 +1,449 @@
+<include file="Public:head" />
+
+<link rel="stylesheet" href="{weimicms::STATICS}/kindeditor/themes/default/default.css" />
+
+<link rel="stylesheet" href="{weimicms::STATICS}/kindeditor/plugins/code/prettify.css" />
+
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />
+
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+
+<link rel="stylesheet" href="{weimicms::STATICS}/kindeditor/themes/default/default.css" />
+
+<link rel="stylesheet" href="{weimicms::STATICS}/kindeditor/plugins/code/prettify.css" />
+
+<script src="{weimicms::STATICS}/kindeditor/kindeditor.js" type="text/javascript"></script>
+
+<script src="{weimicms::STATICS}/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+
+<script src="{weimicms::STATICS}/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+
+<script src="{weimicms::RES}/js/date/WdatePicker.js"></script>
+
+<script type="text/javascript" src="{weimicms::RES}/js/formCheck/formcheck.js">
+
+</script>
+
+<script src="{weimicms::STATICS}/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+var editor;
+
+KindEditor.ready(function(K) {
+
+editor = K.create('#content', {
+
+resizeType : 1,
+
+allowPreviewEmoticons : false,
+
+allowImageUpload : true,
+
+uploadJson : '/index.php?g=User&m=Upyun&a=kindedtiropic',
+
+items : [
+
+	'source','fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+
+	'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+
+	'insertunorderedlist', '|', 'emoticons', 'image']
+
+
+
+});
+
+});
+
+</script>
+
+
+
+<div class="content">
+
+	<div class="cLineB">
+
+		 <h4>软文添加</h4>  <a href="{weimicms::U('Adcms/index',array('token'=>$token))}" class="right btnGrayS vm" style="margin-top:-27px">返回</a> 
+
+	</div>
+
+	
+
+	<form class="form" method="post" id="form" action="" enctype="multipart/form-data">
+
+		<if condition="$isUpdate eq 1">
+
+			<input type="hidden" name="id" value="{weimicms:$set.id}" />
+
+		</if>
+
+		<div class="msgWrap bgfc">
+
+			<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+
+				<tbody>
+                  <tr>
+
+						<th><span class="red">*</span>该篇软文广告费用：</th>
+
+						<td>
+
+							<input type="text" id="adrmb" name="adrmb" placeholder=" 请输入广告费用金额" value="{weimicms:$info.adrmb}" class="px" style="width:400px;" />
+
+						</td>
+
+					</tr>
+                     <tr>
+
+						<th><span class="red">*</span>商家名称：</th>
+
+						<td>
+
+							<input type="text" id="adrmb" name="sjname" placeholder=" 请输入商家名称" value="{weimicms:$info.sjname}" class="px" style="width:400px;" />
+
+						</td>
+
+					</tr>
+                   <tr>
+                   <th><span class="red">*</span>文章所属类别：</th>
+                   <td><select name="type" id="auth2nd" class="input-medium">
+					<option value="1">今日头条</option>
+					<option value="2">生活百科</option>
+					<option value="3">情感人生</option>
+					<option value="4">搞笑轻松</option>
+                    <option value="5">职场智慧</option>
+                     <option value="6">旅游星座</option>
+				</select></td>
+                   </tr>
+					<tr>
+
+						<th><span class="red">*</span>标题名称：</th>
+
+						<td>
+
+							<input type="text" id="name" name="title" placeholder=" 请输入标题" value="{weimicms:$set.title}" class="px" style="width:400px;" />
+
+						</td>
+
+					</tr>
+
+
+					<tr>
+
+						 <TH valign="top"><label for="pic">封面图片地址：</label></TH>
+
+						 <TD><input type="text" class="px"  name="pic" id="pic" value="" style="width:580px;"  />  <script src="/tpl/static/upyun.js?{weimicms::date('YmdHis',time())}"></script><a href="#" onclick="upyunPicUpload('pic',700,420,'{weimicms:$token}')" class="a_upload">上传</a> <a href="#" onclick="viewImg('pic')">预览</a>
+
+</TD>
+
+					</tr>
+
+					
+
+				
+
+					
+
+					
+
+					
+
+		
+		
+		
+		<tr>
+
+			<TR>
+
+				<TH valign="top"><span class="red">*</span>内容：</TH>
+
+				<TD>
+
+					<textarea name="contents" id="content" rows="5" style="width:590px;height:360px">{weimicms:$set.contents}</textarea>
+
+				</TD>
+
+			</TR>
+            <tr>
+
+						 <TH valign="top"><label for="pic">顶部广告：</label></TH>
+
+						 <TD><input type="text" class="px"  name="topad" id="topad" value="" style="width:580px;"  />  <script src="/tpl/static/upyun.js?{weimicms::date('YmdHis',time())}"></script><a href="#" onclick="upyunPicUpload('topad',700,420,'{weimicms:$token}')" class="a_upload">上传</a> <a href="#" onclick="viewImg('topad')">预览</a>
+
+</TD>
+
+					</tr>
+                    <tr>
+
+						<th><span class="red">*</span>顶部广告链接：</th>
+
+						<td>
+
+							<input type="text" id="topad_url" name="title" placeholder=" 请输入链接" value="{weimicms:$set.topad_url}" class="px" style="width:400px;" />
+
+						</td>
+
+					</tr>
+
+			<tr>
+
+				<th>&nbsp;</th>
+
+				<td>
+
+					<!--input type="hidden" name="time" value="{weimicms:$set.time}" /-->
+
+					<button type="submit" class="btnGreen">保存</button>&nbsp; <a href="{weimicms::U('Nr/index',array('token'=>$token))}" class="btnGray vm">取消</a>
+
+				</td>
+
+			</tr>
+
+			</tbody>
+
+			</table>
+
+</div>
+
+</form>
+
+</div>
+
+<script language="javascript">
+
+	$(function(){
+
+	
+
+	
+
+	
+
+		$("#form").valid([
+
+	
+
+	
+
+	
+
+		{ name:"name",simple:"名称",require:true},
+
+	
+
+	
+
+	
+
+		
+
+	
+
+	
+
+	
+
+			
+
+	
+
+	
+
+	
+
+		],true,true);
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	});
+
+</script>
+
+<script language="javascript">
+
+	function ShowInfo(Id){
+
+	
+
+	
+
+	
+
+		
+
+	
+
+	
+
+	
+
+		$('[name="lbbb"]').attr("style","display:none");
+
+	
+
+	
+
+	
+
+		$("#la"+Id).attr("style","");
+
+	
+
+	
+
+	
+
+		$("#lb"+Id).attr("style","");
+
+	
+
+	
+
+	
+
+		$("#lc"+Id).attr("style","");
+
+	
+
+	
+
+	
+
+		
+
+	
+
+	
+
+	
+
+	}
+
+</script>
+
+<script language="javascript">
+
+	$("input[type='radio']").click(function(){
+
+	
+
+	
+
+	
+
+		var i = $(this).val();
+
+	
+
+	
+
+	
+
+		if(i==1){
+
+	
+
+	
+
+	
+
+			$('[name="lbss"]').attr("style","display:none");
+
+	
+
+	
+
+	
+
+			$('[name="lbb"]').attr("style","");
+
+	
+
+	
+
+	
+
+			$("#la1").attr("style","");
+
+	
+
+	
+
+	
+
+			$("#lb1").attr("style","");
+
+	
+
+	
+
+	
+
+			$("#lc1").attr("style","");
+
+	
+
+	
+
+	
+
+		}else{
+
+	
+
+	
+
+	
+
+			$('[name="lbss"]').attr("style","");
+
+	
+
+	
+
+	
+
+			$('[name="lbb"]').attr("style","display:none");
+
+	
+
+	
+
+	
+
+			$('[name="lbbb"]').attr("style","display:none");
+
+	
+
+	
+
+	
+
+		}
+
+	
+
+	
+
+	
+
+	})
+
+</script>
+
+<include file="Public:footer" />

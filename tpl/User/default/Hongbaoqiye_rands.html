@@ -1,0 +1,121 @@
+<include file="Public:head" />
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />
+<link href="{weimicms::RES}/css/activity.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/tpl/User/default/common/js/date/WdatePicker.js"></script>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<div class="content">
+
+<style>
+.question_box .rand {
+  height: 30px;
+  margin: 0 10px;
+  display: inline;
+  float: left;
+  font: 14px/30px microsoft yahei;
+}
+.rand {
+  margin: 0;
+  display: inline-block;
+  border: 1px solid #d9d9d9;
+  border-top-color: #c0c0c0;
+  border-radius: 3px;
+  color: #666;
+  padding: 0 5px;
+  height: 22px;
+  font: 12px/22px microsoft yahei;
+}
+</style>
+
+
+<!--tab start-->
+
+<!--tab end-->
+<div class="indexout">
+<div class="new_pub">
+            <div class="activity">
+           	<form class="form" method="post" id="form" action="" enctype="multipart/form-data">
+            <div class="topic_box" style="width:1000px">
+                    <div class="question_box" id="question_info_1">
+                   
+                 
+                    <ul id="1" class="optionul">
+                     <li>
+                            <span></span><u>抽奖概率设置：</u>
+                           
+                            <span style="width:140px; margin-left:140px">钱数（单位：分）</span>
+                             <span style="width: 267px;
+  margin-left: 100px;">概率（单位：%）最低0.01，小数点后两位</span>
+                           
+                        
+                           
+                        </li>
+                        <li>
+                            <span>A</span><u>概率：</u>
+                           
+                            <input type="text" class="txt" value="{weimicms:$info.r1}" name="r1">
+                            <input type="text" class="rand" style="width:150px; float:none" value="{weimicms:$info.rand1}" name="rand1">%
+                           
+                        
+                           
+                        </li>
+                        <li>
+                            <span>B</span><u>概率：</u>
+                        
+                            <input type="text" class="txt" value="{weimicms:$info.r2}" name="r2">
+                           <input type="text" class="rand" style="width:150px; float:none"  value="{weimicms:$info.rand2}"name="rand2">%
+                          
+                             
+                           
+                            
+                        </li>
+                        <li>
+                            <span>C</span><u>概率：</u>
+                          
+                             <input type="text" class="txt" value="{weimicms:$info.r3}" name="r3">
+                             <input type="text" class="rand" style="width:150px; float:none" value="{weimicms:$info.rand3}" name="rand3">%
+                       
+                           
+                            
+                          
+                        </li>
+                         <li>
+                            <span>D</span><u>概率：</u>
+                          
+                             <input type="text" class="txt" value="{weimicms:$info.r4}" name="r4">
+                             <input type="text" class="rand" style="width:150px; float:none"  value="{weimicms:$info.rand4}"name="rand4">%
+                       
+                           
+                            
+                          
+                        </li>
+                          <li>
+                            <span>E</span><u>概率：</u>
+                          
+                             <input type="text" class="txt" value="{weimicms:$info.r5}" name="r5">
+                             <input type="text" class="rand" style="width:150px; float:none" value="{weimicms:$info.rand5}" name="rand5">%
+                       
+                           
+                            
+                          
+                        </li>
+                     </ul>
+               </div>
+               
+            </div>
+           
+            <ul>            
+		<ul class="pub_list">
+		<li class="bot">
+      	<input class="btnGreen" type="submit" id="submit" value="保存"> &nbsp; <a href="{weimicms::U('Research/index',array('token'=>$token))}" class="btnGray vm">取消</a>
+      	</li>
+		</ul>
+</ul>     
+</form>
+</div>
+</div>
+</div>
+
+</div>
+
+<include file="Public:footer"/>

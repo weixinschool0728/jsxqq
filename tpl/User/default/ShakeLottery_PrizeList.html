@@ -1,0 +1,117 @@
+<include file="Public:head"/>
+
+<div class="content">
+
+<div class="cLineB">
+
+<h4 class="left">摇一摇中奖奖品</h4>
+
+<div class="clr"></div>
+
+</div>
+
+<style>
+
+th,td{text-align:center;}
+
+</style>
+
+<div class="cLine">
+
+<div class="pageNavigator left"><a href="{weimicms::U('ShakeLottery/AddEditPrize',array('aid'=>$aid,'type'=>1))}" title="添加奖品" class="btnGrayS vm bigbtn"><if condition="$usertplid eq 2"><i class="fa fa-hand-o-right"></i><else /><img src="{weimicms::RES}/images/product/add.png" width="16" class="vm"></if> 添加奖品</a><if condition="$winxintype eq 3"> <a href="{weimicms::U('ShakeLottery/AddEditPrize',array('aid'=>$aid,'type'=>2))}" title="添加奖品" class="btnGrayS vm bigbtn"><if condition="$usertplid eq 2"><i class="fa fa-hand-o-right"></i><else /><img src="{weimicms::RES}/images/product/add.png" width="16" class="vm"></if> 添加红包奖品</a></if></div> <a href="{weimicms::U('ShakeLottery/index')}" class="right btnGrayS vm" style="margin-top:14px">返回活动列表</a>
+
+</div>
+
+<div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-bottom:5px;font-size:12px;">
+
+温馨提示：1、根据奖品数量确定奖品等级，奖品数量越小中奖概率越低，<span style="color:red;">请根据奖品等奖设置奖品数量，贵重奖品请将数量设置小一点</span><br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2、奖品剩余数量为0将永远不会被抽到。
+
+</div>
+
+<div class="msgWrap">
+
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+
+<thead>
+
+<tr>                                 
+
+<th width="85">奖品名称</th>
+
+<th width="70">奖品图片</th>
+
+<th width="100">奖品数量</th>
+
+<th width="100">奖品剩余数量</th>
+
+<th width="55">奖品提供商</th>
+
+<th width="200"class="norightborder">操作</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr></tr>
+
+<if condition="$list neq ''">
+
+<weimicmslist array="list" foreach="list">
+
+<tr>
+
+	<td>{weimicms:$list.prizename}</td>
+
+	<td><img src="{weimicms:$list.prizeimg}" width="50px" height="50px"></td>
+
+	<td>{weimicms:$list.prizenum}</td>
+
+	<td><?php echo intval($list['prizenum'] - $list['expendnum']);?></td>
+
+	<td>{weimicms:$list.provider}</td>
+
+	<td class="norightborder" align="center">
+
+		<a href="{weimicms::U('ShakeLottery/AddEditPrize',array('id'=>$list['id'],'aid'=>$list['aid'],'type'=>$list['prize_type']))}">编辑奖品</a>
+
+		|
+
+		<a href="javascript:drop_confirm('您确定要删除吗?', '{weimicms::U('ShakeLottery/DelPrize',array('id'=>$list['id'],'aid'=>$list['aid']))}');">删除奖品</a>
+
+    </td>
+
+</tr>
+
+</weimicmslist>
+
+<else />
+
+<tr><td colspan="6">暂无记录</td></tr>
+
+</if>
+
+</tbody>
+
+</table>
+
+</div>
+
+<div class="cLine">
+
+<div class="pageNavigator right">
+
+<div class="pages">{weimicms:$page}</div>
+
+</div>
+
+<div class="clr"></div>
+
+</div>
+
+</div>
+
+<include file="Public:footer"/>

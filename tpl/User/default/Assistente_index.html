@@ -1,0 +1,59 @@
+<include file="Public:head"/>  
+<div class="content">
+          <div class="cLine">
+			<div class="pageNavigator left">
+			<a href="{weimicms::U('Assistente/add',array('token'=>$token))}" title="" class="btnGrayS vm bigbtn"><if condition="$usertplid eq 2"><i class="fa fa-hand-o-right"></i><else /><img src="{weimicms::RES}/images/img/activity-lottery.png" class="vm" /></if> 添加店员</a>　
+			</div>
+			<a href="{weimicms::U('Assistente/index',array('token'=>$token))}" class="right btnGrayS vm" style="margin-top:10px">返回</a>          
+			<div class="clr"></div>
+          </div>
+                      <if condition="$usertplid eq 2">
+<div class="alert alert-success alert-dismissable" style="margin-top:20px;">
+<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+<else />
+		   <div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-bottom:5px;font-size:12px;"></if>温馨提示：电脑端店员登陆地址&nbsp;&nbsp;&nbsp;<a href="/index.php?m=Index&a=staff_login&token={weimicms:$token}" target="_blank">{weimicms:$f_siteUrl}/index.php?m=Index&a=staff_login&token={weimicms:$token}</a>
+			</div> 
+          <div class="msgWrap">
+          <form method="post" action="index.php?ac=importtxt&amp;id=9878&amp;wxid=gh_423dwjkewad" id="info">
+          <input name="delall" type="hidden" value="del">
+           <input name="wxid" type="hidden" value="gh_423dwjkewad">
+            <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <thead>
+                <tr>
+                <th width="50">店员ID</th>
+                <th width="100">姓名</th>
+				<th width="150">用户名</th>
+				<th width="100">电话</th>
+				<th width="100">权限类型</th>
+				<th width="130">添加时间</th>
+				<th class="edit norightborder">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <volist name="list_staff" id="staff">           
+                <tr>
+					 <td>{weimicms:$staff.id}</td>
+					  <td>{weimicms:$staff.name}</td>
+					 <td>{weimicms:$staff.username}</td>
+					  <td>{weimicms:$staff.tel}</td>
+					  <td><if condition="$staff.pcorwap eq 1">电脑端<elseif condition="$staff.pcorwap eq 2"/>手机端<else />电脑端和手机端</if></td>
+					  <td>{weimicms:$staff.time|date='Y-m-d H:i:s',###}</td>
+					  <td class="norightborder">
+						<a href="{weimicms::U('Assistente/add',array('id'=>$staff['id'],'token'=>$staff['token']))}">编辑</a> <a href="{weimicms::U('Assistente/del',array('id'=>$staff['id'],'token'=>$staff['token']))}">删除</a>
+					  </td>
+                </tr>
+				</volist>
+      			 
+              </tbody>
+            </table>
+           </form> 
+		
+          </div>
+          <div class="cLine">
+            <div class="pageNavigator right">
+                 <div class="pages">{weimicms:$page}</div>
+             </div>
+            <div class="clr"></div>
+          </div>
+        </div>
+<include file="Public:footer"/>

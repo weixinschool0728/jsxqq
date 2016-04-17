@@ -1,0 +1,78 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+<div class="content">
+<div class="cLineB">
+  <h4 class="left">设备列表</h4>
+  <div class="clr"></div>
+</div>
+<div class="ftip" style="margin:0 auto"></if>认证服务号才能使用此功能</div>
+<div class="cLineC" style="line-height: 32px;"> 
+<a href="{weimicms::U('Dizwifi/AddDevice',array('token'=>$token))}" class="btnGrayS vm bigbtn"><if condition="$usertplid eq 2"><i class="fa fa-hand-o-right"></i><else /><img src="{weimicms::RES}/images/product/add.png" class="vm"></if> 添加设备</a>  
+</div>
+<div class="msgWrap form">
+    <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+	<thead>
+	<tr>
+	<th style="width:20%;">门店名称</th>
+	<th style="width:20%;">无线网名称</th>
+	<th style="width:13%;">无线网密码</th>
+	<th style="width:20%;">无线设备mac地址</th>
+	</th>
+	<th>操作</th>
+	</tr>
+	</thead>
+	<if condition="$list neq ''">
+	<volist name="list" id="vo">
+	  <tbody><tr>
+		  <td>{weimicms:$vo.shop_name}</td>
+		  <td>{weimicms:$vo.ssid}</td>
+		  <td>{weimicms:$vo.password}</td>
+		  <td>{weimicms:$vo.bssid}</td>
+		  	<td class="norightborder" align="center">
+			<if condition="$Think.session.is_syn eq 2">
+		<if condition="$usertplid neq 2">
+			<script type="text/javascript">
+		   $(document).ready(function(){
+		      var bheight=document.body.clientHeight;
+		      $("#lay{weimicms:$list.id}").click(function(){
+		   $("#brg{weimicms:$list.id}").css("display","block");
+		   $("#showdiv{weimicms:$list.id}").css("display","block");
+		   //$("#testdiv").load("test.html");
+		   });
+		   $("#close{weimicms:$list.id}").click(function(){
+		      $("#brg{weimicms:$list.id}").css("display","none");
+		   $("#showdiv{weimicms:$list.id}").css("display","none");
+		   });
+		   });
+		 </script>
+		 <style type="text/css">
+		   #brg{weimicms:$list.id}{ width:100%; height:100%; background:#333; position:absolute; top:0; left:0; filter:alpha(opacity=60); -moz-opacity:0.6; opacity: 0.6; position:absolute; top:0; left:0; display:none;}
+		   #showdiv{weimicms:$list.id}{z-index:20; display:none;position:fixed; *position:absolute; width:100px; height:100px; top:30%; left:50%; margin:-50px 0 0 -50px;}
+		   #testdiv{weimicms:$list.id}{ width:300px; height:300px; margin:0 auto; border:1px solid #4d4d4d; background:#f2f2f2;}
+		   #close{weimicms:$list.id}{width:300px; height:27px; line-height:27px; font-size:14px; font-weight:bold; border:1px solid #4d4d4d; text-align:center; cursor:pointer; margin:0 auto; background:#333; color:#fff;margin-top: 15%;}
+		 </style>
+			 <div id="brg{weimicms:$list.id}"></div>
+		 <div id="showdiv{weimicms:$list.id}">
+		   <div id="close{weimicms:$list.id}">您想关闭就点我吧</div>
+		   <div id="testdiv{weimicms:$list.id}"><img src="{weimicms:$Think.session.source_domain}/wap.php?c=Wxapp&a=qrcode&id={weimicms:$list.id}&modle=CoinTree" width="300" height="300" class="cateimg_small"></div>
+		 </div>
+			<a id="lay{weimicms:$list.id}"  style="width:191px;">查看二维码</a><br>
+		</if>
+		</if>
+		<a href="{weimicms::U('Dizwifi/getcode',array('id'=>$vo['id'],'token'=>$token))}" class="btnGreen">获取连网二维码</a>
+		<a href="{weimicms::U('Dizwifi/sethomepage',array('id'=>$vo['id'],'token'=>$token))}" class="btnGreen">设置商家主页</a>
+		<a href="{weimicms::U('Dizwifi/statistics',array('token'=>$token))}" class="btnGreen">查看统计信息</a>
+		<a href="{weimicms::U('Dizwifi/DelDevice',array('id'=>$vo['id'],'token'=>$token))}" onclick="return(confirm('确定要删除吗？'))" class="btnGreen">删除</a> 
+    </td>
+		</tr>
+	  </tbody>
+	</volist> 
+	<else />
+	<tr><td colspan="5" style="text-align: center;">暂无记录</td></tr>
+	</table>
+	<div class="footactions" style="padding-left:10px">
+	  <div class="pages" style="text-align:right;"> {weimicms:$page}</div>
+	</div>
+    </div>
+  </div>
+<include file="Public:footer"/>

@@ -1,0 +1,83 @@
+<include file="Public:head"/>
+
+<div class="content">
+<div class="cLineB">
+<h4 class="left">红包领取记录</h4>
+<a href="javascript:history.go(-1);" class="right btnGrayS vm">返回</a>
+<div class="clr"></div>
+</div>
+<div class="cLine">
+<div class="searchbar right">
+<form method="post" action="">
+<select name="status">
+	<option value="">请选择状态</option>
+	<option value="0">未兑奖</option>
+	<!--<option value="2">申请中</option>-->
+	<option value="1">已兑奖</option>
+</select>
+<input type="text" id="msgSearchInput" class="txt" placeholder="请输入微信昵称" name="searchkey" value="">
+<input type="submit" value="搜索" id="msgSearchBtn" href="" class="btnGrayS" title="搜索">
+</form>
+</div>
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<input name="delall" type="hidden" value="1">
+<input name="wxid" type="hidden" value="">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>   
+	<th width="50">微信昵称</th>                              
+	<th width="80">红包名称</th>
+	<th width="50">红包价值</th>
+	<th width="100">领取时间</th>
+ 	<th width="50">是否兑奖</th>
+	<th width="80"class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<weimicmslist array="list" foreach="list">
+<tr>
+	<td>{weimicms:$list.wxname}</td>
+	<td>{weimicms:$list.title}</td>
+	<td>{weimicms:$list.price}</td>
+	<td>{weimicms:$list.add_time|date="Y-m-d H:i:s",###}</td>
+	<td>
+		<if condition="$list.status eq '1'">
+			<font color="red">已兑奖</font>
+		<else/>
+			未兑奖
+		</if>
+	</td>
+	<td class="norightborder">
+	<!--
+	<if condition="$list.is_reward neq '0'">
+		<a href="javascript:void(0);"  onclick="show_forms({weimicms:$list.id})" style="color:#31a8e7;">兑奖信息</a>
+		|
+	</if>
+	-->
+		<a href="javascript:drop_confirm('您确定要删除吗?', '{weimicms::U('Red_packet/log_del',array('token'=>$token,'id'=>$list['id'],'packet_id'=>$packet_id))}');">删除</a>
+    </td>
+</tr>
+
+</weimicmslist>
+</tbody>
+</table>
+</form>
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{weimicms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+
+<script>
+function show_forms(id){
+    art.dialog.open('{weimicms::U('Red_packet/show_forms',array('token'=>$token,'packet_id'=>$packet_id))}&id='+id,{lock:false,title:'兑奖信息查看',width:500,height:300,yesText:'关闭',background: '#000',opacity: 0.87});
+}
+</script>
+<include file="Public:footer"/>

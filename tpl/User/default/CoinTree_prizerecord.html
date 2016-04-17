@@ -1,0 +1,67 @@
+<include file="Public:head"/>
+<div class="content">
+<div class="cLineB">
+<h4 class="left">摇钱树领奖记录</h4>
+<div class="clr"></div>
+</div>
+<div class="cLine">
+<a href="{weimicms::U('CoinTree/index',array('id'=>$id,'token'=>$token))}" class="right btnGrayS vm" style="margin-top:1px">返回活动列表</a>
+<div class="searchbar right">
+<form method="post" action="{weimicms::U('CoinTree/prizerecord',array('id'=>$id,'token'=>$token))}">
+<input type="text" id="msgSearchInput" class="txt left" placeholder="输入昵称或中奖号码搜索" name="search_word" value="{weimicms:$search_word}" style="padding:6px;width:155px;">
+<input type="submit" value="搜索" id="msgSearchBtn" href="" class="btnGrayS" title="搜索">
+</form>
+</div>
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<input name="delall" type="hidden" value="1">
+<input name="wxid" type="hidden" value="">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>  
+	<th width="70">昵称</th>
+	<th width="90">头像</th>
+	<th width="56">是否中奖</th>
+	<th width="94">兑奖号码</th>
+	<th width="60">奖项级别</th>
+	<th width="81">联系方式</th>
+	<th width="121">摇奖时间</th>
+	<th width="59">是否发货</th>
+	<th width="121">发货时间</th>
+	<th class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<weimicmslist array="list" foreach="list">
+<tr>
+	<td>{weimicms:$list.wecha_name}</td>
+	<td><img src="{weimicms:$list.wecha_pic}" style="width:50px;height:50px;" /></td>
+	<td><if condition="$list.iswin eq 1"><span style="color:green;">中奖</span><else /><span style="color:red">未中奖</span></if></td>
+	<td><if condition="$list.iswin eq 1 && $list.serialnumber neq ''">{weimicms:$list.serialnumber}<else />---</if></td>
+	<td><if condition="$list.iswin eq 1 && $list.prize neq 7">{weimicms:$list.prize}等奖<else />---</if></td>
+	<td><if condition="$list.phone neq 'no'">{weimicms:$list.phone}<else />---</if></td>
+	<td>{weimicms:$list.shaketime|date='Y-m-d H:i:s',###}</td>
+	<td><if condition="$list.iswin eq 1 && $list.sendstutas eq 1">已发货<elseif condition="$list.iswin eq 0" />---<else />未发货</if></td>
+	<td><if condition="$list.sendstutas eq 1">{weimicms:$list.sendtime|date='Y-m-d H:i:s',###}<else />---</if></td>
+	<td class="norightborder" align="center">
+		<if condition="$list.iswin eq 1"><a href="{weimicms::U('CoinTree/editprizerecord',array('id'=>$list['id']))}">编辑</a>
+		|</if>
+		<a href="javascript:drop_confirm('您确定要删除吗?', '{weimicms::U('CoinTree/delprizerecord',array('id'=>$list['id']))}');">删除</a>
+    </td>
+</tr>
+</weimicmslist>
+</tbody>
+</table>
+</form>
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{weimicms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

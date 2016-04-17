@@ -1,0 +1,47 @@
+<include file="Public:head"/>
+<script src="/tpl/static/upyun.js?2013"></script>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<div class="content">
+
+<div class="cLineB">
+  <h4>快捷关注配置 </h4>
+ </div>
+         
+    <div class="msgWrap bgfc">
+	  <form class="form" method="post" action="" target="_top" >	 
+		<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<tbody>
+				<tr>
+					<th>公众号二维码：</th>
+					<td>
+						<input type="text" id="qr" class="px" name="qr" value="{weimicms:$list['qr']}" tabindex="1" size="25" style="width:400px">
+						<a href="###" onclick="upyunPicUpload('qr',500,500,'admin')" class="a_upload" style="margin-left: 20px;">上传</a>
+						<a href="###" onclick="viewImg('qr')" style="margin-left: 10px;">预览</a>
+					</td>
+				</tr>
+				<tr style="height:100px">
+					<th>公众号链接地址：</th>
+					<td><input type="text" id="hurl" name="hurl" value="<if condition="$list['hurl'] eq ''">{weimicms:$hurl}<else/>{weimicms:$list['hurl']}</if>" class="px" style="width:400px;"></td>
+				</tr>
+				<tr>
+					<th></th>
+					<td><div style="margin-top: -35px;"><span style="color:red">（填写此链接地址可以有效帮助粉丝关注您的公众号！请填写一个微信官方公众平台群发出的文章链接。链接前加http://）</span></div>
+					<div style="margin-top:10px">
+					<a href="{weimicms::U('Quick/set')}" target="_blank" style="color:#1FC419;"><u>如何配置图文消息来获取链接地址</u></a>&nbsp;&nbsp;&nbsp;<input type="hidden" value="{weimicms:$staticPath}/tpl/static/voteimg/img/weixin_7.jpg" id="follow_url_example"><a onclick="viewImg('follow_url_example')" href="###" style="color:#1FC419;"><u>配置后的效果图范例</u></a></div></td>
+				</tr>
+
+				<th>&nbsp;</th>
+					<td>
+						<button type="submit" name="button" class="btnGreen">保存</button>
+						<a href="javascript:history.go(-1);" class="btnGray vm" style="margin-left:20px">取消</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+  </div> 
+ 
+  
+        </div>
+<include file="Public:footer"/>

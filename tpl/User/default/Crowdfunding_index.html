@@ -1,0 +1,133 @@
+<include file="Public:head"/> 
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />
+<link href="{weimicms:$staticPath}/tpl/static/crowdfunding/css/index.css" rel="stylesheet" type="text/css">
+        <div class="content">
+<div class="cLineB">
+<h4 class="left">微众筹</h4>
+<div class="clr"></div>
+</div>
+
+<div class="cLine">
+<div class="pageNavigator left"> <a href="{weimicms::U('Crowdfunding/basis_set',array('token'=>$token))}" title="添加众筹" class="btnGrayS vm bigbtn"><if condition="$usertplid eq 2"><i class="fa fa-hand-o-right"></i><else /><img src="{weimicms::RES}/images/product/add.png" class="vm"></if> 添加众筹</a></div>
+<if condition="$_SESSION['is_syn'] eq 0">
+<div class="searchbar right">
+	<form method="post" action="">
+		<input type="text" id="msgSearchInput" class="txt left" placeholder="输入关键词搜索" name="search" value="">
+		<input type="hidden" name="ac" value="hotels-list">
+		<input type="hidden" name="id" value="9878">
+		<input type="hidden" name="wxid" value="gh_423dwjkewad">
+		<input type="submit" value="搜索" id="msgSearchBtn" href="" class="btnGrayS" title="搜索">
+	</form>
+</div>
+</if>
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<input name="delall" type="hidden" value="">
+<input name="wxid" type="hidden" value="">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th width="280">项目信息</th>
+<if condition="$_SESSION['is_syn'] eq 0">
+<th width="60">关键词</th>
+</if>
+<th width="70">筹集资金(元)</th>
+<th width="50">当前状态</th>
+<th width="80" class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="list" id="item"> 
+<tr>
+<td class="align-left">
+	<div class="item_img">
+		<img src="{weimicms:$item.pic}" alt="{weimicms:$item.name}">
+	</div>
+	<div class="item_content">
+		<div class="item_title">{weimicms:$item.name}</div>
+		<div class="item_1">
+			<p>已完成</p>
+			<p>{weimicms:$item.progress}</p>
+		</div>
+		<div class="item_1">
+			<p>已筹集</p>
+			<p>{weimicms:$item.price_count}</p>
+		</div>
+		<div class="item_1">
+			<p>剩余天数</p>
+			<p>{weimicms:$item.remain_day} 天</p>
+		</div>
+	</div>
+</td>
+<if condition="$_SESSION['is_syn'] eq 0">
+<td>{weimicms:$item.keyword}</td>
+</if>
+<td>
+	{weimicms:$item.fund}
+	<br/>
+	(当前进度：{weimicms:$item.percent})
+</td> 
+<td>
+	<if condition="$item.status eq '1'">
+		<b style="color:#993300;">项目信息已保存</b>
+	<elseif condition="$item.status eq '2'"/>
+		<b style="color:#993300;">回报设置完成</b>
+	<elseif condition="$item.status eq '3'"/>
+		<b style="color:#44b549;">发布中</b>
+	<elseif condition="$item.status eq '4'"/>
+		<b style="color:#f05c52;">已结束</b>
+	</if>
+</td> 
+
+<td class="norightborder">
+<if condition="$Think.session.is_syn eq 2">
+<if condition="$usertplid neq 2">
+<script type="text/javascript">
+   $(document).ready(function(){
+      var bheight=document.body.clientHeight;
+      $("#lay{weimicms:$item.id}").click(function(){
+   $("#brg{weimicms:$item.id}").css("display","block");
+   $("#showdiv{weimicms:$item.id}").css("display","block");
+   //$("#testdiv").load("test.html");
+   });
+   $("#close{weimicms:$item.id}").click(function(){
+      $("#brg{weimicms:$item.id}").css("display","none");
+   $("#showdiv{weimicms:$item.id}").css("display","none");
+   });
+   });
+ </script>
+ <style type="text/css">
+   #brg{weimicms:$item.id}{ width:100%; height:100%; background:#333; position:absolute; top:0; left:0; filter:alpha(opacity=60); -moz-opacity:0.6; opacity: 0.6; position:absolute; top:0; left:0; display:none;}
+   #showdiv{weimicms:$item.id}{z-index:20; display:none;position:fixed; *position:absolute;top:30%; left:50%; margin:-50px 0 0 -50px;}
+   #testdiv{weimicms:$item.id}{ width:300px; height:300px; margin:0 auto; border:1px solid #4d4d4d; background:#f2f2f2;}
+   #close{weimicms:$item.id}{width:300px; height:27px; line-height:27px; font-size:14px; font-weight:bold; border:1px solid #4d4d4d; text-align:center; cursor:pointer; margin:0 auto; background:#333; color:#fff;margin-top: 15%;}
+ </style>
+    <div id="brg{weimicms:$item.id}"></div>
+ <div id="showdiv{weimicms:$item.id}">
+   <div id="close{weimicms:$item.id}">您想关闭就点我吧</div>
+   <div id="testdiv{weimicms:$item.id}"><img src="{weimicms:$Think.session.source_domain}/wap.php?c=Wxapp&a=qrcode&id={weimicms:$item.id}&modle=Crowdfunding" width="300" height="300" class="cateimg_small"></div>
+ </div>
+   <a id="lay{weimicms:$item.id}" style="width:100px;">查看二维码</a><br>
+</if>
+</if>
+	<a href="{weimicms::U('Crowdfunding/order',array('id'=>$item['id'],'token'=>$token))}">查看订单</a>&nbsp;
+	<a href="{weimicms::U('Crowdfunding/basis_set',array('token'=>$token,'id'=>$item['id']))}">修改</a>&nbsp;
+	<a href="javascript:drop_confirm('您确定要删除吗?', '{weimicms::U('Crowdfunding/del',array('token'=>$token,'id'=>$item['id']))}');">删除</a></td>
+</tr>
+</volist>
+</tbody>
+</table>
+</form>
+
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{weimicms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

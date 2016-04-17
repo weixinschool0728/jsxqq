@@ -1,0 +1,54 @@
+<include file="Public:head"/>
+<script src="{weimicms:$staticPath}/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{weimicms:$staticPath}/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="{weimicms::RES}/js/date/WdatePicker.js"></script>
+<script src="{weimicms:$staticPath}/tpl/static/upyun.js"></script>
+<style type="text/css">
+.userinfoArea th{width:200px;}
+</style>
+<form class="configform" method="post" action="{weimicms::U('FrontPage/addconfigure',array('token'=>$this->token))}">
+<div class="content">
+<div class="cLineB"><h4>配置信息</h4><a href="{weimicms::U('FrontPage/listconfigure',array('token'=>$this->token))}" class="right btnGrayS vm" style="margin-top:-27px">返回配置列表</a></div>
+<div class="msgWrap bgfc">
+<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+<tbody>
+<tr>
+  <th valign="top"><span class="red">*</span>请求接口的key：</th>
+  <td><input type="input" class="px" id="apikey" value="{weimicms:$set.apikey}" name="apikey" style="width:400px"></td> 	
+</tr>
+<tr>
+  <th valign="top"><span class="red">*</span>请求接口的Secret Key：</th>
+  <td><input type="input" class="px" id="secretkey" value="{weimicms:$set.secretkey}" name="secretkey" style="width:400px"></td> 	
+</tr>
+<tr>
+<th>&nbsp;</th>
+<td><button type="submit" name="button" class="btnGreen sub">保存</button>
+<a href="" class="btnGray vm">取消</a>
+</td>
+</tr>
+  </tbody>
+  </table>
+ </div>
+ </div>
+</form>
+<include file="Public:footer"/>
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".btnGreen").click(function(){
+		var apikey = $("#apikey").val();
+		var secretkey = $("#secretkey").val();
+		var msg = "";
+		if(apikey ==""){
+			msg += '请求接口的钥匙不能为空\n';
+		}
+		if(secretkey ==""){
+			msg += '请求接口的密钥不能为空\n';
+		}
+		if(msg != ""){
+			alert(msg);
+			return false;
+		}
+		$(".configform").submit();
+	});
+});
+</script>

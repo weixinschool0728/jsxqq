@@ -1,0 +1,107 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />
+<div class="content">
+
+<div class="cLineB">
+  <h4>回复信息配置 </h4>
+ </div>
+
+<!--tab end-->        
+    <div class="msgWrap bgfc" >
+	  <form class="form" method="post" action="" enctype="multipart/form-data">	 
+		<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<tbody>
+            <tr>
+				  <th valign="top"><span class="red">是否开启</span></th>
+				  <td><input type="radio" name="open" value="1" <if condition=" $info['open']==1 ">checked</if>/>开启&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="open" value="0" <if condition=" $info['open']==0 ">checked</if> />关闭</td>
+			</tr>
+             <tr>
+				  <th valign="top"><span class="red">关键字</span></th>
+				  <td>微信聊天窗口入【wzz】即可开始制作，回复【over】结束制作，回复【我的杂志】查看历史记录</td>
+			</tr>
+            
+			<tr>
+				  <th valign="top"><span class="red">关注连接</span></th>
+				  <td><input type="text" name="gzlj" value="{weimicms:$info.gzlj}" class="px" style="width:550px;"></td>
+				</tr>
+            <tr>
+				  <th valign="top"><span class="red">*</span>回复标题：</th>
+				  <td><input type="text" name="title" value="{weimicms:$info.title}" class="px" style="width:550px;">
+					</td>
+				</tr>
+                <tr>
+				  <th valign="top"><span class="red">*</span>回复简介：</th>
+				  <td><input type="text" name="jianjie" value="{weimicms:$info.jianjie}" class="px" style="width:550px;">
+					</td>
+				</tr>
+                 <tr>
+					<th>回复图片：</th>
+					<td><input type="text" id="picurl1" value="{weimicms:$info.pic}" name="pic" class="px" style="width:550px;">  
+<script src="/tpl/static/upyun.js"></script>
+<a href="javascript:void(0)" onclick="upyunPicUpload('picurl1',700,420,'{weimicms:$token}')" class="a_upload">上传</a>
+<a href="###" onclick="viewImg('picurl1')" >预览</a>
+					</td>
+				</tr>
+				 <tr>
+					<th>微杂志回复图片：</th>
+					<td><input type="text" id="mypicurl1" value="{weimicms:$info.mypicurl1}" name="mypicurl1" class="px" style="width:550px;">  
+
+<a href="javascript:void(0)" onclick="upyunPicUpload('mypicurl1',700,420,'{weimicms:$token}')" class="a_upload">上传</a>
+<a href="###" onclick="viewImg('mypicurl1')" >预览</a>
+					</td>
+				</tr>
+                 <tr>
+				  <th valign="top"><span class="red">版权</span></th>
+				  <td><input type="text" name="banquan" value="{weimicms:$info.banquan}" class="px" style="width:550px;"></td>
+			</tr>
+             
+				<th>&nbsp;</th>
+					<td>
+						<button type="submit" name="button" class="btnGreen">保存</button>
+						<a href="javascript:history.go(-1);" class="btnGray vm">取消</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+  </div> 
+ 
+  
+        </div>
+<link rel="stylesheet" href="/static/js/editor/themes/default/default.css" />
+<script charset="utf-8" src="/static/js/editor/kindeditor-min.js"></script>
+<script charset="utf-8" src="/static/js/editor/zh_CN.js"></script>
+<script>
+	KindEditor.ready(function(K) {
+		var uploadbutton = K.uploadbutton({
+			button : K('#uploadBtn')[0],
+			fieldName : 'imgFile',
+			url : '/index.php?g=User&m=Attachment&a=upload&type=reply',
+			afterUpload : function(data) {
+				if (data.error === 0) {
+					K('#picurl').val(data.url);
+				} else {
+					alert(data.message);
+				}
+			},
+			afterError : function(str) {
+				alert('自定义错误信息: ' + str);
+			}
+		});
+		uploadbutton.fileBox.change(function(e) {
+			uploadbutton.submit();
+		});
+	});
+</script>
+<script language="javascript">
+function countChar(textareaName,spanName){
+ document.getElementById(spanName).innerHTML=400-document.getElementById(textareaName).value.length;
+ if(document.getElementById(textareaName).value.length>=400){
+  window.alert("已经是最大字数了哦！")
+  return false;
+ }
+}
+</script>
+<include file="Public:footer"/>

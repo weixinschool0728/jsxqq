@@ -1,0 +1,72 @@
+<if condition="$stat eq true && $msg neq ''">
+<div style="height:400px;width:960px;text-align:center;color:#4a98e0;padding-top:100px;font-size:14px;">{weimicms:$msg}</div>
+<else />
+<div id="wifi" style="height:400px;width:960px;"></div>
+<script type="text/javascript">
+    var myChart = echarts.init(document.getElementById('wifi')); 
+    var option = {
+        title : {
+            text: 'Wi-Fi数据统计',
+            x:'left'
+        },
+        tooltip : {
+            trigger: 'axis'
+        },
+        legend: {
+            data:['连wifi成功人数','主页访问人数','新增公众号关注人数','累计公众号关注人数'],
+            x: 'right'
+        },
+        toolbox: {
+            show : false,
+            feature : {
+                mark : {show: false},
+                dataView : {show: false, readOnly: false},
+                magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                restore : {show: false} ,
+                saveAsImage : {show: true}
+            }
+        },
+        calculable : true,
+        xAxis : [
+            {
+                type : 'category',
+                boundaryGap : false,
+                data : [{weimicms:$charts.xAxis}]
+            }
+        ],
+        yAxis : [
+            {
+                type : 'value'
+            }
+        ],
+        series : [
+            {
+                name:'连wifi成功人数',
+                type:'line',
+                tiled: '总量',
+                data: [{weimicms:$charts.total_user}]
+            },    
+            {
+                "name":'主页访问人数',
+                "type":'line',
+                "tiled": '总量',
+                data:[{weimicms:$charts.homepage_uv}]
+            },
+            {
+                "name":'新增公众号关注人数',
+                "type":'line',
+                "tiled": '总量',
+                data:[{weimicms:$charts.new_fans}]
+            },         
+			{
+                "name":'累计公众号关注人数',
+                "type":'line',
+                "tiled": '总量',
+                data:[{weimicms:$charts.total_fans}]
+            }
+
+        ]
+    };                   
+    myChart.setOption(option); 
+</script>
+</if>

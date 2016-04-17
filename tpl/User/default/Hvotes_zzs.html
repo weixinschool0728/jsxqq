@@ -1,0 +1,39 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js" type="text/javascript"></script>
+
+<div class="content">
+<div class="cLineB">
+         <div>
+         <form action="/index.php?g=User&m=Hvotes&a=zzs&vid={weimicms:$vid}" method="post">   
+         连接：<input type="text" value="" name="lj" />
+		 图片：<input type="text" name="pic" value="{weimicms:$vo.pic}" class="px" onclick="document.getElementById('pics').src=this.value;" id="pics" style="width:300px;">
+             
+              <a href="###" onclick="upyunPicUpload('pics',700,400,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('pics')">预览</a>&nbsp;填写图片外链地址，大小为720x400
+         <input type="submit" value="增加" name="提交" class="btn btn-primary btn_submit J_ajax_submit_btn"/>
+         </form>
+         </div>
+           <script src="/tpl/static/upyun.js"></script>
+  <div class="msgWrap">
+            <table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <thead>
+                <tr>
+					<th>编号</th>                 
+                    <th>照片</th>
+					<th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr></tr>
+                  <volist id="item" name="item">
+                <tr>
+					<td>{weimicms:$item.id}</td>
+                    <td><img src="{weimicms:$item.pic}"  /></td>
+                    <td><a href="/index.php?g=User&m=Hvotes&a=zzs&id={weimicms:$item.id}&vid={weimicms:$item.vid}&action=del" style="margin-left:50px">删除</a></td>
+                    </tr>
+                  </volist>
+              </tbody>
+            </table>
+
+   </div>
+  </div>
+<include file="Public:footer"/>

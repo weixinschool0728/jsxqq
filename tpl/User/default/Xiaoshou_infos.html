@@ -1,0 +1,51 @@
+<include file="Public:head"/> 
+<link rel="stylesheet" type="text/css" href="{weiwo::RES}/css/cymain.css" />
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top: -30px; " >
+<include file="Public:hudong"/>
+<h4 class="left">报名人员列表 ({weiwo:$page}) </h4>
+<a href="{weiwo::U('Xiaoshou/index',array('token'=>$token))}" class="right  btn btn-info" >返回</a>
+<div class="searchbar right">
+<form method="post" action="">
+</form>
+</div>
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+	<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+	<thead>
+	<tr>
+	<th width="100">姓名</th>
+	<th width="120">电话</th>
+    <th width="120">微信号</th>
+	<th width="160">备注</th>
+	<th width="120" class="norightborder">操作</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr></tr>
+	<volist name="data" id="item"> 
+		<form method="post" action="" id="info">
+		<input name="delall" type="hidden" value="">
+		<input name="wxid" type="hidden" value="">
+		<tr>
+		<td>{weiwo:$item.name}</td>
+		<td>{weiwo:$item.phone}</td>
+        <td>{weiwo:$item.weixin}</td>
+		<td>{weiwo:$item.beizhu}</td> 
+		<td class="norightborder">
+		<a href="javascript:drop_confirm('您确定要删除吗?', '{weiwo::U('Xiaoshou/delinfos',array('id'=>$item['id'],'token'=>$token))}');">删除 </a>
+		</td>
+		</tr>
+	</form>
+	</volist>
+	</tbody>
+	</table>
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{weiwo:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

@@ -1,0 +1,83 @@
+<include file="Public:head"/>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+ <div class="content">
+          <div class="cLineB"><h4>添加引导页</h4><a href="javascript:history.go(-1);"  class="right a_upload" style="margin-top:-27px" >返回</a></div> 
+<div class="msgWrap">
+  <form class="form" method="post"   action=""    enctype="multipart/form-data" > 
+<TABLE class="userinfoArea" style=" margin:20px 0 0 0;" border="0" cellSpacing="0" cellPadding="0" width="100%">
+  <TBODY> 
+<tr>
+ <div class="control-group">
+       <TH valign="top"> <label for="coverurl" class="control-label">
+            第一张：</label></TH>
+            <td>
+        <div class="controls"> 
+            <input type="input" class="px" id="cover" value="{weimicms:$info['img1']|default=''}"
+                name="cover">
+            <span class="help-inline">
+                <!--script src="{weimicms::STATICS}/upyun.js"></script-->
+                <a href="###" onclick="upyunPicUpload('cover',266,355,'{weimicms:$token}')" class="a_upload">
+                    上传</a> <a href="###" onclick="viewImg('cover')">预览</a> <span class="help-inline"> 建议尺寸：宽266像素，高355像素</span>
+            </span>
+        </div>
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <div class="control-group">
+        <TH valign="top"> <label class="control-label">
+             第二张：</label></TH>
+            <td>
+        <div class="controls"> 
+            <input type="text" id="banner" name="banner" class="px" value="{weimicms:$info['img2']|default=''}">
+            <span class="help-inline"><a href="###" onclick="upyunPicUpload('banner',266,355,'{weimicms:$token}')"
+                class="a_upload">上传</a> <a href="###" onclick="viewImg('banner')">预览</a> <span class="help-inline">
+                    建议尺寸：宽266像素，高355像素</span> </span>
+        </div>
+    </div></td>
+     </tr>
+    <tr>
+    <div class="control-group">
+        <div class="control-group">
+             <TH valign="top"><label class="control-label">
+                 第三张：</label></TH>
+            <td>
+            <div class="controls"> 
+                <input type="text" name="house_banner" id="house_banner" class="px" value="{weimicms:$info['img3']|default=''}">
+                <span class="help-inline">
+                    <script src="{weimicms::STATICS}/upyun.js"></script>
+                    <a href="###" onclick="upyunPicUpload('house_banner',266,355,'{weimicms:$token}')" class="a_upload">
+                        上传</a> <a href="###" onclick="viewImg('house_banner')">预览</a> <span class="help-inline">
+                            建议尺寸：宽266像素，高355像素</span> </span>
+            </div>
+        </div>
+    </div>
+     </td>
+   </tr>
+ 
+<TR>
+  <TH></TH>
+  <input type="hidden" name="id" value="{weimicms:$info.id}" />
+  <TD><button type="submit"  name="button"  class="a_upload" >保存</button>
+  	<div class="clr"></div>
+  	</TD>
+  </TR>
+  </TBODY>
+</TABLE>
+  </form>
+
+
+
+  </div> 
+
+        </div>
+        
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div> 
+
+<!--底部-->
+  	</div>
+<include file="Public:footer"/>

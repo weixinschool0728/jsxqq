@@ -1,0 +1,69 @@
+<include file="Public:head"/>  
+ 
+        <div class="content">
+ <div class="cLineB">
+              <h4 class="left">当前位置：<a href="">项目跟踪记录</a></h4>
+                 
+              <div class="clr"></div>
+          </div>
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<div class="cLine">
+<div class="clr"></div>
+</div>
+
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th width="150">客户</th>
+<th width="100">推荐经纪人</th> 
+<th width="100">房产项目</th>
+<th width="150">审核时间</th>
+<th width="150">备注</th>
+<th width="80">状态</th> 
+<th width="80">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="info" id="o"> 
+<tr> 
+<td>{weimicms:$o.custom}</td> 
+<td>{weimicms:$o.suppliername}</td>
+<td>{weimicms:$o.projectname}</td>
+<td>{weimicms:$o.checktime|date="Y-m-d h:i",###}</td>
+<td>{weimicms:$o.note}</td>
+<td>
+	<switch name="o['statue']" >
+		<case value="0">未登记</case>
+		<case value="1">已登记</case>
+		<case value="2">已到访</case>
+		<case value="3">已认筹</case>
+		<case value="4">已认购</case>
+		<case value="5">已签约</case>
+		<case value="6">已打款</case> 
+	</switch>
+</td>
+ <td>
+   	<if condition="$o.statue neq '0'">
+    				<if condition="$o.checkstatus eq '0'">
+					<a href="{weimicms::U('Supplier/checkbonus',array('id'=>$o['id'],'custom'=>$o['custom'],'customrollid'=>$o['customrollid'],'suppliername'=>$o['suppliername'],'supplierid'=>$o['supplierid'],'statue'=>$o['statue'],pjid=>$o['projectid']))}">审核奖金发放</a>
+                    </if>
+	 </if>
+ 	
+ </td>
+</tr>
+</volist>
+</tbody>
+</table>
+</form>
+
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{weimicms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

@@ -1,0 +1,42 @@
+<script type="text/javascript" src="./tpl/static/jquery.min.js"></script>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<link rel="stylesheet" href="{weimicms::STATICS}/lapiao/lp_pc.css" />
+<link rel="stylesheet" href="{weimicms::STATICS}/lapiao/lp_admin.css" />
+</head>
+<body>
+<br/><br/>
+<script>
+function fyjs(){
+     
+	var s1 = $("#s1").val();
+	
+		var data = {
+				sl:$("#s1").val(),
+				token:"{weimicms:$token}",
+				id:"{weimicms:$id}"
+		}
+		$.get('./index.php?g=User&m=Lapiao&a=listall&act=update', data, function(response){
+			if (response.error_code == false) {
+				artDialog.open.origin.location.href = "{weimicms::U('Lapiao/listall',array('token'=>$_GET['token'],'id'=>$_GET['tid']))}";
+				setTimeout("art.dialog.close()", 100 );
+			} else {
+				alert('修改失败');
+			}
+			
+		}, 'json');
+}
+</script>
+
+
+<div id="jfczarea">
+	<table>
+			<tr>
+			<td style="line-height: 30px;" valign="top">修改票数：</td>
+			<td colspan="2"><input  type="text" id="s1" style="width: 100px;"></td>
+			<td valign="top" align="right" style="width: 50px;">
+			<button onClick="fyjs()" class="btn">确定</button>
+			</td>
+		</tr>
+	</table>
+</div>

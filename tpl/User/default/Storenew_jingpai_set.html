@@ -1,0 +1,160 @@
+<if condition="$ischild neq 1">
+<include file="Public:head" />
+<else />
+<include file="Repast:head" />
+</if>
+<link rel="stylesheet" href="{weimicms::STATICS}/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="{weimicms::STATICS}/kindeditor/plugins/code/prettify.css" />
+<script src="{weimicms::STATICS}/kindeditor/kindeditor.js" type="text/javascript"></script>
+<script src="{weimicms::STATICS}/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+<script src="{weimicms::STATICS}/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="{weimicms::RES}/js/date/WdatePicker.js"></script>
+<script>
+var editor;
+KindEditor.ready(function(K) {
+editor = K.create('#intro', {
+resizeType : 1,
+allowPreviewEmoticons : false,
+allowImageUpload : true,
+uploadJson : '/index.php?g=User&m=Upyun&a=kindedtiropic',
+items : [
+'source','undo','clearhtml','hr',
+'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+'insertunorderedlist', '|', 'emoticons', 'image','link', 'unlink','baidumap','lineheight','table','anchor','preview','print','template','code','cut', 'music', 'video','|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline','hr', 'fontname', 'fontsize'],
+afterBlur: function(){this.sync();}
+});
+});
+</script>
+  <div class="content"> 
+   <div class="cLineB"> 
+    <h4>商品设置</h4> 
+    <a href="{weimicms::U('Storenew/product',array('token'=>$token,'catid'=>$catid))}" class="right  btnGreen" style="margin-top:-27px">返回</a> 
+   </div> 
+<form method="post" action="" id="formID">
+<input type="hidden" name="id" value="{weimicms:$set.id}" />
+<input type="hidden" name="cid" id="cid" value="{weimicms:$cid}" />
+    <div class="msgWrap bgfc"> 
+     <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"> 
+      <tbody> 
+       <tr> 
+        <th><span class="red">*</span>名称：</th> 
+        <td>
+        <input type="text" name="name" id="name" value="{weimicms:$set.name}" class="px" style="width:400px;" />
+        </td> 
+       </tr> 
+       <tr> 
+        <th><span class="red">*</span>起始价格：</th>
+        <td><input type="text" id="lowprice" name="lowprice" value="{weimicms:$set.lowprice}" class="validate[required, length[0,20]] px" style="width:100px;" /> 元</td> 
+       </tr>
+
+       <tr> 
+        <th><span class="red">*</span>低价：</th> 
+        <td><input type="text" id="minprice" name="minprice" value="{weimicms:$set.minprice}" class="px" style="width:100px;" /> 元</td> 
+       </tr>
+       <tr> 
+        <th><span class="red">*</span>每次最低出价：</th> 
+        <td><input type="text" id="increase" name="increase" value="{weimicms:$set.increase}" class="px" style="width:100px;" /> 元</td> 
+       </tr>
+	   
+	   <TR>
+		<th><span class="red">*</span>竞拍时间：</th>
+		<td><input type="input" class="px" id="start" name="starttime" value="<if condition="$set['starttime'] neq ''">{weimicms:$set.starttime|date="Y-m-d H:i:s",###}<else/>{weimicms:$starttime|date="Y-m-d H:i:s",###}</if>" onClick="WdatePicker({dateFmt:'yyyy-MM-dd  HH:mm:ss'})"/>
+			到
+			<input type="input" class="px" id="end" name="endtime" value="<if condition="$set['endtime'] neq ''">{weimicms:$set.endtime|date="Y-m-d H:i:s",###}<else/>{weimicms:$endtime|date="Y-m-d H:i:s",###}</if>" onClick="WdatePicker({dateFmt:'yyyy-MM-dd  HH:mm:ss'})"  />
+		</td>
+	   </TR>
+	   <tr> 
+        <th>结拍增加时间：</th> 
+        <td>
+	        <input type="radio" name="is_zj" class="status" value="0" id="status_0" <if condition="$set['is_zj'] eq 0">checked</if> /><label for="status_0">关闭</label>&nbsp;&nbsp;&nbsp;&nbsp;
+	        <input type="radio" name="is_zj" class="status" value="1" id="status_1" <if condition="$set['is_zj'] eq 1">checked</if> /><label for="status_1">开启</label>&nbsp;&nbsp;&nbsp;&nbsp;（是否开启距离结束时，每次出价增加结束时间）
+		</td> 
+       </tr>
+	   <tr> 
+        <th><span class="red">*</span>每次增加时间：</th> 
+        <td><input type="text" id="zjtime" name="zjtime" value="{weimicms:$set.zjtime}" class="px" style="width:100px;" /> 秒  (每次出价增加多少秒)</td> 
+       </tr>
+	   <tr> 
+        <th><span class="red">*</span>距结束时间：</th> 
+        <td><input type="text" id="lasttime" name="lasttime" value="{weimicms:$set.lasttime}" class="px" style="width:100px;" /> 秒  (距离结束时间还有多少秒才会启用本规则)</td> 
+       </tr>
+       <tr> 
+        <th>是否下架：</th> 
+        <td>
+	        <input type="radio" name="status" class="status" value="0" id="status_0" <if condition="$set['status'] eq 0">checked</if> /><label for="status_0">正常</label>&nbsp;&nbsp;&nbsp;&nbsp;
+	        <input type="radio" name="status" class="status" value="1" id="status_1" <if condition="$set['status'] eq 1">checked</if> /><label for="status_1">下架</label>
+		</td> 
+       </tr>
+       <tr> 
+        <th><span class="red">*</span>关键词：</th>
+        <td><input type="text" name="keyword" id="keyword" value="{weimicms:$set.keyword}" class="px" style="width:400px;" /></td> 
+       </tr>
+       <tr> 
+        <th>列表缩略图：</th>
+        <td><input type="text" name="logourl" value="{weimicms:$set.logourl}" class="px" id="pic" style="width:400px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('pic',700,700,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('pic')">预览</a></td> 
+       </tr>
+       <tr> 
+        <th>展示图片一：</th>
+        <td><input type="text" name="imageList[0][image]" value="{weimicms:$imageList[0]['image']}" class="px" id="image1" style="width:400px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('image1',700,700,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('image1')">预览</a></td> 
+		<input  type="hidden" name="imageList[0][id]" value="{weimicms:$imageList[0]['id']}" />
+	   </tr>
+       <tr> 
+        <th>展示图片二：</th>
+        <td><input type="text" name="imageList[1][image]" value="{weimicms:$imageList[1]['image']}" class="px" id="image2" style="width:400px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('image2',700,700,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('image2')">预览</a></td> 
+       <input  type="hidden" name="imageList[1][id]" value="{weimicms:$imageList[1]['id']}" />
+	   </tr>
+       <tr> 
+        <th>展示图片三：</th>
+        <td><input type="text" name="imageList[2][image]" value="{weimicms:$imageList[2]['image']}" class="px" id="image3" style="width:400px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('image3',700,700,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('image3')">预览</a></td> 
+       <input  type="hidden" name="imageList[2][id]" value="{weimicms:$imageList[2]['id']}" />
+	   </tr>
+       <tr> 
+        <th>展示图片四：</th>
+        <td><input type="text" name="imageList[3][image]" value="{weimicms:$imageList[3]['image']}" class="px" id="image4" style="width:400px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('image4',700,700,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('image4')">预览</a></td> 
+       <input  type="hidden" name="imageList[3][id]" value="{weimicms:$imageList[3]['id']}" />
+	   </tr>
+       <tr> 
+        <th>展示图片五：</th>
+        <td><input type="text" name="imageList[4][image]" value="{weimicms:$imageList[4]['image']}" class="px" id="image5" style="width:400px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('image5',700,700,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('image5')">预览</a></td> 
+       <input  type="hidden" name="imageList[4][id]" value="{weimicms:$imageList[4]['id']}" />
+	   </tr>
+       <tr> 
+        <th>展示图片六：</th>
+        <td><input type="text" name="imageList[5][image]" value="{weimicms:$imageList[5]['image']}" class="px" id="image6" style="width:400px;" />  <script src="/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('image6',700,700,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('image6')">预览</a></td> 
+       <input  type="hidden" name="imageList[5][id]" value="{weimicms:$imageList[5]['id']}" />
+	   </tr>
+       <tr> 
+        <th>排序：</th> 
+        <td><input type="text" id="sort" name="sort" value="{weimicms:$set.sort}" class="px" style="width:50px;" />  数字越小排再越前（大于等于0的整数）</td> 
+       </tr>
+       <TR>
+          <TH valign="top"><label for="info">图文详细页内容：</label></TH>
+          <TD><textarea name="intro" id="intro"  rows="5" style="width:590px;height:360px">{weimicms:$set.intro}</textarea></TD>
+       </TR>
+		<if condition="$productCatData['pc_cat_id'] && empty($set)">
+		<TR id="pc_show">
+			<TH valign="top">是否同时添加到<br/>电脑网站产品：</TH>
+			<TD>
+				<input type="hidden" name="pc_cat_id" id="pc_cat_id" value="{weimicms:$productCatData.pc_cat_id}"/>
+				<label for="pc_show_yes"><input type="radio" class="px" id="pc_show_yes" value="1" name="pc_show" />是</label>
+				<br/>
+				<label for="pc_show_no"><input type="radio" class="px" id="pc_show_no" value="0" name="pc_show" checked />否</label>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果选择是，将同步到电脑网站分类下。
+			</TD>
+			<TD>&nbsp;</TD>
+		</TR>	
+		</if>
+       <tr>         
+       <th>&nbsp;</th>
+       <td>
+       <button type="submit" name="button" class="btnGreen">保存</button> &nbsp; <a href="{weimicms::U('Storenew/jingpai',array('token'=>$token, 'catid' => $catid))}" class="btnGray vm">取消</a></td> 
+       </tr> 
+      </tbody> 
+     </table> 
+     </div>
+</form>
+  </div> 
+
+<include file="Public:footer" />

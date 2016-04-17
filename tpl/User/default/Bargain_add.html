@@ -1,0 +1,665 @@
+<include file="Public:head" />
+<script src="{weimicms:$staticPath}/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{weimicms:$staticPath}/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script language="javascript" type="text/javascript" src="{weimicms:$staticPath}/tpl/static/bargain/js/DatePicker/WdatePicker.js"></script>
+<link rel="stylesheet" type="text/css" href="{weimicms:$staticPath}/tpl/static/bargain/css/cymain.css" />
+<link rel="stylesheet" href="{weimicms::STATICS}/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="{weimicms::STATICS}/kindeditor/plugins/code/prettify.css" />
+<script src="{weimicms::STATICS}/kindeditor/kindeditor.js" type="text/javascript"></script>
+<script src="{weimicms::STATICS}/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+<script src="{weimicms::STATICS}/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+<script type="text/javascript" src="{weimicms::RES}/js/formCheck/formcheck.js"></script>
+<style>
+.old,.new{display:none;}
+</style>
+<script>
+var editor;
+KindEditor.ready(function(K) {
+	editor = K.create('#info', {	
+		debug : true,
+		resizeType : 1,
+		allowPreviewEmoticons : false,
+		allowImageUpload : true,
+		allowUpload : true,
+		postParams:{'PHPSESSID':"<?php echo session_id();?>"},
+		uploadJson : "{weimicms::U('Upyun/kindedtiropic')}",
+		items : [
+		'fontsize','forecolor','hilitecolor','bold',
+		'italic','underline','strikethrough','|',
+		'source','undo','clearhtml','hr',
+		'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+		'insertunorderedlist', '|', 'emoticons', 'image' ,'multiimage', 'link', 'unlink','baidumap','lineheight','table','anchor','preview','print','template','code','cut']
+	});
+});
+var editor2;
+KindEditor.ready(function(K) {
+	editor2 = K.create('#guize', {	
+		debug : true,
+		resizeType : 1,
+		allowPreviewEmoticons : false,
+		allowImageUpload : true,
+		allowUpload : true,
+		postParams:{'PHPSESSID':"<?php echo session_id();?>"},
+		uploadJson : "{weimicms::U('Upyun/kindedtiropic')}",
+		items : [
+		'fontsize','forecolor','hilitecolor','bold',
+		'italic','underline','strikethrough','|',
+		'source','undo','clearhtml','hr',
+		'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+		'insertunorderedlist', '|', 'emoticons', 'image' ,'multiimage', 'link', 'unlink','baidumap','lineheight','table','anchor','preview','print','template','code','cut']
+	});
+});
+
+var is_new = 2;
+$(document).ready(function(){
+	$('.old').hide();
+	$('.new').show();
+	$('input[name=is_new]').click(function(){
+		is_new = $(this).val();
+		if(is_new == 2){
+			$('.old').hide();
+			$('.new').show();
+		}else if(is_new == 1){
+			$('.new').hide();
+			$('.old').show();
+		}
+	});
+	$("form").submit(function () {
+		if(is_new == 1){
+			return oldsub();
+		}else if(is_new == 2){
+			return newsub();
+		}
+	});
+});
+
+function oldsub(){
+	var keyword = $("#keyword").val();
+	var name = $("#name").val();
+	var starttime = ($("#starttime").val())*1;
+	var wxtitle = $("#wxtitle").val();
+	var wxpic = $("#wxpic").val();
+	var original = ($("#original").val())*1;
+	var minimum = ($("#minimum").val())*1;
+	var dao = ($("#dao").val())*1;
+	var qdao = ($("#qdao").val())*1;
+	var qprice = ($("#qprice").val())*1;
+	var inventory = ($("#inventory").val())*1;
+	var logoimg1 = $("#logoimg1").val();
+	
+	var starttime_x = starttime - (Math.floor(starttime));
+	var original_x = original - (Math.floor(original));
+	var minimum_x = minimum - (Math.floor(minimum));
+	var dao_x = dao - (Math.floor(dao));
+	var qdao_x = qdao - (Math.floor(qdao));
+	var qprice_x = qprice - (Math.floor(qprice));
+	var inventory_x = inventory - (Math.floor(inventory));
+	/*if(b < 1 && b >0){
+		alert("小数");
+	}else{
+		alert("整数");
+	}*/
+	if(keyword == ""){
+		alert("请填写关键词");
+		buterror("#keyword");
+		return false;
+	}else if(name == ""){
+		alert("请填写商品名称");
+		buterror("#name");
+		return false;
+	}else if(starttime == ""){
+		alert("请填写每人砍价时间");
+		buterror("#starttime");
+		return false;
+	}else if((starttime_x < 1 && starttime_x >0) || starttime < 1){
+		alert("每人砍价时间请使用大于零的正整数");
+		buterror("#starttime");
+		return false;
+	}else if(wxtitle == ""){
+		alert("请填写微信图文回复标题");
+		buterror("#wxtitle");
+		return false;
+	}else if(wxpic == ""){
+		alert("请添加微信图文回复图片");
+		buterror("#wxpic");
+		return false;
+	}else if(original == ""){
+		alert("请填写商品原价");
+		buterror("#original");
+		return false;
+	}else if((original_x < 1 && original_x >0) || original < 1){
+		alert("价格请使用大于零的正整数");
+		buterror("#original");
+		return false;
+	}else if(minimum == ""){
+		alert("请填写商品底价");
+		buterror("#minimum");
+		return false;
+	}else if((minimum_x < 1 && minimum_x > 0) || minimum < 0){
+		alert("价格请使用正整数");
+		buterror("#minimum");
+		return false;
+	}else if(minimum > original || minimum == original){
+		alert("底价必须小于原价");
+		buterror("#original","#minimum");
+		return false;
+	}else if(dao == ""){
+		alert("请填写共需多少刀砍至底价");
+		buterror("#dao");
+		return false;
+	}else if(dao > (original - minimum)){
+		alert("刀数不能大于原价和底价的差");
+		buterror("#dao");
+		return false;
+	}else if((dao_x < 1 && dao_x > 0) || dao < 2){
+		alert("刀数请使用大于一的正整数");
+		buterror("#dao");
+		return false;
+	}else if(dao == qdao || qdao > dao){
+		alert("总刀数要大于前N刀的刀数");
+		buterror("#dao","#qdao");
+		return false;
+	}else if(qdao != "" && qprice == ""){
+		alert("请填写前N刀砍下多少钱");
+		buterror("#qprice");
+		return false;
+	}else if((qdao_x < 1 && qdao_x > 0) || qdao < 0){
+		alert("刀数请使用正整数");
+		buterror("#qdao");
+		return false;
+	}else if((qprice_x < 1 && qprice_x > 0) || qprice < 0){
+		alert("价格请使用正整数");
+		buterror("#qprice");
+		return false;
+	}else if(qprice >= (original - minimum)){
+		alert("前N刀砍掉的钱数要小于原价减去底价的钱数");
+		buterror("#qprice");
+		return false;
+	}else if((original - minimum - qprice) < (dao - qdao)){
+		alert("前N刀砍剩下的钱数不能小于剩下的刀数");
+		buterror("#qprice");
+		return false;
+	}else if(qprice < qdao){
+		alert("前N刀钱数不能小于前N刀刀数");
+		buterror("#qprice");
+		return false;
+	}else if(inventory == ""){
+		alert("请填写库存");
+		buterror("#inventory");
+		return false;
+	}else if((inventory_x < 1 && inventory_x > 0) || inventory < 0){
+		alert("库存请使用正整数");
+		buterror("#inventory");
+		return false;
+	}else if(logoimg1 == ""){
+		alert("请填写商品图片1");
+		buterror("#logoimg1");
+		return false;
+	}else{
+		return true;
+	}
+}
+
+function buterror(id,id2){
+	$("html,body").animate({scrollTop: $(id).offset().top}, 500);
+	$(id).css("border","2px solid red");
+	$(id).focus(function(){
+		$(id).css("border","1px solid");
+		$(id).css("border-color","#848484 #E0E0E0 #E0E0E0 #848484");
+		$(id2).css("border","1px solid");
+		$(id2).css("border-color","#848484 #E0E0E0 #E0E0E0 #848484");
+	})
+	$(id2).css("border","2px solid red");
+	$(id2).focus(function(){
+		$(id2).css("border","1px solid");
+		$(id2).css("border-color","#848484 #E0E0E0 #E0E0E0 #848484");
+		$(id).css("border","1px solid");
+		$(id).css("border-color","#848484 #E0E0E0 #E0E0E0 #848484");
+	})
+}
+
+function newsub(){
+	var is_error = true;
+	var is_error_msg = "";
+	var is_error_array = new Array();
+	var i_error = 0;
+	
+	var keyword = $('#keyword').val();
+	if(keyword == ''){
+		is_error_msg += "请填写关键词！\n";
+		buterror_new("#keyword");
+		is_error = false;
+		is_error_array[i_error] = '#keyword';
+		i_error++;
+	}
+	var name = $('#name').val();
+	if(name == ''){
+		is_error_msg += "请填写商品名称！\n";
+		buterror_new("#name");
+		is_error = false;
+		is_error_array[i_error] = '#name';
+		i_error++;
+	}
+	var wxpic = $('#wxpic').val();
+	if(wxpic == ''){
+		is_error_msg += "请填写微信图文信息图片！\n";
+		buterror_new("#wxpic");
+		is_error = false;
+		is_error_array[i_error] = '#wxpic_src';
+		i_error++;
+	}
+	var wxtitle = $('#wxtitle').val();
+	if(wxtitle == ''){
+		is_error_msg += "请填写微信回复标题！\n";
+		buterror_new("#wxtitle");
+		is_error = false;
+		is_error_array[i_error] = '#wxtitle';
+		i_error++;
+	}
+	var starttime = $('#starttime').val();
+	if(starttime*1 <= 0){
+		is_error_msg += "请填写每人砍价时间！\n";
+		buterror_new("#starttime");
+		is_error = false;
+		is_error_array[i_error] = '#starttime';
+		i_error++;
+	}
+	var original = $('#original').val();
+	if(original*1 <= 0){
+		is_error_msg += "请填写商品原价！\n";
+		buterror_new("#original");
+		is_error = false;
+		is_error_array[i_error] = '#original';
+		i_error++;
+	}
+	var minimum = $('#minimum').val();
+	if(minimum*1 <= 0){
+		is_error_msg += "请填写商品底价！\n";
+		buterror_new("#minimum");
+		is_error = false;
+		is_error_array[i_error] = '#minimum';
+		i_error++;
+	}
+	if(minimum*1 >= original*1){
+		is_error_msg += "底价必须小于原价！\n";
+		buterror_new("#original");
+		buterror_new("#minimum");
+		is_error = false;
+		is_error_array[i_error] = '#original';
+		i_error++;
+	}
+	var kan_min = $('#kan_min').val();
+	if(kan_min*1 <= 0){
+		is_error_msg += "请填每次砍价范围最低值！\n";
+		buterror_new("#kan_min");
+		is_error = false;
+		is_error_array[i_error] = '#kan_min';
+		i_error++;
+	}
+	var kan_max = $('#kan_max').val();
+	if(kan_max*1 <= 0){
+		is_error_msg += "请填每次砍价范围最大值！\n";
+		buterror_new("#kan_max");
+		is_error = false;
+		is_error_array[i_error] = '#kan_max';
+		i_error++;
+	}
+	if(kan_min*1 >= kan_max*1){
+		is_error_msg += "每次砍价范围最小值必须小于最大值！\n";
+		buterror_new("#kan_min");
+		buterror_new("#kan_max");
+		is_error = false;
+		is_error_array[i_error] = '#kan_min';
+		i_error++;
+	}
+	if(kan_max*1 >= (original*1 - minimum*1)){
+		is_error_msg += "每次砍价范围最大值必须小于原价和底价的差！\n";
+		buterror_new("#kan_max");
+		is_error = false;
+		is_error_array[i_error] = '#kan_max';
+		i_error++;
+	}
+	var inventory = $('#inventory').val();
+	if(inventory*1 <= 0){
+		is_error_msg += "请填写库存！\n";
+		buterror_new("#inventory");
+		is_error = false;
+		is_error_array[i_error] = '#inventory';
+		i_error++;
+	}
+	var logoimg1 = $('#logoimg1').val();
+	if(logoimg1 == ''){
+		is_error_msg += "请填写商品图片1！\n";
+		buterror_new("#logoimg1");
+		is_error = false;
+		is_error_array[i_error] = '#logoimg1';
+		i_error++;
+	}
+	var logotitle1 = $('#logotitle1').val().length;
+	if(logotitle1 > 15){
+		is_error_msg += "商品图片描述1不能超过15个字！\n";
+		buterror_new("#logotitle1");
+		is_error = false;
+		is_error_array[i_error] = '#logotitle1';
+		i_error++;
+	}
+	var logotitle2 = $('#logotitle2').val().length;
+	if(logotitle2 > 15){
+		is_error_msg += "商品图片描述2不能超过15个字！\n";
+		buterror_new("#logotitle2");
+		is_error = false;
+		is_error_array[i_error] = '#logotitle2';
+		i_error++;
+	}
+	var logotitle3 = $('#logotitle3').val().length;
+	if(logotitle3 > 15){
+		is_error_msg += "商品图片描述3不能超过15个字！\n";
+		buterror_new("#logotitle3");
+		is_error = false;
+		is_error_array[i_error] = '#logotitle3';
+		i_error++;
+	}
+	if(is_error == false){
+		alert(is_error_msg);
+		$("html,body").animate({scrollTop: $(is_error_array[0]).offset().top}, 500);
+		return false;
+	}else{
+		return true;
+	}
+}
+function buterror_new(id){
+	$(id).css("border","2px solid red");
+	$(id).css("background-color","rgb(255, 223, 221)");
+	$(id).focus(function(){
+		$(id).css("background-color","#fff");
+		$(id).css("border","1px solid");
+		$(id).css("border-color","#848484 #E0E0E0 #E0E0E0 #848484");
+	});
+}
+</script>
+<form class="form" method="post"   action="{weimicms::U('Bargain/doadd',array('token'=>$token))}" enctype="multipart/form-data" >
+	<div class="content">
+		<div class="cLineB">
+			<h4 class="left">微砍价</h4>
+			<div class="clr"></div>
+		</div>
+		
+		<div class="tab">
+			<ul>
+				<li class="current tabli" id="tab1"><a href="{weimicms::U('Bargain/index',array('token'=>$token))}">砍价商品</a></li>
+				<li class="tabli" id="tab2"><a href="{weimicms::U('Bargain/order',array('token'=>$token))}">订单管理</a></li>
+			</ul>
+		</div>
+		<div class="cLineB">
+			<h4 class="left">添加一个砍价商品</h4>
+			<a href="{weimicms::U('Bargain/index',array('token'=>$token))}"  class="right btnGreen" >返回</a>
+		</div>
+		<div class="msgWrap bgfc">
+			<table class="userinfoArea" style=" margin:0;" border="0" cellSpacing="0" cellPadding="0" width="100%">
+				<tbody>
+				
+					<tr>
+					<if condition="$_SESSION['is_syn'] eq 0">
+						<th valign="top"><span class="red">*</span>关键词：</th>
+						<td>
+							<input type="input" class="px" id="keyword" value="" name="keyword" style="width:400px" />
+							<br/>
+							<span class="red">只能写一个关键词</span>，用户输入此关键词将会触发此活动。
+						</td>
+					<else />
+						<th valign="top"></th>
+						<td><input type="hidden" class="px" id="keyword" value="<?php echo $_SESSION['is_syn'];?>" name="keyword" style="width:400px" /></td>
+					</if>
+						<td rowspan="999" valign="top">
+							<div style="margin-left:20px">
+								<img id="wxpic_src" src="{weimicms:$staticPath}/tpl/static/bargain/images/wxpic.jpg" width="373px" >
+								<br/>
+								<input class="px"  name="wxpic" value="{weimicms:$staticPath}/tpl/static/bargain/images/wxpic.jpg" id="wxpic" style="width:363px;"  />
+								<script src="{weimicms:$staticPath}/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('wxpic',900,500,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('wxpic')">预览</a>&nbsp;<span class="red"><strong>*</strong></span>微信图文信息图片，推荐尺寸：900*500
+							</div>
+						</td>
+					</tr>
+					
+					<tr>
+						<th valign="top"><span class="red">*</span>商品名称：</th>
+						<td>
+							<input type="input" class="px" id="name" value="" name="name" style="width:400px" />
+							<br/>
+							请不要多于50字!
+						</td>
+					</tr>
+					
+					<tr>
+						<th valign="top"><span class="red">*</span>微信回复标题：</th>
+						<td>
+							<input type="input" class="px" id="wxtitle" value="" name="wxtitle" style="width:400px" />
+							<br/>
+							请不要多于50字!
+						</td>
+					</tr>
+					
+					<tr>
+						<th valign="top">微信回复信息说明：</th>
+						<td>
+							<textarea  class="px" id="wxinfo" name="wxinfo"  style="width:400px; height:125px" ></textarea>
+						</td>
+					</tr>
+					
+				</tbody>
+			</table>
+		</div>
+		<div class="cLineB"></div>
+		<div class="msgWrap bgfc">
+			<table class="userinfoArea" style=" margin:0;" border="0" cellSpacing="0" cellPadding="0" width="100%">
+				<tbody>
+					
+					<tr>
+						<th valign="top">选择版本：</th>
+						<td>
+							<input type="radio" name="is_new" id="is_new_1" value="1" ><label for="is_new_1" style="color:blue">旧版本</label>
+							&nbsp;&nbsp;
+							<input type="radio" name="is_new" id="is_new_2" value="2" checked><label for="is_new_2" style="color:green">新版本</label>
+						</td>
+					</tr>
+					
+				</tbody>
+			</table>
+		</div>
+		
+		<div class="cLineB"></div>
+		<div class="msgWrap bgfc">
+			<table class="userinfoArea" style=" margin:0;" border="0" cellSpacing="0" cellPadding="0" width="100%">
+				<tbody>
+										
+					<tr>
+						<th valign="top"><span class="red">*</span>每人砍价时间：</th>
+						<td>
+							<input type="number" class="px" id="starttime" value="" name="starttime" style="width:100px"/>&nbsp;单位（小时）最大2376小时
+						</td>
+					</tr>
+					
+					<tr>
+						<th valign="top"><span class="red">*</span>商品原价：</th>
+						<td>
+							<input type="text" class="px" id="original" value="" name="original" style="width:100px" />&nbsp;原价不能低于底价，单位（元）
+							<span class="new">（注：支持小数，精确到小数点后两位）</span>
+							<span class="old">（注：不支持小数）</span>
+						</td>
+					</tr>
+					
+					<tr>
+						<th valign="top"><span class="red">*</span>商品底价：</th>
+						<td>
+							<input type="text" class="px" id="minimum" value="" name="minimum" style="width:100px" />&nbsp;底价不能高于原价，单位（元）
+							<span class="new">（注：支持小数，精确到小数点后两位）</span>
+							<span class="old">（注：不支持小数）</span>
+						</td>
+					</tr>
+					
+					<tr class="old">
+						<th valign="top"><span class="red">*</span>砍价力度：</th>
+						<td>
+							共&nbsp;<input type="number" class="px" id="dao" value="" name="dao" style="width:100px" />&nbsp;刀砍至底价&nbsp;&nbsp;（注：总刀数要大于前N刀的刀数<span class="old">，不支持小数</span>）
+						</td>
+					</tr>
+					
+					<tr class="old">
+						<th valign="top"></th>
+						<td>
+							前&nbsp;<input type="number" class="px" id="qdao" value="" name="qdao" style="width:100px" />&nbsp;刀，砍掉&nbsp;<input type="number" class="px" id="qprice" value="" name="qprice" style="width:100px" />&nbsp;元<br>
+							（注：前N刀砍掉的钱数要小于原价减去底价的钱数，前N刀砍剩下的钱数不能小于剩下的刀数<span class="old">，不支持小数</span>）
+						</td>
+					</tr>
+					
+					<tr class="new">
+						<th valign="top"><span class="red">*</span>每次砍价范围</th>
+						<td>
+							<input type="text" class="px" id="kan_min" name="kan_min" style="width:100px">
+							&nbsp;到&nbsp;
+							<input type="text" class="px" id="kan_max" name="kan_max" style="width:100px">
+							&nbsp;（单位：元）（注：自己或朋友砍下一刀的范围，若砍下后小于底价则砍至底价，支持小数，精确到小数点后两位）
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="cLineB"></div>
+		<div class="msgWrap bgfc">
+			<table class="userinfoArea" style=" margin:0;" border="0" cellSpacing="0" cellPadding="0" width="100%">
+				<tbody>
+					
+					<tr class="new">
+						<th valign="top">排行榜显示数量：</th>
+						<td>
+							<input type="text" class="px" id="rank_num" name="rank_num" style="width:100px">
+							&nbsp;不填默认为10
+						</td>
+					</tr>
+					
+					<tr>
+						<th valign="top"><span class="red">*</span>商品库存：</th>
+						<td>
+							<input type="number" class="px" id="inventory" value="" name="inventory" style="width:100px" />&nbsp;只能为正整数
+						</td>
+					</tr>
+					
+					<tr>
+						<th valign="top"><span class="red">*</span>商品图片1：</th>
+						<td>
+							<input type="input" class="px" id="logoimg1"  name="logoimg1" value=""  style="width:250px"/>
+							<script src="{weimicms:$staticPath}/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('logoimg1',900,500,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('logoimg1')">预览</a><span class="red"><strong>*</strong></span>推荐尺寸：900*500
+						</td>
+					</tr>
+					
+					<tr class="old">
+						<th valign="top">商品图片链接1：</th>
+						<td>
+							<input type="input" class="px" id="logourl1" value="" name="logourl1" style="width:400px" /><a href="###" onclick="addLink('logourl1',0)" class="a_choose">从功能库添加</a>
+						</td>
+					</tr>
+					
+					<tr class="new">
+						<th valign="top">商品图片描述1：</th>
+						<td>
+							<input type="input" class="px" id="logotitle1" value="" name="logotitle1" style="width:400px" />
+							&nbsp;不能超过15字
+						</td>
+					</tr>
+					
+					<tr>
+						<th valign="top">商品图片2：</th>
+						<td>
+							<input type="input" class="px" id="logoimg2"  name="logoimg2" value=""  style="width:250px"/>
+							<script src="{weimicms:$staticPath}/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('logoimg2',900,500,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('logoimg2')">预览</a><span class="red"><strong>*</strong></span>推荐尺寸：900*500
+						</td>
+					</tr>
+					
+					<tr class="old">
+						<th valign="top">商品图片链接2：</th>
+						<td>
+							<input type="input" class="px" id="logourl2" value="" name="logourl2" style="width:400px" /><a href="###" onclick="addLink('logourl2',0)" class="a_choose">从功能库添加</a>
+						</td>
+					</tr>
+					
+					<tr class="new">
+						<th valign="top">商品图片描述2：</th>
+						<td>
+							<input type="input" class="px" id="logotitle2" value="" name="logotitle2" style="width:400px" />
+							&nbsp;不能超过15字
+						</td>
+					</tr>
+					
+					<tr>
+						<th valign="top">商品图片3：</th>
+						<td>
+							<input type="input" class="px" id="logoimg3"  name="logoimg3" value=""  style="width:250px"/>
+							<script src="{weimicms:$staticPath}/tpl/static/upyun.js"></script><a href="###" onclick="upyunPicUpload('logoimg3',900,500,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('logoimg3')">预览</a><span class="red"><strong>*</strong></span>推荐尺寸：900*500
+						</td>
+					</tr>
+					
+					<tr class="old">
+						<th valign="top">商品图片链接3：</th>
+						<td>
+							<input type="input" class="px" id="logourl3" value="" name="logourl3" style="width:400px" /><a href="###" onclick="addLink('logourl3',0)" class="a_choose">从功能库添加</a>
+						</td>
+					</tr>
+					
+					<tr class="new">
+						<th valign="top">商品图片描述3：</th>
+						<td>
+							<input type="input" class="px" id="logotitle3" value="" name="logotitle3" style="width:400px" />
+							&nbsp;不能超过15字
+						</td>
+					</tr>
+					
+					<tr>
+						<th valign="top"><label for="info">商品详情：</label></th>
+						<td><textarea name="info" id="info"  rows="5" style="width:590px;height:360px"></textarea></td>
+					</tr>
+					
+					<tr>
+						<th valign="top"><label for="guize">活动规则：</label></th>
+						<td><textarea name="guize" id="guize"  rows="5" style="width:590px;height:360px"></textarea></td>
+					</tr>
+					
+					<tr>
+						<th valign="top"><span class="red"></span>未关注是否可以参与：</th>
+						<td colspan="2">
+							<input type="radio" name="is_attention" id="is_attention1" value="1"><label for="is_attention1">是</label>
+							&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="is_attention" id="is_attention2" value="2" checked ><label for="is_attention2">否</label>
+							&nbsp;&nbsp;&nbsp;{weimicms:$__access_remind__}
+						</td>
+					</tr>
+					
+					<tr>
+						<th valign="top"><span class="red"></span>未关注是否可以帮砍：</th>
+						<td colspan="2">
+							<input type="radio" name="is_subhelp" id="is_subhelp1" value="1"><label for="is_subhelp1">是</label>
+							&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="is_subhelp" id="is_subhelp2" value="2" checked ><label for="is_subhelp2">否</label>
+							&nbsp;&nbsp;&nbsp;{weimicms:$__access_remind__}（只适用于新版）
+						</td>
+					</tr>
+					
+					<tr>
+						<th valign="top"><span class="red"></span>是否需要粉丝详细信息：</th>
+						<td colspan="2">
+							<input type="radio" name="is_reg" id="is_reg2" value="2" checked ><label for="is_reg2">是</label>
+							&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="is_reg" id="is_reg1" value="1"><label for="is_reg1">否</label>
+							&nbsp;&nbsp;&nbsp;（没有粉丝信息参加活动的处理方式）
+						</td>
+					</tr>
+					
+					<tr>
+						<th>&nbsp;</th>
+						<td><button type="submit" class="btnGreen" >保存</button>　<a href="{weimicms::U('Bargain/index',array('token'=>$token))}"  class="btnGray vm">取消</a></td>
+					</tr>
+					
+				</tbody>
+			</table>
+		</div>
+	</div>
+</form>
+<include file="Public:footer"/>

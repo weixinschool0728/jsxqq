@@ -1,0 +1,80 @@
+<include file="Public:head"/>
+<div class="content"  <if condition="session('isQcloud') eq true">style="float:center;"</if>>
+  <div class="cLineB">
+    <div  class="quick-actions_homepage">
+      <ul class="quick-actions">
+        <li class="bg_lb"> <a href="/index.php?g=User&amp;m=AP&amp;a=index&amp;tab=09"> <i class="icon-rss"></i> 设备列表 </a> </li>
+        <li class="bg_dy"> <a href="/index.php?g=User&m=Policy&a=index&tab=09"> <i class="icon-cogs"></i> 策略设置</a> </li>
+        <li class="bg_lg"> <a href="/index.php?g=User&m=Terminal&a=index&tab=09"> <i class="icon-cloud"></i> 终端管理</a> </li>
+        <li class="bg_ly"> <a href="#"> <i class="icon-group"></i> 用户管理 </a> </li>
+        <li class="bg_db"> <a href="javascript:history.go(-1);"> <i class="icon-share-alt"></i> 返回</a> </li>
+      </ul>
+    </div>
+    <h4>添加设备</h4>
+  </div>
+  <div class="msgWrap">
+    <form class="form" method="post" action="" name="modifyform"  >
+      <table class="userinfoArea" style=" margin:20px 0 20px 0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+        <thead>
+          <tr>
+            <th valign="top"><label for="name">设备名称：</label></th>
+            <td><input type="input" class="px" id="name" value="{weimicms:$ap.name}" name="name" style="width:300px">
+              <br></td>
+          </tr>
+          <tr>
+            <th valign="top"> 设备位置：</th>
+            <td><input name="device_location"  placeholder='' type="text" class="px" value="{weimicms:$ap.device_location}" />
+          </tr>
+        </thead>
+        <thead>
+          <tr>
+            <th valign="top">MAC：</th>
+            <td><input type="input" class="px" id="mac" value="{weimicms:$ap.mac}" name="mac" style="width:300px" /></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th valign="top">3G网站：</th>
+            <td><select id='token' name='token'>
+                <volist name="webs" id="o">
+                  <option value='{weimicms:$o.token}'>{weimicms:$o.wxname}</option>
+                </volist>
+              </select>
+              <a href="#myModal" data-toggle="modal" class="btn btn-success">认证地址</a></td>
+          </tr>
+        <div id="myModal" class="modal hide">
+          <div class="modal-header">
+            <button data-dismiss="modal" class="close" type="button">×</button>
+            <h3>什么是认证地址</h3>
+          </div>
+          <div class="modal-body">
+            <p>这里选择的是3G网站用户默认连接WIFI后，自动打开的3G微站。没有经过认证前，只能访问该站…</p>
+          </div>
+        </div>
+        <tr>
+          <th valign="top"><label for="token">描述：</label></th>
+          <td><textarea name="description" cols="60" rows="5"  class="px" id="description">{weimicms:$ap.mac}</textarea></td>
+        </tr>
+        <tr>
+          <th></th>
+          <td><button type="submit" name="button" class="btn btn-success left">保存</button>
+            <a href="javascript:history.go(-1);" class="btn btn-info">取消</a>
+            <div class="clr"></div></td>
+        </tr>
+        </tbody>
+        
+      </table>
+    </form>
+  </div>
+</div>
+<!--底部-->
+</div>
+<script>
+  	<if condition="$_GET['id']">
+  	$('#token').val('{weimicms:$ap.token}');
+<else/>
+  	$('#token').val('{weimicms:$Think.session.token}');
+</if>
+  	
+  	</script>
+<include file="Public:footer"/>

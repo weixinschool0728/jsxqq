@@ -1,0 +1,296 @@
+<include file="Public:head"/>
+
+<div class="content" 
+<if condition="session('isQcloud') eq true"></if>
+<div class="cLineB">
+  
+ 
+  <div class="cLine">
+
+            <if condition="$usertplid eq 0">
+
+              
+
+                <div style="float:right;line-height:30px;">
+
+                <form action="#" method="post">
+                </form>
+
+              </div>
+
+            <else />
+
+              <!--/*<div class="vm02">
+
+                    <a href='{weimicms::U("Nr/add")}' title='内容分享'>内容分享</a>　
+            <div class="clr"></div>
+
+          </div>*/-->
+          <!--/*<div class="pageNavigator left"> <a href="{weimicms::U('Zhaopin/add',array('token'=>$token))}" title="添加" class="btnGrayS vm bigbtn"> <img src="{weimicms::RES}/images/product/add.png" width="16">添加</a> </div>*/-->
+
+
+
+          <div class="clr" style="height:20px;"></div>
+
+			
+
+          <div class="msgWrap">
+
+            <TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+
+              <THEAD>
+
+                <TR valign="top">
+
+					<TH  style="text-align:center" width="5%">编号</TH>
+
+					<TH style="text-align:center" width="10%">姓名</TH>
+
+					 <TH style="text-align:center"  width="10%">电话</TH>
+
+                    <TH style="text-align:center"  width="10%">QQ</TH>
+                     <TH style="text-align:center"  width="10%">地址</TH>
+                      <TH style="text-align:center"  width="10%">提交时间</TH>
+                    <TH style="text-align:center"  width="15%">备注</TH>
+                     <TH style="text-align:center"  width="5%">状态</TH>
+
+                   <!-- /*<TH class="time"><button class="btnGrayS" onclick="$('#sortform').submit()" >排序</button></TH>*/-->
+
+                   <!-- <TH class="time">浏览次数</TH>-->
+
+					<!--<TH class="time">时间</TH>-->
+
+					<TH style="text-align:center"  width="20%">操作</TH>
+
+                </TR>
+
+              </THEAD>
+
+              <TBODY>
+
+                <TR></TR>
+
+				<form action="{weimicms::U("Nr/edit")}" method="post" id="sortform">
+
+				<volist name="info" id="vo" empty="没有找到数据">
+
+				<tr>
+
+                  <td style="text-align:center"> {weimicms:$i}</td>
+
+                  <td style="text-align:center">{weimicms:$vo.name}</td>
+
+                    <td style="text-align:center">{weimicms:$vo.tel}</td>
+                    <td style="text-align:center">{weimicms:$vo.qq}</td>
+                    <td style="text-align:center">{weimicms:$vo.address}</td>
+
+                 <td style="text-align:center">{weimicms:$vo.time|date='Y-m-d H-i-s',###}</td>
+                   
+                   <td style="text-align:center">{weimicms:$vo.beizhu}</td>
+                    <td style="text-align:center"><if condition ="$vo.statue eq '1'"><span  style="color:red">√</span><else/>×</if></td>
+
+                 <!-- <td>
+
+					<input type="number" style="border:1px solid #c9c9c9;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;" class="usort" name="usort{weimicms:$vo.id}" value="{weimicms:$vo.usort}" />
+
+					
+
+				  </td>-->
+
+                 <!-- <td>{weimicms:$vo.click}</td>-->
+
+                    <!--<td><php>echo date('Y-m-d',$vo['updatetime']);</php></td>-->
+
+                   
+
+                   <td class="norightborder">
+
+				  <!-- <a href="{weimicms::U('Wap/Index/content',array('token'=>$_SESSION['token'],'id'=>$vo['id']))}">查看</a> -->
+
+				   <a href="{weimicms::U('Adcms/hezuo_do',array('id'=>$vo['id'],'token'=>$vo['token']))}" >标记受理</a>
+
+				   <a href="{weimicms::U('Adcms/hezuodel',array('id'=>$vo['id'],'token'=>$vo['token']))}">删除</a></td>
+
+          
+
+                </tr>
+
+				</volist>
+
+					<input type="hidden" name="token" value="{weimicms:$_SESSION['token']}" />
+
+                </form>       
+
+              </TBODY>
+
+            </TABLE>
+
+<style>
+
+	.usort {
+
+		width:45px;
+
+		height:23px;
+
+	}
+
+</style>
+
+           <script>
+
+   function checkvotethis() {
+
+var aa=document.getElementsByName('del_id[]');
+
+var mnum = aa.length;
+
+j=0;
+
+for(i=0;i<mnum;i++){
+
+if(aa[i].checked){
+
+j++;
+
+}
+
+}
+
+if(j>0) {
+
+document.getElementById('info').submit();
+
+} else {
+
+alert('未选中任何文章或回复！')
+
+}
+
+}
+
+
+
+			//edit-usort
+
+			/*
+
+					function editUsort(id){
+
+						if(document.activeElement.id != 'usortinp'){
+
+							var val = $(".usort-"+id).html();
+
+							$(".usort-"+id).html('<input type="number" class="usort" id="usortinp" name="usort" value="'+val+'" onkeydown="if(event.keyCode==13){ upUsort('+id+',$(this).val());}" onblur="upUsort('+id+',$(this).val())" />');
+
+							$("input[name=usort]").focus();
+
+						}
+
+
+
+						
+
+					}
+
+					
+
+					function upUsort(id,b){
+
+						$.ajax({
+
+							url:'{weimicms::U("Img/editUsort")}',
+
+							data:{"id":id,"v":b,"token":"{weimicms:$Think.session.token}"},
+
+							type:'POST',
+
+							dataType:'text',
+
+							success:function(obj){
+
+								if(obj != 'error'){
+
+									$(".usort-"+id).html(obj);
+
+								}else{
+
+									$(".usort-"+id).html(b);
+
+								}
+
+							}
+
+						});
+
+						
+
+					}
+
+				*/
+
+
+
+   </script>
+
+          </div>
+
+          <div class="cLine">
+
+            <div class="pageNavigator right">
+
+                 <div class="pages">{weimicms:$page}</div>
+
+              </div>
+
+            <div class="clr"></div>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="clr"></div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+
+
+
+function checkAll(form, name) {
+
+for(var i = 0; i < form.elements.length; i++) {
+
+var e = form.elements[i];
+
+if(e.name.match(name)) {
+
+e.checked = form.elements['chkall'].checked;
+
+}
+
+}
+
+}
+
+
+
+
+
+  </script>
+
+  <!--底部-->
+
+  	</div>
+
+<if condition="session('isQcloud') neq true">
+
+<include file="Public:footer"/>
+
+</if>

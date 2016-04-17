@@ -1,0 +1,108 @@
+<include file="Public:head" />
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />
+<link href="{weimicms::RES}/css/activity.css" rel="stylesheet" type="text/css">
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="/tpl/static/upyun.js"></script>
+<div class="content">
+<div class="cLineB">
+<h4 class="left">微调研</h4>
+<div class="clr"></div>
+</div>
+<!--tab start-->
+<div class="alert alert-success alert-dismissable">
+<if condition="$Think.session.is_syn neq 2">
+		<if condition="$_SESSION['is_syn'] neq 1">
+		温馨提示：1、本功能使用了模板消息中的"中奖结果通知"模板消息,模板消息编号为TM00695。<br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		2、开通微信支付功能的公众号在使用此功能的时候可以在"基本设置——微信模板消息"中配置对应的模板消息。<br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		3、活动奖项未设置，手机端默认活动状态为未开启。
+		<br/>
+		</if>
+</if>
+	</div>
+<div class="tab">
+<ul>
+<li class="current tabli" id="tab0"><a href="{weimicms::U('Research/index', array('token' => $token))}">调研列表</a></li>
+<li class="tabli" id="tab0"><a href="{weimicms::U('Research/saveInfo', array('token' => $token))}">调研操作</a></li>
+</ul>
+</div>
+<div class="cLine">
+<div class="pageNavigator left"> <a href="{weimicms::U('Research/saveInfo', array('token' => $token))}" title="添加" class="btnGrayS vm bigbtn"><if condition="$usertplid eq 2"><i class="fa fa-hand-o-right"></i><else /><img src="{weimicms::RES}/images/product/add.png" class="vm"></if> 添加调研</a></div>
+<div class="clr"></div>
+</div>
+<!--tab end-->
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+	<tr>
+		<th width="100">调研标题</th>
+		<th width="100">关键词</th>
+		<th width="200">介绍</th>
+		<th width="120">开始时间</th>
+		<th width="120">过期时间</th>
+		<th width="70">参与人数</th>
+		<th width="200" class="norightborder">操作</th>
+	</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="list" id="tablelist"> 
+	<tr>
+		<td>{weimicms:$tablelist.title}</td>
+		<td>{weimicms:$tablelist.keyword}</td>
+		<td>{weimicms:$tablelist.description}</td>
+		<td>{weimicms:$tablelist.starttime|date="Y-m-d H:i:s",###}</td>
+		<td>{weimicms:$tablelist.endtime|date="Y-m-d H:i:s",###}</td>
+		<td>{weimicms:$tablelist.nums}</td>
+		<td class="norightborder">
+			<script type="text/javascript">
+   $(document).ready(function(){
+      var bheight=document.body.clientHeight;
+      $("#lay{weimicms:$tablelist.id}").click(function(){
+   $("#brg{weimicms:$tablelist.id}").css("display","block");
+   $("#showdiv{weimicms:$tablelist.id}").css("display","block");
+   //$("#testdiv").load("test.html");
+   });
+   $("#close{weimicms:$tablelist.id}").click(function(){
+      $("#brg{weimicms:$tablelist.id}").css("display","none");
+   $("#showdiv{weimicms:$tablelist.id}").css("display","none");
+   });
+   });
+ </script>
+ <style type="text/css">
+   #brg{weimicms:$tablelist.id}{z-index: 9999;width:100%; height:100%; background:#333; position:absolute; top:0; left:0; filter:alpha(opacity=60); -moz-opacity:0.6; opacity: 0.6; position:absolute; top:0; left:0; display:none;}
+   #showdiv{weimicms:$tablelist.id}{z-index:9999; display:none;position:fixed; *position:absolute; top:30%; left:50%; margin:-50px 0 0 -50px;}
+   #testdiv{weimicms:$tablelist.id}{ width:300px; height:300px; margin:0 auto; border:1px solid #4d4d4d; background:#f2f2f2;}
+   #close{weimicms:$tablelist.id}{width:300px; height:27px; line-height:27px; font-size:14px; font-weight:bold; border:1px solid #4d4d4d; text-align:center; cursor:pointer; margin:0 auto; background:#333; color:#fff;margin-top: 15%;}
+ </style>
+    <div id="brg{weimicms:$tablelist.id}"></div>
+ <div id="showdiv{weimicms:$tablelist.id}">
+   <div id="close{weimicms:$tablelist.id}">您想关闭就点我吧</div>
+   <div id="testdiv{weimicms:$tablelist.id}"><img src="{weimicms:$Think.session.source_domain}/wap.php?c=Wxapp&a=qrcode&id={weimicms:$tablelist.id}&modle=Research" width="300" height="300" class="cateimg_small"></div>
+ </div>
+<if condition="$Think.session.is_syn eq 2">
+<if condition="$usertplid neq 2">
+   <a id="lay{weimicms:$tablelist.id}" style="width:191px;">查看二维码</a><br>
+</if>
+</if>
+			<if condition="$tablelist['lid'] eq 0">
+			<a href="{weimicms::U('Research/add', array('researchid' => $tablelist['id'], 'token' => $token))}">奖项设置</a> 
+			<else />
+			<a href="{weimicms::U('Research/research', array('researchid' => $tablelist['id'], 'id' => $tablelist['lid'], 'token' => $token))}">奖项设置</a> 
+			</if>
+			
+			<a href="{weimicms::U('Research/saveInfo', array('rid' => $tablelist['id'], 'token' => $token))}">修改</a> 
+			<a href="javascript:drop_confirm('您确定要删除吗?', '{weimicms::U('Research/delResearch',array('rid' => $tablelist['id'], 'token' => $token))}');">删除</a>
+			<a href="{weimicms::U('Research/count',array('rid' => $tablelist['id'], 'token' => $token))}">活动统计</a>
+		</td>
+	</tr>
+</volist>
+</tbody>
+</table>
+</form>
+</div>
+</div>
+<include file="Public:footer"/>

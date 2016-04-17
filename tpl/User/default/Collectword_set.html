@@ -1,0 +1,460 @@
+<include file="Public:head"/>
+<link rel="stylesheet" href="{weimicms::STATICS}/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="{weimicms::STATICS}/kindeditor/plugins/code/prettify.css" />
+<script src="{weimicms::STATICS}/kindeditor/kindeditor.js" type="text/javascript"></script>
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="{weimicms::RES}/js/date/WdatePicker.js"></script>
+<script src="{weimicms:$staticPath}/tpl/static/upyun.js"></script>
+<script>
+var editor;
+KindEditor.ready(function(K) {
+editor = K.create('#info', {	
+resizeType : 1,
+allowPreviewEmoticons : false,
+allowImageUpload : true,
+allowUpload : true,
+uploadJson : '/index.php?g=User&m=Upyun&a=kindedtiropic',
+items : [
+'source','undo','plainpaste','wordpaste','clearhtml','quickformat','selectall','fullscreen','fontname', 'fontsize','subscript','superscript','indent','outdent','|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline','hr']
+});
+
+});
+$(function(){
+	$("form").submit(function(){
+		var is_error = true;
+		var is_error_msg = "";
+		var is_error_msg_man_label = "";
+		var is_error_msg_woman_label = "";
+		var is_error_msg_label_length = "";
+		var keyword = $('#keyword').val();
+		if(keyword == ''){
+			is_error_msg += "请填写关键词！\n";
+			buterror("#keyword");
+			is_error = false;
+		}
+		var title = $('#title').val();
+		if(title == ''){
+			is_error_msg += "请填写活动名称！\n";
+			buterror("#title");
+			is_error = false;
+		}
+		var statdate = $('#statdate').val();
+		if(statdate == ''){
+			is_error_msg += "请填写活动开始时间！\n";
+			buterror("#statdate");
+			is_error = false;
+		}
+		var enddate = $('#enddate').val();
+		if(enddate == ''){
+			is_error_msg += "请填写活动结束时间！\n";
+			buterror("#enddate");
+			is_error = false;
+		}
+		var word = $('#word').val();
+		if(word.length < 4 || word.length > 8){
+			is_error_msg += "收集的文字需要4到8个字！\n";
+			buterror("#word");
+			is_error = false;
+		}
+		for(i=1;i<=newsnum;i++){
+			var news_imgurl = $('#news_imgurl_'+i).val();
+			if(news_imgurl == ''){
+				is_error_msg += "请添加宣传图片"+i+"的图片！\n";
+				buterror("#news_imgurl_"+i);
+				is_error = false;
+			}
+		}
+		for(j=1;j<=prizenum;j++){
+			var prize_title = $('#prize_title_'+j).val();
+			var prize_title_length = prize_title.length;
+			if(prize_title == ''){
+				is_error_msg += "请填写奖品名称！\n";
+				buterror("#prize_title_"+j);
+				is_error = false;
+			}
+			if(prize_title_length > 14){
+				is_error_msg += "奖品名称超过14个字！\n";
+				buterror("#prize_title_"+j);
+				is_error = false;
+			}
+			var prize_imgurl = $('#prize_imgurl_'+j).val();
+			if(prize_imgurl == ''){
+				is_error_msg += "请添加奖品图片！\n";
+				buterror("#prize_imgurl_"+j);
+				is_error = false;
+			}
+			var prize_num = $('#prize_num_'+j).val();
+			prize_num = parseInt(prize_num);
+			if(isNaN(prize_num)){
+				is_error_msg += "奖品数量请填写数字！\n";
+				buterror("#prize_num_"+j);
+				is_error = false;
+			}
+			if(prize_num*1 < 1){
+				is_error_msg += "奖品数量至少要有一个！\n";
+				buterror("#prize_num_"+j);
+				is_error = false;
+			}
+		}
+		var rank_num = $('#rank_num').val();
+		if(rank_num*1 < 1){
+			is_error_msg += "排行榜显示数量不能小于一个！\n";
+			buterror("#rank_num");
+			is_error = false;
+		}
+		if(is_error == false){
+			alert(is_error_msg+is_error_msg_man_label+is_error_msg_woman_label+is_error_msg_label_length);
+			return false;
+		}else{
+			return true;
+		}
+	});
+	$('#is_nosex1').click(function(){
+		$("#no_sex_display").show();
+	});
+	$('#is_nosex0').click(function(){
+		$("#no_sex_display").hide();
+	});
+});
+function buterror(id){
+	$(id).css("border","2px solid red");
+	$(id).css("background-color","rgb(255, 223, 221)");
+	$(id).focus(function(){
+		$(id).css("background-color","#fff");
+		$(id).css("border","1px solid");
+		$(id).css("border-color","#848484 #E0E0E0 #E0E0E0 #848484");
+	});
+}
+var newsnum = <?php echo $newsnum?$newsnum:1;?>;
+function news_more(){
+	newsnum++;
+	var news_html = '<tr class="newtp news_imgurl"><th valign="top"><span class="red">*</span>宣传图片'+newsnum+'：</th><td colspan="2"><input type="input" class="px" id="news_imgurl_'+newsnum+'"  name="news_imgurl[]" value=""  style="width:250px"/><a href="###" onclick="upyunPicUpload(\'news_imgurl_'+newsnum+'\',900,500,\'{weimicms:$token}\')" class="a_upload">上传</a>&nbsp;<a href="###" onclick="viewImg(\'news_imgurl_'+newsnum+'\')">预览</a>&nbsp;推荐尺寸：900*500<span class="red">&nbsp;请让每个宣传图片的尺寸相同！否则会导致页面错位！</span></td></tr><tr class="newtp news_title"><th valign="top">宣传图片标题'+newsnum+'：</th><td colspan="2"><input type="input" class="px" id="news_title_'+newsnum+'" name="news_title[]" value="" style="width:400px" />&nbsp;手机端最多显示22个字</td></tr><tr class="newtp news_url"><th valign="top">宣传图片链接'+newsnum+'：</th><td colspan="2"><input type="input" class="px" id="news_url_'+newsnum+'" name="news_url[]" value="" style="width:400px" /><a href="###" onclick="addLink(\'news_url_'+newsnum+'\',0)" class="a_choose">从功能库添加</a></td></tr>';
+	$('.news_url').last().after(news_html);
+	$('.newtp').show();
+}
+function news_del(){
+	if(newsnum > 1){
+		newsnum--;
+		$('.news_url').last().detach();
+		$('.news_imgurl').last().detach();
+		$('.news_title').last().detach();
+	}else{
+		alert('必须有一个宣传图片');
+	}
+	$('.newtp').show();
+}
+var prizenum = <?php echo $prizenum?$prizenum:1;?>;
+function prize_del(){
+	if(prizenum > 1){
+		prizenum--;
+		$('.prize_time').last().detach();
+		$('.prize_imgurl').last().detach();
+		$('.prize_title').last().detach();
+	}else{
+		alert('必须有一个奖品');
+	}
+	$('.newtp').show();
+}
+</script>
+<style>
+</style>
+<form class="form" method="post"   action=""  target="_top" enctype="multipart/form-data" >
+	<div class="content">
+		<div class="cLineB">
+			<h4><?php if($set['id'] == ''){echo "活动添加";}else{echo "修改活动【".$set['title']."】";}?></h4><a href="<?php echo U('Collectword/index',array('token'=>$token));?>"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a>
+		</div>
+		<div class="msgWrap bgfc">
+			<table class="userinfoArea" style=" margin:0;" border="0" cellSpacing="0" cellPadding="0" width="100%">
+				<tbody>
+					<tr>
+						<th valign="top"><span class="red">*</span>关键词：</th>
+						<td>
+							<input type="input" class="px" id="keyword" value="<if condition="$set.keyword eq ''">集字游戏<else/>{weimicms:$set.keyword}</if>" name="keyword" style="width:400px" ><br />
+							<span class="red">只能写一个关键词</span>，用户输入此关键词将会触发此活动。
+						</td>
+						<td rowspan="4" valign="top">
+							<div style="margin-left:20px">
+								<img id="pic1_src" src="<if condition="$set['reply_pic'] eq ''">{weimicms:$staticPath}/tpl/static/collectword/images/news.jpg<else/>{weimicms:$set.reply_pic}</if>" width="373px" >
+								<br />
+								<input class="px"  name="reply_pic" value="<if condition="$set['reply_pic'] eq ''">{weimicms:$staticPath}/tpl/static/collectword/images/news.jpg<else/>{weimicms:$set.reply_pic}</if>" id="pic1" style="width:363px;"  />
+								<br />
+								<a href="###" onclick="upyunPicUpload('pic1',640,280,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('pic1')">预览</a>&nbsp;&nbsp;消息回复图片 推荐尺寸：640*280
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th valign="top"><span class="red">*</span>活动名称：</th>
+						<td>
+							<input type="input" class="px" id="title" value="<if condition="$set.title eq ''">集字游戏<else/>{weimicms:$set.title}</if>" name="title" style="width:400px" />
+							<br />
+							请不要多于50字!
+						</td>
+					</tr>
+					<tr>
+						<th><span class="red">*</span>活动时间：</th>
+						<td><input type="input" class="px" id="statdate" value="<if condition="$set['start'] neq ''">{weimicms:$set.start|date="Y-m-d H:i",###}<else/>{weimicms:$start_date} 00:00</if>" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" name="start" />
+							到
+							<input type="input" class="px" id="enddate" value="<if condition="$set['end'] neq ''">{weimicms:$set.end|date="Y-m-d H:i",###}<else/>{weimicms:$end_date} 00:00</if>" name="end"  onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})"  />
+						</td>
+					</tr>
+					<tr>
+						<th valign="top"><span class="red">*</span>收集文字：</th>
+						<td>						
+							<input type="input" class="px" id="word" maxlength="8" value="<if condition="$set.word eq ''">收集文字中大奖啦<else/>{weimicms:$set.word}</if>" name="word" style="width:400px" />
+							<br />
+							<span style="color:red;">需要集的文字  4 到 8个中文 集满就中奖  只允许输入汉字，活动开启后不要再修改这一项</span>
+						</td>
+					</tr>
+					<tr>
+						<th valign="top"><span class="red"></span>活动简介：</th>
+						<td>
+							<textarea class="px" id="intro" name="intro" style="width:400px; height: 40px;">{weimicms:$set.intro}</textarea> 消息回复或者分享时的简介内容
+						</td>
+					</tr>
+					<tr>
+						<th valign="top">活动详情：</th>
+						<td colspan="2">
+							<textarea  class="px" id="info"  name="info"  style="width:400px; height:125px" >{weimicms:$set.info}</textarea>
+						</td>
+					</tr>
+					<tr>
+						<th valign="top">分享标题自定义：</th>
+						<td colspan="2">
+							<input type="input" class="px" id="fxtitle" value="<if condition="$set.fxtitle eq ''">快来帮我收集文字吧，我要召唤神龙<else/>{weimicms:$set.fxtitle}</if>" name="fxtitle" style="width:500px" />
+							<br />
+							例如：我正在参加“{{活动名称}}”活动，已获得{{字数}}个文字，快来帮我拿大奖！<br>
+							变为：我正在参加“集字游戏”活动，已获得7个文字，快来帮我拿大奖！
+						</td>
+					</tr>
+					<tr>
+						<th valign="top">分享描述自定义：</th>
+						<td colspan="2">
+							<input type="input" class="px" id="fxinfo" value="<if condition="$set.fxinfo eq ''">集齐所有文字据说可以召唤出神龙<else/>{weimicms:$set.fxinfo}</if>" name="fxinfo" style="width:500px" />
+							<br />
+							分享给一个朋友时标题下显示的描述，或者分享到朋友圈时显示的描述，使用方法同上。
+						</td>
+					</tr>
+					<tr>
+						<th valign="top">中奖分享标题自定义：</th>
+						<td colspan="2">
+							<input type="input" class="px" id="prize_fxtitle" value="<if condition="$set.prize_fxtitle eq ''">我正在参加“{{活动名称}}”活动，神龙实现了我的愿望， 得到了{{奖品名称}}，太激动啦，您也快来试试吧！<else/>{weimicms:$set.prize_fxtitle}</if>" name="prize_fxtitle" style="width:500px" />
+							<br />
+							例如：我正在参加“{{活动名称}}”活动，神龙实现了我的愿望， 得到了{{奖品名称}}，太激动啦，您也快来试试吧！<br>
+							变为：我正在参加“集字游戏”活动，神龙实现了我的愿望，得到了iPhone6s，太激动啦，您也快来试试吧！！
+						</td>
+					</tr>
+					<tr>
+						<th valign="top">中奖分享描述自定义：</th>
+						<td colspan="2">
+							<input type="input" class="px" id="prize_fxinfo" value="<if condition="$set.prize_fxinfo eq ''">我正在参加“{{活动名称}}”活动，神龙实现了我的愿望， 得到了{{奖品名称}}，太激动啦，您也快来试试吧！<else/>{weimicms:$set.prize_fxinfo}</if>" name="prize_fxinfo" style="width:500px" />
+							<br />
+							中奖时一个朋友时标题下显示的描述，或者分享到朋友圈时显示的描述，使用方法同上。
+						</td>
+					</tr>
+					<tr>
+						<th valign="top">分享图片：</th>
+						<td colspan="2">
+							<input type="input" class="px" id="fxpic" value="{weimicms:$set.fxpic}" name="fxpic" style="width:500px" />							
+							<a href="###" onclick="upyunPicUpload('fxpic',500,500,'{weimicms:$token}')" class="a_upload">上传</a>
+							&nbsp;
+							<a href="###" onclick="viewImg('fxpic')">预览</a>
+							<br />
+							分享时的图片，不存在将使用  消息回复图片 推荐尺寸：500*500
+						</td>
+					</tr>
+					<?php if($set['id'] == ''){?>
+					<tr class="news_imgurl">
+						<th valign="top"><span class="red">*</span>宣传图片1：</th>
+						<td colspan="2">
+							<input type="input" class="px" id="news_imgurl_1"  name="news_imgurl[]" value=""  style="width:250px"/>
+							<a href="###" onclick="upyunPicUpload('news_imgurl_1',900,500,'{weimicms:$token}')" class="a_upload">上传</a>
+							&nbsp;
+							<a href="###" onclick="viewImg('news_imgurl_1')">预览</a>
+							&nbsp;推荐尺寸：900*500
+							<span class="red">&nbsp;请让每个宣传图片的尺寸相同！否则会导致页面错位！</span>
+						</td>
+					</tr>
+					<tr class="news_title">
+						<th valign="top">宣传图片标题1：</th>
+						<td colspan="2">
+							<input type="input" class="px" id="news_title_1"  maxlength="22" name="news_title[]" value="" style="width:400px" />&nbsp;手机端最多显示22个字
+						</td>
+					</tr>
+					<tr class="news_url">
+						<th valign="top">宣传图片链接1：</th>
+						<td colspan="2">
+							<input type="input" class="px" id="news_url_1" name="news_url[]" value="" style="width:400px" /><a href="###" onclick="addLink('news_url_1',0)" class="a_choose">从功能库添加</a>
+						</td>
+					</tr>
+					<tr class="newtp">
+						<td></td>
+						<td colspan="2"><a href="javascript:news_more()" class="a_choose">+&nbsp;添加更多宣传图片</a>&nbsp;<a href="javascript:news_del()" class="a_choose">-&nbsp;删除一个宣传图片</a></td>
+					</tr>
+						<!-- 奖品 -->
+					<tr class="prize_title">
+						<th valign="top"><span class="red">*</span>奖品名称：</th>
+						<td colspan="2">
+							<input type="input" class="px" id="prize_title_1" name="prize_title[]" value="" style="width:400px" />&nbsp;手机端最多显示14个字
+						</td>
+					</tr>
+					<tr class="prize_imgurl">
+						<th valign="top"><span class="red">*</span>奖品图片：</th>
+						<td colspan="2">
+							<input type="input" class="px" id="prize_imgurl_1"  name="prize_imgurl[]" value=""  style="width:250px"/>
+							<a href="###" onclick="upyunPicUpload('prize_imgurl_1',200,200,'{weimicms:$token}')" class="a_upload">上传</a>
+							&nbsp;
+							<a href="###" onclick="viewImg('prize_imgurl_1')">预览</a>
+							&nbsp;推荐尺寸：200*200
+						</td>
+					</tr>
+					<tr class="prize_time">
+						<th><span class="red">*</span>奖品总数：</th>
+						<td colspan="2">
+							<input type="input" class="px" id="prize_num_1" value="" name="prize_num[]" />
+						</td>
+					</tr>
+					<?php }else{?>
+					<volist name="news_list" id="news" key="news_i">
+					<tr class="newtp news_imgurl">
+						<th valign="top"><span class="red">*</span>宣传图片{weimicms:$news_i}：</th>
+						<td colspan="2">
+							<input type="input" class="px" id="news_imgurl_{weimicms:$news_i}"  name="news_imgurl[]" value="{weimicms:$news.imgurl}"  style="width:250px"/>
+							<a href="###" onclick="upyunPicUpload('news_imgurl_{weimicms:$news_i}',900,500,'{weimicms:$token}')" class="a_upload">上传</a>
+							&nbsp;
+							<a href="###" onclick="viewImg('news_imgurl_{weimicms:$news_i}')">预览</a>
+							&nbsp;推荐尺寸：900*500
+							<span class="red">&nbsp;请让每个宣传图片的尺寸相同！否则会导致页面错位！</span>
+						</td>
+					</tr>
+					<tr class="newtp news_title">
+						<th valign="top">宣传图片标题{weimicms:$news_i}：</th>
+						<td colspan="2">
+							<input type="input" maxlength="22" class="px" id="news_title_{weimicms:$news_i}" name="news_title[]" value="{weimicms:$news.title}" style="width:400px" />&nbsp;手机端最多显示22个字
+						</td>
+					</tr>
+					<tr class="newtp news_url">
+						<th valign="top">宣传图片链接{weimicms:$news_i}：</th>
+						<td colspan="2">
+							<input type="input" class="px" id="news_url_{weimicms:$news_i}" name="news_url[]" value="{weimicms:$news.url}" style="width:400px" /><a href="###" onclick="addLink('news_url_{weimicms:$news_i}',0)" class="a_choose">从功能库添加</a>
+						</td>
+					</tr>
+					</volist>
+					<tr class="newtp">
+						<td></td>
+						<td colspan="2"><a href="javascript:news_more()" class="a_choose">+&nbsp;添加更多宣传图片</a>&nbsp;<a href="javascript:news_del()" class="a_choose">-&nbsp;删除一个宣传图片</a></td>
+					</tr>
+					<volist name="prize_list" id="prize" key="prize_i">
+					<tr class="newtp prize_title">
+						<th valign="top"><span class="red">*</span>奖品名称：</th>
+						<td colspan="2">
+							<input type="input" class="px" id="prize_title_{weimicms:$prize_i}" maxlength="14" name="prize_title[]" value="{weimicms:$prize.title}" style="width:400px" />&nbsp;手机端最多显示14个字
+						</td>
+					</tr>
+					<tr class="newtp prize_imgurl">
+						<th valign="top"><span class="red">*</span>奖品图片：</th>
+						<td colspan="2">
+							<input type="input" class="px" id="prize_imgurl_{weimicms:$prize_i}"  name="prize_imgurl[]" value="{weimicms:$prize.imgurl}"  style="width:250px"/>
+							<a href="###" onclick="upyunPicUpload('prize_imgurl_{weimicms:$prize_i}',200,200,'{weimicms:$token}')" class="a_upload">上传</a>
+							&nbsp;
+							<a href="###" onclick="viewImg('prize_imgurl_{weimicms:$prize_i}')">预览</a>
+							&nbsp;推荐尺寸：200*200
+						</td>
+					</tr>
+					<tr class="newtp prize_time">
+						<th><span class="red">*</span>奖品数量：</th>
+						<td colspan="2">
+							<input type="input" class="px" id="prize_num_{weimicms:$prize_i}" value="{weimicms:$prize.num}" name="prize_num[]"  />
+						</td>
+					</tr>
+					</volist>
+					<?php }?>				
+					
+					<tr>
+						<th valign="top"><span class="red">*</span>预计参与人数：</th>
+						<td colspan="2">
+							<input type="input" class="px" id="expect" value="<if condition="$set.expect eq ''">1000<else/>{weimicms:$set.expect}</if>" name="expect" style="width:100px" />
+						</td>
+					</tr>
+					<tr>
+						<th valign="top"><span class="red">*</span>排行榜显示数量：</th>
+						<td colspan="2">
+							<input type="input" class="px" id="rank_num" value="<if condition="$set.rank_num eq ''">10<else/>{weimicms:$set.rank_num}</if>" name="rank_num" style="width:100px" />
+						</td>
+					</tr>
+					<tr>
+						<th valign="top"><span class="red">*</span>初始集字次数：</th>
+						<td colspan="2">
+							<input type="input" class="px" id="count" value="<if condition="$set.count eq ''">10<else/>{weimicms:$set.count}</if>" name="count" style="width:100px" />
+						</td>
+					</tr>
+					<tr>
+						<th valign="top"><span class="red">*</span>好友帮助增加次数：</th>
+						<td colspan="2">
+							<input type="input" class="px" id="help_count" value="<if condition="$set.help_count eq ''">1<else/>{weimicms:$set.help_count}</if>" name="help_count" style="width:100px" />
+						</td>
+					</tr>
+					<tr>
+						<th valign="top"><span class="red">*</span>每日增加次数：</th>
+						<td colspan="2">
+							<input type="input" class="px" id="day_count" value="<if condition="$set.day_count eq ''">0<else/>{weimicms:$set.day_count}</if>" name="day_count" style="width:100px" />
+							<span style="color:red;"> 从第二日开始计算。为0则不使用每日增加次数</span>
+						</td>
+					</tr>
+					<tr class="newtp">
+						<th valign="top"><span class="red"></span>显示获奖名单：</th>
+						<td colspan="2">
+							<input type="radio" name="prize_display" id="prize_display0" value="0" <if condition="$set['prize_display'] eq 0">checked</if>><label for="prize_display0">是</label>&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="prize_display" id="prize_display1" value="1" <if condition="$set['prize_display'] eq 1">checked</if>><label for="prize_display1">否</label>
+						</td>
+					</tr>
+					<tr class="newtp">
+						<th valign="top">是否需要短信验证：</th>
+						<td colspan="2">
+							<input type="radio" name="is_sms" id="is_sms1" value="1" <if condition="$set['is_sms'] eq 1">checked</if>><label for="is_sms1">是</label>
+							&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="is_sms" id="is_sms0" value="0" <if condition="$set['is_sms'] eq 0">checked</if>><label for="is_sms0">否</label>
+							&nbsp;&nbsp;&nbsp;<span class="red">（需要购买短信，只针对新用户进行验证手机号）</span>
+						</td>
+					</tr>
+					<tr>
+						<th valign="top"><span class="red"></span>未关注是否可以参与：</th>
+						<td colspan="2">
+							<input type="radio" name="is_attention" id="is_attention0" value="0" <if condition="$set['is_attention'] eq 0">checked</if>><label for="is_attention0">是</label>
+							&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="is_attention" id="is_attention1" value="1" <if condition="$set['is_attention'] eq 1">checked</if>><label for="is_attention1">否</label>
+							&nbsp;&nbsp;&nbsp;{weimicms:$__access_remind__}
+						</td>
+					</tr>
+					<tr>
+						<th valign="top"><span class="red"></span>是否需要粉丝详细信息：</th>
+						<td colspan="2">
+							<input type="radio" name="is_reg" id="is_reg1" value="1" <if condition="$set['is_reg'] eq 1">checked</if>><label for="is_reg1">是</label>
+							&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="is_reg" id="is_reg0" value="0" <if condition="$set['is_reg'] eq 0">checked</if>><label for="is_reg0">否</label>
+							&nbsp;&nbsp;&nbsp;（没有粉丝信息参加活动的处理方式）
+						</td>
+					</tr>
+					<tr>
+						<th valign="top"><span class="red"></span>是否开启：</th>
+						<td colspan="2">
+							<input type="radio" name="is_open" id="is_open0" value="0" <if condition="$set['is_open'] eq 0">checked</if>><label for="is_open0">开启</label>&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="is_open" id="is_open1" value="1" <if condition="$set['is_open'] eq 1">checked</if>><label for="is_open1">关闭</label>
+						</td>
+					</tr>
+
+					<tr>    
+						<th valign="top"></th>     
+						<td colspan="2">
+							<input  type="hidden" name="id" value="{weimicms:$set.id}" />
+							<button type="submit" name="button" class="btnGreen">保存</button>
+							&nbsp;&nbsp;&nbsp; 
+							<a href="" class="btnGray vm">取消</a>
+						</td> 
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</form>
+<include file="Public:footer"/>

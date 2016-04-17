@@ -1,0 +1,84 @@
+<if condition="$ischild neq 1">
+<include file="Public:head" />
+<else />
+<include file="Repast:head" />
+</if>
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />  
+ <div class="content">
+<div class="cLineB">
+<h4 class="left">商城分佣管理</h4>
+<div class="searchbar right">
+<form method="post" action="">
+<input type="text" class="txt left" placeholder="输入推广号" name="searchkey" value="{weimicms:$key}"/>
+<input type="hidden" name="token" value="{weimicms:$token}" />
+<input type="submit" value="搜索" class="btnGrayS" />
+</form>
+</div>
+<div class="clr"></div>
+</div>
+<!--tab start-->
+<div class="tab">
+<ul>
+	<li class="tabli" id="tab2"><a href="{weimicms::U('Storenew/twitterset', array('token' => $token, 'cid' => $cid))}">分佣设置</a></li>
+	<li class="tabli" id="tab0"><a href="{weimicms::U('Storenew/removesearch', array('token' => $token, 'cid' => $cid))}">查看申请提现</a></li>
+	<li class="tabli" id="tab2"><a href="{weimicms::U('Storenew/detailinfo',array('token'=>$token))}">查看分佣信息</a></li>
+	<li class="tabli" id="tab2"><a href="{weimicms::U('Storenew/twitter',array('token'=>$token))}">商城分佣管理</a></li>
+	<li class="current tabli" id="tab2"><a href="{weimicms::U('Storenew/twitterlist',array('token'=>$token))}">分销员管理</a></li>
+</ul>
+</div>
+<!--tab end-->
+<!--div class="cLine">
+	<div class="pageNavigator left"> 
+		<a href="{weimicms::U('Storenew/twitterset', array('token' => $token, 'cid' => $cid))}" title="分佣设置" class="btnGrayS vm bigbtn">
+			<img src="{weimicms::RES}/images/product/add.png" class="vm" />分佣设置
+		</a>
+	</div>
+	<div class="pageNavigator right"> 
+		<a href="{weimicms::U('Storenew/removesearch', array('token' => $token, 'cid' => $cid))}" title="查看申请提现" class="btnGrayS vm bigbtn">
+			<img src="{weimicms::RES}/images/product/add.png" class="vm" />查看申请提现
+		</a>
+	</div>
+	<div class="clr"></div>
+</div-->
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<input name="delall" type="hidden" value="">
+<input name="wxid" type="hidden" value="">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th width="150">分销员</th>
+<th width="150">分佣会员</th>
+<th width="150">推广付款订单</th>
+<th width="150">分佣总金额</th>
+<th width="150">推荐人</th>
+<th width="200" class="norightborder">详情</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="list" id="hostlist">
+<tr>
+<td>{weimicms:$hostlist['truename']}<br/>{weimicms:$hostlist['tel']}</td>
+<td>推广会员：{weimicms:$hostlist['allcount']}<br/>一级会员：{weimicms:$hostlist['fromcount']}<br/>二级会员：{weimicms:$hostlist['addcount']}</td>
+<td>{weimicms:$hostlist['ordercount']}</td> 
+<td>{weimicms:$hostlist['usertotal']} 元</td> 
+<td>{weimicms:$hostlist['fromuser']}<br/>{weimicms:$hostlist['fromtel']}</td> 
+<td class="norightborder">
+	<a href="{weimicms::U('Storenew/detail',array('token' => $token, 'twid' => $hostlist['twid'], 'cid' => $cid))}">佣金获取详情</a>
+	<span>&nbsp;&nbsp;　|　&nbsp;&nbsp;<a href="{weimicms::U('Storenew/remove',array('token' => $token, 'twid' => $hostlist['twid'], 'cid' => $cid))}">提现详情</a></span>
+</td>
+</tr>
+</volist>
+</tbody>
+</table>
+</form>
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{weimicms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

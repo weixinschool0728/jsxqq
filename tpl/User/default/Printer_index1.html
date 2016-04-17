@@ -1,0 +1,59 @@
+<include file="Public:head"/> 
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />
+<div class="content" style="width:95%; background:none; margin-left:25px; border:none; margin-bottom:30px; margin-top:30px;" >
+  <div class="cLineB">
+    <div  class="quick-actions_homepage">
+    <ul class="quick-actions">
+      <li class="bg_lb"> <a href="{weimicms::U('Product/index',array('token'=>$token))}"> <i class="icon-gift"></i> 微商城 </a> </li>
+      <li class="bg_dy"> <a href="{weimicms::U('Groupon/index',array('token'=>$token))}"> <i class="icon-money"></i> 微团购</a> </li>
+      <li class="bg_lg"> <a href="{weimicms::U('Host/index',array('token'=>$token))}"> <i class="icon-unlock"></i> 通用订单</a> </li>
+      <li class="bg_ly"> <a href="{weimicms::U('Selfform/index',array('token'=>$token))}"> <i class="icon-magnet"></i> 万能表单 </a> </li>
+      <li class="bg_lo"> <a href="{weimicms::U('Adma/index',array('token'=>$token))}"> <i class="icon-pencil"></i> DIY宣传 </a> </li>
+      <li class="bg_ls"> <a href="{weimicms::U('Panorama/index',array('token'=>$token))}"> <i class="icon-eye-open"></i> 360全景</a> </li>
+      <li class="bg_lr"> <a href="{weimicms::U('Printer/index',array('token'=>$token))}"> <i class="icon-print"></i> 无线打印</a> </li>
+      <li class="bg_db"> <a href="javascript:history.go(-1);"> <i class="icon-share-alt"></i> 返回</a> </li>
+    </ul>
+  </div>
+<h4 class="left">无线打印</h4>
+<div class="clr"></div>
+</div>
+<div class="cLine">
+<div class="pageNavigator left">
+<p style="color:gray;">
+打印机填写URL：{weimicms::U('Home/Printer/index','',true,false,true)}<br />
+打印机测试：{weimicms::U('Home/Printer/preview','',true,false,true)}
+</p>
+<a href="{weimicms::U('Printer/set')}" title="添加" class="btnGrayS vm bigbtn"><img src="{weimicms::RES}/images/product/add.png" width="16" class="vm">添加打印机</a>
+</div>
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th>名称</th>
+<th>SN编号</th>
+<th>创建时间</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody align="center">
+<tr></tr>
+<volist name="list" id="vo"> 
+<tr>
+<td>{weimicms:$vo['name']}</td>
+<td>{weimicms:$vo['sn']|htmlspecialchars}</td>
+<td>{weimicms:$vo.create_time|date="Y-m-d H:i:s",###}</td> 
+<td><a href="{weimicms::U('Printer/set',array('id'=>$vo['id']))}">修改</a>　<a href="javascript:drop_confirm('您确定要删除吗?', '{weimicms::U('Printer/del',array('id'=>$vo['id']))}');">删除</a></td>
+</tr>
+</volist>
+</tbody>
+</table>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{weimicms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

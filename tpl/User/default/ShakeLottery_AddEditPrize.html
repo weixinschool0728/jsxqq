@@ -1,0 +1,319 @@
+<include file="Public:head"/>
+
+<script src="{weimicms:$staticPath}/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+
+<script src="{weimicms:$staticPath}/tpl/static/artDialog/plugins/iframeTools.js"></script>
+
+<script src="{weimicms::RES}/js/date/WdatePicker.js"></script>
+
+<script src="{weimicms:$staticPath}/tpl/static/upyun.js"></script>
+
+<style type="text/css">
+
+.userinfoArea th{width:200px;}
+
+</style>
+
+<form class="prizeform" method="post" action="{weimicms::U('ShakeLottery/AddEditPrize')}">
+
+<div class="content">
+
+<div class="cLineB">
+
+  <h4><if condition="$type eq 1">
+
+设置奖品信息<else />设置红包奖品信息</if></h4><a href="{weimicms::U('ShakeLottery/PrizeList',array('aid'=>$aid))}" class="right btnGrayS vm" style="margin-top:-27px">返回奖品列表</a></div>
+
+<if condition="$type eq 2">
+
+<div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-bottom:5px;font-size:12px;">温馨提示：1.只有微信认证服务号并且有微信支付才能使用此功能。<br>
+
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.请确保“在线支付设置”中的<a target="_blank" href="/index.php?g=User&amp;m=Alipay_config&amp;a=index&amp;token=kagdrx1428564529"><span style="color:green;">微信支付</span></a>配置正常。<br>
+
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.请确保<a target="_blank" href="/index.php?g=User&amp;m=Alipay_cert&amp;a=index&amp;token=kagdrx1428564529"><span style="color:green;">微信支付证书</span></a>中证书已上传正确。<br>
+
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+  4.裂变红包的粉丝和普通红包的粉丝收到的红包金额必须在1元或1元以上。
+
+</div>
+
+</if>
+
+<div class="msgWrap bgfc">
+
+<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+
+<tbody>
+
+<tr>
+
+  <th valign="top"><span class="red">*</span><if condition="$type eq 2">红包名称：<else />奖品名称：</if></th>
+
+  <td><input type="input" class="px" id="prizename" value="{weimicms:$set.prizename}" name="prizename" style="width:400px">
+
+  <if condition="$type eq 2">	<br/>红包名称是粉丝收到红包时红包上显示的名称,作为奖品时的奖品名称</if></td> 	
+
+</tr>
+
+<if condition="$type eq 1">
+
+<tr>
+
+  <th valign="top"><span class="red">*</span>奖品图片：</th>
+
+  <td>
+
+  <input type="text" name="prizeimg" value='{weimicms:$set.prizeimg}' id="pic0" class="px" style="width:300px;" >
+
+  <a href="###" onclick="upyunPicUpload('pic0',200,200,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('pic0')">预览</a>   &nbsp; 建议图片尺寸200*200，图片大小不超过300K</td> 	</td> 	
+
+</tr>
+
+</if>
+
+<tr>
+
+  <th valign="top"><span class="red">*</span><if condition="$type eq 2">商户名称：<else />奖品提供商：</if></th>
+
+  <td><input type="input" class="px" id="provider" value="{weimicms:$set.provider}" name="provider" style="width:400px">
+
+<if condition="$type eq 2">	<br/>商户名称是在粉丝拆红包时显示在公众号头像下面的名称,作为奖品时的奖品提供商</if>
+
+  </td> 	
+
+</tr>
+
+<tr>
+
+  <th valign="top"><span class="red">*</span><if condition="$type eq 2">红包数量：<else />奖品数量：</if></th>
+
+  <td><input type="input" class="px" id="prizenum" value="{weimicms:$set.prizenum}" name="prizenum" style="width:120px"><if condition="$type eq 2">	<br/>红包作为奖品时的奖品数量</if></td> 	
+
+</tr>
+
+<if condition="$set.id neq ''">
+
+<input type="hidden" name="id" value="{weimicms:$set.id}" />
+
+</if>
+
+<if condition="$type eq 2">
+
+<tr>
+
+  <th valign="top"><span class="red">*</span>红包祝福语：</th>
+
+  <td><input type="input" class="px" id="wishing" value="{weimicms:$hongbao.wishing}" name="wishing" style="width:400px">
+
+  <br/>粉丝拆红包时显示在红包发送者下面的值，例如“恭喜发财,新年快乐”,不超过125个字 </td> 	
+
+</tr>
+
+<tr>
+
+  <th valign="top"><span class="red">*</span>红包金额：</th>
+
+  <td><input type="input" class="px" id="money" value="{weimicms:$hongbao.money}" name="money" style="width:400px"></td> 	
+
+</tr>
+
+<tr>
+
+	<th>红包类型：</th>
+
+	<td>
+
+		<input type="radio" name="hb_type" value="2" id="t2"  <if condition="$hongbao.hb_type eq 2 || $hongbao.hb_type eq ''"> checked </if>>裂变红包&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+		<input type="radio" name="hb_type" value="1" id="t1" <if condition="$hongbao.hb_type eq 1"> checked </if>>普通红包<br />裂变红包是指<span style="color:red;">粉丝收到的红包可以被自己分享</span>，分享的人数由下面的“裂变人数”决定，普通红包是指<span style="color:red;">粉丝收到的红包不可以被自己分享</span>。
+
+	</td>
+
+</tr>
+
+ <tr id="group_hongbao" style="display:none">
+
+  <th valign="top"><span class="red">*</span>裂变人数：</th>
+
+  <td>
+
+	<input type="input" class="px" id="group_nums" name="group_nums" value='<if condition="$hongbao['group_nums'] gt 0">{weimicms:$hongbao.group_nums}<else />3</if>' />&nbsp;&nbsp;&nbsp;为保证每个裂变粉丝收到的红包金额在1元或以上，<span style="color:red;">红包金额必须大于裂变人数</span>，裂变人数不能小于3
+
+  </td>
+
+  </tr>
+
+</if>
+
+<tr>
+
+<th>&nbsp;</th>
+
+<input type="hidden" name="aid" value="{weimicms:$aid}" />
+
+<input type="hidden" name="type" value="{weimicms:$type}" />
+
+<td><button type="button" name="button" class="btnGreen sub">保存</button>
+
+<a href="" class="btnGray vm">取消</a>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+ </div>
+
+</form>
+
+<include file="Public:footer"/>
+
+<script type="text/javascript">
+
+$(function(){
+
+	$("#t1").click(function(){
+
+		$("#group_hongbao").hide();
+
+	});
+
+	$("#t2").click(function(){
+
+		$("#group_hongbao").show();
+
+	});
+
+	if($("#t1").attr("checked") == true){
+
+		$("#group_hongbao").hide();
+
+	}else{
+
+		$("#group_hongbao").show();
+
+	}
+
+});
+
+$('.sub').click(function(){
+
+	var prizename = $('#prizename').val();
+
+	var prizeimg = $('#pic0').val();
+
+	var provider = $('#provider').val();
+
+	var prizenum = $('#prizenum').val();
+
+	var wishing =  $('#wishing').val();
+
+	var money =  $('#money').val();
+
+	var group_nums = $("#group_nums").val();
+
+	var hb_type = $(":input[name='hb_type']:checked").val();
+
+	var type = '{weimicms:$type}';
+
+	var number = /^[1-9]\d*$/;
+
+	var msg = '';
+
+	if(prizename == ''){
+
+		msg += '奖品名称不能为空\n';
+
+	}
+
+	if(prizeimg == ''){
+
+		msg += '奖品图片不能为空\n';
+
+	}
+
+	if(provider == ''){
+
+		msg += '奖品提供商不能为空\n';
+
+	}
+
+	if(prizenum == ''){
+
+		msg += '奖品数量不能为空\n';
+
+	}else if(!number.test(prizenum)){
+
+		msg += '奖品数量请输入正整数';
+
+	}
+
+	if(type == 2){
+
+		if(wishing == ''){
+
+			msg += '红包祝福语不能为空\n';
+
+		}else if(wishing.length > 125){
+
+			msg += '红包祝福语不超过125个字\n';
+
+		}
+
+		if(money == ''){
+
+			msg += '红包金额不能为空\n';
+
+		}
+
+		if(hb_type == 2){
+
+			if(group_nums == ''){
+
+				msg += '裂变人数不能为空\n';
+
+			}else if(!number.test(group_nums)){
+
+				msg += '裂变人数请输入大于或等于3的整数\n';
+
+			}else if(parseInt(group_nums) < 3){
+
+				msg += '裂变人数请输入大于或等于3的整数\n';
+
+			}else if(parseInt(group_nums) > money){
+
+				msg += '红包金额必须大于裂变人数\n';
+
+			}
+
+		}else{
+
+			if(money < 1){
+
+				msg += '单个红包金额必须大于1元\n';
+
+			}
+
+		}
+
+	}
+
+	if(msg != ""){
+
+		alert(msg);
+
+		return false;
+
+	}
+
+	$('.prizeform').submit();
+
+});
+
+</script>

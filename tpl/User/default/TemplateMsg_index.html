@@ -1,0 +1,56 @@
+<include file="Public:head"/>
+<script type="text/javascript" src="/tpl/User/default/common/js/select/js/jquery.js"></script>
+<script src="{weimicms::RES}/js/cart/jscolor.js" type="text/javascript"></script>
+<div class="content">
+	<div class="cLineB">
+		<h4 class="left">模板消息配置</h4>
+		<div class="clr"></div>
+	</div>
+	<div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-bottom:5px;font-size:12px;margin-top:5px;">温馨提示：此功能仅限于已开通微信支付功能的公众号使用。<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 必须填写【模板ID】才能【开启】模板消息推送状态。<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;【模板ID】请到 <a href="http://mp.weixin.qq.com" target="_blank" style="color:#029700">微信公众平台</a> >> 模板消息 >> 模板库 选择对应【模板编号】的模板，然后获取【模板ID】填写到此处。 <br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 以下所有模板均属于“IT科技/互联网|电子商务。</div>
+	<div class="cLine">
+		<div class="pageNavigator left"> <a href="{weimicms::U('TemplateMsg/add',array('token' => $token))}" title="添加" class="btnGrayS vm bigbtn"><if condition="$usertplid eq 2"><i class="fa fa-hand-o-right"></i><else /><img src="{weimicms::RES}/images/product/add.png" class="vm"></if>添加新模板</a></div>
+		<div class="clr"></div>
+	</div>            
+	<table class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+		<thead>
+			<tr align="center">
+				<th>模板编号</th>
+				<th>模板名</th>
+				<th>回复内容</th>
+				<th>所属行业</th>
+				<th nowrap>头部颜色</th>
+				<th nowrap>文字颜色</th>
+				<th>状态</th>
+				<th>模板ID</th>
+				<th class="norightborder">操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<volist name="list" id="t">
+				<tr>
+					<td>{weimicms:$t.tempkey}</td>
+					<td>{weimicms:$t.name}</td>
+					<td><pre>{weimicms:$t.content}</pre></td>
+					<td>{weimicms:$t.industry}</td>
+					<td><span style="width: 55px; background:{weimicms:$t.topcolor}; color: rgb(255, 255, 255);">{weimicms:$t.topcolor}</span></td>
+					<td><span style="width: 55px; background:{weimicms:$t.textcolor}; color: rgb(255, 255, 255);">{weimicms:$t.textcolor}</span></td>
+					<td><if condition="$t['status'] eq 0">关闭<else />开启</if></td>
+					<td>{weimicms:$t.tempid}</td>
+					<td class="norightborder">
+						<a href="{weimicms::U('TemplateMsg/add', array('token' => $token, 'id' => $t['id']))}">编辑</a>
+						<if condition="$t['type']">
+						<a href="javascript:drop_confirm('您确定要删除吗?', \'{weimicms::U('TemplateMsg/del', array('token' => $token, 'id' => $t['id']))}\');">删除</a>
+						</if>
+					</td>
+				</tr>
+			</volist>
+		</tbody>
+	</table>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+</div>
+<!--底部-->
+</div>
+<include file="Public:footer"/>

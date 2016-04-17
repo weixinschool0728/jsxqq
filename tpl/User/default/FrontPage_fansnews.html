@@ -1,0 +1,82 @@
+<include file="Public:head"/>
+<div class="content">
+<style>th,td{text-align:center;}</style>
+<div class="cLine">
+<a href="{weimicms::U('FrontPage/index',array('token'=>$token))}" class="right btnGrayS" style="margin-top:-1px;height:24px;">返回活动列表</a>
+<div class="searchbar right">
+<form method="post" action="{weimicms::U('FrontPage/fansnews',array('token'=>$token,'news_type'=>2,'id'=>$_GET['id']))}">
+<input type="text" id="msgSearchInput" class="txt left" placeholder="请输入新闻标题搜索" name="search_word" value="{weimicms:$search_word}" style="padding:6px;width:155px;">
+<input type="submit" value="搜索" id="msgSearchBtn" href="" class="btnGrayS" title="搜索">
+</form>
+</div>
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>   
+<th>&nbsp;</th>
+<th width="90">昵称</th>                    
+<th width="164">新闻标题</th>
+<th width="255">新闻内容</th>
+<th width="120">添加时间</th>
+<th width="200">声音文件</th>
+<th class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<if condition="$list neq ''">
+<weimicmslist array="list" foreach="list">
+<tr>  
+	<td><input type="checkbox" name="news_id[]" value="{weimicms:$list['id']}"></td>
+	<td>{weimicms:$list.wecha_name}</td>
+	<td>{weimicms:$list.news_title}</td>
+	<td title="{weimicms:$list.news_txt}">{weimicms:$list.news_txt|mb_substr=0,50,'utf-8'}</td>
+	<td><if condition="$list['create_time'] neq ''">{weimicms:$list.create_time|date='Y-m-d H:i:s',###}<else />---</if></td>
+	<td><a href="{weimicms:$list.voicepath}" target="_blank">{weimicms:$list.voicepath}</a></td>
+	<td class="norightborder" align="center">
+	<a href="javascript:drop_confirm('您确定要删除该事件吗?', '{weimicms::U('FrontPage/deldefinenews',array('token'=>$token,'id'=>$list['id'],'news_type'=>2,'cid'=>$_GET['id']))}');">删除</a>
+    </td>
+</tr>
+</weimicmslist>
+<else />
+<tr><td colspan="8">暂无记录</td></tr>
+</if>
+</tbody>
+</table>
+<if condition="$list neq ''">
+	 <div style="float:left;">  <input type="checkbox" id="checkall" /><label for="checkall"> 全选 / 全不选  <button class="btnGrayS" id="batch_del">批量删除事件</button></div></if>
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{weimicms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>
+<script type="text/javascript">
+$(function(){
+　$("#checkall").click(function(){
+		$(":input[type=checkbox]").attr('checked',$(this).attr('checked'));
+	});
+	$("#batch_del").click(function(){
+	if(confirm('确定批量删除这些事件吗？')){
+			var ids = new Array();
+			$(":input[name=news_id[]]").each(function(i,d){
+				if(d.checked){
+					ids.push(d.value);
+				}
+			});
+			$.post("/index.php?g=User&m=FrontPage&a=unbatch_delfansnews",{'ids':ids},function(data){
+				if(data == 'done'){
+					alert('批量删除成功');
+				}else{
+					alert('批量删除失败');
+				}
+				window.location.reload();
+			});
+		}
+	});
+});
+</script>

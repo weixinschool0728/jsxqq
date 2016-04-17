@@ -1,0 +1,110 @@
+<include file="Public:head"/> 
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />
+<div class="content">
+<div class="cLineB">
+<h4 class="left">自定义表单 </h4>
+<div class="clr"></div>
+</div>
+<style>
+	#tags .btnGreen{background-image:none;background-color: #5BA607;color:#ffffff;height:30px;line-height: 30px;}
+	#tags .btnGreen:hover{background-color: #2F8BC9}
+</style>
+<div class="msgWrap form">
+		<ul id="tags" style="width:100%">
+        <li <weimicmsif where="ACTION_NAME eq 'record'">class="selectTag"</weimicmsif>>
+                <a href="{weimicms::U('Custom/record')}">表单数据统计</a> 
+            </li>
+            <li <weimicmsif where="ACTION_NAME neq 'record'">class="selectTag"</weimicmsif>>
+                <a href="{weimicms::U('Custom/index')}">表单设置项</a> 
+            </li>
+            <div class="clr" style="height:1px;background:#eee;margin-bottom:20px;"></div>
+        </ul>
+</div>
+
+<div class="cLine">
+
+<div class="left"> 
+	<a href="{weimicms::U('Custom/set',array('token'=>$token))}" title="添加" class="btnGrayS vm bigbtn"><if condition="$usertplid eq 2"><i class="fa fa-hand-o-right"></i><else /><img src="{weimicms::RES}/images/product/add.png" class="vm"></if> 添加自定义</a>
+</div>
+<div class="searchbar right">
+<form method="post" action="">
+	<input type="text" id="msgSearchInput" class="txt left" placeholder="输入关键词搜索" name="search" value="" style="height:22px;">
+	<input type="submit" value="搜索" id="msgSearchBtn" href="" class="btnGrayS" title="搜索" style="height:30px;">
+</form>
+</div>
+
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<input name="delall" type="hidden" value="">
+<input name="wxid" type="hidden" value="">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th width="160">标题名称</th>
+<th width="160">关键词</th>
+<th width="130">创建时间</th>
+ <th width="100">提交总数</th>
+<th width="280" class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="list" id="item"> 
+<tr>
+<td>{weimicms:$item.title}</td>
+<td>{weimicms:$item.keyword}</td>
+<td>{weimicms:$item.addtime|date="Y-m-d H:i:s",###}</td> 
+<td>{weimicms:$item.count}</td> 
+<td class="norightborder" align="center">
+<if condition="$Think.session.is_syn eq 2">
+<if condition="$usertplid neq 2">
+	<script type="text/javascript">
+   $(document).ready(function(){
+      var bheight=document.body.clientHeight;
+      $("#lay{weimicms:$item.set_id}").click(function(){
+   $("#brg{weimicms:$item.set_id}").css("display","block");
+   $("#showdiv{weimicms:$item.set_id}").css("display","block");
+   //$("#testdiv").load("test.html");
+   });
+   $("#close{weimicms:$item.set_id}").click(function(){
+      $("#brg{weimicms:$item.set_id}").css("display","none");
+   $("#showdiv{weimicms:$item.set_id}").css("display","none");
+   });
+   });
+ </script>
+ <style type="text/css">
+   #brg{weimicms:$item.set_id}{ z-index:9999;width:100%; height:100%; background:#333; position:absolute; top:0; left:0; filter:alpha(opacity=60); -moz-opacity:0.6; opacity: 0.6; position:absolute; top:0; left:0; display:none;}
+   #showdiv{weimicms:$item.set_id}{z-index:9999; display:none;position:fixed; *position:absolute; width:100px; height:100px; top:30%; left:50%; margin:-50px 0 0 -50px;}
+   #testdiv{weimicms:$item.set_id}{ width:300px; height:300px; margin:0 auto; border:1px solid #4d4d4d; background:#f2f2f2;}
+   #close{weimicms:$item.set_id}{width:300px; height:27px; line-height:27px; font-size:14px; font-weight:bold; border:1px solid #4d4d4d; text-align:center; cursor:pointer; margin:0 auto; background:#333; color:#fff;margin-top: 15%;}
+ </style>
+    <div id="brg{weimicms:$item.set_id}"></div>
+ <div id="showdiv{weimicms:$item.set_id}">
+   <div id="close{weimicms:$item.set_id}">您想关闭就点我吧</div>
+   <div id="testdiv{weimicms:$item.set_id}"><img src="{weimicms:$Think.session.source_domain}/wap.php?c=Wxapp&a=qrcode&id={weimicms:$item.set_id}&modle=Custom" width="300" height="300" class="cateimg_small"></div>
+ </div>
+   <a id="lay{weimicms:$item.set_id}" style="width:70px;">查看二维码</a> &nbsp;|&nbsp;
+</if>
+</if>
+	<a href="{weimicms::U('Custom/info',array('set_id'=>$item['set_id'],'token'=>$token))}">提交信息管理</a> &nbsp;|&nbsp;
+	<a href="{weimicms::U('Custom/forms',array('set_id'=>$item['set_id'],'token'=>$token))}">输入项管理</a> &nbsp;|&nbsp;
+	<a href="{weimicms::U('Custom/record',array('set_id'=>$item['set_id'],'token'=>$token))}">表单统计</a> &nbsp;|&nbsp;
+	<a href="{weimicms::U('Custom/set',array('set_id'=>$item['set_id'],'token'=>$token))}">修改</a> &nbsp;|&nbsp;
+	<a href="javascript:drop_confirm('删除将清除所有相关的设置信息和用户提交信息?', '{weimicms::U('Custom/del',array('set_id'=>$item['set_id'],'token'=>$token))}');">删除</a></td>
+</tr>
+</volist>
+</tbody>
+</table>
+</form>
+
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{weimicms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

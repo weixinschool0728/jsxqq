@@ -1,0 +1,66 @@
+<if condition="$ischild neq 1">
+<include file="Public:head" />
+<else />
+<include file="Repast:head" />
+</if>
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/cymain.css" />  
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+  <div class="content"> 
+  <div class="cLineB">
+	<h4 class="left">分佣设置</h4>
+	<div class="clr"></div>
+  </div>
+<!--tab start-->
+<div class="tab">
+<ul>
+	<li class="current tabli" id="tab2"><a href="{weimicms::U('Storenew/twitterset', array('token' => $token, 'cid' => $cid))}">分佣设置</a></li>
+	<li class="tabli" id="tab0"><a href="{weimicms::U('Storenew/removesearch', array('token' => $token, 'cid' => $cid))}">查看申请提现</a></li>
+	<li class="tabli" id="tab2"><a href="{weimicms::U('Storenew/detailinfo',array('token'=>$token))}">查看分佣信息</a></li>
+	<li class="tabli" id="tab2"><a href="{weimicms::U('Storenew/twitter',array('token'=>$token))}">商城分佣管理</a></li>
+	<li class="tabli" id="tab2"><a href="{weimicms::U('Storenew/twitterlist',array('token'=>$token))}">分销员管理</a></li>
+</ul>
+</div>
+<!--tab end-->
+
+   <form class="form" method="post" action="" enctype="multipart/form-data"> 
+    <div class="msgWrap bgfc"> 
+     <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"> 
+      <tbody>
+       <tr> 
+        <th>每次点击的价格：</th> 
+        <td><input type="text" name="clickprice" value="{weimicms:$set['clickprice']}" class="px" style="width:100px;" />（元）</td>
+       </tr>
+       <tr>
+        <th>每天点击次数上限：</th>
+        <td><input type="text" name="clickmax" value="{weimicms:$set['clickmax']}" class="px" style="width:100px;" />（一天内最多统计通过某个推广号带来的点击数，多出的部分就不在计算）</td> 
+       </tr>
+       <tr>
+        <th>每个注册账号的价格：</th>
+        <td><input type="text" name="registerprice" value="{weimicms:$set['registerprice']}" class="px" style="width:100px;" />（元）</td> 
+       </tr>
+       <tr>
+        <th>每天注册账号的上限：</th>
+        <td><input type="text" name="registermax" value="{weimicms:$set['registermax']}" class="px" style="width:100px;" />（一天内最多统计通过某个推广号注册成你商城的用户，多出的部分就不在计算）</td> 
+       </tr>
+       <tr>
+        <th>一级代销佣金：</th>
+        <td><input type="text" name="percent" value="{weimicms:$set['percent']}" class="px" style="width:100px;" />%（只要填写数据，不要填写%。如商品总价1000，百分比0.1，那么推广号获得的分佣 = 1000 * 0.1% = 1元）</td> 
+       </tr>
+	   
+	   <tr>
+        <th>二级代销佣金：</th>
+        <td><input type="text" name="addpercent" value="{weimicms:$set['addpercent']}" class="px" style="width:100px;" />%（只要填写数据，不要填写%。如商品总价1000，百分比0.1，那么推广号获得的分佣 = 1000 * 0.1% = 1元）</td> 
+       </tr>
+
+       <tr>         
+       <th>&nbsp;</th>
+       <td>
+       <button type="submit" name="button" class="btnGreen">保存</button> &nbsp; <a href="{weimicms::U('Storenew/twitter',array('token' => $token, 'cid' => $cid))}" class="btnGray vm">取消</a></td> 
+       </tr> 
+      </tbody> 
+     </table> 
+     </div>
+   </form> 
+  </div> 
+  <include file="Public:footer" />

@@ -1,0 +1,461 @@
+<include file="Public:head"/>
+
+<script src="{weimicms:$staticPath}/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+
+<script src="{weimicms:$staticPath}/tpl/static/artDialog/plugins/iframeTools.js"></script>
+
+<script src="{weimicms::RES}/js/date/WdatePicker.js"></script>
+
+<script src="{weimicms:$staticPath}/tpl/static/upyun.js"></script>
+
+<link rel="stylesheet" href="{weimicms:$staticPath}/tpl/static/kindeditor/themes/default/default.css" />
+
+<link rel="stylesheet" href="{weimicms:$staticPath}/tpl/static/kindeditor/plugins/code/prettify.css" />
+
+<script src="{weimicms:$staticPath}/tpl/static/kindeditor/kindeditor.js" type="text/javascript"></script>
+
+<script src="{weimicms:$staticPath}/tpl/static/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+
+<script src="{weimicms:$staticPath}/tpl/static/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+
+<style type="text/css">
+
+.userinfoArea th{width:200px;}
+
+</style>
+
+<form class="shakeform" method="post" action="{weimicms::U('ShakeLottery/AddShakeLottery')}">
+
+<div class="content">
+
+<div class="cLineB">
+
+  <h4>设置活动信息</h4><a href="javascript:history.go(-1);" class="right btnGrayS vm" style="margin-top:-27px">返回</a></div>
+
+<div class="msgWrap bgfc">
+
+<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+
+<tbody>
+
+<tr>
+
+  <th valign="top"><span class="red">*</span>活动名称：</th>
+
+  <td><input type="input" class="px" id="action_name" value="{weimicms:$set.action_name}" name="action_name" style="width:400px"></td> 	
+
+</tr>
+
+<tr>
+
+  <th valign="top"><span class="red">*</span>关键词：</th>
+
+  <td><input type="input" class="px" id="keyword" value="<if condition="$set.keyword neq ''">{weimicms:$set.keyword}<else />抽奖</if>" name="keyword" style="width:400px"></td> 	
+
+</tr>
+
+<tr>
+
+  <th valign="top"><span class="red">*</span>回复标题：</th>
+
+  <td><input type="input" class="px" id="reply_title" value="{weimicms:$set.reply_title}" name="reply_title" style="width:400px"></td> 	
+
+</tr>
+
+<tr>
+
+  <th valign="top"><span class="red">*</span>回复内容：</th>
+
+  <td><textarea type="input" class="px" id="reply_content" name="reply_content" style="width: 560px; height: 100px;">{weimicms:$set.reply_content}</textarea></td> 	
+
+</tr>
+
+<tr>
+
+  <th valign="top"><span class="red">*</span>回复图片：</th>
+
+  <td>  <if condition="$set.reply_pic neq ''">
+
+	<img class="thumb_img" id="pic0_src" src="{weimicms:$set.reply_pic}" style="max-height:100px;max-width: 200px;">
+
+	<else />
+
+	<img class="thumb_img" id="pic0_src" src="{weimicms:$staticPath}/tpl/static/shakelottery/images/shakelottery.jpg" style="max-height:100px;max-width: 200px;">
+
+  </if>
+
+  <input type="text" name="reply_pic" value='<if condition="$set[\'reply_pic\'] neq ''">{weimicms:$set.reply_pic}<else/>{weimicms:$staticPath}/tpl/static/shakelottery/images/shakelottery.jpg</if>' id="pic0" class="px" style="width:200px;" >
+
+  <a href="###" onclick="upyunPicUpload('pic0',365,158,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('pic0')">预览</a>   &nbsp; 建议图片尺寸365*158，图片大小不超过300K</td> 	
+
+</tr>
+
+<tr>
+
+<th width="120">活动简介：</th>
+
+<td><textarea class="px" id="action_desc" name="action_desc" style="width: 560px; height: 200px;">{weimicms:$set['action_desc']}</textarea></td>
+
+</tr>
+
+<tr>
+
+  <th valign="top"><span class="red">*</span>广告提示语和链接:</th>
+
+  <td><input type="input" class="px" id="remind_word" value="{weimicms:$set.remind_word}" name="remind_word" style="width:200px"> &nbsp;&nbsp;&nbsp;链接：&nbsp;&nbsp;<input type="input" class="px" id="remind_link" value="{weimicms:$set.remind_link}" name="remind_link" style="width:200px"> <if condition="session('isQcloud') neq true"><a href="###" onclick="addLink('remind_link',0)" class="a_choose">从功能库添加</a></if></td>
+
+</tr>
+
+<tr>
+
+  <th valign="top">自定义分享标题：</th>
+
+  <td><input type="input" class="px" id="custom_sharetitle" value="{weimicms:$set.custom_sharetitle}" name="custom_sharetitle" style="width:470px"><br /> 	
+
+<p>不填则默认为：我正在参加“xxx”活动，摇手机轻松赢取丰厚奖品！</p>
+
+<p>填写时可带参数{{活动名称}}</p>
+
+<p>例如：我正在参加“{{活动名称}}”活动，摇手机轻松赢取丰厚奖品！</p>
+
+<p>分享标题变为：我正在参加“摇一摇抽奖”活动，摇手机轻松赢取丰厚奖品！</p> </td> 	
+
+</tr>
+
+<tr>
+
+  <th valign="top">自定义分享描述：</th>
+
+  <td><input type="input" class="px" id="custom_sharedsc" value="{weimicms:$set.custom_sharedsc}" name="custom_sharedsc" style="width: 470px;"><br />
+
+<p>分享朋友圈或者分享给朋友时标题下面显示的描述，不填则默认为“回复内容”里的内容。</p>
+
+<p>填写时可带参数{{活动名称}}</p>
+
+<p>例如：我正在参加“{{活动名称}}”活动，摇手机轻松赢取丰厚奖品！</p>
+
+<p>分享描述变为：我正在参加“摇一摇抽奖”活动，摇手机轻松赢取丰厚奖品！</p>  </td> 	
+
+</tr>
+
+<tr>
+
+<th width="120">未关注默认提示语：</th>
+
+<td><textarea class="px" id="follow_msg" name="follow_msg" style="width: 550px; height: 50px;"><?php if(!empty($set['follow_msg'])){ echo html_entity_decode(htmlspecialchars_decode($set['follow_msg']));}else{ echo '请进入公众号"'.$wecha['weixin'].'",回复关键词"抽奖"参加摇一摇抽奖活动';}?></textarea></td>
+
+</tr>
+
+<tr>
+
+<th width="120">引导关注按钮提示语：</th>
+
+<td><input type="text" name="follow_btn_msg" value="<if condition="$set['follow_btn_msg'] neq ''">{weimicms:$set.follow_btn_msg}<else />立即关注</if>" class="px" style="width:550px;"></td>
+
+</tr>
+
+<tr>
+
+<th width="120">快捷关注链接：</th>
+
+<td><input type="text" name="custom_follow_url" value="{weimicms:$set.custom_follow_url}" class="px" style="width:550px;"><br>(通过配置图文消息获取快捷关注链接,该快捷链接是指在手机端弹出关注弹框时点击的链接)<br /><a href="{weimicms::U('Voteimg/set_reply')}" target="_blank" style="color:red;">如何配置图文消息来获取链接地址</a>&nbsp;&nbsp; <input type="hidden" value="{weimicms:$staticPath}/tpl/static/voteimg/img/weixin_7.jpg" id="follow_url_example"><a onclick="viewImg('follow_url_example')" href="###" style="color:#1FC419;">配置后的效果图范例</a></td>
+
+</tr>
+
+<tr>
+
+<th width="120">需要粉丝手机号提示语：</th>
+
+<td><input type="text" name="register_msg" value="<if condition="$set.register_msg neq ''">{weimicms:$set.register_msg}<else />您好，需要您先填写个人信息才能参加活动</if>" class="px" style="width:550px;"></td>
+
+</tr>
+
+<tr>
+
+<th>活动时间：</th>
+
+<td><input type="input" class="px" id="starttime" value="{weimicms:$set.starttime|default=time()|date='Y-m-d H:i',###}" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" name="starttime">
+
+到
+
+<input type="input" class="px" id="endtime" value="{weimicms:$set.endtime|default=strtotime('+1 month')|date='Y-m-d H:i',###}" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" name="endtime"></td>
+
+</tr>
+
+<tr>
+
+  <th valign="top"><span class="red">*</span>每人总摇奖次数：</th>
+
+  <td><input type="input" class="px" id="totaltimes" value="{weimicms:$set.totaltimes}" name="totaltimes" style="width:120px">&nbsp;&nbsp;&nbsp;&nbsp;请输入大于0的整数</td> 	
+
+</tr>
+
+<tr>
+
+  <th valign="top"><span class="red">*</span>每人每天摇奖次数：</th>
+
+  <td><input type="input" class="px" id="everydaytimes" value="<if condition="$set.everydaytimes neq ''">{weimicms:$set.everydaytimes}<else />0</if>" name="everydaytimes" style="width:120px">&nbsp;&nbsp;&nbsp;&nbsp;必须小于总摇奖次数,可以为0,0表示不限制直到消耗完总摇奖次数为止,请输入整数</td> 	
+
+</tr>
+
+<tr>
+
+  <th valign="top"><span class="red">*</span>预计参与人数：</th>
+
+  <td><input type="input" class="px" id="join_number" value="{weimicms:$set.join_number}" name="join_number" style="width:120px">&nbsp;&nbsp;&nbsp;&nbsp;预计参与人数直接影响中奖概率</td> 	
+
+</tr>
+
+<tr>
+
+  <th valign="top">每人每次中奖时间间隔：</th>
+
+  <td><input type="input" class="px" id="timespan" value="<if condition="$set.timespan neq ''">{weimicms:$set.timespan}<else />0</if>" name="timespan" style="width:120px">&nbsp;&nbsp;&nbsp;&nbsp;粉丝中奖之后xx分钟内不会中奖,摇奖次数依旧累加,默认为0表示不限制,单位为分钟</td> 	
+
+</tr>
+
+<tr>
+
+  <th valign="top">获奖记录显示条数：</th>
+
+  <td><input type="input" class="px" id="record_nums" value="<if condition="$set.record_nums neq ''">{weimicms:$set.record_nums}<else />20</if>" name="record_nums" style="width:120px">&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red">该配置只用于其他人的中奖记录,粉丝自己的中奖记录会全部显示，</span>可以为0,若为0前台默认显示20条</td> 	
+
+</tr>
+
+<tr>
+
+<th>限制每人每天中奖次数：</th>
+
+<td><input type="input" class="px" id="is_limitwin" value="<if condition="$set.is_limitwin neq ''">{weimicms:$set.is_limitwin}<else />0</if>" name="is_limitwin" style="width:120px">&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red">限制粉丝每天中奖的次数，0表示不限制，默认为0</td> 	
+
+</tr>
+
+<tr>
+
+<th>未关注是否可以参与：</th>
+
+<td>
+
+  <input type="radio" name="is_follow" value="1" <if condition="$set.is_follow eq '1'">checked</if>>
+
+  是&nbsp;&nbsp;<input type="radio" name="is_follow" value="0" <if condition="$set.is_follow eq '0' or $set.is_follow eq ''">checked</if>>否<span style="width:318px;">&nbsp;&nbsp;&nbsp;{weimicms:$__access_remind__}</span>
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>是否需要粉丝信息：</th>
+
+<td>
+
+  <input type="radio" name="is_register" value="1" <if condition="$set.is_register eq '1' or $set.is_register eq ''">checked</if>>
+
+  是&nbsp;&nbsp;<input type="radio" name="is_register" value="0" <if condition="$set.is_register eq '0'">checked</if>>否
+
+  &nbsp;&nbsp;&nbsp;&nbsp;(没有粉丝详细信息参加活动的处理方式)
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>活动状态：</th>
+
+<td>
+
+  <input type="radio" name="status" value="1" <if condition="$set.status eq '1' or $set.status eq ''">checked</if>>
+
+  开启&nbsp;&nbsp;<input type="radio" name="status" value="0" <if condition="$set.status eq '0'">checked</if>>关闭
+
+</td>
+
+</tr>
+
+<if condition="$set.id neq ''">
+
+<input type="hidden" name="id" value="{weimicms:$set.id}" />
+
+</if>
+
+<tr>
+
+<th>&nbsp;</th>
+
+<td><button type="submit" name="button" class="btnGreen sub">保存</button>
+
+<a href="" class="btnGray vm">取消</a>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+ </table>
+
+ </div>
+
+</form>
+
+<include file="Public:footer"/>
+
+<script type="text/javascript">
+
+KindEditor.ready(function(K) {
+
+window.editor = K.create('#action_desc', {
+
+  resizeType : 1,
+
+  allowPreviewEmoticons : false,
+
+  allowImageUpload : true,
+
+  uploadJson : '/index.php?g=User&m=Upyun&a=kindedtiropic',
+
+  items : ['source','fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold','underline','removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist','insertunorderedlist','fullscreen']
+
+  });
+
+});
+
+</script>
+
+<script type="text/javascript">
+
+$(function(){
+
+//简单的表单验证
+
+	$('.shakeform').submit(function(){
+
+	var keyword = $(":input[name='keyword']").val();
+
+	var action_name = $(":input[name='action_name']").val();
+
+	var reply_title = $(":input[name='reply_title']").val();
+
+	var reply_content = $(":input[name='reply_content']").val();
+
+	var remind_word = $(":input[name='remind_word']").val();
+
+	var remind_link = $(":input[name='remind_link']").val();
+
+	var totaltimes = $(":input[name='totaltimes']").val();
+
+	var everydaytimes = $(":input[name='everydaytimes']").val();
+
+	var join_number = $(":input[name='join_number']").val();
+
+	var is_limitwin = $(":input[name='is_limitwin']").val();
+
+	var record_nums = $(":input[name='record_nums']").val();
+
+	var timespan = $(":input[name='timespan']").val();
+
+	var reg = /^[1-9]\d*$/;
+
+	var number = /^[0-9]\d*$/;
+
+	var msg = '';
+
+	if(action_name == ''){
+
+		msg += '活动名称不能为空\n';
+
+	}
+
+	if(keyword == ''){
+
+		msg += '关键词不能为空\n';
+
+	}
+
+	if(reply_title == ''){
+
+		msg += '回复标题不能为空\n';
+
+	}
+
+	if(reply_content == ''){
+
+		msg += '回复内容不能为空\n';
+
+	}
+
+	if(remind_word == ''){
+
+		msg += '广告语不能为空\n';
+
+	}
+
+	if(remind_link == ''){
+
+		msg += '广告链接不能为空\n';
+
+	}
+
+	if(totaltimes == ''){
+
+		msg += '每人总摇奖次数不能为空';
+
+	}else if(!reg.test(totaltimes)){
+
+		msg += '每人总摇奖次数请输入大于0的整数\n';
+
+	}
+
+	if(everydaytimes != "" && !number.test(everydaytimes)){
+
+		msg += '每人每天摇奖次数请输入整数\n';
+
+	}
+
+	if(is_limitwin != "" && !number.test(is_limitwin)){
+
+		msg += '没人每天中奖次数请输入整数\n';
+
+	}
+
+	if(join_number == ''){
+
+		msg += '预计参与人数不能为空';
+
+	}else if(!reg.test(join_number)){
+
+		msg += '预计参与人数请输入大于0的整数\n';
+
+	}
+
+	if(record_nums != "" && !number.test(record_nums)){
+
+		msg += '获奖记录显示条数请输入整数\n';
+
+	}
+
+	if(timespan != "" && !number.test(timespan)){
+
+		msg += '每人每次中奖时间间隔请输入整数\n';
+
+	}
+
+	if(msg != ""){
+
+		alert(msg);
+
+		return false;
+
+	}
+
+});
+
+});
+
+</script>

@@ -1,0 +1,213 @@
+<include file="Public:head"/> 
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/setprice.css" />
+<div class="content">
+
+<div class="cLineB">
+  <h4>佣金参数配置</h4><a href="javascript:history.go(-1);" class="right btnGrayS vm" style="margin-top:-27px">返回</a>
+ </div> 
+    <div class="msgWrap bgfc" style="margin-top:10px;">
+	 <form class="form" method="post" action=""  enctype="multipart/form-data">
+	 <div class="input-group">
+            <div class="input-group-addon" style="width:100px">
+                经纪人
+            </div>
+            <div class="formdiv">
+                <table class="cTable table table-hover table-bordered text-center table-responsive" style="margin-bottom:0;">
+                    <thead class="tl_thead">
+                        <tr>
+                            <th width="80">
+                                奖金类型
+                            </th> 
+                        </tr>
+                    </thead>
+                    <tbody class="tl_tbody">
+                        <tr>
+                            <td>
+                                已登记
+                            </td>
+                            <td>
+                                <div class="input-group">
+                                    <input type="text" name="dengji" class="form-control" value="{weimicms:$info.dengji}" style="width:90px;">
+                                    <div class="input-group-addon">
+                                        元
+                                    </div>
+                                </div>
+                            </td>
+                          <!--  <td>
+                                <div class="input-group">
+                                    <input type="text" name="reward_1_1_2" class="form-control" value="5" style="width:90px;">
+                                    <div class="input-group-addon">
+                                        元
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="input-group">
+                                    <input type="text" name="reward_1_1_3" class="form-control" value="2" style="width:90px;">
+                                    <div class="input-group-addon">
+                                        元
+                                    </div>
+                                </div>
+                            </td>-->
+                        </tr>
+                        <tr>
+                            <td>
+                                已到访
+                            </td>
+                            <td>
+                                <div class="input-group">
+                                    <input type="text" name="daofang" class="form-control" value="{weimicms:$info.daofang}" style="width:90px;">
+                                    <div class="input-group-addon">
+                                        元
+                                    </div>
+                                </div>
+                            </td>
+                           <!-- <td>
+                                <div class="input-group">
+                                    <input type="text" name="reward_1_2_2" class="form-control" value="10" style="width:90px;">
+                                    <div class="input-group-addon">
+                                        元
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="input-group">
+                                    <input type="text" name="reward_1_2_3" class="form-control" value="5" style="width:90px;">
+                                    <div class="input-group-addon">
+                                        元
+                                    </div>
+                                </div>
+                            </td>-->
+                        </tr>
+                        <tr>
+                            <td>
+                                已认筹
+                            </td>
+                            <td>
+                                <div class="input-group">
+                                    <input type="text" name="renchou" class="form-control" value="{weimicms:$info.renchou}" style="width:90px;">
+                                    <div class="input-group-addon">
+                                        元
+                                    </div>
+                                </div>
+                            </td>
+                          <!--  <td>
+                                <div class="input-group">
+                                    <input type="text" name="reward_1_3_2" class="form-control" value="50" style="width:90px;">
+                                    <div class="input-group-addon">
+                                        元
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="input-group">
+                                    <input type="text" name="reward_1_3_3" class="form-control" value="10" style="width:90px;">
+                                    <div class="input-group-addon">
+                                        元
+                                    </div>
+                                </div>
+                            </td>-->
+                        </tr>
+                        <tr>
+                            <td>
+                                已认购
+                            </td>
+                            <td>
+                                <div class="input-group">
+                                    <input type="text" name="rengou" class="form-control" value="{weimicms:$info.rengou}" style="width:90px;">
+                                    <div class="input-group-addon">
+                                        元
+                                    </div>
+                                </div>
+                            </td>
+                           <!-- <td>
+                                <div class="input-group">
+                                    <input type="text" name="reward_1_4_2" class="form-control" value="50" style="width:90px;">
+                                    <div class="input-group-addon">
+                                        元
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="input-group">
+                                    <input type="text" name="reward_1_4_3" class="form-control" value="10" style="width:90px;">
+                                    <div class="input-group-addon">
+                                        元
+                                    </div>
+                                </div>
+                            </td>-->
+                        </tr>
+                        <tr>
+                            <td>
+                                已签约
+                            </td>
+                            <td>
+                                <div class="input-group">
+                                    <input type="text" name="qianyue" class="form-control" value="{weimicms:$info.qianyue}" style="width:90px;">
+                                    <div class="input-group-addon">
+                                        元
+                                    </div>
+                                </div>
+                            </td>
+                         <!--   <td>
+                                <div class="input-group">
+                                    <input type="text" name="reward_1_5_2" class="form-control" value="100" style="width:90px;">
+                                    <div class="input-group-addon">
+                                        元
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="input-group">
+                                    <input type="text" name="reward_1_5_3" class="form-control" value="50" style="width:90px;">
+                                    <div class="input-group-addon">
+                                        元
+                                    </div>
+                                </div>
+                            </td>-->
+                        </tr>
+                        <tr>
+                            <td>
+                                已付款
+                            </td>
+                            <td>
+                                <div class="input-group">
+                                    <input type="text" name="fukuan" class="form-control" value="{weimicms:$info.fukuan}" style="width:90px;"> 
+                                      <div class="input-group-addon">
+                                        元
+                                    </div>
+                                </div>
+                            </td>
+                           <!--   <td>
+                              <div class="input-group">
+                                    <input type="text" name="reward_1_6_2" class="form-control" value="0.5" style="width:80px;"><input type="hidden" id="reward_type_1_6_2" name="reward_type_1_6_2" value="per">
+                                     <div class="input-group-addon">
+                                        元
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="input-group">
+                                    <input type="text" name="reward_1_6_3" class="form-control" value="0.1" style="width:80px;"><input type="hidden" id="reward_type_1_6_3" name="reward_type_1_6_3" value="per">
+                                     <div class="input-group-addon">
+                                        元
+                                    </div>
+                                </div>
+                            </td>-->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div> 
+		<div class="well clearfix">
+			<div class="form-group col-sm-12">
+			<button type="submit" class="btnGreen btnGreen-primary btnGreen-lg">
+			<span class="glyphicon glyphicon-check"></span> 提交</button> 
+			</div>
+		</div>	 
+	</form>
+  	</div>  
+ </div>
+  
+
+<include file="Public:footer"/>

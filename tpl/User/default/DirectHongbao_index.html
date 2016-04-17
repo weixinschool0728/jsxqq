@@ -1,0 +1,97 @@
+<include file="Public:head"/>
+<style>
+th{text-align:center;}
+td{text-align:center;}
+</style>
+<div class="content">
+<div class="cLineB">
+<h4 class="left">粉丝红包</h4>
+<div class="clr"></div>
+</div>
+<div class="cLine">
+<div class="pageNavigator left"><a href="{weimicms::U('DirectHongbao/hongbao_add',array('token'=>$token))}" title="添加红包" class="btnGrayS vm bigbtn"><if condition="$usertplid eq 2"><i class="fa fa-hand-o-right"></i><else /><img src="{weimicms::RES}/images/product/add.png" width="16" class="vm"></if> 添加红包</a> </div>
+<div class="searchbar right">
+<form method="post" action="{weimicms::U('DirectHongbao/index',array('token'=>$token))}">
+<input type="text" id="msgSearchInput" class="txt left" placeholder="输入发送者或者活动名称搜索" name="search_word" value="{weimicms:$search_word}" style=" width: 175px;height:25px;">
+<input type="submit" value="搜索" id="msgSearchBtn" href="" class="btnGrayS" title="搜索">
+</form>
+</div>
+<div class="clr"></div>
+</div>
+ <div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-bottom:5px;font-size:12px;"></if>温馨提示：1.只有微信<font color="red">&nbsp;认证服务号&nbsp;</font>并且有<font color="red">&nbsp;微信支付&nbsp;</font>才能使用此功能。<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.请确保“在线支付设置”中的<a href="{weimicms::U('Alipay_config/index',array('token'=>$token))}" target="_blank"><span style="color:green;">微信支付</span></a>配置正常。<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.请确保<a href="{weimicms::U('Alipay_cert/index',array('token'=>$token))}" target="_blank"><span style="color:green;">微信支付证书</span></a>中证书已上传正确。<br />
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.如果粉丝过多，建议选择分组或指定粉丝的方式发送红包。每个红包发送的粉丝数不超过1000个，一分钟内各个公众号各个活动发送的粉丝数和不超过1800个。<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  5.每个粉丝收到的红包金额必须在1块或1块以上。<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  6.如果您在微信公众平台的用户管理中修改了粉丝的分组，请先去<a href="{weimicms::U('Wechat_group/index',array('token'=>$token))}" target="_blank"><span style="color:green;">粉丝管理</span></a>里刷新所有粉丝信息。
+  <br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  7.如果您在微信公众平台的用户管理中新建了一个分组请在<a href="{weimicms::U('Wechat_group/groups',array('token'=>$token))}" target="_blank"><span style="color:green;">分组管理</span></a>做同步操作并在<a href="{weimicms::U('Wechat_group/index',array('token'=>$token))}" target="_blank"><span style="color:green;">粉丝管理</span></a>里刷新所有粉丝信息。
+  <br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  8.由于微信的原因，iPhone手机第二次分享红包给好友时会出现分享按钮点击无效，请退出分享页重新进入红包点击分享。
+  <br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  9.粉丝类型为'关注时的粉丝'时，不能手动发送，是粉丝关注公众号时自动发送的。
+</div>
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<input name="delall" type="hidden" value="1">
+<input name="wxid" type="hidden" value="">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>                                 
+<th width="90">发送者名称</th>
+<th width="90">活动名称</th>
+<th width="150">红包祝福语</th>
+<th width="72">红包总金额</th>
+<th width="64">红包类型</th>
+<th width="100">粉丝类型</th>
+<th width="130">最后发送时间</th>
+<th class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<weimicmslist array="list" foreach="list">
+<tr>
+	<td>{weimicms:$list.send_name}</td>
+	<td>{weimicms:$list.act_name}</td>
+	<td>{weimicms:$list.wishing}</td>
+	<td>{weimicms:$list.total_money}</td>
+	<td><if condition="$list['hb_type'] eq 1">普通红包<else />裂变红包</if></td>
+	<td><if condition="$list['send_type'] eq 1">分组群发<elseif condition="$list['send_type'] eq 2"/>指定粉丝<elseif condition="$list['send_type'] eq 3"/>全部粉丝<else />关注时的粉丝</if></td>
+	<td><if condition="$list['lastsendtime'] neq 0">{weimicms:$list.lastsendtime|date='Y-m-d H:i:s',###}<elseif condition="$list['send_type'] eq 4"/>---<else /><span style="color:red">未发送</span></if></td>
+	<td class="norightborder" align="center">
+	<if condition="$list['send_type'] neq 4">
+	<if condition="$list['send_status'] eq 0">
+	<a href="javascript:drop_confirm('您确定发送该红包吗?', '{weimicms::U('DirectHongbao/send_hongbao',array('token'=>$token,'id'=>$list['id']))}');">发送红包</a>
+	<else />
+		<a href="javascript:drop_confirm('您确定重复发送该红包吗?', '{weimicms::U('DirectHongbao/send_hongbao',array('token'=>$token,'id'=>$list['id']))}');">重复发送</a>
+		|
+		<a href="{weimicms::U('DirectHongbao/receive_recorde',array('token'=>$token,'hid'=>$list['id']))}">领取记录</a>
+		|
+	</if>
+		<else />
+		<a href="{weimicms::U('DirectHongbao/receive_recorde',array('token'=>$token,'hid'=>$list['id']))}">领取记录</a>|
+	</if>
+		<a href="{weimicms::U('DirectHongbao/hongbao_add',array('token'=>$token,'id'=>$list['id']))}">修改</a>
+		|
+		<a href="javascript:drop_confirm('您确定要删除吗?', '{weimicms::U('DirectHongbao/del',array('id'=>$list['id']))}');">删除</a>
+    </td>
+</tr>
+</weimicmslist>
+</tbody>
+</table>
+</form>
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{weimicms:$page}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<include file="Public:footer"/>

@@ -1,0 +1,198 @@
+﻿<include file="Public:head"/>
+
+<!--中间内容-->
+<link href="./tpl/User/default/common/yjgz/style.css" rel="stylesheet" type="text/css" />
+<script src="./tpl/User/default/common/yjgz/jquery.js" type="text/javascript"></script>
+<script src="./tpl/User/default/common/yjgz/jwplayer.js" type="text/javascript"></script>
+<!--中间内容-->
+<style type="text/css">
+#mediaplayer {
+background-color: #000000;
+color: #FFFFFF;
+height: 100%px;
+position: relative;
+width: 100%;
+top: 0;
+right: 0;
+}
+.collapsible {
+font-size: 14px;
+padding: 20px;
+line-height: 22px;
+}
+.tips2 {
+position: relative;
+}
+.tips2 span {
+display: none;
+position: absolute;
+top: -205px;
+left: -175px;
+width: 300px;
+border: 1px solid #C00;
+background-color: #C00;
+box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+border-radius: 6px;
+padding: 10px;
+font-size: 14px;
+line-height: 18px;
+color: #fff;
+text-align: left;
+}
+.tips2:hover span {
+z-index: 3;
+display: block;
+}
+.tips2 span:before {
+content: "";
+width: 0;
+height: 0;
+position: absolute;
+bottom: 100%;
+left: 40%;
+border-width: 0 8px 8px 8px;
+border-style: solid;
+border-color: #C00 transparent;
+}
+.tips2 span:after {
+content: "";
+width: 0;
+height: 0;
+position: absolute;
+bottom: 100%;
+left: 41%;
+border-width: 0 6px 6px 6px;
+border-style: solid;
+border-color: #C00 transparent;
+}
+.section {
+overflow: visible;
+}
+.list-icon {
+display: block;
+width: 32px;
+height: 32px;
+background-color: #5bc648;
+color: #FFF;
+font-size: 18px;
+border-radius: 100%;
+text-align: center;
+line-height: 32px;
+float: left;
+}
+.bz {
+padding-bottom: 30px;
+overflow: hidden;
+background: url(./tpl/User/default/common/yjgz/bzbg.gif) repeat-y 0 0;
+}
+#bz6 {
+background: none;
+}
+.bz .bztu {
+max-width: 80%;
+border: 0;
+margin-left: 50px;
+}
+.bz h3 {
+font-size: 16px;
+color: #333;
+margin: 6px 0 0 50px;
+}
+.bz .bznm {
+margin-bottom: 20px;
+overflow: hidden;
+}
+.exp-content-head {
+color: #333;
+padding-bottom: 7px;
+margin: 10px 0 20px 0;
+border-bottom: 1px solid #d6d6d8;
+font-size: 22px;
+font-weight: normal;
+}
+</style>
+
+<div class="contentmanage">
+
+     
+
+      
+      <div class="content">
+        <div class="cLineB">
+          <h4>一键关注引导页设置</h4><div class="cLine">
+            <div class="alert">
+                <p><span class="bold">注意：</span>由于微信一键关注代码被腾讯禁用，所以我们用其他的方法做一个引导页。</p>
+            </div>
+            </div>
+        </div>
+        <div class="msgWrap bgfc" style=" padding:5px 10px; margin:0">
+          <table class="userinfoArea"  id="yjgzok" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+            <tbody>
+            <form method="post"   action=""  enctype="multipart/form-data" >
+              <tr>
+                <th>一键关注引导页面网址:</th>
+                <td><input type="text"  name="yjgz"  id="yjgz" value=""   class="px" tabindex="1" size="80">
+                  <button type="submit" name="appidsubmit" value="true" class="btnGreens vm" >保存</button></td>
+              </tr>
+              <tr>
+                <th></th>
+                <td><span class="red">填写了引导页链接后，图文详细页面点击头像会跳转到一键关注引导页面。</span></td>
+              </tr>
+            </form>
+            </tbody>
+            
+          </table>
+        </div>
+        <div class="collapsible">
+        
+        
+            
+          <div class="section lastSection">
+            <h2 class="exp-content-head">方法/步骤</h2>
+            <div id="bz1" class="bz">
+              <div class="bznm"> <span  class="list-icon">1</span>
+                <h3>登录微信公众平台<a href="https://mp.weixin.qq.com/" target="_blank" class="red">https://mp.weixin.qq.com</a></h3>
+              </div>
+              <img class="bztu" src="./tpl/User/default/common/yjgz/yjgz000.jpg"> </div>
+            <div id="bz2" class="bz">
+              <div class="bznm"> <span  class="list-icon">2</span>
+                <h3>点击左侧“功能”菜单，再点击“群发功能”，最后点击“新建群发消息”里面的“图文消息”。</h3>
+              </div>
+              <img class="bztu" src="./tpl/User/default/common/yjgz/yjgz001.jpg"> </div>
+            <div id="bz3" class="bz">
+              <div class="bznm"> <span  class="list-icon">3</span>
+                <h3>弹出窗口里面选择“新建单图文消息”，再点击确定。</h3>
+              </div>
+              <img class="bztu" src="./tpl/User/default/common/yjgz/yjgz002.jpg"> </div>
+            <div id="bz4" class="bz">
+              <div class="bznm"> <span  class="list-icon">4</span>
+                <h3>填写标题如：请关注我们的官方微信;<br />
+                封面图请上传我们提供在下面的素材图片“点击蓝字，轻松关注”，你也可以自己设计更好的图片，这里只是范例。<br />
+                摘要和正文留言填写如“关注我们获取官方最新咨询或者输入框里输入“首页”查看我们的微官网。”，您也可以自由发挥。<br />
+                添加添加原文链接可以外链微网站的首页地址。<br />
+                最后点击“保存”按钮。
+                </h3>
+              </div>
+              <img class="bztu" src="./tpl/User/default/common/yjgz/yjgz003.jpg"><br><br>
+              <img class="bztu" src="./tpl/User/default/common/yjgz/gz.jpg">右键另存这张图片素材。  </div>
+            <div id="bz5" class="bz">
+              <div class="bznm"> <span  class="list-icon">5</span>
+                <h3>点击这个条图文素材的“标题”，会弹出一个新的页面，这个页面就是一键关注引导页，<br />拷贝这个网址，<a href="index.php?ac=yjgz&amp;id=9070#yjgzok" class="red">点击这里，填到输入框里面</a>。</h3>
+              </div>
+              <img class="bztu" src="./tpl/User/default/common/yjgz/yjgz004.jpg"> </div>
+            <div id="bz6" class="bz">
+              <div class="bznm"> <span  class="list-icon">6</span>
+                <h3>这是手机上的效果，点击蓝色的字，也就是你的公众号名字，可以到一键关注页面，方便新粉丝关注你的微信号。</h3>
+              </div>
+              <img class="bztu" src="./tpl/User/default/common/yjgz/yjgz005.jpg"> </div>
+          </div>
+        </div>
+      </div>
+      <div class="clr"></div>
+  </div>
+  </div>
+</div>
+<!--底部-->
+    </div>
+
+<include file="Public:footer"/>

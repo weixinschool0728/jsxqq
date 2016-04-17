@@ -1,0 +1,1367 @@
+<include file="Public:head"/>
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css" />
+<script src="{weimicms:$staticPath}/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="{weimicms:$staticPath}/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="{weimicms::RES}/js/date/WdatePicker.js"></script>
+<link rel="stylesheet" href="{weimicms:$staticPath}/tpl/static/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="{weimicms:$staticPath}/tpl/static/kindeditor/plugins/code/prettify.css" />
+<script src="{weimicms:$staticPath}/tpl/static/kindeditor/kindeditor.js" type="text/javascript"></script>
+<script src="{weimicms:$staticPath}/tpl/static/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
+<script src="{weimicms:$staticPath}/tpl/static/kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
+<script src="{weimicms:$staticPath}/tpl/static/upyun.js"></script>
+<style type="text/css">
+  html, body {
+	/*position:relative;
+	height:100%;*/
+	color:#222;
+	font-family:Microsoft YaHei, Helvitica, Verdana, Tohoma, Arial, san-serif;
+	margin:0;
+	padding: 0;
+	text-decoration: none;
+}
+body >.tips {
+	position:fixed;
+	display:none;
+	top:50%;
+	left:50%;
+	z-index:100;
+	text-align:center;
+	padding:20px;
+	width:200px;
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+	margin:0;
+	padding:0;
+}
+table {
+	border-collapse:collapse;
+	border-spacing:0;
+}
+.text img {
+	max-width: 100%;
+}
+fieldset, img {
+	border:0;
+}
+address, caption, cite, code, dfn, em, th, var {
+	font-style:normal;
+	font-weight:normal;
+}
+ol, ul {
+	list-style: none outside none;
+	margin:0;
+	padding: 0;
+}
+caption, th {
+	text-align:left;
+}
+h1, h2, h3, h5, h6 {
+	font-size:100%;
+	font-weight:normal;
+}
+a {
+	color:#000000;
+	text-decoration: none;
+}
+.left {
+	float:left
+}
+.right {
+	float:right
+}
+#activity-detail {
+	padding:15px 15px 0;
+	background:#EFEFEF;
+}
+.clr {
+	display:block;
+	clear:both;
+	height:1px;
+	overflow:hidden;
+}
+/*文本*/
+#iphone {
+	background:url(../images/iPhone-render.png) no-repeat 0 0;
+	height: 743px;
+	position:relative;
+	margin: 0 auto;
+	overflow:hidden;
+	width: 380px;
+}
+#iphone #activity-detail {
+	height: 414px;
+	left: 33px;
+	overflow: auto;
+	padding: 0;
+	position: absolute;
+	top: 197px;
+	width: 319px;
+	background:#EFEFEF;
+}
+#iphone .nickname {
+	color: #CCCCCC;
+	display: block;
+	font-weight: bold;
+	line-height: 45px;
+	position: absolute;
+	text-align: center;
+	text-shadow: 0 1px 3px #000000;
+	top: 152px;
+	left: 33px;
+	width: 320px;
+}
+#news-render {
+}
+#news-text { 
+}
+.keywordtext {
+	background-color: #F3F1DA;
+	height: 366px;
+	overflow: auto;
+	padding: 0;
+	width: 319px;
+	left: 33px;
+	top: 197px;
+	position: absolute;
+}
+.keywordtext .me {
+	margin-top:30px
+}
+.you {
+	float:left;
+	width:100%; /*ie6 hack*/
+	_background:none;
+	_border:none;
+}
+.me {
+	float:right;
+	width:100%;
+}
+.chatItemContent {
+	cursor:pointer;
+}
+.cloudPannel {
+	position: relative;
+	_position:static;
+}
+.chatItem {
+	padding:4px 0px 10px 0px;
+	_background:none;
+	_border:none;
+}
+.chatItem .avatar {
+	width:38px;
+	height:38px;
+	border:1px solid #ccc\9;
+	border: 1px solid #CCCCCC;
+	box-shadow: 0 1px 3px #D3D4D5;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+}
+.chatItem .cloud {
+	max-width:240px; /*border-radius:11px; border-width:1px; border-style:solid; */
+	cursor:default;
+	position: static;
+}
+.chatItem .cloud {/*for ie*/
+	/*position: relative;*/
+		padding: 0px;
+	margin: 0px;
+}
+.me .avatar {
+	float:right;
+}
+.me .cloud { /*position:relative;*/
+	float:right;
+	min-width:50px;
+	max-width:200px;
+	margin:0 15px 0 0;
+}
+.chatItem .cloudContent { /* position:relative;for ie*/
+	text-align:left; /*padding:2px; line-height:1.2; */
+	font-weight:normal;
+	font-size:16px;
+	min-height:20px;
+	word-wrap:break-word;
+}
+.me .cloudText .cloudBody {
+	-moz-border-top-colors:none;
+	-moz-border-right-colors:none;
+	-moz-border-bottom-colors:none;
+	-moz-border-left-colors:none;
+	border-color:transparent;
+	border:1px solid #AFAFAF;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	box-shadow: 0px 1px 3px #D5D5D5;
+	border:1px solid #9f9f9f\9;
+	background:#ECECEC\9;
+	border-radius:6px\9;
+	margin-left:8px;
+}
+.me .cloudContent {
+	border:1px solid #eee\9;
+	border-top:1px solid #FFF;
+	border-bottom:1px solid #F2F2F2;
+	padding:13px\9;
+	border-radius:13px\9;
+	border-radius:4px;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	overflow:hidden;
+	color:#000;
+	text-shadow:none;
+	background-color:#ECECEC;
+	background:-webkit-gradient(linear,  left top, left bottom,  from(#F4F4F4), to(#E5E5E5),  color-stop(0.1, #F3F3F3), color-stop(0.3, #F1F1F1), color-stop(0.5, #ECECEC), color-stop(0.7, #E9E9E9), color-stop(0.9, #E6E6E6), color-stop(1.0, #E5E5E5));
+	background-image:-moz-linear-gradient(top, #F3F3F3 10%, #F1F1F1 30%, #ECECEC 50%, #E9E9E9 70%, #E6E6E6 90%, #E5E5E5 100%);
+}/*.cloudText*/
+.me .cloudText .cloudArrow {
+	position: absolute;
+	right: -10px;
+	top: 11px;
+	width: 13px;
+	height: 24px;
+	background: url(../images/bubble_right.png) no-repeat;
+}
+.me .cloudText .cloudContent {
+	background-color:#E5E5E5;
+	vertical-align: top;
+	padding:7px 10px;
+	background-color:#ECECEC\9;
+}
+.you .avatar {
+	float:left;
+}
+.you .cloud { /*position:relative;8.3*/
+	float:left;
+	min-width:50px;
+	max-width:200px;
+	margin:0 0 0 15px;
+}
+.you .cloudText .cloudBody {
+	-moz-border-top-colors:none;
+	-moz-border-right-colors:none;
+	-moz-border-bottom-colors:none;
+	-moz-border-left-colors:none;
+	border-color:transparent;
+	/*border-style:solid;
+		border-width:1px;
+		border-color:#7B9F45 #7B9F45 #7B9F45 #7B9F45;*/
+		border: 1px solid #7AA23F;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	box-shadow: 0px 1px 3px #8DA254;
+	border:1px solid #73972a\9;
+	border-radius:6px\9;
+	/*background-color:#A1D251;
+		
+		background:-webkit-gradient(linear, left top,left bottom, from(#C2DE8E),to(#8EBF3A), 
+			color-stop(0.1,#BFDC89),color-stop(0.2,#B7D978),color-stop(0.3,#B3D870),
+			color-stop(0.4,#A8D45D),color-stop(0.5,#A2D254),color-stop(0.6,#9DCE4C),
+			color-stop(0.7,#96C742),color-stop(0.8,#92C23E),color-stop(0.9,#8FBF3B),color-stop(1.0,#8EBF3A));
+		background-image:-moz-linear-gradient(top, #C2DE8E 0%, #BFDC89 10%, #B7D978 20%, #B3D870 30%, #A8D45D 40%, #A2D254 50%, #9DCE4C 60%, #96C742 70%, #92C23E 80%, #8FBF3B 90%, #8EBF3A 100%);*/
+		background-color: #AEDC43;
+}
+.you .cloudText .cloudContent {
+	padding:5px 13px\9;
+	border-radius:13px\9;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	padding:7px 10px;
+	text-shadow:none;
+	color:#030303;
+	/*border-top:1px solid #E3EFC9;
+		border-bottom:1px solid #8EBF3A;
+		border-right:1px solid #A4D257;
+		background-color:#C0DC85\9;*/
+		border-top: 1px solid #DCE6C8;
+	border-bottom: 1px solid #B9CF8B;
+	border-right: 1px solid #CCDEA3;
+}
+.you .cloudText .cloudArrow {
+	position: absolute;
+	left: -6px;
+	top: 11px;
+	width: 13px;
+	height: 24px;
+	background: url(../images/bubble_left.png) no-repeat;
+}
+/*单条多条图文*/
+	.chatPanel .media a {
+	display:block;
+}
+.chatPanel .media {
+	border:1px solid #cdcdcd;
+	box-shadow:0 3px 6px #999999;
+	-webkit-border-radius:12px;
+	-moz-border-radius:12px;
+	border-radius:12px;
+	width:285px;
+	background-color:#FFFFFF;
+	background:-webkit-gradient(linear,  left top, left bottom,  from(#FFFFFF), to(#FFFFFF));
+	background-image:-moz-linear-gradient(top, #FFFFFF 0%, #FFFFFF 100%);
+	margin:0px auto;
+}
+.chatPanel .media .mediaPanel {
+	padding:0px;
+	margin:0px;
+}
+.chatPanel .media .mediaImg {
+	margin: 25px 15px 15px;
+	width: 255px;
+	position: relative;
+}
+.chatPanel .media .mediaImg .mediaImgPanel {
+	position:relative;
+	padding:0px;
+	margin:0px;
+	max-height:164px;
+	overflow:hidden;
+}
+.chatPanel .media .mediaImg img {
+	/* width:100%;
+		height:164px;
+		position:absolute;
+		left:0px;*/
+		width:255px;
+}
+.chatPanel .media .mediaImg .mediaImgFooter {
+	position: absolute;
+	bottom: 0;
+	height:29px;
+	background-color:#000;
+	background-color:rgba(0, 0, 0, 0.4);
+	text-shadow:none;
+	color:#FFF;
+	text-align:left;
+	padding:0px 11px;
+	line-height:29px;
+	width:233px;
+}
+.chatPanel .media .mediaImg .mediaImgFooter a:hover p {
+	color:#B8B3B3;
+}
+.chatPanel .media .mediaImg .mediaImgFooter .mesgTitleTitle {
+	line-height:28px;
+	color:#FFF;
+	max-width:240px;
+	height:26px;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	-o-text-overflow:ellipsis;
+	overflow:hidden;
+	width: 240px;
+}
+.chatPanel .media .mesgIcon {
+	display:inline-block;
+	height:19px;
+	width:13px;
+	margin:8px 0px -2px 4px;
+	background:url(../images/mesgIcon.png) no-repeat;
+}
+.chatPanel .media .mediaContent {
+	margin:0px;
+	padding:0px;
+}
+.chatPanel .media .mediaContent .mediaMesg {
+	border-top:1px solid #D7D7D7;
+	padding:10px;
+}
+.chatPanel .media .mediaContent .mediaMesg .mediaMesgDot {
+	display: block;
+	position:relative;
+	top: -3px;
+	left:20px;
+	height:6px;
+	width:6px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+.chatPanel .media .mediaContent .mediaMesg .mediaMesgTitle:hover p {
+	color:#1A1717;
+}
+.chatPanel .media .mediaContent .mediaMesg .mediaMesgTitle a {
+	color:#707577;
+}
+.chatPanel .media .mediaContent .mediaMesg .mediaMesgTitle a:hover p {
+	color:#444440;
+}
+.chatPanel .media .mediaContent .mediaMesg .mediaMesgIcon {
+}
+.chatPanel .media .mediaContent .mediaMesg .mediaMesgTitle p {
+	line-height:1.5em;
+	max-height: 45px;
+	max-width: 220px;
+	min-width:176px;
+	margin-top:2px;
+	color:#5D6265;
+	text-overflow:ellipsis;
+	-o-text-overflow:ellipsis;
+	overflow:hidden;
+	text-align: left;
+	text-overflow:ellipsis;
+}
+.chatPanel .media .mediaContent .mediaMesg .mediaMesgIcon img {
+	height:45px;
+	width:45px;
+}
+/*media mesg detail*/
+	.chatPanel .media .mediaHead {
+	/*height:48px;*/
+		padding:0px 15px 4px;
+	border-bottom:0px solid #D3D8DC;
+	color:#000000;
+	font-size:20px;
+}
+.chatPanel .media .mediaHead .title {
+	line-height:1.2em;
+	margin-top: 22px;
+	display:block;
+	max-width:312px;
+	text-align: left;/*height:25px;
+		white-space:nowrap;
+		text-overflow:ellipsis;
+		-o-text-overflow:ellipsis;
+		overflow:hidden;*/
+	}
+.chatPanel .mediaFullText .mediaImg {
+	width:255px;
+	padding:0;
+	margin:0 15px;
+	overflow:hidden;
+	max-height:164px;
+}
+.chatPanel .mediaFullText .mediaImg img {
+/*margin-top:17px;
+		position:absolute;*/
+}
+.chatPanel .mediaFullText .mediaContent {
+	padding:0 0 15px;
+	font-size:16px;
+	line-height: 1.5em;
+	text-align:left;
+	color:#222222;
+}
+.chatPanel .mediaFullText .mediaContentP {
+	margin:12px 15px 0px;
+	border-bottom:1px solid #D3D8DC;
+}
+.chatPanel .media .mediaHead .time {
+	margin:0px;
+	margin-top: 21px;
+	color:#8C8C8C;
+	background:none;
+	width:auto;
+	font-size:12px;
+}
+.chatPanel .media .mediaFooter {
+	-webkit-border-radius:0px 0px 12px 12px;
+	-moz-border-radius:0px 0px 12px 12px;
+	border-radius:0px 0px 12px 12px;
+	padding: 0 15px;
+}
+.chatPanel .media .mediaFooter a {
+	color:#222222;
+	font-size:16px;
+	padding:0;
+}
+.chatPanel .media .mediaFooter .mesgIcon {
+	margin:15px 3px 0px 0px;
+}
+.chatPanel .media a:hover {
+	cursor: pointer;
+}
+.chatPanel .media a:hover .mesgIcon {
+}
+.mediaContent a:hover {
+	background-color: #F6F6F6;
+}
+.mediaContent .last:hover {
+	-webkit-border-radius:0px 0px 12px 12px;
+	-moz-border-radius:0px 0px 12px 12px;
+	border-radius:0px 0px 12px 12px;
+	background-color: #F6F6F6;
+}
+.mediaFullText:hover {
+	background-color: #F6F6F6;
+	background:-webkit-gradient(linear,  left top, left bottom,  from(#F6F6F6), to(#F6F6F6));
+	background-image:-moz-linear-gradient(top, #F6F6F6 0%, #F6F6F6 100%);
+}
+.appmsg{position:relative;overflow:hidden;margin-bottom:20px;border:1px solid #d3d3d3;background-color:#fff;box-shadow:0 1px 0 rgba(0,0,0,0.1);-moz-box-shadow:0 1px 0 rgba(0,0,0,0.1);-webkit-box-shadow:0 1px 0 rgba(0,0,0,0.1);border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px}.appmsg_info{font-size:13px;line-height:20px;padding-bottom:6px}.appmsg_date{font-weight:400;font-style:normal}.appmsg_content{padding:0 14px;border-bottom:1px solid #d3d3d3;position:relative;*zoom:1}.appmsg_title{font-weight:400;font-style:normal;font-size:16px;padding-top:6px;line-height:28px;max-height:56px;overflow:hidden;white-space:pre-wrap;word-wrap:normal;word-break:normal}.appmsg_title a{display:block;color:#222}.appmsg_thumb_wrp{height:160px;overflow:hidden}.appmsg_thumb{width:100%}.appmsg_desc{padding:5px 0 10px;white-space:pre-wrap;word-wrap:normal;word-break:normal}.appmsg_opr{background-color:#f4f4f4}.appmsg_opr ul{overflow:hidden;*zoom:1}.appmsg_opr_item{float:left;line-height:44px;height:44px}.appmsg_opr_item a{display:block;border-right:1px solid #d3d3d3;box-shadow:1px 0 0 0 #fff;-moz-box-shadow:1px 0 0 0 #fff;-webkit-box-shadow:1px 0 0 0 #fff;text-align:center;line-height:20px;margin-top:12px}.appmsg_opr_item a.no_extra{border-right-width:0}.appmsg_item{*zoom:1;position:relative;padding:12px 14px;border-top:1px solid #d3d3d3}.appmsg_item:after{content:" ";display:block;height:0;clear:both}.appmsg_item .appmsg_title{line-height:24px;max-height:48px;overflow:hidden;*zoom:1;margin-top:14px}.appmsg_item .appmsg_thumb{float:right;width:78px;height:78px;margin-left:14px}.multi .appmsg_info{padding-top:4px;padding-left:14px;padding-right:14px}.multi .appmsg_content{padding:0}.multi .appmsg_title{font-size:14px;padding-top:0}.cover_appmsg_item{position:relative;margin:0 14px 14px}.cover_appmsg_item .appmsg_title{position:absolute;bottom:0;left:0;width:100%;background:rgba(0,0,0,0.6)!important;filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#99000000',endcolorstr = '#99000000')}.cover_appmsg_item .appmsg_title a{padding:0 4px;color:#fff}.appmsg_mask{display:none;position:absolute;top:0;left:0;width:100%;height:100%;background-color:#000;filter:alpha(opacity = 60);-moz-opacity:.6;-khtml-opacity:.6;opacity:.6;z-index:1}.appmsg .icon_appmsg_selected{display:none;position:absolute;top:50%;left:50%;margin-top:-30px;margin-left:-33px;line-height:999em;overflow:hidden;z-index:1}.dialog_wrp .appmsg:hover{cursor:pointer}.appmsg:hover .appmsg_mask{display:block}.appmsg.selected .appmsg_mask{display:block}.appmsg.selected .icon_appmsg_selected{display:inline-block}.icon_appmsg_selected{background:transparent url(/mpres/htmledition/images/icon/media/icon_appmsg_selected1ccaec.png) no-repeat 0 0;width:75px;height:60px;vertical-align:middle;display:inline-block}.appmsg_thumb.default{display:block;color:#c0c0c0;text-align:center;line-height:160px;font-weight:400;font-style:normal;background-color:#ececec;font-size:22px}.appmsg_item .appmsg_thumb.default{line-height:78px;font-size:16px}.appmsg_edit_mask{display:none;position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(229,229,229,0.85)!important;filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#d9e5e5e5',endcolorstr = '#d9e5e5e5');text-align:center}.appmsg_item .appmsg_edit_mask{line-height:102px}.cover_appmsg_item .appmsg_edit_mask{line-height:160px}.appmsg_edit_mask a{margin-left:8px;margin-right:8px}.editing .cover_appmsg_item:hover .appmsg_edit_mask,.editing .appmsg_item:hover .appmsg_edit_mask{display:block}.editing .appmsg_thumb{display:none}.editing .appmsg_thumb.default{display:block}.editing .has_thumb .appmsg_thumb{display:block}.editing .has_thumb .appmsg_thumb.default{display:none}.editing .appmsg_content{box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;border-bottom-width:0}.editing.multi .appmsg_content{border-bottom-width:1px}.appmsg_add{text-align:center;padding:12px 14px;line-height:72px}.appmsg_add a{display:block;font-size:0;text-decoration:none;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;border:3px dotted #b8b8b8;height:72px}.appmsg_add a i{*vertical-align:baseline}.tab_content .appmsg{width:320px}.appmsg_list{text-align:justify;text-justify:distribute-all-lines;text-align-last:justify;font-size:0;padding-top:38px;margin:0 46px;letter-spacing:-4px}.appmsg_list:after{display:inline-block;width:100%;height:0;font-size:0;margin:0;padding:0;overflow:hidden;content:"."}.appmsg_col{display:inline-block;*display:inline;*zoom:1;vertical-align:top;width:48%;font-size:14px;text-align:left;font-size:14px;letter-spacing:normal}.media_dialog.appmsg_list{position:relative;padding:28px 140px;height:340px;margin-bottom:0;overflow-y:scroll}.page_appmsg_edit .tool_area{clear:both;margin:0;padding:20px 0}.page_appmsg_edit .tool_bar{margin-left:0;margin-right:0}.page_appmsg_edit .appmsg{min-height:180px}.page_appmsg_edit .upload_file_box{top:22px;left:-12px;width:377px;border-color:#d3d3d3;border-radius:0;-moz-border-radius:0;-webkit-border-radius:0}.page_appmsg_edit .upload_preview img{max-width:100px;max-height:100px}.media_preview_area{float:left;width:320px;margin-right:14px}.media_edit_area{display:table-cell;vertical-align:top;float:none;width:auto;*display:block;*zoom:1}.media_edit_area:after{content:" . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ";visibility:hidden;clear:both;height:0!important;display:block;line-height:0}.edui_editor_wrp{position:relative;z-index:0}.appmsg_edit_item{padding-bottom:1em}.editor_extra_info{text-align:right;padding-top:6px}.editor_extra_info a{color:#a3a3a3}.editor_extra_info a:hover{color:#2e7dc6}
+</style>
+<form class="reply_form" method="post" action="{weimicms::U('Areply/advanceadd',array('token'=>$_GET['token']))}"  target="_top">
+<div class="content">
+<div class="cLineB">
+<h4><if condition="$set.id neq ''">编辑<else />添加</if>分时段关注自动回复</h4>
+<a class="right btnGrayS vm" style="margin-top:-27px" href="{weimicms::U('Areply/advanceindex',array('token'=>$_GET['token']))}">返回列表</a>
+</div>
+<div style="background:#fefbe4;border:1px solid #f3ecb9;color:#993300;padding:10px;margin-top:10px;font-size:12px;">温馨提示：1.可以给多个时间段同时添加相同内容，但编辑时是根据单个时间段分别编辑的。<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+2.已有卡券只列出卡券类型前面有'(微)'字样标示的并且库存大于0的卡券。
+</div>
+<div class="msgWrap bgfc">
+<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+<tbody class="timerange">
+  <th valign="top"><span class="red">*</span>时段：</th>
+  <td><input type="input" class="px" id="start_time_1" value="{weimicms:$set.start_time}" onClick="WdatePicker({dateFmt:'HH:mm'})" name="start_time[]"/>
+	到
+	<input type="input" class="px" id="end_time_1" value="{weimicms:$set.end_time}" name="end_time[]" onClick="WdatePicker({dateFmt:'HH:mm'})"/><if condition="$set.id eq ''"><a id="addTime" class="btnGreen" href="javascript:void(0);">添加其他时段</a></if>
+  	</td> 
+</tr>
+</tbody>
+<tr>
+  <th valign="top"><span class="red">*</span>回复类型：</th>
+  <td>
+	<input type="radio" name="reply_type" id="reply_type_1" value='1'<if condition="$set.reply_type eq 1 || $set.reply_type eq ''"> checked </if>><label for="reply_type_1">单图文</label>&nbsp;
+	<input type="radio" name="reply_type" id="reply_type_5" value='5'<if condition="$set.reply_type eq 5"> checked </if>><label for="reply_type_5">多图文</label>&nbsp;
+	<input type="radio" name="reply_type" id="reply_type_2" value="2" <if condition="$set.reply_type eq 2"> checked </if>><label for="reply_type_2">文本回复</label>&nbsp;
+	<input type="radio" name="reply_type" id="reply_type_3" value="3" title="只有认证服务号才能选择此项" <if condition="$set.reply_type eq 3"> checked </if> <if condition="$winxintype neq 3"> disabled="disabled"</if>><label for="reply_type_3" title="只有认证服务号才能选择此项">卡券</label>&nbsp;<input type="radio" name="reply_type" id="reply_type_4" value="4" <if condition="$set.reply_type eq 4"> checked </if> <if condition="$winxintype neq 3"> title="只有认证服务号才能选择此项" disabled="disabled"</if> ><label for="reply_type_4" <if condition="$winxintype neq 3">title="只有认证服务号才能选择此项"</if>>普通红包</label>&nbsp;
+	<input type="radio" name="reply_type" id="reply_type_6" value="6"<if condition="$set.reply_type eq 6"> checked </if> <if condition="$winxintype neq 3"> title="只有认证服务号才能选择此项" disabled="disabled"</if> ><label for="reply_type_6" <if condition="$winxintype neq 3">title="只有认证服务号才能选择此项" </if>>裂变红包</label>&nbsp;
+	<input type="radio" name="reply_type" id="reply_type_7" value='7' <if condition="$set.reply_type eq 7"> checked </if>><label for="reply_type_7">外链图文</label>&nbsp;<if condition="$winxintype neq 3"><br /><span style="color:red;">(只有认证服务号才能选择卡券、红包类型)</span></if>
+  </td>
+</tr>
+<tbody id="img" style="display: none;">
+<tr>
+ <th valign="top">&nbsp;</th>
+ <td>
+<a class="btnGreen" style="display:none;" href="###" onclick="selectImg()">选择已有图文</a>
+</td>
+</tr>
+<tr>
+ <th valign="top"><span class="red">*</span>回复标题：</th>
+<td><input type="text" name="img_title" value="{weimicms:$end_img.title}" id="img_title" class="px" style="width:400px;"/></td>
+</tr>
+<tr>
+  <th valign="top">回复简介：</th>
+  <td><textarea type="input" class="px" id="reply_desc" name="reply_desc" style="width: 400px; height: 100px;">{weimicms:$end_img.text}</textarea></td> 	
+</tr>
+<tr>
+  <th valign="top">回复内容：</th>
+  <td><textarea type="input" class="px" id="reply_content" name="reply_content" style="width: 400px; height: 250px;">{weimicms:$end_img.info}</textarea></td> 	
+</tr>
+<tr>
+  <th valign="top"><span class="red">*</span>回复图片：</th>
+  <td>  <if condition="$end_img.pic neq ''">
+	<img class="thumb_img" id="pic1_src" src="{weimicms:$end_img.pic}" style="max-height:100px;max-width: 200px;">
+	<else />
+	<img class="thumb_img" id="pic1_src" src="{weimicms:$staticPath}/tpl/static/images/reply.jpg" style="max-height:100px;max-width: 200px;">
+  </if>
+  <input type="text" name="reply_pic" value='<if condition="$end_img[\'pic\'] neq ''">{weimicms:$end_img.pic}<else/>{weimicms:$staticPath}/tpl/static/images/reply.jpg</if>' id="pic1" class="px" style="width:200px;" >
+  <a href="###" onclick="upyunPicUpload('pic1',365,158,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('pic1')">预览</a>   &nbsp; 建议图片尺寸365*158，图片大小不超过300K</td> 	
+</tr>
+</tbody>
+<tbody id="multi_reply" style="display: none;">
+<tr>
+ <th valign="top">&nbsp;</th>
+ <td>
+<a class="btnGreen" style="display:none;" href="###" onclick="addImg()">添加编辑图文</a>
+</td>
+</tr>
+<TR>
+  <TH valign="top"><span class="red">*</span><label for="keyword">图文消息：</label></TH>
+  <TD> <a href="###" onclick="addImgMessage()" class="a_choose">选择图文消息</a>&nbsp;&nbsp;<a href="###" onclick="clearMessage()" class="a_clear">清空重选</a>	 
+<script>
+  function addImgMessage(){
+	var reply_type = $("input[name=reply_type]:checked").val();
+	var id = '{weimicms:$set.id}';
+	if(reply_type == '1' && id != ""){
+		clearMessage();
+	}
+	art.dialog.data('titledom', 'titledom');
+	art.dialog.data('imgids', 'imgids');
+	art.dialog.data('imgtitle', 'imgtitle');
+	art.dialog.data('multinews', 'multinews');
+	art.dialog.data('singlenews', 'singlenews');
+	
+	art.dialog.data('js_appmsg_preview', 'js_appmsg_preview');
+	art.dialog.data('multione', 'multione');
+	art.dialog.open('?g=User&m=Areply&a=select_multiReply&reply_type='+reply_type,{lock:true,title:'选择图文消息',width:600,height:400,yesText:'关闭',background: '#000',opacity: 0.45});
+}
+ function clearMessage(){
+ 	document.getElementById('titledom').innerHTML='<div class="mediaPanel"><div class="mediaHead"><span class="title" id="zbt">图文消息预览</span><span class="time"><?php echo date('Y-m-d',time());?></span><div class="clr"></div></div><div class="mediaImg"><img id="suicaipic1" src="{weimicms:$staticPath}/tpl/static/message/oid.jpg"></div><div class="mediaContent mediaContentP"><p id="zinfo">消息简介</p></div><div class="mediaFooter"><span class="mesgIcon right"></span><span style="line-height:50px;" class="left">查看全文</span><div class="clr"></div></div></div>';
+ 	document.getElementById('imgids').value='';
+	document.getElementById('imgtitle').value='';
+ 	document.getElementById('js_appmsg_preview').innerHTML='<div class="appmsg_info"><em class="appmsg_date"></em></div><div class="cover_appmsg_item" id="multione"></div>';
+ 	document.getElementById('multinews').style.display='none';
+ 	document.getElementById('singlenews').style.display='';
+}
+</script> 
+<if condition="$set.id eq ''">
+<div class="chatPanel" style="width:280px;" id="singlenews">
+<div un="item_1741035" class="chatItem you"> 
+<div class="media mediaFullText" id="titledom">
+<div class="mediaPanel">
+<div class="mediaHead"><span class="title" id="zbt">图文消息预览</span><span class="time"><?php echo date('Y-m-d',time());?></span>
+<div class="clr"></div>
+</div>
+<div class="mediaImg"><img id="suicaipic1" src="{weimicms:$staticPath}/tpl/static/message/oid.jpg"></div>
+<div class="mediaContent mediaContentP">
+<p id="zinfo">消息简介</p>
+</div>
+<div class="mediaFooter">
+<span class="mesgIcon right"></span><span style="line-height:50px;" class="left">查看全文</span>
+<div class="clr"></div>
+</div>
+</div>
+</div>
+</div>
+</div>  
+<div style="clear:both"></div>
+ <input type="hidden" class="px" id="imgids" value="" name="imgids" style="width:300px" >
+ <input type="hidden" class="px" id="imgtitle" value="" name="imgtitle" style="width:300px" >
+ <br>
+ <div class="media_preview_area" id="multinews" style="display:none">
+        <div class="appmsg multi editing">
+    	    <div id="js_appmsg_preview" class="appmsg_content">
+       <div id="appmsgItem1" data-fileid="" data-id="1" class="js_appmsg_item ">
+    
+        <div class="appmsg_info">
+            <em class="appmsg_date"></em>
+        </div>
+        <div class="cover_appmsg_item" id="multione"></div>
+</div>
+</div></div>
+</div>	
+<else />
+<?php if(!empty($end_img)){ ?>
+<br /><br /><div class="chatPanel" style="width:280px;" id="singlenews">
+<div un="item_1741035" class="chatItem you"> 
+
+<div class="media mediaFullText" id="titledom">
+
+</div>
+
+</div>
+</div>  
+<div style="margin-right: 194px;z-index: 999;margin-top: -14px;" id="multinews" class="media_preview_area">
+        <div class="appmsg multi editing">
+    	    <div class="appmsg_content" id="js_appmsg_preview"><div class="appmsg_info"><em class="appmsg_date"></em></div><div id="multione" class="cover_appmsg_item"> <h4 class="appmsg_title"><a target="_blank" onclick="return false;" href="javascript:void(0);">{weimicms:$end_img.title}</a></h4><div class="appmsg_thumb_wrp"><img src="{weimicms:$end_img.pic}" class="js_appmsg_thumb appmsg_thumb" style="border:1px solid #ddd"><i style="background:url({weimicms:$end_img.pic});background-size:100% 100%" class="appmsg_thumb default">&nbsp;</i></div></div>
+			<weimicmsif where="$mlist">
+			<volist name="mlist" id="img">
+			<div class="appmsg_item js_appmsg_item " data-id="4" data-fileid="" id="appmsgItem4"><img src="{weimicms:$img.pic}" class="js_appmsg_thumb appmsg_thumb"><i style="background:url({weimicms:$img.pic});background-size:100% 100%" class="appmsg_thumb default">&nbsp;</i><h4 class="appmsg_title"><a target="_blank" href="javascript:void(0);" onclick="return false;">{weimicms:$img.title}</a></h4></div>
+			</volist>
+			</weimicmsif>
+			</div></div>
+	</div>
+	 <input type="hidden" class="px" id="imgids" value="{weimicms:$set.relevance_id}" name="imgids" style="width:300px" >
+	  <input type="hidden" class="px" id="imgtitle" value="{weimicms:$set.title}" name="imgtitle" style="width:300px" >
+<?php }else{ ?>
+<div class="chatPanel" style="width:280px;" id="singlenews">
+<div un="item_1741035" class="chatItem you"> 
+<div class="media mediaFullText" id="titledom">
+<div class="mediaPanel">
+<div class="mediaHead"><span class="title" id="zbt">图文消息预览</span><span class="time"><?php echo date('Y-m-d',time());?></span>
+<div class="clr"></div>
+</div>
+<div class="mediaImg"><img id="suicaipic1" src="{weimicms:$staticPath}/tpl/static/message/oid.jpg"></div>
+<div class="mediaContent mediaContentP">
+<p id="zinfo">消息简介</p>
+</div>
+<div class="mediaFooter">
+<span class="mesgIcon right"></span><span style="line-height:50px;" class="left">查看全文</span>
+<div class="clr"></div>
+</div>
+</div>
+</div>
+</div>
+</div>  
+<div style="clear:both"></div>
+ <input type="hidden" class="px" id="imgids" value="" name="imgids" style="width:300px" >
+ <input type="hidden" class="px" id="imgtitle" value="" name="imgtitle" style="width:300px" >
+ <br>
+ <div class="media_preview_area" id="multinews" style="display:none">
+        <div class="appmsg multi editing">
+    	    <div id="js_appmsg_preview" class="appmsg_content">
+       <div id="appmsgItem1" data-fileid="" data-id="1" class="js_appmsg_item ">
+    
+        <div class="appmsg_info">
+            <em class="appmsg_date"></em>
+        </div>
+        <div class="cover_appmsg_item" id="multione"></div>
+</div>
+</div></div>
+</div>	
+<?php } ?>
+</if>	    
+  </TD>
+  <TD>&nbsp;</TD>
+</TR>
+</tbody>
+<tbody id="card" style="display: none;">
+<tr>
+	<th>添加卡券：</th>
+	<td>
+		<input type="hidden" name="relevance_id_card" id="card_id" value="<if condition='$set.reply_type eq 3'>{weimicms:$set.relevance_id}</if>">	
+		<input type="text" name="relevance_name_card" id="card_name" value="<if condition='$set.reply_type eq 3'>{weimicms:$set.relevance_name}</if>" class="px" style="width:150px;" readonly />	
+		<a id="select_card" class="a_choose" href="javascript:void(0);">选择已有卡券</a><if condition="$set.id neq '' && $set.relevance_id neq ''"><a class="a_choose" href="{weimicms::U('Member_card/coupons_save',array('token'=>$token,'itemid'=>$set['relevance_id']))}" target="_blank">编辑卡券</a> <else /><a class="a_choose" href="{weimicms::U('Member_card/coupons',array('token'=>$token))}" target="_blank">添加新的卡券</a></if>
+	</td>  
+</tr>
+<tr>
+	<th>是否可以重复领取：</th>
+	<td><input type="radio" name="isrepeat_card" id="isrepeat_card_1" value='1'<if condition="$set.isrepeat eq 1 || $set.isrepeat eq 0"> checked </if>><label for="isrepeat_card_1">是</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="isrepeat_card" id="isrepeat_card_2" value='2' <if condition="$set.isrepeat eq 2"> checked </if>><label for="isrepeat_card_2">否</label></td>
+</tr>
+<tr id="times_card">
+ <th valign="top"><span class="red">*</span>每天领取次数：</th>
+<td><input type="text" name="times_card" value="<if condition='$set.reply_type eq 3'>{weimicms:$set.times}</if>" class="px" style="width:150px;"/></td>
+</tr>
+</tbody>
+<tbody id="hongbao_pt" style="display: none;">
+<tr>
+	<th>添加普通红包：</th>
+	<td>
+		<input type="hidden" name="relevance_id_hongbao_pt" id="hongbao_id_pt" value="<if condition='$set.reply_type eq 4'>{weimicms:$set.relevance_id}</if>">	
+		<input type="text" name="relevance_name_hongbao_pt" id="hongbao_name_pt" value="<if condition='$set.reply_type eq 4'>{weimicms:$set.relevance_name}</if>" class="px" style="width:150px;" readonly />	
+		<a id="select_hongbao_pt" class="a_choose" href="javascript:void(0);">选择已有的普通红包</a> <if condition="$set.id neq '' && $set.relevance_id neq ''"><a class="a_choose" href="{weimicms::U('DirectHongbao/hongbao_add',array('token'=>$token,'id'=>$set['relevance_id'],'send_type'=>4,'hb_type'=>1))}" target="_blank">编辑普通红包</a><else /><a class="a_choose" href="{weimicms::U('DirectHongbao/hongbao_add',array('token'=>$token,'send_type'=>4,'hb_type'=>1))}" target="_blank">添加新的普通红包</a></if>
+	</td>
+</tr>
+<tr>
+	<th>是否可以重复领取：</th>
+	<td><input type="radio" name="isrepeat_pt" id="isrepeat_pt_1" value='1'<if condition="$set.isrepeat eq 1 || $set.isrepeat eq 0"> checked </if>><label for="isrepeat_pt_1">是</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="isrepeat_pt" id="isrepeat_pt_2" value='2' <if condition="$set.isrepeat eq 2"> checked </if>><label for="isrepeat_pt_2">否</label></td>
+</tr>
+<tr id="times_pt">
+ <th valign="top"><span class="red">*</span>每天领取次数：</th>
+<td><input type="text" name="times_pt" value="<if condition='$set.reply_type eq 4'>{weimicms:$set.times}</if>" class="px" style="width:150px;"/></td>
+</tr>
+</tbody>
+<tbody id="hongbao_lb" style="display: none;">
+<tr>
+	<th>添加裂变红包：</th>
+	<td>
+		<input type="hidden" name="relevance_id_hongbao_lb" id="hongbao_id_lb" value="<if condition='$set.reply_type eq 6'>{weimicms:$set.relevance_id}</if>">	
+		<input type="text" name="relevance_name_hongbao_lb" id="hongbao_name_lb" value="<if condition='$set.reply_type eq 6'>{weimicms:$set.relevance_name}</if>" class="px" style="width:150px;" readonly />	
+		<a id="select_hongbao_lb" class="a_choose" href="javascript:void(0);">选择已有的裂变红包</a> <if condition="$set.id neq '' && $set.relevance_id neq ''"><a class="a_choose" href="{weimicms::U('DirectHongbao/hongbao_add',array('token'=>$token,'id'=>$set['relevance_id'],'send_type'=>4,'hb_type'=>2))}" target="_blank">编辑裂变红包</a><else /><a class="a_choose" href="{weimicms::U('DirectHongbao/hongbao_add',array('token'=>$token,'send_type'=>4,'hb_type'=>2))}" target="_blank">添加新的裂变红包</a></if>
+	</td>
+</tr>
+<tr>
+	<th>是否可以重复领取：</th>
+	<td><input type="radio" name="isrepeat_lb" id="isrepeat_lb_1" value='1'<if condition="$set.isrepeat eq 1 || $set.isrepeat eq 0"> checked </if>><label for="isrepeat_lb_1">是</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="isrepeat_lb" id="isrepeat_lb_2" value='2' <if condition="$set.isrepeat eq 2"> checked </if>><label for="isrepeat_lb_2">否</label></td>
+</tr>
+<tr id="times_lb">
+ <th valign="top"><span class="red">*</span>每天领取次数：</th>
+<td><input type="text" name="times_lb" value="<if condition='$set.reply_type eq 6'>{weimicms:$set.times}</if>" class="px" style="width:150px;"/></td>
+</tr>
+</tbody>
+<tbody id="action" style="display: none;">
+<tr>
+ <th valign="top"><span class="red">*</span>回复标题：</th>
+<td><input type="text" name="img_title_action" value="{weimicms:$end_img.title}" id="img_title_action" class="px" style="width:400px;"/></td>
+</tr>
+<tr>
+  <th valign="top">回复简介：</th>
+  <td><textarea type="input" class="px" id="reply_desc_action" name="reply_desc_action" style="width: 400px; height: 100px;">{weimicms:$end_img.text}</textarea></td> 	
+</tr>
+<tr>
+  <th valign="top"><span class="red">*</span>回复图片：</th>
+  <td>  <if condition="$end_img.pic neq ''">
+	<img class="thumb_img" id="pic2_src" src="{weimicms:$end_img.pic}" style="max-height:100px;max-width: 200px;">
+	<else />
+	<img class="thumb_img" id="pic2_src" src="{weimicms:$staticPath}/tpl/static/images/reply.jpg" style="max-height:100px;max-width: 200px;">
+  </if>
+  <input type="text" name="reply_pic_action" value='<if condition="$end_img[\'pic\'] neq ''">{weimicms:$end_img.pic}<else/>{weimicms:$staticPath}/tpl/static/images/reply.jpg</if>' id="pic2" class="px" style="width:200px;" >
+  <a href="###" onclick="upyunPicUpload('pic2',365,158,'{weimicms:$token}')" class="a_upload">上传</a> <a href="###" onclick="viewImg('pic2')">预览</a>   &nbsp; 建议图片尺寸365*158，图片大小不超过300K</td> 	
+</tr>
+<tr>
+  <th valign="top"><span class="red">*</span>图文外链地址:</th>
+  <td><input type="input" class="px" id="jump_url" value="{weimicms:$end_img.url}" name="jump_url" style="width:406px"> <if condition="session('isQcloud') neq true"><a href="###" onclick="addLink('jump_url',0)" class="a_choose">从功能库添加</a></if></td>
+</tr>
+</tbody>
+<tbody id="text_reply_title" style="display:none;">
+<tr>
+  <th valign="top"><span class="red">*</span>文本回复内容：</th>
+  <td>
+  <textarea class="px" name="text_title" id="text_title" style="width:400px;height:100px;">{weimicms:$set.title}</textarea>
+  <br>
+  <span style=""><span style="color:red;">认证服务号</span>可以添加变量{{微信昵称}},尊敬的{{微信昵称}},欢迎您的关注。<br>可以添加链接，范例如右边所示。<br>点击笑脸可以添加表情。内容不要超过800字。</span>
+  <div class="right" style="margin-right:20px"  >
+  		<ul>
+  			<li class="biaoqing"><span>表情</span>
+  				<ul>
+  					<li><img src="{weimicms::RES}/images/face/0.gif" alt="微笑" onclick="jsbq('微笑')"></li>
+  					<li><img src="{weimicms::RES}/images/face/1.gif" alt="撇嘴" onclick="jsbq('撇嘴')"></li>
+  					<li><img src="{weimicms::RES}/images/face/2.gif" alt="色" onclick="jsbq('色')"></li>
+  					<li><img src="{weimicms::RES}/images/face/3.gif" alt="发呆" onclick="jsbq('发呆')"></li>
+  					<li><img src="{weimicms::RES}/images/face/4.gif" alt="得意" onclick="jsbq('得意')"></li>
+  					<li><img src="{weimicms::RES}/images/face/5.gif" alt="流泪" onclick="jsbq('流泪')"></li>
+  					<li><img src="{weimicms::RES}/images/face/6.gif" alt="害羞" onclick="jsbq('害羞')"></li>
+  					<li><img src="{weimicms::RES}/images/face/7.gif" alt="闭嘴" onclick="jsbq('闭嘴')"></li>
+  					<li><img src="{weimicms::RES}/images/face/8.gif" alt="睡" onclick="jsbq('睡')"></li>
+  					<li><img src="{weimicms::RES}/images/face/9.gif" alt="大哭" onclick="jsbq('大哭')"></li>
+  					<li><img src="{weimicms::RES}/images/face/10.gif" alt="尴尬" onclick="jsbq('尴尬')"></li>
+  					<li><img src="{weimicms::RES}/images/face/11.gif" alt="发怒" onclick="jsbq('发怒')"></li>
+  					<li><img src="{weimicms::RES}/images/face/12.gif" alt="调皮" onclick="jsbq('调皮')"></li>
+  					<li><img src="{weimicms::RES}/images/face/13.gif" alt="呲牙" onclick="jsbq('呲牙')"></li>
+  					<li><img src="{weimicms::RES}/images/face/14.gif" alt="惊讶" onclick="jsbq('惊讶')"></li>
+  					<li><img src="{weimicms::RES}/images/face/15.gif" alt="难过" onclick="jsbq('难过')"></li>
+  					<li><img src="{weimicms::RES}/images/face/16.gif" alt="酷" onclick="jsbq('酷')"></li>
+  					<li><img src="{weimicms::RES}/images/face/17.gif" alt="冷汗" onclick="jsbq('冷汗')"></li>
+  					<li><img src="{weimicms::RES}/images/face/18.gif" alt="抓狂" onclick="jsbq('抓狂')"></li>
+  					<li><img src="{weimicms::RES}/images/face/19.gif" alt="吐" onclick="jsbq('吐')"></li>
+  					<li><img src="{weimicms::RES}/images/face/20.gif" alt="偷笑" onclick="jsbq('偷笑')"></li>
+  					<li><img src="{weimicms::RES}/images/face/21.gif" alt="可爱" onclick="jsbq('可爱')"></li>
+  					<li><img src="{weimicms::RES}/images/face/22.gif" alt="白眼" onclick="jsbq('白眼')"></li>
+  					<li><img src="{weimicms::RES}/images/face/23.gif" alt="傲慢" onclick="jsbq('傲慢')"></li>
+  					<li><img src="{weimicms::RES}/images/face/24.gif" alt="饥饿" onclick="jsbq('饥饿')"></li>
+  					<li><img src="{weimicms::RES}/images/face/25.gif" alt="困" onclick="jsbq('困')"></li>
+  					<li><img src="{weimicms::RES}/images/face/26.gif" alt="惊恐" onclick="jsbq('惊恐')"></li>
+  					<li><img src="{weimicms::RES}/images/face/27.gif" alt="流汗" onclick="jsbq('流汗')"></li>
+  					<li><img src="{weimicms::RES}/images/face/28.gif" alt="憨笑" onclick="jsbq('憨笑')"></li>
+  					<li><img src="{weimicms::RES}/images/face/29.gif" alt="大兵" onclick="jsbq('大兵')"></li>
+  					<li><img src="{weimicms::RES}/images/face/30.gif" alt="奋斗" onclick="jsbq('奋斗')"></li>
+  					<li><img src="{weimicms::RES}/images/face/31.gif" alt="咒骂" onclick="jsbq('咒骂')"></li>
+  					<li><img src="{weimicms::RES}/images/face/32.gif" alt="疑问" onclick="jsbq('疑问')"></li>
+  					<li><img src="{weimicms::RES}/images/face/33.gif" alt="嘘" onclick="jsbq('嘘')"></li>
+  					<li><img src="{weimicms::RES}/images/face/34.gif" alt="晕" onclick="jsbq('晕')"></li>
+  					<li><img src="{weimicms::RES}/images/face/35.gif" alt="折磨" onclick="jsbq('折磨')"></li>
+  					<li><img src="{weimicms::RES}/images/face/36.gif" alt="衰" onclick="jsbq('衰')"></li>
+  					<li><img src="{weimicms::RES}/images/face/37.gif" alt="骷髅" onclick="jsbq('骷髅')"></li>
+  					<li><img src="{weimicms::RES}/images/face/38.gif" alt="敲打" onclick="jsbq('敲打')"></li>
+  					<li><img src="{weimicms::RES}/images/face/39.gif" alt="再见" onclick="jsbq('再见')"></li>
+  					<li><img src="{weimicms::RES}/images/face/40.gif" alt="擦汗" onclick="jsbq('擦汗')"></li>
+  					<li><img src="{weimicms::RES}/images/face/41.gif" alt="抠鼻" onclick="jsbq('抠鼻')"></li>
+  					<li><img src="{weimicms::RES}/images/face/42.gif" alt="鼓掌" onclick="jsbq('鼓掌')"></li>
+  					<li><img src="{weimicms::RES}/images/face/43.gif" alt="糗大了" onclick="jsbq('糗大了')"></li>
+  					<li><img src="{weimicms::RES}/images/face/44.gif" alt="坏笑" onclick="jsbq('坏笑')"></li>
+  					<li><img src="{weimicms::RES}/images/face/45.gif" alt="左哼哼" onclick="jsbq('左哼哼')"></li>
+  					<li><img src="{weimicms::RES}/images/face/46.gif" alt="右哼哼" onclick="jsbq('右哼哼')"></li>
+  					<li><img src="{weimicms::RES}/images/face/47.gif" alt="哈欠" onclick="jsbq('哈欠')"></li>
+  					<li><img src="{weimicms::RES}/images/face/48.gif" alt="鄙视" onclick="jsbq('鄙视')"></li>
+  					<li><img src="{weimicms::RES}/images/face/49.gif" alt="委屈" onclick="jsbq('委屈')"></li>
+  					<li><img src="{weimicms::RES}/images/face/50.gif" alt="快哭了" onclick="jsbq('快哭了')"></li>
+  					<li><img src="{weimicms::RES}/images/face/51.gif" alt="阴险" onclick="jsbq('阴险')"></li>
+  					<li><img src="{weimicms::RES}/images/face/52.gif" alt="亲亲" onclick="jsbq('亲亲')"></li>
+  					<li><img src="{weimicms::RES}/images/face/53.gif" alt="吓" onclick="jsbq('吓')"></li>
+  					<li><img src="{weimicms::RES}/images/face/54.gif" alt="可怜" onclick="jsbq('可怜')"></li>
+  					<li><img src="{weimicms::RES}/images/face/55.gif" alt="菜刀" onclick="jsbq('菜刀')"></li>
+  					<li><img src="{weimicms::RES}/images/face/56.gif" alt="西瓜" onclick="jsbq('西瓜')"></li>
+  					<li><img src="{weimicms::RES}/images/face/57.gif" alt="啤酒" onclick="jsbq('啤酒')"></li>
+  					<li><img src="{weimicms::RES}/images/face/58.gif" alt="篮球" onclick="jsbq('篮球')"></li>
+  					<li><img src="{weimicms::RES}/images/face/59.gif" alt="乒乓" onclick="jsbq('乒乓')"></li>
+  					<li><img src="{weimicms::RES}/images/face/60.gif" alt="咖啡" onclick="jsbq('咖啡')"></li>
+  					<li><img src="{weimicms::RES}/images/face/61.gif" alt="饭" onclick="jsbq('饭')"></li>
+  					<li><img src="{weimicms::RES}/images/face/62.gif" alt="猪头" onclick="jsbq('猪头')"></li>
+  					<li><img src="{weimicms::RES}/images/face/63.gif" alt="玫瑰" onclick="jsbq('玫瑰')"></li>
+  					<li><img src="{weimicms::RES}/images/face/64.gif" alt="凋谢" onclick="jsbq('凋谢')"></li>
+  					<li><img src="{weimicms::RES}/images/face/65.gif" alt="示爱" onclick="jsbq('示爱')"></li>
+  					<li><img src="{weimicms::RES}/images/face/66.gif" alt="爱心" onclick="jsbq('爱心')"></li>
+  					<li><img src="{weimicms::RES}/images/face/67.gif" alt="心碎" onclick="jsbq('心碎')"></li>
+  					<li><img src="{weimicms::RES}/images/face/68.gif" alt="蛋糕" onclick="jsbq('蛋糕')"></li>
+  					<li><img src="{weimicms::RES}/images/face/69.gif" alt="闪电" onclick="jsbq('闪电')"></li>
+  					<li><img src="{weimicms::RES}/images/face/70.gif" alt="炸弹" onclick="jsbq('炸弹')"></li>
+  					<li><img src="{weimicms::RES}/images/face/71.gif" alt="刀" onclick="jsbq('刀')"></li>
+  					<li><img src="{weimicms::RES}/images/face/72.gif" alt="足球" onclick="jsbq('足球')"></li>
+  					<li><img src="{weimicms::RES}/images/face/73.gif" alt="瓢虫" onclick="jsbq('瓢虫')"></li>
+  					<li><img src="{weimicms::RES}/images/face/74.gif" alt="便便" onclick="jsbq('便便')"></li>
+  					<li><img src="{weimicms::RES}/images/face/75.gif" alt="月亮" onclick="jsbq('月亮')"></li>
+  					<li><img src="{weimicms::RES}/images/face/76.gif" alt="太阳" onclick="jsbq('太阳')"></li>
+  					<li><img src="{weimicms::RES}/images/face/77.gif" alt="礼物" onclick="jsbq('礼物')"></li>
+  					<li><img src="{weimicms::RES}/images/face/78.gif" alt="拥抱" onclick="jsbq('拥抱')"></li>
+  					<li><img src="{weimicms::RES}/images/face/79.gif" alt="强" onclick="jsbq('强')"></li>
+  					<li><img src="{weimicms::RES}/images/face/80.gif" alt="弱" onclick="jsbq('弱')"></li>
+  					<li><img src="{weimicms::RES}/images/face/81.gif" alt="握手" onclick="jsbq('握手')"></li>
+  					<li><img src="{weimicms::RES}/images/face/82.gif" alt="胜利" onclick="jsbq('胜利')"></li>
+  					<li><img src="{weimicms::RES}/images/face/83.gif" alt="抱拳" onclick="jsbq('抱拳')"></li>
+  					<li><img src="{weimicms::RES}/images/face/84.gif" alt="勾引" onclick="jsbq('勾引')"></li>
+  					<li><img src="{weimicms::RES}/images/face/85.gif" alt="拳头" onclick="jsbq('拳头')"></li>
+  					<li><img src="{weimicms::RES}/images/face/86.gif" alt="差劲" onclick="jsbq('差劲')"></li>
+  					<li><img src="{weimicms::RES}/images/face/87.gif" alt="爱你" onclick="jsbq('爱你')"></li>
+  					<li><img src="{weimicms::RES}/images/face/88.gif" alt="NO" onclick="jsbq('NO')"></li>
+  					<li><img src="{weimicms::RES}/images/face/89.gif" alt="OK" onclick="jsbq('OK')"></li>
+  					<li><img src="{weimicms::RES}/images/face/90.gif" alt="爱情" onclick="jsbq('爱情')"></li>
+  					<li><img src="{weimicms::RES}/images/face/91.gif" alt="飞吻" onclick="jsbq('飞吻')"></li>
+  					<li><img src="{weimicms::RES}/images/face/92.gif" alt="跳跳" onclick="jsbq('跳跳')"></li>
+  					<li><img src="{weimicms::RES}/images/face/93.gif" alt="发抖" onclick="jsbq('发抖')"></li>
+  					<li><img src="{weimicms::RES}/images/face/94.gif" alt="怄火" onclick="jsbq('怄火')"></li>
+  					<li><img src="{weimicms::RES}/images/face/95.gif" alt="转圈" onclick="jsbq('转圈')"></li>
+  					<li><img src="{weimicms::RES}/images/face/96.gif" alt="磕头" onclick="jsbq('磕头')"></li>
+  					<li><img src="{weimicms::RES}/images/face/97.gif" alt="回头" onclick="jsbq('回头')"></li>
+  					<li><img src="{weimicms::RES}/images/face/98.gif" alt="跳绳" onclick="jsbq('跳绳')"></li>
+  					<li><img src="{weimicms::RES}/images/face/99.gif" alt="挥手" onclick="jsbq('挥手')"></li>
+  					<li><img src="{weimicms::RES}/images/face/100.gif" alt="激动" onclick="jsbq('激动')"></li>
+  					<li><img src="{weimicms::RES}/images/face/101.gif" alt="街舞" onclick="jsbq('街舞')"></li>
+  					<li><img src="{weimicms::RES}/images/face/102.gif" alt="献吻" onclick="jsbq('献吻')"></li>
+  					<li><img src="{weimicms::RES}/images/face/103.gif" alt="左太极" onclick="jsbq('左太极')"></li>
+  					</ul>
+  				</li>
+  			</ul>
+  		</div>
+  </td>
+  <td valign="top" rowspan="2"><div class="zdhuifu" style="width:320px;">
+  	<h4 class="red">文字加超链接范例：</h4>
+<div> &lt;a&nbsp;href="http://www.example.com/index.php?id=1&token=123456789"&gt;3G首页&lt;/a&gt; </div>
+<br>	
+效果如下：<br>
+<img alt="文字超链接效果" src="{weimicms:$staticPath}/tpl/User/default/common/images/chaolianjie.jpg">	
+</div></td>
+</tr>
+</tbody>
+<tr>
+	<th></th>
+	<td>
+	<input type="hidden" name="id" value="{weimicms:$set.id}">
+	<input type="hidden" name="original_id" value="{weimicms:$set.id}">
+	<input type="hidden" name="relevance_id" value="{weimicms:$set.relevance_id}">
+	<input type="hidden" name="r_type" value='{weimicms:$r_type}'>
+	<button type="submit" name="button" id="reply_submit" class="btnGreen">保存</button>　
+	<a href="" class="btnGray vm">取消</a>
+</td>
+</tr>
+</tbody>
+</table>
+ </div>
+ </div>
+</form>
+<script type="text/javascript">
+var diyTool   = "{weimicms::U('Img/diyTool')}";//素材页面   items 添加diyTool
+var editor;
+KindEditor.ready(function(K) {
+editor = K.create('#reply_content', {
+filterMode: false,
+resizeType : 1,
+allowPreviewEmoticons : false,
+allowImageUpload : true,
+postParams:{'PHPSESSID':"<?php echo session_id();?>"},uploadJson : '/index.php?g=User&m=Upyun&a=kindedtiropic',
+items : [<include file="Public:editorToolbar" />]
+});
+});
+$(function(){
+	var reply_type =  "{weimicms:$_GET['reply_type']}" ? "{weimicms:$_GET['reply_type']}" : $("input[name=reply_type]:checked").val();
+	$("#img").hide();
+	$("#text_reply_title").hide();
+	$("#multi_reply").hide();
+	$("#card").hide();
+	$("#hongbao_pt").hide();
+	$("#hongbao_lb").hide();
+	$("#action").hide();
+	$("#times_pt").hide();
+	$("#times_lb").hide();
+	$("#times_card").hide();
+	var isrepeat_pt =  $("input[name=isrepeat_pt]:checked").val();
+	var isrepeat_lb =  $("input[name=isrepeat_lb]:checked").val();
+	var isrepeat_card =  $("input[name=isrepeat_card]:checked").val();
+	switch(reply_type){
+		case '1':
+			$("#multi_reply").find('tr').eq(0).show();
+			var r_type = '{weimicms:$r_type}' ? '{weimicms:$r_type}' : 'add';
+			if(r_type == 'add' || r_type == '' || r_type != 'select'){
+				$("#img").show();
+				$("#multi_reply").hide();
+			}else{
+				$("#multi_reply").show();
+				$("#img").hide();
+			}
+		  break;
+		case '2':
+		  $("#text_reply_title").show();
+		  break;
+		case '3':
+		  $("#card").show();
+		 if(isrepeat_card == '1'){
+			$("#times_card").show();
+		 }
+		  break;
+		case '4':
+		  $("#hongbao_pt").show();
+		 if(isrepeat_pt == 1){
+			$("#times_pt").show();
+		 }
+		  break;
+		case '5':
+		  $("#multi_reply").find('tr').eq(0).hide();
+		  $("#multi_reply").show();
+		  break;
+		case '6':
+		 $("#hongbao_lb").show();
+		 if(isrepeat_lb == 1){
+			$("#times_lb").show();
+		 }
+		  break;
+		case '7':
+		 $("#action").show();
+		  break;
+		default:
+	}
+	$("input[name=reply_type]").click(function(){
+		var id = '{weimicms:$set.id}';
+		var reply_type = $(this).val();
+		var set_reply_type = '{weimicms:$set.reply_type}';
+		//编辑时改变类型时需清空id
+		if(reply_type != set_reply_type && id != ""){
+			$("input[name=id]").val('');
+		}
+		var isrepeat_pt =  $("input[name=isrepeat_pt]:checked").val();
+		var isrepeat_lb =  $("input[name=isrepeat_lb]:checked").val();
+		var isrepeat_card =  $("input[name=isrepeat_card]:checked").val();
+		switch(reply_type){
+			case '1':
+				clearMessage();
+				$("#multi_reply").find('tr').eq(0).show();
+				var r_type = '{weimicms:$r_type}' ? '{weimicms:$r_type}' : 'add';
+				if(r_type == 'add' || r_type == '' || r_type != 'select'){
+					$("#img").show();
+					$("#text_reply_title").hide();
+					$("#multi_reply").hide();
+					$("#card").hide();
+					$("#hongbao_pt").hide();
+					$("#hongbao_lb").hide();
+					$("#action").hide();
+				}else{
+					$("#img").hide();
+					$("#text_reply_title").hide();
+					$("#multi_reply").show();
+					$("#card").hide();
+					$("#hongbao_pt").hide();
+					$("#hongbao_lb").hide();
+					$("#action").hide();
+				}
+			  break;
+			case '2':
+				 $("#text_reply_title").show();
+				$("#img").hide();
+				$("#multi_reply").hide();
+				$("#card").hide();
+				$("#hongbao_pt").hide();
+				$("#hongbao_lb").hide();
+				$("#action").hide();
+				break;
+			case '3':
+				$("#text_reply_title").hide();
+				$("#img").hide();
+				$("#multi_reply").hide();
+				$("#card").show();
+				$("#hongbao_pt").hide();
+				$("#hongbao_lb").hide();
+				$("#action").hide();
+				if(isrepeat_card == '1'){
+					$("#times_card").show();
+				}
+				break;
+			case '4':
+				$("#text_reply_title").hide();
+				$("#img").hide();
+				$("#multi_reply").hide();
+				$("#card").hide();
+				$("#hongbao_pt").show();
+				$("#hongbao_lb").hide();
+				$("#action").hide();
+				if(isrepeat_pt == '1'){
+					$("#times_pt").show();
+				}
+				break;
+			case '5':
+				clearMessage();
+				$("#multi_reply").find('tr').eq(0).hide();
+				$("#imgids").val('');
+				$("#imgtitle").val('');
+				$("#img").hide();
+				$("#text_reply_title").hide();
+				$("#multi_reply").show();
+				$("#card").hide();
+				$("#hongbao_pt").hide();
+				$("#hongbao_lb").hide();
+				$("#action").hide();
+				break;
+			case '6':
+			 	$("#img").hide();
+				$("#text_reply_title").hide();
+				$("#multi_reply").hide();
+				$("#card").hide();
+				$("#hongbao_pt").hide();
+				$("#hongbao_lb").show();
+				$("#action").hide();
+				if(isrepeat_lb == '1'){
+					$("#times_lb").show();
+				}
+				break;
+			case '7':
+			 	$("#img").hide();
+				$("#text_reply_title").hide();
+				$("#multi_reply").hide();
+				$("#card").hide();
+				$("#hongbao_pt").hide();
+				$("#hongbao_lb").hide();
+				$("#action").show();
+				break;
+			default:
+		}
+	});
+	$('#select_hongbao_pt').click(function(){
+		var token 	= '{weimicms:$token}';
+		art.dialog.open('?g=User&m=Areply&a=select_hongbao&hb_type=1&token='+token+'&',{lock:true,title:'选择普通红包',width:600,height:400,yesText:'关闭',background: '#000',opacity: 0.45});
+	});
+	$('#select_hongbao_lb').click(function(){
+		var token 	= '{weimicms:$token}';
+		art.dialog.open('?g=User&m=Areply&a=select_hongbao&hb_type=2&token='+token+'&',{lock:true,title:'选择裂变红包',width:600,height:400,yesText:'关闭',background: '#000',opacity: 0.45});
+	});
+	$('#select_card').click(function(){
+		var token 	= '{weimicms:$token}';
+		art.dialog.open('?g=User&m=Areply&a=select_card&token='+token+'&',{lock:true,title:'选择卡券',width:600,height:400,yesText:'关闭',background: '#000',opacity: 0.45});
+	});
+	$(".reply_form").submit(function(){
+		var len   = $('.timerange').length;
+		if(len > 1){
+			var start_time_arr = new Array();
+			var end_time_arr = new Array();
+			for(i=1;i<len;i++){
+				var st = $("#start_time_"+i).val();
+				var et = $("#end_time_"+i).val();
+				start_time_arr.push(st);
+				end_time_arr.push(et);
+			}
+			var start_time = $("#start_time_"+len).val();
+			var end_time = $("#end_time_"+len).val();
+			var postdata = "start_time_arr="+start_time_arr+"&end_time_arr="+end_time_arr+"&start_time="+start_time+"&end_time="+end_time+"&id=";
+		}else if(len == 1){
+			var id = '{weimicms:$set.id}' ? '{weimicms:$set.id}' : '';
+			var start_time = $("#start_time_1").val();
+			var end_time = $("#end_time_1").val();
+			var postdata = "start_time="+start_time+"&end_time="+end_time+"&id="+id+"&type=edit";
+		}
+		var msg = '';
+		$.ajax({
+			url:"/index.php?g=User&m=Areply&a=Timevalid&token={weimicms:$token}",
+			type:"post",
+			async:false,
+			data:postdata,
+			success:function(data){
+				if(data == 'start_time_error'){
+					msg += '开始时间不能为空\n';
+				}else if(data == 'end_time_error'){
+					msg += '结束时间不能为空\n';
+				}else if(data == 'start_gt_end'){
+					msg += '开始时间必须小于结束时间\n';
+				}else if(data == 'time_post_fail'){
+					msg = '您添加的其他时段与上面的时段重复\n';
+				}else if(data == 'time_fail'){
+					msg += '您添加的时间段已经被设置,请重新选择\n';
+				}
+			}
+		});
+		var reply_type = $("input[name=reply_type]:checked").val();
+		var r_type = $("input[name=r_type]").val();
+		var text_title = $("#text_title").val();
+		var img_title = $("#img_title").val();
+		var reply_pic = $("#reply_pic").val();
+		var reply_desc = $("#reply_desc").val();
+		var imgids = $("#imgids").val();
+		var hongbao_id_pt = $("#hongbao_id_pt").val();
+		var hongbao_id_lb = $("#hongbao_id_lb").val();
+		var card_id = $("#card_id").val();
+		var isrepeat_pt =  $("input[name=isrepeat_pt]:checked").val();
+		var isrepeat_lb =  $("input[name=isrepeat_lb]:checked").val();
+		var isrepeat_card =  $("input[name=isrepeat_card]:checked").val();
+		var reg = /^[1-9]+[1-9]*]*$/;
+		if(reply_type == '1'){
+			if(r_type != 'select'){
+				if(img_title == ""){
+					msg += '回复标题不能为空\n';
+				}
+				if(reply_pic == ""){
+					msg += '回复图片不能为空\n';
+				}
+			}else{
+				if(imgids == ""){
+					msg += '请选择图文消息\n';
+				}
+			}
+		}else if(reply_type == '2'){
+			if(text_title == ""){
+				msg += '文本回复内容不能为空\n';
+			}else if(text_title.length > 800){
+				msg += '文本回复内容不要超过800个字\n';
+			}
+		}else if(reply_type == '3'){
+			if(card_id == ''){
+				msg += '请选择卡券\n';
+			}
+			if(isrepeat_card == 1){
+				var times_card = $("input[name=times_card]").val();
+				if(times_card == ""){
+					msg += '每天领取次数不能为空\n';
+				}else if(!reg.test(times_card)){
+					msg += '每天领取次数请输入大于0的整数\n';
+				}
+			}
+		}else if(reply_type == '4'){
+			if(hongbao_id_pt == ''){	
+				msg += '请选择普通红包\n';
+			}
+			if(isrepeat_pt == 1){
+				var times_pt = $("input[name=times_pt]").val();
+				if(times_pt == ""){
+					msg += '每天领取次数不能为空\n';
+				}else if(!reg.test(times_pt)){
+					msg += '每天领取次数请输入大于0的整数\n';
+				}
+			}
+		}else if(reply_type == '5'){
+			var imgCount = imgids.length-1;
+			if(imgids == ""){
+				msg += '请选择图文消息\n';
+			}else if(imgCount < 2){
+				msg += '多图文请选择至少2条图文\n';
+			}
+		}else if(reply_type == '6'){
+			if(hongbao_id_lb == ''){	
+				msg += '请选择裂变红包\n';
+			}
+			if(isrepeat_lb == 1){
+				var times_lb = $("input[name=times_lb]").val();
+				if(times_lb == ""){
+					msg += '每天领取次数不能为空\n';
+				}else if(!reg.test(times_lb)){
+					msg += '每天领取次数请输入大于0的整数\n';
+				}
+			}
+		}else if(reply_type == '7'){
+			var jump_url = $("#jump_url").val();
+			if(jump_url == ""){
+				msg += '外链图文的外链地址不能为空\n';
+			}
+		}
+		if(msg != ""){
+			alert(msg);
+			return false;
+		}
+	});
+});
+function jsbq(srt){
+	document.getElementById("text_title").value=document.getElementById("text_title").value+"/"+srt;
+}
+
+function GetCookie(c_name){
+	if (document.cookie.length > 0) {
+		c_start = document.cookie.indexOf(c_name + "=");
+		if (c_start != -1) {
+			c_start = c_start + c_name.length + 1;
+			c_end   = document.cookie.indexOf(";",c_start);
+			if (c_end == -1) {
+				c_end = document.cookie.length;
+			}
+			return unescape(document.cookie.substring(c_start,c_end));
+		}
+	}
+	return null
+}
+//设置cookie
+function SetCookie(c_name,value,expiredays) {
+	var exdate = new Date();
+	exdate.setDate(exdate.getDate() + expiredays);
+	document.cookie = c_name + "=" +escape(value) + ';path=/' +((expiredays == null) ? "" : ";expires=" + exdate.toGMTString());
+}
+
+$(function(){
+	$("#addTime").click(function(){
+		var len   = $('.timerange').length;
+		if(len > 1){
+			var start_time_arr = new Array();
+			var end_time_arr = new Array();
+			for(i=1;i<len;i++){
+				var st = $("#start_time_"+i).val();
+				var et = $("#end_time_"+i).val();
+				start_time_arr.push(st);
+				end_time_arr.push(et);
+			}
+			var start_time = $("#start_time_"+len).val();
+			var end_time = $("#end_time_"+len).val();
+			var postdata = "start_time_arr="+start_time_arr+"&end_time_arr="+end_time_arr+"&start_time="+start_time+"&end_time="+end_time;
+		}else if(len == 1){
+			var start_time = $("#start_time_1").val();
+			var end_time = $("#end_time_1").val();
+			var postdata = "start_time="+start_time+"&end_time="+end_time;
+		}
+		var msg ='';
+		$.ajax({
+			url:"/index.php?g=User&m=Areply&a=Timevalid&token={weimicms:$token}",
+			type:"post",
+			data:postdata,
+			success:function(data){
+				if(data == 'start_time_error'){
+					msg = '开始时间不能为空\n';
+				}else if(data == 'end_time_error'){
+					msg = '结束时间不能为空\n';
+				}else if(data == 'start_gt_end'){
+					msg = '开始时间必须小于结束时间\n';
+				}else if(data == 'time_post_fail'){
+					msg = '您添加的其他时段与上面的时段重复\n';
+				}else if(data == 'time_fail'){
+					msg = '您添加的时间段已经被设置,请重新选择\n';
+				}else if(data == 'done'){
+					msg = '';
+				}
+				if(msg != ""){
+					alert(msg);
+					return false;
+				}
+				len = len +1 ;
+				var str = '';
+				str = "<tbody class='timerange'><tr><th>&nbsp;</th><td><input type='input' class='px' id='start_time_"+len+"' value='' onClick='WdatePicker({dateFmt:\"HH:mm\"})' name='start_time[]' />&nbsp;到&nbsp;<input type='input' class='px' id='end_time_"+len+"' value='' onClick='WdatePicker({dateFmt:\"HH:mm\"})' name='end_time[]'/><a onclick='delTime(this)' style='margin-left:13px;' class='btnGreen' href='javascript:void(0);'>删除</a></td> </tr></tbody>";
+				$(".timerange:last").after(str);
+			}
+		});
+	});
+	$("#start_time").blur(function(){
+		var start_time = $(this).val();
+		var token = '{weimicms:$token}';
+		if(start_time){
+			SetCookie('start_time_'+token,start_time);
+		}
+	});
+	$("#end_time").blur(function(){
+		var end_time = $(this).val();
+		var token = '{weimicms:$token}';
+		if(start_time){
+			SetCookie('end_time'+token,end_time);
+		}
+	});
+	
+	$("#isrepeat_pt_1").click(function(){
+		$("#times_pt").show();
+	});
+	$("#isrepeat_pt_2").click(function(){
+		$("#times_pt").hide();
+	});
+	$("#isrepeat_lb_1").click(function(){
+		$("#times_lb").show();
+	});
+	$("#isrepeat_lb_2").click(function(){
+		$("#times_lb").hide();
+	});
+	$("#isrepeat_card_1").click(function(){
+		$("#times_card").show();
+	});
+	$("#isrepeat_card_2").click(function(){
+		$("#times_card").hide();
+	});
+})
+function delTime(obj){
+	$(obj).parent().parent().parent().remove();
+}
+
+function selectImg(){
+	$("#img").hide();
+	$("#text_reply_title").hide();
+	$("#multi_reply").show();
+	$("#card").hide();
+	$("#hongbao_pt").hide();
+	$("#hongbao_lb").hide();
+	$("#action").hide();
+	$('input[name=r_type]').val('select');
+}
+
+function addImg(){
+	$("#img").show();
+	$("#text_reply_title").hide();
+	$("#multi_reply").hide();
+	$("#card").hide();
+	$("#hongbao_pt").hide();
+	$("#hongbao_lb").hide();
+	$("#action").hide();
+	$('input[name=r_type]').val('add');
+}
+</script>
+<include file="Public:footer"/>

@@ -1,0 +1,68 @@
+<include file="Public:head"/>
+<script src="./tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="./tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="./tpl/static/upyun.js"></script>
+ <div class="content">
+          <div class="cLineB"><h4>添加720全景</h4><a href="javascript:history.go(-1);"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a></div> 
+<div class="msgWrap">
+  <form class="form" method="post"   action="{weimicms::U('Qj/insert')}" enctype="multipart/form-data" >
+<TABLE class="userinfoArea" style=" margin:20px 0 0 0;" border="0" cellSpacing="0" cellPadding="0" width="100%">
+  <THEAD>
+<TR>
+  <TH valign="top"><label for="name">全景名称：</label></TH>
+  <TD><input type="input" class="px" id="name" value="" name="name" style="width:500px" ><br />
+  <input type="hidden" class="px" id="token" value="{weimicms:$_SESSION['token']}" name="token" style="width:500px" >
+                  </TD>
+  <TD>&nbsp;</TD>
+</TR>
+ </THEAD>
+  <TBODY>
+  
+  <TR>
+  <TH valign="top"><label for="keyword">关键词：</label></TH>
+  <TD><input type="input" class="px" id="keyword" value="" name="keyword" style="width:500px" ><br />
+                  5个字以内关键词，必填  </TD>
+  <TD>&nbsp;</TD>
+</TR>
+<TR>
+  <TH valign="top"><label for="keyword">描述：</label></TH>
+  <TD><input type="input" class="px" id="content" value="" name="content" style="width:500px" ><br />
+                  100个字以内简短分类描述</TD>
+  <TD>&nbsp;</TD>
+</TR>
+<TR>
+  <TH valign="top"><label for="keyword">图片外链地址：</label></TH>
+  <TD><input type="input" class="px"  value="" name="picurl" id="picurl"style="width:500px"  onfocus="current('picurl');"><a href="###" onclick="upyunPicUpload('picurl',700,420,'{weimicms:$token}')" class="a_upload">上传</a> 
+<a href="###" onclick="viewImg('picurl')">预览</a><br />
+                  为了提搞速度，建议将图片上传百度bae然后获取链接地址，微信限制3秒内无反应将终止；图片(宽720高400)  </TD>
+  <TD>&nbsp;</TD>
+</TR>
+<TR>
+  <TH valign="top"><label for="keyword">全景地址 ：</label></TH>
+  <TD><input type="input" class="px" id="qjurl" value="http://www.weimicms.com/quanjin/ljg.html" name="qjurl" style="width:500px" ><br />
+                   </TD>
+  <TD>&nbsp;</TD>
+</TR>
+
+
+<TR>
+  <TH></TH>
+  <TD><button type="submit"  name="button"  class="btnGreen left" >保存</button>
+  	<div class="clr"></div>
+  	</TD>
+  </TR>
+  </TBODY>
+</TABLE>
+  </form>
+  </div> 
+
+        </div>
+        
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div> 
+
+<!--底部-->
+  	</div>
+<include file="Public:footer"/>

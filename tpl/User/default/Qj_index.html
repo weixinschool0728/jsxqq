@@ -1,0 +1,65 @@
+<include file="Public:head"/>
+<script src="./tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+<script src="./tpl/static/sucaiku/iframeTools.js"></script>
+<script src="./tpl/static/sucaiku/upyun.js"></script>
+<div class="content">
+
+<div class="cLineB">
+  <h4>添加360全景<span class="FAQ">设置相关内容，在3G网站分类链接里，直接填写全景地址即可。</span></h4>
+  
+ </div>
+         <div class="cLineC" style="line-height: 32px;">
+ <a  href="{weimicms::U('Qj/add')}" class="btnGrayS vm bigbtn" >添加360全景</a>　 
+</div>
+ 
+ <div class="msgWrap form">
+
+<div class="bdrcontent">
+<div id="div_ptype">
+<table class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+<thead>
+<tr>
+                    <th style=" width:100px;">全景名称</th>
+                    <th style=" width:80px;">关键词</th>
+                   <th style=" width:160px;">描述</th>
+<th>回复图片</th>
+                        <th>全景地址 <span class="tooltips" ><img src="{weimicms::RES}/images/price_help.png" align="absmiddle" /><span>
+<p>例如填写<a class="red">http://www.weimicms.com/quanjin/ljg.html</a></p>
+
+</span></span></th>
+<th style=" width:120px;">操作</th>
+</tr>
+</thead>
+<volist name="info" id="vo">
+<tr>
+<td>{weimicms:$vo.name}</td>
+<td>{weimicms:$vo.keyword}</td>
+<td>{weimicms:$vo.content}</td>
+<td><div class="cateimg"><img src="{weimicms:$vo.picurl}" class="cateimg_small"  /><img src="{weimicms:$vo.img}" class="cateimg_big"  /></div></td>
+<td><a href="{weimicms:$vo.qjurl}">{weimicms:$vo.qjurl}</a></td>
+
+<td class="norightborder">
+	<a href="{weimicms::U('Qj/edit',array('id'=>$vo['id']))}">编辑</a>
+	<a href="{weimicms::U('Qj/del',array('id'=>$vo['id']))}">删除</a>
+</td>
+</tr>
+</volist>
+               
+  </table>
+</div>
+</div>
+<div class="footactions" style="padding-left:10px">
+  <div class="pages">{weimicms:$page}</div>
+</div>
+          </div>
+  
+        </div>
+   
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div> 
+  <!--底部-->
+  	</div>
+
+<include file="Public:footer"/>
