@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/template/snower.css" media="all" />
+		<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/template/common.css" media="all" />
+		<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/1337/font-awesome.css?v=2013121900" media="all" />
+			<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/template/reset.css" media="all" />
+	<title>{weimicms:$tpl.wxname}</title>
+		<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/template/home-38.css" media="all" />
+		<script type="text/javascript" src="{weimicms::RES}/src/template/maivl.js"></script>
+		<script type="text/javascript" src="{weimicms::RES}/src/jQuery.js"></script>
+		<script type="text/javascript" src="{weimicms::RES}/src/template/swipe.js"></script>
+		<script type="text/javascript" src="{weimicms::RES}/src/template/zepto.js"></script>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+       
+        <!-- Mobile Devices Support @begin -->
+            <meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+            <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+            <meta content="no-cache" http-equiv="pragma">
+            <meta content="0" http-equiv="expires">
+            <meta content="telephone=no, address=no" name="format-detection">
+            <meta content="width=device-width, initial-scale=1.0" name="viewport">
+            <meta name="apple-mobile-web-app-capable" content="yes" /> <!-- apple devices fullscreen -->
+            <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <!-- Mobile Devices Support @end -->
+        <link rel="shortcut icon" href="{weimicms::RES}/img/favicon.ico" />
+    </head>
+    <body onselectstart="return true;" ondragstart="return false;">
+
+<style>
+	.body{
+		display:block;
+					background:url('<if condition="$homeInfo.homeurl neq false">{weimicms:$homeInfo.homeurl}<else/>{weimicms::RES}/images/themes/bg1.jpg</if>') no-repeat 0 0;
+				background-size:100% 100%;
+	}
+</style>	
+<div class="body">
+		<!--幻灯片管理-->
+	<div style="-webkit-transform:translate3d(0,0,0);">
+		<div id="banner_box" class="box_swipe">
+			<ul>
+				<volist name="flashbg" id="so"><li>
+					<a onClick="return false;">
+						<img src="{weimicms:$so.img}" alt="1" style="width:100%;" />
+					</a>
+				</li>
+                </volist>
+							</ul>
+			<ol>
+            <volist name="flash" id="so">
+			<li<if condition="$i eq 1"> class="on"</if>></li>
+			</volist>
+			</ol>
+		</div>
+	</div>
+		<script>
+		$(function(){
+			new Swipe(document.getElementById('banner_box'), {
+				speed:500,
+				auto:3000,
+				callback: function(){
+					var lis = $(this.element).next("ol").children();
+					lis.removeClass("on").eq(this.index).addClass("on");
+				}
+			});
+		});
+	</script>
+<br/><header>
+        <div class="snower">
+            <script type="text/javascript"></script>
+            <script type="text/javascript" src="{weimicms::RES}/src/template/snower.js"></script>
+        </div>
+    </header> 
+
+		<section>
+			<div id="navList_box" class="box_swipe">
+				<ul>
+																		<li>
+																		<volist name="info" id="vo" offset="0" length='4'>
+																					<a href="<if condition="$vo['url'] eq ''">{weimicms::U('Wap/Index/lists',array('classid'=>$vo['id'],'token'=>$vo['token']))}<else/>{weimicms:$vo.url}</if>" class="weimob-list-item">
+															<span class="{weimicms:$vo.icon}"></span>
+								<img src="{weimicms:$vo.img}" alt="{weimicms:$vo.name}" />
+								<div style="color:{weimicms:$vo.nameyanse}">{weimicms:$vo.name}</div>
+							</a>
+							</volist>
+													</li>
+																															<li>
+																		<volist name="info" id="vo" offset="4" length='8'>
+																					<a href="<if condition="$vo['url'] eq ''">{weimicms::U('Wap/Index/lists',array('classid'=>$vo['id'],'token'=>$vo['token']))}<else/>{weimicms:$vo.url}</if>" class="weimob-list-item">
+															<span class="{weimicms:$vo.icon}"></span>
+								<img src="{weimicms:$vo.img}" alt="{weimicms:$vo.name}" />
+								<div style="color:{weimicms:$vo.nameyanse}">{weimicms:$vo.name}</div>
+							</a>
+							</volist>
+													</li>
+															</ul>
+				<ol>
+					<a href="javascript:navList_box.prev();">&nbsp;</a>
+					<a href="javascript:navList_box.next();">&nbsp;</a>
+				</ol>
+			</div>
+		</section>
+		<script>
+			$(document).ready(function(){
+				window.navList_box = new Swipe(document.getElementById('navList_box'), {auto:0});
+			});
+		</script>
+	</div>        			
+	 
+<include file="Index:styleInclude"/><include file="$cateMenuFileName"/> 
+	<if condition="ACTION_NAME eq 'index'">
+		<script type="text/javascript">
+			window.shareData = {  
+					"moduleName":"Index",
+					"moduleID": '0',
+					"imgUrl": "{weimicms:$homeInfo.picurl}", 
+					"timeLineLink": "{weimicms::C('site_url')}{weimicms::U(Index/ACTION_NAME,array('token'=>$_GET['token']))}",
+					"sendFriendLink": "{weimicms::C('site_url')}{weimicms::U(Index/ACTION_NAME,array('token'=>$_GET['token']))}",
+					"weiboLink": "{weimicms::C('site_url')}{weimicms::U(Index/ACTION_NAME,array('token'=>$_GET['token']))}",
+					"tTitle": "{weimicms:$homeInfo.title}",
+					"tContent": "{weimicms:$homeInfo.info}"
+				};
+		</script>
+	<else />
+		<script type="text/javascript">
+			window.shareData = {  
+				"moduleName":"Index",
+				"moduleID": '1',
+				"imgUrl": "{weimicms:$homeInfo.picurl}", 
+				"timeLineLink": "{weimicms::C('site_url')}{weimicms::U(Index/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid']))}",
+				"sendFriendLink": "{weimicms::C('site_url')}{weimicms::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid']))}",
+				"weiboLink": "{weimicms::C('site_url')}{weimicms::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid']))}",
+				"tTitle": "{weimicms:$homeInfo.title}",
+				"tContent": "{weimicms:$homeInfo.info}"
+			};
+		</script>	
+	
+	</if>
+{weimicms:$shareScript}
+<div class="copyright">
+<if condition="$iscopyright eq 1">
+{weimicms:$homeInfo.copyright}
+<else/>
+{weimicms:$siteCopyright}
+</if>
+</div> 
+<include file="Index:styleInclude"/><include file="$cateMenuFileName"/> 
+<!-- share -->
+<include file="Index:share" />
+
+    </body></html>

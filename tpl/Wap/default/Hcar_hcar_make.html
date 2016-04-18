@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1,user-scalable=no" />
+  
+  <title>修改卡片上滚动文字</title>
+  <link rel="stylesheet" href="/tpl/Wap/default/common/hcar/form.css"></head>
+<body>
+
+<script>
+function onwordselect(obj)
+{
+    wording = document.getElementById("wording")
+    if(obj.value=="点这里选择祝福语")
+    {
+        wording.value = ""
+    }
+    else
+    {
+        wording.value = obj.value
+    }
+}
+
+function timestr()
+{
+    d = new Date();
+    s = '' + d.getFullYear() + '_' + d.getMonth() + '_' + d.getDate() + '_' + d.getHours() + '_' + d.getMinutes() + '_' + d.getSeconds() + '_' + d.getMilliseconds();
+    return s;
+}
+
+function gocard()
+{
+    text = document.getElementById("wording").value
+    location.href = "/index.php?g=Wap&m=Hcar&a=hcar_make&token={weimicms:$token}&id={weimicms:$id}&cardid={weimicms:$cardid}&action=1&message="+text
+}
+</script>
+
+  <form action="" class="contact">
+  
+	<p> 写在微卡上的话(不超过200字)：</p><br>
+    <fieldset class="contact-inner">
+      <p class="contact-input">
+        <label for="select" class="select">
+          <select name="subject" id="select" onChange="onwordselect(this)">
+            <option selected="">点这里选择祝福语</option>
+			<volist name="hcar" id="o">
+			<option>{weimicms:$o.content}</option>
+			</volist>
+			<option>有人惦记，再远的路，也是近的；有人挂念，再淡的水，也是甜的；有人思念，再长的夜，也是短的；有人关怀，再冷的天，也是暖的。自由是做自己喜欢的事，幸福则是喜欢自己做的事。繁华三千，看淡即是云烟！烦恼无数，想开才有笑颜！亲爱的朋友，愿你开心每一天！</option>
+<option>今天再大的事，到了明天就是小事；今年再大的事，到了明年就是故事；今生再大的事，到了来世就是传说，所以生活中，工作中遇到不顺的事，对自己说一下，今天会过去，明天会到来，新的一天开始。放下所有一切让你累的事情，每天都是新的！</option>
+<option>有一种幸福叫简单，有一种浪漫叫平淡，有一种懂得叫珍惜。生活中，多一份思索，少一份迷茫。多一份淡定，少一份烦恼。多一份宽容，少一份狭隘。多一份坦然，少一份遗憾。心变得简单，日子就会快乐。朋友，早安！</option>
+<option>城市的夜晚霓虹闪烁，我们忙碌着，迷失着，站在人生的十字路口，我们也许会徘徊不定、犹豫不决。不用急着说别无选择，也许在下一个路口，就会看到希望！</option>
+<option>当火车开入这座陌生的城市，那是从来就没有见过的霓虹，我打开离别时你送我的信件，忽然感到无比的思念，看不见雪的冬天不夜的城市，我听见有人欢呼有人在哭泣，早习惯穿梭冲满诱惑的黑夜，但却无法忘记你的脸，有没有人曾告诉你我很爱你，有没有曾在你日记里哭泣，有没有人曾告诉你我很在意，在意这座城市的距离</option>
+<option>每天，带着一份好心情，欣赏大自然的美丽，呼吸清新的空气。爱生活，爱自己。</option>
+<option>一年，365天，8760小时，525600分，31536000秒，一晃，就过去了，似乎什么也没学会，似乎什么也没留下，日子就这么平平淡淡的溜走了，是呀，时间都去哪儿了？</option>
+<option>阳光洒在我们脸上，让心被快乐填满，让人生充满笑脸，翅膀在我们自己肩上，朝着梦想的方向飞翔，做一个幸福的人！</option>
+<option>夜色茫茫照四周，天边新月如钩。往事恍如梦，梦境何处求。人隔千里，路悠悠，请明月，代问候！</option>
+<option>风是透明的，雨是滴答的，云是流动的，歌是自由的，爱是用心的，恋是疯狂的，天是永恒的，你是难忘的。</option>
+<option>天天各自忙、情谊放心上，不图啥回报、只愿您安康；虽说不见面、常常挂心上，见信如见人、遥祝您吉祥。</option>
+<option>在时间的荏苒流逝中，想起久违的你，思念油然而生。一封小小的微卡，一腔思念的情怀，加上虔诚的祝福，寄予远方的你。</option>
+<option>春雨悠然，笑语嫣然. 雨水淋漓，心情欣喜, 雨帘绵长，春韵悠长. 青春尽情飞扬，点燃胸中梦想，向着美好明天，幸福快乐起航！</option>
+
+
+          </select>
+        </label>
+      </p>
+		
+      <p class="contact-input">	 
+        <textarea name="message" id="wording"></textarea>
+      </p>
+    </fieldset>	
+  </form>
+  
+      <p class="contact-submit">
+        <input type="submit" value="生成微卡" onClick="gocard()">
+      </p>
+</body></html>

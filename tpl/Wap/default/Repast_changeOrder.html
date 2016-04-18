@@ -1,0 +1,165 @@
+
+<include file="Repast:header"/><body id="page_intelOrder" class="myOrderCon">
+<style>
+ .btn_add {
+float: right;
+margin-left: 30px;
+margin-top: -3px;
+padding: 5px 8px;
+border: 0;
+border-radius: 2px;
+cursor: pointer;
+background-color: #2ec366;
+color: #fff;
+}
+</style>
+<div style="float:none;width:100%;" class="headselect">
+	<a class="link_tel icon-phone">我的订单</a>
+</div>
+<div class="container">
+<br/>
+<header id="container">
+	<div>
+	    <select class="select_orderType" onChange="orderList(this);">
+	        <option value="0" <php>if ($status == 0) {echo "selected";}</php> >全部就餐状态</option>
+	        <option value="1" <php>if ($status == 1) {echo "selected";}</php> >未付款，未就餐</option>
+	        <option value="3" <php>if ($status == 3) {echo "selected";}</php> >已付款，未就餐</option>
+	        <option value="4" <php>if ($status == 4) {echo "selected";}</php> >已付款，已就餐</option>
+	    </select>
+	</div>
+	<div style="padding:10px 0;">
+		<ul class="list_order" id='list'>
+			<volist name="orderList" id="order">
+			<li>
+				<label style="float:none;"  class="on">订餐人：{weimicms:$order.name}&nbsp;预约时间：{weimicms:$order.reservetime|date="Y-m-d H:i:s",###} </label>
+				<ol>
+					<!-- <p>就餐地址： 上海市宝山区 </p> 
+					<p>付款方式：线下支付</p> -->
+					<table>
+						<if condition="empty($order['info']) eq true">
+							<thead>
+								<tr>
+								    <td colspan="3" style="font-size:16px;">我预定了餐桌还没有点菜，已交订金：<span class="red h5">{weimicms:$order['price']}元</span></td>
+								</tr>
+							</thead>
+						<else />
+						<thead>
+							<tr>
+							    <td colspan="3" style="font-size:16px;">我的菜单</td>
+							</tr>
+							<tr>
+							    <td style="width:33%">菜名</td>
+								<td style="width:33%">单价</td>
+							    <td>数量</td>
+							</tr>
+						</thead>
+						<tbody>
+						<volist name="order['info']['list']" id="row">
+						<tr>
+							<td>{weimicms:$row.name}</td>
+							<td>{weimicms:$row.price}元</td>
+							<td> <input class="btn-reduce orderNum" type="text" value="{weimicms:$row.num}" lang="{weimicms:$row.price}" onchange="changeOrderNum();">   份</td>
+						</tr>
+						</volist>
+						</tbody>
+ 						<tfoot>
+						<tr>
+							<td colspan="3" style="text-align:right;">
+								<if condition="$order['info']['takeAwayPrice'] gt 0">
+								<label>送餐费：<span class="red h5">{weimicms:$order['info']['takeAwayPrice']}元</span></label>
+								</if>
+								<label>总金额：<span class="red h5" id="totalPrice">{weimicms:$order.price}元</span>&nbsp;&nbsp;</label>
+								</label>
+									<button class="btn_add" onclick="saveChangeOrder();">确认修改</button>
+							</td>
+						</tr>
+						</tfoot>
+                        <script>
+						function changeOrderNum(){
+							var takeAwayPrice = "{weimicms:$order['info']['takeAwayPrice']}";
+							if(isNaN(takeAwayPrice)||takeAwayPrice==""){
+								takeAwayPrice = 0;
+							}
+							takeAwayPrice = parseFloat(takeAwayPrice);
+							var totalPrice = takeAwayPrice;
+							$(".orderNum").each(function(index, element) {
+                                var numObj = $(this);
+								var num = numObj.val();
+								if(isNaN(num)||num==""){
+									num = 1;
+								}
+								num = parseInt(num);
+								if(num<1){
+									num = 1;
+								}
+								var price = numObj.attr("lang");
+								price = parseFloat(price);
+								totalPrice += num*price;
+                            });
+							totalPrice += "元";
+							$("#totalPrice").text(totalPrice);
+						}
+						function getNums(){
+							var nums = new Array();
+							$(".orderNum").each(function(index, element) {
+                                var numObj = $(this);
+								var num = numObj.val();
+								if(isNaN(num)||num==""){
+									num = 1;
+								}
+								num = parseInt(num);
+								if(num<1){
+									num = 1;
+								}
+								nums.push(num);
+                            });
+							//alert(nums);
+							return nums.join("_");
+						}
+						function saveChangeOrder(){
+							var nums = getNums();
+							$.get("index.php",{"g":"Wap","m":"Repast","a":"changeOrder","wecha_id":"{weimicms:$order.wecha_id}","id":"{weimicms:$order.id}","nums":nums,"rand":Math.random()},function(data){
+								alert(data);
+								location.href='/index.php?g=Wap&m=Repast&a=myOrder&token={weimicms:$order.token}&wecha_id={weimicms:$order.wecha_id}&cid={weimicms:$order.cid}';
+});
+						
+						}
+						</script>
+						</if>
+					</table>
+				</ol>
+				
+			</li>
+		
+			</volist>
+		</ul>
+	</div>
+</header>
+</div>
+<include file="Repast:footer"/>
+
+<script>
+$(document).ready(function(){
+    var min_height = $(document).height() - 80;
+    $("#container").css({"min-height":min_height});
+});
+
+function orderList(obj) {
+	location.href = "{weimicms::U('Repast/myOrder', array('token'=>$token, 'wecha_id'=>$wecha_id, 'cid'=>$cid))}&status=" + $(obj).val();
+}
+</script>
+</body>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Repast",
+            "moduleID":"0",
+            "imgUrl": "", 
+            "timeLineLink": "{weimicms::C('site_url') .  U('Repast/myOrder',array('token' => $_GET['token']))}",
+            "sendFriendLink": "{weimicms::C('site_url') .  U('Repast/myOrder',array('token' => $_GET['token']))}",
+            "weiboLink": "{weimicms::C('site_url') .  U('Repast/myOrder',array('token' => $_GET['token']))}",
+            "tTitle": "{weimicms:$metaTitle}",
+            "tContent": "{weimicms:$metaTitle}"
+        };
+</script>
+{weimicms:$shareScript}
+</html>

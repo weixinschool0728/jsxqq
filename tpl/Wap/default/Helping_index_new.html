@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{weimicms:$info.title}</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'/>
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" href="{weimicms:$staticPath}/tpl/static/helping/new/css/base.css">
+    <link rel="stylesheet" href="{weimicms:$staticPath}/tpl/static/helping/new/css/swiper.min.css">
+    <link rel="stylesheet" href="{weimicms:$staticPath}/tpl/static/helping/new/css/style.css">
+    <script src="{weimicms:$staticPath}/tpl/static/helping/new/js/jquery-2.1.4.min.js"></script>
+    <script src="{weimicms:$staticPath}/tpl/static/helping/new/js/swiper.jquery.min.js"></script>
+    <script>
+var timer=0;
+$(function(){
+    var docHeight = $(document).height();
+    $(".fullBg").height(docHeight);
+    $(".fullBg2").height(docHeight);
+    tab(".tabBox .hd ul li",".tabBox .bd .row","on");
+    centerTop(".w0");
+    centerWindow(".w1");
+    $(".fullBg").click(function(){
+        $(".window").removeClass("animate").hide();
+        $(this).hide();
+        clearTimeout(timer);
+    });
+	<?php if($is_over != 2){ ?>
+    timeShow();//倒计时
+	<?php } ?>
+	btnClick();
+});
+function btnClick(){
+    $.getJSON("{weimicms::U('Helping/add_share',array('token'=>$token,'id'=>$info['id']))}",{share_key:'{weimicms:$share_key}',wecha_id:'{weimicms:$wecha_id}'},function(res){
+		if(res.err == 0){
+			$(".fullBg").show();
+			$(".w1").addClass("animate").show();
+			closedWindow();
+		}else{
+			alert(res.info)
+		}
+	}); 
+}
+
+var daoshi = 60;
+function showWindow(){
+    $(".fullBg").show();
+    $(".w0").addClass("animate").show();
+	$('.getCode').click(function(){
+		var tel = $('input[name=tel]').val();
+		var tel_length = tel.length;
+		var thisget = $(this).text();
+		if(tel == ''){
+			alert('请填写您的手机号');
+		}else if(tel_length != 11){
+			alert('请填写正确的手机号');
+		}else{
+			if(thisget == '获取验证码' || thisget == '重新获取'){
+				$('.getCode').text('正在发送');
+				$.ajax({
+					type:"POST",
+					url:"{weimicms::U('Helping/sms',array('token'=>$token,'id'=>$info['id']))}",
+					dataType:"json",
+					data:{
+						tel:tel,
+						token:'<?php echo $token?$token:0;?>',
+						id:<?php echo $info['id']?$info['id']:0;?>,
+						wecha_id:'{weimicms:$wecha_id}'
+					},
+					success:function(data){
+						if(data.error == 0){
+							smsdaoshi()
+						}else if(data.error == 'tel'){
+							alert('该手机号码已被注册');$('.getCode').text('获取验证码');
+						}else if(data.error == 4085 || data.error == 4084){
+							alert('该手机号码发送验证码超过每日限制');$('.getCode').text('获取验证码');
+						}else if(data.error == null){
+							alert('发送失败：该商家未购买短信');$('.getCode').text('获取验证码');
+						}else{
+							alert('发送失败：请稍后再试<br/>失败原因：'+data.error);$('.getCode').text('获取验证码');
+						}
+					}
+				});
+				
+			}
+		}
+		
+	});
+	$('#telyzbut').click(function(){
+		var tel = $('input[name=tel]').val();
+		var code = $('input[name=code]').val();
+		var tel_length = tel.length;
+		if(tel == ''){
+			alert('请填写您的手机号');
+		}else if(tel_length != 11){
+			alert('请填写正确的手机号');
+		}else if(code == ''){
+			alert('请填写您收到的验证码');
+		}else{
+			$('#telyzbut').text('手机号码验证中');
+			$.ajax({
+				type:"POST",
+				url:"{weimicms::U('Helping/smsyz',array('token'=>$token,'id'=>$info['id']))}",
+				dataType:"json",
+				data:{
+					tel:tel,
+					code:code,
+					token:'<?php echo $token?$token:0;?>',
+					id:<?php echo $info['id']?$info['id']:0;?>,
+					wecha_id:'{weimicms:$wecha_id}'
+				},
+				success:function(data){
+					if(data.error == 0){
+						$('#telyzbut').text('验证成功');
+						window.location.href='<?php echo U('Helping/index',array('token'=>$token,'id'=>$_GET['id'],'is_join2'=>1));?>&tel='+tel;
+					}else if(data.error == 1){
+						alert('验证码不正确');
+					}else if(data.error == 2){
+						alert('验证码和手机不匹配');
+					}else if(data.error == 3){
+						alert('验证码超时');
+					}
+				}
+			});
+		}
+	});
+}
+function smsdaoshi(){
+	if(daoshi < 1){
+		daoshi = 60;
+		$('.getCode').text('重新获取');
+		$('.getCode').addClass('butCode');
+	}else{
+		if(daoshi == 60){
+			$('.getCode').text('发送成功');
+		}else{
+			$('.getCode').text(daoshi+'s');
+		}
+		daoshi--;
+		setTimeout("smsdaoshi()",1000);
+	}
+}
+function closedWindow(){
+    timer=setTimeout(function(){
+        $(".fullBg").hide();$(".w1").removeClass("animate").hide();;
+    },5000);
+}
+
+function tab(a,b,c){
+    var len=$(a);
+    len.bind("click",function(){
+        var index = 0;
+        $(this).addClass(c).siblings().removeClass(c);
+        index = len.index(this);
+        $(b).eq(index).show().siblings().hide();
+        return false;
+    }).eq(0).trigger("click");
+}
+//2.将盒子方法放入这个方，方便法统一调用
+function centerWindow(a) {
+    center(a);
+    //自适应窗口
+    $(window).bind('scroll resize',
+        function() {
+            center(a);
+        });
+}
+function centerTop(a) {
+    var wWidth = $(window).width();
+    var boxWidth = $(a).width();
+    var scrollLeft = $(window).scrollLeft();
+    var left = scrollLeft + (wWidth - boxWidth) / 2;
+    $(a).css({
+        "left": left
+    });
+}
+//1.居中方法，传入需要剧中的标签
+function center(a) {
+    var wWidth = $(window).width();
+    var wHeight = $(window).height();
+    var boxWidth = $(a).width();
+    var boxHeight = $(a).height();
+    var scrollTop = $(window).scrollTop();
+    var scrollLeft = $(window).scrollLeft();
+    var top = scrollTop + (wHeight - boxHeight) / 2;
+    var left = scrollLeft + (wWidth - boxWidth) / 2;
+    $(a).css({
+        "top": top,
+        "left": left
+    });
+}
+
+
+function timeShow(){
+    var show_time = $(".timeShow");
+    endtime = new Date("<?php if($is_over == 1){echo date('m',$info['start']).'/'.date('d',$info['start']).'/'.date('Y',$info['start']).' '.date('H:i:s',$info['start']);}else{echo date('m',$info['end']).'/'.date('d',$info['end']).'/'.date('Y',$info['end']).' '.date('H:i:s',$info['end']);}?>");//结束时间
+    today = new Date();//当前时间
+    delta_T = endtime.getTime() - today.getTime();//时间间隔
+    window.setTimeout(timeShow,1000);
+    total_days = delta_T/(24*60*60*1000);//总天数
+    total_show = Math.floor(total_days);//实际显示的天数
+    total_hours = (total_days - total_show)*24;//剩余小时
+    hours_show = Math.floor(total_hours);//实际显示的小时数
+    total_minutes = (total_hours - hours_show)*60;//剩余的分钟数
+    minutes_show = Math.floor(total_minutes);//实际显示的分钟数
+    total_seconds = (total_minutes - minutes_show)*60;//剩余的分钟数
+    seconds_show = Math.floor(total_seconds);//实际显示的秒数
+    if(total_days<10){
+        total_days="0"+total_days;
+    }
+    if(hours_show<10){
+        hours_show="0"+hours_show;
+    }
+    if(minutes_show<10){
+        minutes_show="0"+minutes_show;
+    }
+    if(seconds_show<10){
+        seconds_show="0"+seconds_show;
+    }
+    show_time.find("li").eq(0).text(total_show);//显示在页面上
+    show_time.find("li").eq(2).text(hours_show);
+    show_time.find("li").eq(4).text(minutes_show);
+    show_time.find("li").eq(6).text(seconds_show);
+}
+
+function share(){
+	$('.share_bg').show();
+	$('.share_bg').click(function(){
+		if($(this).css('display') == 'block'){
+			$(this).css('display','none');
+		}
+	});
+}
+$(function(){
+    countTop();
+    $(window).bind('scroll resize',
+        function() {
+            countTop();
+        });
+    function countTop(){
+        var ftH=$("footer").height();
+        var wHeight = $(window).height();
+        var top = wHeight - ftH;
+        $("footer").css({"top":top});
+
+    }
+});
+	</script>
+	<style>
+	.share_bg {
+		display: none;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		text-align: center;
+		background: rgba(0,0,0,0.7);
+		z-index: 99;
+	}
+	.tabBox .bd .prize .prizeImg h4{background-color: #aaa;}
+	</style>
+</head>
+<body>
+<if condition="$memberNotice neq ''">
+    {weimicms:$memberNotice}
+</if>
+    <header class="scroll">
+        <!-- Swiper -->
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+				<volist name="news_list" id="nv">
+                <div class="swiper-slide">
+                    <a href="<?php echo $nv['url']?$nv['url']:'#';?>"><img src="{weimicms:$nv.imgurl}" width="100%"></a>
+					<?php if($nv['title'] != ''){ ?>
+                    <div class="title">{weimicms:$nv.title}</div>
+					<?php } ?>
+                </div>
+				</volist>
+            </div>
+        </div>
+        <script>
+            var swiper = new Swiper('.swiper-container', {
+                loop:true,
+                autoplay: 5000//可选选项，自动滑动
+            });
+        </script>
+    </header>
+<section class="oTime">
+    <div class="timeBox">
+        <h2>
+			<?php if($is_over == 1){echo '距离开始还剩';}else{echo '时间还剩';} ?>
+        </h2>
+        <ul class="timeShow">
+            <li class="bg">00</li>
+            <li class="oText">天</li>
+            <li class="bg">00</li>
+            <li class="oText">时</li>
+            <li class="bg">00</li>
+            <li class="oText">分</li>
+            <li class="bg">00</li>
+            <li class="oText">秒</li>
+        </ul>
+    </div>
+</section>
+<section class="topUser">
+    <div class="userBox">
+        <div class="fl userAvatar">
+            <img style="border-radius: 100%;" src="<?php if($user['portrait']!=''){echo $user['portrait'];}else{?>{weimicms:$staticPath}/tpl/static/helping/new/images/portrait.jpg<?php }?>"/>
+        </div>
+        <div class="userDesc">
+            <h2>{weimicms:$user['wechaname']}</h2>
+            <P>排名：<?php echo $user['help_rank']?"第<em>".$user['help_rank']."</em>位":"未参与";?></P>
+        </div>
+        <div class="tipBox">
+            <div class="tip tip0">
+                <h3>转发数</h3>
+                <p>{weimicms:$user['share_num']}</p>
+            </div>
+            <div class="tip tip1">
+                <h3>助力值</h3>
+                <p>{weimicms:$user['help_count']}</p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="checkBtn animate clearfix">
+	<?php if($memberNotice == '' || $share_key != ''){?>
+    <a href="<?php if($memberNotice == '' || $share_key != ''){echo U('Helping/index',array('token'=>$token,'id'=>$_GET['id'],'helps'=>1,'share_key'=>$_GET['share_key']));}else{echo '#';}?>" class="up35"><?php if($share_key == ''){echo '查看谁给我助力';}else{echo '查看谁给TA助力';}?></a>
+	<?php }?>
+</section>
+<section class="oTab">
+    <div class="tabBox">
+        <div class="hd clearfix">
+            <ul>
+                <li class="li0 on" style="margin:0 2px"><i></i>活动规则</li><li class="li1" style="margin:0 2px"><i></i>活动奖品</li><li class="li2" style="margin:0 2px"><i></i>排行top{weimicms:$info.rank_num}</li>
+            </ul>
+        </div>
+        <div class="bdRound">
+            <div class="bd" style="padding-top: 15px;">
+                <div class="row rule" style="line-height:20px">
+					{weimicms:$info.info|htmlspecialchars_decode}
+                </div>
+                <div class="row prize">
+                    <ul class="clearfix">
+						<volist name="prize_list" id="pv" key="pi">
+                        <li>
+                            <div class="rightBar fr">
+
+                            </div>
+                            <div class="addBg">
+                                <div class="prizeImg fl">
+                                    <img src="{weimicms:$pv.imgurl}"/>
+                                    <h4>{weimicms:$pi}等奖</h4>
+                                </div>
+                                <div class="prizeDesc">
+                                    <h3>{weimicms:$pv.title}</h3>
+									<!-- 13个字 -->
+									<p>兑换时间：</p>
+                                    <p>{weimicms:$pv.starttime|date="Y-m-d",###}至{weimicms:$pv.stoptime|date="Y-m-d",###}</p>
+                                </div>
+                            </div>
+                        </li>
+						</volist>
+                    </ul>
+                </div>
+                <div class="row list">
+                    <ul>
+						<volist id="rank" name="rank" key="ri">
+                        <li>
+                            <div class="userBox">
+                                <div class="fl userAvatar">
+                                    <img src="<?php if($rank['portrait'] != ''){echo $rank['portrait'];}else{ ?>{weimicms:$staticPath}/tpl/static/helping/new/images/portrait.jpg<?php } ?>">
+                                </div>
+                                <div class="userDesc">
+                                    <h2>{weimicms:$rank.username}</h2>
+									<!-- 6个字 -->
+                                    <p>{weimicms:$rank.tel}</p>
+                                </div>
+                                <div class="tipBox">
+                                    <div class="tip tip2">
+                                        <h3>转发数</h3>
+                                        <p>{weimicms:$rank.share_num}</p>
+                                    </div>
+                                    <div class="tip tip1">
+                                        <h3>助力值</h3>
+                                        <p>{weimicms:$rank.help_count}</p>
+                                    </div>
+                                </div>
+                                <div class="num">
+                                    <span>
+                                        <i>{weimicms:$ri}</i>
+                                    </span>
+                                    <s></s>
+                                </div>
+                            </div>
+                        </li>
+						</volist>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<footer>
+    <div class="oBtn">
+		<?php if($memberNotice != '' && $share_key == ''){if($sms == 1){echo "<a href='javascript:;' onclick='showWindow()'>我也参与</a>";}else{echo "<a href='#memberNoticeBox' id='modaltrigger_notice'>我也参与</a>";}}else{ ?>
+		<?php if($is_over == 1){echo "<a href='#' style='background:#ddd'>活动未开始</a>";}elseif($is_over == 2){echo "<a href='#' style='background:#ddd'>活动已结束</a>";}else{ ?>
+		<?php if($share_key != ''){ ?>
+		<?php if($memberNotice != ''){?>
+		<?php if($sms == 1){?>
+		<a href="javascript:;" onclick="showWindow()">
+            {weimicms:$backtext}
+        </a>
+		<?php }else{?>
+		<a href="#memberNoticeBox" id="modaltrigger_notice">
+            {weimicms:$backtext}
+        </a>
+		<?php }?>
+		<?php }else{?>
+        <a href="<?php echo U('Helping/index',array('token'=>$token,'id'=>$_GET['id'],'is_join2'=>1));?>">
+            {weimicms:$backtext}
+        </a>
+		<?php }?>
+        <a href="javascript:;" onclick="share()">
+            给TA助力
+        </a>
+		<?php }else{ ?>
+		<?php if($user['is_join2'] == 1){?>
+		<a href="javascript:;" onclick="share()" style="background: #aa2343;color: #fff;">
+            找朋友助力
+        </a>
+		<?php }else{ ?>
+		<a href="<?php echo U('Helping/index',array('token'=>$token,'id'=>$_GET['id'],'is_join2'=>1));?>">
+            我要参与
+        </a>
+		<?php } ?>
+		<?php } ?>
+		<?php } ?>
+		<?php } ?>
+    </div>
+</footer>
+    <div class="fullBg"></div>
+    <div class="fullBg2"></div>
+    <div class="window w1" style="z-index:1000">
+        <div class="windowThis">
+
+            <div class="succeed">
+				<div class="userAvatar">
+					<div class="imgBox">
+						<img src="<?php if($my['portrait']!=''){echo $my['portrait'];}else{?>{weimicms:$staticPath}/tpl/static/helping/new/images/portrait.jpg<?php }?>"/>
+					</div>
+				</div>
+				<div class="title">
+					<h3>给 {weimicms:$user.wechaname}</h3>
+					<div class="tipWord">
+
+					</div>
+				</div>
+				<div class="roundLight rotate360">
+					<img class="" src="{weimicms:$staticPath}/tpl/static/helping/new/images/roundLight.png"/>
+				</div>
+			</div>
+        </div>
+    </div>
+
+    <div class="window w0" style="position: fixed;top: 20px;margin-top: 0">
+        <div class="windowThis">
+            <div class="hd"></div>
+            <div class="bd">
+                <div class="adMargin">
+                    <div class="row">
+                        <div class="putBorder">
+                            <i></i><input type="tel" placeholder="手机号" name="tel"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="putBorder">
+                            <a href="javascript:;" class="getCode">获取验证码</a> <i></i><input type="tel" placeholder="验证码" name="code"/>
+                        </div>
+                    </div>
+					<div class="row">
+                        <button id="telyzbut">确定</button>
+                    </div>
+                    <div class="row">
+                        <P>活动时间：{weimicms:$info.start|date="Y-m-d",###}至{weimicms:$info.end|date="Y-m-d",###}</P>
+                    </div>
+                </div>
+            </div>
+            <div class="ft"></div>
+        </div>
+</div>
+<div class="share_bg">
+    <img src="{weimicms:$staticPath}/tpl/static/live/default/share-guide.png">
+</div>
+<style>
+	.fullBg2{background-color: #000;left: 0;opacity: 0.8;position: fixed;top: 0;z-index: 3;filter: alpha(opacity=80);-moz-opacity: 0.8;-khtml-opacity: 0.8;display: none;z-index: 888;width: 100%;}
+	.w0 .windowThis .bd .row button{width: 100%;height: 30px;background: #f6514b;text-align: center;line-height: 30px;font-size: 1.4rem;color: #fff;border-radius: 5px}
+	.tips{width: 100%;position: fixed;top: 0;left: 0;display: none;z-index: 9999}
+	.tips h3{width: 70%;padding: 10px 0;  margin: 0 auto;  background: rgba(255,255,255,1);  text-align: center;  font-size: 1.2rem; color: red;}
+</style>
+<div class="tips" style="display: none;"><h3></h3></div>
+
+<script type="text/javascript">
+function alert(text){
+	var t=null;
+	clearTimeout(t);
+	var tip= $(".tips");
+	tip.find('h3').html(text);
+	tip.slideDown();
+	t=setTimeout(function(){ tip.slideUp()},3000);
+}
+<?php if(($memberNotice == '' || $share_key != '') && $user['is_join2'] == 1){?>
+window.shareData = {  
+            "moduleName":"Helping",
+            "moduleID":"0",
+            "imgUrl": "{weimicms:$info.reply_pic}", 
+            "timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U('Helping/index',array('token'=>$token,'id'=>$info['id'],'share_key'=>$user['share_key']))}",
+            "sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Helping/index',array('token'=>$token,'id'=>$info['id'],'share_key'=>$user['share_key']))}",
+            "weiboLink": "{weimicms:$f_siteUrl}{weimicms::U('Helping/index',array('token'=>$token,'id'=>$info['id'],'share_key'=>$user['share_key']))}",
+			<?php if($info['fxtitle'] == ''){?>
+            "tTitle": "我正在参加“<?php echo $info['title'];?>”活动，快来帮我拿大奖！",
+			<?php }else{
+			$info['fxtitle'] = str_replace(array('{{活动名称}}','{{助力值}}'),array($info['title'],$user['help_count']),$info['fxtitle']);
+			?>
+			"tTitle": "<?php echo $info['fxtitle'];?>",
+			<?php }?>
+            <?php if($info['fxinfo'] == ''){?>
+            "tContent": "{weimicms:$info.intro|shareFilter}",
+            "fTitle": "{weimicms:$info.intro|shareFilter}",
+			<?php }else{
+			$info['fxinfo'] = str_replace(array('{{活动名称}}','{{助力值}}'),array($info['title'],$user['help_count']),$info['fxinfo']);
+			?>
+			"tContent": "{weimicms:$info.fxinfo|shareFilter}",
+			"fTitle": "{weimicms:$info.fxinfo|shareFilter}",
+			<?php }?>
+			"isShareNum":1,
+			"ShareNumData":"helping_user,share_key,{weimicms:$user['share_key']},share_num"
+};
+<?php }else{?>
+window.shareData = {  
+            "moduleName":"Helping",
+            "moduleID":"0",
+            "imgUrl": "{weimicms:$info.reply_pic}", 
+            "timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U('Helping/index',array('token'=>$token,'id'=>$info['id']))}",
+            "sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Helping/index',array('token'=>$token,'id'=>$info['id']))}",
+            "weiboLink": "{weimicms:$f_siteUrl}{weimicms::U('Helping/index',array('token'=>$token,'id'=>$info['id']))}",
+            "tTitle": "我正在参加“<?php echo $info['title'];?>”活动，快来帮我拿大奖！",
+            "tContent": "{weimicms:$info.intro|shareFilter}"
+};
+<?php }?>
+</script>
+{weimicms:$shareScript}
+</body>
+</html>

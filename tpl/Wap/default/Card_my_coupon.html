@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{weimicms:$thisCard.cardname}</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<meta name="Keywords" content=""/>
+<meta name="Description" content=""/>
+<!-- Mobile Devices Support @begin -->
+<meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+<meta content="telephone=no, address=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<!-- apple devices fullscreen -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<!-- Mobile Devices Support @end -->
+<link href="/tpl/static/kindeditor/examples/jquery-ui/css/smoothness/jquery-ui-1.9.2.custom.css" rel="stylesheet" type="text/css">
+<link href="{weimicms::$staticPath}/tpl/static/card/css/main.css" rel="stylesheet" type="text/css">
+<script src="{weimicms::$staticPath}/tpl/static/jquery.min.js" type="text/javascript"></script>
+<script src="/tpl/static/kindeditor/examples/jquery-ui/js/jquery-ui-1.9.2.custom.js" type="text/javascript"></script>
+</head>
+<body onselectstart="return true;" ondragstart="return false;">
+<div class="container coupon <if condition="$type eq 2">cash_coupon_my<elseif condition="$type eq 3"/>exchange</if> <if condition="$list eq ''">none</if>">
+  <header>
+  <nav id="nav_1" class="p_10">
+  <ul class="box" style="width:300px;">
+    <li><a href="index.php?g=Wap&m=Card&a=my_coupon&token={weimicms:$token}&wecha_id={weimicms:$wecha_id}&cardid={weimicms:$thisCard.id}&type=1"  <if condition="$type eq 1">class="on"</if>>优惠券</a></li>
+    <li><a href="index.php?g=Wap&m=Card&a=my_coupon&token={weimicms:$token}&wecha_id={weimicms:$wecha_id}&cardid={weimicms:$thisCard.id}&type=2" <if condition="$type eq 2">class="on"</if>>代金券</a></li>
+    <li><a href="index.php?g=Wap&m=Card&a=my_coupon&token={weimicms:$token}&wecha_id={weimicms:$wecha_id}&cardid={weimicms:$thisCard.id}&type=3" <if condition="$type eq 3">class="on"</if>>礼品券</a></li>
+  </ul>
+  </nav>
+  </header>
+  <div class="body">
+    <ul class="<if condition="$type eq 3">list_exchange<else/>list_coupon</if>">
+      <ol>
+ <volist name="list" id="item">
+    <if condition="$type eq 1">
+        <li data-card>
+          <a href="javascript:;" onclick="this.classList.toggle('toggle');" <if condition="$item.count eq 0">class="on"</if>>
+            <header>
+              <label>{weimicms:$item.title}</label>
+              <label class="fr" style="font-size:12px;line-height:22px;" class="stock{weimicms:$item.id}">
+                {weimicms:$item.total}张
+              </label>
+            </header>
+            <section>
+              <div>
+                <figure class="tbox">
+                <div>
+                  <img src="{weimicms:$item.pic}"/>
+                </div>
+                <div card-type="{weimicms:$item.type}" card-id="{weimicms:$item.card_id}" card-ext='{weimicms:$item.cardExt}' is-weixin="{weimicms:$item.is_weixin}" data-id="{weimicms:$item.id}" class="addcard">
+                  <label>
+                    <if condition="$item.count eq 0">
+                      已领取
+                    <else/>
+                      领取
+                    </if>
+                  </label>
+                </div>
+                </figure>
+              </div>
+              <div class="des">
+                <dl>
+                  <dt onclick="this.classList.toggle('on');event.stopPropagation();">
+                    有效期至{weimicms:$item.enddate|date='Y-m-d',###}
+                  </dt>
+                  <dd>
+                    <p>
+                      适用门店：{weimicms:$item.company_name}
+                    </p>
+                  </dd>
+                  <dd>
+                    {weimicms:$item.info}   
+                  </dd>
+                </dl>
+              </div>
+            </section>
+          </a>
+        </li>
+  <elseif condition="$type eq 2"/>
+        <li data-card>
+          <a href="javascript:;" onclick="this.classList.toggle('toggle');" <if condition="$item.count eq 0">class="on"</if>>
+            <header>
+              <label>{weimicms:$item.title}</label>
+              <label class="fr" style="font-size:12px;line-height:22px;">
+                {weimicms:$item.total}张
+              </label>
+            </header>
+            <section>
+              <div>
+                <figure class="tbox">
+                <div>
+                  <img src="{weimicms:$item.pic}"/>
+                </div>
+                <div card-type="{weimicms:$item.type}" card-id="{weimicms:$item.card_id}" card-ext='{weimicms:$item.cardExt}' is-weixin="{weimicms:$item.is_weixin}" data-id="{weimicms:$item.id}" class="addcard">
+                  <label>
+                    <if condition="$item.count eq 0">
+                      已领取
+                    <else/>
+                      领取
+                    </if>
+                  </label>
+                </div>
+                </figure>
+              </div>
+              <div class="des">
+                <dl>
+                  <dt onclick="this.classList.toggle('on');event.stopPropagation();">
+                    有效期至{weimicms:$item.enddate|date='Y-m-d',###}
+                  </dt>
+                  <dd>
+                    <p>
+                      适用门店：{weimicms:$item.company_name}
+                    </p>
+                  </dd>
+                  <dd>
+                    {weimicms:$item.info}   
+                  </dd>
+                </dl>
+              </div>
+            </section>
+          </a>
+        </li>
+  <elseif condition="$type eq 3"/>
+        <li data-card onclick="this.classList.toggle('on');" >
+          <header>
+            <ul class="tbox">
+              <li>
+                <h5>
+          {weimicms:$item.title}
+          <label class="fr" style="font-size:12px;line-height:22px;">
+            {weimicms:$item.total}张
+          </label>          
+        </h5>
+                <p>有效期至{weimicms:$item.enddate|date='Y-m-d',###} </p>
+              </li>
+            </ul>
+          </header>
+          <section>
+            <div>
+              <figure>
+                <img src="{weimicms:$item.pic}" />
+              </figure>
+              <article class="p">
+                <p>{weimicms:$item.info}</p>
+              </article>
+            </div>
+          </section>
+          <footer>
+            <dl class="box">
+              <dd><label><big id="integral{weimicms:$item.id}">{weimicms:$item.integral}</big>积分</label></dd>
+              <dd>
+                <if condition="$item.count eq 0">
+                  <a href="javascript:;">已经兑换</a>
+                <else/>
+                  <a href="javascript:;" card-type="{weimicms:$item.type}" card-id="{weimicms:$item.card_id}" card-ext='{weimicms:$item.cardExt}' is-weixin="{weimicms:$item.is_weixin}" data-id="{weimicms:$item.id}" class="addcard">立即兑换</a>
+                </if>
+              </dd>
+            </dl>
+          </footer>
+        </li>
+  </if>
+</volist>
+      </ol>
+    </ul>
+  </div>
+</div>
+<include file="Card:bottom"/>
+<include file="Card:share"/>
+<script>
+$(function(){
+  $('.addcard').on('click',function(e){
+    e.stopPropagation();
+    
+    var coupon_id   = $(this).attr('data-id');
+    var is_weixin   = $(this).attr('is-weixin');
+    var cardid    = $(this).attr('card-id');
+    var cardext   = $(this).attr('card-ext');
+    
+    if(is_weixin == 1){
+      var ua = navigator.userAgent.toLowerCase();
+      if(ua.match(/MicroMessenger/i)=="micromessenger") {
+        var card_type   = $(this).attr('card-type');
+        
+        if(card_type == 2){
+          var submitData = {  
+            coupon_id:coupon_id,
+            card_id: cardid,
+          };
+        
+          $.post('/index.php?g=Wap&m=Card&a=score_card&wecha_id={weimicms:$wecha_id}&token={weimicms:$token}&cardid={weimicms:$thisCard["id"]}', submitData,function(data) {
+            if(data.err == 0){
+              getCard(cardid,cardext,coupon_id);
+            }else{
+              $("#spanmessage").text(data.msg);
+              $("#message").dialog({
+                 title:"温馨提示！",
+                 modal: true,
+                 buttons: {
+                   "确定": function() {
+                     $(this).dialog("close");
+                   }
+                 }
+              }); 
+            }
+          },'json');
+        }else{
+          getCard(cardid,cardext,coupon_id);
+        }
+        
+      } else {  
+        $("#spanmessage").text('请在微信中领取此券');
+        $("#message").dialog({
+           title:"温馨提示！",
+           modal: true,
+           buttons: {
+             "确定": function() {
+               $(this).dialog("close");
+             }
+           }
+        }); 
+      }
+    }else{
+      payformsubmit(coupon_id);
+    }
+  });
+});
+
+function getCard(cardid,cardext,coupon_id){
+  wx.addCard({
+    cardList: [
+    {
+      cardId: cardid,
+      cardExt: cardext,
+    }
+    ],
+    success: function (res) {
+      if(res.cardList[0].isSuccess == true){
+        window.location.reload();
+      }else{
+        $("#spanmessage").text('微信未响应，请稍后再试');
+        $("#message").dialog({
+           title:"温馨提示！",
+           modal: true,
+           buttons: {
+             "确定": function() {
+               $(this).dialog("close");
+               window.location.reload();
+             }
+           }
+        }); 
+      }
+    }
+  });
+}
+
+function payformsubmit(itemid){
+  var submitData = {
+    coupon_id:itemid,
+    cardid: '{weimicms:$thisCard.id}',
+    type: '{weimicms:$type}',
+    cat:3,
+  };
+
+  if(submitData.type == 3){
+    $("#spanmessage").text('领取礼品券需要消耗'+($('#integral'+itemid).html())+'点积分，确定领取吗？');
+  }else if(submitData.type == 2){
+    $("#spanmessage").text('确定要领取此代金券吗？');
+  }else{
+    $("#spanmessage").text('确定要领取此优惠劵券吗？');
+  }
+  
+  $("#message").dialog({
+    title: "温馨提示！",
+    modal: true,
+    resizable: false,
+    buttons: {
+       "取消": function() {
+          $(this).dialog("close");
+       },
+       "确定": function() {
+          ajaxSub(submitData);//方法回调
+       }
+    }
+  });
+}
+
+function ajaxSub(submitData){
+    $.post('/index.php?g=Wap&m=Card&a=action_myCoupon&wecha_id={weimicms:$wecha_id}&token={weimicms:$token}&cardid={weimicms:$thisCard["id"]}', submitData,function(data) {
+    $("#spanmessage").text(data.info); 
+    $("#message").dialog({
+           title:"温馨提示！",
+           modal: true,
+           buttons: {
+               "确定": function() {
+                   $(this).dialog("close");
+                   if(data.err == 0){
+                      window.location.reload();
+                   }
+               }
+           }
+        }); 
+  }, "json");
+}
+
+$(function(){
+   var boardDiv = "<div id='message' style='display:none;'><span id='spanmessage'></span></div>";
+   $(document.body).append(boardDiv);
+
+   $('.neirLt').click(function(){
+      var des = $(this).siblings('.des');
+      if(des.css('display') == 'none'){
+        des.css('display','block');
+      }else{
+        des.css('display','none');
+      }
+   });
+}); 
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+
+<html>
+    <head>
+        <title>送给你</title>
+        <meta http-equiv="imagetoolbar" content="no">
+          <include file="Kawahk:js"/> 
+        <script type="text/javascript">
+            initViewport();
+        </script>
+		<meta name="viewport" content="width=100%, height=100%,initial-scale=0.64"/>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+         <meta name="copyright" content="版权所有，抄袭必究，（告无忧微米）">
+        <meta name="format-detection" content="telephone=no">
+        <script src='tpl/Wap/default/common/kawahk/common/kawamovie.js?ver=10'></script>
+        <style type="text/css">
+        div
+        {
+            position:absolute;
+        }
+        div#niao1
+        { 
+            position:absolute; 
+            left:-100px;
+            top:130px;              
+            -webkit-animation:fly1 15s 2.5s infinite linear alternate both;
+        }
+        @-webkit-keyframes fly1{
+            0%{-webkit-transform:translate(0px,0px) rotateX(0deg) rotateY(0deg) rotatez(0deg) scale(0.6,0.6);
+            opacity:1}
+            30%{ -webkit-transform:translate(200px,-50px) rotateX(40deg) rotateY(10deg) rotatez(5deg) scale(0.8,0.8);
+            opacity:1}
+            60%{-webkit-transform:translate(250px,-150px) rotateX(5deg) rotateY(30deg) rotatez(-10deg) scale(1,1);
+            }
+            100%{-webkit-transform:translate(400px,-250px) rotateX(-10deg) rotateY(-5deg) rotatez(10deg) scale(1.2,1.2);
+            }
+        }
+        
+        div#niao2
+        { 
+            position:absolute; 
+            left:-50px;
+            top:200px;              
+            -webkit-animation:fly2 13s 1.0s infinite linear alternate both;
+        }
+        @-webkit-keyframes fly2
+        {
+            from{-webkit-transform:translate(0px,0px);}
+            to{-webkit-transform:translate(600px,-200px);}
+        }
+        
+
+        </style>
+    </head><!--  -->
+    <body style="margin:0; height: 750px;width:500px;background-color:black;" onload="kawa_init();">    
+    
+        <script>
+            words = '时光流去，生活辗转，斑驳树影，点滴爱情。希望等到我们老去时，依然能够十指相扣，走过人生的十字路口。因为牵着的手，不会轻易地放开，亲爱的，我爱你！';
+
+            kawa_data = {
+                 <if condition=" $words eq ''">
+				replace_words      : '时光流去，生活辗转，斑驳树影，点滴爱情。希望等到我们老去时，依然能够十指相扣，走过人生的十字路口。因为牵着的手，不会轻易地放开，亲爱的，我爱你！',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+              
+                text_box           : '50 50 300 200', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+                mode               : 'up',     // up, left
+                speed              : 40,     // 每秒移动的像素
+                text_color         : '#602000', // rgb(1,2,3) 'black'
+                font_size          : '20pt',
+                line_height        : '40pt',
+                music              : 'http://kawaweika.qiniudn.com/sound/wenxingshike.mp3',     // url
+                <if condition=" $music eq ''">
+				replace_music      : 'http://kawaweika.qiniudn.com/sound/wenxingshike.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+                music_name         : '',
+                replace_music_name : '#replace_music_name#',
+                icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/fengmian/x3012.jpg',
+                title              : '送给你',
+                desc               : words,
+                modify             : 'yes',
+                replace_modify     : 'yes',
+                cardid             : '3012',
+                share_url          : window.location.href,  // 当分享的是微信页面时才需要改这里
+                use_share_url      : '#use_share_url#',
+				font_ip            : '114.215.157.155:8000',
+                modify_optfile     : 'aiqing',
+                modify_optwords    : '#modify_optwords#',
+                show_words         : 'yes',
+            };
+            </script>
+        <script type="text/javascript">
+
+        kawa_images = {
+            back : {url:'tpl/Wap/default/common/kawahk/3012/xiyang.jpg'},
+            people1 : {url:'tpl/Wap/default/common/kawahk/3012/1.png'},
+            people2 : {url:'tpl/Wap/default/common/kawahk/3012/2.png'},
+            people3 : {url:'tpl/Wap/default/common/kawahk/3012/3.png'},
+            people4 : {url:'tpl/Wap/default/common/kawahk/3012/4.png'},
+            people5 : {url:'tpl/Wap/default/common/kawahk/3012/5.png'},
+            people6 : {url:'tpl/Wap/default/common/kawahk/3012/6.png'},
+            people7 : {url:'tpl/Wap/default/common/kawahk/3012/7.png'},
+            people8 : {url:'tpl/Wap/default/common/kawahk/3012/8.png'},
+            people9 : {url:'tpl/Wap/default/common/kawahk/3012/9.png'},
+            people10 : {url:'tpl/Wap/default/common/kawahk/3012/10.png'},
+            people11 : {url:'tpl/Wap/default/common/kawahk/3012/11.png'},
+            people12 : {url:'tpl/Wap/default/common/kawahk/3012/12.png'},
+            people13 : {url:'tpl/Wap/default/common/kawahk/3012/13.png'},
+            //hailang1 : {url:'http://work.kagirl.net/ps/night/hailang1.png'},
+            hailang2 : {url:'tpl/Wap/default/common/kawahk/3012/hailang2.png'},
+            hailang3 : {url:'tpl/Wap/default/common/kawahk/3012/hailang3.png'},
+            //hailang4 : {url:'http://work.kagirl.net/ps/night/hailang4.png'},
+            light : {url:'tpl/Wap/default/common/kawahk/3012/light.png'},
+            boat : {url:'tpl/Wap/default/common/kawahk/3012/chuan.png'}
+
+        };
+
+        sp1 = new_sprite('back', '0,0', true);
+        hailang2=new_sprite('hailang3','-30,400',true);
+        //hailang3=new_sprite('hailang3','-30,400',false);
+        //hailang2_1=new_sprite('hailang2','0,400',false)
+        p1=new_sprite('people1','150,300',true);
+        p2=new_sprite('people2','150,300',false);
+        p3=new_sprite('people3','100,300',false);
+        p4=new_sprite('people4','180,300',false);
+        p5=new_sprite('people5','180,300',false);
+        //p6=new_sprite('people6','170,300',false);
+        //p7=new_sprite('people7','80,300',false);
+        p8=new_sprite('people8','80,300',false);
+        p9=new_sprite('people9','100,300',false);
+        p10=new_sprite('people10','-50,300',false);
+        p11=new_sprite('people11','100,300',false);
+        p12=new_sprite('people12','100,300',false);
+        p13=new_sprite('people13','150,300',false);
+
+        boat=new_sprite('boat','-80,190',true);
+        light=new_sprite('light','150,150',true);
+
+       // path = 'x0,y0->3.5->x400,y0,a0->0.1->x400,y0,a180->3.5->x400,y400,w2,h2,a180->3.5->x0,y400,a180->3.5->x0,y0,a180';
+        //road = new_path_action(path, '');
+
+        fade = new_opacity_action(1, 0, 1.5, 'show', 'forwards');
+        show=new_opacity_action(0,1,2,'show','');
+        star=new_opacity_action(1,0.3,3,'show','infinite alternate');
+        hailangOpacity=new_opacity_action(0,0.8,6,'show','infinite alternate');
+        
+        path='a0->3->a30';
+        hailangPath='x0,y0->6->x0,y51';
+        boatmove='x0,y0,w0.2,h0.2->40->x500,y0,w0.2,h0.2';
+
+        hailangRoad=new_path_action(hailangPath,'ease infinite alternate');
+        road=new_path_action(path,'ease infinite alternate');
+        boatmoving=new_path_action(boatmove,'linear infinite');
+
+        action_at_time(0,light,road);
+        action_at_time(0,light.img,star);
+        action_at_time(0,hailang2,hailangRoad);
+        action_at_time(0,hailang2.img,hailangOpacity);
+        action_at_time(0,boat,boatmoving);
+       // action_at_time(5000,hailang3,hailangRoad);
+       // action_at_time(5000,hailang3.img,hailangOpacity);
+        //action_at_time(8000,hailang2_1,hailangRoad);
+        //action_at_time(8000,hailang2_1.img,hailangOpacity);
+
+
+
+
+        var time=1800;t=2000;t1=1300
+        action_at_time(time,p1.img,fade);time+=t1;
+        action_at_time(time,p2.img,show);time+=t;
+        action_at_time(time,p2.img,fade);time+=t1;
+        action_at_time(time,p3.img,show);time+=t;
+        action_at_time(time,p3.img,fade);time+=t1;
+        action_at_time(time,p4.img,show);time+=t;
+        action_at_time(time,p4.img,fade);time+=t1;
+        action_at_time(time,p5.img,show);time+=t;
+        action_at_time(time,p5.img,fade);time+=t1;
+        //action_at_time(time,p6.img,show);time+=t;
+        //action_at_time(time,p6.img,fade);time+=t1;
+        //action_at_time(time,p7.img,show);time+=t;
+        //action_at_time(time,p7.img,fade);time+=t1;
+        action_at_time(time,p8.img,show);time+=t;
+        action_at_time(time,p8.img,fade);time+=t1;
+        action_at_time(time,p9.img,show);time+=t;
+        action_at_time(time,p9.img,fade);time+=t1;
+        action_at_time(time,p10.img,show);time+=t;
+        action_at_time(time,p10.img,fade);time+=t1;
+        action_at_time(time,p11.img,show);time+=t;
+        action_at_time(time,p11.img,fade);time+=t1;
+        action_at_time(time,p12.img,show);time+=t;
+        action_at_time(time,p12.img,fade);time+=t1;
+        action_at_time(time,p13.img,show);
+        //action_at_time(35000,p13.img,fade);
+        </script>
+        <div id="niao1" >
+            <img src="tpl/Wap/default/common/kawahk/3012/niao.gif"/>
+        </div> 
+         <div id="niao2" >
+            <img src="tpl/Wap/default/common/kawahk/3012/niao.gif"/>
+        </div>
+   </body>
+</html>

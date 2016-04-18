@@ -1,0 +1,382 @@
+
+<html>
+	<head>
+		<title>送给你</title>
+		<meta http-equiv="imagetoolbar" content="no">
+        <include file="Kawahk:js"/> 
+        <script type="text/javascript">
+            initViewport();
+        </script>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black"> 
+<meta name="format-detection" content="telephone=no">
+<style type="text/css">
+div {
+	position: absolute;
+}
+ @-webkit-keyframes showback {
+ 0% {
+opacity: 0.8;
+-webkit-transform:scale(1, 1);
+}
+ 66.6666% {
+opacity: 0;
+-webkit-transform:scale(2, 2);
+}
+ 100% {
+opacity: 0;
+-webkit-transform:scale(2, 2);
+}
+}
+</style>
+</head>
+<!--  -->
+<body style="margin:0; height: 100%;" onLoad="Init()">
+<script>
+        	words = '幸福，是有一颗感恩的心，一个健康的身体，一份称心的工作，一帮可以信赖的朋友。感恩节到了，祝你知足常乐！';
+
+            kawa_data = {
+                words 			   : words,
+               <if condition=" $words eq ''">
+				replace_words      : '感恩节到了，祝那些陪我笑过、哭过，累过、苦过，疯过、玩过，从未错过、一路走过，以后还要继续好好过的朋友：节日快乐',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+                text_box           : '50 80 400 250', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+                mode               : 'up',     // up, left
+                speed              : 40,     // 每秒移动的像素
+                text_color         : '#660066', // rgb(1,2,3) 'black'
+                font_size          : '36pt',
+                font_weight        : 'bold',
+                line_height        : '60pt',
+                music              : 'http://kawaweika.qiniudn.com/sound/river.mp3',     // url
+              <if condition=" $words eq ''">
+				replace_music      : 'http://kawaweika.qiniudn.com/sound/river.mp3', 
+				<else/> 
+                replace_music      : '{weimicms:$music}',</if>
+                music_name         : '',
+                replace_music_name : '#replace_music_name#',
+                icon               : '{weimicms:$f_siteUrl}tpl/Wap/default/common/kawahk/9391/x9391.jpg',
+                title              : '送给你',
+                desc               : words,
+                modify             : 'no',
+                replace_modify     : 'yes',
+                cardid             : '9391',
+                share_url          : window.location.href, // 当分享的是微信页面时才需要改这里
+               
+                font_family        : 'hkww',
+                modify_optfile     : 'ganen1',
+                modify_optwords    : '#modify_optwords#',
+                show_words         : 'yes',
+                //short_url           : 'http://w.url.cn/s/A5e8n9v'
+            };
+        </script> 
+
+<script src='tpl/Wap/default/common/kawahk/9391/kawamovie.js?ver=10'></script> 
+<script type="text/javascript">
+        var indextimes=0;
+        var position=new Array();
+        var time=0.5;
+        var SHAKE_THRESHOLD = 1800;//重力速度标准原3000
+        var last_update = 0;
+        var x = y = z = last_x = last_y = last_z = 0;
+        var shaketimes=0;
+        var maxshake=5;
+        var end=false;
+        var last_run=0; 
+        // var run=0;pau=0;
+        function Init()
+        {
+            
+            //kawa_data.words=changeWords();
+            setTimeout(
+                function(){
+                    setInterval(changezIndex,2000)
+                },2000)
+            create_base();
+            read_base();
+            //create_textdiv();
+            add_kawa_icon();
+            create_music();
+            create_modify();
+            for(var i=0;i<14;i++)
+            {
+                position[i]=new Array();
+                position[i][0]=rand(20,350);
+                position[i][1]=rand(20,580);
+                position[i][2]=rand(-180,180);
+            }
+            sp1=new_sprite('pintu1',positionstr(0),true);
+
+            sp2=new_sprite('pintu2',positionstr(1),true);
+            sp3=new_sprite('pintu3',positionstr(2),true);
+            sp4=new_sprite('pintu4',positionstr(3),true);
+            sp5=new_sprite('pintu5',positionstr(4),true);
+            sp6=new_sprite('pintu6',positionstr(5),true);
+            sp7=new_sprite('pintu7',positionstr(6),true);
+            sp8=new_sprite('pintu8',positionstr(7),true);
+            sp9=new_sprite('pintu9',positionstr(8),true);
+            sp10=new_sprite('pintu10',positionstr(9),true);
+            sp11=new_sprite('pintu11',positionstr(10),true);
+            sp12=new_sprite('pintu12',positionstr(11),true);
+            sp13=new_sprite('pintu13',positionstr(12),true);
+            sp14=new_sprite('pintu14',positionstr(13),true);
+            yao=new_sprite('yao','200,350',true);
+            yaopath='a-5->0.2->a5';
+            yaoroad=new_path_action(yaopath,'linear infinite alternate');
+            action_at_time(0,yao,yaoroad);
+            id(15).style.webkitTransformOrigin='0% 100%';
+            id(15).style.zIndex=200;
+            
+            for(var j=0;j<14;j++)
+            {
+                id(j+1).style.webkitTransform='rotate('+position[j][2]+'deg)';
+                id(j+1).style.zIndex='10'
+            }
+
+            if (window.DeviceMotionEvent) {
+                window.addEventListener('devicemotion', deviceMotionHandler, false);
+            } else {
+                alert('不支持或未开启重力感应');
+            }
+
+
+        }
+        function id(name)
+        {
+            name=(name-1)*2;
+            var name1='kawa_obj_'+name;
+            return document.getElementById(name1);
+        }
+        function deviceMotionHandler(eventData) {
+            var acceleration = eventData.accelerationIncludingGravity;
+            var curTime = new Date().getTime();
+            if ((curTime - last_update) > 100) {
+                var diffTime = curTime - last_update;
+                last_update = curTime;
+                x = acceleration.x;
+                y = acceleration.y;
+                z = acceleration.z;
+                var speed = Math.abs(x + y + z - last_x - last_y - last_z) / diffTime * 10000*2;
+
+                if ((speed > SHAKE_THRESHOLD)&&(curTime-last_run>500)&&(shaketimes<maxshake)) 
+                {
+                        movepintu(shaketimes);
+                        last_run=curTime;
+                        // alert(shaketimes);
+                        shaketimes++;
+
+                }
+                last_x = x;
+                last_y = y;
+                last_z = z;
+            }
+        }
+
+        function changezIndex()
+        {
+            if (indextimes==3) {
+                indextimes=0;
+            };
+            if(indextimes==0)
+                change(2,1,0);
+            else if(indextimes==1)
+                change(1,0,2);
+            else
+                change(0,2,1);
+            indextimes++;
+        }
+
+        function change(num2,num1,num0)
+        {
+                objid('img'+num2).style.zIndex=1;
+                objid('img'+num1).style.zIndex=6;
+                objid('img'+num0).style.zIndex=4;
+                objid('img'+num2).style.zIndex=2; 
+        }
+        function movepintu(times)
+        {
+            if(times>=maxshake)
+                return;
+            path=new Array();
+            road=new Array();
+            if(times==0)
+            {
+                objid('text').innerHTML='再摇一摇,加油！'
+                for(var k=0;k<14;k++)
+                {
+                    var x1=(finalposition[k][0]-position[k][0])/maxshake;
+                    var y1=(finalposition[k][1]-position[k][1])/maxshake;
+                    var a1=position[k][2]/maxshake*(maxshake-1);
+                    path[k]='x0,y0,a'+position[k][2]+'->'+time+'->x'+x1+',y'+y1+',a'+a1;
+
+                    road[k] = new_path_action(path[k], 'ease-out forwards');
+                    //var obj='sp'+k;
+                    //action_at_time(0,obj, road);
+                }
+            }
+            else if(times==maxshake-1)
+            {
+                id(15).style.display='none';
+                objid('text').style.display='none';
+                for(var k=0;k<14;k++)
+                {
+                    var x1=(finalposition[k][0]-position[k][0])/maxshake*(maxshake-1);
+                    var y1=(finalposition[k][1]-position[k][1])/maxshake*(maxshake-1);
+                    var a1=position[k][2]/maxshake;
+                    var x2=(finalposition[k][0]-position[k][0]);
+                    var y2=(finalposition[k][1]-position[k][1]);
+                    path[k]='x'+x1+',y'+y1+',a'+a1+'->'+time+'->x'+x2+',y'+y2+',a0';
+                    road[k] = new_path_action(path[k], 'ease-out forwards');
+                    setTimeout(function()
+                    { 
+                        create_textdiv();
+                    },time*1000);
+
+                }
+            }
+            else 
+            {
+                for(var k=0;k<14;k++)
+                {
+                    var x1=(finalposition[k][0]-position[k][0])/maxshake*times;
+                    var y1=(finalposition[k][1]-position[k][1])/maxshake*times;
+                    var a1=position[k][2]/maxshake*(maxshake-times);
+                    var x2=(finalposition[k][0]-position[k][0])/maxshake*(times+1);
+                    var y2=(finalposition[k][1]-position[k][1])/maxshake*(times+1);
+                    var a2=position[k][2]/maxshake*(maxshake-times-1);
+                    path[k]='x'+x1+',y'+y1+',a'+a1+'->'+time+'->x'+x2+',y'+y2+',a'+a2;
+                    road[k] = new_path_action(path[k], 'ease-out forwards');
+                    //var obj='sp'+k;
+                    //action_at_time(0,obj, road);
+                }
+            }
+            //alert(path[0]);
+            action_at_time(0,sp1, road[0]);
+            action_at_time(0,sp2, road[1]);
+            action_at_time(0,sp3, road[2]);
+            action_at_time(0,sp4, road[3]);
+            action_at_time(0,sp5, road[4]);
+            action_at_time(0,sp6, road[5]);
+            action_at_time(0,sp7, road[6]);
+            action_at_time(0,sp8, road[7]);
+            action_at_time(0,sp9, road[8]);
+            action_at_time(0,sp10, road[9]);
+            action_at_time(0,sp11, road[10]);
+            action_at_time(0,sp12, road[11]);
+            action_at_time(0,sp13, road[12]);
+            action_at_time(0,sp14, road[13]);
+            
+        }
+        function showxin()                                                                                            
+        {
+            xin=new_sprite('xin','53,154',false);
+            xinpath='w1.04,h1.03->0.01->w1.04,h1.03';
+
+            xinroad=new_path_action(xinpath,'forwards');
+            action_at_time(0,xin,xinroad);
+            xinshow = new_opacity_action(0, 1, 1.5, 'show', ''); 
+            action_at_time(500,xin.img,xinshow);
+
+
+        }
+        finalposition=[
+            [46,150],
+            [118,150],
+            [46,227],
+            [145,201],
+            [58,301],
+            [118,321],
+            [132,390],
+            [248,150],
+            [317,149],
+            [206,228],
+            [345,209],
+            [242,301],
+            [317,327],
+            [223,422]
+        ]
+        function rand(min,max)
+        {
+            return min+Math.floor(Math.random()*(max-min+1));
+        }
+        function positionstr(num)
+        {
+            return position[num][0]+','+position[num][1];
+        }
+
+        // function randposition()
+        // {
+        //     var rd1=rand(0,500)+','+rand(0,750); 
+        //     return rd1;
+        // }
+        kawa_images = {
+            pintu1 : {url:'tpl/Wap/default/common/kawahk/9391/1a.png'},
+            pintu2 : {url:'tpl/Wap/default/common/kawahk/9391/2a.png'},
+            pintu3 : {url:'tpl/Wap/default/common/kawahk/9391/3a.png'},
+            pintu4 : {url:'tpl/Wap/default/common/kawahk/9391/4a.png'},
+            pintu5 : {url:'tpl/Wap/default/common/kawahk/9391/5a.png'},
+            pintu6 : {url:'tpl/Wap/default/common/kawahk/9391/6a.png'},
+            pintu7 : {url:'tpl/Wap/default/common/kawahk/9391/7a.png'},
+            pintu8 : {url:'tpl/Wap/default/common/kawahk/9391/8a.png'},
+            pintu9 : {url:'tpl/Wap/default/common/kawahk/9391/9a.png'},
+            pintu10 : {url:'tpl/Wap/default/common/kawahk/9391/10a.png'},
+            pintu11 : {url:'tpl/Wap/default/common/kawahk/9391/11a.png'},
+            pintu12 : {url:'tpl/Wap/default/common/kawahk/9391/12a.png'},
+            pintu13 : {url:'tpl/Wap/default/common/kawahk/9391/13a.png'},
+            pintu14 : {url:'tpl/Wap/default/common/kawahk/9391/14a.png'},
+            yao : {url:'tpl/Wap/default/common/kawahk/9391/yao.png'}
+
+        };
+        function changeWords()
+        {
+
+            arrwords=new Array();
+            arrwords=wrap_text(words).split("<br>");
+            max=0;
+            for(var i=0;i<arrwords.length-1;i++)
+            {
+                if(new_getLength(arrwords[i])>max)
+                    max=new_getLength(arrwords[i]);
+            }
+            for(var i=0;i<arrwords.length;i++)
+            {
+                space='';
+                for(var j=0;j<(max-new_getLength(arrwords[i]))/2;j++)
+                    space=space+" ";
+                arrwords[i]=space+arrwords[i];
+            }
+            var finalstr='';
+            for(var i=0;i<arrwords.length;i++)
+            {
+                finalstr=finalstr+arrwords[i]+'<br>';
+            }
+            words=finalstr;
+            return words;
+        }
+        // sp1 = new_sprite('kawa', '100,100', true);
+        // path = 'x0,y0->3.5->x400,y0,a0->0.1->x400,y0,a180->3.5->x400,y400,w2,h2,a180->3.5->x0,y400,a180->3.5->x0,y0,a180';
+        // road = new_path_action(path, '');
+
+        // fade = new_opacity_action(0, 1, 1.5, 'show', ''); 
+        
+        // var jmz = {};
+        // jmz.GetLength = function(str) {
+        //     return str.replace(/[^\x00-\xff]/g,"aa").length;
+        // };    
+         
+        // alert(jmz.GetLength('淡淡的歌1a'));
+        function new_getLength(str)
+        {
+            return str.replace(/[^\x00-\xff]/g,"aa").length;
+        }
+
+        </script>
+<div id='div1' style='width:500px;height:750px;overflow:hidden;'> <img id='img' src='tpl/Wap/default/common/kawahk/9391/back.jpg' style='position:absolute;'> <img id='img0' src='tpl/Wap/default/common/kawahk/9391/back.jpg' style='position:absolute;z-index:2;-webkit-animation:showback 6s linear 4s infinite'> <img id='img1' src='tpl/Wap/default/common/kawahk/9391/back.jpg' style='position:absolute;z-index:4;-webkit-animation:showback 6s linear 2s infinite'> <img id='img2' src='tpl/Wap/default/common/kawahk/9391/back.jpg' style='position:absolute;z-index:6;-webkit-animation:showback 6s linear infinite'>
+  <div id='text' style='font-family:SimHei;font-size:20px;top:470px;left:220px;z-index:1000;position:absolute'>摇一摇试试看吧</div>
+</div>
+</body>
+
+
+</html>

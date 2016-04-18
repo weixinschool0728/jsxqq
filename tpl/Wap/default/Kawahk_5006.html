@@ -1,0 +1,101 @@
+
+<html>
+  <head>
+    <title>祈福</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+       <include file="Kawahk:js"/> 
+	<script type="text/javascript">
+            initViewport();
+    </script>
+
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery.innerfade.js" type="text/javascript"></script>
+	
+	<style type="text/css">
+		#layer1 {
+			position:absolute;
+			left:0px;
+			top:0px;
+			width:100%;
+			z-index:1;
+		}
+		#mozhi img {border:0px; position:absolute; z-index:2;}
+		body
+		{
+			/*background-color: ;*/
+			background:#ffffff;
+			scroll="no";
+			margin: 0;
+			
+		}
+		html { overflow-y:hidden; }
+	</style>
+	<script>
+	// script place
+    	words = '愿全天下的宝贝们,健健康康的长大,未来美好的人生在等着你们!';
+
+        kawa_data = {
+            words 			   : words,
+            <if condition=" $words eq ''">
+				replace_words      : '愿全天下的宝贝们,健健康康的长大,未来美好的人生在等着你们！',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+            text_box           : '20 80 400 300', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+            mode               : 'print',     // up, left
+            speed              : 400,     // 每秒移动的像素
+            text_color         : '#5E0000', // rgb(1,2,3) 'black'
+            font_size          : '30pt',
+            line_height        : '40pt',
+            //text_align         : 'center',
+            font_weight        : 'bold',
+            music              : 'http://pds26.egloos.com/pds/201311/22/32/qingyinyue10.mp3',     // url
+           <if condition=" $music eq ''">
+				replace_music      : 'http://pds26.egloos.com/pds/201311/22/32/qingyinyue10.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+            music_name         : '',
+            replace_music_name : '#replace_music_name#',
+            icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/fengmian/x5006.jpg',
+            title              : '祈福',
+            desc               : words,
+            modify             : 'no',
+            replace_modify     : 'yes',
+            cardid             : '5006',
+            share_url          : window.location.href,  // 当分享的是微信页面时才需要改这里
+            font_ip            : '115.28.135.41:8000',
+            modify_optfile     : 'zhufu',
+            modify_optwords    : '#modify_optwords#',
+            show_words         : 'yes',
+            write_param_1      : 'inputtype=singleline&showsel=no&prompt=' + encodeURIComponent('输入对方的名字：')
+        };
+    </script>
+	
+	
+    </head>
+  <body onload="kawa_init();" >
+	<div  id="layer1">
+	<img src="tpl/Wap/default/common/kawahk/5006/139633440242.gif"  width="100%"/>
+	</div>
+	<div id="mozhi">
+		<img src="tpl/Wap/default/common/kawahk/5006/139633440308.png"  style="margin-left:0%;margin-top:0%" />
+		<img src="tpl/Wap/default/common/kawahk/5006/139633454818.png"  style="margin-left:0%;margin-top:0%" />
+		<img src="tpl/Wap/default/common/kawahk/5006/139633440104.png"  style="margin-left:0%;margin-top:0%" />
+	</div>
+	<script>
+	$(document).ready(function(){
+		//墨汁的淡入淡出
+		$("#mozhi img:not(:first-child)").hide(); ///隐藏第一幅以外的图片
+		
+		$("#mozhi").innerfade({
+						animationtype: 'fade',
+						speed: 5000,
+						timeout: 3500,
+						type: 'sequence',
+						containerheight: '20px'
+		});
+	});
+	</script>
+		
+  </body>
+</html>

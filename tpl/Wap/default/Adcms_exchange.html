@@ -1,0 +1,183 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0068)http://www.zqianqian.cn/index.php/Club/user/exchange/ref_id/106.html -->
+<!DOCTYPE html PUBLIC "" "">
+<HTML>
+<HEAD>
+<META content="IE=10.000" 
+http-equiv="X-UA-Compatible">
+<META charset="utf-8">
+<TITLE>点客赚</TITLE>
+<META name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+<META name="apple-mobile-web-app-capable" content="yes">
+<META name="apple-mobile-web-app-status-bar-style" content="black">
+<LINK 
+href="tpl/static/adcms/font-awesome.min.css" rel="stylesheet" type="text/css">
+<LINK href="tpl/static/adcms/mui.min.css" rel="stylesheet">
+<SCRIPT src="tpl/static/adcms/jquery-1.10.2.min.js" type="text/javascript"></SCRIPT>
+<STYLE>
+.clear {
+	clear: both;
+}
+.mui-table-view span {
+	width: 33%;
+	display: block;
+	float: left;
+}
+.sygz {
+	padding: 15px;
+}
+.sygz a {
+	width: 40%;
+	margin: 0 5%;
+	text-align: center;
+	display: block;
+	float: left;
+	background: #EEA236;
+	line-height: 44px;
+	color: #fff;
+}
+.tip {
+	position: absolute;
+	right: 15px;
+	font-size: 12px;
+	background: #ff0000;
+	color: #fff;
+	border-radius: 20px;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	width: 20px !important;
+	height: 20px;
+	text-align: center;
+}
+.mui-table-view-cell span{ text-align:center}
+</STYLE>
+<LINK href="tpl/static/adcms/style.css" rel="stylesheet">
+<META name="GENERATOR" content="MSHTML 10.00.9200.16660">
+</HEAD>
+<!--<body oncontextmenu="return false" onselectstart="return false">-->
+
+<BODY>
+<HEADER class="mui-bar mui-bar-nav">
+  <H1 class="mui-title">提现</H1>
+</HEADER>
+<DIV class="mui-content">
+  <UL class="mui-table-view">
+    <LI class="mui-table-view-cell"><SPAN>可提现余额：</SPAN><SPAN>{weimicms:$info.balance}</SPAN></LI>
+  </UL>
+  <DIV class="title"><if condition="$tixian.txtype eq '1'">微信红包提现<FONT color="red">（提现成功后，请到公众号聊天窗口领取红包）</FONT></br>红包提现可能需要等待10秒后才有提示，点击提交后等待即可！<else/>支付宝提现<FONT color="#0000ee">(每周5处理提现，当天22:00前到账)</FONT></if></DIV>
+  <DIV class="mui-content-padded">
+    <FORM method="post">
+      <DIV class="form-group msg"></DIV>
+      <if condition="$tixian.txtype eq '2'">
+      <DIV class="form-group">
+        <INPUT name="alipay" id="alipay" type="text" 
+placeholder="请填写您的支付宝账号，用于收款" value="{weimicms:$alipay.alipay}" autocomplete="off">
+      </DIV>
+      <DIV class="form-group">
+        <INPUT name="check_alipay" id="check_alipay" type="text" 
+placeholder="请确认您的支付宝账号" value="{weimicms:$alipay.alipay}" autocomplete="off">
+      </DIV></if>
+    <!--  <DIV class="form-group">
+        <INPUT name="alipay_password" id="alipay_password" type="password" 
+placeholder="请填写您的商盟密码" value="" autocomplete="off">
+      </DIV>-->
+      <DIV class="form-group">
+        <SELECT name="alipay_money" id="alipay_money">
+          <OPTION 
+  value="">请选择提现金额</OPTION>
+          <OPTION value="10">10元</OPTION>
+          <OPTION value="20">20元</OPTION>
+          <OPTION 
+  value="50">50元</OPTION>
+        </SELECT>
+      </DIV>
+      <DIV class="form-group">
+        <BUTTON class="btn_lr mui-btn mui-btn-primary" id="submit" type="button">提现</BUTTON>
+      </DIV>
+    </FORM>
+  </DIV>
+  <DIV class="title">提现记录</DIV>
+  <UL class="mui-table-view">
+    <LI 
+  class="mui-table-view-cell"><SPAN style="width:30%" >日期</SPAN><SPAN  style="width:25%">金额</SPAN><SPAN  style="width:25%">状态</SPAN><SPAN  style="width:20%">提现方式</SPAN></LI>
+  <volist name="set" id="vo">
+   <LI 
+  class="mui-table-view-cell"><SPAN  style="width:30%">{weimicms:$vo.time|date='Y-m-d',###}</SPAN><SPAN  style="width:25%">{weimicms:$vo.alipay_money}</SPAN><if condition="$vo.statue eq '0'"><SPAN style="width:25%">等待打款</SPAN><else/><SPAN style="color:red;width:25%" >打款成功</SPAN></if><if condition="$vo.type eq '1'"><SPAN style="width:20%"><img width="40%" src="tpl/static/adcms/img/weixin.jpg"></SPAN><else/><SPAN style="width:20%" ><img width="40%" src="tpl/static/adcms/img/alipay.jpg"></SPAN></if></LI>
+  </volist>
+  </UL>
+</DIV>
+<SCRIPT>
+
+$(document).ready(function(e) {
+	
+	
+	
+    $("#submit").bind("click",function(){
+		
+		var alipay_money = $("#alipay_money").val();
+		var alipay = $("#alipay").val();
+		var check_alipay = $("#check_alipay").val();
+		var alipay_password = $("#alipay_password").val();
+		 <if condition="$tixian.txtype eq '2'">
+		if(!alipay){
+			$('.msg').html("请填写支付宝提现账号");
+			return false;
+		}
+		if(alipay!=check_alipay){
+			$('.msg').html("2次填写的支付宝账号不一致");
+			return false;
+		}
+		</if>
+		if(!alipay_money){
+			$('.msg').html("请选择提现金金额");
+			return false;
+		}
+		
+		var requestData={alipay_money:alipay_money,alipay:alipay,alipay_password:alipay_password};
+		
+		$.post("/index.php?g=Wap&m=Adcms&a=exchange&token={weimicms:$token}&wecha_id={weimicms:$wecha_id}",requestData,function(response){
+			var data=eval("("+response+")");
+			//alert(data.msg);
+			var stat = data.status;
+		if(stat == "-1"){
+			
+			$('.msg').html(data.msg);
+			}
+		if(stat == "1"){
+			$('.msg').html(data.msg);
+			window.setTimeout("window.location='/index.php?g=Wap&m=Adcms&a=exchange&token=gzydaf1428974196'",2000);
+		}else{
+			$('.msg').html(data.msg);
+		}
+	
+		
+		});
+		
+		
+		
+	});
+		
+});
+
+//	
+//	$.post("/index.php?g=Wap&m=Adcms&a=exchange&token=gzydaf1428974196", { alipay_money:alipay_money,alipay:alipay,alipay_password:alipay_password}, function(response){
+//
+//	$.each(response,function(entryIndex, entry){ 
+//		
+//		alert('2222');
+//		alert(entry.msg);exit;
+//		
+//
+//	})
+		
+	
+	
+
+
+
+
+</SCRIPT>
+
+ <include file="Adcms:buttom"/>
+</BODY>
+</HTML>

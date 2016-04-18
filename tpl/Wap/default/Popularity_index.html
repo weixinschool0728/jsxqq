@@ -1,0 +1,256 @@
+<!DOCTYPE HTML>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<title>{weimicms:$info['title']}</title>
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/public-framework/scripts/jquery.js"></script>
+<link href="{weimicms:$staticPath}/tpl/static/public-framework/styles/framework.css" rel="stylesheet" type="text/css">
+<link href="{weimicms:$staticPath}/tpl/static/public-framework/styles/owl.carousel.css" rel="stylesheet" type="text/css">
+<link href="{weimicms:$staticPath}/tpl/static/public-framework/styles/owl.theme.css" rel="stylesheet" type="text/css">
+<link href="{weimicms:$staticPath}/tpl/static/public-framework/styles/swipebox.css"         rel="stylesheet" type="text/css">
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/alert.js"></script>
+<link href="{weimicms:$staticPath}/tpl/static/Popularity/css/index.css" rel="stylesheet" type="text/css">
+
+
+<script type="text/javascript">
+function swapStyleSheet(sheet){
+    document.getElementById('pagestyle').setAttribute('href', sheet);
+}
+</script>
+
+</head>
+<body>
+<if condition="$memberNotice neq ''">
+    {weimicms:$memberNotice}
+</if>
+<div id="preloader">
+    <div id="status">
+        <p class="center-text">
+            <em>Loading...</em>
+        </p>
+    </div>
+</div>
+
+<div class="all-elements">
+
+    <div id="content" class="page-content" style="min-height:auto;">
+        <img src="{weimicms:$info['pic']}" style="width:100%;">
+    </div> 
+
+    <div class="title">
+        <div class="count">
+            <a class="rank" href="{weimicms::U('Popularity/rank',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$info['id'],'uid'=>$puser['id']))}">人气榜单！</a>
+        </div>
+        <span>{weimicms:$puser['username']}</span>抢到的奖品
+    </div>
+    <div id="content" class="page-content">
+        <div class="content-controls solid-color fixed-header">
+            <if condition="$is_over eq 1">
+                <a class="button-big button-turqoise" href="javascript:void(0);" style="background:#5a5a5a;">活动还没开始</a>
+            <elseif condition="$is_over eq 2"/>
+                <a class="button-big button-turqoise" href="javascript:void(0);" style="background:#5a5a5a;">活动已经结束</a>
+            <elseif condition="($is_see eq 1 and $wecha_id neq '') or ($is_see eq 0 and $puser['wecha_id'] neq $wecha_id and $wecha_id neq '' and  $share_code neq '')"/>
+				<?php if($memberNotice == ''){?>
+                <a class="button-big button-turqoise" href="{weimicms::U('Popularity/index',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$info['id']))}">返回我的</a>
+				<?php }else{?>
+				<a class="button-big button-turqoise" href="#memberNoticeBox" id="modaltrigger_notice">返回我的</a>
+				<?php }?>
+            <else/>
+                <if condition="$memberNotice eq ''">
+                   <a class="button-big button-turqoise" id="share" href="javascript:void(0);">召唤小伙伴一起抢</a>
+                <else/>
+                   <a class="button-big button-turqoise" href="#memberNoticeBox" id="modaltrigger_notice">我要参加</a>
+                </if>
+            </if>
+        </div>    
+        
+        <!--gift start-->
+        <div class="content">
+            <div class="container solid">
+                <div class="quote_slider" data-snap-ignore="true">
+                <volist id="list" name="prize">
+                    <div class="item" {weimicms:$list['list_style']}>
+                        <div class="quote-item">
+                            <a href="{weimicms:$list.img}" class="swipebox"  title="{weimicms:$list.name}">
+                                <img src="{weimicms:$list.img}" alt="{weimicms:$list.name}">
+                            </a>
+                            <em>{weimicms:$list.name}{weimicms:$list.show_num}
+                                <if condition="$info.show_num eq 1">
+                                    <span class="cor1">{weimicms:$list.unused}</span> 份
+                                </if>
+                            </em>
+                        </div>
+                    </div>
+                </volist>
+                </div>
+            </div>  
+            
+            <div class="progress">
+                <div class="chart">
+                    <div class="chart-background">
+                        <div class="yellow-chart" {weimicms:$puser['char_itme']['style']}></div>
+                    </div>
+                    <volist id="bubble" name="prize" key='key'>
+                        <i class="bubble" {weimicms:$bubble.bubble_style}><a href="javascript:void();">{weimicms:$bubble.count}</a></i>
+                    </volist>
+                </div>
+                <div class="info">
+                <if condition="$puser['char_itme']['is_max'] eq 1">
+                    人气爆满，你的人气值达到了<span class="cor-1"> {weimicms:$puser.share_count} </span>点<br/>
+                    最终获奖结果以人气榜单排名为准<br/>
+                <else/>
+                    <if condition="$puser neq ''">
+                        还差<span class="cor-1">{weimicms:$puser['char_itme']['num']}</span>点人气就有机会获得<span class="cor-2">{weimicms:$puser['char_itme']['name']}</span><br/>
+                        最终获奖结果以人气榜单排名为准<br/>
+                    </if>
+                </if>
+                <if condition="$puser neq ''"> 
+                    <span class="right">给您加人气的好友</span>
+                </if>
+                </div>
+            </div>      
+        </div> 
+        <!--gift end-->
+        
+        <!--sharelist start-->
+         <div class="content">
+            <if condition="$puser neq ''"> 
+            <div class="container no-bottom no-padding">
+                <div class="column-responsive half-bottom">
+                    <a href="javascript:void();">
+                    <img src="{weimicms:$puser.portrait}">
+                    <div class="info">
+                        <b>{weimicms:$puser.username}</b>
+                        <div class="con">
+                            <i class="diagram-list"></i>
+                            <span class="num">人气：<i>{weimicms:$puser.share_count}</i></span>
+                            <span class="time">{weimicms:$puser.add_time|date="Y-m-d H:i",###}</span>
+                        </div>
+                        <if condition="$puser['share_count'] gt 0">
+                            <i class="ic_rank1">+1</i>
+                        <else/>
+                            <i class="ic_no">未抢</i>
+                        </if>
+                    </div>
+                    </a>
+                </div>
+                <volist id="share" name="share">
+                <div class="column-responsive half-bottom">
+                    <a href="{weimicms::U('Popularity/index',array('token'=>$token,'id'=>$info['id'],'is_see'=>1,'share_code'=>$share['share_key']))}">
+                    <img src="{weimicms:$share.portrait}">
+                    <div class="info">
+                        <b>{weimicms:$share.username}</b>
+                        <div class="con">
+                            <i class="diagram-list"></i>
+                            <span class="num">人气：{weimicms:$share.share_count}</span>
+                            <span class="time">{weimicms:$share.add_time|date="Y-m-d H:i",###}</span>
+                        </div>
+                    </div>
+                    <if condition="$share['share_count'] gt 0">
+                        <i class="ic_rank1">+1</i>
+                    <else/>
+                        <i class="ic_no">未抢</i>
+                    </if>
+                    </a>
+                </div> 
+                </volist>                        
+            </div>
+            </if>
+        </div>
+        <!--sharelist end--> 
+        <div class="rule">活动规则</div>   
+        <div class="content">
+            <div class="container bg-white">
+                <div class="static-notification-red">
+                    <p class="center-text uppercase">
+                        分享给好友可以增加人气
+                    </p>
+                </div>
+                <div class="times">{weimicms:$info.start|date="Y-m-d",###} 至  {weimicms:$info.end|date="Y-m-d",###}</div>
+                <div class="rule"></div>
+                <div class="addr"><a href="{weimicms::U('Popularity/maps',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$info['id']))}">{weimicms:$info.addr}</a></div>
+                
+                <div class="rule"></div>
+                <h5 class="role_title">活动介绍</h5>
+				<style>
+				.intro img{width:100%}
+				</style>
+                <div class="intro">
+                    {weimicms:$info.info|htmlspecialchars_decode}
+                </div>
+            </div>
+        </div>
+        <div class="null"></div>
+    </div>  
+</div>
+<div class="share_bg">
+    <img src="{weimicms:$staticPath}/tpl/static/live/default/share-guide.png">
+</div>
+<script type="text/javascript">
+<if condition="$is_see eq 1">
+document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() { 
+    WeixinJSBridge.call('hideOptionMenu');
+});
+<else/>
+document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {   
+    WeixinJSBridge.call('showOptionMenu');
+});
+</if>
+</script>
+<script type="text/javascript">
+$(function(){
+    $('#share').click(function(){
+        $('.share_bg').css('display','block');
+    });
+    
+    $('.share_bg').click(function(){
+        if($(this).css('display') == 'block'){
+            $(this).css('display','none');
+        }
+    });
+    
+    <if condition="$share_code neq '' and $is_see eq '' and $is_over eq 0">
+        $.getJSON("{weimicms::U('Popularity/add_share',array('token'=>$token,'id'=>$info['id']))}",{share_code:'{weimicms:$share_code}',wecha_id:'{weimicms:$wecha_id}'},function(res){
+            alert(res.info);
+        }); 
+    </if>
+});
+
+</script>
+<?php if($memberNotice == ''){?>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Popularity",
+            "moduleID":"0",
+            "imgUrl": "{weimicms:$info.pic}", 
+            "timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U('Popularity/index',array('token'=>$token,'id'=>$info['id'],'share_code'=>$puser['share_key']))}",
+            "sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Popularity/index',array('token'=>$token,'id'=>$info['id'],'share_code'=>$puser['share_key']))}",
+            "weiboLink": "{weimicms:$f_siteUrl}{weimicms::U('Popularity/index',array('token'=>$token,'id'=>$info['id'],'share_code'=>$puser['share_key']))}",
+            "tTitle": "{weimicms:$info.title}",
+            "tContent": "{weimicms:$info.title}"
+};
+</script>
+<?php }else{?>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Popularity",
+            "moduleID":"0",
+            "imgUrl": "{weimicms:$info.pic}", 
+            "timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U('Popularity/index',array('token'=>$token,'id'=>$info['id']))}",
+            "sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Popularity/index',array('token'=>$token,'id'=>$info['id']))}",
+            "weiboLink": "{weimicms:$f_siteUrl}{weimicms::U('Popularity/index',array('token'=>$token,'id'=>$info['id']))}",
+            "tTitle": "{weimicms:$info.title}",
+            "tContent": "{weimicms:$info.title}"
+};
+</script>
+<?php }?>
+{weimicms:$shareScript}
+
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/public-framework/scripts/owl.carousel.min.js"></script>
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/public-framework/scripts/jquery.swipebox.js"></script>
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/public-framework/scripts/framework.launcher.js"></script>
+
+</body>
+</html>

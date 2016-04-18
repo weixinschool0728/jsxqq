@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!-- saved from url=(0067)http://sale.suning.com/images/advertise/001/hbgz30/active-rule.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta content="telephone=no" name="format-detection">
+	<title>{weimicms:$packet_info.title}</title>
+    <link rel="stylesheet" href="./tpl/static/packet/css/base.css">
+    <link rel="stylesheet" href="./tpl/static/packet/css/redbg.css">
+	<script type="text/javascript" src="./tpl/static/jquery.min.js"></script>
+	<script src="./tpl/static/packet/js/alert.js" type="text/javascript"></script>
+    <style>
+.activeRule-content{min-height:350px;}
+.activeRule-top:before {content:'我的红包';}
+.activeRule-content .table{width: 100%; text-align: center; color: #ff6741;}
+.activeRule-content .table th{margin:10px 0;color:#ff6741;}
+.activeRule-content .table td a{color:#31a8e7;}
+    </style>
+</head>
+<body >
+    <section class="pdlayout" >
+            <div class="activeRule-top pr ">
+                <img src="./tpl/static/Cashbonus/images/active_bg.png" width="100%" height="59">
+            </div>
+            <!--
+            <div class="activeRule-content  pdlayout pr">
+       			{weimicms:$packet_info.info|htmlspecialchars_decode}
+            </div>
+            -->
+            <div class="activeRule-content  pdlayout pr">
+            	<table class="table" cellspacing="0" cellpadding="0" border="0">
+					<thead>
+						<th>红包名称</th>
+						<th>中奖金额</th>
+						<th>红包状态</th>
+						<th>操作</th>
+					</thead>
+					<tbody>
+						<volist name="list" id="list">
+						<tr style="height:35px;">
+							<td style="height:35px;width:30%">{weimicms:$list.name}</td>
+							<td style="height:35px;width:20%">{weimicms:$list.price} 元</td>
+							<td style="height:35px;width:20%"> 
+
+								<if condition="$list.status eq '1'">
+									已兑换
+								<else/>	
+									未领取
+								</if>
+							 </td>
+							<td style="height:35px;width:30%">
+								<if condition="$list.status eq '1'">
+									兑奖已完成
+								<elseif condition="$list.status eq '2'"/>
+									审核中....
+								<else/>	
+									<if condition="$list.price lt '1'">
+									不足1元，无法领取
+									<else/>	
+									<a href="javascript:void(0);" id="btn">兑换红包</a>
+									</if>
+								</if>
+							</td>
+						</tr>
+						</volist>
+						<!-- <tr><td colspan="4">{weimicms:$page}</td></tr> -->
+					</tbody>
+				</table>
+             </div>
+    </section>
+<script>
+$(function(){
+	$('#btn').on('click',function(){
+		$.getJSON('./index.php?g=Wap&m=Cashbonus&a=reward_sub', {token:'{weimicms:$token}',wecha_id:'{weimicms:$wecha_id}',id:'{weimicms:$packet_info.id}'}, function(data){
+			alert(data.info);
+			if(data.err == 0){
+			setTimeout(function(){
+				window.location.href="{weimicms::U('Cashbonus/my_packet',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$reward_info['packet_id']))}";
+			}, 2000);
+			} 	
+		});
+	});											
+});
+
+
+</script>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Cashbonus",
+            "moduleID":"0",
+            "imgUrl": "{weimicms:$packet_info.msg_pic}", 
+            "timeLineLink": "{weimicms::C('site_url') .  U('Cashbonus/index',array('token' => $token,'id'=>$packet_info['id']))}",
+            "sendFriendLink": "{weimicms::C('site_url') .  U('Cashbonus/index',array('token' => $token,'id'=>$packet_info['id']))}",
+            "weiboLink": "{weimicms::C('site_url') .  U('Cashbonus/index',array('token' => $token,'id'=>$packet_info['id']))}",
+            "tTitle": "{weimicms:$packet_info.title}",
+            "tContent": "{weimicms:$packet_info.title}"
+        };
+</script>
+{weimicms:$shareScript}	   
+</body>
+</html>

@@ -1,0 +1,73 @@
+<include file="Storenew:header"/>
+<link rel="stylesheet" href="./tpl/static/storenew/css/tixian.css"/>
+<form method="post" action="{weimicms::U('Storenew/setuserinfo',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'], 'twid' => $twid, 'cid' => $cid))}" id="FromID">
+<input type="hidden" name="wecha_id" id="wecha_id" value="{weimicms:$wecha_id}"/>
+<div>
+
+<section class="main animated fadeInDown">
+	<div class="main-box">
+	<p class="rb-row"><span>姓    名：</span><input type="text" name="truename" id="truename" placeholder="请输入您的姓名" class="input" value="{weimicms:$remove['truename']}"/></p>
+	<p class="rb-row"><span>手机号码：</span><input type="text" name="tel" id="tel" placeholder="请输入您的手机号码" class="input" value="{weimicms:$remove['tel']}"/></p>
+	<p class="rb-row"><span>收货地址：</span><input type="text" name="address" id="address" placeholder="请输入您的收货地址" class="input" value="{weimicms:$remove['address']}"/></p>
+	<p class="rb-row"><span>Q Q 号码：</span><input type="text" name="qq" id="qq" placeholder="请输入您的QQ" class="input" value="{weimicms:$remove['qq']}"/></p>
+	<p class="rb-row"><span>银行名称：</span><input type="text" name="bank" id="bank" placeholder="提现到银行名称（如交通，工商，支付，财付通等）" class="input" value="{weimicms:$remove['bank']}"/></p>
+	<p class="rb-row"><span>银行卡号：</span><input type="text" name="number" id="number" placeholder="提现到您的银行卡号" class="input" value="{weimicms:$remove['number']}"/></p>
+	<p class="rb-row"><span>支付宝号：</span><input type="text" name="alipay" ="alipay" placeholder="提现到您的支付宝号" class="input" value="{weimicms:$remove['alipay']}"/></p>
+	<p class="rb-row"><span>微支付号：</span><input type="text" name="weixinpay" id="weixinpay" placeholder="提现到您的微信支付号码" class="input" value="{weimicms:$remove['weixinpay']}"/></p>
+	<p class="rb-row"><span>登录帐号：</span><input type="text" name="username" id="username" placeholder="请设置您的用户名" class="input" value="{weimicms:$remove['username']}"/></p>
+	<p class="rb-row"><span>设置密码：</span><input type="text" name="password" id="password" placeholder="设置你在商城的支付密码" class="input" value=""/></p>
+	</div>
+	<div class="rb-row registerRuleBox border-box">
+		<p class="rb-submit"><a href="javascript:;" value="确定" id="sub_order" class="btn"/>确定</a></p>
+	</div>
+</section>
+
+<!--div class="m-cart-toal m-checkout-toal">
+<p class="act"><a id="sub_order" href="javascript:;" class="checkout">确认</a></p>
+</div-->
+</div>
+</form>
+<script>
+$(document).ready(function(){
+	$("#sub_order").click(function(){
+		var userName=$('#truename').val();
+		if($.trim(userName) == ""){
+			return floatNotify.simple('请填写姓名');
+			return false;
+		}
+		var userPhone = $("#tel").val()
+		if ($.trim(userPhone) == "") {
+			return floatNotify.simple('请填写您的手机号码');
+			return false;
+		}
+		var patrn = /^1\d{10}$/;
+		if (!patrn.exec($.trim(userPhone))) {
+			return floatNotify.simple('手机号格式错误');
+			return false;
+		}
+		/*var address = $("#address").val()
+		if ($.trim(address) == "") {
+			return floatNotify.simple('请填写您的详细地址');
+			return false;
+		}*/
+		$("#FromID").submit();
+		return false;
+	});
+});
+</script>
+<include file="Storenew:foot"/>
+</body>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Store",
+            "moduleID":"0",
+            "imgUrl": "{weimicms:$f_siteUrl}{weimicms::U('Storenew/orderCart',array('token' => $_GET['token'], 'twid' => $mytwid, 'cid' => $cid))}", 
+            "timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U('Storenew/orderCart',array('token' => $_GET['token'], 'twid' => $mytwid, 'cid' => $cid))}",
+            "sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Storenew/orderCart',array('token' => $_GET['token'], 'twid' => $mytwid, 'cid' => $cid))}",
+            "weiboLink": "{weimicms:$f_siteUrl}{weimicms::U('Storenew/orderCart',array('token' => $_GET['token'], 'twid' => $mytwid, 'cid' => $cid))}",
+            "tTitle": "{weimicms:$metaTitle}",
+            "tContent": "{weimicms:$metaTitle}"
+        };
+</script>
+{weimicms:$shareScript}
+</html>

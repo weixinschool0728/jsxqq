@@ -1,0 +1,316 @@
+
+<html>  
+<head>  
+<meta http-equiv="content-type" content="text/html; charset=utf-8">  
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+         <include file="Kawahk:js"/> 
+        <script type="text/javascript">
+            initViewport();
+        </script>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>送给你</title>  
+
+
+<script src="http://lib.sinaapp.com/js/jquery/1.3.2/jquery.min.js"></script>
+<style type="text/css">  
+    <!--   
+    body{   
+		-webkit-touch-callout: none; 
+		-webkit-text-size-adjust: none;
+        margin:0 auto;   		
+        overflow:hidden;   
+		position:relative;
+    }   
+  
+    div#content{
+        position:relative;   
+        border:1px solid #000; 
+		width:500px;		
+		height:750px;
+		margin:0 auto; 
+        top:0px;    
+        overflow:hidden;   
+        clear:both;
+    }
+  
+    div#bg{   
+        position:absolute;   
+        left:0px;   
+        top:0px;
+		-webkit-animation:fadeOut 4s 0.5s infinite ease-in-out alternate both;
+    } 
+	
+	div#bg1{   
+        position:absolute;   
+        left:0px;   
+        top:0px;
+		-webkit-animation:fadeOut 4s 4.5s infinite ease-in-out alternate both;
+    } 
+	@-webkit-keyframes fadeOut{
+		0%{opacity:1;}
+		100%{opacity:0;}
+	}
+	div#stars
+	{ 
+		position:absolute; 
+		width:400px;
+		height:700px;
+		left:0px;
+		top:0px;
+	}
+	#stars img{ position:absolute }
+	
+	@-webkit-keyframes flash1{
+		0%{opacity:0.0;}
+		100%{opacity:0.7;}
+	}
+	@-webkit-keyframes flash2{
+		0%{opacity:0.3;}
+		100%{opacity:0.6;}
+	}
+	@-webkit-keyframes flash3{
+	0%,50%,100%{opacity: 0.8;}
+	25%,75%{opacity: 0.3;}
+	}
+	div#guang1
+	{ 
+		position:absolute; 
+		left:-20px;
+		top:417px;
+		-webkit-transform-origin:center bottom;
+		-webkit-animation:flash1 1s 0.2s infinite ease-in-out alternate both;
+	}
+	
+	div#guang2
+	{ 
+		position:absolute; 
+		left:9px;
+		top:380px;
+		-webkit-transform-origin:center bottom;
+		-webkit-animation:flash2 2s 0.4s infinite ease-in-out alternate both;
+	}
+	
+	div#guang3
+	{ 
+		position:absolute; 
+		left:29px;
+		top:343px;
+		-webkit-transform-origin:center bottom;
+		-webkit-animation:flash3 5s 0.1s infinite ease-in-out alternate both;
+	}
+	div#guang4
+	{ 
+		position:absolute; 
+		left:46px;
+		top:303px;
+		-webkit-transform-origin:center bottom;
+		-webkit-animation:flash1 2s 0.4s infinite ease-in-out alternate both;
+	}
+	div#guang5
+	{ 
+		position:absolute; 
+		left:55px;
+		top:273px;
+		-webkit-transform-origin:center bottom;
+		-webkit-animation:flash2 3s 0.2s infinite ease-in-out alternate both;
+	}
+	div#guang6
+	{ 
+		position:absolute; 
+		left:67px;
+		top:225px;
+		-webkit-transform-origin:center bottom;
+		-webkit-animation:flash3 3s 0.5s infinite ease-in-out alternate both;
+	}
+	div#guang7
+	{ 
+		position:absolute; 
+		left:71px;
+		top:191px;
+		-webkit-transform-origin:center bottom;
+		-webkit-animation:flash1 2.3s 0.1s infinite ease-in-out alternate both;
+	}
+	div#guang8
+	{ 
+		position:absolute; 
+		left:83px;
+		top:142px;
+		-webkit-transform-origin:center bottom;
+		-webkit-animation:flash2 4s 0.8s infinite ease-in-out alternate both;
+	}
+	div#deng1
+	{ 
+		position:absolute; 
+		left:301px;
+		top:322px;				
+		-webkit-animation:fadeOutIn 12s 0s infinite ease-in-out normal both;
+	}
+	@-webkit-keyframes fadeOutIn{
+		0%{opacity:1;}
+		35%{opacity:1;}
+		45%{opacity:0;}
+		100%{opacity:0;}
+	}
+	
+	div#deng2
+	{ 
+		position:absolute; 
+		left:301px;
+		top:322px;				
+		-webkit-animation:fadeInOut 12s 0s infinite ease-in-out normal both;
+	}
+	@-webkit-keyframes fadeInOut{
+		0%{opacity:0;}
+		35%{opacity:0;}
+		45%{opacity:1;}
+		100%{opacity:1;}
+	}
+	
+	div#foot{   
+        position:fixed; 
+		width:500px;
+		left:320px;
+		bottom:20px;
+    } 	
+  
+    div#relative{   
+        position:relative;   
+        left:100px;   
+        top:0px;   
+    }   
+  
+    div#static{   
+        background-color:#bbb;   
+		top:20;
+		left:30px;
+        position:static;   
+    }   
+	
+    -->  
+</style>  
+
+<script>
+	function randomInteger(low, high)
+	{
+		return low + Math.floor(Math.random() * (high - low));
+	}
+
+	function starshine(){
+		var num=3;
+		for(var i=0;i<num;i++)
+		{
+			var posL=Math.random()*$('#stars').width()+'px';
+			var posT=Math.random()*$('#stars').height()+'px';
+			$('#stars').append("<img src='tpl/Wap/default/common/kawahk/2014_/2014_guang"+randomInteger(3,5)+".png' id='star"+i+"' style=\'"+"left:"+posL+";top:"+posT+"\'/>");
+		}
+		
+		$("#stars img").each(function(){
+			dark($(this).attr("id"));
+		});
+	}
+
+	function dark(name){
+		   $("#"+name+"").animate({opacity:'0.1'},randomInteger(2000,6000),function(){light(name)});
+	}
+	function light(name){
+		$("#"+name+"").animate({opacity:'1'},randomInteger(4000,8000),function(){dark(name)});
+	}
+</script>
+
+
+<body onLoad = "kawa_init();">
+        <script>
+        	words = '城市的夜晚霓虹闪烁，我们忙碌着，迷失着，站在人生的十字路口，我们也许会徘徊不定、犹豫不决。不用急着说别无选择，其实是非对错，全在心灵的一个选择，那就放慢脚步，问问自己最在乎什么？最想要的什么？然后整装出发！也许在下一个路口，就会看到希望!';
+
+            kawa_data = {
+                words 			   : words,
+                 <if condition=" $words eq ''">
+				replace_words      : '城市的夜晚霓虹闪烁，我们忙碌着，迷失着，站在人生的十字路口，我们也许会徘徊不定、犹豫不决。不用急着说别无选择，其实是非对错，全在心灵的一个选择，那就放慢脚步，问问自己最在乎什么？最想要的什么？然后整装出发！也许在下一个路口，就会看到希望!',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+                text_box           : '190 50 300 200', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+                mode               : 'up',     // up, left
+                speed              : 40,     // 每秒移动的像素
+                text_color         : '#FFCC00', // rgb(1,2,3) 'black'
+                font_size          : '20pt',
+                line_height        : '40pt',
+                //text_align         : 'center',
+                font_weight        : 'bold',
+                music              : 'http://sound.kagirl.net/sound/youmeiyou.mp3',     // url
+                <if condition=" $music eq ''">
+				replace_music      : 'http://sound.kagirl.net/sound/youmeiyou.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+                music_name         : '',
+                replace_music_name : '#replace_music_name#',
+                icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/fengmian/x2014.jpg',
+                title              : '送给你',
+                desc               : words,
+                modify             : 'no',
+                replace_modify     : 'yes',
+                cardid             : '2014',
+                share_url          : window.location.href, // 当分享的是微信页面时才需要改这里
+                font_ip            : '115.28.135.41:8000',
+                modify_optfile     : 'xinqing',
+                modify_optwords    : '#modify_optwords#',
+                show_words         : 'yes',
+                write_param_1      : 'inputtype=singleline&showsel=no&prompt=' + encodeURIComponent('输入对方的名字：')
+            };
+        </script>
+    <div id="content">  
+		<div id="bg2">
+			<img src="tpl/Wap/default/common/kawahk/2014_/2014_3.jpg"/>
+		</div> 
+		<div id="bg1">
+			<img src="tpl/Wap/default/common/kawahk/2014_/2014_2.jpg"/>
+		</div> 	
+        <div id="bg" >
+			<img src="tpl/Wap/default/common/kawahk/2014_/2014_1.jpg"/>
+		</div>  
+		
+	
+		<div id="guang1">
+			<img src="tpl/Wap/default/common/kawahk/2014_/2014_guang1.png"/>
+		</div>  
+		<div id="guang2">
+			<img src="tpl/Wap/default/common/kawahk/2014_/2014_guang2.png"/>
+		</div> 
+		<div id="guang3">
+			<img src="tpl/Wap/default/common/kawahk/2014_/2014_guang1.png"/>
+		</div> 
+		<div id="guang4">
+			<img src="tpl/Wap/default/common/kawahk/2014_/2014_guang2.png"/>
+		</div> 
+		<div id="guang5">
+			<img src="tpl/Wap/default/common/kawahk/2014_/2014_guang1.png"/>
+		</div> 
+		<div id="guang6">
+			<img src="tpl/Wap/default/common/kawahk/2014_/2014_guang1.png"/>
+		</div> 
+		<div id="guang7">
+			<img src="tpl/Wap/default/common/kawahk/2014_/2014_guang2.png"/>
+		</div> 
+		<div id="guang8">
+			<img src="tpl/Wap/default/common/kawahk/2014_/2014_guang1.png"/>
+		</div>
+		<div id="deng1">
+			<img src="tpl/Wap/default/common/kawahk/2014_/2014_deng1.png"/>
+		</div>
+		<div id="deng2">
+			<img src="tpl/Wap/default/common/kawahk/2014_/2014_deng2.png"/>
+		</div>
+			<div id="stars"></div>
+		<script>
+			starshine();
+		</script>
+		<div id="container" onclick="clickbg();" style="left:0%;top:0%;">
+			<div id="leafContainer"></div>
+		</div>		
+		
+    </div>  
+	
+
+</body>  
+</html>  

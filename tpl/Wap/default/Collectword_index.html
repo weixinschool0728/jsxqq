@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{weimicms:$info.title}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" href="{weimicms:$staticPath}/tpl/static/collectword/css/base.css">
+    <link rel="stylesheet" href="{weimicms:$staticPath}/tpl/static/collectword/css/swiper.min.css">
+    <link rel="stylesheet" href="{weimicms:$staticPath}/tpl/static/collectword/css/style.css">
+    <script src="{weimicms:$staticPath}/tpl/static/collectword/js/jquery-2.1.4.min.js"></script>
+    <script src="{weimicms:$staticPath}/tpl/static/collectword/js/swiper.jquery.min.js"></script>
+    <script src="{weimicms:$staticPath}/tpl/static/collectword/js/common.js"></script>
+    <body>      
+	<if condition="$memberNotice neq ''">
+		<style type="text/css">#TopTipHolder {display:none;}</style>
+	    {weimicms:$memberNotice}
+	</if>
+    <header class="scroll">
+        <!-- Swiper -->
+        <div class="swiper-container">
+            <div class="swiper-wrapper">                
+				<volist name="news_list" id="nv">
+                <div class="swiper-slide">
+                    <a href="<?php echo $nv['url']?$nv['url']:'#';?>"><img src="{weimicms:$nv.imgurl}" width="100%"></a>
+                    <?php if($nv['title'] != ''){ ?>
+                    <div class="title">{weimicms:$nv.title}</div>
+					<?php } ?>
+                </div>
+                </volist>
+            </div>
+        </div>
+        <script>
+            var swiper = new Swiper('.swiper-container', {
+                loop:true,
+                autoplay: 5000//可选选项，自动滑动
+            });
+        </script>
+    </header>
+    <section class="oTime animate">
+        <div class="timeBox">
+            <div class="fr timeBar"></div>
+            <div class="fl timeBar"></div>
+            <div class="hook right"></div>
+            <div class="hook left"></div>
+            <div class="timeCenter">
+                <ul class="timeShow">
+                    <li class="bg">00</li>
+                    <li class="oText">天</li>
+                    <li class="bg">00</li>
+                    <li class="oText">时</li>
+                    <li class="bg">00</li>
+                    <li class="oText">分</li>
+                    <li class="bg">00</li>
+                    <li class="oText">秒</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section class="userTip">
+    <?php if($share_key != '' && $is_over == 0): ?>
+    	<?php if($firstShare): ?>
+    	<script type="text/javascript">
+    		$(function () {
+        		showWindow('.w1');
+    		});
+    	</script>
+    	<?php endif; ?>
+        <div class="descText">
+            <p>
+            	<?php if($share_key && $user['is_prize']): ?>
+            	“<span>{weimicms:$user['wechaname']}</span>”喜中“{weimicms:$prize_list[0]['title']}”，也祝您早日成为下一个幸运之星！
+            	<?php else: ?>
+            	感谢您为“<span>{weimicms:$user['wechaname']}</span>”增加{weimicms:$info['help_count']}次集字机会，您还可以分享给您的好友，让大家一起来帮TA增加集字机会，TA会激动得泪牛满面。
+            	<?php endif; ?>
+            </p>
+        </div>
+   	<?php endif;?>
+    </section>
+    
+	<include file="Collectword:lottery"/>
+	
+    <section class="blankBtn">
+        <div class="aBtn">
+        </div>
+    </section>
+    <section class="oTab">
+        <div class="tabBox">
+            <div class="hd clearfix">
+                <ul>
+                    <li class="li0 on">活动详情</li>
+                    <li class="li1">活动奖品</li>
+                    <li class="li2">集字TOP{weimicms:$info.rank_num}</li>
+                    <?php if(empty($info['prize_display']) && $prize): ?>
+                    <li class="li2">获奖名单</li>
+                    <?php endif?>
+                </ul>
+            </div>
+            <div class="bdRound">
+                <div class="bd">
+                    <div class="row rule" style="display: block;">
+						<p>{weimicms:$info.info|html_entity_decode}</p>
+                    </div>
+                    <div class="row prize" style="display: none;">
+                        <ul class="clearfix">                        
+							<volist name="prize_list" id="pv" key="pi">
+                            <li>
+                                <div class="addBg">
+                                    <div class="prizeImg">
+                                        <img src="{weimicms:$pv.imgurl}">
+                                    </div>
+                                    <div class="prizeDesc">
+                                        <h3>奖品</h3>
+                                        <p>{weimicms:$pv.title}</p>
+                                        <p>总数：{weimicms:$pv.num}</p>
+                                    </div>
+                                </div>
+                            </li>
+		                    </volist>
+
+                        </ul>
+                    </div>
+                    <div class="row list" style="display: none;">
+                        <ul>
+                        	<volist name="rank" id="vo" key="i">
+                            <li>
+                                <div class="userBox">
+                                    <div class="fr colect"><em>已集{weimicms:$vo.word_count}个</em></div>
+                                    <div class="fl userAvatar">
+                                        <img src="<?php if($vo['portrait']!=''){echo $vo['portrait'];}else{?>{weimicms:$staticPath}/tpl/static/collectword/images/portrait.jpg<?php }?>">
+                                        <div class="num">
+                                    <span>
+                                        <i>{weimicms:$i}</i>
+                                    </span>
+                                     <?php if (4 > $i) echo '<s></s>'; ?>
+                                        </div>
+                                    </div>
+                                    <div class="userDesc">
+                                        <h2>{weimicms:$vo['wechaname']?$vo['wechaname']:'匿名'}</h2>
+                                        <p><i></i>{weimicms:$vo.share_num}</p>
+                                    </div>
+                                </div>
+                            </li>
+                            </volist>
+                        </ul>
+                    </div>
+                    
+                    <?php if(empty($info['prize_display']) && $prize): ?>
+                    <div class="row list" style="display: none;">
+                        <ul>
+                        	<volist name="prize" id="vo" key="i">
+                            <li>
+                                <div class="userBox">
+                                    <div class="fr colect"><em>{weimicms:$prize_list[0]['title']}</em></div>
+                                    <div class="fl userAvatar">
+                                        <img src="<?php if($vo['portrait']!=''){echo $vo['portrait'];}else{?>{weimicms:$staticPath}/tpl/static/collectword/images/portrait.jpg<?php }?>">
+                                    </div>
+                                    <div class="userDesc">
+                                        <h2>{weimicms:$vo['wechaname']?$vo['wechaname']:'匿名'}</h2>
+                                        <p><i></i>{weimicms:$vo.share_num}</p>
+                                    </div>
+                                </div>
+                            </li>
+                            </volist>
+                        </ul>
+                    </div>
+                    <?php endif;?>
+                </div>
+            </div>
+        </div>
+    </section>
+<include file="Collectword:footer"/>
+</body>
+</html>

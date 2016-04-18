@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+ <head> 
+  <meta charset="utf-8" /> 
+  <title>{weimicms:$info.title}</title> 
+  <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" id="viewport" name="viewport" /> 
+  <link rel="stylesheet" type="text/css" href="tpl/static/Hongbaoqiye/mobile.css" /> 
+  <script type="text/javascript" src="tpl/static/Hongbaoqiye/jquery.min.js"></script> 
+  <script>
+
+   
+
+	// i= id/class  l = layer 是否显示
+
+	function show(i,l){
+
+		if(l==1){
+
+			$(".layer").fadeIn();
+
+		}
+
+		$(i).fadeIn();
+
+	}
+
+	// i= id/class  l = layer 是否隐藏
+
+	function hide(i,l){
+
+		if(l==1){
+
+			$(".layer").fadeOut();
+
+		}
+
+		$(i).fadeOut();
+
+		var doing = $(i).attr('doing');
+
+		if(doing){
+
+			location.reload();
+
+		}
+
+	}
+
+                    //打开红包浮层
+
+                    function hb(){
+
+                            var eid = $("#take_do");
+
+                            var timer = eid.attr("endtime");
+
+                            if(timer>0){
+
+                                alert("客官不要心急嘛~");
+
+                            }else{
+
+                                $(".layer").fadeIn();
+
+                                $(".layer-red").fadeIn();
+
+                            }
+
+                    }
+
+	function take(){
+
+		var doing = $("#red").attr('doing');
+
+		if(!doing){
+
+			$("#red").attr('doing',1);
+
+			$("#reversal").addClass("reversal");
+
+			$('#reversal').delay(2400).fadeOut(1000);
+
+			$.ajax({
+
+                                                                            type: 'POST',
+
+                                                                            url: 'index.php?g=Wap&m=Hongbaoqiye&a=lingqu&wecha_id={weimicms:$wecha_id}',
+																			
+
+                                                                           
+
+                                                                            dataType : 'json',
+																			 
+
+                                                                            success: function(data){
+
+                                                                                    $(".text").html(data.msg);
+
+                                                                                    $("#red").attr('doing',1);
+
+                                                                            },
+
+                                                                            error: function(){
+
+                                                                                    $('.text').html('领取失败<br>请重试');
+
+                                                                                    $("#red").attr('doing',1);
+
+                                                                            }
+
+                                                             });	
+
+			$(".text").delay(2000).fadeIn(); 
+
+		}else{
+
+			alert('亲~点击过快哦，红包已经在路上啦~请耐心等待。');
+
+			//重复点击
+
+		}
+
+	}
+
+                    var page = 2;
+
+	function more(){
+
+		$(".showmore").text('正在加载...');
+
+                                        $.get("index.php?g=Wap&m=Hongbaoqiye&a=pagess&wecha_id={weimicms:$wecha_id}&token={weimicms:$token}", {aid:"{$act['id']}",p:page} ,function(result){
+
+                                            if(!result){
+
+                                                $(".showmore").text('没有更多了...');
+
+                                            }else{
+
+                                                page++;
+
+                                                $(".record").append(result);
+
+                                                $(".showmore").text('查看更多');
+
+                                            }
+
+                                        });
+
+	}
+
+            //执行倒计时
+
+            $(function(){
+
+    	var int = setInterval(function(){
+
+      		dotime(int);	
+
+    	}, 1000);
+
+            });
+
+            function dotime(int){
+
+                var eid = $("#take_do");
+
+                var timer = eid.attr("endtime");
+
+                if(timer>0){
+
+                    timer--;
+
+                    eid.attr({endtime:timer});
+
+                    eid.text("红包还有"+timer+"秒到达战场");
+
+	eid.css({background:"#ccc"}); 
+
+                }else{
+
+                    eid.text("点击抽取(剩余{weimicms:$jihui}次)");
+
+	eid.css({background:"#349800"}); 
+
+	clearInterval(int);
+
+                }
+
+            }
+
+</script> 
+ </head> 
+ <body> 
+  <!-- 黑色遮罩 --> 
+  <div class="layer"></div> 
+  <!-- rule 浮层 --> 
+  <div class="layer-rule" id="rule"> 
+   <div class="close" onclick="hide('#rule',1)">
+    &times;
+   </div> 
+   <div class="con"> 
+    <center>
+      活动规则 
+    </center> {weimicms:$info.gz} 
+   </div> 
+  </div> 
+  <!-- 不再城市范围内 浮层 --> 
+  <div class="layer-city" id="city"> 
+   <div class="close" onclick="hide('#city',1)">
+    &times;
+   </div> 
+   <div class="ico">
+    <img src="tpl/static/Hongbaoqiye/5.png" />
+   </div> 
+   <h1>很抱歉!!!</h1> 
+   <h2>您所在的区域不能参加此活动</h2> 
+   <h2>地区报错请连接Wifi后重试</h2> 
+   <h3>您所在的城市：{weimicms:$mycity}</h3> 
+   <div class="nav">
+    本活动仅限{weimicms:$info.quyus}{weimicms:$info.quyu}限{weimicms:$info.quyux}的小伙伴参与
+   </div> 
+  </div> 
+  <!-- 获取更多 浮层 --> 
+  <div class="layer-share" id="share"> 
+   <div class="close" onclick="hide('#share',1)"></div> 
+   <div class="num1">
+     {weimicms:$info.haoyou}
+   </div> 
+   <div class="num2">
+    {weimicms:$info.choujiangci}
+   </div> 
+  </div> 
+  <!-- tips 浮层 --> 
+  <div class="tips" id="tips"> 
+   <div class="title">
+  {weimicms:$tt}
+   </div> 
+   <div class="sub"> 
+    <nav onclick="hide('#tips',1)">
+     知道了
+    </nav> 
+   </div> 
+  </div> 
+  <!-- 红包 浮层 --> 
+  <div class="layer-red" id="red"> 
+   <div class="close" onclick="hide('#red',1)"></div> 
+   <if condition="$pid eq ''">
+   <div class="head">
+    <img src="{weimicms:$user_info.portrait}" />
+   </div> 
+   <div class="nickname">
+    {weimicms:$info.banquan}
+   </div> <else/>
+   <div class="head">
+    <img src="{weimicms:$pid_info.portrait}" />
+   </div> 
+   <div class="nickname">
+    {weimicms:$pid_info.wechaname}
+   </div> </if>
+   <div class="square-spin" onclick="take()"> 
+    <div id="reversal">
+     ￥
+    </div> 
+   </div> 
+   <div class="text"></div> 
+  </div> 
+  <!-- page 主体 --> 
+  <div class="index"> 
+   <div class="top"> 
+    <img src="{weimicms:$info.pic}" /> 
+    <div class="rule" style="background:#F00; padding:2px" onclick="show('#rule',1)">
+     秘籍
+    </div> 
+    <div class="erweima"  style="background:#F00; padding:2px"   >
+    <a href="index.php?g=Wap&m=Hongbaoqiye&a=cbt&token={weimicms:$token}&wecha_id={weimicms:$wecha_id}" style="color:white"> 藏宝图</a>    </div> 
+   </div> 
+   <div class="member"> 
+   <if condition="$pid_info eq ''">
+    <div class="head">
+     <img src="{weimicms:$user_info.portrait}" />
+    </div> 
+    <div class="nickname" style="overflow: hidden;">
+  
+     土壕{weimicms:$user_info.wechaname}的红包
+    </div><else/>
+    <div class="head">
+     <img src="{weimicms:$pid_info.portrait}" />
+    </div> 
+    <div class="nickname" style="overflow: hidden;">
+  
+     土壕{weimicms:$pid_info.wechaname}的红包
+    </div></if>
+    
+    
+    
+    
+   
+     
+   </div> 
+   <if condition="$zzs neq ''"> 
+    <div class="title1">
+     本活动由下面的土壕赞助&nbsp;
+    </div> 
+    <volist name="zzs" id="vo"> 
+     <a href="{weimicms:$vo.url}" target="_blank"> 
+      <div class="advert"> 
+       <div class="jump">
+        &gt;
+       </div> 
+       <div class="info"> 
+        <div class="icon">
+         <img src="{weimicms:$vo.pic}" />
+        </div> 
+        <div class="big"> 
+         <div class="slogan">
+          {weimicms:$vo.name}
+         </div> 
+         <div class="slogan">
+          {weimicms:$vo.info}
+         </div> 
+        </div> 
+       </div> 
+      </div> </a>
+    </volist> 
+   </if> 
+   <div class="title2">
+   今日红包排行榜，您上榜了吗？
+   </div> 
+   <div class="record">
+    <if condition="$record eq ''">
+    <div class="line"> 
+     <p style="text-align: center; color: #999">还木有小伙伴上榜~</p> 
+    </div> 
+    </if>
+    
+    <volist name="record" id="vo">
+    <div class="line"> 
+    <div class="head" style="text-align:center;line-height:40px;color: #999;font-size:12px;">
+     {weimicms:$i}
+     </div> 
+     <div class="head" style="padding-left:-10px;padding-right:10px;">
+      <img src="{weimicms:$vo.head_pic}" />
+     </div> 
+     <div class="right"> 
+      <div class="info"> 
+       <div class="user"> 
+        <div class="date">
+         {weimicms:$vo.money} 元
+        </div> 
+        <div class="big"> 
+         <div class="nickname">
+          {weimicms:$vo.name}
+         </div> 
+        </div> 
+         <div class="slogan">{weimicms:$vo.ly}</div>
+       </div> 
+       <div class="slogan">
+       
+       </div> 
+      </div> 
+     </div> 
+    </div> </volist>
+   </div> 
+   <!-- 记录结束 --> 
+   <if condition="$record neq ''">
+   <div class="showmore" onclick="more()">
+    查看更多排名...
+   </div> </if>
+   <div class="footer">
+    版权所有 &copy; {weimicms:$info.banquan}
+   </div> 
+  </div>  
+ </body>
+<script type="text/javascript">
+window.shareData = {  
+		"moduleName":"Hongbaoqiye",
+		"moduleID": "0",
+		<if condition="$info['state_fanspic'] eq '1'">
+		"imgUrl": "{weimicms:$info.pic}", 
+		<else />
+		"imgUrl": "{weimicms:$user_info.portrait}",
+		</if>
+		"timeLineLink":"{weimicms::C('site_url')}{weimicms::U('Hongbaoqiye/index',array('token'=>$_GET['token'],'pid'=>$wecha_id))}",
+		"sendFriendLink":"{weimicms::C('site_url')}{weimicms::U('Hongbaoqiye/index',array('token'=>$_GET['token'],'pid'=>$wecha_id))}",
+		"weiboLink":"{weimicms::C('site_url')}{weimicms::U('Honbaoqiye/index',array('token'=>$_GET['token'],'pid'=>$wecha_id))}",
+		 <if condition="$info['state_fansname'] eq '1'">
+		"tTitle":"{weimicms:$info.title}",
+		"tContent":" {weimicms:$info.title}"
+		<else/>
+		"tTitle":"土壕{weimicms:$user_info.wechaname}给你发来一个红包!",
+		"tContent":"土壕{weimicms:$user_info.wechaname}给你发来一个{weimicms:$info.banquan}发布的红包!"
+		</if>
+	};
+
+</script>
+  {weimicms:$shareScript}
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta charset="utf-8">
+<title>{weimicms:$info.title}</title>
+<link rel="stylesheet" href="{weimicms:$staticPath}/tpl/static/Aaactivity/css/zc-common.css">
+<link rel="stylesheet" href="{weimicms:$staticPath}/tpl/static/Aaactivity/css/zc-index.css">
+
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/jquery.min.js"></script>
+</head>
+<body>
+    <!-- heard -->
+    <header class="header">
+    <h2><a href="javascript:void(0);" class="text-red">我发起的活动</a></h2>
+    <a href="javascript:window.history.go(-1);" class="icon btn-goback"></a>
+    <a href="{weimicms::U('Aaactivity/home',array('token'=>$token,'wecha_id'=>$wecha_id))}" class="icon btn-home"></a>
+    </header>
+    <!-- / -->
+<!-- main -->
+<div class="my-concern">
+	<div class="tabbox">
+		<ul class="tab-ul myzc">
+			<li><a href="{weimicms::U('Aaactivity/my_focus',array('token'=>$token,'wecha_id'=>$wecha_id))}" class="current">我参与的</a></li>
+			<li><a href="{weimicms::U('Aaactivity/my',array('token'=>$token,'wecha_id'=>$wecha_id,'audit'=>1))}" class="current">我发起的</a></li>
+			<li><a href="{weimicms::U('Aaactivity/my',array('token'=>$token,'wecha_id'=>$wecha_id,'audit'=>0))}" class="current">我发起(未审核)</a></li>
+		</ul>
+		<div class="tab-con">
+			<ul class="goods-list myzc-ul">
+			<volist id="focus" name="focus">
+				<li id="focus{weimicms:$focus.cid}">
+					<if condition="$focus.is_audit eq 1">
+					<a href="{weimicms::U('Aaactivity/index',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$focus['id']))}" class="gridbox">
+					</if>
+						<div class="goods-pic">
+							<img src="{weimicms:$focus.reply_pic}" alt="">
+						</div>
+						<div class="grid-1">
+							<h5 class="h5-title">{weimicms:$focus.title}</h5>
+							<div class="gridbox <if condition="$focus.is_over eq 1">sta-end<else/>sta-ing</if>">
+								<div class="grid-1 mt20">
+									<div class="progresnum">
+										{weimicms:$focus.progress}%
+									</div>
+									<div class="progressbar">
+										<div class="progressing" style="width: {weimicms:$focus.progress}">
+										</div>
+									</div>
+								</div>
+								<div class="progrestate">
+									<if condition="$focus.is_over eq 1">
+										已结束
+									<else/>
+										招募中
+									</if>
+								</div>
+							</div>
+						</div>
+					<if condition="$focus.is_audit eq 1">
+					</a>
+					</if>
+					<div class="gridbox zc-datum">
+						<div class="grid-2">
+                            <strong>{weimicms:$focus.minnums} 人</strong>
+                            <p>
+                                最少报名人数
+                            </p>
+                        </div>
+                        <div class="grid-3">
+                            <strong>{weimicms:$focus.joinnum} 人</strong>
+                            <p>
+                                已报名
+                            </p>
+                        </div>
+                        <div class="grid-2">
+                            <strong>  {weimicms:$focus.feiyong} 元</strong>
+                            <p>
+                                AA人均费用
+                            </p>
+                        </div>
+					</div>
+					<div class="goods-btnbox clearfix">
+					<if condition="$focus.is_audit neq '1'">
+						<a href="javascript:void(0);" class="btn btn-normal fr">正在审核</a>
+					<else/>
+						<a href="javascript:void(0);" class="btn btn-normal fr">审核已通过</a>
+					</if>
+					</div>
+				</li>
+			</volist>
+			</ul>
+		</div>
+		<div class="mysupport-btn-holder clearfix">
+			{weimicms:$page}
+		</div>
+	</div>
+	<include file="Aaactivity:footer" />
+</div>
+
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Aaactivity",
+            "moduleID":"{weimicms:$focus['id']}",
+            "imgUrl": "{weimicms:$focus['share_pic']}", 
+            "timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U('Aaactivity/home',array('token'=>$token))}",
+            "sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Aaactivity/home',array('token'=>$token))}",
+            "weiboLink": "{weimicms:$f_siteUrl}{weimicms::U('Aaactivity/home',array('token'=>$token))}",
+            "tTitle": "{weimicms:$focus['title']}",
+            "tContent": "{weimicms:$focus['intro']}"
+};
+</script>
+{weimicms:$shareScript}
+</body>
+</html>

@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1,user-scalable=no" />
+  
+  <title>修改卡片上滚动文字</title>
+  <link rel="stylesheet" href="tpl/Wap/default/common/kawahk/common/form.css"></head>
+<body>
+
+<script>
+function onwordselect(obj)
+{
+    wording = document.getElementById("wording")
+    if(obj.value=="点这里选择祝福语")
+    {
+        wording.value = ""
+    }
+    else
+    {
+        wording.value = obj.value
+    }
+}
+
+function timestr()
+{
+    d = new Date();
+    s = '' + d.getFullYear() + '_' + d.getMonth() + '_' + d.getDate() + '_' + d.getHours() + '_' + d.getMinutes() + '_' + d.getSeconds() + '_' + d.getMilliseconds();
+    return s;
+}
+
+function gocard()
+{
+    text = document.getElementById("wording").value
+    location.href = "/index.php?g=Wap&m=Kawahk&a=hcar_view&token={weimicms:$token}&id={weimicms:$id}&cardid={weimicms:$cardid}&action=1&words="+text
+}
+</script>
+
+  <form action="" class="contact">
+  
+	<p> 输入名字：</p><br>
+    <fieldset class="contact-inner">
+     
+		
+      <p class="contact-input">	 
+        <textarea name="message" id="wording"></textarea>
+      </p>
+    </fieldset>	
+  </form>
+  
+      <p class="contact-submit">
+        <input type="submit" value="生成微卡" onClick="gocard()">
+      </p>
+</body></html>

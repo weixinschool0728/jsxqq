@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{weimicms:$info.title}</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'/>
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" href="{weimicms:$staticPath}/tpl/static/sentiment/css/base.css">
+    <link rel="stylesheet" href="{weimicms:$staticPath}/tpl/static/sentiment/css/swiper.min.css">
+    <link rel="stylesheet" href="{weimicms:$staticPath}/tpl/static/sentiment/css/style.css">
+    <script src="{weimicms:$staticPath}/tpl/static/sentiment/js/jquery-2.1.4.min.js"></script>
+    <script src="{weimicms:$staticPath}/tpl/static/sentiment/js/swiper.jquery.min.js"></script>
+    <script>
+$(function(){
+	var wHeight = $(window).height();
+	var boxHeight = $("footer").height();
+	var top = wHeight - boxHeight;
+	if(gt_ios8()){
+		$("footer").css({
+			bottom:"inherit",
+			top:top
+		});
+	}else{
+		return false
+	}
+});
+
+function gt_ios8() {
+	// 判断是否 iPhone 或者 iPod
+	if((navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i))) {
+		// 判断系统版本号是否小于 8，下面条件成立就表示小于8否则>=8
+		return Boolean(navigator.userAgent.match(/OS [3-7]_\d[_\d]* like Mac OS X/i));
+	} else {
+		return false;
+	}
+}
+	</script>
+	<style>
+	.actPart1 .priceList li p i{color: red;font-style: italic;  font-size: 1.4rem;}
+	</style>
+</head>
+<body>
+<header class="scroll">
+    <!-- Swiper -->
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <volist name="news_list" id="nv">
+			<div class="swiper-slide">
+				<a href="<?php echo $nv['url']?$nv['url']:'#';?>"><img src="{weimicms:$nv.imgurl}" width="100%"></a>
+				<?php if($nv['title'] != ''){ ?>
+				<div class="title">{weimicms:$nv.title}</div>
+				<?php } ?>
+			</div>
+			</volist>
+        </div>
+    </div>
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            loop:true,
+            autoplay: 5000//可选选项，自动滑动
+        });
+    </script>
+</header>
+
+<div class="partBigBox" style="padding-bottom: 60px;">
+    <section class="actPart0">
+        <div class="actTitle actTitle01">
+            <i></i><h3>活动规则</h3>
+        </div>
+        <div class="desc" style="padding:10px;color:#fff;line-height:20px">
+            {weimicms:$info.info|htmlspecialchars_decode}
+        </div>
+    </section>
+    <section class="actPart1">
+        <div class="actTitle actTitle02">
+            <i></i><h3>活动奖品</h3>
+        </div>
+        <div class="setMargin">
+            <div class="priceList">
+                <ul>
+					<volist name="prize_list" id="pv" key="pi">
+                    <li>
+                        <div class="priceImg fl">
+                            <img src="{weimicms:$pv.imgurl}"/>
+                        </div>
+                        <div class="detail">
+                            <h3>{weimicms:$pi}等奖</h3>
+                            <p>{weimicms:$pv.title}</p>
+                            <p>数量：<i>x{weimicms:$pv.num}</i></p>
+                        </div>
+                    </li>
+                    </volist>
+                </ul>
+            </div>
+        </div>
+    </section>
+</div>
+	<footer>
+        <div class="oBtn">
+			<a href="<?php echo U('Sentiment/index',array('token'=>$token,'id'=>$_GET['id'],'share_key'=>$_GET['share_key']));?>">
+                返回首页
+            </a>
+		</div>
+    </footer>
+<p class="backToTop"><a href="javascript:;"><span></span></a></p>
+<script type="text/javascript">
+<?php if(($memberNotice == '' || $share_key != '') && $is_over == 0){?>
+window.shareData = {  
+            "moduleName":"Sentiment",
+            "moduleID":"0",
+            "imgUrl": "{weimicms:$info.reply_pic}", 
+            "timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U('Sentiment/index',array('token'=>$token,'id'=>$info['id'],'share_key'=>$user['share_key']))}",
+            "sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Sentiment/index',array('token'=>$token,'id'=>$info['id'],'share_key'=>$user['share_key']))}",
+            "weiboLink": "{weimicms:$f_siteUrl}{weimicms::U('Sentiment/index',array('token'=>$token,'id'=>$info['id'],'share_key'=>$user['share_key']))}",
+			<?php if($info['fxtitle'] == ''){?>
+            "tTitle": "我正在参加“<?php echo $info['title'];?>”活动，快来帮我拿大奖！",
+			<?php }else{
+			$info['fxtitle'] = str_replace(array('{{活动名称}}','{{魅力值}}'),array($info['title'],$user['help_count']),$info['fxtitle']);
+			?>
+			"tTitle": "<?php echo $info['fxtitle'];?>",
+			<?php }?>
+            <?php if($info['fxinfo'] == ''){?>
+            "tContent": "{weimicms:$info.intro|shareFilter}",
+            "fTitle": "{weimicms:$info.intro|shareFilter}",
+			<?php }else{
+			$info['fxinfo'] = str_replace(array('{{活动名称}}','{{魅力值}}'),array($info['title'],$user['help_count']),$info['fxinfo']);
+			?>
+			"tContent": "{weimicms:$info.fxinfo|shareFilter}",
+			"fTitle": "{weimicms:$info.fxinfo|shareFilter}",
+			<?php }?>
+			"isShareNum":1,
+			<?php if($user['is_join'] != 1){?>
+			"isShareNumReload":1,
+			<?php }?>
+			"ShareNumData":"sentiment_user,share_key,{weimicms:$user['share_key']},share_num"
+};
+<?php }else{?>
+window.shareData = {  
+            "moduleName":"Sentiment",
+            "moduleID":"0",
+            "imgUrl": "{weimicms:$info.reply_pic}", 
+            "timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U('Sentiment/index',array('token'=>$token,'id'=>$info['id']))}",
+            "sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Sentiment/index',array('token'=>$token,'id'=>$info['id']))}",
+            "weiboLink": "{weimicms:$f_siteUrl}{weimicms::U('Sentiment/index',array('token'=>$token,'id'=>$info['id']))}",
+            "tTitle": "我正在参加“<?php echo $info['title'];?>”活动，快来帮我拿大奖！",
+            "tContent": "{weimicms:$info.intro|shareFilter}"
+};
+<?php }?>
+</script>
+{weimicms:$shareScript}
+</body>
+</html>

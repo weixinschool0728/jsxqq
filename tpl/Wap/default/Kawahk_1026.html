@@ -1,0 +1,572 @@
+
+<html>  
+<head>  
+<meta http-equiv="content-type" content="text/html; charset=utf-8">  
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <include file="Kawahk:js"/> 
+        <script type="text/javascript">
+            initViewport();
+        </script>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>送给你</title>  
+
+
+<style type="text/css">  
+    <!--   
+    body{   
+		-webkit-touch-callout: none; 
+		-webkit-text-size-adjust: none;
+        margin:0 auto;   		
+        overflow:hidden;   
+		position:relative;
+    }   
+  
+    div#content{
+        position:relative;   
+        border:1px solid #000; 
+		width:500px;		
+		height:750px;
+		margin:0 auto; 
+        top:0px;    
+        overflow:hidden;   
+        clear:both;
+    }
+  
+    div#bg{   
+        position:absolute;   
+        left:0px;   
+        top:0px;
+		-webkit-animation:fadeOut 10s 0.5s 1 ease-in-out normal both;
+    } 
+	
+	div#bg1{   
+        position:absolute;   
+        left:0px;   
+        top:0px;
+		-webkit-animation:fadeOut 10s 6.5s 1 ease-in-out normal both;
+    } 
+	
+	div#stars
+	{ 
+		position:absolute; 
+		width:450px;
+		height:-50px;
+		left:50px
+		top:200px;
+		z-index:2000;
+	}
+	#stars img{ position:absolute }
+	
+	div#cao1
+	{ 
+		position:absolute; 
+		left:0px;
+		top:384px;
+		-webkit-transform-origin:center bottom;
+		-webkit-animation:rotate1 3s 0.1s infinite ease-in-out alternate both, fadeOut 2s 6.5s 1 ease-in-out normal both;
+	}
+	div#cao2
+	{ 
+		position:absolute; 
+		left:48px;
+		top:349px;
+		-webkit-transform-origin:center bottom;
+		-webkit-animation:rotate 2s 0.2s infinite ease-in-out alternate both, fadeOut 2s 6.5s 1 ease-in-out normal both;
+	}
+	div#cao3
+	{ 
+		position:absolute; 
+		left:98px;
+		top:360px;
+		-webkit-transform-origin:center bottom;
+		-webkit-animation:rotate1 4s 0.1s infinite ease-in-out alternate both, fadeOut 2s 6.5s 1 ease-in-out normal both;
+	}
+	div#cao4
+	{ 
+		position:absolute; 
+		left:172px;
+		top:371px;
+		-webkit-transform-origin:center bottom;
+		-webkit-animation:rotate 2s 0.2s infinite ease-in-out alternate both, fadeOut 2s 6.5s 1 ease-in-out normal both;
+	}
+	
+	div#huaping1
+	{ 
+		position:absolute; 
+		left:49px;
+		top:542px;
+		-webkit-animation:fadeOut 2s 6.4s 1 ease-in-out normal both;
+	}
+	
+	div#baobao
+	{ 
+		position:absolute; 
+		left:321px;
+		top:124px;
+		-webkit-transform-origin:center bottom;
+		-webkit-animation:fadeIn 2s 0.0s 1 ease-in-out normal both, fadeOut 2s 6.5s 1 ease-in-out normal both;
+	}
+	
+	div#hua1
+	{ 
+		position:absolute; 
+		left:30px;
+		top:-30px;	
+		-webkit-backface-visibility:hidden;		
+		-webkit-transform-origin:500px 142px;
+		-webkit-animation:fadeIn 2s 8.2s 1 ease-in-out normal both, rotate1 2s 9.2s infinite ease-in-out alternate both;
+	}
+	
+	div#hua2
+	{ 
+		position:absolute; 
+		left:-10px;
+		top:397px;				
+		-webkit-transform-origin:0px 387px;
+		-webkit-animation:fadeIn 3s 10s 1 ease-in-out normal both, rotate2 2s 10.2s infinite ease-in-out alternate both;
+	}
+	
+	
+	div#yinghuochong1{
+			position:absolute;
+			top:1200px;
+			-webkit-backface-visibility:visible;
+			-webkit-transform-origin:center center;
+			-webkit-animation:fly1 7s 0.0s infinite ease-in-out alternate none ;
+	}
+	div#yinghuochong2{
+			position:absolute;
+			top:100px;
+			left:100px;
+			-webkit-backface-visibility:visible;
+			-webkit-transform-origin:center center;
+			-webkit-animation:fly2 6s 0.1s infinite ease-in-out alternate none ;
+	}
+	div#yinghuochong3{
+			position:absolute;
+			top:200px;
+			left:150px;
+			-webkit-backface-visibility:visible;
+			-webkit-transform-origin:center center;
+			-webkit-animation:fly3 8s 0.2s infinite ease-in-out alternate none ;
+	}
+	div#yinghuochong4{
+			position:absolute;
+			top:300px;
+			left:200px;
+			-webkit-backface-visibility:visible;
+			-webkit-transform-origin:center center;
+			-webkit-animation:fly4 10s 0.5s infinite ease-in-out alternate none ;
+	}
+	div#yinghuochong5{
+			position:absolute;
+			top:400px;
+			left:150px;
+			-webkit-backface-visibility:visible;
+			-webkit-transform-origin:center center;
+			-webkit-animation:fly2 14s 0.1s infinite ease-in-out alternate none ;
+	}
+	div#yinghuochong6{
+			position:absolute;
+			top:250px;
+			left:450px;
+			-webkit-backface-visibility:visible;
+			-webkit-transform-origin:center center;
+			-webkit-animation:fly3 8s 0.2s infinite ease-in-out alternate none ;
+	}
+	div#yinghuochong7{
+			position:absolute;
+			top:300px;
+			left:260px;
+			-webkit-backface-visibility:visible;
+			-webkit-transform-origin:center center;
+			-webkit-animation:fly5 12s 0.5s infinite ease-in-out alternate none ;
+	}
+	div#guang1{
+			position:absolute;
+			left:64px;
+			top:174px;
+			-webkit-animation:fadeOut1 3s 0.1s infinite ease-in-out alternate none ;
+	}
+	div#guang2{
+			position:absolute;
+			left:81px;
+			top:227px;
+			-webkit-animation:fadeIn1 5s 0.5s infinite ease-in-out alternate none ;
+	}
+	div#guang3{
+			position:absolute;
+			left:4px;
+			top:32px;
+			-webkit-animation:fadeOut1 4s 0.1s infinite ease-in-out alternate none ;
+	}
+	div#guang4{
+			position:absolute;
+			left:262px;
+			top:-84px;
+			-webkit-animation:fadeIn1 2s 0.3s infinite ease-in-out alternate none ;
+	}
+	div#guang5{
+			position:absolute;
+			left:273px;
+			top:-15px;
+			-webkit-animation:fadeOut1 6s 1s infinite ease-in-out alternate none ;
+	}
+	div#guang6{
+			position:absolute;
+			left:381px;
+			top:-65px;
+			-webkit-animation:fadeIn1 3s 0.3s infinite ease-in-out alternate none ;
+	}
+	div#tishi
+	{ 
+		position:absolute; 
+		left:153px;
+		top:560px;		
+	}
+	div#touming
+	{ 
+		position:absolute; 
+		left:0px;
+		top:0px;
+		width:500px；
+		height:500px；
+	}
+	div#foot{   
+        position:fixed; 
+		width:500px;
+		bottom:0px;
+    } 	
+  
+    div#relative{   
+        position:relative;   
+        left:100px;   
+        top:0px;   
+    }   
+  
+    div#static{   
+        background-color:#bbb;   
+		top:20;
+		left:30px;
+        position:static;   
+    }   
+	
+	@-webkit-keyframes bounceOut{
+		0%{
+			left:181px;
+			top:240px;
+		}
+		10%
+		{
+			left:181px;
+			top:247px;
+		}		
+		100%{
+			left:300px;
+			top:-245px;
+		}
+	}
+	
+	@-webkit-keyframes rotate{
+		0%{
+			-webkit-transform:rotate(6deg);
+		}
+		100%{
+			-webkit-transform:rotate(-6deg);
+		}		
+	}
+	
+	@-webkit-keyframes rotate1{
+		0%{
+			-webkit-transform:rotate(-3deg);
+		}
+		100%{
+			-webkit-transform:rotate(3deg);
+		}		
+	}
+	@-webkit-keyframes rotate2{
+		0%{
+			-webkit-transform:rotate(-2deg);
+		}
+		100%{
+			-webkit-transform:rotate(2deg);
+		}		
+	}
+	
+	
+	@-webkit-keyframes up70{
+		0%{
+			-webkit-transform:translateY(0px);
+		}
+		99%{
+			-webkit-transform:translateY(-70px);
+		}	
+		100%
+		{
+			opacity:0;
+		}			
+	}
+	
+	@-webkit-keyframes down200{
+		0%{
+			-webkit-transform:translateY(0px);
+		}
+		99%{
+			-webkit-transform:translateY(200px);
+		}
+		100%
+		{
+			opacity:0;
+		}			
+	}
+	
+	@-webkit-keyframes down100{
+		0%{
+			-webkit-transform:translateY(0px);
+		}
+		990%{
+			-webkit-transform:translateY(100px);
+		}	
+		100%
+		{
+			opacity:0;
+		}		
+	}
+	@-webkit-keyframes up100{
+		0%{
+			-webkit-transform:translateY(0px);
+		}
+		99%{
+			-webkit-transform:translateY(-100px);
+		}	
+		100%
+		{
+			opacity:0;
+		}			
+	}
+	@-webkit-keyframes up200{
+		0%{
+			-webkit-transform:translateY(0px);
+		}
+		99%{
+			-webkit-transform:translateY(-200px);
+		}	
+		100%
+		{
+			opacity:0;
+		}			
+	}
+	
+	
+	@-webkit-keyframes rotate2{
+		0%{
+			-webkit-transform:rotate(3deg);
+		}
+		100%{
+			-webkit-transform:rotate(-3deg);
+		}		
+	}
+	
+	@-webkit-keyframes rotate3{
+		0%{
+			-webkit-transform:rotate(5deg);
+		}
+		100%{
+			-webkit-transform:rotate(-5deg);
+		}		
+	}
+	
+	@-webkit-keyframes fadeOut{
+		0%{opacity:1;}
+		100%{opacity:0;}
+	}
+	@-webkit-keyframes fadeOut1{
+		0%{opacity:0.8;}
+		100%{opacity:0;}
+	}
+	@-webkit-keyframes fadeIn{
+		0%{opacity:0;}
+		100%{opacity:1;}
+	}
+	@-webkit-keyframes fadeIn1{
+		0%{opacity:0;}
+		100%{opacity:1;}
+	}
+	
+	
+	@-webkit-keyframes fly1{
+		0% {opacity: 0; left:450px;top:1200px;}
+			2%{opacity: 1;left:550px;top:800px;} 
+			22%{left:29px;top:600px;} 
+			51%{left:430px;top:366px;} 
+			62%{left:200px;top:200px;} 
+			87%{left:322px;top:66px;} 
+			100%{left:-100px;top:-100px;} 
+	}
+	
+	@-webkit-keyframes fly2{
+		0%{opacity:1; -webkit-transform:translate(0px,0px) rotateX(0deg) rotateY(0deg) rotatez(0deg) scale(0.6,0.6);
+		opacity:1}
+		30%{opacity:0; -webkit-transform:translate(180px,-100px) rotateX(40deg) rotateY(10deg) rotatez(5deg) scale(0.8,0.8);
+		opacity:1}
+		60%{opacity:1; -webkit-transform:translate(220px,-200px) rotateX(5deg) rotateY(30deg) rotatez(-10deg) scale(1,1);
+		opacity:0.8}
+		100%{opacity:0; -webkit-transform:translate(300px,-300px) rotateX(-10deg) rotateY(-5deg) rotatez(10deg) scale(1.2,1.2);
+		opacity:0.2}
+	}
+	
+	@-webkit-keyframes fly3{
+		0%{ opacity: 0; -webkit-transform:translate(0px,0px) rotateX(0deg) rotateY(0deg) rotatez(0deg) scale(1,1);
+		opacity:1}
+		30%{opacity: 1; -webkit-transform:translate(130px,-100px) rotateX(-40deg) rotateY(10deg) rotatez(5deg) scale(1.2,1.2);
+		opacity:1}
+		60%{opacity: 0; -webkit-transform:translate(240px,-350px) rotateX(5deg) rotateY(-30deg) rotatez(-10deg) scale(1.3,1.3);
+		opacity:0.8}
+		100%{ opacity: 1;-webkit-transform:translate(360px,-150px) rotateX(-10deg) rotateY(-5deg) rotatez(40deg) scale(1.5,1.5);
+		opacity:0.2}
+	}
+	
+	@-webkit-keyframes fly4{
+		0%{-webkit-transform:translate(0px,0px) rotateX(0deg) rotateY(0deg) rotatez(0deg) scale(1,1);
+		opacity:1}
+		20%{-webkit-transform:translate(150px,-100px) rotateX(20deg) rotateY(-10deg) rotatez(-5deg) scale(1.2,1.2);
+		opacity:1}
+		40%{-webkit-transform:translate(-150px,100px) rotateX(-5deg) rotateY(20deg) rotatez(10deg) scale(1.3,1.3);
+		opacity:0.8}
+		60%{-webkit-transform:translate(130px,300px) rotateX(5deg) rotateY(-30deg) rotatez(10deg) scale(1.3,1.3);
+		opacity:1}
+		80%{-webkit-transform:translate(-130px,300px) rotateX(20deg) rotateY(5deg) rotatez(-10deg) scale(1.3,1.3);
+		opacity:0.8}
+		100%{-webkit-transform:translate(60px,-300px) rotateX(-10deg) rotateY(10deg) rotatez(20deg) scale(1.5,1.5);
+		opacity:0.2}
+	}
+	
+	@-webkit-keyframes fly5{
+		0%{-webkit-transform:translate(0px,0px) rotateX(0deg) rotateY(0deg) rotatez(0deg) scale(1.5,1.5);
+		opacity:1}
+		30%{-webkit-transform:translate(100px,-100px) rotateX(-40deg) rotateY(10deg) rotatez(5deg) scale(1.8,1.8);
+		opacity:1}
+		60%{-webkit-transform:translate(200px,-250px) rotateX(5deg) rotateY(-30deg) rotatez(-10deg) scale(2.3,2.3);
+		opacity:0.8}
+		100%{-webkit-transform:translate(180px,-350px) rotateX(-10deg) rotateY(-5deg) rotatez(40deg) scale(2.5,2.5);
+		opacity:0.2}
+	}
+	
+	div#foot{   
+        position:fixed; 
+		left:320px;
+		bottom:10px;
+        z-index:4000;
+    } 	
+    -->  
+</style>  
+
+
+</head>  
+<body onLoad = "kawa_init();"> 
+<script>
+        	words = '假期了，放下所有的包袱，到外面走走，享受自然，品味生活的乐趣！';
+
+            kawa_data = {
+               <if condition=" $words eq ''">
+				replace_words      : '假期了，放下所有的包袱，到外面走走，享受自然，品味生活的乐趣！',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+                replace_words      : '#replace_words#',
+                text_box           : '50 50 300 200', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+                mode               : 'up',     // up, left
+                speed              : 40,     // 每秒移动的像素
+                text_color         : '#FFcc66', // rgb(1,2,3) 'black'
+                font_size          : '20pt',
+                line_height        : '40pt',
+                //text_align         : 'center',
+                font_weight        : 'bold',
+                music              : 'http://sound.kagirl.net/sound/duanwu2.mp3',     // url
+                <if condition=" $music eq ''">
+				replace_music      : 'http://sound.kagirl.net/sound/duanwu2.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+                music_name         : '',
+                replace_music_name : '#replace_music_name#',
+                icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/fengmian/x1026.jpg',
+                title              : '送给你',
+                desc               : words,
+                modify             : 'no',
+                replace_modify     : 'yes',
+                cardid             : '1026',
+               share_url          : window.location.href,    // 当分享的是微信页面时才需要改这里
+                font_ip            : '115.28.135.41:8000',
+                modify_optfile     : 'xinqing',
+                modify_optwords    : '#modify_optwords#',
+                show_words         : 'yes',
+                write_param_1      : 'inputtype=singleline&showsel=no&prompt=' + encodeURIComponent('输入对方的名字：')
+            };
+        </script>
+    <div id="content">  
+		<div id="bg2" >
+			<img src="tpl/Wap/default/common/kawahk/1026/1026_1.jpg"/>
+		</div>  
+        <div id="bg1" >
+			<img src="tpl/Wap/default/common/kawahk/1026/1026_3.jpg"/>
+		</div>  
+		 <div id="bg" >
+			<img src="tpl/Wap/default/common/kawahk/1026/1026_2.jpg"/>
+		</div>  
+		
+		<div id="cao1">
+			<img src="tpl/Wap/default/common/kawahk/1026/1026_p2.png"/>
+		</div>  
+		<div id="cao2">
+			<img src="tpl/Wap/default/common/kawahk/1026/1026_p3.png"/>
+		</div> 
+		<div id="cao3">
+			<img src="tpl/Wap/default/common/kawahk/1026/1026_p4.png"/>
+		</div> 
+		<div id="cao4">
+			<img src="tpl/Wap/default/common/kawahk/1026/1026_p4.png"/>
+		</div> 
+		<div id="huaping1">
+			<img src="tpl/Wap/default/common/kawahk/1026/1026_p1.png"/>
+		</div> 
+		<div id="baobao">
+			<img src="tpl/Wap/default/common/kawahk/1026/1026_bao1.png"/>
+		</div> 
+		
+		<div id="hua1">
+			<img src="tpl/Wap/default/common/kawahk/1026/1026_hua1.png"/>
+		</div>
+		<div id="hua2">
+			<img src="tpl/Wap/default/common/kawahk/1026/1026_hua2.png"/>
+		</div>
+		<div id="yinghuochong1">
+			<img src="tpl/Wap/default/common/kawahk/1026/1026_guang1.png"/>
+		</div>			
+		<div id="yinghuochong2">
+			<img src="tpl/Wap/default/common/kawahk/1026/1026_guang1.png"/>
+		</div>	
+		<div id="yinghuochong3">
+			<img src="tpl/Wap/default/common/kawahk/1026/1026_guang1.png"/>
+		</div>	
+		<div id="yinghuochong4">
+			<img src="tpl/Wap/default/common/kawahk/1026/1026_guang1.png"/>
+		</div>	
+		
+		<div id="guang1">
+			<img src="tpl/Wap/default/common/kawahk/1026/1026_guang1.png"/>
+		</div>
+		<div id="guang2">
+			<img src="tpl/Wap/default/common/kawahk/1026/1026_guang2.png"/>
+		</div>
+		<div id="guang3">
+			<img src="tpl/Wap/default/common/kawahk/1026/1026_guang3.png"/>
+		</div>
+		
+		<div id="container" onclick="clickbg();" style="left:0%;top:0%;">
+			<div id="leafContainer"></div>
+		</div>
+    </div>  
+
+</body>  
+</html>  

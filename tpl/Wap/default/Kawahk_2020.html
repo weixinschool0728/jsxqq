@@ -1,0 +1,244 @@
+
+<html>  
+<head>  
+<meta http-equiv="content-type" content="text/html; charset=utf-8">  
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+       <include file="Kawahk:js"/> 
+        <script type="text/javascript">
+            initViewport();
+        </script>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>送给你</title>  
+
+
+<script src="tpl/Wap/default/common/kawahk/2020/jquery.min.js"></script>
+<style type="text/css">  
+    <!--   
+    body{   
+		-webkit-touch-callout: none; 
+		-webkit-text-size-adjust: none;
+        margin:0 auto;   		
+        overflow:hidden;   
+		position:relative;
+    }   
+  
+    div#content{
+        position:relative;   
+        border:1px solid #000; 
+		width:100%;		
+		height:100%;
+		margin:0 auto; 
+        top:0px;    
+        overflow:hidden;   
+        clear:both;
+    }
+  
+    div#bg{   
+        position:absolute;   
+        left:0px;   
+        top:0px;
+    } 
+	
+	div#bg1{   
+        position:absolute;   
+        left:0px;   
+        top:0px;
+		-webkit-animation:fadeOut 4s 2s infinite ease-in-out alternate both;
+    } 
+	@-webkit-keyframes fadeOut{
+		0%{opacity:1;}
+		100%{opacity:0;}
+	}
+	div#deng1
+	{ 
+		position:absolute; 
+		left:94px;
+		top:349px;		
+	}
+	
+	div#deng2
+	{ 
+		position:absolute; 
+		left:94px;
+		top:349px;				
+		-webkit-animation:fadeInOut 12s 2s infinite ease-in-out normal both;
+	}
+	@-webkit-keyframes fadeInOut{
+		0%{opacity:0;}
+		15%{opacity:0;}
+		35%{opacity:1;}		
+		90%{opacity:1;}
+		100%{opacity:0;}
+	}
+	div#deng3
+	{ 
+		position:absolute; 
+		left:330px;
+		top:377px;		
+	}
+	
+	div#deng4
+	{ 
+		position:absolute; 
+		left:330px;
+		top:377px;			
+		-webkit-animation:fadeInOut 12s 3.5s infinite ease-in-out normal both;
+	}
+	
+	div#deng5
+	{ 
+		position:absolute; 
+		left:437px;
+		top:380px;		
+	}
+	
+	div#deng6
+	{ 
+		position:absolute;
+		left:437px;
+		top:380px;		
+		-webkit-animation:fadeInOut 12s 5s infinite ease-in-out normal both;
+	}
+	
+	div#yizi
+	{ 
+		position:absolute; 
+		left:-45px;
+		top:536px;				
+		-webkit-animation:fadeIn 3s 4s 1 ease-in-out normal both;
+	}
+	div#ren
+	{ 
+		position:absolute; 
+		left:22px;
+		top:547px;				
+		-webkit-animation:fadeIn 3s 8s 1 ease-in-out normal both;
+	}
+	@-webkit-keyframes fadeIn{
+		0%{opacity:0;}		
+		100%{opacity:1;}
+	}
+	div#foot{   
+        position:fixed; 
+		width:500px;
+		left:320px;
+		bottom:20px;
+		z-index:2000;
+    } 	
+  
+    div#relative{   
+        position:relative;   
+        left:100px;   
+        top:0px;   
+    }   
+  
+    div#static{   
+        background-color:#bbb;   
+		top:20;
+		left:30px;
+        position:static;   
+    }   
+	
+    -->  
+</style>  	
+	<script>
+		//需要调用leafinit（）来启动，需要声明外层div，id="container"，还有内层div，id="leafContainer"
+		//参数设置
+		var leafNum = 40;			//落下叶子的数量
+		var kindNum = 5;			//叶子的种类
+		//叶子使用图片地址，数量应与kindNum相同
+		var kindurl = new Array("tpl/Wap/default/common/kawahk/2020/2020_xue1.png","tpl/Wap/default/common/kawahk/2020/2020_xue2.png","tpl/Wap/default/common/kawahk/2020/2020_xue3.png","tpl/Wap/default/common/kawahk/2020/2020_xue4.png","tpl/Wap/default/common/kawahk/2020/2020_xue5.png");
+	</script>
+	<script src="tpl/Wap/default/common/kawahk/2020/fleaves.min.js"></script>
+	<link rel="stylesheet" href="tpl/Wap/default/common/kawahk/2020/leavesGeneral.css" type="text/css" media="screen" charset="utf-8">
+</head>  
+
+<body onLoad = "kawa_init();"> 
+    <script>
+		words =  '有人惦记，再远的路，也是近的；有人挂念，再淡的水，也是甜的；有人思念，再长的夜，也是短的；有人关怀，再冷的天，也是暖的。自由是做自己喜欢的事，幸福则是喜欢自己做的事。繁华三千，看淡即是云烟！烦恼无数，想开才有笑颜！亲爱的朋友，晚安！';
+
+	    kawa_data = {
+	        words 			   : words,
+	        <if condition=" $words eq ''">
+				replace_words      : '有人惦记，再远的路，也是近的；有人挂念，再淡的水，也是甜的；有人思念，再长的夜，也是短的；有人关怀，再冷的天，也是暖的。自由是做自己喜欢的事，幸福则是喜欢自己做的事。繁华三千，看淡即是云烟！烦恼无数，想开才有笑颜！亲爱的朋友，晚安！',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+	        text_box           : '50 50 400 300', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+	        mode               : 'up',     // up, left
+	        speed              : 40,     // 每秒移动的像素
+	        text_color         : '#ABFFF8', // rgb(1,2,3) 'black'
+	        font_size          : '22pt',
+	        line_height        : '40pt',
+	        music              : 'http://sound.kagirl.net/sound/xusong.mp3',     // url
+	           <if condition=" $music eq ''">
+				replace_music      : 'http://sound.kagirl.net/sound/xusong.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+	        music_name         : '',
+	        replace_music_name : '#replace_music_name#',
+	        icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/fengmian/x2020.jpg',
+	        title              : '送给你',
+	        desc               : words,
+	        modify             : 'no',
+	        replace_modify     : 'yes',
+	        cardid             : '2020',
+	        share_url          : window.location.href, // 当分享的是微信页面时才需要改这里
+	        font_ip            : '115.28.135.41:8000',
+	        modify_optfile     : 'xinqing',
+	        modify_optwords    : '#modify_optwords#',
+	        show_words         : 'yes',
+	        write_param_1      : 'inputtype=singleline&showsel=no&prompt=' + encodeURIComponent('输入对方的名字：')
+	    };
+	</script>
+
+	<div id="container" style="left:0%;top:0%;z-index:10">
+		<div id="leafContainer"></div>
+	</div>
+
+	<script>
+		leafinit();
+	</script>
+	
+    <div id="content">  
+        <div id="bg" >
+			<img src="tpl/Wap/default/common/kawahk/2020/2020_1.jpg"/>
+		</div>  
+		<div id="bg1">
+			<img src="tpl/Wap/default/common/kawahk/2020/2020_2.jpg"/>
+		</div> 	
+		
+		<div id="deng1">
+			<img src="tpl/Wap/default/common/kawahk/2020/2020_deng1.png"/>
+		</div>
+		<div id="deng2">
+			<img src="tpl/Wap/default/common/kawahk/2020/2020_deng2.png"/>
+		</div>
+		<div id="deng3">
+			<img src="tpl/Wap/default/common/kawahk/2020/2020_deng3.png"/>
+		</div>
+		<div id="deng4">
+			<img src="tpl/Wap/default/common/kawahk/2020/2020_deng4.png"/>
+		</div>
+		<div id="deng5">
+			<img src="tpl/Wap/default/common/kawahk/2020/2020_deng5.png"/>
+		</div>
+		<div id="deng6">
+			<img src="tpl/Wap/default/common/kawahk/2020/2020_deng6.png"/>
+		</div>
+		<div id="yizi">
+			<img src="tpl/Wap/default/common/kawahk/2020/2020_yizi.png"/>
+		</div>
+		<div id="ren">
+			<img src="tpl/Wap/default/common/kawahk/2020/2020_ren.png"/>
+		</div>
+		<div id="container" onclick="clickbg();" style="left:0%;top:0%;">
+			<div id="leafContainer"></div>
+		</div>				
+    </div>  	
+</div>
+
+</body>  
+</html>  

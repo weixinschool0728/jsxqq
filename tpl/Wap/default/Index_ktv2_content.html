@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<if condition="$zd['status'] eq 1">
+            {weimicms:$zd['code']}
+        </if>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{weimicms:$res.title}-{weimicms:$tpl.wxname}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+<meta name="viewport" content="initial-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta charset="utf-8">
+<link href="{weimicms::RES}/css/ktv/style.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+
+<div class="content">
+<div class="header">分享至朋友圈</div>
+<div class="banner"></div>
+	<span class="marginb">
+		<h3>{weimicms:$res.title}</h3>
+		<span id="post-date" class="copytop">{weimicms:$res.createtime|date="y-m-d",###}&nbsp;&nbsp;&nbsp;&nbsp{weimicms:$tpl.wxname}</span>
+	</span>
+	
+	<eq name="res.showpic" value="1">
+<div class="showpic"><img src="{weimicms:$res.pic}" /></div> 
+</eq>
+	<php>echo htmlspecialchars_decode($res['info'])</php>
+</div>
+ <div>
+<a class="footer" href="#" target="_self"><span class="top">返回顶部</span></a>
+</div>
+<div style="display:none"><php>echo htmlspecialchars_decode($tpl['tongji'])</php></div>
+
+  <div class="copyright">
+<if condition="$iscopyright eq 1">
+{weimicms:$homeInfo.copyright}
+<else/>
+{weimicms:$siteCopyright}
+</if>
+</div> 
+<include file="Index:styleInclude"/> 
+</body>
+</html>

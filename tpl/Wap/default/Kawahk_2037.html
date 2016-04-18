@@ -1,0 +1,410 @@
+
+<html>
+	<head>
+		<title>送给你</title>
+		<meta http-equiv="imagetoolbar" content="no">
+        <include file="Kawahk:js"/> 
+        <script type="text/javascript">
+            initViewport();
+        </script>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+		 <meta name="copyright" content="版权所有，抄袭必究，（告无忧微米）">
+        <meta name="format-detection" content="telephone=no">
+		
+		<style type="text/css">
+        div
+        {
+            position: absolute;
+        }
+		#tree2{
+			-webkit-animation: treemove 5s linear 3s infinite alternate;
+			-webkit-transform-origin:50% 100%;
+		}
+		#tree1{
+			-webkit-animation: treemove1 5s linear 1s infinite alternate;
+			-webkit-transform-origin:50% 100%;
+		}
+		#tree3{
+			-webkit-animation: treemove 4.5s linear 0s infinite alternate;
+			-webkit-transform-origin:50% 100%;
+		}
+		#tree4{
+			-webkit-animation: treemove 6s linear 0s infinite alternate;
+			-webkit-transform-origin:50% 100%;
+		}
+		.star{
+			position: absolute;
+			-webkit-animation:blink 3s linear infinite alternate;
+			z-index: 10;	
+		}
+		@-webkit-keyframes blink{
+			0%{opacity: 0;-webkit-transform:scale(0.1,0.1);}
+			100%{opacity: 1;-webkit-transform: scale(0.5,0.5);}
+		}
+		@-webkit-keyframes treemove
+		{
+		from {-webkit-transform: rotate(-5deg);}
+		to {-webkit-transform: rotate(5deg);}
+		}
+		@-webkit-keyframes treemove1
+		{
+		from {-webkit-transform: rotate(-4deg);}
+		to {-webkit-transform: rotate(4deg);}
+		}
+		@-webkit-keyframes disappear
+		{
+			from{opacity: 1}
+			to{opacity: 0}
+		}
+		@-webkit-keyframes flying
+		{
+			0%{-webkit-transform:rotate(0deg) translate(0px,0px);}
+			10%{-webkit-transform:rotate(-15deg) translate(-80px,20px);}
+			100%{-webkit-transform:rotate(-15deg) translate(-400px,-700px);}
+
+		}
+		@-webkit-keyframes stopflying
+		{
+			0%{-webkit-transform:rotate(-20deg) translate(300px,300px);}
+			90%{-webkit-transform:rotate(-20deg) translate(-20px,10px);}
+			100%{-webkit-transform:rotate(0deg) translate(0px,0px);}
+		}
+		@-webkit-keyframes flyingsmall
+		{
+			0%{-webkit-transform:rotate(0deg) translate(0px,0px);}
+			10%{-webkit-transform:rotate(20deg) translate(65px,-20px);}
+			100%{-webkit-transform:rotate(40deg) translate(400px,-700px);}
+
+		}
+		@-webkit-keyframes stopflyingsmall
+		{
+			0%{-webkit-transform:rotate(20deg) translate(-300px,300px);}
+			80%{-webkit-transform:rotate(20deg) translate(20px,-30px);}
+			100%{-webkit-transform:rotate(0deg) translate(0px,0px);}
+		}
+		@-webkit-keyframes leaffalling
+		{
+			0%{opacity: 1;-webkit-transform:translate(0px,0px);}
+			50%{opacity: 1;-webkit-transform:translate(-200px,600px);}
+			51%{opacity: 0;-webkit-transform:translate(-200px,600px);}
+			52%{opacity: 0;-webkit-transform:translate(0px,0px);}
+			70%{opacity: 1;-webkit-transform:translate(0px,0px);}
+			100%{opacity: 1;-webkit-transform:translate(0px,0px);}
+
+		}
+		@-webkit-keyframes leafrotate
+		{
+			0%{-webkit-transform:rotate(0deg);}
+			50%{-webkit-transform:rotate(360deg);}
+			52%{-webkit-transform:rotate(0deg);}
+			81%{-webkit-transform:rotate(0deg);}
+			100%{-webkit-transform:rotate(0deg);}
+
+		}
+		</style>
+		<script type="text/javascript">
+		x=0;
+		y=0;
+		var z=0;z2=0;z3=0;
+		var waving;
+		var waving2;
+		var waving3;
+		function onload()
+		{
+			sp.show(x,y);
+			id('contain').style.display='block';
+			setI=setInterval(movebegin,10);
+			create_base();
+			read_base();
+		    //create_textdiv();
+		    add_kawa_icon();
+		    create_music();
+		    create_modify();
+		    setTimeout(create_textdiv,10000);
+			setTimeout(creat,8000);
+		    setTimeout(fly1,14000);
+			setTimeout(fly2,22000);
+			setTimeout(fly3,30000);
+			//setTimeout(fly3,40000);
+			//setTimeout(fly3,15000);
+			//setTimeout(fly2,30000);
+		}
+		function fly1()
+		{
+			id('cat1').style.webkitAnimation='flying 11s infinite forwards';
+			waving=setInterval('flying(1)',500);
+			setTimeout('stopfly1(1)',10000);
+		}
+		function stopfly1(name)
+		{
+			id('cat'+name).style.webkitAnimation='stopflying 5s linear';
+			//waving=setInterval('flying(1)',500);
+			setTimeout('stopflying1(1)',5000);
+		}
+		function stopflying1(name)
+		{
+			clearInterval(waving);
+			id('wave'+name).src='tpl/Wap/default/common/kawahk/2037/123_9.png';
+			setTimeout(fly1,20000);
+		}
+		function fly2()
+		{
+			id('cat2').style.webkitAnimation='flying 11s infinite forwards';
+			waving2=setInterval('flying2(2)',500);
+			setTimeout('stopfly2(2)',10000);
+		}
+		function stopfly2(name)
+		{
+			id('cat'+name).style.webkitAnimation='stopflying 5s linear';
+			//waving=setInterval('flying(1)',500);
+			setTimeout('stopflying2(2)',5000);
+		}
+		function stopflying2(name)
+		{
+			clearInterval(waving2);
+			id('wave'+name).src='tpl/Wap/default/common/kawahk/2037/123_9.png';
+			setTimeout(fly2,20000);
+		}
+		function fly3()
+		{
+			id('cat3').style.webkitAnimation='flyingsmall 11s infinite forwards';
+			waving3=setInterval('flyingsmall(3)',500);
+			setTimeout('stopfly3(3)',10000);
+		}
+		function stopfly3(name)
+		{
+			id('cat'+name).style.webkitAnimation='stopflyingsmall 5s linear';
+			//waving=setInterval('flying(1)',500);
+			setTimeout('stopflying3(3)',5000);
+		}
+		function stopflying3(name)
+		{
+			clearInterval(waving3);
+			id('wave'+name).src='tpl/Wap/default/common/kawahk/2037/123_20.png';
+			setTimeout(fly3,20000);
+		}
+		function flying2(name)
+		{
+			if(z2==0)
+				{	id('wave'+name).src='tpl/Wap/default/common/kawahk/2037/123_3.png';
+					z2=1;
+				}
+			else
+				{id('wave'+name).src='tpl/Wap/default/common/kawahk/2037/123_9.png';
+					z2=0;
+				}
+
+		}
+		function flying(name)
+		{
+			if(z==0)
+				{
+					id('wave'+name).src='tpl/Wap/default/common/kawahk/2037/123_3.png';
+					z=1;
+				}
+			else
+				{
+					id('wave'+name).src='tpl/Wap/default/common/kawahk/2037/123_9.png';
+					z=0;
+				}
+
+		}
+		function flyingsmall(name)
+		{
+			if(z3==0)
+				{id('wave'+name).src='tpl/Wap/default/common/kawahk/2037/123_21.png';z3=1;}
+			else
+				{id('wave'+name).src='tpl/Wap/default/common/kawahk/2037/123_20.png';z3=0;}
+		}
+		function movebegin()
+		{
+			sp.show(x,y);
+			x+=2;
+			y+=2.1;
+			if(x>420)
+			{
+				clearInterval(setI);
+				setTimeout('setI=setInterval(movedown,10);',500)
+				return;
+			}
+		}
+		function movedown()
+		{
+			y+=2;
+			x-=0.48;
+			sp.show(x,y)
+			if(y>620)
+			{
+				clearInterval(setI);
+				setTimeout('setI=setInterval(moveleft,10);',500);
+				return;
+			}
+		}
+		function moveleft()
+		{
+			x-=2;
+			y+=0.2;
+			sp.show(x,y);
+			if(x<190)
+				{
+					clearInterval(setI);
+					setTimeout('setI=setInterval(moveaway,10)',500);
+					return;
+				}
+		}
+		function moveaway()
+		{
+			x-=2;
+			sp.show(x,y);
+			if(x<-200)
+			{
+				clearInterval(setI);
+				id('spotlight_canvas').style.webkitAnimation ='disappear 3s linear 1 forwards';
+				return;
+			}
+		}
+		function id(name)
+		{
+			return document.getElementById(name);
+		}
+        function rand(min,max)
+        {
+            return min+Math.floor(Math.random()*(max-min+1));
+        }
+        starnum=0;
+        function creat()
+        {
+        	t=setInterval(creat_star,1000);
+        }
+		function creat_star()
+		{
+			if(starnum==4)
+				clearInterval(t);
+	        var starimg = document.createElement('img');
+	        starimg.src = 'tpl/Wap/default/common/kawahk/2037/star.png';
+	        starimg.style.top = rand(0,300)+'px';
+	        starimg.style.left = rand(0,400)+'px';
+	        starimg.className = 'star';
+	        starimg.style.zIndex=10;
+	        id('contain').appendChild(starimg);
+	        starnum++;
+		}
+
+
+
+		</script>
+	</head><!--  -->
+	<body style="margin:0; height: 750px;width:500px;background-color:black;" id='body1' onload='onload();'>	
+	
+        <script>
+        	words = '如果累了，迷茫了，就停下来，休息片刻，看月儿弯弯，看星光点点，还内心一片宁静，一份童真。朋友，晚安！';
+
+            kawa_data = {
+                words 			   : words,
+                 <if condition=" $words eq ''">
+				replace_words      : '如果累了，迷茫了，就停下来，休息片刻，看月儿弯弯，看星光点点，还内心一片宁静，一份童真。朋友，晚安！',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+                text_box           : '30 50 300 300', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+                mode               : 'up',     // up, left
+                speed              : 30,     // 每秒移动的像素
+                text_color         : '#FFFFFF', // rgb(1,2,3) 'black'
+                font_size          : '20pt',
+                line_height        : '40pt',
+                music              : 'http://kawaweika.qiniudn.com/sound/qingyinyue10.mp3',     // url
+               <if condition=" $music eq ''">
+				replace_music      : 'http://kawaweika.qiniudn.com/sound/qingyinyue10.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+                music_name         : '',
+                replace_music_name : '#replace_music_name#',
+                icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/fengmian/x2037.jpg',
+                title              : '送给你',
+                desc               : words,
+                modify             : 'no',
+                replace_modify     : 'yes',
+                cardid             : '2037',
+                share_url          : window.location.href, // 当分享的是微信页面时才需要改这里
+                font_ip            : '115.28.135.41:8000',
+                modify_optfile     : 'xinqing',
+                modify_optwords    : '#modify_optwords#',
+                show_words         : 'yes',
+                write_param_1      : 'inputtype=singleline&showsel=no&prompt=' + encodeURIComponent('输入对方的名字：')
+            };
+        </script>
+		<script type="text/javascript">
+		eval(function(p,a,c,k,e,r)
+	{e=function(c)
+		{return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};
+		if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);
+			k=[function(e){return r[e]}];
+			e=function(){return'\\w+'};
+			c=1};
+			while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);
+			return p}
+			('7 1o=5(f){7 g={T:"G(0,0,0,1)",R:0,Y:0.2,W:17,Z:20,13:10,Q:1y,V:17,K:A,L:A,M:A,N:A,S:A,X:A};7 d,q,3={},6={},t={};3.x=0,3.y=0,3.r=0,3.p=0,6.x=0,6.y=0,6.r=0,6.p=0,t.x=0,t.y=0,t.r=0,t.p=0;7 h=5(){d=m();1q(7 a 1w f){g[a]=f[a]}3.r=g.W;6.r=g.W;3.p=g.Z;6.p=g.Z;7 b;8(4.19("O")){b=4.19("O");q=b.15("1g")}C{b=4.1t("1D");b.1e("E",d.E+"1i");b.1e("D",d.D+"1i");b.I.1A="1H";b.I.1F="1b";b.I.1J="1b";b.I.V=g.V;b.1L="O";q=b.15("1g");4.v.1p(b)}8(g.N||g.M){n(b,"1C",5(e){e=o(e);8(((e.F-3.x)*(e.F-3.x))+((e.B-3.y)*(e.B-3.y))<=3.r*3.r){8(g.M){g.M(e)}}C{8(g.N){g.N(e)}}})}8(g.K||g.L){n(b,"1v",5(e){e=o(e);8(((e.F-3.x)*(e.F-3.x))+((e.B-3.y)*(e.B-3.y))<=3.r*3.r){8(g.K){g.K(e)}}C{8(g.L){g.L(e)}}})}};u.1P=5(x,y,r){l(x,y,r)};u.1K=5(){k()};u.H=5(x,y,r,a,b){6.x=x;6.y=y;6.r=r;6.p=a;b=(b)?b:g.Q;t.x=s.J(6.x-3.x)/b;t.y=s.J(6.y-3.y)/b;t.r=s.J(6.r-3.r)/b;t.p=s.J(6.p-3.p)/b;8(g.S){g.S()}i()};u.1s=5(x,y){u.H(x,y,3.r,3.p)};u.1R=5(r){u.H(3.x,3.y,r,3.p)};u.p=5(a){u.H(3.x,3.y,3.r,a)};u.1G=5(a){g.T=a;l(3.x,3.y)};u.1Z=5(a,b){g.R=a;g.Y=b;l(3.x,3.y)};u.1V=5(a){g.Q=a};7 i=5(){7 a=11;a=j("x",a);a=j("y",a);a=j("r",a);a=j("p",a);l(3.x,3.y,3.r,3.p);8(a){1z(i,g.13)}C{8(g.X){g.X()}}};7 j=5(a,b){8(3[a]>6[a]){3[a]-=t[a];b=14}C 8(3[a]<6[a]){3[a]+=t[a];b=14}8(3[a]>6[a]-t[a]&&3[a]<6[a]+t[a]){3[a]=6[a]}U b};7 k=5(){q.18="1N-1T";q.1X(0,0,d.E,d.D);q.12=g.T;q.1r(0,0,d.E,d.D)};7 l=5(x,y,r,a){k();3.x=x;3.y=y;r=(r)?r:3.r;3.r=r;a=(a)?a:3.p;3.p=a;7 b=r+a;7 c=q.1Q(x,y,0,x,y,b);c.P(0,"G(0,0,0,"+(1-g.R)+")");c.P(r/b,"G(0,0,0,"+(1-g.Y)+")");c.P(1,"G(0,0,0,0)");q.18="1E-1W";q.12=c;q.1x();q.1U(x,y,b,0,s.21*2);q.22()};7 m=5(){7 a=1M 1Y();a.E=0;a.D=0;a.E=s.z(s.z(4.v.1a,4.w.1a),s.z(4.v.16,4.w.16),s.z(4.v.1d,4.w.1d));a.D=s.z(s.z(4.v.1h,4.w.1h),s.z(4.v.1k,4.w.1k),s.z(4.v.1m,4.w.1m));U a};7 n=5(a,b,c){8(a.1n){a.1n(b,c,11)}C{a.1u(\'1B\'+b,c)}};7 o=5(e){8(1c e.B==\'1O\'&&1c e.1j==\'1I\'&&4.w){e.F=e.1j+4.v.1f+4.w.1f;e.B=e.1S+4.v.1l+4.w.1l};U e};h()}',62,127,'|||current|document|function|target|var|if|||||||||||||||||blur|ctx||Math|step|this|body|documentElement|||max|null|pageY|else|height|width|pageX|rgba|animate|style|abs|onMouseOver|onMouseOut|onSpotClick|onCanvasClick|spotlight_canvas|addColorStop|steps|lightStart|onAnimationStart|bgColor|return|zIndex|size|onAnimationEnd|lightEnd|blurRadius||false|fillStyle|interval|true|getContext|offsetWidth|100|globalCompositeOperation|getElementById|scrollWidth|0px|typeof|clientWidth|setAttribute|scrollLeft|2d|scrollHeight|px|clientX|offsetHeight|scrollTop|clientHeight|addEventListener|spotlight|appendChild|for|fillRect|move|createElement|attachEvent|mousemove|in|beginPath|50|setTimeout|position|on|click|canvas|destination|top|changeBgColor|absolute|number|left|hide|id|new|source|undefined|show|createRadialGradient|resize|clientY|over|arc|setSteps|out|clearRect|Object|changeSpot||PI|fill'.split('|'),0,{}))
+	</script>
+        <div id='contain' style='height:750px;width:500px;background-image:url(tpl/Wap/default/common/kawahk/2037/123.jpg);overflow:hidden;display:none;'>
+		<div id='tree2' style='position: absolute; left: 102px; top: 500px;height:260px;z-index:40'>
+            <img  src="tpl/Wap/default/common/kawahk/2037/123_5.png"
+			style='position: absolute; ' >
+			<div id='cat3' style='top: 0px; left: 44px;-webkit-transform-origin:100% 100%;z-index:50'>
+				<img id='wave3' src='tpl/Wap/default/common/kawahk/2037/123_20.png' style='position: absolute; top: 169px; left: -20px; z-index: 100; width:100px; height: 86px;'>
+				<img src='tpl/Wap/default/common/kawahk/2037/123_4.png' height="143" style='position: absolute; z-index: 99; top: 133px; left: -33px; width: 124px; height: 127px;'>			
+			</div>
+			<div id='leaf3' style='left:120px;top:175px;-webkit-animation:leaffalling 20s linear 17s infinite normal;'>
+				<img src="tpl/Wap/default/common/kawahk/2037/leaf3.png" style='position:absolute;-webkit-animation:leafrotate 20s linear 17s infinite normal;'>
+			</div>
+			<div id='leaf4' style='left:30px;top:88px;-webkit-animation:leaffalling 20s linear 26s infinite normal;'>
+				<img src="tpl/Wap/default/common/kawahk/2037/leaf2.png" style='position:absolute;-webkit-animation:leafrotate 20s linear 26s infinite normal;'>
+			</div>
+		</div>
+		<div id='tree1' style='position: absolute; left: 309px; top: 205px; height:550px;z-index:80'>
+			<img  src="tpl/Wap/default/common/kawahk/2037/123_6.png"
+				style='position: absolute;' >
+			<div id='cat1' style='top: 110px; left: 63px;-webkit-transform-origin:0% 0%;'>
+					<img id='wave1' src='tpl/Wap/default/common/kawahk/2037/123_9.png' style='position: absolute; top: 67px; left: 10px; z-index: 100; width: 160px; height: 137px;'>
+					<img src='tpl/Wap/default/common/kawahk/2037/123_13.png' height="188" style='position: absolute; z-index: 99; top: 25px; left: 16px; width: 149px; height: 193px;'>			
+			</div> 
+			<div id='cat2' style='top: 308px; left: -43px;z-index:80'>
+					<img id='wave2' src='tpl/Wap/default/common/kawahk/2037/123_9.png' style='position: absolute; top: 91px; left: 36px; z-index: 100; width: 133px; height: 120px;'>
+					<img src='tpl/Wap/default/common/kawahk/2037/123_13.png' height="146" style='position: absolute; z-index: 99; top: 59px; left: 42px; width: 124px; height: 160px;'>		
+			</div>
+			<div id='leaf1' style='left:150px;top:420px;-webkit-animation:leaffalling 20s linear 20s infinite normal;'>
+				<img src="tpl/Wap/default/common/kawahk/2037/leaf3.png" style='position:absolute;
+				-webkit-animation:leafrotate 20s linear 20s infinite normal;'>
+			</div>
+			<div id='leaf2' style='left:33px;top:2px;-webkit-animation:leaffalling 20s linear 14s infinite normal;'>
+				<img src="tpl/Wap/default/common/kawahk/2037/leaf1.png" style='position:absolute;-webkit-animation:leafrotate 20s linear 14s infinite normal;'>
+			</div>
+			<div id='leaf5' style='left:16px;top:320px;height:50px;width:50px;-webkit-animation:leaffalling 20s linear 29s infinite normal;'>
+				<img src="tpl/Wap/default/common/kawahk/2037/leaf2.png" style='position:absolute;-webkit-animation:leafrotate 20s linear 29s infinite normal;'>
+			</div>
+		</div>
+		<div id='tree4' style='left: 239px; top: 641px;z-index:30;position:absolute;width:126px;height:110px;'>
+	        <img  src="tpl/Wap/default/common/kawahk/2037/123_7.png" style='position: absolute; ' >
+		</div>
+        <div id='tree3' style='left: -25px; top: 583px;z-index:20;position:absolute;width:162px;height:166px;'>
+        	<img  src="tpl/Wap/default/common/kawahk/2037/123_8.png" style='position: absolute; ' >
+			<div id='leaf6' style='left:0px;top:65px;height:50px;width:50px;-webkit-animation:leaffalling 20s linear 23s infinite normal;'>
+				<img src="tpl/Wap/default/common/kawahk/2037/leaf1.png" style='position:absolute;-webkit-animation:leafrotate 20s linear 23s infinite normal;'>
+			</div>
+		</div>
+		</div>
+		<script type="text/javascript">
+		var opened = false;
+		var sp = new spotlight({	
+			steps: 50,	onSpotClick: function(e){
+					if(!opened)		{			
+						sp.animate(e.clientX, e.clientY, 0, 10);		}	
+					else		{		
+						sp.animate(e.clientX, e.clientY, 0, 20);		}		
+					opened = !opened;	}});
+		//document.onmousemove = function(e){	sp.show(e.clientX, e.clientY<html>
+
+		</script>
+		<canvas width="500px" height="750px" id="spotlight_canvas" style="position: absolute; top: 0px; left: 0px; z-index: 200;"></canvas>
+    </body>
+</html>

@@ -1,0 +1,200 @@
+
+<html>  
+<head>  
+<meta http-equiv="content-type" content="text/html; charset=utf-8">  
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+          <include file="Kawahk:js"/> 
+        <script type="text/javascript">
+            initViewport();
+        </script>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<script src="tpl/Wap/default/common/kawahk/1029/jquery.min.js"></script>
+<title>送给你</title>  
+
+
+<style type="text/css">  
+    <!--   
+    body{   
+		-webkit-touch-callout: none; 
+		-webkit-text-size-adjust: none;
+        margin:0 auto;   		
+        overflow:hidden;   
+		position:relative;
+		background-color:black;
+    }   
+  
+    div#content{
+        position:relative;   
+        border:1px solid #000; 
+		width:500px;		
+		height:750px;
+		margin:0 auto; 
+        top:0px;    
+        overflow:hidden;   
+        clear:both;
+    }
+  
+    div#bg{   
+        position:absolute;   
+        left:0px;   
+        top:0px;
+    } 
+	
+	div#bg2{   
+        position:absolute;   
+        left:0px;   
+        top:50px;
+		-webkit-animation:fadeIn1 10s 0.2s infinite ease-in-out alternate both;
+    } 
+	@-webkit-keyframes fadeIn1{
+		0%{opacity:0.4;}
+		20%{opacity:0.2;}
+		40%{opacity:0.1;}
+		60%{opacity:0;}
+		80%{opacity:0;}
+		100%{opacity:0;}
+	}
+	div#bg3{   
+        position:absolute;   
+        left:0px;   
+        top:0px;
+		-webkit-animation:fadeIn2 16s 0.2s infinite ease-in-out alternate both;
+    } 
+	@-webkit-keyframes fadeIn2{
+		0%{opacity:0;}
+		20%{opacity:0.6;}
+		40%{opacity:0.2;}
+		60%{opacity:0.1;}
+		80%{opacity:0;}
+		100%{opacity:0;}
+	}
+	div#bg4{   
+        position:absolute;   
+        left:0px;   
+        top:0px;
+		-webkit-animation:fadeIn3 16s 0.2s infinite ease-in-out alternate both;
+    }
+	@-webkit-keyframes fadeIn3{
+		0%{opacity:0;}
+		20%{opacity:0;}
+		40%{opacity:0.6;}
+		60%{opacity:0.2;}
+		80%{opacity:0.1;}
+		100%{opacity:0;}
+	}	
+	div#taiyang{   
+        position:absolute;   
+        left:70px;   
+        top:-5px;
+		-webkit-backface-visibility:visible;
+		-webkit-transform-origin:55px 0px;
+		-webkit-animation:swing 8s 0.2s infinite linear alternate both;
+    }
+	@-webkit-keyframes swing{
+		20%,40%,60%,80%,100%{-webkit-transform-origin:top center}
+		20%{-webkit-transform:rotate(15deg)}
+		40%{-webkit-transform:rotate(-15deg)}
+		60%{-webkit-transform:rotate(15deg)}
+		80%{-webkit-transform:rotate(-15deg)}
+		100%{-webkit-transform:rotate(0deg)}
+		}	
+	div#stars
+	{ 
+		position:absolute; 
+		width:450px;
+		height:-50px;
+		left:50px
+		top:200px;
+		z-index:2000;
+	}
+	#stars img{ position:absolute }
+	div#foot{   
+        position:fixed;   
+        bottom:30px;   
+        right:30px;
+    }
+    -->  
+</style>  
+
+<script>
+	//需要调用leafinit（）来启动，需要声明外层div，id="container"，还有内层div，id="leafContainer"
+	//参数设置
+	var leafNum = 6;			//落下叶子的数量
+	var kindNum = 1;			//叶子的种类
+	//叶子使用图片地址，数量应与kindNum相同
+	var kindurl = new Array("tpl/Wap/default/common/kawahk/1029/1029_p2.png");
+</script>
+<script src="jtpl/Wap/default/common/kawahk/1029/fleaves.min.js"></script>
+<link rel="stylesheet" href="jtpl/Wap/default/common/kawahk/1029/leavesGeneral.css" type="text/css" media="screen" charset="utf-8">
+
+</head> 
+<body onload='kawa_init()'> 
+<script>
+        	words ='平凡而渺小的三叶草，默默地、倔强的生长着，它却是幸福的使者:<br> 一片叶子代表着爱，一片叶子代表着健康，一片叶子代表着希望，因为有爱，所以一定要健康、<br>幸福的过一辈子！';
+            kawa_data = {
+                words 			   : words,
+              <if condition=" $words eq ''">
+				replace_words      : '平凡而渺小的三叶草，默默地、倔强的生长着，它却是幸福的使者:<br> 一片叶子代表着爱，一片叶子代表着健康，一片叶子代表着希望，因为有爱，所以一定要健康、<br>幸福的过一辈子！',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+                text_box           : '50 100 300 200', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+                mode               : 'up',     // up, left
+                speed              : 40,     // 每秒移动的像素
+                text_color         : '#F8A901', // rgb(1,2,3) 'black'
+                font_size          : '18pt',
+                line_height        : '40pt',
+                //text_align         : 'center',
+                font_weight        : 'bold',
+                music              : 'http://sound.kagirl.net/sound/muqinjie.mp3',     // url
+               <if condition=" $music eq ''">
+				replace_music      : 'http://sound.kagirl.net/sound/muqinjie.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+                music_name         : '',
+                replace_music_name : '#replace_music_name#',
+                icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/fengmian/x1029.jpg',
+                title              : '送给你',
+                desc               : words,
+                modify             : 'no',
+                replace_modify     : 'yes',
+                cardid             : '1029',
+                 share_url          : window.location.href,    // 当分享的是微信页面时才需要改这里
+                font_ip            : '115.28.135.41:8000',
+                modify_optfile     : 'xinqing',
+                modify_optwords    : '#modify_optwords#',
+                show_words         : 'yes',
+                write_param_1      : 'inputtype=singleline&showsel=no&prompt=' + encodeURIComponent('输入对方的名字：')
+            };
+        </script>
+    <div id="content">  
+		 <div id="bg" >
+			<img src="tpl/Wap/default/common/kawahk/1029/1029_1.jpg"/>
+		</div> 
+		<div id="bg2">
+			<img src="tpl/Wap/default/common/kawahk/1029/1029_2.png"/>
+		</div> 	
+		<div id="bg3">
+			<img src="tpl/Wap/default/common/kawahk/1029/1029_3.png"/>
+		</div> 	
+		<div id="bg4">
+			<img src="tpl/Wap/default/common/kawahk/1029/1029_4.png"/>
+		</div> 
+		<div id="taiyang">
+			<img src="tpl/Wap/default/common/kawahk/1029/1029_taiyang.png"/>
+		</div> 
+		
+		<div id="container" onclick="clickbg();" style="left:0%;top:0%;">
+			<div id="leafContainer"></div>
+		</div>
+		<script>
+			leafinit();
+		</script>
+
+    </div>  
+	
+
+
+</body>  
+</html>  

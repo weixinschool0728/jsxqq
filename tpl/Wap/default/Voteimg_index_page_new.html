@@ -1,0 +1,558 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><if condition="$action_info['action_name']">{weimicms:$action_info['action_name']}</if></title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=no" />
+<title><if condition="$action_info['action_name'] neq ''">{weimicms:$action_info['action_name']}</if></title>
+<link rel="stylesheet" type="text/css" href="{weimicms:$staticPath}/tpl/static/voteimg/newvoteimg/css/index.css">
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/voteimg/js/jquery-1.7.2.min.js"></script>
+<script src="{weimicms:$staticPath}/tpl/static/voteimg/newvoteimg/js/jquery.masonry.min.js" type="text/javascript"></script>
+<script src="{weimicms:$staticPath}/tpl/static/voteimg/newvoteimg/js/layer.min.js" type="text/javascript"></script>
+<link  rel="stylesheet" type="text/css" href="{weimicms:$staticPath}/tpl/static/voteimg/newvoteimg/css/layer.css">
+<script type="text/javascript">
+$(function(){
+	$("#fly_page").hide();
+	//$("#TopTipClose").click();//执行关闭
+	$("#TopTipHolder").hide();
+});
+</script>
+</head>
+<body>
+<if condition="$memberNotice neq ''">
+	<if condition="$notice_content eq 'no_follow'">
+	<div style="display:none;" id="membernotice">{weimicms:$memberNotice}</div>
+	<elseif condition="$notice_content eq 'no_register'" />
+	{weimicms:$memberNotice}
+	</if>
+</if>
+<div class="main">
+    <div class="head_main">
+    <div id="content_pic">
+      <div class="addWrap">
+        <div class="swipe" id="mySwipe" style="visibility: visible;">
+           <div class="swipe-wrap" style="width: 3806px;">
+		   <if condition="$banner neq ''">
+		   <volist name="banner" id="vo">
+		   <if condition="$vo.external_links neq ''">
+            <div data-index="0" style="width:100%;height:auto;overflow:hidden;left: 0px; transition-duration: 300ms; -webkit-transition-duration: 300ms; -webkit-transform: translate(0px, 0px) translateZ(0px);" onclick="window.location.href='{weimicms:$vo.external_links}';"><img class="img-responsive" src="{weimicms:$vo.img_url}"></div>
+			<else />
+			 <div data-index="0" style="width:100%;height:auto;overflow:hidden;left: 0px; transition-duration: 300ms; -webkit-transition-duration: 300ms; -webkit-transform: translate(0px, 0px) translateZ(0px);"><img class="img-responsive" src="{weimicms:$vo.img_url}"></div>
+			</if>
+			</volist>
+			<else />
+			 <div data-index="0" style="width:100%;height:auto;overflow:hidden;left: 0px; transition-duration: 300ms; -webkit-transition-duration: 300ms; -webkit-transform: translate(0px, 0px) translateZ(0px);"><img class="img-responsive" src="{weimicms:$action_info.reply_pic}"></div>
+			</if>
+          </div>
+        </div>
+        <ul id="position">
+		<if condition="$banner neq ''">
+			<volist name="banner" id="vo">
+			<if condition="count($banner) gt 1">
+          <li <if condition="$key eq 0">class="cur"</if> style="left: 1%; top: 0px;"></li>
+		  </if>
+		  </volist>
+		</if>
+        </ul>
+      </div>
+      <script src="{weimicms:$staticPath}/tpl/static/voteimg/newvoteimg/js/swipe.js"></script> 
+      <script type="text/javascript">
+      var bullets = document.getElementById('position').getElementsByTagName('li');
+      var banner = Swipe(document.getElementById('mySwipe'), {
+        auto: 2000,
+        continuous: true,
+        disableScroll:false,
+        callback: function(pos) {
+          var i = bullets.length;
+          while (i--) {
+            bullets[i].className = ' ';
+          }
+          bullets[pos].className = 'cur';
+        }
+      });
+      </script>
+    </div>
+    </div>
+	<if condition="$hide neq 2"> 
+	<div class="main_tongji">
+	<div class="main_1">
+		<div class="main_1_1"> {weimicms:$name[0]} </div>
+		<div class="main_1_2" id="main_a">  </div>
+	</div>
+	<div class="main_1">
+		<div class="main_1_1">  {weimicms:$name[1]} </div>
+		<div class="main_1_2" id="main_b">  </div>
+	</div>
+	<div class="main_2">
+		<div class="main_1_1"> {weimicms:$name[2]} </div>
+		<div class="main_1_2" id="main_c">  </div>
+	</div>
+	<div style="clear:both"></div>
+	</div>
+	<else />
+	<div style="height: 10px;background: #232845;"></div>
+	</if>
+    <nav id="article">
+        <div id="faq">
+		<if condition="$menu[0]['hide'] eq 1">
+            <dl>
+                <dt id="faq_dt_77.79673174954951" <if condition="$menu[0]['menu_link'] neq ''">onclick="window.location.href='{weimicms:$menu[0]['menu_link']}'"</if>>
+                    <div id="article_pic"><img src="<php>if(strpos($menu[0]['menu_icon'],'http') !== false){ echo $menu[0]['menu_icon'];}else{ echo $staticPath.$menu[0]['menu_icon'];}</php>"></div>
+                    <div id="article_word">{weimicms:$menu[0]['menu_name']}</div>
+                </dt>
+            </dl>       
+		</if>
+		 <if condition="$menu[1]['hide'] eq 1">
+            <dl>
+                <dt class="jiajian" id="faq_dt_77.01378557831049">
+                    <div id="article_pic"><img src="<php>if(strpos($menu[1]['menu_icon'],'http') !== false){ echo $menu[1]['menu_icon'];}else{ echo $staticPath.$menu[1]['menu_icon'];}</php>"></div>
+                    <div id="article_word"> {weimicms:$menu[1]['menu_name']}</div>
+                </dt>
+				<dd style="display: none;" class="qiehuan_s">
+                    <div class="jiandiv1">
+                        <div class="jiandiv2">
+                            <div class="jiandiv"> 活动时间 </div>
+                            <div class="jiandivdiv">
+                              投票时间：<br> {weimicms:$action_info['start_time']|date='Y-m-d H:i',###}到{weimicms:$action_info['end_time']|date="Y-m-d H:i",###}<br>
+							  报名时间： <br>{weimicms:$action_info['apply_start_time']|date='Y-m-d H:i',###}到{weimicms:$action_info['apply_end_time']|date="Y-m-d H:i",###}<br>
+                            </div>
+                        </div>
+                    </div>
+                </dd>
+            </dl>
+			</if>
+		<if condition="$menu[2]['hide'] eq 1">
+            <dl>
+                <dt class="jiajian" id="faq_dt_59.198322775773704">
+                    <div id="article_pic"><img src="<php>if(strpos($menu[2]['menu_icon'],'http') !== false){ echo $menu[2]['menu_icon'];}else{ echo $staticPath.$menu[2]['menu_icon'];}</php>"></div>
+                    <div id="article_word"> {weimicms:$menu[2]['menu_name']} </div>
+                </dt>
+                <dd style="display: none;" class="qiehuan_s">
+                    <div class="jiandiv1">
+                        <div class="jiandiv2">
+                            <div class="jiandiv"> 活动简介 </div>
+                            <div  class="jiandivdiv"> 
+							{weimicms:$action_info['action_desc']|html_entity_decode}<br>
+							您一共可以投票的次数：<if condition="$action_info['limit_vote'] eq 0">不限制<else />{weimicms:$action_info['limit_vote']}次</if><br>
+							您每天可以投票的次数：<if condition="$action_info['limit_vote_day'] eq 0">不限制<else />{weimicms:$action_info['limit_vote_day']}次</if><br>
+							每个投票选项您可以投票的次数：<if condition="$action_info['limit_vote_item'] eq 0">不限制<else />{weimicms:$action_info['limit_vote_item']}次</if> </div>
+                        </div>
+                        <if condition="strip_tags($action_info['join_desc']) neq ''">
+                        <div class="jiandiv2">
+                            <div class="jiandiv"> 如何参与 </div>
+                            <div class="jiandivdiv">
+                               {weimicms:$action_info['join_desc']|html_entity_decode} <br>
+                            </div>
+                        </div>
+                        </if>
+                        <if condition="strip_tags($action_info['flow_desc']) neq ''">
+					 <div class="jiandiv2">
+                            <div class="jiandiv"> 流程介绍 </div>
+                            <div class="jiandivdiv">
+                                 {weimicms:$action_info['flow_desc']|html_entity_decode}<br>
+                            </div>
+                        </div>
+                        </if>
+
+                        <if condition="strip_tags($action_info['award_desc']) neq ''">
+					<div class="jiandiv2">
+                            <div class="jiandiv"> 奖品介绍 </div>
+                            <div class="jiandivdiv">
+                                 {weimicms:$action_info['award_desc']|html_entity_decode}<br>
+                            </div>
+                        </div>
+                        </if>
+                    </div>
+                </dd>
+            </dl>
+			</if>
+			<if condition="$menu[3]['hide'] eq 1">
+            <dl>
+                <dt class="jiajian" id="faq_dt_61.093076528050005">
+                    <div id="article_pic"><img src="<php>if(strpos($menu[3]['menu_icon'],'http') !== false){ echo $menu[3]['menu_icon'];}else{ echo $staticPath.$menu[3]['menu_icon'];}</php>"></div>
+                    <div id="article_word"> {weimicms:$menu[3]['menu_name']} </div>
+                </dt>
+				<dd id="vote_record" class="qiehuan_s"></dd>   
+            </dl>
+			</if>
+			<if condition="$menu[4]['hide'] eq 1">
+            <dl>
+                <a href="javascript:;" onclick="apply()"> 
+                <dt id="faq_dt_98.08325050398707">
+                    <div id="article_pic"><img src="<php>if(strpos($menu[4]['menu_icon'],'http') !== false){ echo $menu[4]['menu_icon'];}else{ echo $staticPath.$menu[4]['menu_icon'];}</php>"></div>
+                    <div id="article_word">  {weimicms:$menu[4]['menu_name']} </div>
+                </dt>
+                </a>
+            </dl>
+			</if>
+			 <volist name="custom_menu" id="me">
+			<dl>
+                <a href="javascript:;" onclick="window.location.href='{weimicms:$me.menu_link}'">
+                <dt id="faq_dt_98.08325050398707">
+                    <div id="article_pic"><img src="{weimicms:$me.menu_icon}"></div>
+                    <div id="article_word"> {weimicms:$me.menu_name} </div>
+                </dt>
+                </a>
+            </dl>
+			 </volist>
+			<if condition="$key_word neq ''">
+			<dl>
+			 <a href="javascript:;" onclick="window.location.href='{weimicms::U('Voteimg/index',array('id'=>$id,'token'=>$token))}'">
+			<dt id="faq_dt_98.08325050398707">
+				<div id="article_pic"><img src="{weimicms:$staticPath}/tpl/static/voteimg/img/back1.png"></div>
+				<div id="article_word">返回首页</div>
+			</dt>
+			</a>
+            </dl>
+			<else />
+			<dl>
+			<a href="javascript:;" onclick="window.location.reload()">
+			<dt id="faq_dt_98.08325050398707">
+				<div id="article_pic"><img src="{weimicms:$staticPath}/tpl/static/voteimg/img/update.png"></div>
+				<div id="article_word"> 刷新 </div>
+			</dt>
+			</a>
+            </dl>
+			</if>
+            <div style="clear:both"></div>
+        </div>
+    </nav>
+    <div class="so_main">
+        <div class="so_form">
+            <form id="form_search" name="form1" method="post" action="{weimicms::U('Voteimg/index',array('id'=>$id,'token'=>$token))}">
+			  <input type="hidden" name="id" value="{weimicms:$id}" />
+			  <input type="hidden" name="token" value="{weimicms:$token}" />
+                <div class="li_ipt">
+                    <input name="key_word" id="key_word" type="text" class="input_text" value="请输入选项标题或编号" onfocus="if(value==&#39;请输入选项标题或编号&#39;) {this.value=&#39;&#39;; this.style.color=&#39;#c2c2c2&#39;}" onblur="if(value==&#39;&#39;) {this.value=&#39;请输入选项标题或编号&#39;;this.style.color=&#39;#6e6175&#39;}" onkeyup="this.value=this.value.replace(/^ +| +$/g,&#39;&#39;)">
+                </div>
+                <div class="li_btn">
+                    <button class="btn" name="seachid" onclick="$('#form_search').submit();">搜索</button>
+                    <div style="display:none">
+                        <input type="submit" class="btn" name="seachid" value="搜索">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+<div class="content">
+    <div id="pageCon" class="match_page">
+		<if condition="$alllist neq ''">
+        <ul class="list_box masonry" style="position: relative; ">
+		  <volist name="alllist" id="all">
+            <li class="picCon masonry-brick">
+                <div>
+                    <div class="box_m"> <a href="{weimicms:$all.jump_url}">
+                        <div class="img_po">
+                            <div class="img_po_div"></div>
+                            <div class="img_po_txt">编号: {weimicms:$all.baby_id}</div>
+                        </div>
+                        <img src="{weimicms:$all.vote_img}"></a>
+                        <div class="box_txt"> <span class="fl f_5">{weimicms:$all.vote_title|mb_substr=0,8,'utf-8'}</span> <span class="fr r_5" id="vote_id_{weimicms:$all.id}">{weimicms:$all.vote_count}票</span> </div>
+                    </div>
+					<if condition="$vote_date neq '' && ($vote_date eq 'wait' || $vote_date eq 'over')">
+                    <div class="box_btn"><a href="javascript:" style="background-color:#cccccc" onclick="wait_vote();">投票</a></div>
+					<elseif condition="$notice_content neq '' && $notice_content eq 'no_register'" />
+					<div class="box_btn"><a href="#TopTip" onclick="anchor()">投票</a></div>
+					<elseif condition="$notice_content neq '' && $notice_content eq 'no_follow'" />
+					<div class="box_btn"><a href="#fly_page" onclick="anchor_follow()">投票</a></div>
+					<elseif condition="$notice_content neq '' && $notice_content eq 'mobile_limit'" />
+					<div class="box_btn"><button onclick="votenotice(\'您的手机号不在允许投票地区\');">投票</button></div>
+					<else />
+					<div class="box_btn"><button onclick="vote({weimicms:$all.id},this)" id="vote_status_{weimicms:$all.id}">投票</button></div>
+					</if>
+            </li>
+		 </volist>
+		 <li class="picCon masonry-brick" style="top:1000px;width:100%;"><div class="page_main" style="background-color:#232845;"><div class="page_num">{weimicms:$page}</div></div></li>
+		 </ul>
+		 </div>
+		 <else />
+			<ol style="height:188px;width:100%;float: left;"><li style="width:100%;">
+			<div style="width:40%;margin-left:30%"> 
+				<div style="height:50px;text-align:left;padding-top: 20px;color:white;"> 暂无记录 <br/><br/><br/><br/><br/><br/></div>
+			</div>
+			</li></ol>
+		
+		 </if>
+    </div>
+	<br /><br />
+<div class="bot_main">
+    <ul id="c_foot">
+	<volist name="custom_bottom" id="bo">
+	<li class="ico_1" id="foot_bu"><a href="{weimicms:$bo.bottom_link}"><span class="ico"><img src="{weimicms:$bo.bottom_icon}"></span><span class="txt">{weimicms:$bo.bottom_name|mb_substr=0,5,'utf-8'}</span></a></li>
+	</volist>
+	<if condition="$bottom[0]['hide'] eq 1">
+        <li class="ico_1" id="foot_bu"><a href="tel:{weimicms:$action_info['phone']}"><span class="ico"><img src="{weimicms:$staticPath}{weimicms:$bottom[0]['bottom_icon']}"></span><span class="txt">{weimicms:$bottom[0]['bottom_name']|mb_substr=0,5,'utf-8'}</span></a></li>
+	</if>	
+	<if condition="$bottom[1]['hide'] eq 1">
+        <li class="ico_2" id="foot_bu"><span class="ico"><img src="{weimicms:$staticPath}{weimicms:$bottom[1]['bottom_icon']}"></span><span class="txt">{weimicms:$bottom[1]['bottom_name']|mb_substr=0,5,'utf-8'}</span></li>
+	</if>	
+	<if condition="$bottom[2]['hide'] eq 1">
+        <li class="ico_3" id="foot_bu"><span class="ico"><img src="{weimicms:$staticPath}{weimicms:$bottom[2]['bottom_icon']}"></span><span class="txt">{weimicms:$bottom[2]['bottom_name']|mb_substr=0,5,'utf-8'}</span></li>
+	</if>	
+	<if condition="$bottom[3]['hide'] eq 1">
+        <li class="ico_4" id="foot_bu"><span class="ico"><img src="{weimicms:$staticPath}{weimicms:$bottom[3]['bottom_icon']}"></span><span class="txt">{weimicms:$bottom[3]['bottom_name']|mb_substr=0,5,'utf-8'}</span></li>
+	</if>	
+    </ul>
+</div>
+<!-- 拉票弹框内容-->
+<div class="search_main" id="lp_main" style="display:none;">
+  <div class="so_main">
+    <div class="li_ipt"><input name="lp" id="lp" type="text" class="input_text" value="请输入选项编号进行拉票" onfocus="if(value==&#39;请输入选项编号进行拉票&#39;) {this.value=&#39;&#39;; this.style.color=&#39;#333&#39;}" onblur="if(value==&#39;&#39;) {this.value=&#39;请输入选项编号进行拉票&#39;;this.style.color=&#39;#c2c2c2&#39;}" onkeyup="this.value=this.value.replace(/^ +| +$/g,&#39;&#39;)"></div>
+    <div class="li_btn"><button class="btn" onclick="lpclick();">拉票</button></div>
+    <div class="button_s"><button id="cabutt" onclick="layer.close(search_la)">关闭</button></div>
+  </div>
+</div>
+<!-- 搜索弹框内容-->
+<div class="search_main" id="search_main" style="display:none;">
+  <div class="so_main">
+  	<form id="search_dialog" name="form1" method="post" action="{weimicms::U('Voteimg/index',array('id'=>$id,'token'=>$token))}">
+	<input type="hidden" name="id" value="{weimicms:$id}" />
+	<input type="hidden" name="token" value="{weimicms:$token}" />
+    <div class="li_ipt"><input name="key_word" id="lp" type="text" class="input_text" value="请输入选项标题或编号" onfocus="if(value==&#39;请输入选项标题或编号&#39;) {this.value=&#39;&#39;; this.style.color=&#39;#333&#39;}" onblur="if(value==&#39;&#39;) {this.value=&#39;请输入选项标题或编号&#39;;this.style.color=&#39;#c2c2c2&#39;}" onkeyup="this.value=this.value.replace(/^ +| +$/g,&#39;&#39;)"></div>
+    <div class="li_btn"><button class="btn" onclick="search();">搜索</button></div>
+	</form>
+	<div class="button_s"><button id="cabutt" onclick="layer.close(search_la)">关闭</button></div>
+  </div>
+</div>
+<!--投票提醒信息弹框-->
+<div id="notice_vote" style="z-index:99;left:57%;top: 30%;width:250px;height:40px; line-height:40px;color:#fff; font-size:18px;  border-radius: 9px;  background-color: #2dcc70;  margin: 0 auto; text-align:center; font-family:'微软雅黑';margin-left:-150px!important;margin-top:-60px!important;margin-top:0px;position:fixed!important;display:none">投票成功</div>
+<div id="bg" class="bg" style="display:none;"></div>
+<!--投票时的临时记录数据-->
+<input type="hidden" id="stat" value="true" />
+<input type="hidden" id="last_notice" value="" />
+<input type="hidden" id="last_id" value="" />
+<script type="text/javascript">	
+$('.page_num a').addClass('num');
+$(function(){
+  var container = $('#pageCon ul');
+  container.imagesLoaded(function(){
+    container.masonry({
+      itemSelector: '.picCon'
+    });
+  });
+});
+//活动介绍我的投票展开收缩效果
+$(function(){
+　　$('.jiajian').click(function(){
+		var index=$('.jiajian').index(this);
+	　　$(this).toggleClass('jianjian');
+		$('.qiehuan_s').eq(index).toggle();
+　　})
+});
+//我的投票记录
+$(function(){
+	$.get("/index.php?g=Wap&m=Voteimg&a=vote_record&id={weimicms:$id}&token={weimicms:$token}",function(content){
+		$("#vote_record").html(content);
+	});
+});
+//底部导航宽度自适应
+$(function(){
+	var foot_bu = $('#c_foot').children('#foot_bu');
+	var len   = foot_bu.length;
+	if(len == 1){
+		foot_bu.each(function(){
+			$(this).css("width","100%");
+		});
+	}else if(len == 2){
+		foot_bu.each(function(){
+			$(this).css("width","50%");
+		});
+	}else if(len == 3){
+		foot_bu.each(function(){
+			$(this).css("width","33%");
+		});
+	}else{
+		foot_bu.each(function(){
+			$(this).css("width","25%");
+		});
+	}
+});
+
+
+//搜索弹框
+$('.ico_2').on('click', function(){
+  search_la = $.layer({
+    type: 1,
+    fadeIn: 400,
+	shift: 'top',
+		border: [0],
+	bgcolor: '',
+		offset: ['0px', ''],
+	title: false,
+		closeBtn: false,
+	maxmin: false,
+    shadeClose: true, 
+    page: {dom : "#search_main"},
+    area: ['100%' , '95px'],
+  });
+});
+//排行跳转
+$('.ico_3').on('click', function(){
+  location.href = "/index.php?g=Wap&m=Voteimg&a=vote_record&id={weimicms:$id}&token={weimicms:$token}&type=ranking";
+});
+//拉票弹框
+$('.ico_4').on('click', function(){
+  search_la = $.layer({
+    type: 1,
+    fadeIn: 400,
+	shift: 'top',
+		border: [0],
+	bgcolor: '',
+		offset: ['0px', ''],
+	title: false,
+		closeBtn: false,
+	maxmin: false,
+    shadeClose: true, 
+    page: {dom : "#lp_main"},
+    area: ['100%' , '95px'],
+  });
+});
+//拉票操作
+function lpclick(){
+	var lp = $("#lp").val();
+	lp = $.trim(lp);
+	if(lp == ""){
+		alert('选项标题或编号不能为空');
+		return false;
+	}
+	var jump_url = '/index.php?g=Wap&m=Voteimg&a=popup_view&id={weimicms:$id}&token={weimicms:$token}&key_word='+lp;
+	window.location.href = jump_url;
+}
+//搜索操作
+function search(){
+	$("#search_dialog").submit();
+}
+//锚点
+function anchor(){
+	$("#TopTipHolder").show();
+	if($("#TopTipHolder").css('height') == '0px'){
+		$("#TopTipClose").click();//执行关闭
+		$("#TopTipHolder").css('height','35px');//弹出
+	}
+}
+function anchor_follow(){
+	$("#membernotice").show();
+	$("#fly_page").show();
+}
+function wait_vote(){
+	var msg = '';
+	var vote_date = '{weimicms:$vote_date}';
+	if(vote_date == 'wait'){
+		msg= '投票活动还未开始';
+	}else if(vote_date == 'over'){
+		msg = '投票活动已结束';
+	}
+	votenotice(msg);
+}
+//隐藏提醒关注注册弹框
+$(".close").click(function(){
+	$("#no_follow").hide();
+	$("#bg").hide();
+});
+//投票
+function vote(id,obj){
+	var stat = $("#stat").val();
+	var last_id = $("#last_id").val();
+	if(last_id == id && stat == 'false'){
+		votenotice($("#last_notice").val());
+	}else{
+		var msg = '';
+		$.ajax({
+		  type: 'GET',
+		  async: true,
+		  url: "/index.php?g=Wap&m=Voteimg&a=vote&vote_id={weimicms:$id}&token={weimicms:$token}&id="+id,
+		  beforeSend: function(){ $(obj).attr("disabled","disabled");$("#vote_status_"+id).text('投票中');},
+		  success: function(info){
+			var data = eval('('+info+')');
+			if(data.status == 'done'){
+				if(data.data.left_vote_day == ''){
+					msg = '投票成功';
+				}else{
+					msg = '投票成功,今日还可以投'+data.data.left_vote_day+'票';
+				}
+				var vid = $("#vote_id_"+id).text();
+				$("#vote_id_"+id).text((parseInt(vid)+1)+'票');
+				votenotice(msg);
+				$("#stat").val('true');
+				$("#last_id").val(id);
+			}else{
+				$("#stat").val('false');
+				$("#last_notice").val(data.data);
+				$("#last_id").val(id);
+				votenotice(data.data);
+			}
+		  },
+		  complete: function(){$(obj).removeAttr("disabled");$("#vote_status_"+id).text('投票');}
+		});
+	}
+}
+//提示信息
+function votenotice(text,time){
+	var t = arguments[1] ? arguments[1] : 2000;
+	$("#notice_vote").text(text);
+	$("#notice_vote").show();
+	$("#bg").show();
+	$("#notice_vote").delay(t).hide(1);
+	$("#bg").delay(t).hide(1);
+}
+
+//报名判断
+function apply(){
+	var allow_apply = '{weimicms:$allow_apply}';
+	if(allow_apply == ""){
+		window.location.href='/index.php?g=Wap&m=Voteimg&a=apply&id={weimicms:$id}&token={weimicms:$token}';
+	}else{
+		if(allow_apply == 'over'){
+			alert('报名已截止');
+		}else if(allow_apply == 'wait'){
+			alert('报名未开始');
+		}else if(allow_apply == 'exists'){
+			alert('您已经报过名');
+		}
+	}
+}
+//异步请求统计信息
+$(function(){
+	$.get("/index.php?g=Wap&m=Voteimg&a=stat_info&id={weimicms:$id}&token={weimicms:$token}",function(json_data){
+		obj = eval("("+json_data+")");
+		item_count = obj.item_count ? obj.item_count : 0;
+		voted_count = obj.voted_count ? obj.voted_count : 0;
+		visit_count = obj.visit_count ? obj.visit_count : 0;
+		$("#main_a").text(item_count);
+		$("#main_b").text(voted_count);
+		$("#main_c").text(visit_count);
+	});
+});
+
+//刷新票数
+function refresh_count(){
+	var refresh_vote_count = GetCookie('refresh_vote_new_{weimicms:$id}');
+	if(refresh_vote_count == 1 && refresh_vote_count != 'null'){
+		SetCookie('refresh_vote_new_{weimicms:$id}',0);
+		window.location.reload();
+	}
+}
+$(function(){
+	window.setInterval(refresh_count, 300); 
+});
+</script>
+<script>
+window.shareData = {  
+	"moduleName":"Voteimg",
+	"moduleID":"{weimicms:$id}",
+	"imgUrl": "{weimicms:$imgUrl}", 
+	"timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U('Voteimg/index',array('token'=>$token,'id'=>$id))}",
+	"sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Voteimg/index',array('token'=>$token,'id'=>$id))}",
+	"weiboLink": "{weimicms:$f_siteUrl}{weimicms::U('Voteimg/index',array('token'=>$token,'id'=>$id))}",
+	"tTitle": "{weimicms:$action_info['action_name']}",
+	"tContent": "{weimicms:$action_info['action_name']}",
+	"fTitle": "{weimicms:$action_info['action_name']}",
+};
+</script>
+{weimicms:$shareScript}
+<div style="display:none"></div>
+</body>
+</html>

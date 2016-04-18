@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="applicable-device" content="mobile">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="{weimicms:$staticPath}/tpl/static/frontpage/css/stylefrontnew.css"  type="text/css" rel="stylesheet"/>
+<link href="{weimicms:$staticPath}/tpl/static/frontpage/css/annimatefront.css"  type="text/css" rel="stylesheet"/>
+<script src="{weimicms:$staticPath}/tpl/static/frontpage/js/jquery-1.7.2.js"></script>
+<script src="{weimicms:$staticPath}/tpl/static/frontpage/js/index.js"></script>
+</head>
+<body class="loading body_h">
+<div class="loading_content content">
+    <div class="title_logo flipInX"><img src="{weimicms:$staticPath}/tpl/static/frontpage/images/jiazai_03.png" /></div>
+    <div  class="schedule">
+        <div class="schedule_icon" style=" width:0%;"></div>
+    </div>
+    <div class="schedule_txt"></div>
+    <div class="loading_bot">
+    <div class="loading_txt">{weimicms:$news_title}</div>
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+$(function(){
+	setTimeout("window.location.href='/index.php?g=Wap&m=FrontPage&a&a=playNews&newsid={weimicms:$news_id}&token={weimicms:$token}&userid={weimicms:$userid}&id={weimicms:$cid}&opentype={weimicms:$opentype}'",1000);
+});
+</script>

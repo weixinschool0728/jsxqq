@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><if condition="$action_info['action_name']">{weimicms:$action_info['action_name']}</if></title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/voteimg/js/jquery-1.4.2.min.js"></script>
+<link  rel="stylesheet" type="text/css" href="{weimicms:$staticPath}/tpl/static/voteimg/css/style.css"/>
+<link rel="stylesheet" type="text/css" href="{weimicms:$staticPath}/tpl/static/voteimg/css/style_PageDefault.css">
+<link rel="stylesheet" type="text/css" href="{weimicms:$staticPath}/tpl/static/voteimg/css/style_PageMaster.css">
+<script type="text/javascript">
+$(function(){
+	$("#fly_page").hide();
+	//$("#TopTipClose").click();//执行关闭
+	$("#TopTipHolder").hide();
+});
+</script>
+</head>
+<body id="body">
+<if condition="$memberNotice neq ''">
+	<if condition="$notice_content eq 'no_follow'">
+	<div style="display:none;" id="membernotice">{weimicms:$memberNotice}</div>
+	<elseif condition="$notice_content eq 'no_register'" />
+	{weimicms:$memberNotice}
+	</if>
+</if>  <div id="div">
+          <div style="clear:both"></div>
+         <if condition="$item neq ''"> 
+        <div id="contentla" >               
+		<!--主体 -->
+		<div style="width:80%; margin:0 auto;">
+		<div style="width:100%; background:#eee; ">
+		{weimicms:$item['vote_title']|mb_substr=0,8,'utf-8'}
+		</div>
+		<div style="width:100%; text-align:left;padding-bottom:20px;">
+		<ul>
+		<li>编号：{weimicms:$item['baby_id']}</li>
+		<li>得票数：<span id="vote_count">{weimicms:$item['vote_count']}</span></li>
+		<li>拉票宣言：{weimicms:$item.manifesto} </li>
+		<li id="content_pic" style="margin-top:20px;border:solid 1px #fff;">自我介绍：{weimicms:$item.introduction|html_entity_decode} </li>
+		</ul>
+		</div>
+		<foreach name="vote_img" item="vo">
+		<div id="content_pic" style="margin-top:20px;border:solid 1px #fff;">
+		<img src="{weimicms:$vo}" style="width:100%"/>
+		</div>
+		</foreach>
+		</div>
+		<div style="width:100%;height:145px;text-align:center">
+		<div id="lapiao" style="bottom:1%;"><button class="STYLE2_la" id="content_button_la" onclick="window.location.href='{weimicms::U('Voteimg/index',array('id'=>$vote_id,'token'=>$token))}'">我也参与</button>
+		<if condition="$vote_date neq '' && ($vote_date eq 'over' || $vote_date eq 'wait')">
+		<button class="STYLE1_la" id="content_button_la" style="background-color:#ccc;">给ta投票</button>
+		<elseif condition="$notice_content neq '' && $notice_content eq 'no_register'" /><a href="#TopTip" onclick="anchor()"><button class="STYLE1_la" id="content_button_la">给ta投票</button></a><elseif condition="$notice_content neq '' && $notice_content eq 'no_follow'" /><a href="#fly_page" onclick="anchor_follow()"><button class="STYLE1_la" id="content_button_la">给ta投票</button></a>
+		<else />
+		<button class="STYLE1_la" id="content_button_la" onclick="my_vote({weimicms:$item.id})">给ta投票</button></if></div></div>
+	</div>
+		</if>
+</div>
+<div id="notice_vote" style="z-index:99;left:58%;top: 30%;width:250px;height:40px; line-height:40px;color:#fff; font-size:18px;  border-radius: 9px;  background-color: #2dcc70;  margin: 0 auto; text-align:center; font-family:'微软雅黑';margin-left:-150px!important;margin-top:-60px!important;margin-top:0px;position:fixed!important;display:none">投票成功</div>
+<div id="bg" class="bg" style="display:none;"></div>
+<!--投票时的临时记录数据-->
+<input type="hidden" id="stat" value="true" />
+<input type="hidden" id="last_notice" value="" />
+<input type="hidden" id="last_id" value="" />
+</body>
+</html>
+<script type="text/javascript">
+//锚点
+function anchor(){
+	$("#TopTipHolder").show();
+	if($("#TopTipHolder").css('height') == '0px'){
+		$("#TopTipClose").click();//执行关闭
+		$("#TopTipHolder").css('height','35px');//弹出
+	}
+}
+function anchor_follow(){
+	$("#membernotice").show();
+	$("#fly_page").show();
+}
+//提示信息
+function votenotice(text,time){
+	var t = arguments[1] ? arguments[1] : 2000;
+	$("#notice_vote").text(text);
+	$("#notice_vote").show();
+	$("#bg").show();
+	$("#notice_vote").delay(t).hide(1);
+	$("#bg").delay(t).hide(1);
+}
+//投票
+function my_vote(id){
+	var stat = $("#stat").val();
+	var last_id = $("#last_id").val();
+	if(last_id == id && stat == 'false'){
+		votenotice($("#last_notice").val());
+	}else{
+		var msg = '';
+		$.get("/index.php?g=Wap&m=Voteimg&a=vote&vote_id={weimicms:$vote_id}&token={weimicms:$token}&id="+id,function(info){
+			var data = eval('('+info+')');
+			if(data.status == 'done'){
+				if(data.data.left_vote_day == ''){
+					msg = '投票成功';
+				}else{
+					msg = '投票成功,今日还可以投'+data.data.left_vote_day+'票';
+				}
+				var vid = $(".content_piao_"+id).text();
+				var total_count = $("#main_b").text();
+				$(".content_piao_"+id).text((parseInt(vid)+1)+'票');
+				$("#main_b").text((parseInt(total_count)+1));
+				votenotice(msg);
+				$("#stat").val('true');
+				$("#last_id").val(id);
+			}else{
+				$("#stat").val('false');
+				$("#last_notice").val(data.data);
+				$("#last_id").val(id);
+				votenotice(data.data);
+			}
+		});
+	}
+}
+//隐藏提醒关注注册弹框
+$(".close").click(function(){
+	$("#no_follow").hide();
+	$("#bg").hide();
+});
+</script>
+<script>
+window.shareData = {  
+	"moduleName":"Voteimg",
+	"moduleID":"{weimicms:$vote_id}",
+	"imgUrl": "{weimicms:$item['vote_img']}", 
+	"timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U('Voteimg/share',array('token'=>$token,'id'=>$vote_id,'item_id'=>$item_id))}",
+	"sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Voteimg/share',array('token'=>$token,'id'=>$vote_id,'item_id'=>$item_id))}",
+	"weiboLink": "{weimicms:$f_siteUrl}{weimicms::U('Voteimg/share',array('token'=>$token,'id'=>$vote_id,'item_id'=>$item_id))}",
+	"tTitle": "{weimicms:$action_name|shareFilter}",
+	"tContent": "{weimicms:$item['manifesto']|shareFilter}",
+	"fTitle": "{weimicms:$action_name}:{weimicms:$item['manifesto']|shareFilter}",
+};
+</script>
+{weimicms:$shareScript}

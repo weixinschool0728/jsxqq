@@ -1,0 +1,80 @@
+<include file="Store:header"/>
+<if condition="$ordersCount neq 0">
+	<volist name="orders" id="o">
+		<ul class="m-uc-order-li">
+			<li class="p-li">
+				<volist name="o['productInfo']" id="row">
+					<a href="{weimicms::U('Store/product',array('token'=>$token,'id'=>$row['id'],'wecha_id'=>$wecha_id, 'twid' => $twid,'cid' => $cid))}">
+					<img title="{weimicms:$row.name}" src="{weimicms:$row.logourl}" width="45" height="45">
+					</a>
+				</volist>
+			</li>
+			<span info_link="{weimicms::U('Store/myDetail',array('token'=>$token,'cartid'=>$o['id'],'wecha_id'=>$wecha_id, 'twid' => $twid,'cid' => $cid))}" onclick="order_jump($(this))">
+			<!-- <li>订单编号：<a href="{weimicms::U('Store/product',array('token'=>$token,'id'=>$row['id'],'wecha_id'=>$wecha_id))}">{weimicms:$o.orderid}</a></li> -->
+			<li>支付状态：<if condition="empty($o['paytype']) neq true">
+				<if condition="$o['paytype'] eq 'alipay'"><span style="color:green">支付宝</span>
+				<elseif condition="$o['paytype'] eq 'weixin'" /><span style="color:green">微信支付</span>
+				<elseif condition="$o['paytype'] eq 'tenpay'" /><span style="color:green">财付通[wap手机]</span>
+				<elseif condition="$o['paytype'] eq 'tenpayComputer'" /><span style="color:green">财付通[即时到帐]</span>
+				<elseif condition="$o['paytype'] eq 'yeepay'" /><span style="color:green">易宝支付</span>
+				<elseif condition="$o['paytype'] eq 'allinpay'" /><span style="color:green">通联支付</span>
+				<elseif condition="$o['paytype'] eq 'daofu'" /><span style="color:green">货到付款</span>
+				<elseif condition="$o['paytype'] eq 'dianfu'" /><span style="color:green">到店付款</span>
+				<elseif condition="$o['paytype'] eq 'chinabank'" /><span style="color:green">网银在线</span>
+				<elseif condition="$o['paytype'] eq 'score'" /><span style="color:green">积分兑换</span>
+				<elseif condition="$o['paytype'] eq 'CardPay'" /><span style="color:green">会员卡支付</span></if>
+			<else />
+				<if condition="$o['paymode'] eq 4 AND $o['paid']"><span style="color:green">会员卡支付</span>
+				<elseif condition="$o['paymode'] eq 5 AND $o['paid']" /><span style="color:green">积分兑换</span>
+				<else /><span style="color:red">未支付</span>
+				</if>
+			</if><i class="t">{weimicms:$o.time|date="Y-m-d H:i:s",###}</i></li>
+			<li>订单状态：<php>if($o['sent']){echo '<span style="color:green">已发货</span>';}else{echo '<span style="color:red">未发货</span>';}</php><i class="t">{weimicms:$o.time|date="Y-m-d H:i:s",###}</i></li>
+			</span>
+			<li>订单总额：￥{weimicms:$o.price}
+				<if condition="($o['paid'] eq 0) AND ($alipayConfig['open'] eq 1)">
+				<a href="{weimicms::U('Store/orderCart', array('token' => $token, 'wecha_id' => $wecha_id,'orid' => $o['id'], 'twid' => $twid,'cid' => $cid))}" class="pay-btn">立即付款</a>
+				</if>
+			</li>
+		</ul>
+	</volist>
+	<php> if($totalpage > 1) {</php>
+		<div class="m-page uc-orderlist">
+			<if condition="$page eq 1">
+				<div class="pg-pre pg-grey"><a href="javascript:void(0);">上一页<i><em></em></i></a></div>
+			<else/>
+				<div class="pg-pre"><a href="{weimicms::U('Store/my',array('token'=>$token,'page'=>intval($page - 1),'wecha_id'=>$wecha_id, 'twid' => $twid,'cid' => $cid))}">上一页<i><em></em></i></a></div>
+			</if>
+			<div class="pg-num">{weimicms:$page}/{weimicms:$totalpage}</div>
+			<if condition="$page eq $totalpage">
+				<div class="pg-next pg-grey"><a href="javascript:void(0);">下一页<i><em></em></i></a></div>
+			<else/>
+				<div class="pg-next"><a href="{weimicms::U('Store/my',array('token'=>$token,'page'=>intval($page + 1),'wecha_id'=>$wecha_id, 'twid' => $twid,'cid' => $cid))}">下一页<i><em></em></i></a></div>
+			</if>
+		</div>
+	<php>}else{}</php>
+<else/>
+	<ul style="margin: 15px 10px;border-radius: 4px;line-height: 1.4em;font-size: 16px;border: 1px solid #ddd;background: #f5f5f5;padding: 10px 10px 6px;">
+		<span><li class="p-li" style="padding:10px; text-align:center;">没有订单</li></span>
+	</ul>
+</if>
+<script type="text/javascript">
+function order_jump(obj) {
+	location.href = $(obj).attr('info_link');
+}
+</script>
+</body>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Store",
+            "moduleID":"",
+            "imgUrl": "", 
+            "timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U('Store/my',array('token' => $_GET['token'], 'twid' => $mytwid, 'cid' => $cid))}",
+            "sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Store/my',array('token' => $_GET['token'], 'twid' => $mytwid, 'cid' => $cid))}",
+            "weiboLink": "{weimicms:$f_siteUrl}{weimicms::U('Store/my',array('token' => $_GET['token'], 'twid' => $mytwid, 'cid' => $cid))}",
+            "tTitle": "{weimicms:$metaTitle}",
+            "tContent": "{weimicms:$metaTitle}"
+        };
+</script>
+{weimicms:$shareScript}
+</html>

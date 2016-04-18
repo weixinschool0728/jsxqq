@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"  />
+<title>{weimicms:$data.title}</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" href="/tpl/Wap/default/common/nvshen/bmstyle.css" />
+<script src="./tpl/static/forum/js/jquery_min.js" ></script>  
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script> 
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script> 
+<script src="/tpl/static/upyun.js"></script> 
+<link rel="stylesheet" href="/tpl/Wap/default/common/nvshen/animate.css">
+<link rel="stylesheet" href="/tpl/Wap/default/common/nvshen/style.css">
+<link href="/tpl/Wap/default/common/nvshen/bootstrap.css" rel="stylesheet" media="screen">
+<link href="/tpl/Wap/default/common/nvshen/docs.css" rel="stylesheet" media="screen">
+
+<link rel="stylesheet" href="/tpl/Wap/default/common/nvshen/bmstyle.css" />
+<style>
+.page_pic_emotion{
+	
+}
+.page_pic_emotion li{
+	height:1px;
+	visibility: hidden;
+	overflow: hidden;
+	padding-left:7px;
+}
+.page_pic_emotion li.on{
+	visibility: visible;
+	height: auto;
+	min-height:100px;
+}
+.page_pic dd, .page_pic dt{
+	display: inline-block;
+	width:55px;
+	height:55px;
+	margin:15px 3px;
+	position: relative;
+	float:left;
+}
+.page_pic dt{
+	display:inline-block;
+	height:55px;
+	line-height: 55px;
+	width:130px;
+	font-size:12px;
+	color:#aaaaaa;
+	margin: 15px 0px;
+}
+.page_pic dt:nth-last-of-type(n+2){
+	display: none;
+}
+.page_pic dd input[type="file"]{
+	display: block;
+	position: absolute;
+	z-index:100;
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;
+	opacity: 0;
+}
+.page_pic dd img{
+	width:100%;
+	height:100%;
+	display: block;
+	border:0;
+}
+.page_pic dd img[src^="data:"]{
+	background:url(tpl/static/forum/css/img/icons.png) no-repeat center -147px;
+	background-size:50px auto;
+	background-color:#888888;
+	border-radius:5px;
+	border:0px solid #d0d0d0;
+}
+
+.page_pic dd span{
+	display: block;
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	z-index: 110;
+	right: 0px;
+	top: -10px;
+	border-radius: 30px;
+	background: url(tpl/static/forum/css/img/icons.png) no-repeat center -98px;
+	background-size: 31px auto;
+	background-color: red;
+	-webkit-transform: rotate(45deg);
+
+}
+
+.page_pic dd img[src^="data:"]+span{
+	visibility: hidden;
+}
+
+.page_pic dd:nth-of-type(n+9){
+	display: none;
+}
+
+.page_emotion{
+	width:90%;
+	margin:auto;
+}
+.page_emotion dl>div{
+	padding:0 15px;
+	-webkit-box-sizing:border-box;
+}
+.page_emotion dd{
+	display: inline-block;
+	float:left;
+	width:14.2%;
+	height:24px;
+	-webkit-box-sizing:border-box;
+	margin:5px 0;
+	text-align:center;
+}
+
+
+</style>
+
+</head>
+<body>
+<div class="header"><img src="{weimicms:$data.picurl}" /></div>
+<div class="content">
+  
+  <div class="mod_style_2">
+    <div class="tit">立即报名</div>
+    <div class="mod_con">
+      <ul class="input_form address_form">
+      
+      <form action="/index.php?g=Wap&m=Hvotes&a=baoming" method="post" enctype="multipart/form-data" name="form_1" id="form_1">
+      	<input type="hidden" id="mid" name="mid"  value="{weimicms:$data.id}"/>
+		<input type="hidden" id="token" name="token"  value="{weimicms:$data.token}"/>	
+        <li class="row">
+          <div class="lab">姓名：</div>
+          <div class="con">
+            <input type="text" id="name" name="name" class="com_ipt" placeholder="请输入您的真实姓名" />
+          </div>
+        </li>
+        
+        <li class="row">
+          <div class="lab">年龄：</div>
+          <div class="con">
+            <input type="text" id="age" name="age" class="com_ipt" placeholder="请输入您的真实年龄" />
+          </div>
+        </li>
+        
+        <li class="row">
+          <div class="lab">手机号：</div>
+          <div class="con">
+            <input type="text" id="phone" name="phone" class="com_ipt" placeholder="请输入您的真实电话" />
+          </div>
+        </li>
+        <div class="row">
+          <div class="lab">
+            上传照片：</div>
+          <div class="con">
+            <ul class="page_pic_emotion clear" id="nav_page">
+            <li class="page_pic on" id="page_pic">
+                      <dl id="upImgDt">
+                <script>
+
+	
+
+	function upl(){
+
+		var num=1;
+		var no1 = $("#portrait1_src").attr('src');
+		var no2 = $("#portrait2_src").attr('src');
+		var no3 = $("#portrait3_src").attr('src');
+		if(no1 != ''){
+			num++;
+		}
+		if(no2 != ''){
+
+			$('#after2').after('<dd style="display:none" id="imgdd3" type="image"><img src="" class="portrait_src" id="portrait3_src" /><input class="portrait" type="hidden" value="" id="portrait3" name="pics3" size="80" /></dd><dt><label> </label></dt>');
+
+			$('.a_upload').remove();
+
+			num++;
+
+		}
+
+		upyunWapPicUpload('portrait'+num,400,600,'coksbi1413274984');
+
+	}
+
+	setInterval(ddshow,1000);
+
+	function ddshow(){
+		
+		var pic1=$("#portrait1").val();
+		if(pic1!="")$("#portrait1_src").attr('src',pic1);
+		
+		var pic2=$("#portrait2").val();
+		if(pic2!="")$("#portrait2_src").attr('src',pic2);
+		
+		var pic3=$("#portrait3").val();
+		if(pic3!="")$("#portrait3_src").attr('src',pic3);
+		
+		var no1 = $("#portrait1_src").attr('src');
+		var no2 = $("#portrait2_src").attr('src');
+		var no3 = $("#portrait3_src").attr('src');
+		
+		
+		
+		if(no1 != ''){
+			$('#imgdd1').show();
+		}
+		if(no2 != ''){
+			$('#imgdd2').show();
+		}
+		if(no3 != ''){
+			$('#imgdd3').show();
+		}
+	}
+
+</script>
+                <style>
+
+
+
+
+
+.upImgClass{
+
+	display:block;
+
+	}
+
+		.portrait_src {
+
+		
+
+		height:55px;
+
+		width:55px;
+
+		margin:0 5px;
+
+		border:0px;		
+
+		}
+
+									
+
+</style>
+                
+                <!-- image1 -->
+                
+                <dd style="display:none" id="imgdd1" type="image"> <img src="" class="portrait_src" id="portrait1_src" />
+                          <input class="portrait" type="hidden" value="" id="portrait1" name="pics1" size="80" />
+                        </dd>
+                <dt>
+                          <label> </label>
+                        </dt>
+                
+                <!-- image2 -->
+                
+                <dd style="display:none" id="imgdd2" type="image"> <img src="" class="portrait_src" id="portrait2_src" />
+                          <input class="portrait" type="hidden" value="" id="portrait2" name="pics2" size="80" />
+                        </dd>
+                <dt style="display:none">
+                          <label> </label>
+                        </dt>
+                
+                <!-- image3 -->
+                
+                <dd style="display:none" id="imgdd3" type="image"> <img src="" class="portrait_src" id="portrait3_src" />
+                          <input class="portrait" type="hidden" value="" id="portrait3" name="pics3" size="80" />
+                        </dd>
+                <dt>
+                          <label> </label>
+                        </dt>
+                            
+    
+                <dd> <a href="###" onClick="upl()" class="a_upload" style="color:red"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" /></a> </dd>
+                <dt>
+                          <label> 最多可上传3张照片</label>
+                        </dt>
+              </dl>
+                    </li>
+            <li class="page_emotion box_swipe" id="page_emotion">
+                      <dl id="list_emotion" class="list_emotion pt_10">
+                <div> 
+                          
+                          <!-- <dd><span data-key="0-0-/::)" style="background-position:0px 0;"></span></dd> --> 
+                          
+                        </div>
+              </dl>
+                      <dt>
+                <ol id="nav_emotion" class="nav_emotion">
+                          <span class="on"></span> <span></span>
+                        </ol>
+              </dt>
+                    </li>
+          </ul>
+          </div>
+        </div>
+        <li class="row" style="clear:both">
+          <div class="lab">参赛宣言：</div>
+          <div class="con">
+            <textarea   class="com_ipt" id="content"  name="content" placeholder="来为自己拉拉票吧" ></textarea>
+          </div>
+        </li>
+            
+      </form>
+  
+     </ul>
+      <div style="clear: both;padding-top:15px;" class="panel_btns com_nbg com_bt">
+        <div class="com_box"><a class="com_btn com_btn_4" href="javascript:check();" >提交报名</a></div>
+      </div>
+      <div class="inst" style="text-align:center;padding-bottom:50px;">
+	  	{weimicms:$data.zzs|html_entity_decode}
+	  </div>
+      
+    <script> 
+     function check(){
+				//alert("asdf");
+				var name = $("#name").val();
+				
+				var phone = $("#phone").val();
+				
+				var content = $("#content").val();
+				
+				var pic=document.getElementById("imgdd1").style.display;
+				
+				if(!(/^1\d{10}$/g.test(phone))){      
+      				 
+					 alert("手机号错误");return;
+    			}
+				
+				if(name=='' || phone=='' || content==''){
+					
+					alert("请输入完整信息", 2000);return;
+				
+				}
+				
+				if(pic=="none"){
+					
+					alert("至少上传一张图片", 2000);return;
+				
+				}
+
+				$("#form_1").submit();
+
+			}
+     </script>
+     <script>
+         wx.ready(function () {
+             wx.showAllNonBaseMenuItem();
+         }
+     </script>
+    </div>
+  </div>
+</div>
+<div class="activity_foot">
+  <ul>
+    <li><a href="{weimicms::U('Hvotes/toupiao',array('id'=>$id,'token'=>$token,'wecha_id'=>$wecha_id))}" class="dom_flex_box">查看更多</a></li>
+    <li><a href="{weimicms::U('Hvotes/tplp',array('id'=>$id,'token'=>$token,'wecha_id'=>$wecha_id))}" class="dom_flex_box">我要投票</a></li>
+    <li><a href="{weimicms::U('Hvotes/fhdj',array('id'=>$id,'token'=>$token,'wecha_id'=>$wecha_id))}" class="dom_flex_box">丰厚大奖</a></li>
+    <li><a href="{weimicms::U('Hvotes/baoming',array('id'=>$id,'token'=>$token,'wecha_id'=>$wecha_id))}" class="dom_flex_box">我要报名</a></li>
+  </ul>
+</div>
+</body>
+</html>

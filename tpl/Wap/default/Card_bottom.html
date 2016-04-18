@@ -1,0 +1,86 @@
+<footer>
+    <nav class="nav">
+        <ul class="box">
+            <li>
+                <a href="{weimicms::U('Card/index',array('token'=>$token,'wecha_id'=>$wecha_id))}" class="<php>if(ACTION_NAME=='index'){</php>on<php>}</php>">
+                    <p class="share"></p>
+                    <span>
+                        <if condition="$thisCard['id'] eq ''">
+                            领卡
+                        <else/>
+                            换卡
+                        </if>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="{weimicms::U('Card/card',array('token'=>$token,'wecha_id'=>$wecha_id,'cardid'=>$thisCard['id']))}" class="<php>if(ACTION_NAME=='card'){</php>on<php>}</php>">
+                    <p class="card"></p>
+                    <span>会员卡</span>
+                </a>
+            </li>
+            <li>
+                <a href="{weimicms::U('Card/cards',array('token'=>$token,'wecha_id'=>$wecha_id,'cardid'=>$thisCard['id']))}" class="my <php>if(ACTION_NAME=='cards'){</php>on<php>}</php>" >
+                    <p class="my"  ></p>
+                    <span>我的</span>
+                </a>
+            </li>
+            <li>
+                <a href="{weimicms::U('Card/notice',array('token'=>$token,'wecha_id'=>$wecha_id,'cardid'=>$thisCard['id']))}" class="<php>if(ACTION_NAME=='notice'){</php>on<php>}</php>">
+                    <p id="Js-msg-num" class="msg" data-count="1" ></p>
+                    <span>消息</span>
+                </a>
+            </li>
+            <li>
+                <a href="{weimicms::U('Card/signscore',array('token'=>$token,'wecha_id'=>$wecha_id,'cardid'=>$thisCard['id']))}" class="<php>if(ACTION_NAME=='signscore'){</php>on<php>}</php>">
+                    <p class="sign"></p>
+                    <span>签到</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</footer>
+
+<!--
+<div class="box clr"></div>
+<div class="xia clr">
+    <ul>
+        <li class="clr <php>if(ACTION_NAME=='index'){</php>cur<php>}</php>">
+            <a href="{weimicms::U('Card/index',array('token'=>$token,'wecha_id'=>$wecha_id))}">
+                <i class="ico_bt hk"></i>
+                <P>
+                    <if condition="$thisCard['id'] eq ''">
+                        领卡
+                    <else/>
+                        换卡
+                    </if>
+                </P>
+            </a>
+        </li>
+        <li class="clr <php>if(ACTION_NAME=='card'){</php>cur<php>}</php>">
+            <a href="{weimicms::U('Card/card',array('token'=>$token,'wecha_id'=>$wecha_id,'cardid'=>$thisCard['id']))}">
+                <i class="ico_bt hyk"></i>
+                <p>会员卡</p>
+            </a>
+        </li>
+        <li class="clr <php>if(ACTION_NAME=='notice'){</php>cur<php>}</php>">
+            <a href="{weimicms::U('Card/notice',array('token'=>$token,'wecha_id'=>$wecha_id,'cardid'=>$thisCard['id']))}">
+                <i class="ico_bt xx"></i>
+                <p>消息</p>
+            </a>
+        </li>
+        <li class="clr <php>if(ACTION_NAME=='signscore'){</php>cur<php>}</php>">
+            <a href="{weimicms::U('Card/signscore',array('token'=>$token,'wecha_id'=>$wecha_id,'cardid'=>$thisCard['id']))}">
+                <i class="ico_bt qd"></i>
+                <p>签到</p>
+            </a>
+        </li>
+        <li class="clr <php>if(ACTION_NAME=='cards'){</php>cur<php>}</php>">
+            <a href="{weimicms::U('Card/cards',array('token'=>$token,'wecha_id'=>$wecha_id,'cardid'=>$thisCard['id']))}">
+                <i class="ico_bt wd"></i>
+                <p>我的</p>
+            </a>
+        </li>
+    </ul>
+</div>
+-->

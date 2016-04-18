@@ -1,0 +1,369 @@
+
+<html>
+
+<head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+     <include file="Kawahk:js"/> 
+	<script type="text/javascript">
+            initViewport();
+    </script>
+
+    <title>夏日祝福</title>
+
+    <script src="tpl/Wap/default/common/kawahk/1003/jquery1.3.2.js" type="text/javascript" charset="utf-8"></script>
+
+    <style type="text/css">
+
+	<!--
+
+	#layer1 li{
+
+		position:absolute;
+
+		left:0px;
+
+		top:0px;
+
+		width:100%;
+
+		list-style:none;
+
+		z-index:1;
+
+	}
+
+	#layer2 {
+
+		position:absolute;
+
+		left:0px;
+
+		top:0px;
+
+		width:100%;
+
+		z-index:2;
+
+	}
+
+    #layer3 {
+
+		position:absolute;
+
+		left:0px;
+
+		top:0px;
+
+		width:100%;
+
+		hight:100%
+
+		z-index:3;
+
+	}	-->
+
+    </style>
+
+
+
+
+</head>
+
+<body onload="kawa_init();">
+<script>
+		// script place
+        	words = '一张小小的卡片, 稍去我大大的祝福！';
+
+            kawa_data = {
+                words 			   : words,
+                <if condition=" $words eq ''">
+				replace_words      : '一张小小的卡片, 稍去我大大的祝福！',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+                text_box           : '37 442 379 136', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+                mode               : 'up',     // up, left
+                speed              : 40,     // 每秒移动的像素
+                text_color         : 'black', // rgb(1,2,3) 'black'
+                font_size          : '20pt',
+                line_height        : '40pt',
+                //text_align         : 'center',
+                font_weight        : 'bold',
+                music              : 'http://sound.kagirl.net/sound/sound1.mp3',     // url
+                    <if condition=" $music eq ''">
+				replace_music      : 'http://sound.kagirl.net/sound/sound1.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+                music_name         : '',
+                replace_music_name : '#replace_music_name#',
+                icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/fengmian/m1003.jpg',
+                title              : '夏日祝福',
+                desc               : words,
+                modify             : 'no',
+                replace_modify     : 'yes',
+                cardid             : '1003',
+                share_url          : window.location.href,   // 当分享的是微信页面时才需要改这里
+                font_ip            : '121.42.24.240:8000',
+                modify_optfile     : 'xinqing',
+                modify_optwords    : '#modify_optwords#',
+                show_words         : 'yes',
+                write_param_1      : 'inputtype=singleline&showsel=no&prompt=' + encodeURIComponent('输入对方的名字：')
+            };
+        </script>
+<div id="layer1">
+    <li><img src="tpl/Wap/default/common/kawahk/1003/xinqing3_04.jpg"  width="100%"></li> 
+    <li><img src="tpl/Wap/default/common/kawahk/1003/xinqing3_03.jpg"  width="100%"></li>	
+    <li><img src="tpl/Wap/default/common/kawahk/1003/xinqing3_02.jpg"  width="100%"></li>
+    <li><img src="tpl/Wap/default/common/kawahk/1003/xinqing3_01.jpg"  width="100%"></li> 
+
+	    <script>
+
+        $(function(){
+
+            var n = 4;
+
+            setInterval(function(){
+
+                if(! $("#layer1 li").eq(n).is(":hidden")){
+
+                    $("#layer1 li").eq(n).fadeOut("slow")
+
+                }else{
+
+                     $("#layer1 li").eq(n).fadeIn("slow")
+
+                }
+
+                n--;
+
+            if(n == 0){
+
+                n = 4;
+
+            };
+
+            },2000);
+
+        });
+
+    </script>
+
+</div>
+
+<div id="layer2">
+
+     <img src="tpl/Wap/default/common/kawahk/1003/xinqing3cover.png" width="100%">
+
+</div>
+
+
+<div id="layer3">
+
+<script type="text/javascript">
+
+
+
+/******************************************
+
+* Snow Effect Script- By Altan d.o.o. (http://www.altan.hr/snow/index.html)
+
+* Visit Dynamic Drive DHTML code library (http://www.dynamicdrive.com/) for full source code
+
+* Last updated Nov 9th, 05' by DD. This notice must stay intact for use
+
+******************************************/
+
+  
+
+  //Configure below to change URL path to the snow image
+
+  var snowsrc="tpl/Wap/default/common/kawahk/1003/1.png"
+
+  // Configure below to change number of snow to render
+
+  var no = 4;
+
+  // Configure whether snow should disappear after x seconds (0=never):
+
+  var hidesnowtime = 0;
+
+  // Configure how much snow should drop down before fading ("windowheight" or "pageheight")
+
+  var snowdistance = "pageheight";
+
+
+
+///////////Stop Config//////////////////////////////////
+
+
+
+  var ie4up = (document.all) ? 1 : 0;
+
+  var ns6up = (document.getElementById&&!document.all) ? 1 : 0;
+
+
+
+	function iecompattest(){
+
+	return (document.compatMode && document.compatMode!="BackCompat")? document.documentElement : document.body
+
+	}
+
+
+
+  var dx, xp, yp;    // coordinate and position variables
+
+  var am, stx, sty;  // amplitude and step variables
+
+  var cardimg = document.getElementById("layer2");
+
+  var i, doc_width = 800, doc_height = cardimg.offsetWidth; 
+
+  
+
+  if (ns6up) {
+
+    doc_width = self.innerWidth;
+
+    doc_height = cardimg.offsetWidth;
+
+  } else if (ie4up) {
+
+    doc_width = iecompattest().clientWidth;
+
+    doc_height = cardimg.offsetWidth;
+
+  }
+
+
+
+  dx = new Array();
+
+  xp = new Array();
+
+  yp = new Array();
+
+  am = new Array();
+
+  stx = new Array();
+
+  sty = new Array();
+
+  snowsrc=(snowsrc.indexOf("dynamicdrive.com")!=-1)? "snow.gif" : snowsrc
+
+  for (i = 0; i < no; ++ i) {  
+
+    dx[i] = 0;                        // set coordinate variables
+
+    xp[i] = Math.random()*(doc_width-200);  // set position variables
+
+    yp[i] = Math.random()*doc_height;
+
+    am[i] = Math.random()*20;         // set amplitude variables
+
+    stx[i] = 0.02 + Math.random()/10; // set step variables
+
+    sty[i] = 0.7 + Math.random();     // set step variables
+
+		if (ie4up||ns6up) {
+
+      if (i == 0) {
+
+        document.write("<div id=\"dot"+ i +"\" style=\"POSITION: absolute; Z-INDEX: "+ i +"; VISIBILITY: visible; TOP: 15px; LEFT: 15px;\"><a href=\"http://dynamicdrive.com\"><img src='"+snowsrc+"' border=\"0\"><\/a><\/div>");
+
+      } else {
+
+        document.write("<div id=\"dot"+ i +"\" style=\"POSITION: absolute; Z-INDEX: "+ i +"; VISIBILITY: visible; TOP: 15px; LEFT: 15px;\"><img src='"+snowsrc+"' border=\"0\"><\/div>");
+
+      }
+
+    }
+
+  }
+
+
+
+  function snowIE_NS6() {  // IE and NS6 main animation function
+
+    doc_width = ns6up?window.innerWidth-80 : iecompattest().clientWidth-80;
+
+		doc_height=(window.innerHeight && snowdistance=="windowheight")? window.innerHeight : (ie4up && snowdistance=="windowheight")?  iecompattest().clientHeight : (ie4up && !window.opera && snowdistance=="pageheight")? iecompattest().scrollHeight : iecompattest().offsetHeight;
+
+    for (i = 0; i < no; ++ i) {  // iterate for every dot
+
+      yp[i] += sty[i];
+
+      if (yp[i] > doc_height-50) {
+
+        xp[i] = Math.random()*(doc_width-am[i]-30);
+
+        yp[i] = 0;
+
+        stx[i] = 0.02 + Math.random()/10;
+
+        sty[i] = 0.7 + Math.random();
+
+      }
+
+      dx[i] += stx[i];
+
+      document.getElementById("dot"+i).style.top=yp[i]+"px";
+
+      document.getElementById("dot"+i).style.left=xp[i] + am[i]*Math.sin(dx[i])+"px";  
+
+    }
+
+    snowtimer=setTimeout("snowIE_NS6()", 20);
+
+  }
+
+
+
+	function hidesnow(){
+
+		if (window.snowtimer) clearTimeout(snowtimer)
+
+		for (i=0; i<no; i++) document.getElementById("dot"+i).style.visibility="hidden"
+
+	}
+
+		
+
+
+
+if (ie4up||ns6up){
+
+    snowIE_NS6();
+
+		if (hidesnowtime>0)
+
+		setTimeout("hidesnow()", hidesnowtime*1000)
+
+		}
+
+
+
+</script>
+
+</div>
+
+<!--<audio id="bgsound" src="http://www.kagirl.net/kas/sound/sound1.mp3" loop="loop" autoplay="autoplay"></audio>-->
+
+<div id="ruler" style="width:100%;height:0"></div>
+<!--<div id="textsuper" style="position:absolute;top:-1000;left:-1000;overflow-x:hidden;overflow-y:hidden;z-index:4">
+	<div id="textsub" style='color:black;line-height:80pt;position:relative;font-size:50;'>
+		<b id="textcontent">
+        </b>
+    </div>
+</div>
+
+<div style="position:absolute;left:70%;top:80%;z-index:2000">
+
+	<a href="http://mp.weixin.qq.com/mp/appmsg/show?__biz=MjM5MDg0OTE0Mw==&appmsgid=10000026&itemidx=1&sign=73525c7afb1910aff3685be53bcfec1c#wechat_redirect"><img style="width:200%" src="http://bxjcf.img40.wal8.com/img40/410389_20140325112526/139579480904.gif"></a><br>
+
+</div>-->
+
+
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="{weimicms:$staticPath}/tpl/static/bargain/new/css/base.css" rel="stylesheet">
+<link href="{weimicms:$staticPath}/tpl/static/bargain/new/css/index.css" rel="stylesheet">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<script src="{weimicms:$staticPath}/tpl/static/bargain/new/js/jquery-1.7.2.js"></script>
+<script src="{weimicms:$staticPath}/tpl/static/bargain/new/js/index.js"></script>
+<title>{weimicms:$bargain.name}</title>
+</head>
+
+<body>
+
+<div class="list" style="text-align:left">
+<div class="list_title" style="text-align:center"><div class="go_top" onclick="location.href='<?php echo U('Wap/Bargain/new_index',array('token'=>$token,'id'=>$_GET['id'],'orderid'=>$_GET['orderid']));?>'">返回</div>{weimicms:$bargain.name}</div>
+{weimicms:$bargain.info|htmlspecialchars_decode}
+
+</div>
+<script type="text/javascript">
+window.shareData = {  
+	"moduleName":"Bargain",
+	"moduleID":"<?php echo $bargain['tp_id'];?>",
+	"imgUrl": "<?php echo $bargain['logoimg1'];?>",
+	"sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Bargain/new_index',array('token'=>$token,'id'=>$bargain['tp_id']))}",
+	"tTitle": "<?php echo $bargain['wxtitle'];$bargain['wxinfo'] = htmlspecialchars_decode($bargain['wxinfo']);$bargain['wxinfo'] = str_replace('&apos;',"'",$bargain['wxinfo']);?>",
+	"tContent": "{weimicms:$bargain['wxinfo']|shareFilter}"
+};
+</script>
+{weimicms:$shareScript}
+</body>
+</html>

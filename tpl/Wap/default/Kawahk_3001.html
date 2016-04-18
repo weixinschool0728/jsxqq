@@ -1,0 +1,100 @@
+
+<html>
+    
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <include file="Kawahk:js"/> 
+    <script type="text/javascript">
+            initViewport();
+    </script>
+        <title>爱你一万年 </title>
+        <script src="js/jquery1.3.2.js" type="text/javascript" charset="utf-8"></script>
+       
+        <style type="text/css">
+            <!-- #layer1 li{ position:absolute; left:0px; top:0px; width:100%; list-style:none;
+            z-index:1; } #layer2 { position:absolute; left:0px; top:0px; width:100%;
+            z-index:2; } #layer3 { position:absolute; left:0px; top:0px; width:100%;
+            hight:100% z-index:3; } -->
+        </style>
+		<script>
+	// script place
+        	words = '一张小小的卡片，带去我的无限祝福！一张小小的卡片，带去我的无限祝福！一张小小的卡片，带去我的无限祝福！一张小小的卡片，带去我的无限祝福！';
+
+            kawa_data = {
+                words 			   : words,
+              <if condition=" $words eq ''">
+				replace_words      : '一张小小的卡片，带去我的无限祝福！一张小小的卡片，带去我的无限祝福！一张小小的卡片，带去我的无限祝福！一张小小的卡片，带去我的无限祝福！',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+                text_box           : '59 420 365 82', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+                mode               : 'print',     // up, left
+                speed              : 400,     // 每秒移动的像素
+                text_color         : '#333333', // rgb(1,2,3) 'black'
+                font_size          : '24px',
+                line_height        : '32pt',
+                //text_align         : 'center',
+                font_weight        : 'bold',
+                music              : 'http://sound.kagirl.net/sound/sound1.mp3',     // url
+                <if condition=" $music eq ''">
+				replace_music      : 'http://sound.kagirl.net/sound/sound1.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+                music_name         : '',
+                replace_music_name : '#replace_music_name#',
+                icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/fengmian/x3001.jpg',
+                title              : '爱你一万年',
+                desc               : words,
+                modify             : 'no',
+                replace_modify     : 'yes',
+                cardid             : '3001',
+                share_url          : window.location.href,  // 当分享的是微信页面时才需要改这里
+                font_ip            : '121.42.24.240:8000',
+                modify_optfile     : 'zhufu',
+                modify_optwords    : '#modify_optwords#',
+                show_words         : 'yes',
+                write_param_1      : 'inputtype=singleline&showsel=no&prompt=' + encodeURIComponent('输入对方的名字：')
+            };
+        </script>
+    </head>
+    
+    <body onload="kawa_init();">
+        <div id="layer1">
+			<li>
+                <img src="tpl/Wap/default/common/kawahk/3001/139581945759.jpg" width="100%">
+            </li>
+            <li>
+                <img src="tpl/Wap/default/common/kawahk/3001/139581945684.jpg" width="100%">
+            </li>
+            <li>
+                <img src="tpl/Wap/default/common/kawahk/3001/139581945606.jpg" width="100%">
+            </li>
+            <script>
+                $(function() {
+
+                    var n = 3;
+
+                    setInterval(function() {
+
+                        if (!$("#layer1 li").eq(n).is(":hidden")) {
+
+                            $("#layer1 li").eq(n).fadeOut("slow");
+
+                        } else {
+
+                            $("#layer1 li").eq(n).fadeIn("slow");
+                        }
+                        n--;
+                        if (n == 0) {
+                            n = 3;
+                        };
+                    },
+                    2000);
+                });
+            </script>
+        </div>
+        <div id="layer2">
+            <img src="tpl/Wap/default/common/kawahk/3001/T2MHO.XxRXXXXXXXXX_!!1857839951.png" onerror="javascript:this.src='tpl/Wap/default/common/kawahk/3001/3001cover.png'" width="100%">
+        </div>
+		
+	
+    </body>

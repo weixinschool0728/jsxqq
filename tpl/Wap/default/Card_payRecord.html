@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{weimicms:$thisCard.cardname}</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<!-- Mobile Devices Support @begin -->
+<meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+<meta content="telephone=no, address=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes" /> <!-- apple devices fullscreen -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<!-- Mobile Devices Support @end -->
+
+<link href="{weimicms::$staticPath}/tpl/static/card/css/main.css" rel="stylesheet" type="text/css">
+<script src="{weimicms::$staticPath}/tpl/static/jquery.min.js" type="text/javascript"></script>
+
+</head>
+
+<body onselectstart="return true;" ondragstart="return false;">
+    <div class="container integral integral_record integral_my coupon">
+        <header>
+            <nav id="nav_1" class="p_10">
+                <ul class="box">
+                    <li><a href="/index.php?g=Wap&m=Card&a=payRecord&token={weimicms:$token}&wecha_id={weimicms:$wecha_id}&cardid={weimicms::intval($_GET['cardid'])}&month={weimicms::date('n')}" class="on">会员卡交易</a></li>
+                    <li><a href="/index.php?g=Wap&m=Card&a=expense&token={weimicms:$token}&wecha_id={weimicms:$wecha_id}&cardid={weimicms::intval($_GET['cardid'])}&month={weimicms::date('n')}">积分线下交易</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="bill_header">
+            <ul class="bill_detail box">
+                <li>
+                    <label>消费总额:<span>{weimicms:$uinfo['expensetotal']|default=0.00}</span></label>
+                </li>
+                <li>
+                    <label>卡上余额:<span>{weimicms:$uinfo['balance']|default=0.00}</span></label>
+                </li>
+                <li>
+                    <div>
+                        <select onChange="dourl2(this.value)" class="month" id="monthSelectElement">
+                            <option value="">请选择月份</option>
+                            <option value="1">{weimicms:$year}年1月</option>
+                            <option value="2">{weimicms:$year}年2月</option>
+                            <option value="3">{weimicms:$year}年3月</option>
+                            <option value="4">{weimicms:$year}年4月</option>
+                            <option value="5">{weimicms:$year}年5月</option>
+                            <option value="6">{weimicms:$year}年6月</option>
+                            <option value="7">{weimicms:$year}年7月</option>
+                            <option value="8">{weimicms:$year}年8月</option>
+                            <option value="9">{weimicms:$year}年9月</option>
+                            <option value="10">{weimicms:$year}年10月</option>
+                            <option value="11">{weimicms:$year}年11月</option>
+                            <option value="12">{weimicms:$year}年12月</option>
+                        </select>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="body">
+            <section>
+                <table class="table_record">
+                    <thead>
+                    <tr>
+                        <td style="width:20%;">日期</td>
+                        <td style="width:40%;">订单名称</td>
+                        <td style="width:20%;">金额(元)</td>
+                        <td style="width:20%;">状态</td>
+                    </tr>
+                    </thead>
+                    <table class="table_record <if condition="$list eq ''">empty1</if>">
+                        <volist name="list" id="re" empty="$empty">                 
+                        <tr>
+                            <td style="width:20%;" align="center">{weimicms:$re.createtime|date='m/d',###}</td>
+                            <td style="width:40%;">{weimicms:$re.ordername}</td>
+                            <td style="width:20%;" align="center"><if condition="$re['type'] eq 1">+<else />-</if>{weimicms:$re.price}</td>
+                            <td style="width:20%;" align="center"><if condition="$re['paid'] eq 1">成功<else /><a style="color:red" href="{weimicms::U('Card/payAction',array('token'=>$token,'wecha_id'=>$wecha_id,'orderid'=>$re['orderid'],'cardid'=>$thisCard['id']))}">待付</a></if></td>
+                        </tr>
+                        </volist>
+                    </table>
+                </table>
+            </section>
+        </div>
+    </div>
+
+<include file="Card:bottom"/>
+<include file="Card:share"/>
+
+<script>
+    function dourl2(m){
+        location.href= '/index.php?g=Wap&m=Card&a=payRecord&token={weimicms:$token}&wecha_id={weimicms:$wecha_id}&cardid={weimicms:$thisCard.id}&month='+m;
+    }
+</script>
+</body>
+</html>

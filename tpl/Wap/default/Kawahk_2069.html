@@ -1,0 +1,74 @@
+
+<html>
+
+<head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+       <include file="Kawahk:js"/> 
+        <script type="text/javascript">
+            initViewport();
+        </script>
+
+    <title>送给你</title>
+	<script>
+		gSizeMode = 'bodywidth';
+		gAnimateMode = 'print';
+		gSound = ''
+		gColor = 'blue';
+		gTextAreaLeft = 0.05;
+		gTextAreaTop = 0.03;
+		gTextAreaWidth = 0.7;
+		gTextAreaHeight = 0.5;
+		gCardTextNoWrap ='';
+		gCardText ='人，<br>不必太美，<br>只要有人深爱就够了，<br>人，<br>不必太富，<br>只要过得温暖才最好。<br>学会知足，<br>学会淡泊，<br>您便拥有了<br>幸福！';		
+	share_url = "http://card1.kagirl.net/kas/showhtm.php?cardid=2069";
+			// script place;
+	</script>
+</head>
+
+	<body style='overflow-y:hidden; margin:0;' onload='kawa_init();'>	
+	
+        <script>
+        	words = '人，不必太美，只要有人深爱就够了，人，不必太富，只要过得温暖才最好。学会知足，学会淡泊，您便拥有了幸福！',
+
+            kawa_data = {
+                words 			   : words,
+                 <if condition=" $words eq ''">
+				replace_words      : '人，不必太美，只要有人深爱就够了，人，不必太富，只要过得温暖才最好。学会知足，学会淡泊，您便拥有了幸福！',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+                text_box           : '50 50 350 375', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+                mode               : 'up',     // up, left
+                speed              : 40,     // 每秒移动的像素
+                text_color         : 'blue', // rgb(1,2,3) 'black'
+                font_size          : '20pt',
+                line_height        : '40pt',
+                music              : 'http://sound.kagirl.net/sound/story/10.mp3',     // url
+                <if condition=" $music eq ''">
+				replace_music      : 'http://sound.kagirl.net/sound/story/10.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+                music_name         : '',
+                replace_music_name : '#replace_music_name#',
+                icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/fengmian/x2069.jpg',
+                title              : '送给你',
+                desc               : words,
+                modify             : 'no',
+                replace_modify     : 'yes',
+                cardid             : '2069',
+                share_url          : window.location.href,   // 当分享的是微信页面时才需要改这里
+                font_ip            : '114.215.157.155:8000',
+                modify_optfile     : 'xinqing',
+                modify_optwords    : '#modify_optwords#',
+                show_words         : 'yes',
+                write_param_1      : 'inputtype=singleline&showsel=no&prompt=' + encodeURIComponent('输入对方的名字：')
+            };
+        </script>
+
+<img src="tpl/Wap/default/common/kawahk/2069/69.jpg" width="100%"/>
+<div id="ruler" style="width:100%;height:0"></div>
+
+
+</body>
+
+</html>

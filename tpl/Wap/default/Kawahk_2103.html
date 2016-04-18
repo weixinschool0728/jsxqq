@@ -1,0 +1,742 @@
+
+<html>
+	<head>
+		<title>送给你</title>
+		<meta http-equiv="imagetoolbar" content="no">
+		<script>
+            prompt = encodeURIComponent('请输入对方名字：');
+
+            kawa_data = {
+                words : '新年到了，送你一本新年年历吧：祝你一月一帆风顺，二月福禄双全，三月三阳开泰，四月四方平安，五月五福临门，六月六六大顺，七月七星高照，八月八方来财，九月一言九鼎，十月十全十美，十一月十一分好运，十二月十二分幸福！红梅朵朵开，福气从中来！愿您在新的一年里，幸福快乐每一天！',
+             <if condition=" $words eq ''">
+				replace_words      : '新年到了，送你一本新年年历吧：祝你一月一帆风顺，二月福禄双全，三月三阳开泰，四月四方平安，五月五福临门，六月六六大顺，七月七星高照，八月八方来财，九月一言九鼎，十月十全十美，十一月十一分好运，十二月十二分幸福！红梅朵朵开，福气从中来！愿您在新的一年',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+                text_box           : '40 360 340 300', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+                text_align         : 'left',
+                font_weight        : '600',
+                mode               : 'up',     // up, left
+                speed              : 45,     // 每秒移动的像素
+                text_color         : '#000000',
+                font_size          : '22pt',
+                line_height        : '36pt',
+                music              : 'http://sound.kagirl.net/sound/hongmeizan.mp3',     // url
+                  <if condition=" $music eq ''">
+				replace_music      : 'http://sound.kagirl.net/sound/hongmeizan.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+                music_name         : '',
+                replace_music_name : '#replace_music_name#',
+                icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/fengmian/x2103.jpg',
+                title              : '送给你',
+                desc               : '梅开五福，好福气送给你！',
+                modify             : 'yes',
+                replace_modify     : '#replace_modify#',
+                cardid             : '2103',
+                share_url          : window.location.href,   // 当分享的是微信页面时才需要改这里
+                font_ip            : '121.42.24.240:8000',
+				font_family        : '',
+                modify_optfile     : 'yuandan',
+                modify_optwords    : '你好，卡娃 祝福你',
+                show_words         : 'no',
+                //write_param        : 'inputtype=singleline&showsel=no&prompt=' + prompt,
+            };
+        </script>
+
+        <include file="Kawahk:js"/> 
+
+        <script type="text/javascript">
+            initViewport();
+        </script>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="format-detection" content="telephone=no">
+		<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+		<script src="tpl/Wap/default/common/kawahk/2103/fontcard.js"></script>
+		<style type="text/css">
+
+		body{   
+			-webkit-touch-callout: none; 
+			-webkit-text-size-adjust: none;
+			margin:0 auto;  
+			width:500px;		
+			height:843px;			
+			overflow:hidden;   
+			position:relative;
+		}   
+		div#content{
+			position:relative;   
+			border:0px; 
+			width:500px;		
+			height:843px;
+			margin:0 auto; 
+			top:0px;    
+			overflow:hidden;   
+			clear:both;
+		}
+		
+		#pxcQrpMSM-an-obj-1 {
+			position:absolute;
+			-webkit-transform: translate3d(0px, 0px, 0px);
+			width: 500px;
+			height: 843px;
+			top:0; left:0;
+		}
+
+		#pxcQrpMSM-an-obj-2 {
+			position:absolute;
+			-webkit-transform: translate3d(-211px, 0px, 0px);
+			width: 542px;
+			height: 260px;
+			top:0; left:0;
+			-webkit-animation: ani-pxcQrpMSM-an-obj-2-0 4s 0s 1 linear normal both ;
+		}
+
+		@-webkit-keyframes ani-pxcQrpMSM-an-obj-2-0 {
+			0% {
+				-webkit-transform: translate3d(-211px, 0px, 0px);
+				-webkit-animation-timing-function:linear;
+			}
+			100% {
+				-webkit-transform: translate3d(-59px, 0px, 0px);
+				-webkit-animation-timing-function:linear;
+			}
+		}
+
+		#pxcQrpMSM-an-obj-3 {
+			position:absolute;
+			-webkit-transform: translate3d(108px, 117px, 0px);
+			width: 77px;
+			height: 77px;
+			top:0; left:0;
+			-webkit-transform-origin: 48.92% 51.08%;
+			-webkit-animation: ani-pxcQrpMSM-an-obj-3-0 4.001s 0s 1 linear normal both ;
+		}
+
+		@-webkit-keyframes ani-pxcQrpMSM-an-obj-3-0 {
+			0% {
+				-webkit-transform: translate3d(108px, 117px, 0px);
+				-webkit-animation-timing-function:linear;
+				opacity: 1;
+			}
+			99.975% {
+				-webkit-transform: translate3d(273px, 117px, 0px);
+				-webkit-animation-timing-function:linear;
+				opacity: 1;
+			}
+			100% {
+				-webkit-transform: translate3d(273px, 117px, 0px);
+				-webkit-animation-timing-function:linear;
+				opacity: 1;
+			}
+		}
+
+		#pxcQrpMSM-an-obj-4 {
+			position:absolute;
+			-webkit-transform: translate3d(266px, 183px, 0px);
+			width: 20px;
+			height: 20px;
+			top:0; left:0;
+			-webkit-animation: ani-pxcQrpMSM-an-obj-4-0 1.9444s 4s infinite linear alternate both ;
+		}
+
+		@-webkit-keyframes ani-pxcQrpMSM-an-obj-4-0 {
+			0% {
+				-webkit-transform: translate3d(266px, 183px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+				-webkit-animation-timing-function:linear;
+			}
+			100% {
+				-webkit-transform: translate3d(266px, 183px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(-9deg);
+				-webkit-animation-timing-function:linear;
+			}
+		}
+
+		#pxcQrpMSM-an-obj-5 {
+			position:absolute;
+			-webkit-transform: translate3d(-191px, -3px, 0px);
+			width: 183px;
+			height: 340px;
+			top:0; left:0;
+			-webkit-transform-origin: 37.43% 2.35%;
+			-webkit-animation: ani-pxcQrpMSM-an-obj-5-0 4s 0s 1 linear normal both ;
+		}
+
+		@-webkit-keyframes ani-pxcQrpMSM-an-obj-5-0 {
+			0% {
+				-webkit-transform: translate3d(-191px, -3px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+				-webkit-animation-timing-function:linear;
+			}
+			75% {
+				-webkit-transform: translate3d(-68.26166011718749px, -3px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(6deg);
+				-webkit-animation-timing-function:linear;
+			}
+			100% {
+				-webkit-transform: translate3d(-26px, -3px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+				-webkit-animation-timing-function:linear;
+			}
+		}
+
+		#pxcQrpMSM-an-obj-6 {
+			position:absolute;
+			-webkit-transform: translate3d(-54px, 319px, 0px);
+			width: 238px;
+			height: 412px;
+			top:0; left:0;
+			-webkit-animation: ani-pxcQrpMSM-an-obj-6-0 4s 0s 1 linear normal both ;
+		}
+
+		@-webkit-keyframes ani-pxcQrpMSM-an-obj-6-0 {
+			0% {
+				-webkit-transform: translate3d(-54px, 319px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+				-webkit-animation-timing-function:linear;
+			}
+			75% {
+				-webkit-transform: translate3d(33.95371px, 319px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+				-webkit-animation-timing-function:linear;
+			}
+			100% {
+				-webkit-transform: translate3d(111px, 319px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+				-webkit-animation-timing-function:linear;
+			}
+		}
+
+		#pxcQrpMSM-an-obj-7 {
+			position:absolute;
+			-webkit-transform: translate3d(-136px, 299px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(19.5deg) scale3d(0.8, 0.8, 1);
+			width: 238px;
+			height: 412px;
+			top:0; left:0;
+			-webkit-animation: ani-pxcQrpMSM-an-obj-7-0 4s 0s 1 linear normal both ;
+		}
+
+		@-webkit-keyframes ani-pxcQrpMSM-an-obj-7-0 {
+			0% {
+				-webkit-transform: translate3d(-136px, 299px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(19.5deg) scale3d(0.8, 0.8, 1);
+				-webkit-animation-timing-function:linear;
+			}
+			75% {
+				-webkit-transform: translate3d(-48.05px, 299px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(19.5deg) scale3d(0.8, 0.8, 1);
+				-webkit-animation-timing-function:linear;
+			}
+			100% {
+				-webkit-transform: translate3d(29px, 299px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(19.5deg) scale3d(0.8, 0.8, 1);
+				-webkit-animation-timing-function:linear;
+			}
+		}
+
+		#pxcQrpMSM-an-obj-8 {
+			position:absolute;
+			-webkit-transform: translate3d(150px, 109px, 0px);
+			width: 150px;
+			height: 94px;
+			top:0; left:0;
+			-webkit-animation: ani-pxcQrpMSM-an-obj-8-0 6.0556s 4s infinite linear both ;
+		}
+
+		@-webkit-keyframes ani-pxcQrpMSM-an-obj-8-0 {
+			0% {
+				-webkit-transform: translate3d(150px, 109px, 0px) scale3d(0, 0, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 0;
+				width: 100px;
+				height: 100px;
+			}
+			0.0165% {
+				-webkit-transform: translate3d(150px, 109px, 0px) scale3d(0, 0, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 1;
+				width: 150px;
+				height: 94px;
+			}
+			66.055% {
+				-webkit-transform: translate3d(150px, 109px, 0px) scale3d(1, 1, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 1;
+				width: 150px;
+				height: 94px;
+			}
+			100% {
+				-webkit-transform: translate3d(150px, 109px, 0px) scale3d(1, 1, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 0;
+				width: 150px;
+				height: 94px;
+			}
+		}
+
+		#pxcQrpMSM-an-obj-9 {
+			position:absolute;
+			-webkit-transform: translate3d(283px, 70px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(10.3deg);
+			width: 150px;
+			height: 94px;
+			top:0; left:0;
+			-webkit-animation: ani-pxcQrpMSM-an-obj-9-0 6.035s 5.0391s infinite linear both ;
+		}
+
+		@-webkit-keyframes ani-pxcQrpMSM-an-obj-9-0 {
+			0% {
+				-webkit-transform: translate3d(283px, 70px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(10.3deg) scale3d(0, 0, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 0;
+				width: 100px;
+				height: 100px;
+			}
+			0.0166% {
+				-webkit-transform: translate3d(283px, 70px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(10.3deg) scale3d(0, 0, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 1;
+				width: 150px;
+				height: 94px;
+			}
+			66.2799% {
+				-webkit-transform: translate3d(283px, 70px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(10.3deg) scale3d(0.5, 0.5, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 1;
+				width: 150px;
+				height: 94px;
+			}
+			100% {
+				-webkit-transform: translate3d(283px, 70px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(10.3deg) scale3d(0.5, 0.5, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 0;
+				width: 150px;
+				height: 94px;
+			}
+		}
+
+		#pxcQrpMSM-an-obj-10 {
+			position:absolute;
+			-webkit-transform: translate3d(105px, 167px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(8.1deg);
+			width: 150px;
+			height: 94px;
+			top:0; left:0;
+			-webkit-animation: ani-pxcQrpMSM-an-obj-10-0 7.6667s 4s infinite linear both ;
+		}
+
+		@-webkit-keyframes ani-pxcQrpMSM-an-obj-10-0 {
+			0% {
+				-webkit-transform: translate3d(105px, 167px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(8.1deg) scale3d(0, 0, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 0;
+				width: 100px;
+				height: 100px;
+			}
+			0.013% {
+				-webkit-transform: translate3d(105px, 167px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(8.1deg) scale3d(0, 0, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 1;
+				width: 150px;
+				height: 94px;
+			}
+			35.6658% {
+				-webkit-transform: translate3d(105px, 167px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(8.1deg) scale3d(0.3, 0.3, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 1;
+				width: 150px;
+				height: 94px;
+			}
+			100% {
+				-webkit-transform: translate3d(105px, 167px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(8.1deg) scale3d(0.3, 0.3, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 0;
+				width: 150px;
+				height: 94px;
+			}
+		}
+
+		#pxcQrpMSM-an-obj-11 {
+			position:absolute;
+			-webkit-transform: translate3d(397px, -7px, 0px);
+			width: 150px;
+			height: 94px;
+			top:0; left:0;
+			-webkit-animation: ani-pxcQrpMSM-an-obj-11-0 4s 5.5469s 1 linear normal both ;
+		}
+
+		@-webkit-keyframes ani-pxcQrpMSM-an-obj-11-0 {
+			0% {
+				-webkit-transform: translate3d(397px, -7px, 0px) scale3d(0, 0, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 0;
+				width: 100px;
+				height: 100px;
+			}
+			0.025% {
+				-webkit-transform: translate3d(397px, -7px, 0px) scale3d(0, 0, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 1;
+				width: 150px;
+				height: 94px;
+			}
+			100% {
+				-webkit-transform: translate3d(397px, -7px, 0px) scale3d(0.4, 0.4, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 1;
+				width: 150px;
+				height: 94px;
+			}
+		}
+
+		#pxcQrpMSM-an-obj-12 {
+			position:absolute;
+			-webkit-transform: translate3d(22px, 21px, 0px);
+			width: 150px;
+			height: 94px;
+			top:0; left:0;
+			-webkit-animation: ani-pxcQrpMSM-an-obj-12-0 4s 6.4375s 1 linear normal both ;
+		}
+
+		@-webkit-keyframes ani-pxcQrpMSM-an-obj-12-0 {
+			0% {
+				-webkit-transform: translate3d(22px, 21px, 0px) scale3d(0, 0, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 0;
+				width: 100px;
+				height: 100px;
+			}
+			0.025% {
+				-webkit-transform: translate3d(22px, 21px, 0px) scale3d(0, 0, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 1;
+				width: 150px;
+				height: 94px;
+			}
+			100% {
+				-webkit-transform: translate3d(22px, 21px, 0px) scale3d(0.4, 0.4, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 1;
+				width: 150px;
+				height: 94px;
+			}
+		}
+
+		#pxcQrpMSM-an-obj-13 {
+			position:absolute;
+			-webkit-transform: translate3d(40px, 159px, 0px) scale3d(1, 1, 1);
+			width: 11px;
+			height: 10px;
+			top:0; left:0;
+			-webkit-animation: ani-pxcQrpMSM-an-obj-13-0 6.8059s 7.999s infinite linear both ;
+		}
+
+		@-webkit-keyframes ani-pxcQrpMSM-an-obj-13-0 {
+			0% {
+				-webkit-transform: translate3d(40px, 159px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(1, 1, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 0;
+			}
+			0.0147% {
+				-webkit-transform: translate3d(40px, 159px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(1, 1, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 1;
+			}
+			100% {
+				-webkit-transform: translate3d(534px, 736px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(136deg) scale3d(1, 1, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 1;
+			}
+		}
+
+		#pxcQrpMSM-an-obj-14 {
+			position:absolute;
+			-webkit-transform: translate3d(93px, 119px, 0px) scale3d(1, 1, 1);
+			width: 11px;
+			height: 10px;
+			top:0; left:0;
+			-webkit-animation: ani-pxcQrpMSM-an-obj-14-0 5.0742s 9.7307s infinite linear both ;
+		}
+
+		@-webkit-keyframes ani-pxcQrpMSM-an-obj-14-0 {
+			0% {
+				-webkit-transform: translate3d(93px, 119px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(1, 1, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 0;
+			}
+			0.0197% {
+				-webkit-transform: translate3d(93px, 119px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(1, 1, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 1;
+			}
+			100% {
+				-webkit-transform: translate3d(528px, 673px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(136deg) scale3d(1, 1, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 1;
+			}
+		}
+
+		#pxcQrpMSM-an-obj-15 {
+			position:absolute;
+			-webkit-transform: translate3d(-55px, 173px, 0px) scale3d(1, 1, 1);
+			width: 11px;
+			height: 10px;
+			top:0; left:0;
+			-webkit-animation: ani-pxcQrpMSM-an-obj-15-0 8.5132s 10.4868s infinite linear both ;
+		}
+
+		@-webkit-keyframes ani-pxcQrpMSM-an-obj-15-0 {
+			0% {
+				-webkit-transform: translate3d(-55px, 173px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(1, 1, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 0;
+			}
+			0.0117% {
+				-webkit-transform: translate3d(-55px, 173px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(1, 1, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 1;
+			}
+			100% {
+				-webkit-transform: translate3d(439px, 750px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(136deg) scale3d(1, 1, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 1;
+			}
+		}
+
+		#pxcQrpMSM-an-obj-16 {
+			position:absolute;
+			-webkit-transform: translate3d(40px, 159px, 0px) scale3d(1, 1, 1);
+			width: 11px;
+			height: 10px;
+			top:0; left:0;
+			-webkit-animation: ani-pxcQrpMSM-an-obj-16-0 6.8058s 9.0966s infinite linear both ;
+		}
+
+		@-webkit-keyframes ani-pxcQrpMSM-an-obj-16-0 {
+			0% {
+				-webkit-transform: translate3d(-1px, 195px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(1, 1, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 0;
+			}
+			0.0147% {
+				-webkit-transform: translate3d(-1px, 195px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(1, 1, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 1;
+			}
+			100% {
+				-webkit-transform: translate3d(493px, 772px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(136deg) scale3d(1, 1, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 1;
+			}
+		}
+
+		#pxcQrpMSM-an-obj-17 {
+			position:absolute;
+			-webkit-transform: translate3d(128px, 148px, 0px) scale3d(1, 1, 1);
+			width: 11px;
+			height: 10px;
+			top:0; left:0;
+			-webkit-animation: ani-pxcQrpMSM-an-obj-17-0 8.2937s 10.0478s infinite linear both ;
+		}
+
+		@-webkit-keyframes ani-pxcQrpMSM-an-obj-17-0 {
+			0% {
+				-webkit-transform: translate3d(128px, 148px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(1, 1, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 0;
+			}
+			0.0121% {
+				-webkit-transform: translate3d(128px, 148px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(1, 1, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 1;
+			}
+			100% {
+				-webkit-transform: translate3d(328px, 778px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(136deg) scale3d(1, 1, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 1;
+			}
+		}
+
+		#pxcQrpMSM-an-obj-18 {
+			position:absolute;
+			-webkit-transform: translate3d(176px, 105px, 0px);
+			width: 150px;
+			height: 94px;
+			top:0; left:0;
+			-webkit-animation: ani-pxcQrpMSM-an-obj-18-0 6.0555s 7.7593s infinite linear both ;
+		}
+
+		@-webkit-keyframes ani-pxcQrpMSM-an-obj-18-0 {
+			0% {
+				-webkit-transform: translate3d(176px, 105px, 0px) scale3d(0, 0, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 0;
+				width: 100px;
+				height: 100px;
+			}
+			0.0165% {
+				-webkit-transform: translate3d(176px, 105px, 0px) scale3d(0, 0, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 1;
+				width: 150px;
+				height: 94px;
+			}
+			66.055% {
+				-webkit-transform: translate3d(176px, 105px, 0px) scale3d(1, 1, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 1;
+				width: 150px;
+				height: 94px;
+			}
+			100% {
+				-webkit-transform: translate3d(176px, 105px, 0px) scale3d(1, 1, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 0;
+				width: 150px;
+				height: 94px;
+			}
+		}
+
+		#pxcQrpMSM-an-obj-19 {
+			position:absolute;
+			-webkit-transform: translate3d(288px, 61px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0.4deg);
+			width: 150px;
+			height: 94px;
+			top:0; left:0;
+			-webkit-animation: ani-pxcQrpMSM-an-obj-19-0 6.0351s 8.3168s infinite linear both ;
+		}
+
+		@-webkit-keyframes ani-pxcQrpMSM-an-obj-19-0 {
+			0% {
+				-webkit-transform: translate3d(288px, 61px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0.4deg) scale3d(0, 0, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 0;
+				width: 100px;
+				height: 100px;
+			}
+			0.0166% {
+				-webkit-transform: translate3d(288px, 61px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0.4deg) scale3d(0, 0, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 1;
+				width: 150px;
+				height: 94px;
+			}
+			66.2799% {
+				-webkit-transform: translate3d(288px, 61px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0.4deg) scale3d(0.5, 0.5, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 1;
+				width: 150px;
+				height: 94px;
+			}
+			100% {
+				-webkit-transform: translate3d(288px, 61px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0.4deg) scale3d(0.5, 0.5, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 0;
+				width: 150px;
+				height: 94px;
+			}
+		}
+
+		#pxcQrpMSM-an-obj-20 {
+			position:absolute;
+			-webkit-transform: translate3d(110px, 167px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(8.1deg);
+			width: 150px;
+			height: 94px;
+			top:0; left:0;
+			-webkit-animation: ani-pxcQrpMSM-an-obj-20-0 7.0371s 6.2222s infinite linear both ;
+		}
+
+		@-webkit-keyframes ani-pxcQrpMSM-an-obj-20-0 {
+			0% {
+				-webkit-transform: translate3d(110px, 167px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(8.1deg) scale3d(0, 0, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 0;
+				width: 100px;
+				height: 100px;
+			}
+			0.0142% {
+				-webkit-transform: translate3d(110px, 167px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(8.1deg) scale3d(0, 0, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 1;
+				width: 150px;
+				height: 94px;
+			}
+			38.8569% {
+				-webkit-transform: translate3d(110px, 167px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(8.1deg) scale3d(0.45, 0.45, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 1;
+				width: 150px;
+				height: 94px;
+			}
+			100% {
+				-webkit-transform: translate3d(110px, 167px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(8.1deg) scale3d(0.3, 0.3, 1);
+				-webkit-animation-timing-function:linear;
+				opacity: 0;
+				width: 150px;
+				height: 94px;
+			}
+		}
+
+
+
+		/* ------------ SYMBOL CSS -------------- */
+
+div#foot{   
+			position:fixed; 
+			left:320px;
+			bottom:10px;
+			z-index:5000;
+		} 
+
+</style>
+
+		<script>
+
+		function show_text()
+		{
+			show_textdiv();
+			objid('textdiv').style.height = '10px';
+		}
+
+		function onload()
+        {
+			kawa_init();
+            setTimeout('show_text()', 20);
+        }
+		</script>
+		
+		<script>
+		//需要调用leafinit（）来启动，需要声明外层div，id="container"，还有内层div，id="leafContainer"
+		//参数设置
+		var leafNum = 30;			//落下叶子的数量
+		var kindNum = 1;			//叶子的种类
+		//叶子使用图片地址，数量应与kindNum相同
+		var kindurl = new Array("tpl/Wap/default/common/kawahk/2103/1039_8.png");
+	</script>
+	<script src="tpl/Wap/default/common/kawahk/2103/fleaves.min.js"></script>
+	<link rel="stylesheet" href="tpl/Wap/default/common/kawahk/2103/leavesGeneral.css" type="text/css" media="screen" charset="utf-8">
+	</head>
+	<body style="margin:0; height: 100%;" onload='onload()'>
+		
+		<div id="content"> 	
+			<div id="pxcQrpMSM-an-obj-1"><img  height="843" width="500"  src="tpl/Wap/default/common/kawahk/2103/101.jpg"></div>
+			<div id="pxcQrpMSM-an-obj-2"><img  height="260" width="542"  src="tpl/Wap/default/common/kawahk/2103/102.png"></div>
+			<div id="pxcQrpMSM-an-obj-3"><img  height="77" width="77"  src="tpl/Wap/default/common/kawahk/2103/003.gif"></div>
+			<div id="pxcQrpMSM-an-obj-4">
+			<div id="pxcQrpMSM-an-obj-5"><img  height="340" width="183"  src="tpl/Wap/default/common/kawahk/2103/103.png"></div>
+			<div id="pxcQrpMSM-an-obj-6"><img  height="110" width="55"  src="tpl/Wap/default/common/kawahk/2103/001.gif"></div>
+			<div id="pxcQrpMSM-an-obj-7"><img  height="110" width="55"  src="tpl/Wap/default/common/kawahk/2103/001.gif"></div>
+			</div>
+			<div id="pxcQrpMSM-an-obj-8"><img  height="75" width="120"  src="tpl/Wap/default/common/kawahk/2103/105.png"></div>
+			<div id="pxcQrpMSM-an-obj-9"><img  height="75" width="120"  src="tpl/Wap/default/common/kawahk/2103/105.png"></div>
+			<div id="pxcQrpMSM-an-obj-10"><img  height="75" width="120"  src="tpl/Wap/default/common/kawahk/2103/105.png"></div>
+			<div id="pxcQrpMSM-an-obj-11"><img  height="75" width="120"  src="tpl/Wap/default/common/kawahk/2103/105.png"></div>
+			<div id="pxcQrpMSM-an-obj-12"><img  height="75" width="120"  src="tpl/Wap/default/common/kawahk/2103/105.png"></div>
+			<div id="pxcQrpMSM-an-obj-13"><img  height="10" width="11"  src="tpl/Wap/default/common/kawahk/2103/106.png"></div>
+			<div id="pxcQrpMSM-an-obj-14"><img  height="10" width="11"  src="tpl/Wap/default/common/kawahk/2103/106.png"></div>
+			<div id="pxcQrpMSM-an-obj-15"><img  height="10" width="11"  src="tpl/Wap/default/common/kawahk/2103/106.png"></div>
+			<div id="pxcQrpMSM-an-obj-16"><img  height="10" width="11"  src="tpl/Wap/default/common/kawahk/2103/106.png"></div>
+			<div id="pxcQrpMSM-an-obj-17"><img  height="10" width="11"  src="tpl/Wap/default/common/kawahk/2103/106.png"></div>
+			<div id="pxcQrpMSM-an-obj-18"><img  height="75" width="120"  src="tpl/Wap/default/common/kawahk/2103/105.png"></div>
+			<div id="pxcQrpMSM-an-obj-19"><img  height="75" width="120"  src="tpl/Wap/default/common/kawahk/2103/105.png"></div>
+			<div id="pxcQrpMSM-an-obj-20"><img  height="75" width="120"  src="tpl/Wap/default/common/kawahk/2103/105.png"></div>
+			<div id="container" onclick="clickbg();" style="left:0%;top:0%;">
+			<div id="leafContainer"></div>
+			</div>
+		
+			<script>
+				leafinit();
+			</script>
+		</div>
+</body>
+
+</html>

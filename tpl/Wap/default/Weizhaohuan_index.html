@@ -1,0 +1,148 @@
+<!DOCTYPE HTML>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<title>{weimicms:$info['title']}</title>
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/public-framework/scripts/jquery.js"></script>
+<link href="{weimicms:$staticPath}/tpl/static/public-framework/styles/framework.css" rel="stylesheet" type="text/css">
+<link href="{weimicms:$staticPath}/tpl/static/public-framework/styles/owl.carousel.css" rel="stylesheet" type="text/css">
+<link href="{weimicms:$staticPath}/tpl/static/public-framework/styles/owl.theme.css" rel="stylesheet" type="text/css">
+<link href="{weimicms:$staticPath}/tpl/static/public-framework/styles/swipebox.css"         rel="stylesheet" type="text/css">
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/alert.js"></script>
+<link href="{weimicms::RES}/weizhaohuan/css/index.css" rel="stylesheet" type="text/css">
+<style>
+body{ background:url({weimicms:$info['bgpic']}) {weimicms:$info['bgcolor']};background-repeat:no-repeat;background-size:contain;}
+.bottomlogo{margin:10px 20px;text-align: center;}
+.bottomlogo img{
+ max-width:320px;
+ overflow:hidden;
+}
+</style>
+
+<script type="text/javascript">
+function swapStyleSheet(sheet){
+	document.getElementById('pagestyle').setAttribute('href', sheet);
+}
+</script>
+
+</head>
+<body>
+<if condition="$memberNotice neq ''">
+    {weimicms:$memberNotice}
+</if>
+<div id="preloader">
+	<div id="status">
+    	<p class="center-text">
+            <em>Loading...</em>
+        </p>
+    </div>
+</div>
+<div class="content-controls solid-color fixed-header">
+    		<if condition="$is_over eq '1'">
+                <a class="button-big button-turqoise" href="javascript:void(0);" style="background:#5a5a5a;">活动还没开始</a>
+            <elseif condition="$is_over eq '2'"/>
+    			<a class="button-big button-turqoise" href="javascript:void(0);" style="background:#5a5a5a;">活动已经结束</a>
+    		<elseif condition="$puser['wecha_id'] neq $wecha_id and $wecha_id neq ''"/>
+            	<a class="button-big button-turqoise" href="{weimicms::U('Weizhaohuan/index',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$info['id']))}">返回我的</a>
+            <else/>
+                <if condition="$memberNotice eq ''">
+                   <a class="button-big button-turqoise" id="share" href="javascript:void(0);">召唤小伙伴一起抢</a>
+                <else/>
+                   <a class="button-big button-turqoise" href="#memberNoticeBox" id="modaltrigger_notice">我要参加</a>
+                </if>
+
+            </if>
+</div>
+<div class="panel panel-info">
+	<div class="panel-body">
+		<if condition="$is_over eq 1">
+		<div class="turnTime " style="color: white;margin-bottom: 2%;font-size: 25px;">活动还没开始</div>
+		<elseif condition="$is_over eq 2"/>
+		<div class="turnTime " style="color: white;margin-bottom: 2%;font-size: 25px;">活动已结束，请兑换奖品</div>
+		<else/>
+		</if>
+		<!--gift start-->
+		 <div class="topmain">
+			<div class="wechaidinfo">
+				<span class="name"><b>{weimicms:$puser.username}</b></span>
+			</div>
+			<div class="shares">
+				<span class="shareinfo">人气值<br><i class="red-b">{weimicms:$puser.share_count}</i></span>
+				<span class="line"></span>
+				<span class="countsinfo">增加积分<br><i class="red-b">{weimicms:$puser.score}</i></span>
+			</div>
+		 </div>
+		 <div style="height:10px"> </div>
+		 <!--gift end-->
+		<a class="btn btn-info btn-block"><b>{weimicms:$prize[0]['name']}</b></a>
+		<a class="btn btn-info btn-block">已积累 <span><b>{weimicms:$puser.share_count}</b></span> 点 ，需 <span><b>{weimicms:$puser['char_itme']['allnum']}</b></span> 点</a>
+		<if condition="$puser['wecha_id'] neq $wecha_id and $wecha_id neq ''">
+		<a href="{weimicms::U('Weizhaohuan/index',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$info['id']))}"  class="btn btn-primary btn-block">我也要参加</a>
+		</if>
+		<a href="{weimicms::U('Weizhaohuan/rank',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$info['id'],'uid'=>$puser['id']))}"  class="btn btn-primary btn-block">积分排名</a>
+        <p><br>{weimicms:$info['title']}</p>
+		<p>活动时间: {weimicms:$info.start|date="Y-m-d",###} 至 {weimicms:$info.end|date="Y-m-d H:s:i",###}</p>
+		<p>活动规则：{weimicms:$info.info|htmlspecialchars_decode}</p>
+		<p class="bottomlogo"><img src="/bottomlogo.jpg"></p>
+	</div>
+</div>
+<div style="height:40px"> </div>
+<div class="share_bg">
+    <img src="{weimicms:$staticPath}/tpl/static/live/default/share-guide.png">
+</div>
+<script type="text/javascript">
+<if condition="$is_see eq 1">
+document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() { 
+	WeixinJSBridge.call('hideOptionMenu');
+});
+<else/>
+document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {   
+	WeixinJSBridge.call('showOptionMenu');
+});
+</if>
+</script>
+<script type="text/javascript">
+$(function(){
+	$('#share').click(function(){
+		$('.share_bg').css('display','block');
+	});
+	
+	$('.share_bg').click(function(){
+		if($(this).css('display') == 'block'){
+			$(this).css('display','none');
+		}
+	});
+	
+    <if condition="$share_code neq '' and $is_see eq '' and $is_over eq 0">
+		$.getJSON("{weimicms::U('Weizhaohuan/add_share',array('token'=>$token,'id'=>$info['id']))}",{share_code:'{weimicms:$share_code}',wecha_id:'{weimicms:$wecha_id}'},function(res){
+			alert(res.info);
+		}); 
+    </if>
+});
+
+</script>
+
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Weizhaohuan",
+            "moduleID":"{weimicms:$info.id}",
+			"pid": "{weimicms:$info.id}", 
+            "imgUrl": "{weimicms:$info.top_pic}", 
+            "timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U('Weizhaohuan/index',array('token'=>$token,'id'=>$info['id'],'share_code'=>$puser['share_key']))}",
+            "sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Weizhaohuan/index',array('token'=>$token,'id'=>$info['id'],'share_code'=>$puser['share_key']))}",
+            "weiboLink": "{weimicms:$f_siteUrl}{weimicms::U('Weizhaohuan/index',array('token'=>$token,'id'=>$info['id'],'share_code'=>$puser['share_key']))}",
+			"sendQQLink": "{weimicms:$f_siteUrl}{weimicms::U('Outwap/index',array('token'=>$token,'id'=>$info['id'],'wecha_id'=>$puser['wecha_id']))}",
+            "tTitle": "{weimicms:$info.title}",
+            "tContent": "{weimicms:$info.title}"
+};
+</script>
+{weimicms:$shareScript}
+
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/public-framework/scripts/owl.carousel.min.js"></script>
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/public-framework/scripts/jquery.swipebox.js"></script>
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/public-framework/scripts/framework.launcher.js"></script>
+
+</body>
+</html>

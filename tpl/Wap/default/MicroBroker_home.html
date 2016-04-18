@@ -1,0 +1,97 @@
+<include file="MicroBroker:header"/>
+<style id="loading-style">html,body{width:100%;height:100%; overflow: hidden;}</style>
+<section class="user-loader" style="background:url({weimicms:$brokerarr['picurl']});background-size: 100% 100%;">
+	<i class="icon-spin4 animate-spin" style="color:red;"></i>
+</section>
+<div class="ad"><img src="{weimicms:$staticPath}/tpl/static/microbroker/images/wxfenxiang.png" alt="" /></div>
+<section class="main animated">
+	<div class="main-box">
+		<if condition="$loginuserid gt 0">
+		<div class="home-info border-box fn-clear">
+			<figure class="figure-box">
+				<img src="{weimicms:$staticPath}/tpl/static/microbroker/images/header.png" alt="" />
+			</figure>
+			<h5>{weimicms:$brokeruser['username']}&nbsp;</h5>
+			<div class="user-info">
+				<label>总佣金</label>
+				<p><i class="icon icon-money"></i><span>{weimicms::$brokeruser['totalcash']}</span></p>
+			</div>
+			<div class="info-border"></div>
+			<div class="user-info">
+				<label>推荐人数</label>
+				<p><i class="icon icon-users"></i><span>{weimicms::$brokeruser['recommendnum']}</span></p>
+			</div>
+			<a href="{weimicms::U('MicroBroker/SetUser',array('token'=>$token,'bid'=>$bid,'wecha_id'=>$wecha_id))}" title="设置" class="jjr-setting"><i class="icon-setting"></i></a>
+		</div>
+		<ul class="home-nav fn-clear">
+			<li class="nav-recommend"><a href="{weimicms::U('MicroBroker/Recommend',array('token'=>$token,'bid'=>$bid,'wecha_id'=>$wecha_id))}" title="我要推荐">我要推荐<label>hot</label><br /><span>Recommend</span></a></li>
+			<li class="nav-rule"><a href="{weimicms::U('MicroBroker/MyClientList',array('token'=>$token,'bid'=>$bid,'wecha_id'=>$wecha_id))}" title="我的客户">我的客户<br /><span>Client</span></a></li>
+			<li class="nav-commission"><a href="{weimicms::U('MicroBroker/Commission',array('token'=>$token,'bid'=>$bid,'wecha_id'=>$wecha_id))}" title="我的佣金"><p>我的佣金<br /><span>Commission</span></p></a></li>
+			<li class="nav-rule-detail"><a href="{weimicms::U('MicroBroker/Description',array('token'=>$token,'bid'=>$bid,'desc'=>1,'wecha_id'=>$wecha_id))}" title="活动细则">活动细则<br /><span>Rule</span></a></li>
+		</ul>
+		<else/>
+		<div class="unregister">
+			<figure><a href="{weimicms::U('MicroBroker/Register',array('token'=>$token,'bid'=>$bid,'wecha_id'=>$wecha_id))}"><img src="{weimicms:$staticPath}/tpl/static/microbroker/images/unregister.jpg" alt="" /></a></figure>
+		</div>
+			<ul class="home-nav fn-clear">
+			<li class="nav-recommend"><a href="{weimicms::U('MicroBroker/Register',array('token'=>$token,'bid'=>$bid,'wecha_id'=>$wecha_id))}" title="我要推荐">我要推荐<label>hot</label><br /><span>Recommend</span></a></li>
+			<li class="nav-rule"><a href="{weimicms::U('MicroBroker/Register',array('token'=>$token,'bid'=>$bid,'wecha_id'=>$wecha_id))}" title="我的客户">我的客户<br /><span>Client</span></a></li>
+			<li class="nav-commission"><a href="{weimicms::U('MicroBroker/Register',array('token'=>$token,'bid'=>$bid,'wecha_id'=>$wecha_id))}" title="我的佣金"><p>我的佣金<br /><span>Commission</span></p></a></li>
+			<li class="nav-rule-detail"><a href="{weimicms::U('MicroBroker/Description',array('token'=>$token,'bid'=>$bid,'desc'=>1,'wecha_id'=>$wecha_id))}" title="活动细则">活动细则<br /><span>Rule</span></a></li>
+		</ul>
+		</if>
+
+		<div class="sale-box">
+			<h6>产品项目</h6>
+			<div class="floor-box">
+			   <if condition="$isproduct">
+			   <weimicmslist array="broker_item" foreach="item">
+				<a href="<if condition="$item['tourl'] != ''">{weimicms:$item['tourl']}<else/>#</if>" class="floor-detail" title="{weimicms:$item.xmname}" target="_blank">
+                <figure class="floor-img"><img src="{weimicms:$item.xmimg}" alt="{weimicms:$item.xmname}" /></figure>
+                <div class="floor">
+                	<h5>{weimicms:$item.xmname}</h5>
+					
+                    <div class="award fn-clear">
+                    	<label class="award-title">佣金</label>
+						<div class="award-list">
+						<if condition="$item['xmtype'] eq 1">
+						<span>{weimicms:$item.xmnum}元</span>
+						<else/>
+						<span>{weimicms:$item.xmnum}%的项目总额</span>
+						</if>
+						<br/></div>
+                    </div>
+                </div>
+                </a>
+				</weimicmslist>
+				</if>
+			</div>
+		</div>
+	</div>
+</section>
+<script src="{weimicms:$staticPath}/tpl/static/microbroker/js/jquery-1.8.2.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"MicroBroker",
+            "moduleID":"{weimicms:$bid}",
+            "imgUrl": "{weimicms:$brokerarr.picurl}", 
+            "sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('MicroBroker/index',array('token'=>$token,'bid'=>$bid))}",
+            "tTitle": "{weimicms:$brokerarr.title}",
+            "tContent": "{weimicms:$brokerarr.title}"
+        };
+</script>
+
+{weimicms:$shareScript}
+<footer class="foot">
+<if condition="$iscopyright eq 1">
+{weimicms:$homeInfo.copyright}
+<else/>
+{weimicms:$siteCopyright}
+</if>
+<!---<a href="{weimicms:$f_siteUrl}">&copy; Powered by {weimicms:$f_siteName}</a>-->
+</footer>
+
+<script src="http://g.tbcdn.cn/kissy/k/1.4.0/seed.js"></script>
+<script src="{weimicms:$staticPath}/tpl/static/microbroker/js/mod.jjr.js"></script>
+</body>
+</html>

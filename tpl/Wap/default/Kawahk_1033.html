@@ -1,0 +1,706 @@
+
+<html>
+	<head>
+		<title>祈福</title>
+		<meta http-equiv="imagetoolbar" content="no">
+        <include file="Kawahk:js"/> 
+        <script type="text/javascript">
+            initViewport();
+        </script>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="format-detection" content="telephone=no">
+		
+		<script src="tpl/Wap/default/common/kawahk/common/fontcard.js"></script>
+		<script type="text/javascript">
+			if (typeof(AN) === "undefined") {
+				var AN = {}
+			}
+			AN.instances = {
+				symbols: [],
+				controllers: []
+			};
+			AN.apiVersion = 1;
+			AN.Controller = function() {
+				return {
+					currentScene: false,
+					userData: {},
+					setConfig: function(a) {
+						AN.instances.controllers.push(this);
+						this.events = a.events;
+						this.prefix = a.cssPrefix;
+						this.projectActions = a.projectActions;
+						this.basePath = a.basePath ? a.basePath: "";
+						this.olElement = document.querySelector("#" + a.parentId + " ol");
+						var d = this.olElement.children;
+						this.useOrmma = a.ormma;
+						this.scenes = [];
+						this.scenesById = {};
+						this.sceneByName = {};
+						var g;
+						for (var e = 0; e < a.scenes.length; e++) {
+							g = a.scenes[e];
+							g.element = d[e];
+							g.timelinesById = {};
+							g.timelinesByName = {};
+							for (var c = 0; c < g.timelines.length; c++) {
+								g.timelinesById[g.timelines[c].id] = g.timelines[c];
+								g.timelinesByName[g.timelines[c].name] = g.timelines[c]
+							}
+							this.scenesById[g.id] = g;
+							this.scenes.push(g);
+							if (g.name) {
+								this.sceneByName[g.name] = g
+							}
+						}
+						this.setupListeners();
+						this.startSceneByName = this.goToSceneByName;
+						this.startSceneById = this.goToSceneById;
+						this.startSceneByID = this.startSceneById;
+						this.symbolInstancesByHtmlId = {};
+						this.symbolInstancesById = {};
+						this.symbols = [];
+						var h, b, f;
+						for (var e = 0; e < a.symbols.length; e++) {
+							h = a.symbols[e];
+							this.symbolInstancesById[h.id] = [];
+							b = this.olElement.querySelectorAll(".an-symbol-container-" + h.id);
+							for (var c = 0; c < b.length; c++) {
+								f = new AN.Symbol();
+								f.setConfig(b[c], h, this);
+								this.symbolInstancesByHtmlId[b[c].id] = f;
+								this.symbolInstancesById[h.id].push(f);
+								this.symbols.push(f)
+							}
+						}
+						this.fireAction(this.projectActions, "init");
+						this.goToScene(this.scenes[0])
+					},
+					setupListeners: function() {
+						var l = this;
+						this.browser = "unknown";
+						if (document.body.style.MozAnimationName !== undefined) {
+							this.browser = "moz"
+						}
+						function h(j) {
+							var i;
+							if (l.browser === "moz") {
+								i = j.target;
+								while (i = i.parentNode) {
+									if (i === l.currentScene.element) {
+										l.onAnimationEnd();
+										return
+									}
+								}
+							} else {
+								l.onAnimationEnd()
+							}
+						}
+						this.olElement.addEventListener("webkitAnimationEnd", h, false);
+						this.olElement.addEventListener("animationend", h, false);
+						function c(i) {
+							i.element.addEventListener("mousemove",
+							function(j) {
+								i.mousemoveAction.call(l.userData, l, j)
+							},
+							false)
+						}
+						var g;
+						for (var e = 0; e < this.scenes.length; e++) {
+							g = this.scenes[e];
+							if (g.mousemoveAction) {
+								c(g)
+							}
+						}
+						function a(m, j, i) {
+							m.addEventListener(j,
+							function(n) {
+								i.call(l.userData, l, n)
+							},
+							false)
+						}
+						var f, b, k;
+						for (var e = 0; e < this.events.length; e++) {
+							b = this.events[e];
+							k = b.type;
+							f = document.getElementById(b.id);
+							for (var d = 0; d < k.length; d++) {
+								a(f, k[d], b.handler)
+							}
+						}
+					},
+					onAnimationEnd: function() {
+						this.runningAnimationCount--;
+						if (this.runningAnimationCount === 0) {
+							this.onAllAnimationEnd()
+						}
+					},
+					onAllAnimationEnd: function() {
+						var a = this.currentScene.currentTimeline.endWaitTime;
+						if (a) {
+							var b = this;
+							this.sceneTimeout = setTimeout(function() {
+								b.onSceneFinish()
+							},
+							a * 1000)
+						} else {
+							this.onSceneFinish()
+						}
+					},
+					forceRefresh: function(a) {
+						this.forceRefreshValue = a.element.offsetHeight
+					},
+					fireAction: function(b, a) {
+						if (b && b[a]) {
+							b[a].call(this.userData, this)
+						}
+					},
+					getSymbolByHtmlId: function(a) {
+						return this.symbolInstancesByHtmlId[a]
+					},
+					getSymbolByInstanceId: function(b) {
+						var a = this.olElement.querySelector(".an-symbol-container.an-symbol-" + b);
+						return this.getSymbolByHtmlId(a.id)
+					},
+					getSymbols: function() {
+						return this.symbols
+					},
+					getSymbolsBySymbolMasterId: function(a) {
+						return this.symbolInstancesById[a]
+					},
+					getUserData: function() {
+						return this.userData
+					},
+					getTimelineByIndex: function(a) {
+						return this.currentScene.timelines[a]
+					},
+					getTimelineById: function(a) {
+						return this.currentScene.timelinesById[a]
+					},
+					getTimelineByName: function(a) {
+						return this.currentScene.timelinesByName[a]
+					},
+					getCurrentTimeline: function() {
+						return this.currentScene.currentTimeline
+					},
+					getCurrentScene: function() {
+						return this.currentScene
+					},
+					getSceneByIndex: function(a) {
+						return this.scenes[a]
+					},
+					getSceneById: function(a) {
+						return this.scenesById[a]
+					},
+					getSceneByName: function(a) {
+						return this.sceneByName[a]
+					},
+					goToNextTimeline: function() {
+						var b = this.currentScene.timelines.indexOf(this.currentScene.currentTimeline);
+						var a = Math.min(b + 1, this.currentScene.timelines.length - 1);
+						if (a === b) {
+							return
+						}
+						this.goToTimelineByIndex(a)
+					},
+					goToPreviousTimeline: function() {
+						var b = this.currentScene.timelines.indexOf(this.currentScene.currentTimeline);
+						var a = Math.max(b - 1, 0);
+						if (b === a) {
+							return
+						}
+						this.goToTimelineByIndex(a)
+					},
+					goToTimelineById: function(a) {
+						this.goToScene(this.currentScene, this.currentScene.timelinesById[a])
+					},
+					goToTimelineByName: function(a) {
+						this.goToScene(this.currentScene, this.currentScene.timelinesByName[a])
+					},
+					goToTimelineByIndex: function(a) {
+						this.goToScene(this.currentScene, this.currentScene.timelines[a])
+					},
+					goToTimeline: function(a) {
+						this.goToScene(this.currentScene, a)
+					},
+					goToNextScene: function() {
+						var b = this.scenes.indexOf(this.currentScene);
+						var a = Math.min(b + 1, this.scenes.length - 1);
+						if (b === a) {
+							return
+						}
+						this.goToSceneByIndex(a)
+					},
+					goToPreviousScene: function() {
+						var a = this.scenes.indexOf(this.currentScene);
+						var b = Math.max(a - 1, 0);
+						if (a === b) {
+							return
+						}
+						this.goToSceneByIndex(b)
+					},
+					goToSceneByIndex: function(a) {
+						this.goToScene(this.scenes[a])
+					},
+					goToSceneByName: function(a) {
+						this.goToScene(this.sceneByName[a])
+					},
+					goToSceneById: function(a, b) {
+						var c = this.scenesById[a];
+						this.goToScene(c, c.timelinesById[b])
+					},
+					goToScene: function(g, f) {
+						var d = g;
+						var e = this.currentScene;
+						var a = f;
+						var c = e ? e.currentTimeline: false;
+						if (a === undefined) {
+							a = d.timelines[0]
+						}
+						var b = false;
+						if (c === a && e === d) {
+							b = true
+						} else {
+							if (e) {
+								e.element.setAttribute("class", "")
+							}
+						}
+						this.fireAction(c, "exitAction");
+						clearTimeout(this.sceneTimeout);
+						if (e !== d) {
+							this.fireAction(e, "exitAction");
+							this.fireAction(d, "initAction")
+						}
+						this.fireAction(a, "initAction");
+						this.runningAnimationCount = a.animationCount;
+						this.currentScene = d;
+						d.currentTimeline = a;
+						var h = "t-" + a.id;
+						if (b || this.browser === "moz") {
+							d.element.setAttribute("class", "run restart " + h);
+							this.forceRefresh(d)
+						}
+						d.element.setAttribute("class", "run " + h);
+						if (!b && this.useOrmma) {
+							this.ormmaNextScene(d)
+						}
+						this.fireAction(a, "startAction");
+						if (a.animationCount === 0) {
+							this.onAllAnimationEnd()
+						}
+					},
+					replayScene: function() {
+						console.warn("replayScene is deprecated. Use restartScene instead.");
+						this.restartScene()
+					},
+					restartScene: function() {
+						this.goToScene(this.currentScene)
+					},
+					restartTimeline: function() {
+						this.goToScene(this.currentScene, this.currentScene.currentTimeline)
+					},
+					onSceneFinish: function() {
+						this.fireAction(this.currentScene.currentTimeline, "endAction")
+					},
+					goToURL: function(a) {
+						document.location.href = a
+					},
+					getElementById: function(a) {
+						return document.getElementById(this.getElementIdById(a))
+					},
+					getElementIdById: function(a) {
+						return this.prefix + a
+					},
+					getUrlForLocalAsset: function(b) {
+						var a = "tpl/Wap/default/common/kawahk/1033/" + b;
+						if (this.basePath) {
+							a = this.basePath + "/" + a
+						}
+						return a
+					},
+					ormmaNextScene: function(c) {
+						var a = ormma.getState();
+						if (c.dimensions.expanded) {
+							var i = ormma.getMaxSize();
+							if (a !== "expanded") {
+								ormma.expand({
+									x: 0,
+									y: 0,
+									width: i.width,
+									height: i.height
+								})
+							}
+							var b = "";
+							var d = c.element.offsetHeight;
+							var g = c.element.offsetWidth;
+							var e = (i.height - d) / 2;
+							var h = (i.width - g) / 2;
+							b += " translate3d(" + Math.round(h) + "px," + Math.round(e) + "px,0)";
+							if (c.dimensions.fit) {
+								var f = Math.min(i.width / g, i.height / d);
+								b += " scale3d(" + f + "," + f + ",1)"
+							}
+							c.element.style.webkitTransform = b
+						} else {
+							if (a === "expanded") {
+								ormma.close()
+							}
+							ormma.resize(c.dimensions.width, c.dimensions.height)
+						}
+					}
+				}
+			};
+			window.addEventListener('load',
+			function() {
+				var configData = {
+					parentId: 'pOwM90yF7-an-anim',
+					cssPrefix: 'pOwM90yF7-',
+					ormma: false,
+					mraid: false,
+					layout: {
+						"type": "absolute",
+						"width": 500,
+						"height": 750
+					},
+					scenes: [{
+						id: 0,
+						dimensions: {
+							height: 100,
+							width: 100,
+							expanded: false,
+							fit: false
+						},
+						timelines: [{
+							id: "0",
+							name: 'Timeline 1',
+							animationCount: 12,
+							duration: Infinity,
+							lastKeyframeTime: 5.55
+						}]
+					}],
+					symbols: [],
+					projectActions: {},
+					events: [],
+					externalResources: []
+				};
+				setTimeout(function() {
+					var controller = new AN.Controller;
+					controller.setConfig(configData);
+				},
+				0);
+			},
+			false);
+		</script>
+		<style type="text/css">
+			#pOwM90yF7-an-anim > ol {list-style:none; margin:0; padding:0;} #pOwM90yF7-an-anim
+			> ol > li {margin:0; padding:0; display:none;} #pOwM90yF7-an-anim > ol
+			> li.run {display:block;} #pOwM90yF7-an-anim .pOwM90yF7-an-stage { overflow:hidden;
+			margin:0; padding:0; } #pOwM90yF7-an-anim .pOwM90yF7-an-stage div { position:
+			absolute; } .pOwM90yF7-an-stage * {margin:0; padding:0; -webkit-font-smoothing:
+			antialiased;} #pOwM90yF7-an-anim .pOwM90yF7-an-stage img {position: absolute;
+			top:0; left:0;} #pOwM90yF7-an-anim .AN-Scene-Description {display: none;}
+			#pOwM90yF7-an-anim iframe {border: none; height:100%; width:100%} #pOwM90yF7-an-anim
+			.pOwM90yF7-an-stage { position: absolute; top:0; left:0; width: 100%; height:100%;
+			} #pOwM90yF7-an-anim {height: 750px; width: 500px; position: relative;}
+			#pOwM90yF7-an-anim { background-color: rgba(255,255,255,1); font-family:
+			"Helvetica Neue", Arial, Helvetica, Geneva, sans-serif; font-size: 12px;
+			line-height: 1.3; } #pOwM90yF7-an-obj-1 { -webkit-transform: translate3d(0px,
+			0px, 0px); width: 500px; height: 750px; top:0; left:0; } #pOwM90yF7-an-obj-2
+			{ -webkit-transform: translate3d(0px, -1px, 0px); width: 500px; height:
+			750px; top:0; left:0; -webkit-animation-iteration-count: infinite; -webkit-animation-direction:
+			alternate; } @-webkit-keyframes ani-pOwM90yF7-an-obj-2-0 { 0% { -webkit-transform:
+			translate3d(0px, -1px, 0px); opacity: 0; -webkit-animation-timing-function:linear;
+			} 100% { -webkit-transform: translate3d(0px, -1px, 0px); opacity: 0.6;
+			-webkit-animation-timing-function:linear; } } .run.t-0 #pOwM90yF7-an-obj-2
+			{ -webkit-animation-name: ani-pOwM90yF7-an-obj-2-0; -webkit-animation-duration:
+			4.3929s; -webkit-animation-delay: 0s; -webkit-animation-fill-mode: both;
+			} .t-0 #pOwM90yF7-an-obj-2 { -webkit-transform: translate3d(0px, -1px,
+			0px); opacity: 0.6; -webkit-animation-timing-function:linear; } .restart.t-0
+			#pOwM90yF7-an-obj-2 { -webkit-transform: translate3d(0px, -1px, 0px); opacity:
+			0; -webkit-animation-timing-function:linear; } .restart #pOwM90yF7-an-obj-2
+			{ -webkit-animation-name: none !important; } #pOwM90yF7-an-obj-3 { -webkit-transform:
+			translate3d(225px, 168px, 0px); width: 318px; height: 127px; top:0; left:0;
+			-webkit-animation-iteration-count: infinite; -webkit-animation-direction:
+			alternate; } @-webkit-keyframes ani-pOwM90yF7-an-obj-3-0 { 0% { -webkit-transform:
+			translate3d(225px, 168px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+			-webkit-animation-timing-function:linear; } 100% { -webkit-transform: translate3d(225px,
+			168px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(7.9deg); -webkit-animation-timing-function:linear;
+			} } .run.t-0 #pOwM90yF7-an-obj-3 { -webkit-animation-name: ani-pOwM90yF7-an-obj-3-0;
+			-webkit-animation-duration: 2.6857s; -webkit-animation-delay: 0s; -webkit-animation-fill-mode:
+			both; } .t-0 #pOwM90yF7-an-obj-3 { -webkit-transform: translate3d(225px,
+			168px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(7.9deg); -webkit-animation-timing-function:linear;
+			} .restart.t-0 #pOwM90yF7-an-obj-3 { -webkit-transform: translate3d(225px,
+			168px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg); -webkit-animation-timing-function:linear;
+			} .restart #pOwM90yF7-an-obj-3 { -webkit-animation-name: none !important;
+			} #pOwM90yF7-an-obj-4 { -webkit-transform: translate3d(277px, 296px, 0px);
+			width: 265px; height: 127px; top:0; left:0; -webkit-transform-origin: 47.14%
+			44.29%; -webkit-animation-iteration-count: infinite; -webkit-animation-direction:
+			alternate; } @-webkit-keyframes ani-pOwM90yF7-an-obj-4-0 { 0% { -webkit-transform:
+			translate3d(277px, 296px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+			-webkit-animation-timing-function:linear; } 100% { -webkit-transform: translate3d(276px,
+			285px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(-8deg); -webkit-animation-timing-function:linear;
+			} } .run.t-0 #pOwM90yF7-an-obj-4 { -webkit-animation-name: ani-pOwM90yF7-an-obj-4-0;
+			-webkit-animation-duration: 2.6786s; -webkit-animation-delay: 0.0071s;
+			-webkit-animation-fill-mode: both; } .t-0 #pOwM90yF7-an-obj-4 { -webkit-transform:
+			translate3d(276px, 285px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(-8deg);
+			-webkit-animation-timing-function:linear; } .restart.t-0 #pOwM90yF7-an-obj-4
+			{ -webkit-transform: translate3d(277px, 296px, 0px) rotateX(0deg) rotateY(0deg)
+			rotateZ(0deg); -webkit-animation-timing-function:linear; } .restart #pOwM90yF7-an-obj-4
+			{ -webkit-animation-name: none !important; } #pOwM90yF7-an-obj-5 { -webkit-transform:
+			translate3d(228px, 300px, 0px); width: 65px; height: 65px; top:0; left:0;
+			-webkit-animation-iteration-count: infinite; -webkit-animation-direction:
+			alternate; } @-webkit-keyframes ani-pOwM90yF7-an-obj-5-0 { 0% { -webkit-transform:
+			translate3d(228px, 300px, 0px); opacity: 0.3; } 100% { -webkit-transform:
+			translate3d(228px, 300px, 0px); opacity: 1; } } .run.t-0 #pOwM90yF7-an-obj-5
+			{ -webkit-animation-name: ani-pOwM90yF7-an-obj-5-0; -webkit-animation-duration:
+			1.2858s; -webkit-animation-delay: 0.0071s; -webkit-animation-fill-mode:
+			both; } .t-0 #pOwM90yF7-an-obj-5 { -webkit-transform: translate3d(228px,
+			300px, 0px); opacity: 1; } .restart.t-0 #pOwM90yF7-an-obj-5 { -webkit-transform:
+			translate3d(228px, 300px, 0px); opacity: 0.3; } .restart #pOwM90yF7-an-obj-5
+			{ -webkit-animation-name: none !important; } #pOwM90yF7-an-obj-6 { -webkit-transform:
+			translate3d(126px, 615px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(180deg);
+			width: 374px; height: 73px; top:0; left:0; -webkit-animation-iteration-count:
+			infinite; -webkit-animation-direction: alternate; } @-webkit-keyframes
+			ani-pOwM90yF7-an-obj-6-0 { 0% { -webkit-transform: translate3d(126px, 615px,
+			0px) rotateX(0deg) rotateY(0deg) rotateZ(180deg) scale3d(1, 1.14, 1); opacity:
+			0.3; -webkit-animation-timing-function:linear; -webkit-transform-origin:
+			50% 50%; } 48.3912% { -webkit-transform: translate3d(126px, 615px, 0px)
+			rotateX(0deg) rotateY(0deg) rotateZ(180deg) scale3d(1.02, 0.79, 1); opacity:
+			0.5; -webkit-animation-timing-function:linear; -webkit-transform-origin:
+			50% 50%; } 80.3089% { -webkit-transform: translate3d(126px, 615px, 0px)
+			rotateX(0deg) rotateY(0deg) rotateZ(181.7deg) scale3d(1.05, 1.21, 1); opacity:
+			0; -webkit-animation-timing-function:linear; -webkit-transform-origin:
+			50% 50%; } 100% { -webkit-transform: translate3d(126px, 615px, 0px) rotateX(0deg)
+			rotateY(0deg) rotateZ(181.7deg) scale3d(1.05, 1.21, 1); opacity: 0; -webkit-animation-timing-function:ease;
+			-webkit-transform-origin: 50% 50%; } } .run.t-0 #pOwM90yF7-an-obj-6 { -webkit-animation-name:
+			ani-pOwM90yF7-an-obj-6-0; -webkit-animation-duration: 5.55s; -webkit-animation-delay:
+			0s; -webkit-animation-fill-mode: both; } .t-0 #pOwM90yF7-an-obj-6 { -webkit-transform:
+			translate3d(126px, 615px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(181.7deg)
+			scale3d(1.05, 1.21, 1); opacity: 0; -webkit-animation-timing-function:ease;
+			-webkit-transform-origin: 50% 50%; } .restart.t-0 #pOwM90yF7-an-obj-6 {
+			-webkit-transform: translate3d(126px, 615px, 0px) rotateX(0deg) rotateY(0deg)
+			rotateZ(180deg) scale3d(1, 1.14, 1); opacity: 0.3; -webkit-animation-timing-function:linear;
+			-webkit-transform-origin: 50% 50%; } .restart #pOwM90yF7-an-obj-6 { -webkit-animation-name:
+			none !important; } #pOwM90yF7-an-obj-7 { -webkit-transform: translate3d(86px,
+			537px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(178.3deg) scale3d(0.59,
+			0.59, 1); width: 374px; height: 73px; top:0; left:0; -webkit-animation-iteration-count:
+			infinite; -webkit-animation-direction: alternate; } @-webkit-keyframes
+			ani-pOwM90yF7-an-obj-7-0 { 0% { -webkit-transform: translate3d(86px, 537px,
+			0px) rotateX(0deg) rotateY(0deg) rotateZ(178.3deg) scale3d(0.59, 0.59,
+			1); opacity: 0.1; -webkit-animation-timing-function:ease; } 50.7117% {
+			-webkit-transform: translate3d(86px, 537px, 0px) rotateX(0deg) rotateY(0deg)
+			rotateZ(178.3deg) scale3d(0.59, 0.59, 1); opacity: 0.4; -webkit-animation-timing-function:linear;
+			} 100% { -webkit-transform: translate3d(86px, 537px, 0px) rotateX(0deg)
+			rotateY(0deg) rotateZ(178.3deg) scale3d(0.8554999999999999, 1.1858999999999997,
+			1); opacity: 0; -webkit-animation-timing-function:linear; } } .run.t-0
+			#pOwM90yF7-an-obj-7 { -webkit-animation-name: ani-pOwM90yF7-an-obj-7-0;
+			-webkit-animation-duration: 4.0143s; -webkit-animation-delay: 0s; -webkit-animation-fill-mode:
+			both; } .t-0 #pOwM90yF7-an-obj-7 { -webkit-transform: translate3d(86px,
+			537px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(178.3deg) scale3d(0.8554999999999999,
+			1.1858999999999997, 1); opacity: 0; -webkit-animation-timing-function:linear;
+			} .restart.t-0 #pOwM90yF7-an-obj-7 { -webkit-transform: translate3d(86px,
+			537px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(178.3deg) scale3d(0.59,
+			0.59, 1); opacity: 0.1; -webkit-animation-timing-function:ease; } .restart
+			#pOwM90yF7-an-obj-7 { -webkit-animation-name: none !important; } #pOwM90yF7-an-obj-8
+			{ -webkit-transform: translate3d(-113px, 261px, 0px); width: 381px; height:
+			393px; top:0; left:0; } @-webkit-keyframes ani-pOwM90yF7-an-obj-8-0 { 0%
+			{ -webkit-transform: translate3d(-91px, 281px, 0px); opacity: 0.3; -webkit-animation-timing-function:linear;
+			} 100% { -webkit-transform: translate3d(-91px, 281px, 0px); opacity: 1;
+			-webkit-animation-timing-function:linear; } } .run.t-0 #pOwM90yF7-an-obj-8
+			{ -webkit-animation-name: ani-pOwM90yF7-an-obj-8-0; -webkit-animation-duration:
+			1.0071s; -webkit-animation-delay: 0s; -webkit-animation-fill-mode: both;
+			} .t-0 #pOwM90yF7-an-obj-8 { -webkit-transform: translate3d(-91px, 281px,
+			0px); opacity: 1; -webkit-animation-timing-function:linear; } .restart.t-0
+			#pOwM90yF7-an-obj-8 { -webkit-transform: translate3d(-91px, 281px, 0px);
+			opacity: 0.3; -webkit-animation-timing-function:linear; } .restart #pOwM90yF7-an-obj-8
+			{ -webkit-animation-name: none !important; } #pOwM90yF7-an-obj-9 { -webkit-transform:
+			translate3d(372px, 441px, 0px); width: 75px; height: 73px; top:0; left:0;
+			-webkit-animation-iteration-count: infinite; -webkit-animation-direction:
+			alternate; } @-webkit-keyframes ani-pOwM90yF7-an-obj-9-0 { 0% { -webkit-transform:
+			translate3d(372px, 441px, 0px); -webkit-animation-timing-function:ease-in-out;
+			} 100% { -webkit-transform: translate3d(372px, 457px, 0px); -webkit-animation-timing-function:ease-in-out;
+			} } .run.t-0 #pOwM90yF7-an-obj-9 { -webkit-animation-name: ani-pOwM90yF7-an-obj-9-0;
+			-webkit-animation-duration: 3.1071s; -webkit-animation-delay: 0s; -webkit-animation-fill-mode:
+			both; } .t-0 #pOwM90yF7-an-obj-9 { -webkit-transform: translate3d(372px,
+			457px, 0px); -webkit-animation-timing-function:ease-in-out; } .restart.t-0
+			#pOwM90yF7-an-obj-9 { -webkit-transform: translate3d(372px, 441px, 0px);
+			-webkit-animation-timing-function:ease-in-out; } .restart #pOwM90yF7-an-obj-9
+			{ -webkit-animation-name: none !important; } #pOwM90yF7-an-obj-10 { -webkit-transform:
+			translate3d(192px, 547px, 0px); width: 179px; height: 171px; top:0; left:0;
+			-webkit-animation-iteration-count: infinite; -webkit-animation-direction:
+			alternate; } @-webkit-keyframes ani-pOwM90yF7-an-obj-10-0 { 0% { -webkit-transform:
+			translate3d(230px, 565px, 0px); -webkit-animation-timing-function:ease-in-out;
+			} 100% { -webkit-transform: translate3d(218px, 546px, 0px); -webkit-animation-timing-function:ease-in-out;
+			} } .run.t-0 #pOwM90yF7-an-obj-10 { -webkit-animation-name: ani-pOwM90yF7-an-obj-10-0;
+			-webkit-animation-duration: 2.5571s; -webkit-animation-delay: 0.0143s;
+			-webkit-animation-fill-mode: both; } .t-0 #pOwM90yF7-an-obj-10 { -webkit-transform:
+			translate3d(218px, 546px, 0px); -webkit-animation-timing-function:ease-in-out;
+			} .restart.t-0 #pOwM90yF7-an-obj-10 { -webkit-transform: translate3d(230px,
+			565px, 0px); -webkit-animation-timing-function:ease-in-out; } .restart
+			#pOwM90yF7-an-obj-10 { -webkit-animation-name: none !important; } #pOwM90yF7-an-obj-11
+			{ -webkit-transform: translate3d(100px, 375px, 0px) scale3d(0.72, 0.72,
+			1); width: 75px; height: 73px; top:0; left:0; -webkit-animation-iteration-count:
+			infinite; -webkit-animation-direction: alternate; } @-webkit-keyframes
+			ani-pOwM90yF7-an-obj-11-0 { 0% { -webkit-transform: translate3d(100px,
+			375px, 0px) scale3d(0.72, 0.72, 1); } 100% { -webkit-transform: translate3d(107px,
+			389px, 0px) scale3d(0.72, 0.72, 1); } } .run.t-0 #pOwM90yF7-an-obj-11 {
+			-webkit-animation-name: ani-pOwM90yF7-an-obj-11-0; -webkit-animation-duration:
+			4.0143s; -webkit-animation-delay: 0s; -webkit-animation-fill-mode: both;
+			} .t-0 #pOwM90yF7-an-obj-11 { -webkit-transform: translate3d(107px, 389px,
+			0px) scale3d(0.72, 0.72, 1); } .restart.t-0 #pOwM90yF7-an-obj-11 { -webkit-transform:
+			translate3d(100px, 375px, 0px) scale3d(0.72, 0.72, 1); } .restart #pOwM90yF7-an-obj-11
+			{ -webkit-animation-name: none !important; } #pOwM90yF7-an-obj-12 { -webkit-transform:
+			translate3d(-50px, 405px, 0px) scale3d(0.24, 0.24, 1); width: 374px; height:
+			73px; top:0; left:0; -webkit-animation-direction: alternate; -webkit-animation-iteration-count:
+			infinite; } @-webkit-keyframes ani-pOwM90yF7-an-obj-12-0 { 0% { -webkit-transform:
+			translate3d(-50px, 405px, 0px) scale3d(0.24, 0.24, 1); opacity: 1; -webkit-animation-timing-function:linear;
+			} 100% { -webkit-transform: translate3d(-42px, 411px, 0px) scale3d(0.24,
+			0.24, 1); opacity: 0.2; -webkit-animation-timing-function:linear; } } .run.t-0
+			#pOwM90yF7-an-obj-12 { -webkit-animation-name: ani-pOwM90yF7-an-obj-12-0;
+			-webkit-animation-duration: 4.0143s; -webkit-animation-delay: 0s; -webkit-animation-fill-mode:
+			both; } .t-0 #pOwM90yF7-an-obj-12 { -webkit-transform: translate3d(-42px,
+			411px, 0px) scale3d(0.24, 0.24, 1); opacity: 0.2; -webkit-animation-timing-function:linear;
+			} .restart.t-0 #pOwM90yF7-an-obj-12 { -webkit-transform: translate3d(-50px,
+			405px, 0px) scale3d(0.24, 0.24, 1); opacity: 1; -webkit-animation-timing-function:linear;
+			} .restart #pOwM90yF7-an-obj-12 { -webkit-animation-name: none !important;
+			} #pOwM90yF7-an-obj-13 { -webkit-transform: translate3d(214px, 479px, 0px)
+			scale3d(0.41, 0.41, 1); width: 374px; height: 73px; top:0; left:0; -webkit-animation-direction:
+			alternate; -webkit-animation-iteration-count: infinite; } @-webkit-keyframes
+			ani-pOwM90yF7-an-obj-13-0 { 0% { -webkit-transform: translate3d(214px,
+			479px, 0px) scale3d(0.41, 0.41, 1); opacity: 0.5; -webkit-animation-timing-function:linear;
+			} 100% { -webkit-transform: translate3d(225px, 497px, 0px) scale3d(0.41,
+			0.41, 1); opacity: 0.2; -webkit-animation-timing-function:linear; } } .run.t-0
+			#pOwM90yF7-an-obj-13 { -webkit-animation-name: ani-pOwM90yF7-an-obj-13-0;
+			-webkit-animation-duration: 3.1071s; -webkit-animation-delay: 0s; -webkit-animation-fill-mode:
+			both; } .t-0 #pOwM90yF7-an-obj-13 { -webkit-transform: translate3d(225px,
+			497px, 0px) scale3d(0.41, 0.41, 1); opacity: 0.2; -webkit-animation-timing-function:linear;
+			} .restart.t-0 #pOwM90yF7-an-obj-13 { -webkit-transform: translate3d(214px,
+			479px, 0px) scale3d(0.41, 0.41, 1); opacity: 0.5; -webkit-animation-timing-function:linear;
+			} .restart #pOwM90yF7-an-obj-13 { -webkit-animation-name: none !important;
+			} /* ------------ SYMBOL CSS -------------- */
+            div#foot{   
+                position:fixed; 
+        		left:320px;
+        		bottom:10px;
+            } 	
+		</style>
+
+		<script>
+            prompt = encodeURIComponent('请输入对方名字：');
+
+            kawa_data = {
+                words : '愿我亲爱的朋友，<br>放飞心中的河灯，<br>点燃美好的愿望，<br>迎来幸福的生活。<br>烦忧全被击溃，<br>一生大福大贵！',
+               <if condition=" $words eq ''">
+				replace_words      : '愿我亲爱的朋友，<br>放飞心中的河灯，<br>点燃美好的愿望，<br>迎来幸福的生活。<br>烦忧全被击溃，<br>一生大福大贵。',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+                text_box           : '30 50 450 220', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+                text_align         : 'center',
+                font_weight        : 'bold',
+                mode               : 'up',     // up, left
+                speed              : 30,     // 每秒移动的像素
+                text_color         : '#FFF783',
+                font_size          : '38pt',
+                line_height        : '65pt',
+                music              : 'http://sound.kagirl.net/sound/yuanxiao2.mp3',     // url
+                  <if condition=" $music eq ''">
+				replace_music      : 'http://sound.kagirl.net/sound/yuanxiao2.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+                music_name         : '',
+                replace_music_name : '#replace_music_name#',
+                icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/fengmian/x1033.jpg',
+                title              : 'title',
+                desc               : 'desc',
+                modify             : 'no',
+                replace_modify     : 'yes',
+                cardid             : '1033',
+                share_url          :  window.location.href,  // 当分享的是微信页面时才需要改这里
+                font_ip            : '121.42.24.240:8000',
+                font_family        : 'mnjgl',
+                modify_optfile     : 'zhufu',
+                modify_optwords    : '你好，卡娃 祝福你',
+                show_words         : 'yes',
+                //write_param        : 'inputtype=singleline&showsel=no&prompt=' + prompt,
+            };
+        </script>
+      
+		
+	</head>
+	<body style="margin:0; height: 100%;" onload="kawa_init();">
+		<div id="pOwM90yF7-an-anim">
+			<ol>
+				<li id="pOwM90yF7-an-scene-0">
+					<div class="pOwM90yF7-an-stage">
+						<div id="pOwM90yF7-an-obj-1">
+							<div>
+								<img height="750" width="500" src="tpl/Wap/default/common/kawahk/1033/1033_1.jpg">
+							</div>
+						</div>
+						<div id="pOwM90yF7-an-obj-2">
+							<div>
+								<img height="750" width="500" src="tpl/Wap/default/common/kawahk/1033/1033_2.jpg">
+							</div>
+						</div>
+						<div id="pOwM90yF7-an-obj-3">
+							<div>
+								<img height="127" width="318" src="tpl/Wap/default/common/kawahk/1033/1033_4.png">
+							</div>
+						</div>
+						<div id="pOwM90yF7-an-obj-4">
+							<div>
+								<img height="127" width="265" src="tpl/Wap/default/common/kawahk/1033/1033_5.png">
+							</div>
+						</div>
+						<div id="pOwM90yF7-an-obj-5">
+							<div>
+								<img height="65" width="65" src="tpl/Wap/default/common/kawahk/1033/1033_3.png">
+							</div>
+						</div>
+						<div id="pOwM90yF7-an-obj-6">
+							<div>
+								<img height="73" width="374" src="tpl/Wap/default/common/kawahk/1033/1033_2.png">
+							</div>
+						</div>
+						<div id="pOwM90yF7-an-obj-7">
+							<div>
+								<img height="73" width="374" src="tpl/Wap/default/common/kawahk/1033/1033_2.png">
+							</div>
+						</div>
+						<div id="pOwM90yF7-an-obj-8">
+							<div>
+								<img height="393" width="381" src="tpl/Wap/default/common/kawahk/1033/1033_1.png">
+							</div>
+						</div>
+						<div id="pOwM90yF7-an-obj-9">
+							<div>
+								<img height="73" width="75" src="tpl/Wap/default/common/kawahk/1033/1033_6.png">
+							</div>
+						</div>
+						<div id="pOwM90yF7-an-obj-10">
+							<div>
+								<img height="171" width="179" src="tpl/Wap/default/common/kawahk/1033/1033_7.png">
+							</div>
+						</div>
+						<div id="pOwM90yF7-an-obj-11">
+							<div>
+								<img height="73" width="75" src="tpl/Wap/default/common/kawahk/1033/1033_6.png">
+							</div>
+						</div>
+						<div id="pOwM90yF7-an-obj-12">
+							<div>
+								<img height="73" width="374" src="tpl/Wap/default/common/kawahk/1033/1033_2.png">
+							</div>
+						</div>
+						<div id="pOwM90yF7-an-obj-13">
+							<div>
+								<img height="73" width="374" src="tpl/Wap/default/common/kawahk/1033/1033_2.png">
+							</div>
+						</div>
+					</div>
+				</li>
+			</ol>
+		</div>
+
+</html>

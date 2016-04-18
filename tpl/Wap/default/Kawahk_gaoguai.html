@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)http://card1.kagirl.net/menu/menu_gaoguai.html -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+<meta  http-equiv="imagetoolbar"  content="no">
+<meta  charset="utf-8">
+<meta  name="format-detection"  content="telephone=no">
+<meta  name="apple-mobile-web-app-capable"  content="yes">
+<meta  name="apple-mobile-web-app-status-bar-style"  content="black">
+<script>
+        if(/Android (\d+\.\d+)/.test(navigator.userAgent))
+        {
+            var version = parseFloat(RegExp.$1);
+
+            if(version>2.3)
+            {
+                var phoneScale = parseInt(window.screen.width)/640;
+                document.write('<meta name="viewport" content="width=640, minimum-scale = '+ phoneScale +', maximum-scale = '+ phoneScale +', target-densitydpi=device-dpi">');
+            }
+            else
+            {
+                document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');    
+            }
+        }
+        else
+        {
+            document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+        }
+        </script>
+<meta  name="viewport"  content="width=640, user-scalable=no, target-densitydpi=device-dpi">
+<link  rel="stylesheet"  type="text/css"  href="tpl/Wap/default/common/kawahk/fengmian/menu.css"  media="all">
+<style  type="text/css">
+		#menu_1 {
+			position:absolute;		
+			width: 200px;
+			height:4px;
+			top:355px; 
+			left:220px;
+			background:#DF6DC2;
+			-webkit-animation: fadeIn 0.5s 0s 1 ease normal both ;
+		}
+		#menu_p1 {
+			position:absolute;		
+			width: 200px;
+			top:280px; 
+			left:220px;
+			font-size: 30px;
+			color: #DF6DC2;
+			text-align:center;
+			font-weight:600;
+			-webkit-animation: fadeIn 0.5s 0s 1 ease normal both ;
+		}	
+        </style>
+<script>
+			var showMenu = 0;
+			function openMenu(){
+				var menu = document.getElementById("menu_list0");
+				if(showMenu == 0){
+					menu.style.display="block";
+					showMenu = 1;
+				}else{
+					menu.style.display="none";
+					showMenu = 0;
+				}
+			}
+		</script>
+</head>
+<body>
+<include file="Kawahk:list"/>
+<div  id="box"> <a  href="{weimicms::U('Kawahk/hcar_view',array('token'=>$token,'cardid'=>m4012))}">
+  <div  id="boxpic"><img  src="tpl/Wap/default/common/kawahk/fengmian/x4012.jpg">
+    <p>美女证</p>
+  </div>
+  </a> <a  href="{weimicms::U('Kawahk/hcar_view',array('token'=>$token,'cardid'=>m4013))}">
+  <div  id="boxpic"><img  src="tpl/Wap/default/common/kawahk/fengmian/x4013.jpg">
+    <p>帅哥证</p>
+  </div>
+  </a> <a  href="{weimicms::U('Kawahk/hcar_view',array('token'=>$token,'cardid'=>xinyoulinxi))}">
+  <div  id="boxpic"><img  src="tpl/Wap/default/common/kawahk/fengmian/xinyoulingxi.jpg">
+    <p>心有灵犀</p>
+  </div>
+  </a> <a  href="{weimicms::U('Kawahk/hcar_view',array('token'=>$token,'cardid'=>4007))}">
+  <div  id="boxpic"><img  src="tpl/Wap/default/common/kawahk/fengmian/iphone.jpg">
+    <p>一秒钟变iPhone</p>
+  </div>
+  </a> <a  href="{weimicms::U('Kawahk/hcar_view',array('token'=>$token,'cardid'=>4009))}">
+  <div  id="boxpic"><img  src="tpl/Wap/default/common/kawahk/fengmian/x4009.jpg">
+    <p>中奖了~</p>
+  </div>
+  </a>  <a  href="{weimicms::U('Kawahk/hcar_view',array('token'=>$token,'cardid'=>4004))}">
+  <div  id="boxpic"><img  src="tpl/Wap/default/common/kawahk/fengmian/x4004.jpg">
+    <p>光棍证</p>
+  </div>
+  </a>  </div>
+<div  id="menu_1"></div>
+<div  id="menu_p1">
+  <p>搞怪</p>
+</div>
+<div  id="top1"><img  height="284"  width="640"  src="tpl/Wap/default/common/kawahk/fengmian/top_gaoguai.jpg"></div>
+<div  id="top4"><img  src="tpl/Wap/default/common/kawahk/fengmian/top4.jpg"></div>
+<div  id="fenlei1"><img  src="tpl/Wap/default/common/kawahk/fengmian/fenlei.png"  onclick="openMenu();" ></div>
+<div  id="fenlei1_p">
+  <p >分类</p>
+</div>
+</body>
+</html>

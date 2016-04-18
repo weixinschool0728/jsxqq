@@ -1,0 +1,143 @@
+<include file="Storenew:header"/>
+<div style="display: block;">
+        <div class="H5_con" id="group_title">
+			<if condition="$shengyu neq '0'">
+			<div class="tips topStateWrap tips_succ tips_succ2">
+				<div class="tips_ico"></div>
+				<div class="tips_tit">快来入团吧</div>
+				<div class="tips_txt">你的朋友邀请你一起来团购了，赶快购买吧</div>
+			</div>
+			<else/>
+			<div class="cardtips"><p class="cardtips_txt">来晚了一步！该团已被挤爆<br>求人不如求自己，自己当团长吧！</p></div>
+			</if>
+			
+		</div>
+        <div class="H5_con">
+            <div id="group_detail" class="tm <if condition="$paidcount eq $p['tgnum']"> tm_succ</if><if condition="$grouponinfo['status'] eq 2"> tm_err</if>">
+			<!--div id="group_detail" class="tm tm_succ"-->
+				<a class="goItemPage" href="{weimicms::U('Storenew/grouponview',array('token' => $_GET['token'], 'id' => $p['id'], 'wecha_id' => $_GET['wecha_id'], 'twid' => $twid))}">
+					<div class="td tuanDetailWrap">
+						<div class="td_img">
+							<img alt="{weimicms:$p.name}" src="{weimicms:$p.logourl}">
+						</div>
+						<div class="td_info">
+							<p class="td_name">{weimicms:$p.name}</p>
+							<p class="td_mprice"><span class="tuanTotal">{weimicms:$p.tgnum}</span>人团：<i>¥</i><b>{weimicms:$p.tgprice}</b><i> /件</i></p>
+							<p>查看详情</p>
+							<p class="td_num"></p>
+						</div>
+					</div>
+				</a>
+			</div>
+            <div class="pp">
+                <div class="pp_users" id="pp_users">
+				<volist name="g" id="g">
+				<a class="pp_users_item pp_users_normal" href="#">
+					<img alt="" src="{weimicms:$g.portrait}">
+				</a>
+				</volist>
+				</div>
+             <if condition="$grouponinfo['status'] neq 2">
+				<if condition="$paidcount neq $p['tgnum']">
+                <div class="pp_tips" id="flag_0_a" style="display: block;">还差<b>{weimicms:$shengyu}</b>人，盼你如南方人盼暖气~</div>
+                <div class="pp_state" id="flag_0_b" style="display: block;">
+                    <div class="pp_time">
+                        剩余<span id="ti_time_hour">23</span>:<span id="ti_time_min">56</span>:<span id="ti_time_sec">29</span>结束
+                    </div>
+                </div>
+				<else/>
+				<div class="pp_tips" id="flag_1_a">对于诸位大侠的相助，团长感激涕零</div>
+				<div class="pp_state" id="flag_0_b" style="display: block;">
+					<div class="pp_state_txt" id="flag_1_b">团购成功，卖家将尽快发货</div>
+				</div>	
+				</if>
+			<else/>
+				<div class="pp_tips" id="flag_1_a">哎呀，不给力哦！没有达到团购要求</div>
+				<div class="pp_state" id="flag_0_b" style="display: block;">
+					<div class="pp_state_txt" id="flag_1_b">团购失败，再次开团吧！</div>
+				</div>	
+			</if>
+            </div>
+            <div class="pp_list">
+                <div id="showYaoheList">
+				<volist name="glist" id="g">
+					<div class="pp_list_item">
+						<img class="pp_list_avatar" alt="" src="{weimicms:$g.portrait}">
+						<div class="pp_list_info" id="pp_list_info">
+							<span class="pp_list_name"><if condition="$g['openid'] eq $g['wecha_id']">团长<else/></if><b>{weimicms:$g.truename}</b><if condition="$g['paid'] neq 1">(未付款)</if></span>
+							<span class="pp_list_time">{weimicms:$g.addtime|date='Y-m-d H:i:s',###}<if condition="$g['openid'] eq $g['wecha_id']">开团<else/>加入</if></span>
+						</div>
+					</div>
+				</volist>
+				</div>
+				<if condition="$paidcount neq $p['tgnum']">
+                <div id="chamemeber" class="pp_list_blank" style="display: block;">
+                    还差
+                    <span>{weimicms:$shengyu}</span> 人，让小伙伴们都来组团吧！
+                </div>
+				</if>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step_hd">
+                拼团玩法<a class="step_more" href="{weimicms::U('Storenew/grouponrule',array('token' => $_GET['token'],'twid' => $twid, 'cid' => $cid))}">查看详情</a>
+            </div>
+            <div id="footItem" class="step_list">
+                <div class="step_item ">
+                    <div class="step_num">1</div>
+                    <div class="step_detail">
+                        <p class="step_tit">选择
+                            <br>心仪商品</p>
+                    </div>
+                </div>
+                <div class="step_item ">
+                    <div class="step_num">2</div>
+                    <div class="step_detail">
+                        <p class="step_tit">支付开团
+                            <br>或参团</p>
+                    </div>
+                </div>
+                <div class="step_item <if condition="$paidcount neq $p['tgnum']"> step_item_on</if>" id="step_3">
+                    <div class="step_num">3</div>
+                    <div class="step_detail">
+                        <p class="step_tit">邀请好友
+                            <br>参团支付</p>
+                    </div>
+                </div>
+                <div class="step_item <if condition="$paidcount eq $p['tgnum']"> step_item_on</if>" id="step_4">
+                    <div class="step_num">4</div>
+                    <div class="step_detail">
+                        <p class="step_tit">达到人数
+                            <br>团购成功</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</div>
+<div class="H5_con fixopt" id="fixopt" style="display: block;">
+	<div class="fixopt_item">
+		<if condition="$shengyu gt 0">
+		<a class="fixopt_btn bottomBtn" href="{weimicms::U('Storenew/addgrouponorder',array('token'=>$token,'id'=>$p['id'],'wecha_id'=>$_GET['wecha_id'], 'codeid'=>$codeid, 'twid' => $twid,'cid' => $cid))}">我也要参与抢购</a>
+		<else/>
+		<a class="fixopt_btn bottomBtn" href="{weimicms::U('Storenew/groupon',array('token'=>$token,'id'=>$p['id'],'wecha_id'=>$_GET['wecha_id'], 'codeid'=>$codeid, 'twid' => $twid,'cid' => $cid))}">此团位置已满，去看看其他团购</a>
+		</if>
+		</div>
+</div>
+<div style="height:80px;visibility:hidden "></div>
+</body>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Store",
+            "moduleID":"{weimicms:$p['id']}",
+            "imgUrl": "{weimicms:$p['logourl']}", 
+            "timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U('Storenew/grouponshare',array('token' => $_GET['token'], 'codeid' => $_GET['codeid'], 'twid' => $mytwid, 'cid' => $cid))}",
+            "sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Storenew/grouponshare',array('token' => $_GET['token'], 'codeid' => $_GET['codeid'], 'twid' => $mytwid, 'cid' => $cid))}",
+            "weiboLink": "{weimicms:$f_siteUrl}{weimicms::U('Storenew/grouponshare',array('token' => $_GET['token'], 'codeid' => $_GET['codeid'], 'twid' => $mytwid, 'cid' => $cid))}",
+            "tTitle": "{weimicms:$p.name}开团啦，只要{weimicms:$p.tgprice}元",
+            "tContent": "{weimicms:$p.name}开卖{weimicms:$p.tgnum}人团抢购中，仅剩{weimicms:$shengyu}个空位，人满为患哦！"
+        };
+</script>
+{weimicms:$shareScript}
+</html>

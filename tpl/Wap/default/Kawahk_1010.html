@@ -1,0 +1,85 @@
+
+<html>
+  <head>
+    <title>落叶知秋</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+     <include file="Kawahk:js"/> 
+	<script type="text/javascript">
+            initViewport();
+    </script>
+
+	<script src="http://lib.sinaapp.com/js/jquery/1.4.2/jquery.min.js"></script>
+	<script src="tpl/Wap/default/common/kawahk/1010/jquery.innerfade.js" type="text/javascript"></script>
+	<style type="text/css">
+		body
+		{
+			/*background-color: ;*/
+			background:#ffffff url('tpl/Wap/default/common/kawahk/1005/1010.jpg') no-repeat;
+			scroll="no";
+			margin: 0 auto;
+		}
+		html { overflow-y:hidden;}
+	</style>
+	
+	<!-- The leaves.css file animates the leaves -->
+    <link rel="stylesheet" href="tpl/Wap/default/common/kawahk/1010/leavesGeneral.css" type="text/css" media="screen" charset="utf-8">
+    <!-- The leaves.js file creates the leaves -->
+	
+	
+    <script src="tpl/Wap/default/common/kawahk/1010/leaves.js" type="text/javascript" charset="utf-8"></script>
+	
+	
+    </head>
+	
+  <body style="overflow-y:hidden;" onload='kawa_init()' >
+  	 <script>
+	// script place
+        	words = '落叶知秋，情谊如酒，风渐凉时无烦忧；岁月流走，蓦然回首，一声问候醇绵依旧。季节交替，注意身体！';
+
+            kawa_data = {
+                words 			   : words,
+               <if condition=" $words eq ''">
+				replace_words      : '落叶知秋，情谊如酒，风渐凉时无烦忧；岁月流走，蓦然回首，一声问候醇绵依旧。季节交替，注意身体！',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+                text_box           : '50 200 300 300', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+                mode               : 'up',     // up, left
+                speed              : 40,     // 每秒移动的像素
+                text_color         : '#5c0605', // rgb(1,2,3) 'black'
+                font_size          : '40pt',
+                line_height        : '60pt',
+                //text_align         : 'center',
+                font_weight        : 'bold',
+                music              : 'http://sound.kagirl.net/sound/zhiqingchun.mp3',     // url
+                <if condition=" $music eq ''">
+				replace_music      : 'http://sound.kagirl.net/sound/zhiqingchun.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+                music_name         : '',
+                replace_music_name : '#replace_music_name#',
+                icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/fengmian/x1010.jpg',
+                title              : '送给你',
+                desc               : words,
+                modify             : 'no',
+                replace_modify     : 'yes',
+                cardid             : '1010',
+                share_url          : window.location.href,   // 当分享的是微信页面时才需要改这里
+                font_ip            : '115.28.135.41:8000',
+                modify_optfile     : 'xinqing',
+                modify_optwords    : '#modify_optwords#',
+                show_words         : 'yes',
+                write_param_1      : 'inputtype=singleline&showsel=no&prompt=' + encodeURIComponent('输入对方的名字：')
+            };
+        </script>
+    
+	<div id="container" >
+      <!-- The container is dynamically populated using the init function in leaves.js -->
+      <!-- Its dimensions and position are defined using its id selector in leaves.css -->
+      <div id="leafContainer"></div>
+      <!-- its appearance, dimensions, and position are defined using its id selector in leaves.css -->
+      
+    </div>
+
+
+  </body>
+</html>

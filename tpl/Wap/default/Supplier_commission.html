@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>我的佣金 - {weimicms:$jjrcopyright}</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;"
+        name="viewport" />
+ <link rel="stylesheet" type="text/css" href="{weimicms::RES}/jjr/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="{weimicms::RES}/jjr/css/hkb.css" />
+    <link rel="stylesheet" type="text/css" href="{weimicms::RES}/jjr/css/zydialog.css" />
+    <link rel="stylesheet" type="text/css" href="{weimicms::RES}/jjr/css/jBox.css" />
+    <link rel="stylesheet" type="text/css" href="{weimicms::RES}/jjr/css/ui.css" />
+    <link rel="stylesheet" type="text/css" href="{weimicms::RES}/jjr/css/datepicker.css" />
+    <link rel="stylesheet" type="text/css" href="{weimicms::RES}/jjr/css/font-awesome.css" />
+    <script type="text/javascript" src="{weimicms::RES}/jjr/js/jquery.js"></script>
+    <script type="text/javascript" src="{weimicms::RES}/jjr/js/dot.js"></script>
+    <script type="text/javascript" src="{weimicms::RES}/jjr/js/jBox.js"></script>
+    <script type="text/javascript" src="{weimicms::RES}/jjr/js/ui.js"></script>
+    <script type="text/javascript" src="{weimicms::RES}/jjr/js/jquery.bgiframe.js"></script>
+    <script type="text/javascript" src="{weimicms::RES}/jjr/js/zydialog.js"></script>
+    <script type="text/javascript" src="{weimicms::RES}/jjr/js/datepicker.js"></script>
+    <script type="text/javascript" src="{weimicms::RES}/jjr/js/base.js"></script>
+    <script type="text/javascript" src="{weimicms::RES}/jjr/js/hkb.js"></script> 
+</head>
+<body>
+    <div class="all3">
+        <div class="max-640" id="q-height">
+            <div class="m-pd30">
+                <div class="wbfb pt20">
+                    <div class="mb15 withdraw-money clearfix">
+                        <div class="f-sq fl">
+                            <p class="mr5">
+                                <span>总佣金</span> <span class="mt10"><b class="f24">{weimicms:$userinfo.money}</b><sup>元</sup></span>
+                            </p>
+                        </div>
+                        <div class="f-sq fr">
+                            <p class="ml5">
+                                <span>已结佣</span> <span class="mt10"><b class="f24">{weimicms:$mycompleted1}</b><sup>元</sup></span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="u-iptct2 mb15 ra clearfix">
+                        <span class="fl ml15">
+                            <img src="{weimicms::RES}/jjr/images/card.png" alt=""></span> <a href="/index.php?g=Wap&m=Supplier&a=account"
+                                class="fl f16 ml5 sd"><if condition="$userinfo.card eq ''">请绑定您的银行卡号<else/>{weimicms:$userinfo.card}</if></a>
+                    </div>
+                    <div class="u-iptct2 mb15 ra clearfix">
+                        <span class="fl ml15">
+                            <img src="{weimicms::RES}/jjr/images/sf.png" alt=""></span>
+							<if condition="$userinfo.checkStatue neq 2"> <a href="index.php?g=Wap&m=Supplier&a=authen"  class="fl f16 ml5 sd"><else/><a class="fl f16 ml5 sd"></if>
+							 	<if condition="$userinfo.judicial eq ''">实名认证<else/>{weimicms:$userinfo.judicial}</if> </a>
+                              <if condition="$userinfo.checkStatue eq 2"> <span class="fr f-smrz"><img src="{weimicms::RES}/jjr/images/yrz.png" alt=""></span><else/> <span class="fr f-smrz"><img src="{weimicms::RES}/jjr/images/wrz.png" alt=""></span></if>
+                    </div>
+                    <p class="f24 mt20 pt10 mb10 clearfix">
+                        <span class="fl">账目明细</span> <span class="f-tip f16 fr"><a href="javascript:;" id="withdrawBtn"
+                            style="color: #fff;">我要提现</a></span>
+                    </p>
+               		 <div class="m-zmmx clearfix"> 
+                    	<volist name='userwithdraw' id='list'>         
+                        <div class="fl f16" style="width:70%">
+                            <p class="sd">
+                              {weimicms:$list.note}
+							</p>
+                            <p class="mt10 hcolor">{weimicms:$list.withdrawtime|date="Y-m-d h:m",###}</p>
+                        </div>
+                        <div class="fr" style="width:25%">
+                            <p class="f24 tr" style=" color:#ff6c00;">{weimicms:$list.withdraw}</p>
+                            <p class="mt5 sd tr f16">
+							<if condition="$list.status eq '1'"> 待审核</if>
+							<if condition="$list.status eq '2'"> 通过</if>
+							<if condition="$list.status eq '3'"> 拒绝</if>
+							 </p>
+                        </div>
+						<div style="clear:both; padding-top:10px; ">   <p class="sd">{weimicms:$list.remarks}</p></div>
+						 
+                        </volist>
+               		 </div> 	
+                </div>
+                 <div class="powered" style="margin-bottom:0px; padding-bottom:8px; padding-top:20px; text-align:center; font-size:12px; color:#6691f3; height:30px;">
+    			{weimicms:$jjrcopyright}
+				</div> 
+            </div>
+        </div> 
+        <input type="hidden" value="{weimicms:$userinfo.checkStatue}" name="{weimicms:$userinfo.money}" id="test" />
+     <script type="text/tpl" id="withdrawTpl">
+
+    <form method="post" id="withdrawForm" class="zydialog-form">
+        <div>
+            <input type="text" name="withdraw" placeholder="提现金额" />
+        </div>
+        <div class="mt10">
+            <textarea name="note" placeholder="备注说明"></textarea>
+        </div>
+    </form>
+</script>
+<script>
+jQuery(function($){
+    $("#withdrawBtn").on('click', function (){
+		var aa=window.document.getElementById("test").value;
+		var bb=window.document.getElementById("test").name;
+		if(aa!="2")
+		{
+			alert("你好，提交信息管理员未审核！"); 
+		}
+		else if(bb=="0")
+		{
+			alert("没有可以提现的佣金，请确认！"); 
+		}
+   		else
+		{
+			var jbox = $.showCfm('申请提现', $("#withdrawTpl").html(), function ()
+			{
+				jbox.loading();
+				$.post("/index.php?g=Wap&m=Supplier&a=withdraw", $("#withdrawForm").serialize(), function (result)
+				{
+					jbox.unloading();
+					if (result.status == 0)
+					{
+						$.showError(result.info);
+						return false;
+					} else
+					{
+						jbox.close();
+						$.showSuccess(result.info, 0, function ()
+						{ 
+							window.location.reload();
+						});
+					}
+				}, 'json');
+			});
+		}	     
+   })
+});
+</script>
+
+    </div>
+     <footer  style="position: fixed;">
+    <ul>
+        <li class="">
+            <a href="/index.php?g=Wap&m=Supplier&a=index">
+                <div class="icon30 buildingicon"></div>
+                <div class="textinfo">首页</div>
+            </a>
+        </li>
+        <li class="">
+            <a href="/index.php?g=Wap&m=Supplier&a=customer">
+                <div class="icon30 customericon"></div>
+                <div class="textinfo">客户</div>
+            </a>
+        </li>
+        <li class="select">
+            <a href="/index.php?g=Wap&m=Supplier&a=commission">
+                <div class="icon30 dynamicicon"></div>
+                <div class="textinfo">佣金</div>
+            </a>
+        </li>
+        <li class="">
+            <a href="/index.php?g=Wap&m=Supplier&a=guize">
+                <div class="icon30 myicon">
+                </div>
+                <div class="textinfo">细则</div>
+            </a>
+        </li>
+    </ul>
+</footer> 
+</body>
+</html> 

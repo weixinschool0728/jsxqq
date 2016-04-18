@@ -1,0 +1,40 @@
+<include file="Storenew:header"/>
+
+<ul id="m_list" class="m-list ">
+<volist name="products" id="hostlist"> 
+	<li>
+		<span class="pic">
+		<a href="{weimicms::U('Storenew/biddingproduct',array('token' => $_GET['token'], 'id' => $hostlist['id'], 'wecha_id' => $_GET['wecha_id'], 'twid' => $twid))}">
+			<img src="{weimicms:$hostlist.logourl}" data-original="{weimicms:$hostlist.logourl}">
+		</a>
+		</span>
+		<span class="con">
+			<a class="t" href="{weimicms::U('Storenew/biddingproduct',array('token' => $_GET['token'], 'id' => $hostlist['id'], 'wecha_id' => $_GET['wecha_id'], 'twid' => $twid))}">{weimicms:$hostlist.name}</a>
+			<span style="color:#c00;font-size:12px;margin-top:0px;">当前出价：￥{weimicms:$hostlist.price} 元</span>
+			<span style="color:#999;font-size:12px;margin-top:3px;">参与人次：已 {weimicms:$hostlist['logcount']} 人参与出价</span>
+			<if condition="$hostlist.endtime gt $now">
+			<span style="color:#999;font-size:12px;margin-top:3px;">开始日期：{weimicms:$hostlist.starttime|date="Y-m-d H:i:s",###}</span>
+			<span style="color:#999;font-size:12px;margin-top:3px;">截止日期：{weimicms:$hostlist.endtime|date="Y-m-d H:i:s",###}</span>
+			<else/>
+			<span style="color:#c00;font-size:12px;margin-top:3px;">本次竞拍活动已结束</span>
+			</if>
+		</span>
+	</li>
+</volist>
+</ul>
+<include file="Storenew:foot"/>
+</body>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Store",
+            "moduleID":"{weimicms:$products[0]['id']}",
+            "imgUrl": "{weimicms:$products[0]['logourl']}", 
+            "timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U('Storenew/jingpai',array('token' => $_GET['token'], 'catid' => $thisCat['id'], 'twid' => $mytwid, 'cid' => $cid))}",
+            "sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Storenew/jingpai',array('token' => $_GET['token'], 'catid' => $thisCat['id'], 'twid' => $mytwid, 'cid' => $cid))}",
+            "weiboLink": "{weimicms:$f_siteUrl}{weimicms::U('Storenew/jingpai',array('token' => $_GET['token'], 'catid' => $thisCat['id'], 'twid' => $mytwid, 'cid' => $cid))}",
+            "tTitle": "{weimicms:$metaTitle}",
+            "tContent": "{weimicms:$metaTitle}"
+        };
+</script>
+{weimicms:$shareScript}
+</html>

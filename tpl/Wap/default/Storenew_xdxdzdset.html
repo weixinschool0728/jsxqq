@@ -1,0 +1,68 @@
+<include file="Storenew:header"/>
+<link rel="stylesheet" href="./tpl/static/storenew/css/tixian.css"/>
+<form method="post" action="" id="FromID">
+<input type="hidden" name="id" class="input" value="{weimicms:$set['id']}">
+<div>
+
+<section class="main animated fadeInDown">
+	<div class="main-box">
+		<p class="rb-row"><span>店铺名称：</span><input type="text" name="title" id="title" placeholder="店铺的名称" class="input" value="{weimicms:$set['title']}"/></p>
+		<p class="rb-row"><span>店铺转发介绍：</span><input type="text" name="info" id="info" placeholder="转发店铺介绍" class="input" value="{weimicms:$set['info']}"/></p>
+		<p class="rb-row"><span>真实姓名：</span><input type="text" name="truename" id="truename" placeholder="你的真实名字" class="input" value="{weimicms:$user['truename']}"/></p>
+		<p class="rb-row"><span>手机号：</span><input type="text" name="tel" id="tel" placeholder="手机号" class="input" value="{weimicms:$user['tel']}"/></p>
+		<p class="rb-row"><span>Q  Q：</span><input type="text" name="qq" id="qq" placeholder="QQ号码" class="input" value="{weimicms:$user['qq']}"/></p>
+	</div>
+	<div class="rb-row registerRuleBox border-box">
+		<p class="rb-submit"><a href="javascript:;" value="确定" id="sub_order" class="btn"/>确定</a></p>
+	</div>
+</section>
+
+<!--div class="m-cart-toal m-checkout-toal">
+<p class="act"><a id="sub_order" href="javascript:;" class="checkout">确认</a></p>
+</div-->
+</div>
+</form>
+<script>
+$(document).ready(function(){
+	$("#sub_order").click(function(){
+		var userName=$('#title').val();
+		if($.trim(userName) == ""){
+			return floatNotify.simple('请填店铺名字');
+			return false;
+		}
+		var userPhone = $("#tel").val()
+		if ($.trim(userPhone) == "") {
+			return floatNotify.simple('请填写您的手机号码');
+			return false;
+		}
+		var patrn = /^1\d{10}$/;
+		if (!patrn.exec($.trim(userPhone))) {
+			return floatNotify.simple('手机号格式错误');
+			return false;
+		}
+		var address = $("#info").val()
+		if ($.trim(address) == "") {
+			return floatNotify.simple('请填写店铺转发介绍');
+			return false;
+		}
+		$("#FromID").submit();
+		return false;
+	});
+});
+</script>
+<include file="Storenew:foot"/>
+</body>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Store",
+            "moduleID":"0",
+            "imgUrl": "{weimicms:$f_siteUrl}{weimicms::U('Storenew/orderCart',array('token' => $_GET['token'], 'twid' => $mytwid, 'cid' => $cid))}", 
+            "timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U('Storenew/orderCart',array('token' => $_GET['token'], 'twid' => $mytwid, 'cid' => $cid))}",
+            "sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Storenew/orderCart',array('token' => $_GET['token'], 'twid' => $mytwid, 'cid' => $cid))}",
+            "weiboLink": "{weimicms:$f_siteUrl}{weimicms::U('Storenew/orderCart',array('token' => $_GET['token'], 'twid' => $mytwid, 'cid' => $cid))}",
+            "tTitle": "{weimicms:$metaTitle}",
+            "tContent": "{weimicms:$metaTitle}"
+        };
+</script>
+{weimicms:$shareScript}
+</html>

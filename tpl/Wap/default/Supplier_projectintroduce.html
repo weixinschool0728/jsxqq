@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>{weimicms:$projectinfo.projectname} -  {weimicms:$jjrcopyright}</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+   <link rel="stylesheet" type="text/css" href="{weimicms::RES}/jjr/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="{weimicms::RES}/jjr/css/lp-hkb.css" />  
+    <script type="text/javascript" src="{weimicms::RES}/jjr/js/jquery.js"></script>   
+    <script src="{weimicms::RES}/jjr/js/ui.js"></script>  
+    <script src="{weimicms::RES}/jjr/js/lp-hkb.js"></script> 
+    
+</head>
+<body onLoad="init();"> 
+ 
+<div class="m-kjnav">
+	<span class="f-gbico f-gbico2"></span>
+	<ul class="u-dhlst mt20" style="display:none;">
+		<li>
+			<i class="ico1"></i><a href="/index.php?g=Wap&m=Supplier&a=projectinfo&id={weimicms:$projectinfo.projectid}&token={weimicms:$projectinfo.token}">返回首页</a>
+		</li>  
+		<li>
+			<i class="ico5"></i><a href="/index.php?g=Wap&m=Supplier&a=projectalbum&id={weimicms:$projectinfo.projectid}&token={weimicms:$projectinfo.token}">楼盘相册</a>
+		</li>
+        <li>
+			<i class="ico3"></i><a href="tel:{weimicms:$projectinfo.tel}">电话联系</a>
+		</li> 
+	</ul>
+</div>
+<div class="lp-app4">
+	<div class="m-lpjst">
+		<img src="{weimicms:$projectinfo.lp_banner}" width="100%" />
+	</div>
+	<div class="m-inforct"> 
+         <div class="u-item">
+			<p class="f-tt clearfix">
+				<span class="fl">地图</span>
+                <i class="fr mr15 dsj2"></i>
+			</p>
+			<div class="base m-lpms"> 
+				<script charset="utf-8" src="http://map.qq.com/api/js?v=1"></script>
+                <script>
+                var geolocation,map,marker = null;
+                var init = function() {
+                    var center = new soso.maps.LatLng(26.055419,119.40938);
+                    map = new soso.maps.Map(document.getElementById('container'),{
+                        center: center,
+                        zoomLevel: 14
+                    });
+                    geolocation = new soso.maps.Geolocation();
+					geolocation_latlng();
+                }
+                
+                function geolocation_latlng() { 
+                    var input = "{weimicms:$projectinfo.lat},{weimicms:$projectinfo.lng}"; 
+                    var city = document.getElementById("city");
+                    var latlngStr = input.split(",",2);
+                    var lat = parseFloat(latlngStr[0]);
+                    var lng = parseFloat(latlngStr[1]);
+                    var latLng = new soso.maps.LatLng(lat, lng);
+                    var request = {
+                        keyword : latLng,
+                        locationMode : soso.maps.LocationMode.LATLNG //可选参数，可以不用设置
+                    }
+                    geolocation.position(request, function(results, status) {
+                        if (status == soso.maps.GeolocationStatus.OK) {
+                            map.setCenter(results.latLng);
+                            city.style.display = 'inline';
+                            city.innerHTML = '所在位置: ' + results.name;
+                            if (marker != null) {
+                                marker.setMap(null);
+                            }
+                            marker = new soso.maps.Marker({
+                                map: map,
+                                position:results.latLng
+                            });
+                        } else {
+                            alert("检索没有结果，原因: " + status);
+                        }
+                    });
+                }
+                </script>
+                <div style="width:100%;height:200px" id="container"></div>
+                <span style="height:30px;display:none; padding-top:8px;" id="city"></span>
+            </div>
+		</div>
+        <div class="u-item">
+			<p class="f-tt clearfix">
+				<span class="fl">视频欣赏</span>
+                <i class="fr mr15 dsj2"></i>
+			</p>
+			<div class="base m-lpms">
+				<div class="video-box tpl-video"  id="content" style="display:block;">{weimicms:$projectinfo.video}</div><script src="tpl/Wap/default/common/wedding/js/play.js" type="text/javascript"></script>
+            </div>
+		</div>
+        <div class="u-item">
+			<p class="f-tt clearfix">
+				<span class="fl">楼盘简介</span>
+                <i class="fr mr15 dsj2"></i>
+			</p>
+			<div class="base m-lpms">
+				{weimicms:$projectinfo.estate_desc|html_entity_decode|trim}
+            </div>
+		</div>
+        <div class="u-item">
+			<p class="f-tt clearfix">
+				<span class="fl">项目简介</span>
+                <i class="fr mr15 dsj2"></i>
+			</p>
+			<div class="base m-lpms">
+				{weimicms:$projectinfo.project_brief|html_entity_decode|trim}			</div>
+		</div><div class="u-item">
+			<p class="f-tt clearfix">
+				<span class="fl">交通状况</span>
+                <i class="fr mr15 dsj2"></i>
+			</p>
+			<div class="base m-lpms">
+				{weimicms:$projectinfo.traffic_desc|html_entity_decode|trim}	
+              	</div>
+		</div>	</div>
+</div>
+   
+</body>
+</html> 

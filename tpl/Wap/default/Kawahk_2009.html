@@ -1,0 +1,127 @@
+
+<html>  
+<head>  
+<meta http-equiv="content-type" content="text/html; charset=utf-8">  
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+       <include file="Kawahk:js"/> 
+        <script type="text/javascript">
+            initViewport();
+        </script>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>送给你</title>  
+
+
+<script src="tpl/Wap/default/common/kawahk/2009/jquery.min.js"></script>
+<style type="text/css">  
+    <!--   
+    body{   
+		-webkit-touch-callout: none; 
+		-webkit-text-size-adjust: none;
+        margin:0 auto;   		
+        overflow:hidden;   
+		position:relative;
+    }   
+  
+    div#content{
+        position:relative;   
+        border:1px solid #000; 
+		width:500px;		
+		height:750px;
+		margin:0 auto; 
+        top:0px;    
+        overflow:hidden;   
+        clear:both;
+    }
+  
+    div#bg{   
+        position:absolute;   
+        left:0px;   
+        top:0px;
+    } 
+	
+  div#foot{   
+                position:fixed; 
+        		left:320px;
+        		bottom:10px;
+				z-index:10000;
+            } 
+    -->  
+</style>  
+
+	
+	<script>
+		//需要调用leafinit（）来启动，需要声明外层div，id="container"，还有内层div，id="leafContainer"
+		//参数设置
+		var leafNum = 20;			//落下叶子的数量
+		var kindNum = 4;			//叶子的种类
+		//叶子使用图片地址，数量应与kindNum相同
+		var kindurl = new Array("tpl/Wap/default/common/kawahk/2009/2009_p1.png","tpl/Wap/default/common/kawahk/2009/2009_p2.png","tpl/Wap/default/common/kawahk/2009/2009_p3.png","tpl/Wap/default/common/kawahk/2009/2009_p4.png");
+	</script>
+	<script src="tpl/Wap/default/common/kawahk/2009/fleaves.min.js"></script>
+	<link rel="stylesheet" href="tpl/Wap/default/common/kawahk/2009/leavesGeneral.css" type="text/css" media="screen" charset="utf-8">
+		
+</head>  
+
+<body onLoad = "kawa_init();"> 
+	<script>
+        	words ='今天再大的事，到了明天就是小事；今年再大的事，到了明年就是故事；今生再大的事，到了来世就是传说，所以生活中，工作中遇到不顺的事，对自己说一下，今天会过去，明天会到来，新的一天开始。放下所有一切让你累的事情，每天都是新的！';
+            kawa_data = {
+               <if condition=" $words eq ''">
+				replace_words      : '今天再大的事，到了明天就是小事；今年再大的事，到了明年就是故事；今生再大的事，到了来世就是传说，所以生活中，工作中遇到不顺的事，对自己说一下，今天会过去，明天会到来，新的一天开始。放下所有一切让你累的事情，每天都是新的！',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+             
+                text_box           : '50 100 400 250', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+                mode               : 'up',     // up, left
+                speed              : 40,     // 每秒移动的像素
+                text_color         : '#ffffff', // rgb(1,2,3) 'black'
+                font_size          : '20pt',
+                line_height        : '40pt',
+                //text_align         : 'center',
+                font_weight        : 'bold',
+                music              : 'http://sound.kagirl.net/sound/qingyinyue3.mp3',     // url
+                   <if condition=" $music eq ''">
+				replace_music      : 'http://sound.kagirl.net/sound/qingyinyue3.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+                music_name         : '',
+                replace_music_name : '#replace_music_name#',
+                icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/fengmian/x2009.jpg',
+                title              : '送给你',
+                desc               : words,
+                modify             : 'no',
+                replace_modify     : 'yes',
+                cardid             : '2009',
+                share_url          : window.location.href,   // 当分享的是微信页面时才需要改这里
+                font_ip            : '115.28.135.41:8000',
+                modify_optfile     : 'xinqing',
+                modify_optwords    : '#modify_optwords#',
+                show_words         : 'yes',
+                write_param_1      : 'inputtype=singleline&showsel=no&prompt=' + encodeURIComponent('输入对方的名字：')
+            };
+        </script>
+
+	<div id="container" style="left:0%;top:0%;z-index:10">
+		<div id="leafContainer"></div>
+	</div>
+
+	<script>
+		leafinit();
+	</script>
+	
+    <div id="content">  
+        <div id="bg" >
+			<img src="tpl/Wap/default/common/kawahk/2009/2009.jpg"/>
+		</div>  
+		<div id="container" onclick="clickbg();" style="left:0%;top:0%;">
+			<div id="leafContainer"></div>
+		</div>		
+
+  
+    </div>  
+	
+
+</body>  
+</html>  

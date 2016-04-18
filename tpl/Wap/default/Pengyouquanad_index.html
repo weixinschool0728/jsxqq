@@ -1,0 +1,438 @@
+<!DOCTYPE HTML> 
+
+<html>
+
+<head>
+
+    <title>朋友圈</title>
+
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+
+	<link rel="stylesheet" href="./tpl/static/pengyouquanad/css/style.css">
+
+    <script src="./tpl/static/pengyouquanad/js/zepto.js"></script>
+
+</head>
+
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+<body>
+
+	<header>
+
+        <img id="bg" src="./tpl/static/pengyouquanad/images/bg.jpg">
+
+        <p id="user-name" class="data-name">{weimicms:$user.truename}</p>
+
+        <img id="avt" class="data-avt" src="{weimicms:$user.portrait}">
+
+    </header>
+
+    <div id="main">
+
+        <div id="list">
+
+        <ul>
+
+            <li>
+
+                <div class="po-avt-wrap">
+
+                    <img class="po-avt data-avt" src="{weimicms:$user.portrait}">
+
+                </div>
+
+                <div class="po-cmt">
+
+                    <div class="po-hd">
+
+                        <p class="po-name"><span class="data-name">{weimicms:$user.truename}</span></p>
+
+                        <p class="post">过两天开party，都有谁来咧？</p>
+
+                        <p class="time">刚刚</p><img class="c-icon" src="./tpl/static/pengyouquanad/images/c.png">
+
+                    </div>
+
+                    <div class="r"></div>
+
+                    <div class="cmt-wrap">
+
+                        <div class="like"><img src="./tpl/static/pengyouquanad/images/l.png">苍井空，陈冠希，杨幂，王思聪...</div>
+
+                        <div class="cmt-list">
+
+                        <p><span>杨幂：</span>好哇我参加~</p>
+
+                        <p><span>苍井空：</span>我带几个姐妹一起去。</p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </li>
+
+            <li>
+
+                <div class="po-avt-wrap">
+
+                    <img class="po-avt" src="./tpl/static/pengyouquanad/images/a1.jpg">
+
+                </div>
+
+                <div class="po-cmt">
+
+                    <div class="po-hd">
+
+                        <p class="po-name">苍井空</p>
+
+                        <p class="post">早上好，还是好困~<img src="./tpl/static/pengyouquanad/images/c1.jpg"></p>
+
+                        <p class="time">2分钟前</p><img class="c-icon" src="./tpl/static/pengyouquanad/images/c.png">
+
+                    </div>
+
+                    <div class="r"></div>
+
+                    <div class="cmt-wrap">
+
+                        <div class="like"><img src="./tpl/static/pengyouquanad/images/l.png">陈赫，叫兽易小星，王思聪，陈冠希，余文乐...</div>
+
+                        <div class="cmt-list">
+
+                        <p><span>陈赫：</span>怪我咯~</p>
+
+                        <p><span>陈冠希：</span>怪我咯~</p>
+
+                        <p><span class="data-name">{weimicms:$user.truename}</span><span>：</span>怪我咯~</p>
+
+                        <p><span>苍井空</span>回复<span class="data-name">{weimicms:$user.truename}</span><span>：</span>知道就好！</p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </li>
+
+            <li>
+
+                <div class="po-avt-wrap">
+
+                    <img class="po-avt" src="./tpl/static/pengyouquanad/images/a2.jpg">
+
+                </div>
+
+                <div class="po-cmt">
+
+                    <div class="po-hd">
+
+                        <p class="po-name">周杰伦</p>
+
+                        <div class="post"><p><b class="data-name">{weimicms:$user.truename}</b>，决战夜你要加油！我们哎哟不错战队是最屌的！</p><img class="list-img" src="./tpl/static/pengyouquanad/images/c2.jpg"><img class="data-avt list-img" src=""></div>
+
+                        <p class="time">2分钟前</p><img class="c-icon" src="./tpl/static/pengyouquanad/images/c.png">
+
+                    </div>
+
+                    <div class="r"></div>
+
+                    <div class="cmt-wrap">
+
+                        <div class="like"><img src="./tpl/static/pengyouquanad/images/l.png">汪峰，那英，庾澄庆</div>
+
+                        <div class="cmt-list">
+
+                        <p><span class="data-name">{weimicms:$user.truename}</span><span>：</span>杰伦老师，决战夜小公举会来吗。~</p>
+
+                        <p><span>周杰伦</span>回复<span class="data-name">{weimicms:$user.truename}</span><span>：</span>你拿冠军了，我让你当小公举的小王纸。</p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </li>
+
+            <li>
+
+                <div class="po-avt-wrap">
+
+                    <img class="po-avt" src="{weimicms:$item.ad_pic}">
+
+                </div>
+
+                <div class="po-cmt">
+
+                    <div class="po-hd">
+
+                        <p class="ads">推广<img src="./tpl/static/pengyouquanad/images/ads.png"></p>
+
+                        <p class="po-name">{weimicms:$item.adtitle}</p>
+
+                        <div class="post">{weimicms:$item.adinfo}
+
+                            <p><a class="ad-link" href="{weimicms:$item.adurl}">查看详情 <img src="./tpl/static/pengyouquanad/images/link.png"></a></p>
+
+                            <img src="{weimicms:$item.adimg}"></div>
+
+                        <p class="time">45分钟前</p><img class="c-icon" src="./tpl/static/pengyouquanad/images/c.png">
+
+                    </div>
+
+                    <div class="r"></div>
+
+                    <div class="cmt-wrap">
+
+                        <div class="like"><img src="./tpl/static/pengyouquanad/images/l.png">范冰冰，李晨，刘强东，...</div>
+
+                        <div class="cmt-list">
+
+                        <p><span>范冰冰：</span>新玩意？</p>
+
+                        <p><span>李晨</span>回复<span>范冰冰 ：</span>你喜欢，我们可以试一下。</p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </li>            
+
+            <li>
+
+                <div class="po-avt-wrap">
+
+                    <img class="po-avt" src="./tpl/static/pengyouquanad/images/a3.jpg">
+
+                </div>
+
+                <div class="po-cmt">
+
+                    <div class="po-hd">
+
+                        <p class="po-name">邓超</p>
+
+                        <div class="post">
+
+                            <p>we are 伐木累！欢迎加入跑男第三季！</p>
+
+                            <p><img class="list-img" src="./tpl/static/pengyouquanad/images/c3.jpg"><img class="list-img" src="./tpl/static/pengyouquanad/images/c4.jpg"><img class="data-avt list-img" src=""></p></div>
+
+                        <p class="time">4分钟前</p><img class="c-icon" src="./tpl/static/pengyouquanad/images/c.png">
+
+                    </div>
+
+                    <div class="r"></div>
+
+                    <div class="cmt-wrap">
+
+                        <div class="like"><img src="./tpl/static/pengyouquanad/images/l.png"><b class="data-name"></b></div>
+
+                        <div class="cmt-list">
+
+                        <p><span class="data-name">{weimicms:$user.truename}</span><span>：</span>超哥，当初为什么要选我。</p>
+
+                        <p><span>邓超</span>回复<span class="data-name">{weimicms:$user.truename}</span><span>：</span>你是我认识的人当中，最快的！</p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </li>
+
+            <li>
+
+                <div class="po-avt-wrap">
+
+                    <img class="po-avt" src="./tpl/static/pengyouquanad/images/a4.jpg">
+
+                </div>
+
+                <div class="po-cmt">
+
+                    <div class="po-hd">
+
+                        <p class="po-name">范冰冰</p>
+
+                        <p class="post">我的生日趴，你为什么不来<img class="data-avt" src=""></p>
+
+                        <p class="time">30分钟前</p><img class="c-icon" src="./tpl/static/pengyouquanad/images/c.png">
+
+                    </div>
+
+                    <div class="r"></div>
+
+                    <div class="cmt-wrap">
+
+                        <div class="like"><img src="./tpl/static/pengyouquanad/images/l.png"><b class="data-name"></b>，李晨，李治廷，黎明...</div>
+
+                        <div class="cmt-list">
+
+                        <p><span>李晨：</span>呵呵。</p>
+
+                        <p><span class="data-name">{weimicms:$user.truename}</span><span>：</span>最近忙，就酱。</p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </li>
+
+            <li>
+
+                <div class="po-avt-wrap">
+
+                    <img class="po-avt" src="./tpl/static/pengyouquanad/images/a6.jpg">
+
+                </div>
+
+                <div class="po-cmt">
+
+                    <div class="po-hd">
+
+                        <p class="po-name">刘强东</p>
+
+                        <p class="post">最近专心调配奶茶，想把悍马分享出去<img src="./tpl/static/pengyouquanad/images/c7.jpg"></p>
+
+                        <p class="time">50分钟前</p><img class="c-icon" src="./tpl/static/pengyouquanad/images/c.png">
+
+                    </div>
+
+                    <div class="r"></div>
+
+                    <div class="cmt-wrap">
+
+                        <div class="like"><img src="./tpl/static/pengyouquanad/images/l.png"><span class="data-name">{weimicms:$user.truename}</span>，韩寒，郭敬明，叫兽易小星</div>
+
+                        <div class="cmt-list">
+
+                        <p><span>叫兽易小星：</span>我有段子</p>
+
+                        <p><span>郭敬明：</span>我有童装</p>
+
+                        <p><span class="data-name">{weimicms:$user.truename}</span><span>：</span>哥，我有草原，可以放野（悍）马。</p>
+
+                        <p><span>刘强东</span>回复<span class="data-name">{weimicms:$user.truename}</span><span>：</span>就你了，今晚交车</p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </li>
+
+            <li>
+
+                <div class="po-avt-wrap">
+
+                    <img class="po-avt" src="./tpl/static/pengyouquanad/images/a7.jpg">
+
+                </div>
+
+                <div class="po-cmt">
+
+                    <div class="po-hd">
+
+                        <p class="po-name">金星</p>
+
+                        <p class="post">推荐关注公众号：{weimicms:$item.gongzhonghao}，搜索微信号ID：{weimicms:$item.gzhid}！<img src="{weimicms:$item.gzh_ewm}"></p>
+
+                        <p class="time">55分钟前</p><img class="c-icon" src="./tpl/static/pengyouquanad/images/c.png">
+
+                    </div>
+
+                    <div class="r"></div>
+
+                    <div class="cmt-wrap">
+
+                        <div class="cmt-list">
+
+                        <p><span class="data-name">{weimicms:$user.truename}</span><span>：</span>星姐，求虐，你这是赤裸裸的广告！</p>
+
+                        <p><span>金星</span>回复<span class="data-name">{weimicms:$user.truename}</span><span>：</span>推荐好东西给大家！</p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </li>
+
+        </ul>
+
+		</div>
+
+        <div id="share">
+
+            <a>生成朋友圈</a><a>惊呆小伙伴</a>
+
+            <p>（此朋友圈纯属虚构，逼格点截图转发图片至朋友圈）<br>聚合云 技术支持</p>
+          
+
+        </div>
+
+        <div id="guide" class="hide"></div>
+
+    </div>
+
+
+
+<script type="text/javascript">
+
+			window.shareData = {  
+
+					"moduleName":"Pengyouquanad",
+
+					"moduleID": '{weimicms:$item.id}',
+
+					"imgUrl": "{weimicms:$item.reply_pic}", 
+
+					"timeLineLink": "{weimicms::C('site_url')}{weimicms::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token']))}",
+
+					"sendFriendLink": "{weimicms::C('site_url')}{weimicms::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token']))}",
+
+					"weiboLink": "{weimicms::C('site_url')}{weimicms::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token']))}",
+
+					"tTitle": "{weimicms:$user.truename}的朋友圈装逼指南",
+
+					"tContent": "{weimicms:$item.intro}"
+
+				};
+
+				$("#share a").click(function() {
+
+                        $("#guide").show();
+
+                    });
+
+
+
+				$("#guide").click(function() {
+
+					$(this).hide();
+
+				});
+
+
+
+</script>
+
+{weimicms:$shareScript}
+
+</body>
+
+</html>

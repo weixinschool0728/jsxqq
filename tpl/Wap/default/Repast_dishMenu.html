@@ -1,0 +1,170 @@
+<include file="Repast:newheader" />
+<script type="text/javascript">
+<if condition="$isMember AND $discount gt 0">
+var discount="{weimicms:$discount}";
+<else/>
+var discount=0;
+</if>
+
+</script>
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/repastnew/js/dialog.js"></script>
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/repastnew/js/scroller.js"></script>
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/repastnew/js/dmain.js"></script>
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/repastnew/js/menu.js"></script>
+<body onselectstart="return true;" ondragstart="return false;">
+<script type="text/javascript">
+var totalPrice=totalNum=0;
+<php>if($cid>0){
+echo "var mycid=$cid;";
+  }else{
+echo "var mycid=0;";
+  }
+</php>
+
+function check_i_like(id,islove){
+	$.post("{weimicms::U('Repast/doLike', array('token'=>$token, 'cid'=>$cid, 'wecha_id'=>$wecha_id))}", {did:id,islove:islove}, function(msg){});			
+}
+var islock=false;
+function next(){
+	totalPrice=$.trim($('#allmoney').text());
+	totalPrice=parseFloat(totalPrice);
+	totalNum=$.trim($('#menucount').text());
+	totalNum=parseInt(totalNum);
+	if((totalNum>0) && (totalPrice>0)){
+		var data=getMenuChecklist();//[{'id':id,'count':count},{'id':id,'count':count}]
+		if((data.length>0) && !islock){
+			islock=true;
+			$('#nextstep').removeClass('orange show').addClass('gray disabled');
+			$.ajax({
+				type: "POST",
+				url: "{weimicms::U('Repast/processOrder', array('token'=>$token, 'cid'=>$cid, 'wecha_id'=>$wecha_id,'orid'=>$orid))}",
+				data: {"cart":data,"mycid":mycid},
+				async:true,
+				success: function(res){
+					islock=false;
+					$('#nextstep').removeClass('gray disabled').addClass('orange show');
+					if(res.error==0) //成功
+					{ 
+					  window.location.href="{weimicms::U('Repast/sureOrder', array('token'=>$token, 'cid'=>$cid, 'wecha_id'=>$wecha_id,'orid'=>$orid))}";
+					}else{
+					  alert(res.msg);
+					}
+				},
+				dataType: "json"
+			  });
+			}else{
+				return false;
+			}
+		}else{
+			return false;
+		}
+}
+
+</script>
+<div data-role="container" class="container menu">
+<section data-role="body">
+<div class="left">
+	<div class="top">
+		<div id="ILike"><a><span class="icon hartblckgray"></span>我喜欢</a></div>
+	</div>
+		<div class="top">
+		<div id="all_dish"><a><span></span>全部菜</a></div>
+	</div>
+	<div class="content">
+	<ul id="typeList"><!--class="on"-->
+		<if condition="!empty($fenleiarr)">
+			<weimicmslist array="fenleiarr" key="ik" foreach="item">
+			<li id="li_type{weimicms:$key}">{weimicms:$item}</li>
+			</weimicmslist>
+		</if>
+	</ul>
+	</div>
+</div>
+
+<div class="right" id="usermenu">
+<div class="all" id="menuList">
+	<if condition="!empty($disharr)">
+    <weimicmslist array="disharr" key="dk" foreach="ditem">
+	<ul id="ul_type{weimicms:$key}">
+	   <weimicmslist array="ditem" key="ddk" foreach="dditem">
+		<li id="dish_li{weimicms:$dditem['id']}" <if condition="$dditem['mylove'] eq 1">class="like"</if>>
+		 <div class="licontent">
+			<div class="span showPop">
+				<if condition="!empty($dditem['image'])">
+				<img src="{weimicms:$dditem['image']}" alt="" url="{weimicms:$dditem['image']}">
+				</if>
+				<if condition="$dditem['ishot'] eq 1">
+				 <span class="ishot" style="left: -5px;">推荐</span>
+				</if>
+			   <if condition="$isMember AND $discount gt 0 AND $dditem['isdiscount']">
+				 <span class="ishot" style="left: 55px;">{weimicms:$discount}折</span>
+				</if>
+			</div>
+			<div class="menudesc showPop">
+				<h3>{weimicms:$dditem['name']}</h3>
+				<p class="salenum">月售<span class="sale_num"> {weimicms:$dditem['m_sale']} </span><span class="theunit"><if condition="!empty($dditem['unit'])">{weimicms:$dditem['unit']}<else/>份</if></span>
+				<if condition="$kconoff eq 1">库存：{weimicms:$dditem['instock']}</if>
+				<!--<span class="sales"><strong class="sale_8"></strong></span>--></p>
+				<p class="mylovedish"> <span class="icon hart"><input autocomplete="off" class="thisdid" type="hidden" value="{weimicms:$dditem['id']}"></span></p>
+				<div class="info">{weimicms:$dditem['des']|htmlspecialchars_decode=ENT_QUOTES}</div>
+			</div>
+			<div class="price_wrap">
+				<strong>￥<span class="unit_price">{weimicms:$dditem['price']}<input type="hidden" class="tureunit_price" <if condition="isset($dditem['zkprice']) AND $dditem['zkprice'] gt 0">value="{weimicms:$dditem['zkprice']}"<else/>value="{weimicms:$dditem['price']}"</if>></span></strong>
+				<div class="fr" <if condition="$kconoff eq 1"> max="{weimicms:$dditem['instock']}" <else/>max="-1"</if>>
+				    <if condition="$kconoff eq 0 OR $dditem['instock'] gt 0">
+					 <a href="javascript:void(0);" class="btn plus" <php> if(isset($dditem['ornum']) && !empty($dditem['ornum'])) echo "data-num=".$dditem['ornum']; else echo "data-num=''";</php>></a>
+					</if>
+				</div>
+				<input autocomplete="off" class="number" type="hidden" name="dish[{weimicms:$dditem['id']}]" value="0">
+			</div>
+			</div>
+		</li>
+		</weimicmslist>
+	</ul>
+   </weimicmslist>
+  </if>
+ </div>
+</div>
+</section>
+</div>
+	<footer data-role="footer">			
+		<nav class="g_nav">
+			<div>
+				<span class="cart"></span>
+				<span> <span class="money">￥<label id="allmoney">0</label> </span>/<label id="menucount">0</label>个菜</span>
+				<a href="javascript:next();" class="btn gray disabled" id="nextstep">选好了</a>
+			</div>
+		</nav>
+	</footer>
+
+	<div class="menu_detail" id="menuDetail">
+		<img style="display: none;">
+		<div class="nopic"></div>
+		<a href="javascript:void(0);" class="comm_btn" id="detailBtn">来一份</a>
+		<dl>
+			<dt>价格：</dt>
+			<dd class="highlight">￥<span class="price"></span></dd>
+		</dl>
+		<p class="sale_desc"></p>
+		<dl class="desc">
+			<dt>介绍：</dt>
+			<dd class="info"></dd>
+		</dl>
+	</div>
+
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Repast",
+            "moduleID":"{weimicms:$company['id']}",
+            "imgUrl": "{weimicms:$company['logourl']}", 
+            "timeLineLink": "{weimicms::$f_siteUrl .  U('Repast/dishMenu',array('token' => $token,'cid'=>$cid))}",
+            "sendFriendLink": "{weimicms::$f_siteUrl .  U('Repast/dishMenu',array('token' => $token,'cid'=>$cid))}",
+            "tTitle": "{weimicms:$metaTitle}",
+            "tContent": "{weimicms:$metaTitle}"
+        };
+
+</script>
+{weimicms:$shareScript}
+
+</body>
+</html>

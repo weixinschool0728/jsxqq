@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+
+<html class="ui-mobile">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<base href=".">
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<title>情人节歌曲</title>
+<link rel="stylesheet" href="tpl/Wap/default/common/muscicar/mp3/jquery.mobile.mymin.css">
+<link href="tpl/Wap/default/common/muscicar/mp3/index.css" rel="stylesheet">
+<script src="tpl/Wap/default/common/muscicar/mp3/url.js"></script>
+<script src="tpl/Wap/default/common/muscicar/mp3/jquery.min.js" type="text/javascript"></script>
+<script src="tpl/Wap/default/common/muscicar/mp3/jquery.mobile.mymin.js"></script>
+<style>
+#tb1 tr {
+	height: 30px;
+ *height: 30px;
+	_height: 30px;
+}
+#tb1 td {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.btn_music {
+	background: url("tpl/Wap/default/common/muscicar/mp3/play.png") no-repeat scroll center center / 100% auto rgba(0, 0, 0, 0);
+	display: inline-block;
+	height: 35px;
+	left: 15px;
+	position: absolute;
+	top: 30px;
+	width: 35px;
+	z-index: 100;
+}
+.btn_music.on {
+	background-image: url("tpl/Wap/default/common/muscicar/mp3/stop.png");
+}
+.bfcolor {
+	color: red;
+}
+</style>
+</head>
+
+<body class="ui-mobile-viewport ui-overlay-c">
+<audio src="" loop id="myaudio" autoplay preload="none"></audio>
+<div data-role="page" id="wordShow" class="ui-responsive-panel ui-page ui-body-c ui-page-panel ui-page-active" data-url="wordShow" tabindex="0" style="min-height: 817px;">
+  <div class="ui-panel-content-wrap ui-body-c ui-panel-content-wrap-closed">
+    <div data-theme="d" data-role="header" style="background: linear-gradient(#F44E7A, #F44E7A) repeat scroll 0 0 #F44E7A;" class="ui-header ui-bar-d" role="banner"> <a id="backToSend" ui-icon="back" href="index.php#" onClick="window.history.back(-1);" data-dismissible="false" data-iconpos="notext" rel="external" data-transition="none" class="btnBack ui-btn-left ui-btn ui-btn-up-d ui-shadow ui-btn-corner-all ui-btn-icon-notext" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="d" title=""><span class="ui-btn-inner"><span class="ui-btn-text"></span></span></a>
+      <h2 style="font:&#39;Microsoft Yahei&#39;; font-size:1.1em;font-weight: 600 !important;;overflow:visible; " class="ui-title" role="heading" aria-level="1"><a id="themeName" style="text-decoration: none; color: #ffffff" class="ui-link">&nbsp;</a><a id="themeName" href="index.php#panelPop" style="color:#ffffff;position: absolute;right:10px;text-decoration: none;" class="ui-link">更多分类<em></em></a></h2>
+    </div>
+    <div data-role="content" id="content" class="content ui-content" style="padding:5px;margin-bottom:80px;" role="main">
+      <table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin:5px;" id="tb1">
+        <thead>
+          <tr>
+            <th width="40%" align="center" style="text-align:center">简介</th>
+            <th width="40%" align="center" style="text-align:center">操作</th>
+          </tr>
+        </thead>
+        <tbody id="tbodyid">
+          <tr>
+            <td align="center">父亲</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_0" onClick="playvoice(&#39;0&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/10.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_0" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/10.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">柔音乐</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_1" onClick="playvoice(&#39;1&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/7.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_1" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/7.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">Apologize</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_2" onClick="playvoice(&#39;2&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/Apologize.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_2" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/Apologize.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">Baby</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_3" onClick="playvoice(&#39;3&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/Baby.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_3" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/Baby.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">Cry On My Shoulder</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_4" onClick="playvoice(&#39;4&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/Cry On My Shoulder.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_4" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/Cry On My Shoulder.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">Hero</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_5" onClick="playvoice(&#39;5&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/Hero.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_5" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/Hero.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">Hey Oh</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_6" onClick="playvoice(&#39;6&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/Hey Oh.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_6" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/Hey Oh.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">Kiss</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_7" onClick="playvoice(&#39;7&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/Kiss.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_7" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/Kiss.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">Lemon Tree</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_8" onClick="playvoice(&#39;8&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/Lemon Tree.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_8" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/Lemon Tree.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">Love</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_9" onClick="playvoice(&#39;9&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/Love.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_9" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/Love.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">Mirror Mirror</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_10" onClick="playvoice(&#39;10&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/Mirror Mirror.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_10" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/Mirror Mirror.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">Qq</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_11" onClick="playvoice(&#39;11&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/Qq.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_11" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/Qq.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">The Magic Key</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_12" onClick="playvoice(&#39;12&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/The Magic Key.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_12" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/The Magic Key.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">The Saltwater Room</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_13" onClick="playvoice(&#39;13&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/The Saltwater Room.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_13" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/The Saltwater Room.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">Trouble Maker</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_14" onClick="playvoice(&#39;14&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/Trouble Maker.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_14" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/Trouble Maker.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">aimeili</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_15" onClick="playvoice(&#39;15&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/aimeili.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_15" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/aimeili.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">always_with_me</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_16" onClick="playvoice(&#39;16&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/always_with_me.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_16" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/always_with_me.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">anjing</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_17" onClick="playvoice(&#39;17&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/anjing.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_17" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/anjing.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">生日3</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_18" onClick="playvoice(&#39;18&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/birthday3.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_18" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/birthday3.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">生日1</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_19" onClick="playvoice(&#39;19&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/birthdaysound1.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_19" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/birthdaysound1.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">生日2</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_20" onClick="playvoice(&#39;20&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/birthdaysound2.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_20" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/birthdaysound2.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">流水轻音乐</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_21" onClick="playvoice(&#39;21&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/chongjiao.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_21" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/chongjiao.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">端午2</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_22" onClick="playvoice(&#39;22&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/duanwu2.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_22" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/duanwu2.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">古典</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_23" onClick="playvoice(&#39;23&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/gudian1.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_23" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/gudian1.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">将爱情进行到底</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_24" onClick="playvoice(&#39;24&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/hhwq.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_24" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/hhwq.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">ibelieve</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_25" onClick="playvoice(&#39;25&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/ibelieve.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_25" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/ibelieve.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">留着爱</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_26" onClick="playvoice(&#39;26&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/liuzheai.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_26" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/liuzheai.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">motianlun</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_27" onClick="playvoice(&#39;27&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/motianlun.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_27" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/motianlun.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">母亲节</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_28" onClick="playvoice(&#39;28&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/muqinjie.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_28" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/muqinjie.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">时间都去哪儿了</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_29" onClick="playvoice(&#39;29&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/naerqule.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_29" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/naerqule.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">那些花儿</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_30" onClick="playvoice(&#39;30&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/naxiehuaer.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_30" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/naxiehuaer.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">鸟叫</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_31" onClick="playvoice(&#39;31&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/niaojiao.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_31" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/niaojiao.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">飘摇</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_32" onClick="playvoice(&#39;32&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/piaoyao.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_32" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/piaoyao.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">轻音乐</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_33" onClick="playvoice(&#39;33&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/qingyinyue.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_33" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/qingyinyue.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">轻音乐1</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_34" onClick="playvoice(&#39;34&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/qingyinyue1.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_34" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/qingyinyue1.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">轻音乐10</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_35" onClick="playvoice(&#39;35&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/qingyinyue10.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_35" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/qingyinyue10.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">轻音乐11</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_36" onClick="playvoice(&#39;36&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/qingyinyue11.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_36" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/qingyinyue11.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">轻音乐14</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_37" onClick="playvoice(&#39;37&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/qingyinyue14.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_37" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/qingyinyue14.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">轻音乐15</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_38" onClick="playvoice(&#39;38&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/qingyinyue15.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_38" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/qingyinyue15.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">轻音乐4</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_39" onClick="playvoice(&#39;39&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/qingyinyue4.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_39" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/qingyinyue4.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">轻音乐5</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_40" onClick="playvoice(&#39;40&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/qingyinyue5.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_40" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/qingyinyue5.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">轻音乐8</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_41" onClick="playvoice(&#39;41&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/qingyinyue8.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_41" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/qingyinyue8.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">qiu1</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_42" onClick="playvoice(&#39;42&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/qiu1.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_42" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/qiu1.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">sc</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_43" onClick="playvoice(&#39;43&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/sc.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_43" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/sc.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">shijiandouqunaerle</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_44" onClick="playvoice(&#39;44&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/shijiandouqunaerle.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_44" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/shijiandouqunaerle.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">春天</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_45" onClick="playvoice(&#39;45&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/spring.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_45" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/spring.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">调皮</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_46" onClick="playvoice(&#39;46&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/tiaopi1.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_46" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/tiaopi1.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">我愿意</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_47" onClick="playvoice(&#39;47&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/woyuanyi.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_47" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/woyuanyi.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">下雨</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_48" onClick="playvoice(&#39;48&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/xiayu.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_48" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/xiayu.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">雪花快乐</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_49" onClick="playvoice(&#39;49&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/xuehuadekuaile2.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_49" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/xuehuadekuaile2.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">许嵩</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_50" onClick="playvoice(&#39;50&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/xusong.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_50" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/xusong.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">因为爱情</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_51" onClick="playvoice(&#39;51&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/yinweiaiqing.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_51" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/yinweiaiqing.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">有没有那么一个人</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_52" onClick="playvoice(&#39;52&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/youmeiyou.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_52" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/youmeiyou.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+          <tr>
+            <td align="center">致青春</td>
+            <td align="center"><a href="javascript:void(0)" class="alink ui-link" id="bf_53" onClick="playvoice(&#39;53&#39;, &#39;/tpl/Wap/default/common/muscicar/sound/zhiqingchun.mp3&#39;)">播放</a> | <a href="javascript:void(0)" id="set_53" onClick="goheka(&#39;/tpl/Wap/default/common/muscicar/sound/zhiqingchun.mp3&#39;)" class="ui-link">设为背景音乐</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div data-role="panel" id="panelPop" class="panelPop ui-panel ui-panel-position-right ui-panel-display-overlay ui-panel-closed ui-body-d" data-theme="d" data-transition="none" data-animate="false" style="margin-bottom:" data-position="right" data-swipe-close="false" data-display="overlay">
+    <div class="ui-panel-inner">
+      <div class="panel-content">
+        <label>更多分类</label>
+        <ul data-role="listview" data-theme="none" id="festival" class="ui-listview">
+          <a option-id="0" onClick="choosecat(this)" style="text-decoration:none" class="active ui-link">通用歌曲</a> 
+          <!--{ <a option-id="1" onClick="choosecat(this)" style="text-decoration:none">伤感歌曲</a>
+				   <a option-id="2" onClick="choosecat(this)" style="text-decoration:none">明星提醒</a>
+                   <a option-id="3" onClick="choosecat(this)" style="text-decoration:none">明星道歉</a>
+				   <a option-id="4" onClick="choosecat(this)" style="text-decoration:none">明星友情速递</a>
+				   <a option-id="5" onClick="choosecat(this)" style="text-decoration:none">明星爱情速递</a>
+				   <a option-id="6" onClick="choosecat(this)" style="text-decoration:none">明星生日祝福</a>
+                   <a option-id="7" onClick="choosecat(this)" style="text-decoration:none">生日歌曲</a>
+				   <a option-id="8" onClick="choosecat(this)" style="text-decoration:none">节日专用歌曲</a>
+				   <a option-id="9" onClick="choosecat(this)" style="text-decoration:none">新年祝福</a>
+				   <a option-id="10" onClick="choosecat(this)" style="text-decoration:none">非主流</a>
+                   <a option-id="11" onClick="choosecat(this)" style="text-decoration:none">流行</a>
+				   <a option-id="12" onClick="choosecat(this)" style="text-decoration:none">欧美</a>
+				   <a option-id="13" onClick="choosecat(this)" style="text-decoration:none">经典</a>
+				   <a option-id="14" onClick="choosecat(this)" style="text-decoration:none">情侣爱人专用</a>}-->
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="ui-panel-dismiss" data-panelid="panelPop"></div>
+</div>
+<script type="text/javascript">
+        function goheka(url) {
+	var	mus_path=url;
+      
+ss="index.php?g=Wap&m=Musiccar&a=index&token={weimicms:$token}&wecha_id={weimicms:$wecha_id}&tx={weimicms:$tx}&note={weimicms:$note}$name={weimicms:$name}&time=2014-12-01&pic=&bigpic={weimicms:$bigpic}&mus=/tpl/Wap/default/common/muscicar/sound/qingyinyue15.mp3";
+
+ss=setUrlParam('mus',mus_path,ss);
+
+
+     location.href = ss;
+
+          // window.location.href = ss;
+        }
+        function choosecat(obj) {
+			var typeid = $(obj).attr("option-id");
+			//var ss = "voice/"+typeid;
+   
+           // window.location.href = ss; 分类跳转
+        }
+        function playvoice(id, path) {
+			if ($("#bf_" + id).html() == "播放") {
+				$(".alink").html("播放");
+				$(".alink").removeClass("bfcolor");
+				$("#bf_" + id).html("暂停");
+				$("#bf_" + id).addClass("bfcolor");
+				var myAuto = document.getElementById('myaudio');
+			   
+				myAuto.src = path;
+			   myAuto.play();
+				myAuto.addEventListener("canplaythrough", function() {
+					
+				}, false);
+			} else {
+				$("#audio").attr("src", "");
+				$("#bf_" + id).html("播放");
+				$("#bf_" + id).removeClass("bfcolor");
+				var myAuto = document.getElementById('myaudio');
+				myAuto.src = "";
+				myAuto.pause();
+			}
+        }
+			
+		$("#themeName").text($(".active").text());
+		$("title").text($(".active").text());
+    </script>
+<div class="ui-loader ui-corner-all ui-body-a ui-loader-default"><span class="ui-icon ui-icon-loading"></span>
+  <h1>loading</h1>
+</div>
+</body>
+</html>

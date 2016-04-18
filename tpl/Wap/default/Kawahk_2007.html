@@ -1,0 +1,131 @@
+
+<html>
+  <head>
+    <title>做一只励志的鸡蛋</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+     <include file="Kawahk:js"/> 
+	<script type="text/javascript">
+            initViewport();
+    </script>
+
+	<script src="tpl/Wap/default/common/kawahk/2007/jquery.min.js"></script>
+	<script src="tpl/Wap/default/common/kawahk/2007/jquery.innerfade1.js" type="text/javascript"></script>
+	
+	
+	<style type="text/css">
+		#mozhi img {border:0px; position:absolute;}
+		body
+		{
+			/*background-color: ;*/
+			background:#ffffff;
+			margin: 0;
+			
+		}
+		html { overflow-y:hidden; }
+	</style>
+
+
+    <script>
+		gSizeMode = 'bodywidth';
+		gAnimateMode = 'left';
+		gSound = 'http://pds27.egloos.com/pds/201310/27/32/zhiqingchun.mp3';
+		gColor = '#ff6600';
+		gTextAreaLeft = 0.04;
+		gTextAreaTop = 0.03;
+		gTextAreaWidth = 0.9;
+		gTextAreaHeight = 0.3;
+		gCardTextNoWrap ='从今天起，努力，加油，做一只从内成长的鸡蛋！';
+		gCardText ='从今天起，努力，加油，做一只从内成长的鸡蛋！';
+	// script place
+	</script>
+	 <script>
+	// script place
+        	words = '从今天起，努力，加油，做一只从内成长的鸡蛋！';
+
+            kawa_data = {
+                words 			   : words,
+               <if condition=" $words eq ''">
+				replace_words      : '从今天起，努力，加油，做一只从内成长的鸡蛋！',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+                text_box           : '50 80 450 50', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+                mode               : 'left',     // up, left
+                speed              : 40,     // 每秒移动的像素
+                text_color         : '#ff6600', // rgb(1,2,3) 'black'
+                font_size          : '30pt',
+                line_height        : '30pt',
+                //text_align         : 'center',
+                font_weight        : 'bold',
+                music              : 'http://sound.kagirl.net/sound/zhiqingchun.mp3',     // url
+                 <if condition=" $music eq ''">
+				replace_music      : 'http://sound.kagirl.net/sound/zhiqingchun.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+                music_name         : '',
+                replace_music_name : '#replace_music_name#',
+                icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/fengmian/x2007.jpg',
+                title              : '做一只励志的鸡蛋',
+                desc               : words,
+                modify             : 'no',
+                replace_modify     : 'yes',
+                cardid             : '2007',
+                share_url          : window.location.href,   // 当分享的是微信页面时才需要改这里
+                font_ip            : '115.28.135.41:8000',
+                modify_optfile     : 'xinqing',
+                modify_optwords    : '#modify_optwords#',
+                show_words         : 'yes',
+                write_param_1      : 'inputtype=singleline&showsel=no&prompt=' + encodeURIComponent('输入对方的名字：')
+            };
+        </script>
+
+    </head>
+  <body onload="kawa_init()" style="overflow:hidden">
+  
+	<div id="mozhi">
+		<img src="tpl/Wap/default/common/kawahk/2007/T2TJKDXxpaXXXXXXXX_!!1857839951.jpg_728x728.jpg"  style="left:0%;top:0%" />	
+		<img src="http://img04.taobaocdn.com/imgextra/i4/1857839951/T2SSNmXC4aXXXXXXXX_!!1857839951.jpg_728x728.jpg"  style="left:0%;top:0%" />
+		<img src="tpl/Wap/default/common/kawahk/2007/T2Y5yFXpRaXXXXXXXX_!!1857839951.jpg_728x728.jpg"  style="left:0%;top:0%" />
+		<img src="tpl/Wap/default/common/kawahk/2007/T26EiJXwRXXXXXXXXX_!!1857839951.jpg_728x728.jpg"  style="left:0%;top:0%" />	
+		<img src="http://img03.taobaocdn.com/imgextra/i3/1857839951/T2nCMJXc0bXXXXXXXX_!!1857839951.jpg_728x728.jpg"  style="left:0%;top:0%" />
+		<img src="http://img03.taobaocdn.com/imgextra/i3/1857839951/T2HhCMXqXXXXXXXXXX_!!1857839951.jpg_728x728.jpg"  style="left:0%;top:0%" />
+		<img src="http://img03.taobaocdn.com/imgextra/i3/1857839951/T2DiWFXv4aXXXXXXXX_!!1857839951.jpg_728x728.jpg"  style="left:0%;top:0%" />	
+		<img src="http://img04.taobaocdn.com/imgextra/i4/1857839951/T20I5JXBBXXXXXXXXX_!!1857839951.jpg_728x728.jpg"  style="left:0%;top:0%" />
+		<img src="tpl/Wap/default/common/kawahk/2007/T2mPmXXBVaXXXXXXXX_!!1857839951.jpg_728x728.jpg"  style="left:0%;top:0%" />
+		<img src="http://img04.taobaocdn.com/imgextra/i4/1857839951/T2F4etXApaXXXXXXXX_!!1857839951.jpg_728x728.jpg"  style="left:0%;top:0%" />
+		<img src="http://img04.taobaocdn.com/imgextra/i4/1857839951/T2oneLXqBXXXXXXXXX_!!1857839951.jpg_728x728.jpg"  style="left:0%;top:0%" />
+	</div>
+  
+	
+
+	<script>
+	$(document).ready(function(){
+		var audio = document.getElementById('bgsound');
+		audio.src = gSound;
+		audio.play();
+
+		//图片淡入淡出
+		$("#mozhi img:not(:first-child)").hide(); ///隐藏第一幅以外的图片
+		
+		$("#mozhi").innerfade({
+			animationtype: 'fade',
+			speed: 2000,
+			timeout: 4500,
+			type: 'sequence',
+			autoStop: 'yes',
+			reloadWeb: '2007.htm',
+			replayImgURL: 'http://tu.kagirl.net/images/replay.png',
+			replayLeft: '75%',
+			replayTop: '65%'
+		});	
+		
+		onLoad();
+				
+	});
+	</script>
+
+
+
+	<div id="ruler" style="width:100%;height:0"></div>
+
+  </body>
+</html>

@@ -1,0 +1,31 @@
+
+	<if condition="ACTION_NAME eq 'index'">
+		<script type="text/javascript">
+			window.shareData = {  
+					"moduleName":"Index",
+					"moduleID": "0",
+					"imgUrl": "{weimicms:$homeInfo.picurl}", 
+					"timeLineLink": "{weimicms::C('site_url')}{weimicms::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token']))}",
+					"sendFriendLink": "{weimicms::C('site_url')}{weimicms::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token']))}",
+					"weiboLink": "{weimicms::C('site_url')}{weimicms::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token']))}",
+					"tTitle": "{weimicms:$homeInfo.title}",
+					"tContent": "{weimicms:$homeInfo.info}"
+				};
+		</script>
+	<else />
+		<script type="text/javascript">
+			window.shareData = {  
+				"moduleName":"NewsList",
+				"moduleID": "{weimicms:$_GET['classid']|intval}",
+				"imgUrl": "{weimicms:$thisClassInfo.img}", 
+				"timeLineLink": "{weimicms::C('site_url')}{weimicms::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid']))}",
+				"sendFriendLink": "{weimicms::C('site_url')}{weimicms::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid']))}",
+				"weiboLink": "{weimicms::C('site_url')}{weimicms::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid']))}",
+				"tTitle": "{weimicms:$thisClassInfo.name}",
+				"tContent": "{weimicms:$thisClassInfo.info}"
+			};
+		</script>	
+	
+	</if>
+	
+{weimicms:$shareScript}

@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>跟进记录 -  {weimicms:$jjrcopyright}</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+        <link rel="stylesheet" type="text/css" href="{weimicms::RES}/jjr/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="{weimicms::RES}/jjr/css/hkb.css" />
+    <link rel="stylesheet" type="text/css" href="{weimicms::RES}/jjr/css/zydialog.css" />
+    <link rel="stylesheet" type="text/css" href="{weimicms::RES}/jjr/css/jBox.css" />
+    <link rel="stylesheet" type="text/css" href="{weimicms::RES}/jjr/css/ui.css" />
+    <link rel="stylesheet" type="text/css" href="{weimicms::RES}/jjr/css/datepicker.css" />
+    <link rel="stylesheet" type="text/css" href="{weimicms::RES}/jjr/css/font-awesome.css" />
+     <script type="text/javascript" src="{weimicms::RES}/jjr/js/jquery.js"></script>
+    <script type="text/javascript" src="{weimicms::RES}/jjr/js/dot.js"></script>
+    <script type="text/javascript" src="{weimicms::RES}/jjr/js/jBox.js"></script>
+    <script type="text/javascript" src="{weimicms::RES}/jjr/js/ui.js"></script>
+    <script type="text/javascript" src="{weimicms::RES}/jjr/js/jquery.bgiframe.js"></script>
+    <script type="text/javascript" src="{weimicms::RES}/jjr/js/zydialog.js"></script>
+    <script type="text/javascript" src="{weimicms::RES}/jjr/js/datepicker.js"></script>
+    <script type="text/javascript" src="{weimicms::RES}/jjr/js/base.js"></script>
+    <script type="text/javascript" src="{weimicms::RES}/jjr/js/hkb.js"></script>
+   
+</head>
+<body> 
+    <div class="all2">
+
+<div class="max-640 pb50" id="q-height">
+    <div class="m-uimgct2 clearfix"></div>
+    <p class="m-lsttt f20 clearfix">
+        <span class="ml15 fl" style="width:79%；overflow: hidden;"></span>
+    </p>
+    <div class="wbfb">
+    	 <div class="m-zmmx clearfix"> 
+                    	<volist name='recordinfo' id='list'>         
+                        <div class="fl f16" style="width:70%">
+                            <p class="sd">
+                              {weimicms:$list.note}
+							</p>
+                            <p class="mt10 hcolor">{weimicms:$list.checktime|date="Y-m-d h:i",###}</p>
+                        </div>
+                        <div class="fr" style="width:25%">
+                            <p class="f24 tr" style=" color:#ff6c00;"> 
+                                 <if condition="$list.statue eq '1'"> 
+                                            已登记
+                                            <elseif condition="$list.statue eq '2'"/>
+                                            已到访
+                                            <elseif condition="$list.statue eq '3'"/>
+                                            已认筹
+                                            <elseif condition="$list.statue eq '4'"/>
+                                            已认购
+                                            <elseif condition="$list.statue eq '5'"/>
+                                            已签约
+                                            <elseif condition="$list.statue eq '6'"/>
+                                            已打款
+                                        </if> 
+                             </p>
+                            <p class="mt5 sd tr f16"> 
+							<if condition="$list.checkstatus eq '0'"> 待审核</if>
+							<if condition="$list.checkstatus eq '2'"> 已发放</if>
+							<if condition="$list.checkstatus eq '3'"> 拒绝</if>
+							 </p>
+                        </div> 
+                        </volist>
+               		 </div>  
+            </div>
+</div>
+    </div>
+    
+</body>
+</html>
+<script> 

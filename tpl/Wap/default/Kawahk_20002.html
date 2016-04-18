@@ -1,0 +1,372 @@
+
+<html>  
+<head>  
+<meta http-equiv="content-type" content="text/html; charset=utf-8">  
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <include file="Kawahk:js"/> 
+        <script type="text/javascript">
+            initViewport();
+        </script>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<meta name="format-detection" content="telephone=no">
+<title>送给你</title>  
+		
+		<style type="text/css">
+        #back
+        {
+            -webkit-mask-image:url(tpl/Wap/default/common/kawahk/20002/mask1.png);
+            -webkit-mask-repeat:no-repeat;
+            -webkit-mask-position:185px 259px;
+            -webkit-mask-size:24%;
+        }
+
+		@-webkit-keyframes mozhimove
+		{
+			from{-webkit-mask-size:24%;-webkit-mask-position:185px 259px;}
+			to{-webkit-mask-size:350%;-webkit-mask-position:-750px -190px;}
+		}
+        @-webkit-keyframes showmoshui
+        {
+            0%{opacity: 0;-webkit-transform:sclae(1,1);}
+            3%{opacity: 1;-webkit-transform:sclae(1,1);}
+            50%{opacity: 1;-webkit-transform:scale(1.2,1.2);}
+            100%{opacity:0;-webkit-transform:scale(1.2,1.2);}
+        }
+        @-webkit-keyframes lightmove
+        {
+            from{opacity: 1;-webkit-transform:scale(1.5,1.5);}
+            to{opacity: 0;-webkit-trnsform:scale(0.5,0.5);}
+        }
+        @-webkit-keyframes rotateleaf
+        {
+            0%{-webkit-transform:rotate(0deg);}
+            25%{-webkit-transform:rotate(1deg);}
+            50%{-webkit-transform:rotate(-1deg);}
+            100%{-webkit-transform:rotate(0deg);}
+        }
+        @-webkit-keyframes rotateing
+        {
+            from{-webkit-transform:rotate(0deg);}
+            to{-webkit-transform:rotate(20deg);}
+        }
+        @-webkit-keyframes zhiwumove
+        {
+            from{-webkit-transform:translate(0px,0px);}
+            to{-webkit-transform:translate(160px,-100px);}
+        }
+        @-webkit-keyframes showjiange
+        {
+            from{opacity: 0}
+            to{opacity: 1}
+        }
+        @-webkit-keyframes leaf1
+        {
+            0%{-webkit-transform:rotate(-30deg);}
+            25%{-webkit-transform:rotate(-28deg);}
+            75%{-webkit-transform:rotate(-32deg);}
+            100%{-webkit-transform:rotate(-30deg);}
+        }
+
+        @-webkit-keyframes leaf2
+        {
+            0%{-webkit-transform:rotate(30deg) scale(-1,1);}
+            25%{-webkit-transform:rotate(28deg) scale(-1,1);}
+            75%{-webkit-transform:rotate(32deg) scale(-1,1);}
+            100%{-webkit-transform:rotate(30deg) scale(-1,1);}
+        }
+
+        @-webkit-keyframes leaf3
+        {
+            0%{-webkit-transform:rotate(0deg) scale(-0.6,0.6);}
+            25%{-webkit-transform:rotate(5deg) scale(-0.6,0.6);}
+            75%{-webkit-transform:rotate(-5deg) scale(-0.6,0.6);}
+            100%{-webkit-transform:rotate(0deg) scale(-0.6,0.6);}
+        }
+
+        @-webkit-keyframes leaf4
+        {
+            0%{-webkit-transform:scale(-1,1) rotate(-5deg)}
+            25%{-webkit-transform:scale(-1,1) rotate(-3deg)}
+            75%{-webkit-transform:scale(-1,1) rotate(-7deg)}
+            100%{-webkit-transform:scale(-1,1) rotate(-5deg)}
+        }
+        @-webkit-keyframes leaf5
+        {
+            0%{-webkit-transform:rotate(-5deg);}
+            25%{-webkit-transform:rotate(-3deg);}
+            75%{-webkit-transform:rotate(-7deg);}
+            100%{-webkit-transform:rotate(-5deg);}
+        }
+        @-webkit-keyframes leaf6
+        {
+            0%{-webkit-transform:scale(-0.6,0.6) rotate(90deg)}
+            25%{-webkit-transform:scale(-0.6,0.6) rotate(85deg)}
+            75%{-webkit-transform:scale(-0.6,0.6) rotate(95deg)}
+            100%{-webkit-transform:scale(-0.6,0.6) rotate(90deg)}
+        }
+        @-webkit-keyframes leaf7
+        {
+            0%{-webkit-transform:rotate(0deg);}
+            25%{-webkit-transform:rotate(-2deg);}
+            75%{-webkit-transform:rotate(2deg);}
+            100%{-webkit-transform:rotate(0deg);}
+        }
+
+        @-webkit-keyframes leaf10
+        {
+            0%{-webkit-transform:rotate(0deg);}
+            25%{-webkit-transform:rotate(-2deg);}
+            75%{-webkit-transform:rotate(2deg);}
+            100%{-webkit-transform:rotate(0deg);}
+        }
+        @-webkit-keyframes leaf11
+        {
+            0%{-webkit-transform:scale(-1,1) rotate(20deg)}
+            25%{-webkit-transform:scale(-1,1) rotate(18deg)}
+            75%{-webkit-transform:scale(-1,1) rotate(22deg)}
+            100%{-webkit-transform:scale(-1,1) rotate(20deg)}
+        }
+
+        @-webkit-keyframes leaf12
+        {
+            0%{-webkit-transform:scale(1,-1) rotate(-30deg);}
+            25%{-webkit-transform:scale(1,-1) rotate(-27deg);}
+            75%{-webkit-transform:scale(1,-1) rotate(-33deg);}
+            100%{-webkit-transform:scale(1,-1) rotate(-30deg);}
+        }
+        @-webkit-keyframes uptable
+        {
+            from{-webkit-transform:translate(0px,0px) }
+            to{-webkit-transform:translate(0px,-100px)}
+        }
+        @-webkit-keyframes clickmove
+        {
+            from{-webkit-transform:scale(1,1);}
+            to{-webkit-transform:scale(1.1,1.1);}
+        }
+        @-webkit-keyframes disimg
+        {
+            from{opacity: 1}
+            to{opacity: 0}
+        }
+		</style>
+	</head><!--  -->
+	<body style="margin:0; height: 100%;background-color:black;" onload='Init()' >	
+	
+        <script>
+        	words = '一年很慢，又很快。钟表可以回到起点，却已不是昨天。日历撕下一页简单，把握一天很难。2014只剩最后几天，若是美好，叫做精彩；若是糟糕，叫做经历。不再迟疑，不再纠结，过去的就过去了，不要回味，努力向前。祝愿我的朋友们2015年，快乐握在手，好运身边留，幸福相伴走！';
+
+            kawa_data = {
+                words 			   : words,
+				<if condition="$words eq ''"><else/>
+                replace_words      : '{weimicms:$words}',
+				</if>
+                text_box           : '30 30 450 250', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+                mode               : 'up',     // up, left
+                speed              : 50,     // 每秒移动的像素
+                text_color         : '#000000', // rgb(1,2,3) 'black'
+                font_size          : '30pt',
+                line_height        : '45pt',
+                music              : 'http://kawaweika.qiniudn.com/sound/zhiqingchun.mp3',     // url
+                replace_music      : '#replace_music#',
+                music_name         : '',
+                  <if condition=" $music eq ''">
+				replace_music      : 'tttp://kawaweika.qiniudn.com/sound/zhiqingchun.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+                icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/fengmian/x20002.jpg',
+                title              : '送给你',
+                desc               : words,
+                modify             : 'yes',
+                replace_modify     : 'yes',
+                cardid             : '20002_1',
+                share_url          :  window.location.href,  // 当分享的是微信页面时才需要改这里
+                font_ip            : '115.28.135.41:8000',
+                font_family        : 'mnjgl',
+                modify_optfile     : '10020',
+                modify_optwords    : '#modify_optwords#',
+                show_words         : 'no'
+            };
+        </script>
+        <script src='kawamoviejs?ver=26'></script>
+        <script type="text/javascript">
+        function id(name)
+        {
+        	return document.getElementById(name);
+        }
+
+        function Init () {
+
+            kawa_init();
+            id('clickme').style.display='block';
+            // id('back').style.opacity=1;
+            id('clickme').style.webkitAnimation='clickmove 0.5s linear infinite alternate';
+            
+
+            // id('back').className='backclass';
+        }
+        function toclickme()
+        {
+            // ;
+            // if(id('clickme').style.webkitAnimation==null)
+            //     return;
+            setTimeout(show_textdiv,10000);
+            id('clickme').style.display='none';
+            
+            id('moshui').style.webkitAnimation='showmoshui 0.5s linear forwards';
+            id("cover").style.display="none";
+            id('jiange').style.webkitAnimation='showjiange 2s linear 9s forwards';
+            id('second').style.webkitAnimation='showjiange 2s linear 10s forwards';
+            id('guanzi').style.webkitAnimation='uptable 5s linear 9s forwards';
+            id('zhiwu').style.webkitAnimation='zhiwumove 6s linear 1s forwards';
+   
+            id('font1').style.webkitAnimation='showjiange 2s linear 6s forwards';
+            id('font2').style.webkitAnimation='showjiange 2s linear 7.5s forwards';
+            id('back').style.opacity=1;
+            setTimeout(
+                function()
+                {
+                    
+                    // id('back').style.webkitMaskSize='24%';
+                    // 
+                    id('back').style.webkitAnimation='mozhimove 3s ease-in forwards';
+                    
+                },800);
+            // setTimeout('id("cover").style.display="none"',2000);
+        }
+
+        </script>
+        <div style='height:815px;width:500px;background-color:black;'>
+        	
+        	<img id='front' src='tpl/Wap/default/common/kawahk/20002/20002_3.jpg' style='position:absolute;left:0px;top:0px;'>
+        	<!-- <img id='back' src='http://hg.jielanhua.cn/ps/mozhi/lvse.jpg'  style='position:absolute;left:0px;top:0px;height:750px;width:500px;'> -->
+        	
+
+            <div id='back' style='position:absolute;height:815px;width:500px;background-image:url(tpl/Wap/default/common/kawahk/20002/101.jpg);left:0px;top:0px;opacity:0;'>
+
+                <img id='font1' src='tpl/Wap/default/common/kawahk/20002/font1.png' style='position:absolute;left:300px;top:20px;opacity:0'>
+                <img id='font2' src='tpl/Wap/default/common/kawahk/20002/font2.png' style='position:absolute;left:240px;top:60px;opacity:0'>
+
+                    <div style='position:absolute;-webkit-transform:rotate(90deg);left:280px;top:400px;'>
+                        <img src='tpl/Wap/default/common/kawahk/20002/001.png' style='position:absolute;-webkit-animation:lightmove 2s linear infinite alternate;'>
+                    </div>
+                    <img src='tpl/Wap/default/common/kawahk/20002/001.png' style='position:absolute;left:250px;top:420px;-webkit-animation:lightmove 1.5s linear 0.5s infinite alternate'>
+                    <img src='tpl/Wap/default/common/kawahk/20002/001.png' style='position:absolute;left:400px;top:500px;-webkit-animation:lightmove 2.2s linear 0.2 infinite alternate'>
+                    <img src='tpl/Wap/default/common/kawahk/20002/001.png' style='position:absolute;left;50px;top:600px;-webkit-animation:lightmove 1.8s linear 0.5s infinite alternate'>
+                    <img src='tpl/Wap/default/common/kawahk/20002/001.png' style='position:absolute;left:100px;top:580px;-webkit-animation:lightmove 1.5s linear 0.5 infinite alternate'>
+                    <img src='tpl/Wap/default/common/kawahk/20002/002.png' style='position:absolute;left:250px;top:550px;-webkit-animation:lightmove 2s linear 0.6s infinite alternate'>
+                    <img src='tpl/Wap/default/common/kawahk/20002/002.png' style='position:absolute;left:100px;top:500px;-webkit-animation:lightmove 2.5s linear 0.8s infinite alternate'>
+                    <img src='tpl/Wap/default/common/kawahk/20002/002.png' style='position:absolute;left:350px;top:610px;-webkit-animation:lightmove 2.3s linear 0.5s infinite alternate'>
+                    <img src='tpl/Wap/default/common/kawahk/20002/002.png' style='position:absolute;left:420px;top:630px;-webkit-animation:lightmove 1.6s linear 0.4s infinite alternate'>
+                    <img src='tpl/Wap/default/common/kawahk/20002/002.png' style='position:absolute;left:380px;top:650px;-webkit-animation:lightmove 2s linear 0.6s infinite alternate'>
+
+                <div id='zhiwu' style='position:absolute;height:750px;width:500px;left:-160px;top:100px;'>
+
+                    <img src='tpl/Wap/default/common/kawahk/20002/102-1.png' style='position: absolute; top: 430; left: 30;-webkit-animation:rotateleaf 4s linear infinite;-webkit-transform-origin:0% 0%'>
+                    <img src='tpl/Wap/default/common/kawahk/20002/102-1.png' style='position: absolute; top: 150; left: -20;-webkit-animation:rotateleaf 4s linear 1s infinite;-webkit-transform-origin:0% 0%'>
+
+                    <img src='tpl/Wap/default/common/kawahk/20002/102-2.png' style='position: absolute; top: 100; left: -60;-webkit-animation:rotateleaf 4s linear infinite;-webkit-transform-origin:0% 50%'>
+
+                    <img src='tpl/Wap/default/common/kawahk/20002/102-3.png' style='position: absolute; top: 300;-webkit-animation:rotateing 2s linear infinite 1s alternate;-webkit-transform-origin:50% 50%'>
+                    <img src='tpl/Wap/default/common/kawahk/20002/102-4.png' style='position: absolute; top: 200;-webkit-animation:rotateing 2s linear infinite alternate;-webkit-transform-origin:50% 50%'>
+                    <img src='tpl/Wap/default/common/kawahk/20002/102-4.png' style='position: absolute; top: 100; left: -50;-webkit-animation:rotateing 2s linear infinite 1s alternate;-webkit-transform-origin:50% 50%'>
+                    <img src='tpl/Wap/default/common/kawahk/20002/102-4.png' style='position: absolute; top: 320; left: -80;-webkit-animation:rotateing 2s linear infinite alternate;-webkit-transform-origin:50% 50%'>
+                    <img src='tpl/Wap/default/common/kawahk/20002/102-4.png' style='position: absolute; top: 200; left: -43px;-webkit-animation:rotateing 2s linear infinite 1s alternate;-webkit-transform-origin:50% 50%'>
+
+
+                    <img src='tpl/Wap/default/common/kawahk/20002/103-1.png' style='position: absolute; top: 350; left: 20;-webkit-animation:rotateleaf 3.5s linear infinite alternate;-webkit-transform-origin:0% 50%;'>
+                    <img src='tpl/Wap/default/common/kawahk/20002/103-1.png' style='position: absolute; top: 180; left: -200;-webkit-animation:rotateleaf 3.5s linear infinite alternate;-webkit-transform-origin:0% 50%;'>
+                    <img src='tpl/Wap/default/common/kawahk/20002/103-2.png' style='position: absolute; top: 30; left: 30;-webkit-animation:rotateleaf 3s linear 0.2s infinite alternate;-webkit-transform-origin:0% 100%;'>
+                    <img src='tpl/Wap/default/common/kawahk/20002/103-3.png' style='position: absolute; top: 280; left: 50;-webkit-animation:rotateleaf 3.5s linear 0.5s infinite alternate;-webkit-transform-origin:0% 100%;'>
+
+                    <img src='tpl/Wap/default/common/kawahk/20002/103-4.png' style='position: absolute; top: 450;-webkit-animation:rotateing 2s linear infinite alternate;'>
+                    <img src='tpl/Wap/default/common/kawahk/20002/103-4.png' style='position: absolute; top: 350; left: 50;-webkit-animation:rotateing 2s linear infinite 1s alternate;'>
+
+                    <img src='tpl/Wap/default/common/kawahk/20002/103-5.png' style='position: absolute; top: 500; left: -150;-webkit-animation:rotateleaf 4.3s linear 0.6s infinite alternate;-webkit-transform-origin:0% 0%;'>
+                    <img src='tpl/Wap/default/common/kawahk/20002/103-6.png' style='position: absolute; top: 200; left: -50;-webkit-animation:rotateleaf 4.5s linear 0.5s infinite alternate;-webkit-transform-origin:0% 100%;'>
+                    <img src='tpl/Wap/default/common/kawahk/20002/103-7.png' style='position: absolute; left: -20; top: 50;-webkit-animation:rotateleaf 3.2s linear 0.6s infinite alternate;-webkit-transform-origin:0% 100%;'>
+                    <img src='tpl/Wap/default/common/kawahk/20002/103-8.png' style='position: absolute; top: 450; left: -100;-webkit-animation:rotateleaf 2.9s linear 0.1s infinite alternate;-webkit-transform-origin:0% 0%;'>
+                    <img src='tpl/Wap/default/common/kawahk/20002/103-9.png' style='position: absolute; top: 100; left: -150;-webkit-animation:rotateleaf 4s linear 0.5s infinite alternate;-webkit-transform-origin:0% 50%;'>
+                    <img src='tpl/Wap/default/common/kawahk/20002/103-10.png' style='position: absolute; top: 450; left: -100;-webkit-animation:rotateleaf 3.5s linear 0.2s infinite alternate;-webkit-transform-origin:0% 100%;'>
+                </div>
+            </div>
+
+            <div id='jiange' style='height:815px;width:500px;background-color:white;position:absolute;opacity:0;'>
+            </div>
+
+            <div id='second' style='position:absolute;height:815px;width:500px;top:0px;left:0px;background-image:url(tpl/Wap/default/common/kawahk/20002/301.jpg);opacity:0;overflow:hidden;'>
+
+                <img src='tpl/Wap/default/common/kawahk/20002/204-3.png' style='position: absolute; width: 60; left: 80; top: 210;-webkit-animation:rotateleaf 3.7s linear 0.7s infinite;-webkit-transform-origin:80% 100%'>
+                <img src='tpl/Wap/default/common/kawahk/20002/204-3.png' style='position: absolute; width: 70; left: 50; top: 250;-webkit-animation:rotateleaf 4.3s linear 0.4s infinite;-webkit-transform-origin:80% 100%'>
+                <img src='tpl/Wap/default/common/kawahk/20002/204-3.png' style='position: absolute; width: 50; left: 190; top: 220;-webkit-animation:rotateleaf 4.1s linear 0.3s infinite;-webkit-transform-origin:80% 100%'>
+                
+                <img src='tpl/Wap/default/common/kawahk/20002/204-4.png' style='position: absolute; width: 50; top: 250; left: 150;-webkit-animation:rotateleaf 3.9s linear 0.5s infinite;-webkit-transform-origin:80% 100%'>
+                <img src='tpl/Wap/default/common/kawahk/20002/204-4.png' style='position: absolute; width: 50; top: 250;-webkit-animation:rotateleaf 4.2s linear 0.6s infinite;-webkit-transform-origin:80% 100%'>
+                <img src='tpl/Wap/default/common/kawahk/20002/204-4.png' style='position: absolute; width: 50; top: 250; left: 230;-webkit-animation:rotateleaf 4.4s linear 1s infinite;-webkit-transform-origin:80% 100%'>
+
+                <img src='tpl/Wap/default/common/kawahk/20002/204-1.png' style='position: absolute; width: 70; left: 200; top: 300;-webkit-animation:rotateleaf 4s linear 0.1s infinite;-webkit-transform-origin:40% 100%'>
+                <img src='tpl/Wap/default/common/kawahk/20002/204-1.png' style='position: absolute; width: 60; left: 150; top: 300;-webkit-animation:rotateleaf 3.8s linear 1.1s infinite;-webkit-transform-origin:40% 100%'>
+
+                <img src='tpl/Wap/default/common/kawahk/20002/204-2.png' style='position: absolute; left: 110; top: 420; height: 160;-webkit-animation:rotateleaf 4.2s linear 0.8s infinite;-webkit-transform-origin:80% 100%'>
+                <img src='tpl/Wap/default/common/kawahk/20002/204-2.png' style='position: absolute; left: 50; top: 380; height: 200;-webkit-animation:rotateleaf 3.6s linear 1.2s infinite;-webkit-transform-origin:80% 100%'>
+                <img src='tpl/Wap/default/common/kawahk/20002/204-2.png' style='position: absolute; width: 40; left: 300; top: 300;-webkit-animation:rotateleaf 4.4s linear 1.1s infinite;-webkit-transform-origin:80% 100%'>
+                
+
+                
+                <img src='tpl/Wap/default/common/kawahk/20002/103-6.png' style='position: absolute; width: 70; top: 450; left: 50;-webkit-transform:rotate(-30deg);-webkit-transform-origin:0% 100%;-webkit-animation:leaf1 4s linear 0.5s infinite'>
+                <img src='tpl/Wap/default/common/kawahk/20002/103-6.png' style='position: absolute; width: 50; top: 490; left: 80;-webkit-transform:rotate(30deg) scale(-1,1);-webkit-transform-origin:0% 100%;-webkit-animation:leaf2 4.4s linear 0.8s infinite'>
+                <img src='tpl/Wap/default/common/kawahk/20002/103-6.png' style='position: absolute; width: 50; top: 480; left: 210;-webkit-transform:rotate(-30deg);-webkit-transform-origin:0% 100%;-webkit-animation:leaf1 3.8s linear 0.7s infinite'>
+                
+                <img src='tpl/Wap/default/common/kawahk/20002/103-7.png' style='position: absolute; width: 60; top: 460; left: 110;-webkit-transform:scale(-1,1) rotate(-5deg);-webkit-transform-origin:0% 100%;-webkit-animation:leaf4 3.5s linear 0.6s infinite'>
+                <img src='tpl/Wap/default/common/kawahk/20002/103-7.png' style='position: absolute; width: 40; top: 490; left: 170;-webkit-transform:rotate(-5deg);-webkit-transform-origin:0% 100%;-webkit-animation:leaf5 4s linear 0.3s infinite'>
+                <img src='tpl/Wap/default/common/kawahk/20002/103-7.png' style='position: absolute; width: 50; top: 440; left: 220;-webkit-transform:scale(-1,1) rotate(-5deg);-webkit-transform-origin:0% 100%;-webkit-animation:leaf4 3.7s linear 0.1s infinite'>
+                <img src='tpl/Wap/default/common/kawahk/20002/103-7.png' style='position: absolute; top: 480; left: 0; width: 50;-webkit-transform:scale(-1,1);-webkit-transform-origin:0% 100%;-webkit-animation:leaf7 4.4s linear 0.5s infinite'>
+                
+                <div id='guanzi' style='position:absolute;top:150px;'>
+
+                	 <img src='tpl/Wap/default/common/kawahk/20002/401.png' style='position: absolute; top: 510;'>
+
+                    <img src='tpl/Wap/default/common/kawahk/20002/304.png' style='position: absolute; width: 90; top: 610; left: 50;'>
+                     <img src='tpl/Wap/default/common/kawahk/20002/402.png' style='position: absolute;-webkit-transform:scale(1.8,0.6) rotate(-30deg);top:460px;left:50px;'>
+                      <img src='tpl/Wap/default/common/kawahk/20002/302.png' style='position: absolute; left: 260; top: 400; width: 220; height: 300;'>
+
+                      <img src='tpl/Wap/default/common/kawahk/20002/103-2.png' style='position: absolute; left: 400; top: 130;height: 300;width:80px;-webkit-transform-origin:0% 100%;-webkit-animation:leaf7 5s linear infinite alternate;'>
+
+
+                      <img src='tpl/Wap/default/common/kawahk/20002/103-1.png' style='position: absolute; left: 0; top: 300;-webkit-transform:scale(-0.6,0.6);-webkit-animation:leaf3 4.5s linear infinite'>
+                      <img src='tpl/Wap/default/common/kawahk/20002/103-1.png' style='position: absolute; left: 50; top: 350;-webkit-transform:scale(-0.6,0.6) rotate(90deg);-webkit-animation:leaf6 5s linear 1s infinite'>
+
+                      <img src='tpl/Wap/default/common/kawahk/20002/103-5.png' style='position: absolute; left: 200; top: 400;-webkit-transform:scale(0.6,0.6)'>
+                      <img src='tpl/Wap/default/common/kawahk/20002/102-4.png' style='position: absolute; left: 350; top: 450;'>
+
+                      <img src='tpl/Wap/default/common/kawahk/20002/103-7.png' style='position: absolute; left: 350; top: 200;width:90px;-webkit-animation:leaf10 4.5s linear 0.7s infinite;-webkit-transform-origin:0% 100%; '>
+                      <img src='tpl/Wap/default/common/kawahk/20002/103-7.png' style='position: absolute; left: 250; top: 150;width:100px;-webkit-transform:scale(-1,1) rotate(20deg);-webkit-animation:leaf11 5s linear 0.2s infinite;-webkit-transform-origin:0% 100%;'>
+                      <img src='tpl/Wap/default/common/kawahk/20002/103-7.png' style='position: absolute; left: 380; top: 140;width:90px;-webkit-transform:scale(1,-1) rotate(-30deg);-webkit-animation:leaf12 4.5s linear 1s infinite;-webkit-transform-origin:0% 100%;'>
+
+
+
+                      <img src='tpl/Wap/default/common/kawahk/20002/303.png' style='position: absolute; width: 130; top: 260; left: 360;'>
+                       <img src='tpl/Wap/default/common/kawahk/20002/303.png' style='position: absolute; width: 130; top: 400; left: 356px;-webkit-transform:scale(1,-1)'>
+                       <img src='tpl/Wap/default/common/kawahk/20002/303.png' style='position: absolute; width: 130; top: 240; left: 230px;-webkit-transform:scale(-1,1)'>
+
+                       
+                       <img src='tpl/Wap/default/common/kawahk/20002/304.png' style='position: absolute; width: 130; top: 320; left: 290;'>
+                       <img src='tpl/Wap/default/common/kawahk/20002/304.png' style='position: absolute; width: 110; top: 300; left: 230;'>
+                       <img src='tpl/Wap/default/common/kawahk/20002/304.png' style='position: absolute; width: 110; top: 330; left: 170;'>
+                       <img src='tpl/Wap/default/common/kawahk/20002/304.png' style='position: absolute; width: 110; top: 320; left: 400;'>
+                       <img src='tpl/Wap/default/common/kawahk/20002/304.png' style='position: absolute; width: 120; top: 400; left: 230;'>
+
+                       <img src='tpl/Wap/default/common/kawahk/20002/102-3.png' style='position: absolute; width: 120; top: 630; left: 230;height:80px;'>
+  
+                </div>
+          </div>
+          <img id='cover' src='tpl/Wap/default/common/kawahk/20002/20002_3.jpg' style='position:absolute;left:0px;top:0px;'>
+          <img id='moshui' src='tpl/Wap/default/common/kawahk/20002/mask1.png' style='position:absolute;left:190px;top:265px;width:108px;opacity:0;-webkit-transform-origin:50% 50%;'>
+        
+          <img id='clickme' onclick='toclickme()' src='tpl/Wap/default/common/kawahk/20002/dian.png' style='position:absolute;top:240px;left:200px;display:none;'>
+        </div>
+    </body>
+
+</html>

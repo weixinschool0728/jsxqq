@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>{weimicms:$zhuli.biaoti}</title>
+	<meta name="format-detection" content="telephone=no, address=no">
+	<meta name="apple-mobile-web-app-capable" content="yes" /> <!-- apple devices fullscreen -->
+	<meta name="apple-touch-fullscreen" content="yes"/>
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="{$share['title']}" />
+	<link href="tpl\Wap\default\common\weizhuli/css/bootstrap.min.css" rel="stylesheet">
+	<link href="tpl\Wap\default\common\weizhuli/css/font-awesome.min.css" rel="stylesheet">
+	<link href="tpl\Wap\default\common\weizhuli/css/animate.css" rel="stylesheet">
+	<link href="tpl\Wap\default\common\weizhuli/css/common.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css"
+	href="tpl\Wap\default\common\weizhuli/css/sweet-alert.css" />
+	
+	<script src="tpl\Wap\default\common\weizhuli/js/require.js"></script>
+	<script src="tpl\Wap\default\common\weizhuli/js/app/config.js"></script>
+	<script type="text/javascript" src="tpl\Wap\default\common\weizhuli/js/lib/jquery-1.11.1.min.js"></script>
+	
+	<script src="tpl\Wap\default\common\weizhuli/js/sweet-alert.min.js"></script>
+	<script type="text/javascript">
+		window.sharedata = {
+			'appId': '', // 服务号可以填写appId
+			'imgUrl' : '', // 缩略图
+			'link': '', // 内容链接
+			'title': '', // 内容标题
+			'desc': '' // 内容简介
+		};
+		window.onshared = ''; 
+	</script>
+	
+</head>
+<body>
+<div class="container container-fill">
+	
+<style>
+	body{background:url({weimicms:$zhuli.hdbg});background-repeat:no-repeat;background-size:cover;}
+	.panel{margin:.5em;padding-top:90%;border:none;background:rgba(0,0,0,0);text-align:center;}
+	.panel a{color:#fff;line-height:30px;}
+	.btn{border: 0; height: 40px; line-height: 40px; font-size: 18px;}
+	.btn span{color: #FF0000; font-size:26px;}
+	.btn.btn-info{background: #FFF; color: #333;}
+	.btn.btn-primary{background: #F2CB0F; color: #333;}
+	#mcover{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0, 0, 0, 0.7);display:none;z-index:20000;}
+	#mcover img{position:fixed;right: 18px;top:5px;width:260px;height:180px;z-index:20001;}
+	
+		.cropyt {
+		margin-top: 30px;
+		font: 14px/1.5 Microsoft YaHei, Helvitica, Verdana, Arial, san-serif;
+		text-align: center;
+		width: 100%;
+	}
+	.window #txt {
+min-height:30px;
+font-size:14px;
+line-height:20px;
+}
+</style>
+<div class="panel panel-info">
+	
+
+	
+	<div class="panel-body">
+	<form id="form1" action="" method="post" onSubmit="return checkform()" name="form1" id="form1">
+	 
+	<input type="text" class="form-control"
+					placeholder="请输入姓名" id="name" name="name" />
+					
+					
+					<br/>
+		<input type="text" class="form-control"
+					placeholder="请输入手机号" id="tel" name="tel" />
+					
+					
+					<br/>
+					 <button style="line-height: 30px;" id="btn_regist"  class="btn btn-primary btn-block"  type="submit" > 领取{weimicms:$zhuli.name}</button>
+		
+	
+		</form>
+		<p>{weimicms:$zhuli.tishi}，<a href="/index.php?g=Wap&m=Weizhuli&a=rule&id={weimicms:$id}&token={weimicms:$token}&wecha_id={weimicms:$wecha_id}">点击查看活动规则>>></a></p>
+	</div>
+	
+	
+		
+		
+			
+		
+	
+
+	
+	<p class="cropyt" style="text-align: center;">{weimicms:$zhuli.banquan}</p>
+</div>
+<div id="mcover" onClick="$(this).hide()"><img src="tpl\Wap\default\common\weizhuli/images/guide.png"></div>
+<script>require(['bootstrap']);</script>
+<script>
+	function checkform(){
+		
+		//alert("请填写姓名");
+		//	return false;
+		if(form1.name.value==""){
+			alert("必须填写真实姓名！");
+			
+			
+			
+			document.form1.name.focus();
+			return false;exit;
+			
+			}
+		if(form1.tel.value==""){
+			
+			alert("手机号不对或为空！");
+			
+			document.form1.tel.focus();
+			return false;	exit;
+		}
+		reg=/^0{0,1}(13[0-9]|145|15[7-9]|153|156|18[0-9])[0-9]{8}$/i;
+		if(!reg.test($("#tel").val())){ 
+		
+			alert("请输入11位有效号码！");
+			return false;exit;
+			 }
+		
+		
+	
+		
+		
+		return true;
+		
+		
+		
+		}
+</script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0083)http://www.baijiaweixin.cn/mobile.php?act=module&id=86&name=xc_zjp&do=gifts&weid=10 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=yes" name="format-detection">
+<title></title>
+<meta content="" name="keywords">
+<meta content="" name="description">
+<link type="text/css" href="{weimicms::RES}/myjp/rxhk-list.css" rel="stylesheet">
+<script type="text/javascript" src="{weimicms::RES}/myjp/jquery.min.js"></script>
+<script type="text/javascript" src="{weimicms::RES}/myjp/rxhk.js"></script><meta name="viewport" content="width=720, user-scalable=no, target-densitydpi=device-dpi">
+<script type="text/javascript" src="{weimicms::RES}/myjp/rxhk-myprize.js"></script>
+		<link rel="stylesheet" type="text/css" href="./tpl/Wap/default/common/zjp/tysj.css" />
+		<link rel="stylesheet" type="text/css" href="./tpl/Wap/default/common/zjp/component.css" />
+<style>
+.prize-num0 a {
+	color: #d03c3d; padding: 0px 10px 0px 0px; font-size: 38px; line-height: 80px;
+}
+
+.prize-num1 a {
+	color: green; padding: 0px 10px 0px 0px; font-size: 38px; line-height: 80px;
+}
+.prize-num2 a {
+	color: green; padding: 0px 10px 0px 0px; font-size: 38px; line-height: 80px;
+}
+	</style>
+</head>
+<body style="background-color: rgb(248, 225, 177); background-position: initial initial; background-repeat: initial initial;">
+	
+	
+	<div class="myprize">
+		<div class="myprize-top">
+			<a href="{weimicms::U('Zjp/index',array('token'=>$token,'id'=>$id,'wecha_id'=>$wecha_id))}" class="myprize-back">返回游戏</a>
+			<li><button class="md-trigger" data-modal="modal-1"><a href="{weimicms::U('Zjp/jp',array('token'=>$_GET['token'],'id'=>$_GET['id'],'wecha_id'=>$_GET['wecha_id']))}" class="my-prize">我的奖品</a></button></li>
+			<li><button class="md-trigger" data-modal="modal-1">活动规则</button></li>
+		</div>
+			<div class="md-modal md-effect-1" id="modal-1">
+			<div class="md-content">
+				<h3>活动规则</h3>
+				<div>
+					
+					<ul>
+						{weimicms:$Zjpinfo['info']}
+					</ul>
+					<button class="md-close">Close me!</button>
+				</div>
+			</div>
+		</div>
+		<div class="myprize-box">
+			<dl class="myprize-dl" style="min-height:480px">				
+									<dd>
+										<div class="myprize-img fl">
+											
+											<img src="{weimicms::RES}/myjp/PHWPP71LwfWpfFiIipXiPl3ipnz6b7.png">
+										</div>
+												<div class="myprize-word fl">
+													<p class="myprize-p1">{weimicms:$zjp['prize']}</p>
+													<p class="myprize-p2">
+														<span>   {weimicms:$time}</span>
+													</p>
+												</div>
+												
+										<div class="clear"></div>
+									</dd>
+			</dl>
+			<!--<div class="prize-btn">
+				<a href="javascript:openShareMask2();">炫耀我的战绩</a>
+			</div>-->
+		</div>
+	</div>
+	<!--分享遮罩层-->
+	<div id="shareMask" class="mask" onclick="closeShareMask();">
+		<div class="mask-bg"></div>
+		<div class="mask-cont">
+			<img src="{weimicms::RES}/myjp/sarrow.png" class="indicate">
+			<div class="clear"></div>
+			<div class="mask-cont-text">
+				点击右上角的<img src="{weimicms::RES}/myjp/sicon.png"><span id="maskEdit">就可以分享到朋友圈，告诉大家您今天的手气吧！</span>
+			</div>
+			<div class="mask-close">
+			
+			</div>
+		</div>
+	</div>
+	
+
+			<div class="md-overlay"></div>
+		<script src="./tpl/Wap/default/common/zjp/classie.js"></script>
+		<script src="./tpl/Wap/default/common/zjp/modalEffects.js"></script>
+
+
+</body></html>

@@ -1,0 +1,130 @@
+<include file="Store:header"/>
+<ul class="m-uc-i-li">
+<li>
+<p class="u-info">
+<if condition="empty($fans['username']) neq true">
+<i class="u">{weimicms:$fans['username']}</i>
+<a href="{weimicms::U('Store/logout',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'], 'cid' => $cid, 'twid' => $twid))}" class="q">退出</a>
+<br>
+</if>
+我的推广号：<i>{weimicms:$mytwid}</i><br>
+我的推广佣金：<i>{weimicms:$total}元</i><if condition="$total gt 0"><a href="{weimicms::U('Store/setremove',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'], 'cid' => $cid, 'twid' => $twid))}" class="q">[申请提现]</a></if><br>
+历史提现金额：<i>{weimicms:$count['remove']|default=0}元</i><br>
+会员类型：<if condition="$distributor['id'] neq ''"><if condition="$distributor['checked'] eq 1"><span style="color:green">正式分销商</span> <else /><span style="color:red">待审核分销商...</span></if><else />普通会员</if>
+</p>
+</li>
+<li class="msg-tip">
+</li>
+</ul>
+<ul class="m-uc-i-li haveafter">
+<li><a href="{weimicms::U('Store/my',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'], 'cid' => $cid, 'twid' => $twid))}">我的订单</a></li>
+<li><a href="{weimicms::U('Store/remove',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'], 'cid' => $cid, 'twid' => $twid))}">提现记录</a></li>
+<li><a href="{weimicms::U('Store/detail',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'], 'cid' => $cid, 'twid' => $twid))}">佣金获取记录</a></li>
+<!-- <li><a href="http://m.s.cn/touch/member/coupon/">我的优惠券</a></li>
+<li><a href="http://m.s.cn/touch/member/order_return/">退换货服务</a></li>
+<li><a href="http://m.s.cn/touch/member/coupon_exchange/">积分兑换</a></li> -->
+</ul>
+
+<style type="text/css">
+    @charset "utf-8";
+    /* CSS Document */
+    .h50{height:50px;}
+
+    /*foundation*/
+    .fixed {
+        width: 100%;
+        left: 0;
+        position: fixed;
+        top: 0;
+        z-index: 99; }
+    .sub-nav dt,
+    .sub-nav dd,
+    .sub-nav li {
+        float: left;
+        display: inline;
+        margin-left: 1rem;
+        margin-bottom: 0.625rem;
+        font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+        font-weight: normal;
+        font-size: 0.875rem;
+        color: #999999; }
+
+    .fixed.bottom{bottom:-1px; top:auto;}
+
+    /*--nav bottom--*/
+    .icon-nav-search,
+    .icon-nav-store,
+    .icon-nav-bag,
+    .icon-nav-heart,
+    .icon-nav-cart{display:inline-block;background:url("./tpl/Wap/default/common/css/store/css/img/icon-addition.png") no-repeat;background-size:300px 300px;vertical-align:middle;}
+    .icon-nav-search{background-position:-32px -36px;width:22px;height:22px;}
+    .icon-nav-store{background-position:-64px -36px;width:22px;height:22px;}
+    .icon-nav-bag{background-position:-154px -36px;width:22px;height:22px;}
+    .icon-nav-heart{background-position:-186px -36px;width:22px;height:22px;}
+    .icon-nav-cart{background-position:-94px -36px;width:22px;height:22px;}
+
+    .sub-nav.nav-b5{height:48px;margin:0;padding:0;background:#fff;border-top:0px solid #000;box-shadow:0 -3px 3px rgba(0,0,0,.1);}
+    .sub-nav.nav-b5 dd{margin:0 0 0 0;width:25%;text-align:center;border-right:0px solid #ccc;
+        -moz-box-sizing:border-box;
+        -webkit-box-sizing:border-box;
+        -o-box-sizing:border-box;
+        box-sizing:border-box;
+    }
+    .sub-nav.nav-b5 dd.last{border-right:0;}
+    .sub-nav .nav-b5-relative{position:relative;}
+    .sub-nav.nav-b5 dd a{display:block;margin:0 2px;height:48px;padding:0 0 0 0;font-size:12px;color:#333;overflow:hidden;font-style:normal;}
+    .sub-nav.nav-b5 dd.active a{color:#000;border-radius:0;background:#f1f1f1;}
+    .sub-nav.nav-b5 dd a:active{background:#f7f7f7;}
+    .sub-nav.nav-b5 dd a.more{position:relative;}
+    .sub-nav.nav-b5 dd .arrow{position:absolute;right:5px;bottom:5px;width:10px;height:10px;background:url("../images/distribution2.png") no-repeat -161px -455px;background-size:300px 1000px;}
+    .sub-nav.nav-b5 dd i{display:block;margin:5px auto 0px auto;width:22px;height:22px;}
+    .sub-nav.nav-b5 dd.active .icon-nav-home{background-position:0 -66px;}
+    .sub-nav.nav-b5 dd.active .icon-nav-search{background-position:-32px -66px;}
+    .sub-nav.nav-b5 dd.active .icon-nav-store{background-position:-64px -66px;}
+    .sub-nav.nav-b5 dd.active .icon-nav-cart{background-position:-94px -66px;}
+    .sub-nav.nav-b5 dd.active .icon-nav-order{background-position:-126px -66px;}
+    .sub-nav.nav-b5 dd.active .icon-nav-bag{background-position:-154px -66px;}
+    .sub-nav.nav-b5 dd.active .icon-nav-heart{background-position:-186px -66px;}
+    .sub-nav.nav-b5 dd.active .icon-nav-cart{background-position:-94px -66px;}
+</style>
+<div class="fixed bottom" style="display:none">
+
+    <dl class="sub-nav nav-b5" >
+        <dd>
+            <if condition="$distributor['id'] neq ''">
+            <div class="nav-b5-relative"><a href="{weimicms::U('DrpStore/index', array('id' => $store['id']))}"><i class="icon-nav-store"></i>我的店铺</a></div>
+            <else />
+            <div class="nav-b5-relative"><a href="{weimicms::U('Store/select', array('token' => $_GET['token'], 'wecha_id' => $_GET['wecha_id'], 'twid' => $_GET['twid']))}"><i class="icon-nav-store"></i>逛街</a></div>
+            </if>
+        </dd>
+        <dd>
+            <if condition="$distributor['id'] neq ''">
+            <div class="nav-b5-relative"><a href="{weimicms::U('DrpUcenter/drp_index')}"><i class="icon-nav-bag"></i>分销管理</a></div>
+            <else/>
+            <div class="nav-b5-relative"><a href="{weimicms::U('DrpStore/login', array('token' => $_GET['token'], 'wecha_id' => $_GET['wecha_id'], 'twid' => $_GET['twid']))}"><i class="icon-nav-bag"></i>分销申请</a></div>
+            </if>
+        </dd>
+        <dd>
+            <div class="nav-b5-relative"><a href="{weimicms::U('Store/cart', array('token' => $_GET['token'], 'wecha_id' => $_GET['wecha_id'], 'twid' => $_GET['twid']))}"><i class="icon-nav-cart"></i>购物车</a></div>
+        </dd>
+        <dd>
+            <div class="nav-b5-relative"><a href="{weimicms::U('Store/my', array('token' => $_GET['token']))}"><i class="icon-nav-heart"></i>用户中心</a></div>
+        </dd>
+    </dl>
+
+</div>
+</body>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Store",
+            "moduleID":"",
+            "imgUrl": "", 
+            "timeLineLink": "{weimicms::C('site_url') .  U('Store/my',array('token' => $_GET['token'], 'twid' => $mytwid))}",
+            "sendFriendLink": "{weimicms::C('site_url') .  U('Store/my',array('token' => $_GET['token'], 'twid' => $mytwid))}",
+            "weiboLink": "{weimicms::C('site_url') .  U('Store/my',array('token' => $_GET['token'], 'twid' => $mytwid))}",
+            "tTitle": "{weimicms:$metaTitle}",
+            "tContent": "{weimicms:$metaTitle}"
+        };
+</script>
+{weimicms:$shareScript}
+</html>

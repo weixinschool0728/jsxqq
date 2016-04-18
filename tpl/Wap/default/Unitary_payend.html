@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<title>购买结果</title>
+		<meta content="app-id=518966501" name="apple-itunes-app" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0"/>
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<link href="{weimicms:$staticPath}/tpl/static/unitary/css/comm.css" rel="stylesheet" type="text/css" />
+		<link href="{weimicms:$staticPath}/tpl/static/unitary/css/cartList.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+		<script src="{weimicms:$staticPath}/tpl/static/unitary/js/jquery-2.1.3.min.js" language="javascript" type="text/javascript"></script>
+		
+		<div id="loadingPicBlock">
+			<div class="wrapper">
+				<?php if($_GET['dopayover'] != 1){?>
+				<div class="g-pay-success marginB" id="shopResultBox1">
+					<div class="g-pay-auto gray9">
+						<b>正在分配幸运号码,请勿关闭...</b>
+						<br/>
+						<b>时间若长,请耐心等待...</b>
+						<div class="loading-progress"><span class="loading-pgbar"><span class="loading-pging"></span></span></div>
+					</div>
+				</div>
+				<?php }elseif($_GET['dopayover'] == 1){?>
+				<div class="g-pay-success marginB" id="shopResultBox2" style="display:none">
+					<div class="g-pay-auto gray6">
+						<div class="z-pay-tips">
+							<s></s>支付成功，请等待揭晓！<span>成功支付<em>{weimicms:$cart_count}</em>个商品！</span>
+						</div>
+					</div>
+					<div class="m_btn">
+						<a href="{weimicms::U('Unitary/mypay',array('token'=>$token))}" class="whiteBtn fl gray6">查看购买记录</a>
+						<a href="{weimicms::U('Unitary/index',array('token'=>$token))}" class="orangeBtn fr">继续购物</a>
+					</div>
+					<div class="g-pay-successC gray6">
+						<ul>
+							<volist name="cart_list" id="vo">
+							<li onclick="location.href='{weimicms::U('Unitary/mypayinfo',array('token'=>$token,'uid'=>$vo['unitary_id']))}'">
+								<p><?php echo date("Y-m-d H:i:s",$vo['addtime'])?></p>{weimicms:$name[$vo['id']]}<span class="fr"><b></b><em class="orange">{weimicms:$vo.count}</em>人次</span>
+							</li>
+							</volist>
+						</ul>
+					</div>
+				</div>
+				<?php }?>
+			</div>
+		</div>
+		<script type="text/javascript">
+		<?php if($_GET['dopayover'] != 1){?>
+			$(function(){
+				$.ajax({
+					type:"POST",
+					url:"{weimicms::U('Wap/Unitary/payend',array('token'=>$token))}",
+					dataType:"json",
+					timeout:60000,
+					data:{
+						token:"<?php echo $token;?>",
+						orderid:"<?php echo $orderid;?>",
+						wecha_id:"<?php echo $wecha_id;?>"
+					},
+					beforeSend:function(){
+						
+					},
+					success:function(data){
+						if(data.error == 0){
+							window.location.href="<?php echo U('Wap/Unitary/payend',array('token'=>$token,'orderid'=>$orderid,'dopayover'=>1));?>";
+						}else{
+							window.location.href="<?php echo U('Wap/Unitary/payend',array('token'=>$token,'orderid'=>$orderid,'dopayover'=>1));?>";
+						}
+					},
+					complete:function(){
+						
+					},
+					error:function(){
+						//alert('购买出错，请联系卖家退款<?php echo U('Wap/Unitary/delorder',array('token'=>$token,'orderid'=>$orderid));?>');
+						window.location.href="<?php echo U('Wap/Unitary/payend',array('token'=>$token,'orderid'=>$orderid));?>";
+					}
+				});
+			})
+		<?php }else{?>
+			$(function(){
+				$('#shopResultBox2').show();
+			});
+		<?php }?>
+		</script>
+		
+<if condition="$unitary eq ''">
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Unitary",
+            "moduleID":"0",
+            "imgUrl": "{weimicms:$staticPath}/tpl/static/unitary/images/wxnewspic.jpg", 
+            "sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Unitary/index',array('token'=>$token))}",
+            "tTitle": "一元夺宝",
+            "tContent": ""
+        };
+</script>
+<else />
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Unitary",
+            "moduleID":"0",
+            "imgUrl": "{weimicms:$unitary['wxpic']}", 
+            "sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Unitary/goodswhere',array('token'=>$token,'unitaryid'=>$_GET['unitaryid']))}",
+            "tTitle": "{weimicms:$unitary['name']}",
+            "tContent": "{weimicms:$unitary['wxinfo']}"
+        };
+</script>
+</if>
+{weimicms:$shareScript}
+	</body>
+</html>

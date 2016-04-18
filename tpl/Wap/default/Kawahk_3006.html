@@ -1,0 +1,438 @@
+
+<html>  
+<head>  
+<meta http-equiv="content-type" content="text/html; charset=utf-8">  
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+         <include file="Kawahk:js"/> 
+        <script type="text/javascript">
+            initViewport();
+        </script>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>送给你</title>  
+
+
+<script src="tpl/Wap/default/common/kawahk/3006/jquery.min.js"></script>
+<style type="text/css">  
+    <!--   
+    body{   
+		-webkit-touch-callout: none; 
+		-webkit-text-size-adjust: none;
+        margin:0 auto;   		
+        overflow:hidden;   
+		position:relative;
+    }   
+  
+    div#content{
+        position:relative;   
+        border:1px solid #000; 
+		width:500px;		
+		height:750px;
+		margin:0 auto; 
+        top:0px;    
+        overflow:hidden;   
+        clear:both;
+    }
+  
+    div#bg{   
+        position:absolute;   
+        left:0px;   
+        top:0px;
+    } 
+	
+	div#stars
+	{ 
+		position:absolute; 
+		width:500px;
+		height:300px;
+		left:0px
+		top:0px;
+	}
+	#stars img{ position:absolute }
+	
+	div#saizi
+	{ 
+		position:absolute; 
+		left:0px;
+		top:236px;
+	}
+	div#saizi2
+	{ 
+		position:absolute; 
+		left:181px;
+		top:240px;
+	}
+	
+	div#zhipian1
+	{ 
+		position:absolute; 
+		left:48px;
+		top:462px;
+	}
+	
+	div#zhipian2
+	{ 
+		position:absolute; 
+		left:48px;
+		top:462px;		
+		display:none;
+	}
+	
+	div#zhipian3
+	{ 
+		position:absolute; 
+		left:44px;
+		top:357px;		
+		display:none;
+	}
+	div#fly1
+	{ 
+		position:absolute; 
+		left:189px;
+		top:339px;		
+		display:none;
+	}
+	
+	div#fly2
+	{ 
+		position:absolute; 
+		left:239px;
+		top:339px;		
+		display:none;
+	}
+	
+	div#fly3
+	{ 
+		position:absolute; 
+		left:209px;
+		top:339px;		
+		display:none;
+	}
+	
+	div#fly4
+	{ 
+		position:absolute; 
+		left:219px;
+		top:339px;		
+		display:none;
+	}
+	
+	div#fly5
+	{ 
+		position:absolute; 
+		left:219px;
+		top:339px;		
+		display:none;
+	}
+	div#tishi
+	{ 
+		position:absolute; 
+		left:153px;
+		top:560px;		
+	}
+	div#touming
+	{ 
+		position:absolute; 
+		left:0px;
+		top:0px;
+		width:500px；
+			height:500px；
+	}
+	div#foot{   
+        position:fixed; 
+		width:500px;
+		bottom:0px;
+    } 	
+  
+    div#relative{   
+        position:relative;   
+        left:100px;   
+        top:0px;   
+    }   
+  
+    div#static{   
+        background-color:#bbb;   
+		top:20;
+		left:30px;
+        position:static;   
+    }   
+	
+	@-webkit-keyframes bounceOut{
+		0%{
+			left:181px;
+			top:240px;
+		}
+		10%
+		{
+			left:181px;
+			top:247px;
+		}		
+		100%{
+			left:300px;
+			top:-245px;
+		}
+	}
+	
+	@-webkit-keyframes rotateandup{
+		0%{
+			opacity:0;
+			-webkit-transform:scale(0.5,0.5);
+			-webkit-transform:rotate(0deg);
+		}
+		100%{
+			opacity:1;
+			-webkit-transform:scale(1,1);
+			-webkit-transform:rotate(360deg);
+		}		
+	}
+	
+	@-webkit-keyframes fadeOut{
+		0%{opacity:1;
+			-webkit-transform:rotate(0deg);}
+		100%{
+		opacity:0;
+		-webkit-transform:rotate(360deg);}
+	}
+	
+	@-webkit-keyframes fly1{
+		0%{-webkit-transform:translate(0px,00px) rotateX(0deg) rotateY(0deg) rotatez(0deg) scale(0.2,0.2);
+		opacity:1}
+		30%{-webkit-transform:translate(60px,-200px) rotateX(10deg) rotateY(30deg) rotatez(20deg) scale(0.5,0.5);
+		opacity:1}
+		60%{-webkit-transform:translate(-10px,-300px) rotateX(50deg) rotateY(20deg) rotatez(60deg) scale(0.8,0.8);
+		opacity:0.6}
+		100%{-webkit-transform:translate(-300px,-500px) rotateX(-50deg) rotateY(-20deg) rotatez(10deg) scale(1,1);
+		opacity:0.2}
+	}
+	
+	@-webkit-keyframes fly2{
+		0%{-webkit-transform:translate(0px,0px) rotateX(0deg) rotateY(0deg) rotatez(0deg) scale(0.6,0.6);
+		opacity:1}
+		30%{-webkit-transform:translate(80px,-100px) rotateX(40deg) rotateY(10deg) rotatez(5deg) scale(0.8,0.8);
+		opacity:1}
+		60%{-webkit-transform:translate(120px,-200px) rotateX(5deg) rotateY(30deg) rotatez(-10deg) scale(1,1);
+		opacity:0.8}
+		100%{-webkit-transform:translate(200px,-300px) rotateX(-10deg) rotateY(-5deg) rotatez(10deg) scale(1.2,1.2);
+		opacity:0.2}
+	}
+	
+	@-webkit-keyframes fly3{
+		0%{-webkit-transform:translate(0px,0px) rotateX(0deg) rotateY(0deg) rotatez(0deg) scale(1,1);
+		opacity:1}
+		30%{-webkit-transform:translate(30px,-100px) rotateX(-40deg) rotateY(10deg) rotatez(5deg) scale(1.2,1.2);
+		opacity:1}
+		60%{-webkit-transform:translate(40px,-250px) rotateX(5deg) rotateY(-30deg) rotatez(-10deg) scale(1.3,1.3);
+		opacity:0.8}
+		100%{-webkit-transform:translate(60px,-350px) rotateX(-10deg) rotateY(-5deg) rotatez(40deg) scale(1.5,1.5);
+		opacity:0.2}
+	}
+	
+	@-webkit-keyframes fly4{
+		0%{-webkit-transform:translate(0px,0px) rotateX(0deg) rotateY(0deg) rotatez(0deg) scale(1,1);
+		opacity:1}
+		20%{-webkit-transform:translate(50px,-100px) rotateX(20deg) rotateY(-10deg) rotatez(-5deg) scale(1.2,1.2);
+		opacity:1}
+		40%{-webkit-transform:translate(-50px,-200px) rotateX(-5deg) rotateY(20deg) rotatez(10deg) scale(1.3,1.3);
+		opacity:0.8}
+		60%{-webkit-transform:translate(30px,-300px) rotateX(5deg) rotateY(-30deg) rotatez(10deg) scale(1.3,1.3);
+		opacity:1}
+		80%{-webkit-transform:translate(-30px,-400px) rotateX(20deg) rotateY(5deg) rotatez(-10deg) scale(1.3,1.3);
+		opacity:0.8}
+		100%{-webkit-transform:translate(60px,-500px) rotateX(-10deg) rotateY(10deg) rotatez(20deg) scale(1.5,1.5);
+		opacity:0.2}
+	}
+	
+	@-webkit-keyframes fly5{
+		0%{-webkit-transform:translate(0px,0px) rotateX(0deg) rotateY(0deg) rotatez(0deg) scale(1.5,1.5);
+		opacity:1}
+		30%{-webkit-transform:translate(100px,-100px) rotateX(-40deg) rotateY(10deg) rotatez(5deg) scale(1.8,1.8);
+		opacity:1}
+		60%{-webkit-transform:translate(200px,-250px) rotateX(5deg) rotateY(-30deg) rotatez(-10deg) scale(2.3,2.3);
+		opacity:0.8}
+		100%{-webkit-transform:translate(180px,-350px) rotateX(-10deg) rotateY(-5deg) rotatez(40deg) scale(2.5,2.5);
+		opacity:0.2}
+	}
+	div#foot{   
+        position:fixed; 
+		width:500px;
+		left:320px;
+		bottom:20px;
+		z-index:2000;
+    } 	
+    -->  
+</style>  
+
+
+<script>
+	//需要调用leafinit（）来启动，需要声明外层div，id="container"，还有内层div，id="leafContainer"
+	//参数设置
+	var leafNum = 6;			//落下叶子的数量
+	var kindNum = 4;			//叶子的种类
+	var kindurl = new Array("http://bxjcf.img40.wal8.com/img40/410389_20140325112526/139780740018.png","http://bxjcf.img40.wal8.com/img40/410389_20140325112526/139780740047.png","http://bxjcf.img40.wal8.com/img40/410389_20140325112526/139780740082.png","http://bxjcf.img40.wal8.com/img40/410389_20140325112526/139780739984.png");
+</script>
+<script src="tpl/Wap/default/common/kawahk/3006/fleavesup1.js"></script>
+<link rel="stylesheet" href="tpl/Wap/default/common/kawahk/3006/leavesup1.css" type="text/css" media="screen" charset="utf-8">
+
+<script>
+	function randomInteger(low, high)
+	{
+		return low + Math.floor(Math.random() * (high - low));
+	}
+
+	function starshine(){
+		var num=7;
+		for(var i=0;i<num;i++)
+		{
+			var posL=Math.random()*$('#stars').width()+'px';
+			var posT=Math.random()*$('#stars').height()+'px';
+			$('#stars').append("<img src='tpl/Wap/default/common/kawahk/3006/3006_xin1.png' id='star"+i+"' style=\'"+"left:"+posL+";top:"+posT+"\'/>");
+		}
+		
+		$("#stars img").each(function(){
+			dark($(this).attr("id"));
+		});
+	}
+
+	function dark(name){
+		   $("#"+name+"").animate({opacity:'0.1'},randomInteger(2000,4000),function(){light(name)});
+	}
+	function light(name){
+		$("#"+name+"").animate({opacity:'1'},randomInteger(2000,6000),function(){dark(name)});
+	}
+</script>
+
+
+<script>
+function clickbg(){
+
+		var tishi = document.getElementById("tishi");
+		tishi.style.display = "none";
+		
+		var saizi2 = document.getElementById("saizi2");
+		saizi2.style.webkitAnimation = "bounceOut 0.3s 0s ease-in-out both";
+		
+		var zhipian1 = document.getElementById("zhipian1");		
+		zhipian1.style.webkitAnimation = "fadeOut 0.3s 0.5s ease both";
+		zhipian3.style.display = "block";
+		zhipian3.style.webkitAnimation = "rotateandup 0.8s 0.7s ease both";
+		
+		var fly1 = document.getElementById("fly1");		
+		fly1.style.display = "block";
+		fly1.style.webkitAnimation = "fly1 4s 0.8s infinite linear both";
+		
+		
+		var fly2 = document.getElementById("fly2");		
+		fly2.style.display = "block";
+		fly2.style.webkitAnimation = "fly2 6s 1s infinite linear both";
+		
+		var fly3 = document.getElementById("fly3");		
+		fly3.style.display = "block";
+		fly3.style.webkitAnimation = "fly3 5s 1s infinite linear both";
+		
+		var fly4 = document.getElementById("fly4");		
+		fly4.style.display = "block";
+		fly4.style.webkitAnimation = "fly4 5s 1.2s infinite linear both";
+		
+		var fly5 = document.getElementById("fly5");		
+		fly5.style.display = "block";
+		fly5.style.webkitAnimation = "fly5 3s 1.2s infinite linear both";
+		
+		//leafinit();
+		setTimeout("kawa_init()",1520);
+		}
+
+</script>
+</head>  
+<body> 
+
+<script>
+    	words = '亲爱的，我爱你';
+
+        kawa_data = {
+            words 			   : words,
+          	 <if condition=" $words eq ''">
+				replace_words      : '亲爱的，我爱你',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+            text_box           : '100 400 300 150', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+            mode               : 'up',     // up, left
+            speed              : 40,     // 每秒移动的像素
+            text_color         : '#7A5734', // rgb(1,2,3) 'black'
+            font_size          : '24pt',
+            line_height        : '40pt',
+             //text_align         : 'center',
+            font_weight        : 'bold',
+            music              : 'tpl/Wap/default/common/hcar/sound/yinweiaiqing.mp3',     // url
+          <if condition=" $music eq ''">
+				replace_music      : 'tpl/Wap/default/common/hcar/sound/yinweiaiqing.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+            music_name         : '',
+            replace_music_name : '#replace_music_name#',
+            icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/fengmian/x3006.jpg',
+            title              : '卡娃微卡',
+            desc               : words,
+            modify             : 'no',
+            replace_modify     : 'yes',
+            cardid             : '3006',
+            share_url          : window.location.href,  // 当分享的是微信页面时才需要改这里
+            font_ip            : '121.42.24.240:8000',
+            modify_optfile     : 'lidong',
+            modify_optwords    : '#modify_optwords#',
+            show_words         : 'yes',
+            write_param_1      : 'inputtype=singleline&showsel=no&prompt=' + encodeURIComponent('输入对方的名字：')
+        };
+    </script>
+
+    <div id="content">  	
+        <div id="bg" onclick="clickbg();" >
+			<img src="tpl/Wap/default/common/kawahk/3006/3006_1.jpg"/>
+		</div>  
+		
+		<div id="stars"></div>
+		<script>
+			starshine();
+		</script>
+		<div id="saizi2">
+			<img src="tpl/Wap/default/common/kawahk/3006/3006_saizi1.png"/>
+		</div>  
+		<div id="fly1">
+			<img src="tpl/Wap/default/common/kawahk/3006/3006_yinfu1.png"/>
+		</div>
+		<div id="fly2">
+			<img src="tpl/Wap/default/common/kawahk/3006/3006_yinfu2.png"/>
+		</div>
+		<div id="fly3">
+			<img src="tpl/Wap/default/common/kawahk/3006/3006_yinfu3.png"/>
+		</div>
+		<div id="fly4">
+			<img src="tpl/Wap/default/common/kawahk/3006/3006_yinfu4.png"/>
+		</div>
+		
+		<div id="fly5">
+			<img src="tpl/Wap/default/common/kawahk/3006/3006_yinfu4.png"/>
+		</div>
+		
+		<div id="saizi">
+			<img src="tpl/Wap/default/common/kawahk/3006/3006_saizi2.png"/>
+		</div>  		
+		<div id="zhipian1" >
+			<img src="tpl/Wap/default/common/kawahk/3006/3006_zhipian.jpg"/>
+		</div>  
+		<div id="zhipian3" >
+			<img src="tpl/Wap/default/common/kawahk/3006/3006_zhipian1.png"/>
+		</div> 
+		<div id="tishi" onclick="clickbg();">
+			<img src="tpl/Wap/default/common/kawahk/3006/3006_tishi.png"/>		
+		</div> 
+		<div id="touming" onclick="clickbg();">
+		</div> 
+		<div id="container" onclick="clickbg();" style="left:0%;top:0%;">
+			<div id="leafContainer"></div>
+		</div>
+		
+    </div>  
+
+</body>  
+</html>  

@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link href="{weimicms:$staticPath}/tpl/static/numqueue/css/css.css" type="text/css" rel="stylesheet"  />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=no" />
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/numqueue/js/jquery-1.4.2.min.js"></script>
+<title>{weimicms:$store_info['name']}</title>
+<style>
+	.zhuang_herd_txt{width:24%;}
+	.houtai_txt{width:24%;}
+</style>
+</head>
+<body class="body">
+<div class="content" style="padding:0; width:100%">
+  <div class="zhuang_herd">
+    <div class="zhuang_herd_top">
+      <div class="zhuang_herd_txt"> 等待类型 </div>
+      <div class="zhuang_herd_txt"> 等待位数 </div>
+	  <div class="zhuang_herd_txt"> 等待的号码 </div>
+      <div class="zhuang_herd_txt"> 操作 </div>
+      <div style="clear:both"></div>
+    </div>
+    <ul>
+	<foreach name="type_name" item="vo">
+      <li class="zhuang_li1">
+        <div class="houtai_txt">
+          <div class="zhuang_li_top"><php>list($name,$count,$value,$first) = explode("_",$vo);echo $name;</php></div>
+          <div class="zhuang_li_bottom"><php>echo $value;</php></div>
+        </div>
+        <div class="houtai_txt">
+          <div class="zhuang_0"><span id="count_{weimicms:$key}"><php>echo $count;</php></span><span>位</span></div>
+        </div>
+		<div class="houtai_txt">
+          <div class="zhuang_0"><span id="number_{weimicms:$key}"><php>if(!empty($first)){echo $first;}else{ echo '---';}</php></span></div>
+        </div>
+        <div class="houtai_right_txt">
+		<button  class="houtai_an" onclick="add_recevice('{weimicms:$key}')" style="width:44%;">增加</button >
+        <button  class="houtai_an" onclick="reduce_recevice('{weimicms:$key}')" style="width:44%;">减少</button >
+        </div>
+        <div style="clear:both"></div>
+      </li>
+	  </foreach>
+    </ul>
+      <div style="clear:both"></div>
+  </div>
+</div>
+<div class="houtai_an" style="float:right;" onclick="window.location.href= '/index.php?g=Wap&m=Numqueue&a=admin_manage&store_id={weimicms:$store_id}&token={weimicms:$token}';return false">更新排号</div>
+<div id="info"></div>
+</body>
+</html>
+<script>
+$(function(){
+	$("#info").load("/index.php?g=Wap&m=Numqueue&a=store_info&id={weimicms:$action_id}&token={weimicms:$token}&store_id={weimicms:$store_id}&action_name={weimicms:$action_name}");
+});
+function reduce_recevice(type){
+	var count = $("#count_"+type).text();
+	if(parseInt(count) == 0){
+		alert('暂时还没有号单');
+		return false;
+	}
+	if(confirm('你确定将该号单过号吗？')){
+	$.post("/index.php?g=Wap&m=Numqueue&a=reduce_recevice",{'type':type,'store_id':'{weimicms:$store_id}}'},function(data){
+		var d = eval("("+data+")");
+		console.info(d);
+		if(d.stat == 'DONE'){
+			var number = d.data ? d.data : '---';
+			var count = $("#count_"+type).text();
+			var left_num = (parseInt(count) - 1) < 0 ? 0 : parseInt(count) - 1;
+			$("#count_"+type).html(left_num);
+			$("#number_"+type).html(number);
+		}else{
+			alert('减小失败');
+		}
+	});
+}		
+}
+
+function add_recevice(type){
+	var business = '{weimicms:$business}';
+	if(business != "" && business == 'close'){
+		alert('营业时间未到');
+		return false;
+	}
+	if(confirm('你确定增加该等待类型的等待数量吗？')){
+		$.post("/index.php?g=Wap&m=Numqueue&a=add_recevice",{'type':type,'store_id':'{weimicms:$store_id}}','token':'{weimicms:$token}'},function(data){
+			var d = eval("("+data+")");
+			if(d.stat == 'DONE'){
+				var count = $("#count_"+type).text();
+				var left_num = (parseInt(count) + 1);
+				$("#count_"+type).html(left_num);
+				$("#number_"+type).html(d.data);
+			}else{
+				alert(d.data);
+			}
+		});
+	}	
+}
+</script>

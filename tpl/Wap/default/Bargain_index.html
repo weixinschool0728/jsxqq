@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<meta content="telephone=no" name="format-detection">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>微砍价</title>
+		<link href="{weimicms:$staticPath}/tpl/static/bargain/css/global.css" rel="stylesheet" type="text/css" />
+		<link href="{weimicms:$staticPath}/tpl/static/bargain/css/global2.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/bargain/js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/bargain/js/global.js"></script>
+		<link href="{weimicms:$staticPath}/tpl/static/bargain/css/bargain.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/bargain/js/bargain.js"></script>
+		<!-- <link href="{weimicms:$staticPath}/tpl/static/bargain/css/idangerous.swiper.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/bargain/js/idangerous.swiper-1.9.1.min.js"></script> -->
+		<script src="{weimicms:$staticPath}/tpl/static/cutprice/js/swipe.min.js" language="javascript" type="text/javascript"></script>
+		<style>
+			.cont img{max-width:100%}
+		</style>
+	</head>
+	<body>
+<if condition="$memberNotice neq ''">
+    {weimicms:$memberNotice}
+</if>
+		<script>
+		$(function () { new Swipe(document.getElementById('banner_box'), { speed: 500, auto: 3000, callback: function () { var lis = $(this.element).next("ol").children(); lis.removeClass("on").eq(this.index).addClass("on") } }) });
+		</script>
+		<style>.box_swipe {overflow: hidden;position: relative;background-color: #fff;}.box_swipe>ol {height: 20px;position: relative;z-index: 10;margin-top: -35px;text-align: center;margin-bottom: 0;background-color: rgba(0,0,0,0.3);}.box_swipe>ol>li.on {background-color: #fff;}.box_swipe>ol>li {display: inline-block;margin: 6px 2px;width: 8px;height: 8px;background-color: #757575;border-radius: 8px;}</style>
+		<div class="product_detail">
+			<div>
+				<div id="banner_box" class="box_swipe" style="visibility: visible;">
+					<ul id="swipe-box">
+						<li>
+							<a href="{weimicms:$bargain.logourl1}">
+								<img src="{weimicms:$bargain.logoimg1}" style="width: 100%;">
+							</a>
+						</li>
+						<if condition="$bargain.logoimg2 neq ''">
+						<li>
+							<a href="{weimicms:$bargain.logourl2}">
+								<img src="{weimicms:$bargain.logoimg2}" style="width: 100%;">
+							</a>
+						</li>
+						</if>
+						<if condition="$bargain.logoimg3 neq ''">
+						<li>
+							<a href="{weimicms:$bargain.logourl3}">
+								<img src="{weimicms:$bargain.logoimg3}" style="width: 100%;">
+							</a>
+						</li>
+						</if>
+					</ul>
+					<ol>
+						<li class="on"></li>
+						<if condition="$bargain.logoimg2 neq ''">
+						<li></li>
+						</if>
+						<if condition="$bargain.logoimg3 neq ''">
+						<li></li>
+						</if>
+						
+					</ol>
+				</div>
+			</div>
+			<h3>{weimicms:$bargain.name}</h3>
+			<div class="info">
+				<span>底价:￥<font>{weimicms:$bargain.minimum}</font></span><span>原价:￥<font>{weimicms:$bargain.original}</font></span>
+			</div>
+			<div class="stock_volume"><span>库存{weimicms:$bargain.inventory}</span><span>销量{weimicms:$paynum}</span></div>
+		</div>
+		<div class="description">
+			<h3 class="t">商品详情</h3>
+			<div class="cont">{weimicms:$bargain.info|htmlspecialchars_decode}</div>
+		</div>
+		<div class="description">
+			<h3 class="t">活动规则</h3>
+			<div class="cont">{weimicms:$bargain.guize|htmlspecialchars_decode}</div>
+		</div>
+		<div class="join_bar_blank"></div>
+		<div id="join_bar">
+			<div class="price"><span>底价:￥<font>{weimicms:$bargain.minimum}</font></span><span>原价:￥<font>{weimicms:$bargain.original}</font></span></div>
+			<?php if($type == "noorder"){?>
+			<div class="btn">
+				<?php if($memberNotice != ''){?>
+				<a href='#memberNoticeBox' id='modaltrigger_notice'>立即砍价</a>
+				<?php }else{?>
+				<a href="{weimicms::U('Bargain/dao',array('token'=>$token,'id'=>$_GET['id']))}">立即砍价</a>
+				<?php }?>
+			</div>
+			<?php }else{?>
+			<div class="btn">
+				<?php if($memberNotice != ''){?>
+				<a href='#memberNoticeBox' id='modaltrigger_notice'>我的砍价</a>
+				<?php }else{?>
+				<a href="{weimicms::U('Bargain/dao',array('token'=>$token,'id'=>$_GET['id']))}">我的砍价</a>
+				<?php }?>
+			</div>
+			<?php }?>
+			<div class="clear"></div>
+		</div>
+		<script type="text/javascript">
+		window.shareData = {  
+			"moduleName":"Bargain",
+			"moduleID":"<?php echo $bargain['tp_id'];?>",
+			"imgUrl": "<?php echo $bargain['logoimg1'];?>",
+			"sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Bargain/index',array('token'=>$token,'id'=>$bargain['tp_id']))}",
+			"tTitle": "<?php echo $bargain['wxtitle'];$bargain['wxinfo'] = htmlspecialchars_decode($bargain['wxinfo']);$bargain['wxinfo'] = str_replace('&apos;',"'",$bargain['wxinfo']);?>",
+			"tContent": "{weimicms:$bargain['wxinfo']|shareFilter}"
+		};
+		</script>
+		{weimicms:$shareScript}
+	</body>
+</html>

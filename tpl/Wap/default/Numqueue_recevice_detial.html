@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link href="{weimicms:$staticPath}/tpl/static/numqueue/css/css.css" type="text/css" rel="stylesheet"  />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title></title>
+<link rel="stylesheet" type="text/css" href="{weimicms:$staticPath}/tpl/static/numqueue/css/style_PageDefault.css">
+</head>
+<body class="body">
+<div class="content" style="padding:0; width:100%">
+  <div class="content_left"  >
+    <div class="settab">
+      <div id="setdiv">
+        <dl id="J_setTabANav" class="tabnav"   >
+          <dd id="shipping_title"class="tab-menu hover" style="width:100%"> <span>排队号单</span> </dd>
+        </dl>
+      </div>
+      <div id="J_setTabABox" class="tabbox" style="width:100%">
+        <div id="product_rz" class="product_rz" style="  height:auto">
+          <div class="danhao_arc">
+          <div  class="yuanjiao" >
+          <div class="danhao_arc_top">
+          <div class="yuanquan1" ></div>  <div class="yuanquan2" ></div>  <div class="yuanquan3" ></div>  <div class="yuanquan4" ></div>
+            <div class="danhao_title">
+              <div  class="danhao_title_left" onclick="window.location.href='/index.php?g=Wap&m=Numqueue&a=detail_store&id={weimicms:$id}&token={weimicms:$token}&store_id={weimicms:$store_info['id']}'">{weimicms:$store_info['name']}</div>
+              <div class="dan_title_right"><span><if condition="$recevice_detial['status'] eq 1">排队中<else />已过号</if></span><div class="dan_title_img"><img src="{weimicms:$staticPath}/tpl/static/numqueue/images/green.png" width="20" /></div></div>
+              <div style="clear:both"></div>
+            </div>
+            <div class="danhao_arc_bottom">
+            <div class="danhao_arc_left">
+              <div class="danhao_arc_left_left">
+                <div class="danhao_arc_left_left_top">前面等待</div>
+                <div class="danhao_arc_left_left_bottom"><div class="danhao_arc_img"><img src="{weimicms:$staticPath}/tpl/static/numqueue/images/users.png" width="20" /></div><span class="span_txt">{weimicms:$wait_num}</span><span>个</span> </div>
+              </div>
+              <div class="danhao_arc_left_left">
+                <div class="danhao_arc_left_left_top">预计等待</div>
+                <div class="danhao_arc_left_left_bottom"><div class="danhao_arc_img"><img src="{weimicms:$staticPath}/tpl/static/numqueue/images/time1.png" width="20" /></div><span class="span_txt" style="margin-left: 4%;"><php>$time = $wait_num*$store_info['wait_time'];if($time > 60){ echo floor($time/60).'时'.($time%60).'分';}else{ echo $time.'分钟';}</php></span></div>
+                 <div style="clear:both"></div>
+              </div>
+            </div>
+            <div class="danhao_arc_right"><div class="dan_hao_arc_right_top">NO.</div><div class="danhao_arc_right_bottom">{weimicms:$recevice_detial['queue_number']}</div></div>
+             <div style="clear:both"></div>
+            </div>
+            </div>
+            </div>
+          <div class="danhao_txt" style="border-bottom: 1px #C8CCCF  solid;"><div class="danhao_arc_img"><img src="{weimicms:$staticPath}/tpl/static/numqueue/images/message.png" width="20" /></div>&nbsp;&nbsp; 过号请重新取号&nbsp;谢谢配合</div>
+          <div class="danhao_txt">
+		  <if condition="$recevice_detial['status'] eq 1">
+          <div class="danhao_txt_left"><div class="danhao_txt_left" onclick="if(confirm('确定取消该排队吗？')){ window.location.href='{weimicms::U('Numqueue/del_receive',array('id'=>$recevice_detial['id'],'store_id'=>$recevice_detial['store_id'],'token'=>$recevice_detial['token'],'action_id'=>$id))}';return false;}"><div style="width:100px;"> <div class="danhao_arc_img" ><img src="{weimicms:$staticPath}/tpl/static/numqueue/images/tan.png" width="20" /></div> 取消排队 </div></div></div>
+		  <else />
+		  <div class="danhao_txt_left"><div class="danhao_txt_left" onclick="window.location.href='{weimicms::U('Numqueue/detail_store',array('store_id'=>$recevice_detial['store_id'],'token'=>$recevice_detial['token'],'action_id'=>$id))}';return false;"><div style="width:100px;"> <div class="danhao_arc_img" ><img src="{weimicms:$staticPath}/tpl/static/numqueue/images/tan.png" width="20" /></div> 重新排队 </div></div></div>
+		  </if>
+           <div style="clear:both"></div>
+          </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ </div>
+ <script>
+	window.shareData = {  
+		"moduleName":"Numqueue",
+		"moduleID":"0",
+		"imgUrl": "{weimicms:$f_siteUrl}/tpl/static/numqueue/images/paidui.png", 
+		"timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U('Numqueue/index',array('token'=>$token,'id'=>$id))}",
+		"sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Numqueue/index',array('token'=>$token,'id'=>$id))}",
+		"weiboLink": "{weimicms:$f_siteUrl}{weimicms::U('Numqueue/index',array('token'=>$token,'id'=>$id))}",
+		"tTitle": "{weimicms:$reply_title}",
+		"tContent": "{weimicms:$reply_title}",
+		"fTitle": "{weimicms:$reply_title}",
+	};
+</script>
+{weimicms:$shareScript}
+</body>
+</html>

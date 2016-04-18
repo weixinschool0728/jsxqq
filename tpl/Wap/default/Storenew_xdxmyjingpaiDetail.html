@@ -1,0 +1,108 @@
+<include file="Storenew:header"/>
+<ul class="m-uc-order-p-liv m-cart-list">
+		<li>
+			<span class="pic"><img src="{weimicms:$p.logourl}" width="75" height="75"></span>
+			<span class="con">
+			<i class="t">{weimicms:$p.name}</i>
+			<p><label>数量：</label>1　<label>小计：</label><span class="price">￥{weimicms:$p['price']} 元</span></p>
+			</span>
+		</li>
+</ul>
+<ul class="m-uc-order-v-infobox">
+<li><span class="tit">订单状态</span>
+<php>if($cartData['sent']){echo '<b class="orderStatus">已发货</b>';}</php>
+<if condition="$cartData['jingpai'] eq 1"><b class="orderStatus">竞拍成功</b></if>
+<if condition="$cartData['paid'] eq 1"><b class="orderStatus">已付款</b><else/><b class="noorderStatus">未付款</b></if>
+<if condition="$cartData['paid'] neq 1"><a href="{weimicms::U('Storenew/jingpaiorderCart', array('token' => $token, 'wecha_id' => $wecha_id,'orid' => $cartid, 'twid' => $twid,'cid' => $cid))}"><b class="orderStatus">立即付款</b></a></if>
+</li>
+<li class="info">
+<p>订单号：{weimicms:$cartData.orderid}</p>
+<p>下单时间：{weimicms:$cartData.time|date="Y-m-d H:i:s",###}</p>
+<p>订单金额：<b> {weimicms:$cartData.price} 元</b></p>
+</li>
+</ul>
+<!-- <ul class="m-uc-order-v-infobox">
+<li><span class="tit">物流信息</span></li>
+<li id="shipping_wlgs">
+<p>物流公司：<php>if($cartData['logistics']){echo $cartData['logistics'] . ';  订单号：' . $cartData['logisticsid'];}else{echo '普通快递';}</php></p>
+</li>
+</ul> -->
+<ul class="m-uc-order-v-infobox">
+<li><span class="tit">收货人信息</span></li>
+<li class="info">
+<p>收 货 人：{weimicms:$cartData.truename}</p>
+<p>收货地址：{weimicms:$cartData.address}</p>
+<p>联系方式：{weimicms:$cartData.tel}</p>
+<p>备注信息：{weimicms:$cartData.note}</p>
+</li>
+</ul>
+<ul class="m-uc-order-v-infobox">
+<li><span class="tit">支付与配送</span></li>
+<li id="shipping_zfhps" class="info">
+	<if condition="$cartData['paytype'] eq 'alipay'">支付方式：<span style="color:green">支付宝</span>
+	<elseif condition="$cartData['paytype'] eq 'weixin'" />支付方式：<span style="color:green">微信支付</span>
+	<elseif condition="$cartData['paytype'] eq 'tenpay'" />支付方式：<span style="color:green">财付通[wap手机]</span>
+	<elseif condition="$cartData['paytype'] eq 'tenpayComputer'" />支付方式：<span style="color:green">财付通[即时到帐]</span>
+	<elseif condition="$cartData['paytype'] eq 'yeepay'" />支付方式：<span style="color:green">易宝支付</span>
+	<elseif condition="$cartData['paytype'] eq 'allinpay'" />支付方式：<span style="color:green">通联支付</span>
+	<elseif condition="$cartData['paytype'] eq 'daofu'" />支付方式：<span style="color:green">货到付款</span>
+	<elseif condition="$cartData['paytype'] eq 'dianfu'" />支付方式：<span style="color:green">到店付款</span>
+	<elseif condition="$cartData['paytype'] eq 'chinabank'" />支付方式：<span style="color:green">网银在线</span>
+	<elseif condition="$cartData['paytype'] eq 'CardPay'" />支付方式：<span style="color:green">会员卡支付</span>
+	<else />
+	</if>
+<if condition="$cartData['sent'] eq 1">
+<p>快递公司：{weimicms:$cartData.logistics}</p>
+<p>快递单号：{weimicms:$cartData.logisticsid}</p>
+<p><a href="http://m.kuaidi100.com/index_all.html?type={weimicms:$cartData.logistics}&postid={weimicms:$cartData.logisticsid}&callbackurl={weimicms:$f_siteUrl}{weimicms::U('Storenew/myDetail',array('token' => $_GET['token'],'cid' => $cid))}">快递状态：<span style="color:red">{weimicms:$wuliustat}  --> 查询</span></a></p>
+</if>
+<p>商品金额：{weimicms:$cartData.price} 元</p>
+<p>订单金额：<php>{echo $cartData['price'];}</php> 元</p>
+</li>
+</ul>
+</div>
+<script type="text/javascript">
+function cancleorder(obj){
+    confirm =floatNotify.confirm("确定要删除此订单吗？", "",
+        function(t, n) {
+            if(n==true){
+                var _reson=obj.val();
+                var _order_id=$("#order_id").val();
+                $.ajax({
+                	type:"POST",
+                	url: "{weimicms::U('Storenew/cancelCart',array('token' => $token, 'cartid' => $cartid, 'wecha_id' => $_GET['wecha_id'], 'twid' => $twid,'cid' => $cid))}",
+                    dataType:"json",
+                    success:function(data){
+                        if(data.error_code == false){
+                            floatNotify.simple('订单取消成功');
+                            setTimeout("location.href='{weimicms::U('Storenew/my',array('token' => $token, 'wecha_id' => $_GET['wecha_id'], 'twid' => $twid,'cid' => $cid))}'",1200);  
+                        }else{
+                           return floatNotify.simple(data.msg);  
+                        }
+                    },
+                    error:function(){
+                       return floatNotify.simple("提交失败");
+                    }
+                });
+            }
+    	this.hide();
+      }),
+    confirm.show();
+}
+</script>
+<include file="Storenew:foot"/>
+</body>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Store",
+            "moduleID":"0",
+            "imgUrl": "", 
+            "timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U('Storenew/myDetail',array('token' => $_GET['token'], 'twid' => $mytwid, 'cid' => $cid))}",
+            "sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Storenew/myDetail',array('token' => $_GET['token'], 'twid' => $mytwid, 'cid' => $cid))}",
+            "weiboLink": "{weimicms:$f_siteUrl}{weimicms::U('Storenew/myDetail',array('token' => $_GET['token'], 'twid' => $mytwid, 'cid' => $cid))}",
+            "tTitle": "{weimicms:$metaTitle}",
+            "tContent": "{weimicms:$metaTitle}"
+        };
+</script>
+{weimicms:$shareScript}
+</html>

@@ -1,0 +1,196 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{weimicms:$thisCard.cardname} {weimicms:$item.title} 积分抽奖</title>
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<link href="{weimicms::RES}/card/style/style.css" rel="stylesheet" type="text/css">
+<link href="{weimicms::RES}/card/style/score_views.css" rel="stylesheet" type="text/css">
+<script src="/tpl/static/jquery.min.js" type="text/javascript"></script>
+<!-- <script src="/tpl/static/alert.js" type="text/javascript"></script> -->
+<script src="{weimicms::RES}/card/js/accordian.pack.js" type="text/javascript"></script>
+
+<link href="/tpl/static/kindeditor/examples/jquery-ui/css/smoothness/jquery-ui-1.9.2.custom.css" rel="stylesheet" type="text/css">
+<script src="/tpl/static/kindeditor/examples/jquery-ui/js/jquery-ui-1.9.2.custom.js" type="text/javascript"></script>
+</head>
+<body id="cardnews" class="mode_webapp">
+<div class="qiandaobanner"><a href="javascript:history.go(-1);"><img src="{weimicms:$thisCard.vip}" ></a> </div>
+<style>
+header {
+    margin: 0 10px;
+    position: relative;
+    z-index: 4;
+}
+header ul {
+	margin:0 -1px;
+	border: 1px solid #179f00;
+	border-radius: 3px;
+	width: 100%;
+	overflow: hidden;
+}
+header ul li a.bl {
+    border-left: 1px solid #0b8e00;
+}
+header ul li a.on {
+    background-color:#179f00;
+    color: #ffffff;
+    background-image: -moz-linear-gradient(center bottom , #179f00 0%, #5dd300 100%);
+}
+header ul li a {
+    color: #0b8e00;
+    display: block;
+    font-size: 15px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    width:33%;
+    float:left;
+}
+.pic{width:100%;margin-bottom:10px;}
+.over{background:#aaa;border:1px solid #aaa;box-shadow: 0 1px 0 #cccccc inset, 0 1px 2px rgba(0, 0, 0, 0.5);}
+.window .title{background-image: linear-gradient(#179f00, #179f00);}
+
+.ui-widget-content{
+	border-color:#e9e9e9;
+}
+.ui-dialog{
+	padding:0;
+}
+.ui-widget-header{
+	border:0;
+	background: #179F00;
+}
+.ui-widget-header{
+	color:#fff;
+}
+.infos{
+	word-break:break-all; 
+	overflow:auto;
+}
+</style>
+
+<div class="jifen-box">
+<ul class="zongjifen">
+<li>
+<div class="fengexian">
+<p>会员</p>
+<span>{weimicms:$userInfo['truename']}</span></div>
+</li>
+<li><a href="/index.php?g=Wap&m=Card&a=signscore&token={weimicms:$token}&wecha_id={weimicms:$wecha_id}&cardid={weimicms:$card.id}">
+<div class="fengexian">
+<p>目前积分</p>
+<span>{weimicms:$userScore}分</span></div>
+</a></li>
+<li><a href="/index.php?g=Wap&m=Card&a=payRecord&token={weimicms:$token}&wecha_id={weimicms:$wecha_id}&cardid={weimicms:$card.id}&month={weimicms::date('n')}">
+<p>我的余额</p>
+<span>{weimicms:$userInfo['balance']}元</span></a></li>
+</ul>
+<div class="clr"></div>
+</div>
+
+<div class="gift-detail-wrap" id="giftInfoWrap">
+    <div class="cBox">
+        <div class="imgBox-wrap">
+            <div class="imgBox">
+                <img id="detailImg" class="imgBox-img" src="{weimicms:$item.pic}"/>
+            </div>
+        </div>
+        <div class="gift-detail-info-wrap ">
+            <div class="gift-detail-btns-wrap">
+                <span class="gift-detail-need">&nbsp;<i id="integral{weimicms:$item.id}">{weimicms:$item.integral}</i> 积分</span>
+				<if condition="$item.integral gt $userScore">
+				<div class="btn noGift">积分不足</div>
+				<else/>
+					<if condition="$item['people'] eq $item['usetime']">
+					<div class="btn noGift">暂时无货</div>
+					<else/>
+					<div class="btn js-lottery"><a href="javascript:void(0)" onClick="payformsubmit({weimicms:$item.id})">立即抽奖</a></div>
+					</if>
+				</if>
+            </div>
+            <p class="title">{weimicms:$item.title}</p>
+			<p class="condition">礼品总数：{weimicms:$item.people}</span></p>
+            <p class="condition">剩余数量：<?php echo ($item['people']-$item['usetime']);?></span></p>
+            <p class="condition">有效日期：{weimicms:$item.enddate|date='Y年m月d日 H:s:i',###}</p>
+            <p class="condition">抽奖条件：无限制<br>&nbsp;</p>
+		</div>
+        <div class="gift-detail-extra-box">
+            <p class="gift-detail-box-title">物品说明</p>
+            <p class="gift-detail-extra-content">
+			{weimicms:$item.info}
+			<br/>&nbsp;<br/>
+            <a href="index.php?g=Wap&m=Card&a=cardIntro&token={weimicms:$token}&wecha_id={weimicms:$wecha_id}&cardid={weimicms:$thisCard.id}">积分不够？动动手，积分轻松赚</a>
+			<br/>&nbsp;
+			</p>
+        </div>
+        <div class="gift-detail-extra-box">
+            <p class="gift-detail-box-title">抽奖说明</p>
+            <p class="gift-detail-extra-content">物品一经兑换，无法取消操作<br/><br/>
+			体验店地址：{weimicms:$contact.address}
+			<br/>电话：<a href='tel:{weimicms:$contact.tel}'>{weimicms:$contact.tel}</a>
+			</p>
+        </div>
+    </div>
+</div>
+
+<script>
+var jQ = jQuery.noConflict();
+
+function payformsubmit(itemid){
+	var submitData = {
+		coupon_id:itemid,
+		cardid: '{weimicms:$thisCard.id}',
+		type: '{weimicms:$type}',
+		cat:100,
+	};
+
+		jQ("#spanmessage").text('本次抽奖需要消耗'+(jQ('#integral'+itemid).html())+'点积分，确定领取吗？');
+	jQ("#message").dialog({
+		title: "温馨提示！",
+		modal: true,
+		resizable: false,
+		buttons: {
+		   "取消": function() {
+		       	jQ(this).dialog("close");
+		   },
+		   "确定": function() {
+		      	ajaxSub(submitData);//方法回调
+		       	jQ(this).dialog("close");
+		   }
+		}
+	}); 
+}
+
+function ajaxSub(submitData){
+   	jQ.post('/index.php?g=Wap&m=Card&a=action_scorelottery&wecha_id={weimicms:$wecha_id}&token={weimicms:$token}&cardid={weimicms:$thisCard.id}', submitData,function(data) {
+
+			if(data.err == 0){
+				jQ('.count'+submitData.coupon_id).html(jQ('.count'+submitData.coupon_id).html()*1-1);
+			}
+
+		  jQ("#spanmessage").text(data.info); 
+		  jQ("#message").dialog({
+	           title:"温馨提示！",
+	           modal: true,
+	           buttons: {
+	               "确定": function() {
+	                   jQ(this).dialog("close");
+	               }
+	           }
+	       	}); 
+		}, "json");
+}
+
+jQ(function a(){
+   var boardDiv = "<div id='message' style='display:none;'><span id='spanmessage'></span></div>";
+   jQ(document.body).append(boardDiv);
+
+}
+); 
+</script>
+<include file="Card:bottom"/>
+<include file="Card:share"/>
+</body>
+</html>

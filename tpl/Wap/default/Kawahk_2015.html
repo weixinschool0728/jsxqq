@@ -1,0 +1,324 @@
+
+<html>  
+<head>  
+<meta http-equiv="content-type" content="text/html; charset=utf-8">  
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+       <include file="Kawahk:js"/> 
+        <script type="text/javascript">
+            initViewport();
+        </script>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>送给你</title>  
+
+
+<style type="text/css">  
+    <!--   
+    body{   
+		-webkit-touch-callout: none; 
+		-webkit-text-size-adjust: none;
+        margin:0 auto;   		
+        overflow:hidden;   
+		position:relative;
+    }   
+  
+    div#content{
+        position:relative;   
+        border:1px solid #000; 
+		width:500px;		
+		height:750px;
+		margin:0 auto; 
+        top:0px;    
+        overflow:hidden;   
+        clear:both;
+    }
+  
+    div#bg{   
+        position:absolute;   
+        left:0px;   
+        top:0px;
+		-webkit-animation:fadeOut 4s 0.5s infinite ease-in-out alternate both;
+    } 
+	
+	div#bg1{   
+        position:absolute;   
+        left:0px;   
+        top:0px;
+		-webkit-animation:fadeOut 4s 4.5s infinite ease-in-out alternate both;
+    } 
+	@-webkit-keyframes fadeOut{
+		0%{opacity:1;}
+		100%{opacity:0;}
+	}
+	div#stars
+	{ 
+		position:absolute; 
+		width:400px;
+		height:700px;
+		left:0px;
+		top:0px;
+	}
+	#stars img{ position:absolute }
+	
+	@-webkit-keyframes flash1{
+		0%{opacity:0.0;-webkit-transform:rotate(0deg);}
+		100%{opacity:0.4;-webkit-transform:rotate(30deg);}
+	}
+	@-webkit-keyframes flash2{
+		0%{opacity:0;-webkit-transform:rotate(0deg);}
+		100%{opacity:1;-webkit-transform:rotate(20deg);}
+	}
+	@-webkit-keyframes flash3{
+	0%,50%,100%{opacity: 0.8;}
+	25%,75%{opacity: 0.2;}
+	}
+	div#guang1
+	{ 
+		position:absolute; 
+		left:63px;
+		top:103px;
+		-webkit-transform-origin:center center;
+		-webkit-animation:flash1 2.3s 0.2s infinite ease-in-out alternate both;
+	}
+	
+	div#guang2
+	{ 
+		position:absolute; 
+		left:132px;
+		top:87px;
+		-webkit-transform-origin:center center;
+		-webkit-animation:flash2 2s 0.4s infinite ease-in-out alternate both;
+	}
+	
+	div#guang3
+	{ 
+		position:absolute; 
+		left:316px;
+		top:351px;
+		-webkit-transform-origin:center center;
+		-webkit-animation:flash3 3s 0.1s infinite ease-in-out alternate both;
+	}
+	div#guang4
+	{ 
+		position:absolute; 
+		left:407px;
+		top:376px;
+		-webkit-transform-origin:center center;
+		-webkit-animation:flash1 2s 0.4s infinite ease-in-out alternate both;
+	}
+	div#guang5
+	{ 
+		position:absolute; 
+		left:152px;
+		top:521px;
+		-webkit-transform-origin:center center;
+		-webkit-animation:flash2 3s 0.2s infinite ease-in-out alternate both;
+	}
+	div#guang6
+	{ 
+		position:absolute; 
+		left:316px;
+		top:535px;
+		-webkit-transform-origin:center center;
+		-webkit-animation:flash3 3s 0.5s infinite ease-in-out alternate both;
+	}
+	
+	div#shuidi
+	{ 
+		position:absolute; 
+		left:-30px;
+		top:328px;		
+		-webkit-transform-origin:left center;		
+		-webkit-animation:move 12s 0s infinite linear normal both;
+	}
+	@-webkit-keyframes move{
+		0%{left:-30px;top:328px;opacity:1;}
+		30%{left:116px;top:372px;opacity:1;}
+		50%{left:228px;top:439px;opacity:1;}
+		52%{opacity:0;}
+		100%{opacity:0;}
+	}
+	div#shuidi2
+	{ 
+		position:absolute; 
+		left:224px;
+		top:449px;				
+		-webkit-transform-origin:left center;		
+		-webkit-animation:move1 12s 0s infinite ease-in-out normal both;
+	}
+	@-webkit-keyframes move1{
+		0%{opacity:0;-webkit-transform:translateY(0px)}
+		50%{opacity:0;-webkit-transform:translateY(0px)}
+		55%{opacity:1;-webkit-transform:translateY(0px)}
+		60%{opacity:1;-webkit-transform:translateY(0px)}
+		100%{opacity:1;-webkit-transform:translateY(4000px)}
+	}
+	div#guang7
+	{ 
+		position:absolute; 
+		left:223px;
+		top:435px;
+		-webkit-transform-origin:center center;
+		-webkit-animation:rotate2 12s 0s infinite ease-in-out normal both;
+	}
+	@-webkit-keyframes rotate2{
+		0%{opacity:0;-webkit-transform:rotate(0deg);}
+		50%{opacity:0;-webkit-transform:rotate(0deg);}
+		55%{opacity:1;-webkit-transform:rotate(60deg);}
+		60%{opacity:0;-webkit-transform:rotate(120deg);}
+		100%{opacity:0;}
+	}
+	div#yezi1
+	{ 
+		position:absolute; 
+		left:-13px;
+		top:327px;		
+		-webkit-transform-origin:left top;		
+		-webkit-animation:rotate1 12s 0s infinite ease-in-out normal both;
+	}
+	
+	div#yezi2
+	{ 
+		position:absolute; 
+		left:-13px;
+		top:327px;	
+		-webkit-transform-origin:left top;			
+		-webkit-animation:rotate1 12s 0s infinite ease-in-out normal both;
+	}
+	@-webkit-keyframes rotate1{
+		0%{-webkit-transform:rotate(0deg);}
+		30%{-webkit-transform:rotate(4deg);}	
+		50%{-webkit-transform:rotate(8deg);}
+		60%{-webkit-transform:rotate(8deg);}		
+		65%{-webkit-transform:rotate(-3deg);}		
+		70%{-webkit-transform:rotate(3deg);}			
+		75%{-webkit-transform:rotate(-2deg);}		
+		80%{-webkit-transform:rotate(2deg);}					
+		85%{-webkit-transform:rotate(-2deg);}		
+		90%{-webkit-transform:rotate(2deg);}						
+		95%{-webkit-transform:rotate(-1deg);}	
+		100%{-webkit-transform:rotate(0deg);}
+	}
+	
+	div#foot{   
+        position:fixed; 
+		width:500px;
+		left:320px;
+		bottom:20px;
+    } 	
+  
+    div#relative{   
+        position:relative;   
+        left:100px;   
+        top:0px;   
+    }   
+  
+    div#static{   
+        background-color:#bbb;   
+		top:20;
+		left:30px;
+        position:static;   
+    }   
+	
+    -->  
+</style>  
+</head>  
+
+<body onLoad = "kawa_init();">
+    <script>
+    	 words = '有一种幸福叫简单，有一种浪漫叫平淡，有一种懂得叫珍惜。生活中，多一份思索，少一份迷茫。多一份淡定，少一份烦恼。多一份宽容，少一份狭隘。多一份坦然，少一份遗憾。心变得简单，日子就会快乐。朋友，早安！';
+
+            kawa_data = {
+                words 			   : words,
+               <if condition=" $words eq ''">
+				replace_words      : '有一种幸福叫简单，有一种浪漫叫平淡，有一种懂得叫珍惜。生活中，多一份思索，少一份迷茫。多一份淡定，少一份烦恼。多一份宽容，少一份狭隘。多一份坦然，少一份遗憾。心变得简单，日子就会快乐。朋友，早安！',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+                text_box           : '100 50 350 300', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+                mode               : 'up',     // up, left
+                speed              : 40,     // 每秒移动的像素
+                text_color         : '#FFFFEE', // rgb(1,2,3) 'black'
+                font_size          : '20pt',
+                line_height        : '40pt',
+                music              : 'http://sound.kagirl.net/sound/qingyinyue4.mp3',     // url
+                 <if condition=" $music eq ''">
+				replace_music      : 'http://sound.kagirl.net/sound/qingyinyue4.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+                music_name         : '',
+                replace_music_name : '#replace_music_name#',
+                icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/fengmian/x2015.jpg',
+                title              : '送给你',
+                desc               : words,
+                modify             : 'no',
+                replace_modify     : 'yes',
+                cardid             : '2015',
+                share_url          : window.location.href,   // 当分享的是微信页面时才需要改这里
+                font_ip            : '114.215.157.155:8000',
+                modify_optfile     : 'xinqing',
+                modify_optwords    : '#modify_optwords#',
+                show_words         : 'yes',
+                write_param_1      : 'inputtype=singleline&showsel=no&prompt=' + encodeURIComponent('输入对方的名字：')
+            };   	
+        </script>
+
+    <div id="content">  
+		<div id="bg2">
+			<img src="tpl/Wap/default/common/kawahk/2015/2015_1.jpg"/>
+		</div> 
+			
+		<div id="guang1">
+			<img src="tpl/Wap/default/common/kawahk/2015/2015_7.png"/>
+		</div>  		
+		<div id="guang2">
+			<img src="tpl/Wap/default/common/kawahk/2015/2015_8.png"/>
+		</div> 
+		<div id="guang3">
+			<img src="tpl/Wap/default/common/kawahk/2015/2015_9.png"/>
+		</div> 
+		<div id="guang4">
+			<img src="tpl/Wap/default/common/kawahk/2015/2015_10.png"/>
+		</div> 
+		<div id="guang5">
+			<img src="tpl/Wap/default/common/kawahk/2015/2015_11.png"/>
+		</div> 
+		<div id="guang6">
+			<img src="tpl/Wap/default/common/kawahk/2015/2015_12.png"/>
+		</div> 
+		<div id="yezi1">
+			<img src="tpl/Wap/default/common/kawahk/2015/2015_2.png"/>
+		</div>
+		<div id="shuidi">
+			<img src="tpl/Wap/default/common/kawahk/2015/2015_3.png"/>
+		</div>
+		<div id="shuidi2">
+			<img src="tpl/Wap/default/common/kawahk/2015/2015_5.png"/>
+		</div>
+		<div id="guang7">
+			<img src="tpl/Wap/default/common/kawahk/2015/2015_6.png"/>
+		</div> 
+		<div id="yezi2">
+			<img src="tpl/Wap/default/common/kawahk/2015/2015_1.png"/>
+		</div>
+		<div id="container" onclick="clickbg();" style="left:0%;top:0%;">
+			<div id="leafContainer"></div>
+		</div>
+
+        <div id="relative"></div>  
+        <div id="relative"></div> 
+		
+    </div>  
+	
+
+<div id="audiocontainer"></div>
+<div id="ruler" style="width:100%;height:0"></div>
+<div id="textsuper" style="position:absolute;top:-1000;left:-1000;overflow-x:hidden;overflow-y:hidden;z-index:4000">
+	<div id="textsub" style='color:black;position:relative;font-size:21pt;text-align:left;line-height:36pt' >
+		<b id="textcontent">
+        </b>
+    </div>
+</div>
+
+</body>  
+</html>  

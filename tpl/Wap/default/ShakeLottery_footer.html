@@ -1,0 +1,57 @@
+<params 
+
+	AjaxReturnPrizeUrl = "{weimicms::U('ShakeLottery/AjaxReturnPrize',array('token'=>$actioninfo['token'],'id'=>$actioninfo['id']))}"
+
+	enddate = "<?php echo date('m/d/Y H:i:s', $actioninfo['endtime'])?>"
+
+	starttime = "<?php echo date('m/d/Y H:i:s', $actioninfo['starttime'])?>"
+
+	notice_content = '{weimicms:$notice_content}'
+
+	staticPath = '{weimicms:$staticPath}'
+
+	aid		   = '{weimicms:$actioninfo['id']}';
+
+	token		   = '{weimicms:$actioninfo['token']}'
+
+	user_id		   = '{weimicms:$user_id}'
+
+	MyRecordUrl 	= "{weimicms::U('ShakeLottery/LotteryMyRecord',array('token'=>$actioninfo['token']))}"
+
+	OtherRecordUrl 	= "{weimicms::U('ShakeLottery/LotteryRecord',array('token'=>$actioninfo['token'],'record_nums'=>$actioninfo['record_nums']))}"
+
+/>
+
+<div class="weiba-footer"><div class="weiba-copyright"></div></div>
+
+<script>
+
+window.shareData = {  
+
+	"moduleName":"ShakeLottery",
+
+	"moduleID":"{weimicms:$actioninfo.id}",
+
+	"imgUrl": "{weimicms:$actioninfo.reply_pic}", 
+
+	"timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U('ShakeLottery/index',array('token'=>$actioninfo['token'],'id'=>$actioninfo['id']))}",
+
+	"sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('ShakeLottery/index',array('token'=>$actioninfo['token'],'id'=>$actioninfo['id']))}",
+
+	"weiboLink": "{weimicms:$f_siteUrl}{weimicms::U('ShakeLottery/index',array('token'=>$actioninfo['token'],'id'=>$actioninfo['id']))}",
+
+	"tTitle": "{weimicms:$actioninfo['custom_sharetitle']|shareFilter}",
+
+	"tContent": "{weimicms:$actioninfo['custom_sharedsc']|shareFilter}",
+
+	"fTitle": "{weimicms:$actioninfo['custom_sharedsc']|shareFilter}",
+
+	"isShareNum":1,
+
+	"ShareNumData":"shakelottery,id,{weimicms:$actioninfo.id},share_count",
+
+};
+
+</script>
+
+{weimicms:$shareScript}

@@ -1,0 +1,240 @@
+<!doctype html>
+<html>
+<head>
+<title></title>
+<meta charset="utf-8">
+<meta http-equiv="imagetoolbar" content="no">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="viewport" content="width=device-width, height=device-height,
+            initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+<script src='tpl/Wap/default/common/hcar/xzyy/kawa.js'></script>
+<style type="text/css">
+body {
+	color: black;
+	font-size: 13pt;
+	background-image: url(tpl/Wap/default/common/hcar/xzyy/write_bg.jpg);
+}
+.line {
+	height: 50px;
+	font-size: 13pt;
+	line-height: 50px;
+	padding-left: 5px;
+	color: #0088E3;
+}
+.odd {
+	background-color: rgb(210, 210, 210);
+}
+.even {
+	background-color: rgb(190, 190, 190);
+}
+.select {
+	display: block;
+	position: relative;
+	overflow: hidden;
+	background: white;
+	border: 1px solid #d2e2e7;
+	border-bottom-color: #c5d4d9;
+	border-radius: 2px;
+	background-image: -webkit-linear-gradient(top, #fcfdff, #f2f7f7);
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+.select:before, .select:after {
+	content: '';
+	position: absolute;
+	right: 11px;
+	width: 0;
+	height: 0;
+	border-left: 3px outset transparent;
+	border-right: 3px outset transparent;
+}
+.select:before {
+	top: 10px;
+	border-bottom: 3px solid #7f9298;
+}
+.select:after {
+	top: 16px;
+	border-top: 3px solid #7f9298;
+}
+.select > select {
+	position: relative;
+	z-index: 2;
+	width: 112%;
+	height: 29px;
+	line-height: 17px;
+	padding: 5px 9px;
+	padding-right: 0;
+	color: #80989f;
+	background: transparent;
+	background: rgba(0, 0, 0, 0);
+	border: 0;
+	-webkit-appearance: none;
+}
+.select > select:focus {
+	color: #4d5a5e;
+	outline: 0;
+}
+</style>
+<script>
+            mp3_list = new Array();
+
+            mp3_list[0] = {name:"xuehuadekuaile", title:"雪花的快乐", url:"tpl/Wap/default/common/hcar/sound/xuehuadekuaile2.mp3"};mp3_list[1] = {name:"aimeili", title:"Amelie", url:"tpl/Wap/default/common/hcar/sound/aimeili.mp3"};mp3_list[2] = {name:"alwayswithme", title:"Always with me", url:"tpl/Wap/default/common/hcar/sound/always_with_me.mp3"};mp3_list[3] = {name:"ibelieve", title:"I Believe", url:"tpl/Wap/default/common/hcar/sound/ibelieve.mp3"};mp3_list[4] = {name:"qingyinyue1", title:"轻音乐 1", url:"tpl/Wap/default/common/hcar/sound/qingyinyue1.mp3"};mp3_list[5] = {name:"qingyinyue2", title:"轻音乐 2", url:"tpl/Wap/default/common/hcar/sound/qingyinyue2.mp3"};mp3_list[6] = {name:"qingyinyue3", title:"轻音乐 3", url:"tpl/Wap/default/common/hcar/sound/qingyinyue3.mp3"};mp3_list[7] = {name:"qingyinyue4", title:"轻音乐 4", url:"tpl/Wap/default/common/hcar/sound/qingyinyue4.mp3"};mp3_list[8] = {name:"qingyinyue5", title:"轻音乐 5", url:"tpl/Wap/default/common/hcar/sound/qingyinyue5.mp3"};mp3_list[9] = {name:"qingyinyue6", title:"轻音乐 6", url:"tpl/Wap/default/common/hcar/sound/qingyinyue14.mp3"};mp3_list[10] = {name:"qingyinyue7", title:"轻音乐 7", url:"tpl/Wap/default/common/hcar/sound/qingyinyue15.mp3"};mp3_list[11] = {name:"qingyinyue8", title:"轻音乐 8", url:"tpl/Wap/default/common/hcar/sound/qingyinyue8.mp3"};mp3_list[12] = {name:"qingyinyue9", title:"轻音乐 9", url:"tpl/Wap/default/common/hcar/sound/qingyinyue9.mp3"};mp3_list[13] = {name:"qingyinyue10", title:"轻音乐 10", url:"tpl/Wap/default/common/hcar/sound/qingyinyue10.mp3"};mp3_list[14] = {name:"qingyinyue11", title:"轻音乐 11", url:"tpl/Wap/default/common/hcar/sound/qingyinyue11.mp3"};mp3_list[15] = {name:"qingyinyue12", title:"轻音乐 12", url:"tpl/Wap/default/common/hcar/sound/qingyinyue12.mp3"};mp3_list[16] = {name:"qingyinyue13", title:"轻音乐 13", url:"tpl/Wap/default/common/hcar/sound/qingyinyue13.mp3"};mp3_list[17] = {name:"birthday1", title:"生日歌 1", url:"tpl/Wap/default/common/hcar/sound/birthdaysound1.mp3"};mp3_list[18] = {name:"birthday2", title:"生日歌 2", url:"tpl/Wap/default/common/hcar/sound/birthdaysound2.mp3"};
+
+            defmusic  = '#defmusic#';
+            //music_sel = (defmusic.charAt(0) == '#') ? 'aimeili' : defmusic;
+            music_sel = 'none';
+
+            defwords = '#defwords#';
+            cardid = '9392';
+            inputtype = 'textarea'; // 'singleline' or 'textarea'
+
+            function on_body_load()
+            {
+                create_input_obj();
+                setup_lines();
+
+                tail = document.createElement('div');
+                tail.style.height = '50px';
+                document.body.appendChild(tail);
+
+                player = document.createElement('audio');
+                player.id = 'player';
+                document.body.appendChild(player);
+
+                make_btn_top = id('foot').offsetTop - 59;
+                id('make_btn').style.top = make_btn_top + 'px';
+                id('make_btn').style.left = '0px';
+
+                id('player').pause();
+
+                if(defwords.charAt(0) != '#')
+                {
+                    id('words').value = defwords;
+                }
+            }
+
+            function create_input_obj()
+            {                
+                if(inputtype == 'textarea')
+                {
+                    area = document.createElement('textarea');
+                    area.style.webkitBoxSizing = 'border-box';
+                    area.style.width = '100%';
+                    area.style.fontSize = '13pt';
+                    area.rows = '6';
+                    area.id = 'words';
+                    objid('inputobj').appendChild(area);
+                }
+                else if(inputtype == 'singleline')
+                {
+                    text = document.createElement('input');
+                    text.type = 'text';
+                    text.style.webkitBoxSizing = 'border-box';
+                    text.style.width = '100%';
+                    text.style.fontSize = '13pt';
+                    text.id = 'words';
+                    objid('inputobj').appendChild(text);
+                }
+            }
+
+            function get_music(music_name)
+            {
+                for(i=0; i<mp3_list.length; i++)
+                {
+                    if(mp3_list[i].name == music_name)
+                    {
+                        return i;
+                    }
+                }
+
+                return -1;
+            }
+
+            function id(idname)
+            {
+                return document.getElementById(idname);
+            }
+
+            function setup_lines()
+            {
+                for(i=0; i<mp3_list.length; i++)
+                {
+                    div = document.createElement('div');
+                    div.className = (i % 2 == 0) ? 'line even' : 'line odd';
+                    div.id = 'mp3div_' + i;
+
+                    title = document.createElement('span');
+                    title.innerText = mp3_list[i].title;
+                    div.appendChild(title);
+
+                    eval("div.onclick = function(){select_mp3("+i+")}");
+
+                    id('mp3box').appendChild(div);
+                }
+            }
+
+            function select_mp3(index)
+            {
+                mp3div = id('mp3div_' + index);
+                x = mp3div.offsetLeft + mp3div.offsetWidth - 40;
+                y = mp3div.offsetTop;
+
+                id('laba').style.left = x + 'px';
+                id('laba').style.top  = (y + 13) + 'px';
+
+                id('player').src = mp3_list[index].url;
+                id('player').play();
+                music_sel = mp3_list[index].name;
+            }
+
+            function select_words()
+            {
+                id('words').value = id('words_selector').value;
+            }
+
+            function build_card()
+            {
+                url = '/index.php?g=Wap&m=Hcar&a=hcar_make1&token={weimicms:$token}&id={weimicms:$id}&cardid={weimicms:$cardid}&action=1';
+                url = url + '&words=' + encodeURIComponent(id('words').value);
+                
+                if(music_sel != 'none')
+                {
+                    url = url + '&music=' + music_sel;
+                }
+
+                location.href = url;
+            }
+        </script>
+</head>
+<body onload='on_body_load()'>
+<div>
+写在微卡上的话（不超过200字）：
+<div>
+<div id='words_selector_div' style='padding-top:15px;padding-bottom:10px'>
+  <select id='words_selector' class='select' onchange='select_words()'
+                style='width:100%;font-size:13pt;height:35px;-webkit-box-sizing:border-box;'>
+    <option selected="">点这里选择祝福语</option>
+    <volist name="hcar" id="o">
+			<option>{weimicms:$o.content}</option>
+			</volist>
+  </select>
+</div>
+<div id='inputobj' style='padding-top:5px'> </div>
+<div style='margin-top:20px;margin-bottom:10px'>选择背景音乐：</div>
+<div style='width:100%;border:solid #444444 1px' id='mp3box'> </div>
+<div id='make_btn' style='position:fixed;width:100%;
+            height:60px;background-color:black;opacity:0.8'>
+  <div onclick='build_card()'
+                style='width:96%;height:50px;left:2%;top:6px;position:absolute;
+                color:black;line-height:50px;
+                font-size:20pt;text-align:center;
+                background-image:url("tpl/Wap/default/common/hcar/xzyy/write_btn.png");
+                background-size:100% 100%;
+                -webkit-border-image-:url("tpl/Wap/default/common/hcar/xzyy/write_btn.png") 0 20 0 20 round stretch;'> 生成微卡 </div>
+</div>
+<div id='foot' style='position:fixed;bottom:0px;width:1px;height:1px;left:-100px'> </div>
+<div id='laba' style='position:absolute;left:85%;top:-100px'> <img width='30px' src='tpl/Wap/default/common/hcar/xzyy/write_laba.png'> </div>
+</body>
+</html>

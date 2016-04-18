@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>  
+<title>{weimicms:$thisCard.cardname}</title> 
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" /> 
+<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" /> 
+<!-- Mobile Devices Support @begin --> 
+<meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type" /> 
+<meta content="telephone=no, address=no" name="format-detection" /> 
+<meta name="apple-mobile-web-app-capable" content="yes" /> 
+<!-- apple devices fullscreen --> 
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" /> 
+<link href="{weimicms::$staticPath}/tpl/static/card/css/main.css" rel="stylesheet" type="text/css">
+</head> 
+<body onselectstart="return true;" ondragstart="return false;"> 
+  <div class="container addr"> 
+   <div class="body"> 
+    <ul class="list_ul list_addr "> 
+     <ol> 
+        <li class="li_b header tbox"> 
+           <dd> 
+                <i>&nbsp;</i> 
+           </dd> 
+           <dd> 
+                <label class="label">商家门店</label> 
+           </dd> 
+        </li> 
+     </ol> 
+    <volist id="thisCompany" name="companies">
+     <div> 
+        <li class="li_name tbox"> 
+            <dd class="pl_10"></dd> 
+            <dd> 
+                <label class="label">{weimicms:$thisCompany.name}<if condition="$thisCompany.isbranch eq 0">（总部）</if></label> 
+            </dd> 
+        </li> 
+        <li class="li_tel tbox"> 
+           <dd> 
+                <i>&nbsp;</i> 
+           </dd> 
+           <dd> 
+                <a class="label" href="tel:{weimicms:$thisCompany.tel}">电话：{weimicms:$thisCompany.tel}</a> 
+           </dd> 
+        </li> 
+        <li class="li_add tbox"> 
+        <dd> 
+            <i>&nbsp;</i> 
+        </dd> 
+        <dd> 
+            <a href="{weimicms::U('Card/companyMap',array('token'=>$token,'wecha_id'=>$wecha_id,'cardid'=>$thisCard['id'],'companyid'=>$thisCompany['id']))}">
+                <label class="label">地址：{weimicms:$thisCompany.address}</label>
+            </a> 
+        </dd> 
+        </li> 
+     </div>
+    </volist>
+
+    </ul> 
+   </div> 
+  </div> 
+
+
+<include file="Card:bottom"/>
+<include file="Card:share"/>
+ </body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<title>{weimicms:$info['title']}</title>
+
+<link href="{weimicms:$staticPath}/tpl/static/public-framework/styles/framework.css" rel="stylesheet" type="text/css">
+<link href="{weimicms:$staticPath}/tpl/static/public-framework/styles/owl.carousel.css" rel="stylesheet" type="text/css">
+<link href="{weimicms:$staticPath}/tpl/static/public-framework/styles/owl.theme.css" rel="stylesheet" type="text/css">
+<link href="{weimicms:$staticPath}/tpl/static/Popularity/css/index.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/public-framework/scripts/jquery.js"></script>
+
+<script type="text/javascript">
+function swapStyleSheet(sheet){
+	document.getElementById('pagestyle').setAttribute('href', sheet);
+}
+</script>
+
+</head>
+<body>
+<div class="content-controls solid-color fixed-header">
+    		<if condition="$is_over eq 1">
+                <a class="button-big button-turqoise" href="javascript:void(0);" style="background:#5a5a5a;">活动还没开始</a>
+            <elseif condition="$is_over eq 2"/>
+    			<a class="button-big button-turqoise" href="javascript:void(0);" style="background:#5a5a5a;">活动已经结束</a>
+    		<elseif condition="$puser['wecha_id'] neq $wecha_id and $wecha_id neq ''"/>
+            	<a class="button-big button-turqoise" href="{weimicms::U('Weizhaohuan/index',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$info['id']))}">返回我的</a>
+            <else/>
+                <if condition="$memberNotice eq ''">
+                   <a class="button-big button-turqoise" id="share" href="javascript:void(0);">召唤小伙伴一起抢</a>
+                <else/>
+                   <a class="button-big button-turqoise" href="#memberNoticeBox" id="modaltrigger_notice">我要参加</a>
+                </if>
+            </if>
+</div>
+<div class="all-elements 30-bottom">
+  <div class="title">人气排行榜TOP30  参与 <i class="red-b">{weimicms:$allcount}</i> 人</div>
+    <div id="content" class="page-content">
+    
+		<!--sharelist start-->
+		 <div class="content">		 
+            <div class="container no-bottom">
+
+            	<volist id="rank" name="rank" key="key">
+            	<div class="column-responsive half-bottom">
+            		<img src="{weimicms:$rank.portrait}">
+                    <div class="info">
+                    	<b>{weimicms:$rank.username}</b>
+                    	<div class="con">
+	                    	<i class="diagram-list"></i>
+	                    	<span class="num">人气：{weimicms:$rank.share_count}  积分：{weimicms:$rank.score}</span>
+	                    	<span class="time">{weimicms:$rank.add_time|date="Y-m-d H:i",###}</span>
+	                    </div>
+	                    <i class="ic_rank2 ic{weimicms:$key}"><if condition="$key gt 3">{weimicms:$key}</if></i>
+                	</div>
+            	</div> 
+           		</volist>            	             
+				<div class="count"><span class="cor-1"><b>{weimicms:$urank['username']}</b></span> 当前排第 <span class="cor-1">{weimicms:$urank['count']}</span> 名</div>
+                <div class="clear"></div>
+				<h5 class="role_title">活动时间</h5>
+				<div class="times">{weimicms:$info.start|date="Y-m-d",###} 至  {weimicms:$info.end|date="Y-m-d",###}</div>
+                <div class="rule"></div>
+                <h5 class="role_title">活动介绍</h5>
+                <div class="intro">
+                	{weimicms:$info.info|htmlspecialchars_decode}
+                </div>
+				<div style="height:20px"> </div>
+            </div>
+			<div style="height:40px"> </div>
+        </div>
+		<!--sharelist end-->
+  	
+    </div>  
+	
+</div>
+
+
+<div class="share_bg">
+    <img src="{weimicms:$staticPath}/tpl/static/live/default/share-guide.png">
+</div>
+
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/public-framework/scripts/framework.launcher.js"></script>
+
+</body>
+</html>

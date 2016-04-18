@@ -1,0 +1,45 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0064)http://www.zqianqian.cn/index.php/Club/index/notice/id/1341.html -->
+<HTML><HEAD><META content="IE=5.0000" http-equiv="X-UA-Compatible">
+
+<META http-equiv="Content-Type" content="text/html; charset=utf-8">
+<META name="GENERATOR" content="MSHTML 10.00.9200.16660"></HEAD>
+<BODY>1341			 		 <TITLE>{weimicms:$info.title}</TITLE>  		
+<META name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		 
+<META name="apple-mobile-web-app-capable" content="yes">		 
+<META name="apple-mobile-web-app-status-bar-style" content="black">		 <LINK 
+href="tpl/static/adcms/font-awesome.min.css" rel="stylesheet" type="text/css">
+		 <LINK href="tpl/static/adcms/mui.min.css" rel="stylesheet">		 
+<SCRIPT src="tpl/static/adcms/jquery-1.10.2.min.js" type="text/javascript"></SCRIPT>
+		 
+<STYLE>
+	.mui-content { background: #fff; min-height: 100%; padding-top: 30px !important;}
+	.notice { padding: 10px 15px;}
+	.notice img{ max-width: 100%;}
+	.notice strong { line-height: 30px;}
+	.notice p { color: #000; font-size: 16px;}
+	.qg { border: 1px solid #ccc; padding: 15px 10px;}
+	.qg h3{ color: #ff0000;}
+	.qg span{ color: #0000C0;}
+</STYLE>
+		 <LINK href="tpl/static/adcms/style.css" rel="stylesheet">		 <!--<body oncontextmenu="return false" onselectstart="return false">-->
+					 <HEADER class="mui-bar mui-bar-nav"><!--<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>-->
+			 
+<H1 class="mui-title">{weimicms:$info.title}</H1></HEADER>
+<DIV class="mui-content">
+<DIV class="notice">
+{weimicms:$info.contents}</DIV></DIV><include file="Adcms:buttom"/>	 
+<SCRIPT>
+function tjToPyq(){
+	if($("#shareDivBg").length==0){
+		var html = "<div name=\"tips\" id=\"shareDivBg\" onclick=\"tjToPyq()\" style=\"z-index:10001; width:100%; height:100%; position:fixed; top: 0px;left:0px;background:black;text-align: right;filter:alpha(Opacity=80);-moz-opacity:0.8;opacity: 0.8;\"></div>";
+		html += "<div name=\"tips\" id=\"shareDivTop\" onclick=\"tjToPyq()\" style=\"z-index:10002;position:fixed;top:0px;right:0px;text-align:right;width:100%;\" ><img src=\"/Public/Club/img/collect_white2.png\" style=\"width:100%;\" /></div>";
+		$(document.body).append(html);
+	}
+	else{
+		$("div[name='tips']").hide().remove();
+	}
+}
+</SCRIPT>
+	 </BODY></HTML>

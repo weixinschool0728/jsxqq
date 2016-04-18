@@ -1,0 +1,135 @@
+<include file="DishOut:header" />
+<script>var wecha_idd="{weimicms:$wecha_id}"</script>
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/dishout/js/scroller.js"></script>
+
+<style type="text/css">
+#mymenu_lists .dztj_c{display:none}
+#mymenu_lists .nodztj_c{display:block}
+#mymenu_lists img{height:60px}
+</style>
+<body onselectstart="return true;" ondragstart="return false;">
+<div class="container">
+	<header class="nav menu">
+		<div>
+			<a href="javascript:;" class="on">菜单</a>
+			<a href="{weimicms::U('DishOut/MyShop',array('token' => $token,'cid'=>$cid,'wecha_id' => $wecha_id))}">门店详情</a>
+		</div>
+	</header>
+	<form name="cart_form" action="{weimicms::U('DishOut/sureOrder',array('token' => $token,'wecha_id' => $wecha_id))}" method="post">
+	<section class="menu_wrap" id="menuWrap">
+	<div id="menuNav" class="menu_nav">
+		 <div class="ico_menu_wrap clearfix"><span class="ico_menu" id="icoMenu"><i></i></span></div>
+			<div class="side_nav" id="sideNav" style="overflow-y:scroll;padding-bottom: 10px;height: 666px;">
+				<ul>
+				<if condition="!empty($fenleiarr)">
+				 <weimicmslist array="fenleiarr" key="ik" foreach="item">
+				<li><a href="javascript:void(0);" title="{weimicms:$ik}">{weimicms:$item}</a></li>
+				</weimicmslist>
+				<if condition="$dz_tj">
+				<li><a href="javascript:void(0);" title="dztj" class="dztj_a">店长推荐</a></li>
+				</if>
+				</if>
+				</ul>
+			</div>
+		 </div>
+		
+	 <div class="menu_container" id="mymenu_lists">
+	 <if condition="!empty($disharr)">
+		<weimicmslist array="disharr" key="dk" foreach="ditem">
+		 <if condition="$key eq 'dztj' AND !empty($ditem)">
+		  <php>$dztj=true;</php>
+			<div class="menu_tt dztj_c">
+			<h2>店长推荐</h2></div>
+			<ul class="menu_list dztj_c">
+		   <else/>
+		   <php>$dztj=false;</php>
+			<div class="menu_tt nodztj_c">
+			<h2>{weimicms:$ditem['0']['sortname']}</h2></div>
+			<ul class="menu_list nodztj_c">
+		   </if>
+			<weimicmslist array="ditem" key="ddk" foreach="dditem">
+			<li>
+				<div>
+					<if condition="!empty($dditem['image'])">
+					<img src="{weimicms:$dditem['image']}" alt="" url="{weimicms:$dditem['image']}">
+					</if>
+				</div>
+				<div>
+					<h3>{weimicms:$dditem['name']}</h3>
+					<p class="salenum">月售<span class="sale_num">{weimicms:$dditem['m_sale']}</span><span class="theunit"><if condition="!empty($dditem['unit'])">{weimicms:$dditem['unit']}<else/>份</if></span>
+					<if condition="$kconoff eq 1"> 库存：{weimicms:$dditem['instock']}</if>
+					<!--<span class="sales"><strong class="sale_8"></strong></span>--></p>
+					<div class="info">{weimicms:$dditem['des']|htmlspecialchars_decode=ENT_QUOTES}</div>
+				</div>
+				<div class="price_wrap">
+					<strong>￥<span class="unit_price">{weimicms:$dditem['price']}</span></strong>
+					<div class="fr" <if condition="$kconoff eq 1"> max="{weimicms:$dditem['instock']}" <else/>max="-1"</if>>
+				    <if condition="$kconoff eq 0 OR $dditem['instock'] gt 0">
+					 <a href="javascript:void(0);" class="btn add" <php> if(isset($dditem['ornum']) && !empty($dditem['ornum'])) echo "data-num=".$dditem['ornum']; else echo "data-num=''";</php>></a>
+					</if>
+					</div>
+					<if condition="$dztj">
+					<input autocomplete="off" class="number" type="hidden" name="dzdish[{weimicms:$dditem['id']}]" value="">
+					<else/>
+					<input autocomplete="off" class="number" type="hidden" name="dish[{weimicms:$dditem['id']}]" value="">
+					</if>
+				</div>
+			</li>
+			</weimicmslist>
+			</ul>
+		</weimicmslist>
+
+	 </if>
+	</div>
+	</section>
+	<input type="hidden" name="mycid" value="{weimicms:$cid}">
+	<footer class="shopping_cart">
+		<div class="fixed">
+			<div class="cart_bg">
+			<span class="cart_num" id="cartNum"></span></div>
+			<div>￥<span id="totalPrice">0</span></div>
+			<div><span class="comm_btn disabled">还差 <span id="sendCondition"><if condition="$stype eq 1">{weimicms:$pricing}<else/>0</if></span> 起送</span>
+			<a id="settlement" href="javascript:document.cart_form.submit();" class="comm_btn" style="display: none;">去结算</a></div>
+			<if condition="$stype eq 2">
+			<p style="padding:10px;"><span>温馨提示：</span>商家设定了外送起步价为{weimicms:$pricing}元，订单金额不超过{weimicms:$pricing}元的将按{weimicms:$pricing}元收取</p>
+			</if>
+		</div>
+	</footer>
+	</form>
+
+	<div class="menu_detail" id="menuDetail">
+		<img style="display: none;">
+		<div class="nopic"></div>
+		<a href="javascript:void(0);" class="comm_btn" id="detailBtn">来一份</a>
+		<dl>
+			<dt>价格：</dt>
+			<dd class="highlight">￥<span class="price"></span></dd>
+		</dl>
+		<p class="sale_desc">月售<span class="sale_num"></span>份</p>
+		<dl>
+			<dt>介绍：</dt>
+			<dd class="info"></dd>
+		</dl>
+	</div>
+
+</div>
+<script type="text/javascript" src="./tpl/static/dishout/js/menu.js"></script>
+<script type="text/javascript">
+ <if condition="$stype eq 1">
+   var Pricing="{weimicms:$pricing}";
+   <else/>
+   var Pricing="0";
+ </if>
+
+	window.shareData = {  
+		"moduleName":"DishOut",
+		"moduleID":"{weimicms:$company['id']}",
+		"imgUrl": "{weimicms:$company['logourl']}", 
+		"sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('DishOut/dishMenu',array('token' => $token,'cid'=>$cid))}",
+		"tTitle": "{weimicms:$metaTitle}",
+		"tContent": "{weimicms:$metaTitle}"
+     };
+</script>
+</body>
+{weimicms:$shareScript}
+</html>

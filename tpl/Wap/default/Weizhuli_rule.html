@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title></title>
+	<meta name="format-detection" content="telephone=no, address=no">
+	<meta name="apple-mobile-web-app-capable" content="yes" /> <!-- apple devices fullscreen -->
+	<meta name="apple-touch-fullscreen" content="yes"/>
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<link href="tpl\Wap\default\common\weizhuli/css/bootstrap.min.css" rel="stylesheet">
+	<link href="tpl\Wap\default\common\weizhuli/css/font-awesome.min.css" rel="stylesheet">
+	<link href="tpl\Wap\default\common\weizhuli/css/animate.css" rel="stylesheet">
+	<link href="tpl\Wap\default\common\weizhuli/css/common.css" rel="stylesheet">
+	
+	<script src="tpl\Wap\default\common\weizhuli/js/require.js"></script>
+	<script src="tpl\Wap\default\common\weizhuli/js/app/config.js"></script>
+	<script type="text/javascript" src="tpl\Wap\default\common\weizhuli/js/lib/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript">
+		window.sharedata = {
+			'appId': '', // 服务号可以填写appId
+			'imgUrl' : '', // 缩略图
+			'link': '', // 内容链接
+			'title': '', // 内容标题
+			'desc': '' // 内容简介
+		};
+		window.onshared = ''; 
+	</script>
+	
+</head>
+<body>
+<div class="container container-fill">
+	
+<style>
+	body{background: {weimicms:$zhuli.bgcolor};}
+	.head img{width:100%;}
+	.content{padding:10px;color:#fff;}
+	.content img{max-width:100%;}
+	.cropyt {
+margin-top: 50%;
+font: 14px/1.5 Microsoft YaHei, Helvitica, Verdana, Arial, san-serif;
+text-align: center;
+width: 100%;
+display: block;
+}
+</style>
+<div class="head">
+<img src="{weimicms:$zhuli.hd}">
+</div>
+<div class="content">
+	{weimicms:$zhuli.gz}
+
+</div>
+	<span class="cropyt" style="text-align: center;">{weimicms:$zhuli.banquan}</span>
+</body>
+</html>

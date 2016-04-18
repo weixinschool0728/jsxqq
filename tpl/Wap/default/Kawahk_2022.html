@@ -1,0 +1,194 @@
+
+<html>  
+<head>  
+<meta http-equiv="content-type" content="text/html; charset=utf-8">  
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+       <include file="Kawahk:js"/> 
+        <script type="text/javascript">
+            initViewport();
+        </script>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<script src="tpl/Wap/default/common/kawahk/common/jquery.min.js"></script>
+<title>砖墙里的心里话</title>  
+
+<style type="text/css">  
+    <!--   
+    body{   
+		-webkit-touch-callout: none; 
+		-webkit-text-size-adjust: none;
+        margin:0 auto;   		
+        overflow:hidden;   
+		position:relative;
+    }   
+  
+    div#content{
+        position:relative;   
+        border:1px solid #000; 
+		width:500px;		
+		height:750px;
+		margin:0 auto; 
+        top:0px;    
+        overflow:hidden;   
+        clear:both;
+    }
+  
+    div#bg{   
+        position:absolute;   
+        left:0px;   
+        top:0px;
+    } 
+	div#teng{   
+        position:absolute;   
+        left:273px;   
+        top:-12px;
+		opacity:0;
+		-webkit-transform-origin:center center;
+		
+    } 
+	@-webkit-keyframes fadeInUp{
+		0%{opacity:0;
+		-webkit-transform:translateY(-20px)}
+		100%{opacity:1;
+		-webkit-transform:translateY(0)}
+		}
+	div#zi{   
+        position:absolute;  
+		opacity:0;
+        left:45px;   
+        top:150px;
+		-webkit-transform-origin:center center;
+    } 
+	
+	@-webkit-keyframes fadeInDown{
+		0%{opacity:0;
+		-webkit-transform:translateY(20px)}
+		100%{opacity:1;
+		-webkit-transform:translateY(0)}
+		}
+		
+	div#shuming{   
+        position:absolute;   
+        left:0px;   
+        top:0px;
+		-webkit-transform-origin:center centers;
+		
+    } 
+	@-webkit-keyframes tada{
+		0%{-webkit-transform:scale(1)}
+		10%,20%{-webkit-transform:scale(0.9) rotate(-3deg)}
+		30%,50%,70%,90%{-webkit-transform:scale(1.1) rotate(3deg)}
+		40%,60%,80%{-webkit-transform:scale(1.1) rotate(-3deg)}
+		100%{-webkit-transform:scale(1) rotate(0)}
+		}
+		
+	div#foot{   
+                position:fixed; 
+        		left:340px;
+        		bottom:20px;				
+				z-index:10000;
+            } 	
+    -->  
+</style>  
+
+
+<script>
+	//需要调用leafinit（）来启动，需要声明外层div，id="container"，还有内层div，id="leafContainer"
+	//参数设置
+	var leafNum = 10;			//落下叶子的数量
+	var kindNum = 2;			//叶子的种类
+	//叶子使用图片地址，数量应与kindNum相同
+	var kindurl = new Array("tpl/Wap/default/common/kawahk/2022/2022_np4.png","tpl/Wap/default/common/kawahk/2022/2022_np2.png");
+</script>
+
+<script src="tpl/Wap/default/common/kawahk/2022/fleaves.min.js"></script>
+<link rel="stylesheet" href="tpl/Wap/default/common/kawahk/2022/leavesGeneral.css" type="text/css" media="screen" charset="utf-8">
+
+<script>
+	var clickNum = 0;
+	function showTxt()
+		{
+			var text = document.getElementById("textsuper");
+			text.style.display = "block";
+			loadFontImg();
+		}
+		
+	function clickwall(){
+		kawa_init();
+		if(clickNum > 0) {
+			return;
+		}else{
+			clickNum ++;
+			document.getElementById("shuming").style.display = "none";
+			leafinit();
+			document.getElementById("teng").style.webkitAnimation = "fadeInUp 2s 1s 1 ease-in-out  both";
+			document.getElementById("zi").style.webkitAnimation = "fadeInDown 2s 0.5s 1 ease-in-out  both";
+		}
+	}
+</script>
+<script>
+            prompt = encodeURIComponent('请输入对方名字：');
+
+            kawa_data = {
+                words : '一场秋雨一场凉，出门记得加衣裳！季节交替，谨防感冒哦~！',
+               <if condition=" $words eq ''">
+				replace_words      : '一场秋雨一场凉，出门记得加衣裳！季节交替，谨防感冒哦~',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+                text_box           : '50 50 400 175', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+                //text_align         : 'center',
+                font_weight        : 'bold',
+                mode               : 'up',     // up, left
+                speed              : 30,     // 每秒移动的像素
+                text_color         : '#ffff99',
+                font_size          : '38pt',
+                line_height        : '65pt',
+                music              : 'http://sound.kagirl.net/sound/duanwu2.mp3',     // url
+               <if condition=" $music eq ''">
+				replace_music      : 'http://sound.kagirl.net/sound/duanwu2.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+                music_name         : '',
+                replace_music_name : '#replace_music_name#',
+                icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/fengmian/x2022.jpg',
+                title              : 'title',
+                desc               : 'desc',
+                modify             : 'no',
+                replace_modify     : 'yes',
+                cardid             : '2022',
+                share_url          : window.location.href,    // 当分享的是微信页面时才需要改这里
+                font_ip            : '121.42.24.240:8000',
+                font_family        : 'xmjy',
+                modify_optfile     : 'zhufu1',
+                modify_optwords    : '你好，卡娃 祝福你',
+                show_words         : 'yes',
+                //write_param        : 'inputtype=singleline&showsel=no&prompt=' + prompt,
+            };
+        </script>
+</head>  
+<body >   
+		<div id="content">  
+			
+        <div id="bg" >
+			<img onclick="clickwall()" src="tpl/Wap/default/common/kawahk/2022/2022_n1.jpg"/>
+		</div>  
+		<div id="shuming" style="z-index:5001;">
+			<img onclick="clickwall()" src="tpl/Wap/default/common/kawahk/2022/2022_n2.png"/>
+		</div>
+		<div id="zi">
+			<img id="fontimg" />
+		</div>
+		<div id="teng">
+			<img src="tpl/Wap/default/common/kawahk/2022/2022_n3.png"/>
+		</div>
+		
+		
+		<div id="container" onclick="clickbg();" style="left:0%;top:0%;">
+			<div id="leafContainer"></div>
+		</div>
+
+    </div>  
+
+</body>  
+</html>  

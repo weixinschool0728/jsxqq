@@ -1,0 +1,202 @@
+
+<html>
+    <head>
+        <title>送给你</title>
+
+        <script type="text/javascript" src="kawa.js?ver=26"></script>
+        <include file="Kawahk:js"/> 
+        <script type="text/javascript">
+            initViewport();
+        </script>
+        <meta http-equiv="imagetoolbar" content="no">
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+         <meta name="copyright" content="版权所有，抄袭必究，（告无忧微米）">
+        <meta name="format-detection" content="telephone=no">
+
+        <style type="text/css">
+        body{   
+            -webkit-touch-callout: none; 
+            -webkit-text-size-adjust: none;
+            margin:0 auto;          
+            overflow:hidden;   
+            position:relative;          
+            background:white;
+        }
+/*        #b1{
+        	position:absolute;
+        	top:350px;
+        	-webkit-animation:Upb1 8s linear forwards;
+        }*/
+        #b2{
+        	position:absolute;
+        	-webkit-animation:Upb2 4s linear forwards;
+        }
+        #b3{
+        	position:absolute;
+        	top:388px;
+        	-webkit-animation:Upb3 4s linear forwards;
+        }
+        #deng1{
+        	position:absolute;
+        	left:100px;top:815px;
+        	-webkit-animation:UpDeng_1 6.5s linear infinite;
+        }
+        #deng2{
+        	position:absolute;
+        	left:220px;top:815px;
+        	-webkit-animation:UpDeng_1 6.5s 2s linear infinite;
+        }
+        #deng3{
+        	position:absolute;
+        	left:-140px;top:577px;
+        	-webkit-animation:UpDeng_2 7.5s 6s linear infinite;
+        }
+        #deng4{
+        	position:absolute;
+        	left:500px;top:677px;
+        	-webkit-animation:UpDeng_3 6.5s 5s linear infinite;
+        }
+        #deng5{
+        	position:absolute;
+        	left:350px;top:577px;
+        	opacity:0;
+        }
+        #deng6{
+            position:absolute;
+            left:80px;top:558px;
+            opacity:0;
+            
+        }
+        @-webkit-keyframes Upb2{
+        	0%{
+        		-webkit-transform:translate(0px,0px);
+        	}
+
+        	100%{
+        		-webkit-transform:translate(0px,-577px);
+        	}
+        }
+        @-webkit-keyframes Upb3{
+            0%{
+                -webkit-transform:translate(0px,0px);
+            }
+            90%{
+                -webkit-transform:translate(0px,-570px);
+                opacity:0.8;
+            }
+            100%{
+                -webkit-transform:translate(0px,-577px);
+                opacity:0;
+            }
+        }
+        @-webkit-keyframes UpDeng_1{
+        	0%{
+        		-webkit-transform:translate(0px,0px) scale(1) ;
+        	}
+
+        	100%{
+        		-webkit-transform:translate(0px,-900px) scale(.1) ;
+        	}
+        }
+        @-webkit-keyframes UpDeng_2{
+        	0%{
+        		-webkit-transform:translate(0px,0px) scale(.9) ;
+        	}
+
+        	100%{
+        		-webkit-transform:translate(300px,-700px) scale(.1) ;
+        	}
+        }
+        @-webkit-keyframes UpDeng_3{
+        	0%{
+        		-webkit-transform:translate(0px,0px) scale(.9) ;
+        	}
+
+        	100%{
+        		-webkit-transform:translate(-450px,-815px) scale(.1) ;
+        	}
+        }
+        @-webkit-keyframes UpDeng_4{
+        	0%{
+        		opacity:1;
+        		-webkit-transform:translate(0px,0px) scale(.6) ;
+        	}
+
+        	100%{
+        		opacity:1;
+        		-webkit-transform:translate(100px,-815px) scale(.1) ;
+        	}
+        }
+        </style>
+        <script>
+        function DengIn()
+        {
+        	objid('deng5').style.webkitAnimation="UpDeng_4 7.5s linear infinite";
+             setTimeout("objid('deng6').style.webkitAnimation='UpDeng_4 6.5s linear infinite';",1000);
+        }
+        function run()
+        {
+        	create_base();
+            read_base();
+            setTimeout(create_textdiv,5000);
+            add_kawa_icon();
+            create_music();
+            create_modify();
+            setTimeout(DengIn,3500);
+        }
+        </script>
+    </head>
+    <body style='margin:0px' onload='run();'>
+        <script>
+            words = '新的一年，新的开始，新的计划，祝福自己，心想事成，事事顺意。';
+
+            kawa_data = {
+                words              : words,
+                <if condition=" $words eq ''">
+				replace_words      : '新的一年，新的开始，新的计划，祝福自己，心想事成，事事顺意。',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+                text_box           : '60 100 340 180', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+                mode               : 'up',     // up, left
+                speed              : 50,     // 每秒移动的像素
+                text_color         : '#FFD700', // rgb(1,2,3) 'black'
+                font_size          : '25pt',
+                line_height        : '40pt',
+                music              : 'http://kawaweika.qiniudn.com/sound/yuandan1.mp3',     // url
+                 <if condition=" $music eq ''">
+				replace_music      : 'http://kawaweika.qiniudn.com/sound/yuandan1.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+                music_name         : '',
+                replace_music_name : '#replace_music_name#',
+                icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/fengmian/m3002.jpg',
+                title              : '送给你',
+                desc               : words,
+                modify             : 'no',
+                replace_modify     : 'yes',
+                cardid             : '30002',
+                share_url          : window.location.href,   // 当分享的是微信页面时才需要改这里
+                font_ip            : '115.28.135.41:8000',
+                font_family        : 'mnjsd',
+                modify_optfile     : '',
+                modify_optwords    : '#modify_optwords#',
+                show_words         : 'yes',
+            };    
+        </script>
+        <div id='body1' style='position:absolute;width:500px;height:815px;overflow:hidden'>
+        	<img src='tpl/Wap/default/common/kawahk/30002/2000.jpg' style='position:absolute;'/>
+        	<!-- <div id='b1'><img  width:='500' height='840' src='/pic/9602/b4.png'></div> -->
+        	<div id='b2'><img  width='500' height='465' src='tpl/Wap/default/common/kawahk/30002/60.jpg'></div>
+        	<div id='b3'><img  width='500' height='1005' src='tpl/Wap/default/common/kawahk/30002/2000.png'></div>
+        	<div id='deng1'><img  width='150' height='165' src='tpl/Wap/default/common/kawahk/30002/20001.png'/></div>
+        	<div id='deng2'><img  width='180' height='198' src='tpl/Wap/default/common/kawahk/30002/20001.png'/></div>
+        	<div id='deng3'><img  width='140' height='154' src='tpl/Wap/default/common/kawahk/30002/20001.png'/></div>
+        	<div id='deng4'><img  width='130' height='143' src='tpl/Wap/default/common/kawahk/30002/20001.png'/></div>
+        	<div id='deng5'><img  width='120' height='132' src='tpl/Wap/default/common/kawahk/30002/20001.png'/></div>
+            <div id='deng6'><img  width='100' height='110' src='tpl/Wap/default/common/kawahk/30002/20001.png'/></div>
+        </div>
+
+        </body>
+</html>

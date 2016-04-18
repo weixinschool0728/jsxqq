@@ -1,0 +1,177 @@
+
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <include file="Kawahk:js"/> 
+        <script type="text/javascript">
+            initViewport();
+        </script>
+
+	<title>陪你看月亮</title>	
+	<script src="tpl/Wap/default/common/kawahk/3005/jquery.min.js"></script>
+    <style type="text/css">
+
+	<!--
+		body{
+			background:#000000;
+			margin:0 auto;
+		}
+			
+		#stars{ 
+			width:450px;
+			height:400px;
+			position:absolute; 
+			left:0;
+			top:0;
+			z-index:1000;
+		}
+		#stars img{ position:absolute }
+		
+		#layer0{
+			position:absolute; 
+			left:0px;
+			top:0px;
+			z-index:0;
+			-webkit-animation:fadeInUpBig 7s 0.2s ease both;
+		}
+		
+		 @-webkit-keyframes fadeInUpBig{
+			0%{opacity:0;
+			-webkit-transform:translateY(2000px)}
+			100%{opacity:1;
+			-webkit-transform:translateY(0)}
+		}
+		
+		div#foot{   
+        position:fixed; 
+		left:320px;
+		bottom:10px;
+        z-index:4000;
+    } 		
+	-->
+
+    </style>	
+	<script>
+		gSizeMode = 'bodywidth';
+		gAnimateMode = 'print';
+		gSound = 'http://sound.kagirl.net/sound/woyuanyi.mp3';
+		gColor = '#032063';
+		gTextAreaLeft = 0.12;
+		gTextAreaTop = 0.05;
+		gTextAreaWidth = 0.85;
+		gTextAreaHeight = 0.6;
+		gSpeed = 300;		
+		gCardTextNoWrap ='亲爱的，今天是情人节，又是元宵节，想和你一起看月亮慢慢升起，然后说声：我爱你！';
+		gCardText ='亲爱的，<br>今天是情人节，<br>又是元宵节，<br>想和你一起看月亮慢慢升起，<br>然后说声：我爱你！';
+	share_url = "http://card1.kagirl.net/kas/showhtm.php?cardid=3005";
+			// script place
+		
+		var appId = '',
+			imgUrl = 'tpl/Wap/default/common/kawahk/3005/x3005.jpg',
+			link = location.href,
+			title = '卡娃微卡',
+			desc = '亲爱的，想和你一起看月亮慢慢升起，然后在月亮上写下你的名字，说声；我爱你！';
+			// card tips
+		gcardid = 9312;
+		goptiontxt = "yuanxiao";
+	</script>
+
+	<script>
+	function randomInteger(low, high)
+	{
+		return low + Math.floor(Math.random() * (high - low));
+	}
+
+	function starshine(){
+		var num=20;
+		for(var i=0;i<num;i++)
+		{
+			var posL=Math.random()*$('#stars').width()+'px';
+			var posT=Math.random()*$('#stars').height()+'px';
+			$('#stars').append("<img src='tpl/Wap/default/common/kawahk/3005/jinxingxing1.png' id='star"+i+"' style=\'"+"left:"+posL+";top:"+posT+"\'/>");
+		}
+		
+		$("#stars img").each(function(){
+			dark($(this).attr("id"));
+		});
+	}
+
+	function dark(name){
+		   $("#"+name+"").animate({opacity:'0.2'},randomInteger(1000,2000),function(){light(name)});
+	}
+	function light(name){
+		$("#"+name+"").animate({opacity:'1'},randomInteger(1000,3000),function(){dark(name)});
+	}
+
+	</script>
+
+<script>
+		function init()
+		{
+			starshine();
+			document.body.style.margin = '0px';
+		    create_base();
+		    read_base();
+		   
+		    add_kawa_icon();
+		    create_music();
+		    
+			setTimeout('showTxt()',5000);
+		}
+
+		function showTxt()
+		{
+			 create_textdiv();
+			 create_modify();
+		}
+		</script>
+</head>
+
+<body bgcolor="#000" onload="init();">
+<script>
+        	words = '亲爱的，今天是情人节，又是元宵节,想和你一起看月亮慢慢升起, 然后说声：我爱你！';
+
+            kawa_data = {
+                words 			   : words,
+                 <if condition=" $words eq ''">
+				replace_words      : '亲爱的，今天是情人节，又是元宵节,想和你一起看月亮慢慢升起, 然后说声：我爱你！',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+                text_box           : '90 125 425 200', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+                mode               : 'up',     // up, left
+                speed              : 40,     // 每秒移动的像素
+                text_color         : '#032063', // rgb(1,2,3) 'black'
+                font_size          : '20pt',
+                line_height        : '40pt',
+                music              : 'http://sound.kagirl.net/sound/woyuanyi.mp3',     // url
+                <if condition=" $music eq ''">
+				replace_music      : 'http://sound.kagirl.net/sound/woyuanyi.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+                music_name         : '',
+                replace_music_name : '#replace_music_name#',
+                icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/fengmianx3005.jpg',
+                title              : '卡娃微卡',
+                desc               : words,
+                modify             : 'no',
+                replace_modify     : 'yes',
+                cardid             : '3005',
+                share_url          : window.location.href,   // 当分享的是微信页面时才需要改这里
+                font_ip            : '114.215.157.155:8000',
+                modify_optfile     : 'yuanxiao',
+                modify_optwords    : '#modify_optwords#',
+                show_words         : 'yes',
+                write_param_1      : 'inputtype=singleline&showsel=no&prompt=' + encodeURIComponent('输入对方的名字：')
+            };
+        </script>
+	<div id="stars"></div>
+
+<div id="layer0" style="position:absolute;left:0;top:0;z-index:0">
+	<img src="tpl/Wap/default/common/kawahk/3005/3005_yueliang.png"/>
+</div>
+
+<div style="position:absolute;left:0;top:0;z-index:1">
+	<img src="tpl/Wap/default/common/kawahk/3005/3005_ren.png" width="500px"/>
+</div>
+</html>

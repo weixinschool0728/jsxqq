@@ -1,0 +1,214 @@
+<include file="Storenew:header"/>
+<link rel="stylesheet" href="./tpl/static/storenew/css/renk.css">
+<style>
+content{display:none;width:100%;overflow:hidden;position:absolute;top:0}#imgs{-webkit-transition-property:-webkit-transform;-webkit-transition-duration:0.5s;-webkit-transition-timing-function:ease-out;-webkit-transform:translate3d(0px,0px,0px);height:100%}#imgs li{float:left;text-align:center;height:100%;padding-top:65px}#imgs img{width:94%;-webkit-transform:translate3d(0px,0px,0px)}.bg{width:100%;top:0;left:0;background:#000;opacity:0.8;position:absolute;display:none}.close{display:none;position:absolute;z-index:10;right:3%;top:20px;color:#fff;cursor:pointer;background:#999;border-radius:3px;padding:5px 8px}.s_count{display:none;position:absolute;z-index:10;right:3%;top:25px;color:#fff;margin-right:60px}
+.infodetail img{
+    max-width: 100%;
+}
+.chujiakuang input{
+  border: .1rem solid #cfcfcf;
+  margin: 5px 5px;
+  font-size: 14px;
+  display: inline-block;
+  text-align: center;
+  height: 30px;
+  width: 120px;
+  border-radius: 0;
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#e5e5e5),color-stop(0.3, #fff),to(#fff));
+  -webkit-appearance: none;
+  color: #999;}
+.pinglun input{
+  border: .1rem solid #cfcfcf;
+  margin: 1px 1px;
+  font-size: 14px;
+  display: inline-block;
+  text-align: center;
+  height: 30px;
+  width: 200px;
+  border-radius: 0;
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#e5e5e5),color-stop(0.2, #fff),to(#fff));
+  -webkit-appearance: none;
+  color: #999;}
+.chujiak{padding: .5rem .2rem;}
+.disorder-none .icon-none{display:block;width:90px;height:120px;margin:80px auto 0 auto;background:url("{weimicms:$staticPath}/tpl/static/storenew/css/distribution2.png") no-repeat -219px -160px;background-size:300px 1000px;}
+.disorder-none .nonetext{display:block;text-align:center;font-size:14px;color:#999;}
+</style>
+<!--轮播--->
+<div class="focusPic">
+    <div class="views">
+        <if condition="empty($imageList) neq true">
+            <ul class="warp" id="fd">
+                <volist name="imageList" id="img">
+                    <li class="li"><img src="{weimicms:$img.image}"></li>
+                </volist>
+            </ul>
+            <else/>
+            <ul class="warp" id="fd">
+                <li class="li"><img src="{weimicms:$product.logourl}"></li>
+            </ul>
+        </if>
+    </div>
+    <if condition="empty($imageList) neq true">
+        <ul class="tabs">
+            <volist name="imageList" id="img" key="i">
+                <li class="li">{weimicms:$i}</li>
+            </volist>
+        </ul>
+        <else/>
+        <ul class="tabs">
+            <li>0</li>
+        </ul>
+    </if>
+</div>
+<script>
+    var focusPic = new Swiper('.focusPic .views', {pagination: '.focusPic .tabs', autoplay: 3000})
+</script>
+<!--轮播结束--->
+<div class="d-info">
+	<div class="tm">
+		<div class="td2">
+			<div class="td2_name">{weimicms:$product.name}</div>
+			<div class="td2_cx">争抢{weimicms:$product.name}的时刻到了，开团抢购中！</div>
+			<div class="td2_info">
+				<div class="td2_price">市场价：<b id="market_price">{weimicms:$product.price}</b> </div>
+				<div class="td2_num">支付开团并邀请<span id="tuan_more_need_number">{weimicms:$product['tgnum']-1}</span>人参团，人数不足自动退款，详见下方拼团玩法</div>
+			</div>
+		</div>
+		<div class="kt">
+			<a id="tuan_more_btn" class="kt_item" href="{weimicms::U('Storenew/addgrouponorder',array('token'=>$token,'id'=>$product['id'],'wecha_id'=>$_GET['wecha_id'], 'codeid'=>$codeid, 'twid' => $twid,'cid' => $cid))}">
+				<div class="kt_price"><b id="tuan_more_price">{weimicms:$product.tgprice}</b><i> / </i>件</div>
+				<div class="kt_btn"><b id="tuan_more_number">{weimicms:$product.tgnum}人团</b></div>
+			</a>
+			<a id="tuan_one_btn" class="kt_item kt_item_buy" href="{weimicms::U('Storenew/product',array('token'=>$token,'id'=>$product['id'],'wecha_id'=>$_GET['wecha_id'], 'twid' => $twid,'cid' => $cid))}">
+				<div class="kt_price"><b id="tuan_one_price">{weimicms:$product.price}</b><i> / </i>件</div>
+				<div class="kt_btn" id="tuan_one_number">单独购买</div>
+			</a>
+		</div>
+	</div>
+	<div class="step">
+		<div class="step_hd">
+			拼团玩法<a class="step_more" href="tuan_rule.html">查看详情</a>
+		</div>
+		<div id="footItem" class="step_list">
+			<div class="step_item step_item_on">
+				<div class="step_num">1</div>
+				<div class="step_detail">
+					<p class="step_tit">选择
+						<br>心仪商品</p>
+				</div>
+			</div>
+			<div class="step_item ">
+				<div class="step_num">2</div>
+				<div class="step_detail">
+					<p class="step_tit">支付开团
+						<br>或参团</p>
+				</div>
+			</div>
+			<div class="step_item ">
+				<div class="step_num">3</div>
+				<div class="step_detail">
+					<p class="step_tit">邀请好友
+						<br>参团支付</p>
+				</div>
+			</div>
+			<div class="step_item">
+				<div class="step_num">4</div>
+				<div class="step_detail">
+					<p class="step_tit">达到人数
+						<br>团购成功</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="go-shop-info">
+	<div class="btn-box clearfix"> 
+		<div class="btn-2-1">
+		<a href="{weimicms::U('Storenew/index',array('token' => $_GET['token'], 'twid' => $twid, 'cid' => $cid))}"><span class="iconfont icon-fenlei"></span>所有商品</a>
+		</div>
+		<div class="btn-2-1">
+		<a href="{weimicms::U('Storenew/groupon',array('token' => $_GET['token'],'twid' => $twid, 'cid' => $cid))}"><span class="iconfont icon-store"></span>更多团购</a>
+		</div> 
+	</div>
+</div>
+
+<div class="d-info">
+    <div class="detailinfo">
+        <ul class="tabs"><li>团购记录<i>({weimicms:$allcount})</i></li><li>商品详情</li></ul>
+        <div class="views">
+            <div class="warp">
+			    <div class="li">
+                    <div class="com-dec">共<b>{weimicms:$allcount}</b>位参与团购  -->滑动切换
+                    </div>
+					<div class="getList">
+						<div class="luckguys swiper-slid swiper-slide-visible swiper-slide-active" style="width: auto;min-width:330px; height: auto;min-height:350px;">
+									<div class="luck_con swipe_con">
+									<if condition="$log neq ''">
+									<volist name="log" id="log">
+										<div class="luck-manito"><ul><li><img src="{weimicms:$log.portrait}" class="headers"></li><li><div><span class="nickname">{weimicms:$log.truename}</span><br/><span class="date">{weimicms:$log.dateline|date="Y-m-d H:i",###}</span></div><!--div><p>{weimicms:$vo.share_content}</p></div--></li><li><span class="tel">{weimicms:$log.price} 元</span></li></ul></div>
+										</volist>	
+										<else />
+										<div class="fit-plan_end">
+										<div class="disorder-none"><i class="icon-none"></i><span class="nonetext">还没有人开团，赶紧邀请小伙伴一起开团吧！</span></div>
+										</div>
+									</if>
+									</div>
+						</div>
+					</div>
+                </div>
+				
+                <div class="li">
+                    <ul class="detail-list">
+                        <div class="infodetail">{weimicms:$product.intro}</div>
+                    </ul>
+                    <div class="goods_intro"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+	<div style="height:30px"></div>
+</div>
+<script type="text/javascript">
+var detailinfo = new Swiper('.detailinfo .views',{pagination: '.detailinfo .tabs',autoplay:false});
+</script>
+<script type="text/javascript">
+    var SysSecond;
+    var InterValObj;
+    $(document).ready(function () {
+    SysSecond = parseInt($("#remainSeconds").html()); //这里获取倒计时的起始时间 
+	InterValObj = window.setInterval(SetRemainTime, 1000); //间隔函数，1秒执行 
+
+    });
+	//将时间减去1秒，计算天、时、分、秒 
+function SetRemainTime() {
+	if (SysSecond > 0) { 
+		SysSecond = SysSecond - 1; 
+		var second = Math.floor(SysSecond % 60);             // 计算秒     
+		var minite = Math.floor((SysSecond / 60) % 60);      //计算分 
+		var hour = Math.floor((SysSecond / 3600) % 24);      //计算小时 
+		var day = Math.floor((SysSecond / 3600) / 24);        //计算天 
+		$("#remainTime").html('&nbsp;&nbsp;倒计时:'+day + "天&nbsp;" + hour + ":" + minite + ":" + second + ""); 
+	} else {//剩余时间小于或等于0的时候，就停止间隔函数 
+		window.clearInterval(InterValObj); 
+		//这里可以添加倒计时时间为0后需要执行的事件 
+	} 
+}
+</script>
+<include file="Storenew:foot"/>
+</body>
+<script type="text/javascript">
+    window.shareData = {
+        "moduleName": "Store",
+        "moduleID": "{weimicms:$product['id']}",
+        "imgUrl": "{weimicms:$product['logourl']}",
+        "timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U('Storenew/grouponview',array('token' => $_GET['token'],'id'=>$product['id'], 'twid' => $mytwid, 'cid' => $cid))}",
+        "sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Storenew/grouponview',array('token' => $_GET['token'],'id'=>$product['id'], 'twid' => $mytwid, 'cid' => $cid))}",
+        "weiboLink": "{weimicms:$f_siteUrl}{weimicms::U('Storenew/grouponview',array('token' => $_GET['token'],'id'=>$product['id'], 'twid' => $mytwid, 'cid' => $cid))}",
+        "tTitle": "{weimicms:$metaTitle}",
+        "tContent": "快邀请你的{weimicms:$product.tgnum}位小伙伴一起来团购{weimicms:$product.name}吧，"
+    };
+</script>
+{weimicms:$shareScript}
+</html>

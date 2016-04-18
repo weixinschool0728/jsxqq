@@ -1,0 +1,424 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport"/>
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="applicable-device" content="mobile">
+<link href="{weimicms:$staticPath}/tpl/static/bargain/new/css/base.css" rel="stylesheet">
+<link href="{weimicms:$staticPath}/tpl/static/bargain/new/css/index.css" rel="stylesheet">
+<link href="{weimicms:$staticPath}/tpl/static/bargain/new/css/media.css" rel="stylesheet">
+<link rel="stylesheet" href="{weimicms:$staticPath}/tpl/static/bargain/new/css/swiper.min.css" type="text/css">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<script src="{weimicms:$staticPath}/tpl/static/bargain/new/js/jquery-1.7.2.js"></script>
+<!-- <script src="{weimicms:$staticPath}/tpl/static/bargain/new/js/index.js"></script> -->
+<script src="{weimicms:$staticPath}/tpl/static/bargain/new/js/swiper.min.js"></script>
+<title>{weimicms:$bargain.name}</title>
+</head>
+
+<body>
+<if condition="$memberNotice neq ''">
+    {weimicms:$memberNotice}
+</if>
+<!-- - -->
+<div class="layer " ></div>
+<div class="moeny center"  >
+<audio id="player" src="{weimicms:$staticPath}/tpl/static/bargain/new/123.wav"    > </audio>
+    <div class="moeny_img "><img src="{weimicms:$staticPath}/tpl/static/bargain/new/images/money_13_13_10.png" /></div>
+    <div class="close"></div>
+    <div class="moeny_content  ">
+        <p>哇哦，在您休息片刻之际，已有<span>{weimicms:$xiuxi_count}</span>位亲友帮您砍掉</p>
+        <span>￥{weimicms:$xiuxi_price}</span>
+        <h3>你是不是很开森啊!</h3>
+        <div class="moeny_left"></div>
+        <div class="moeny_right"></div>
+    </div>
+    <div class="coloured"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="wallet"><i></i><i></i><i></i> </div>
+    <div class="coin"><i></i><i></i><i></i><i></i><i></i> </div>
+</div>
+
+
+ 
+<div class="bargain_layer center"  >
+<audio id="player_audio" src="{weimicms:$staticPath}/tpl/static/bargain/new/jishui.wav"    > </audio>
+    <div class="bargain_ball_img"><img src="{weimicms:$staticPath}/tpl/static/bargain/new/images/knife_02.png" /></div>
+    <div class="close"></div>
+    <div class="bargain_crack "></div>
+    <div class="bargain_people"><i></i><i></i><i></i></div>
+    <div class="bargain_colour"></div>
+    <div class="bargain_ribbon"><i></i><i></i></div>
+    <div class="bargain_banner">成功砍价<span>￥<?php echo $_GET['kanprice'];?></span></div>
+</div>
+<!-- -->
+
+<header class="clearfix">
+    <div class="header_left">已有<span>{weimicms:$bargain.count_canyu}</span>人参与砍价</div>
+    <div class="header_right">库存:<span>{weimicms:$bargain.inventory}</span>销量:<span>{weimicms:$bargain.count_pay}</span></div>
+</header>
+<div class="banner" onclick="location.href='<?php echo U('Wap/Bargain/new_goodsinfo',array('token'=>$token,'id'=>$_GET['id'],'orderid'=>$_GET['orderid']));?>'">
+    <div class="swiper-container s1 swiper-container-horizontal">
+        <div class="swiper-wrapper" style="transition-duration: 0ms; -webkit-transition-duration: 0ms;  ">
+            <div class="swiper-slide  swiper-slide-prev"  >
+                <div class="banner_img"><img src="{weimicms:$bargain.logoimg1}" /></div>
+                <div class="banner_txt clearfix">
+                    <div style="clear:both"></div>
+                    <p><span>{weimicms:$bargain.logotitle1}</span>
+                        <button>商品详情</button>
+                    </p>
+                </div>
+            </div>
+			<?php if($bargain['logoimg2'] != ''){?>
+            <div class="swiper-slide  swiper-slide-prev"  >
+                <div class="banner_img"><img src="{weimicms:$bargain.logoimg2}" /></div>
+                <div class="banner_txt clearfix">
+                    <div style="clear:both"></div>
+                    <p><span>{weimicms:$bargain.logotitle2}</span>
+                        <button>商品详情</button>
+                    </p>
+                </div>
+            </div>
+			<?php }?>
+			<?php if($bargain['logoimg3'] != ''){?>
+            <div class="swiper-slide  swiper-slide-prev"  >
+                <div class="banner_img"><img src="{weimicms:$bargain.logoimg3}" /></div>
+                <div class="banner_txt clearfix">
+                    <div style="clear:both"></div>
+                    <p><span>{weimicms:$bargain.logotitle3}</span>
+                        <button>商品详情</button>
+                    </p>
+                </div>
+            </div>
+			<?php }?>
+        </div>
+        <div class="swiper-pagination p1 swiper-pagination-clickable"><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span></div>
+    </div>
+</div>
+<script>
+var mySwiper = new Swiper('.s1',{
+loop: false,
+autoplay: 3000,
+pagination: '.p1',
+paginationClickable: true
+});
+$(document).ready(function(){
+	<?php if($is_over == 1){?>
+		daojishi();
+	<?php }?>
+});
+<?php if($is_over == 1){?>
+var day = <?php echo $day;?>;
+var hour = <?php echo $hour;?>;
+var minute = <?php echo $minute;?>;
+var second = <?php echo $second;?>;
+function daojishi(){
+	if(second < 0){
+		second = 59;
+		minute--;
+	}
+	if(minute < 0){
+		minute = 59;
+		hour--;
+	}
+	if(hour < 0){
+		hour = 23;
+		day--;
+	}
+	if(second < 10){
+		$('.second').html('0'+second);
+	}else{
+		$('.second').html(second);
+	}
+	if(minute < 10){
+		$('.minute').html('0'+minute);
+	}else{
+		$('.minute').html(minute);
+	}
+	if(hour < 10){
+		$('.hour').html('0'+hour);
+	}else{
+		$('.hour').html(hour);
+	}
+	if(day < 10){
+		$('.day').html('0'+day);
+	}else{
+		$('.day').html(day);
+	}
+	if(day < 0){
+		location.reload();
+	}else{
+		second--;
+		setTimeout("daojishi()",1000);
+	}
+}
+<?php }?>
+</script>
+<?php if($is_over != 0){?>
+<div class="countdown clearfix"><i></i>
+    <div class="countdown_time" ><?php if($is_over == 1){echo "砍价倒计时:";}elseif($is_over == 2){echo "砍价已最低:";}elseif($is_over == 3 || $is_over == 5){echo "已购买:";}elseif($is_over == 4){echo "砍价已结束:";}?><em class="day">00</em>天<em class="hour">00</em>时<em class="minute">00</em>分<em class="second">00</em>秒</div>
+</div>
+<?php }?>
+<div class="content">
+    <div class="bargain clearfix">
+        <div class="bargain_img"><img src="<?php echo $userinfo['portrait']?$userinfo['portrait']:$staticPath.'/tpl/static/bargain/new/images/portrait.jpg';?>" /></div>
+        <div class="bargain_content">
+			<?php $userinfo['wechaname'] = mb_substr($userinfo['wechaname'],0,9,'utf-8');?>
+            <h1><?php echo $userinfo['wechaname']?$userinfo['wechaname']:'匿名';?></h1>
+            <p>现价:<span class="nowprice"><?php echo $myorder['bargain_nowprice']?$myorder['bargain_nowprice']:$bargain['original'];?></span></p>
+			<p><b>原价:{weimicms:$bargain.original}</b></p>
+            <p><b>底价:{weimicms:$bargain.minimum}</b></p>
+            
+        </div>
+        <div class="bargain_info"><i class="myrank"><?php echo $myorder?'排名'.$myorder['rank']:'未参与';?></i><i class="helpcount"><?php echo $myorder?$myorder['helpcount']:0;?>人帮砍</i></div>
+    </div>
+	<?php if($is_over == 1){?>
+    <div class="invite">
+        <p>已有<span><?php echo $myorder?$myorder['helpcount']:0;?></span>位亲友帮<?php echo $myorder?'TA':'我';?>砍价了，共砍掉<span>￥<?php echo $myorder['bargain_kan'];?></span>，想以最低价<?php echo $orderid?'帮TA':'';?>收入囊中，那就赶紧去找亲友拔刀相助！</p>
+    </div>
+	<?php }?>
+    <div class="operation clearfix">
+        <div class="operation_info">
+			<?php if($memberNotice == ''){?>
+				<?php if($is_over == 0){?>
+					<button onclick="fistblood()">砍下第一刀</button>
+				<?php }elseif($is_over == 1){?>
+					<?php if($orderid == 0){?>
+					<button onclick="share()">找亲友帮我砍刀</button>
+					<button onclick="location.href='<?php echo U('Wap/Bargain/payuserinfo',array('token'=>$token,'id'=>$bargain['tp_id'],'orderid'=>$myorder['tp_id']));?>'">立即购买</button>
+					<?php }else{?>
+						<?php if($is_kanguo == ''){?>
+						<button onclick="kandao()">帮TA砍一刀</button>
+						<?php }?>
+					<button onclick="share()">找亲友帮Ta砍刀</button>
+					<button onclick="location.href='<?php echo U('Wap/Bargain/new_index',array('token'=>$token,'id'=>$bargain['tp_id']));?>'">我也要玩</button>
+					<?php }?>
+				<?php }elseif($is_over == 2 || $is_over == 4){?>
+					<?php if($orderid == 0){?>
+					<button onclick="location.href='<?php echo U('Wap/Bargain/payuserinfo',array('token'=>$token,'id'=>$bargain['tp_id'],'orderid'=>$myorder['tp_id']));?>'">立即购买</button>
+					<?php }else{?>
+					<button onclick="location.href='<?php echo U('Wap/Bargain/new_index',array('token'=>$token,'id'=>$bargain['tp_id']));?>'">我也要玩</button>
+					<?php }?>
+				<?php }elseif($is_over == 3 || $is_over == 5){?>
+					<?php if($orderid == 0){?>
+					<button onclick="location.href='<?php echo U('Bargain/myorder',array('token'=>$token));?>'">已购买</button>
+					<?php }else{?>
+					<button onclick="location.href='<?php echo U('Wap/Bargain/new_index',array('token'=>$token,'id'=>$bargain['tp_id']));?>'">我也要玩</button>
+					<?php }?>
+				<?php }?>
+			<?php }else{?>
+				<a href='#memberNoticeBox' id='modaltrigger_notice' style="color:#fff"><button>点击参与</button></a>
+			<?php }?>
+        </div>
+    </div>
+</div>
+<div class="share_bg" style="display: none;position: fixed;top: 0;left: 0;width: 100%;height: 100%;text-align: center;background: rgba(0,0,0,0.7);z-index: 99;">
+    <img src="{weimicms:$staticPath}/tpl/static/yousetdiscount/images/share-guide.png" style="width: 100%;">
+</div>
+
+<div class="activity">
+    <div class="activity_title">
+        <ul class="clearfix">
+            <li class="curn">活动规则</li>
+            <li>亲友团出刀</li>
+            <li>砍价榜TOP<?php echo $bargain['rank_num']?$bargain['rank_num']:10;?></li>
+        </ul>
+    </div>
+    <ul class="acticity_list">
+        <ul>
+            <li style="padding:10px">
+                {weimicms:$bargain.guize|htmlspecialchars_decode}
+            </li>
+            <li style="display:block">
+                <ul class="friends">
+					<volist name='kanuser_list' id='kv'>
+                    <li class="clearfix">
+                        <div class="head_img"><img src="<?php echo $kv['userinfo']['portrait']?$kv['userinfo']['portrait']:$staticPath.'/tpl/static/bargain/new/images/portrait.jpg';?>" /></div>
+                        <div class="bargain_content">
+							<?php $kv['userinfo']['wechaname'] = mb_substr($kv['userinfo']['wechaname'],0,9,'utf-8');?>
+                            <h1><?php echo $kv['userinfo']['wechaname']?$kv['userinfo']['wechaname']:'匿名';?></h1>
+                            <p>{weimicms:$kv.addtime|date='Y-m-d H:i',###}</p>
+                        </div>
+                        <div class="price">帮砍:<span>￥<?php echo $kv['dao']/100;?></span></div>
+                    </li>
+					</volist>
+                </ul>
+				<?php if($kanuser_count > 10){?>
+                <p class="more"><a href="javascript:kanuser_more();">查看更多（共{weimicms:$kanuser_count}位）</a></p>
+				<?php }elseif($kanuser_count > 0){?>
+				<p class="more"><a>共{weimicms:$kanuser_count}位</a></p>
+				<?php }?>
+            </li>
+            <li class="bargain_list">
+                <ul>
+                    <volist name="rank_list" id="rv">
+                    <li class=" clearfix"> <i>{weimicms:$i}</i>
+                        <div class="head_img"><img src="<?php echo $rv['userinfo']['portrait']?$rv['userinfo']['portrait']:$staticPath.'/tpl/static/bargain/new/images/portrait.jpg';?>" /></div>
+                        <?php $rv['userinfo']['wechaname'] = mb_substr($rv['userinfo']['wechaname'],0,9,'utf-8');?>
+						<h2><?php echo $rv['userinfo']['wechaname']?$rv['userinfo']['wechaname']:'匿名';?></h2>
+                        <p>已砍至:<span>￥<?php echo $rv['bargain_nowprice']/100;?></span></p>
+                    </li>
+                    </volist>
+                </ul>
+            </li>
+        </ul>
+    </ul>
+</div>
+<script>
+$(document).ready(function(){
+	tab(".activity_title li", ".acticity_list > ul > li", "curn");
+	$(".close,.layer").click(function() {
+		$(".center").fadeOut(110);
+		$(".layer").fadeOut(140);
+		$("body").css({
+			"height": "auto",
+			"overflow": "auto"
+		});
+
+	});
+	<?php if($_GET['kanprice'] != ''){?>
+		notwinning();
+	<?php }?>
+	
+	<?php if($orderid == 0 && $_GET['kanprice'] == '' && $xiuxi_count > 0){?>
+		winning()
+	<?php }?>
+});
+<?php if($is_over != 0){?>
+function kanuser_more(){
+	var kanuser_count = $('.friends li').length;
+	$.ajax({
+		type:"POST",
+		url:"{weimicms::U('Wap/Bargain/new_kanuser_more',array('token'=>$token))}",
+		dataType:"json",
+		data:{
+			token:"{weimicms:$token}",
+			wecha_id:"{weimicms:$wecha_id}",
+			id:'<?php echo $_GET['id'];?>',
+			orderid:'<?php echo $_GET['orderid'];?>',
+			count:kanuser_count
+		},
+		beforeSend:function(){
+			$(".more").html('<a>正在加载...</a>');
+		},
+		success:function(data){
+			$('.friends').append(data.kanuser_list);
+			var kanuser_count = $('.friends li').length;
+			if({weimicms:$kanuser_count} > kanuser_count){
+				$(".more").html('<a href="javascript:kanuser_more();">查看更多（共{weimicms:$kanuser_count}位）</a>');
+			}else{
+				$(".more").html('<a>共{weimicms:$kanuser_count}位</a>');
+			}
+			
+		},
+		complete:function(){}
+	});
+}
+<?php }?>
+function share(){
+	$('.share_bg').show();
+	$('.share_bg').click(function(){
+		if($(this).css('display') == 'block'){
+			$(this).css('display','none');
+		}
+	});
+}
+function fistblood(){
+	window.location.href="<?php echo U('Wap/Bargain/new_fistblood',array('token'=>$token,'id'=>$bargain['tp_id']));?>";
+}
+function kandao(){
+	window.location.href='<?php echo U('Wap/Bargain/new_kandao',array('token'=>$token,'id'=>$bargain['tp_id'],'orderid'=>$myorder['tp_id']));?>';
+}
+function tab(a, b, c) { //a 是点击的目标,,b 是所要切换的目标,c 是点击目标的当前样式
+    var len = $(a);
+    len.bind("click",
+    function() {
+        var index = 0;
+        $(this).addClass(c).siblings().removeClass(c);
+        index = len.index(this); //获取当前的索引
+        $(b).eq(index).show().siblings().hide();
+        return false;
+    }).eq(0).trigger("click"); //浏览器模拟第一个点击
+}
+
+//进入时加载
+function winning() {
+	var hh = $(window).height();
+	var autioPlay = function(autioDom, controlDom) {
+		var autoplay = typeof($(autioDom).attr('autoplay'));;
+
+		autioDom.play();
+		$("body").css({
+			"height": hh,
+			"overflow": "hidden"
+		});
+		$(".moeny,.layer").show();
+		clearTimeout(t);
+		var t = setTimeout(function() {
+			$(".center").fadeOut(110);
+			$(".layer").fadeOut(140);
+			$("body").css({
+				"height": "auto",
+				"overflow": "auto"
+			});
+		}, 6000);
+		$(".close,.layer").click(function() {
+			autioDom.pause();
+		});
+	}
+	autioPlay(document.getElementById('player'), $('.player'));
+}
+
+//砍价时
+function notwinning() {
+	var hh = $(window).height();
+	$("body").css({
+		"height": hh,
+		"overflow": "hidden"
+	});
+	$(".bargain_layer,.layer").show();
+	var autioPlay = function(autioDom, controlDom) {
+		var autoplay = typeof($(autioDom).attr('autoplay'));;
+		clearTimeout(a);
+		var a = setTimeout(function() {
+			autioDom.play();
+			$(".close,.layer").click(function() {
+				autioDom.pause();
+			})
+		},
+		1300);
+
+		clearTimeout(b);
+		var b = setTimeout(function() {
+			$(".center").fadeOut(400);
+			$(".layer").fadeOut(500);
+			$("body").css({
+				"height": "auto",
+				"overflow": "auto"
+			});
+		}, 6500);
+
+	}
+	autioPlay(document.getElementById('player_audio'), $('.player_audio'));
+}
+</script>
+<script type="text/javascript">
+window.shareData = {  
+	"moduleName":"Bargain",
+	"moduleID":"<?php echo $bargain['tp_id'];?>",
+	"imgUrl": "<?php echo $bargain['logoimg1'];?>",
+	<?php if($is_over == 1 && $memberNotice == ''){?>
+	"sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Bargain/new_index',array('token'=>$token,'id'=>$bargain['tp_id'],'orderid'=>$myorder['tp_id']))}",
+	<?php }else{?>
+	"sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Bargain/new_index',array('token'=>$token,'id'=>$bargain['tp_id']))}",
+	<?php }?>
+	"tTitle": "<?php echo $bargain['wxtitle'];$bargain['wxinfo'] = htmlspecialchars_decode($bargain['wxinfo']);$bargain['wxinfo'] = str_replace('&apos;',"'",$bargain['wxinfo']);?>",
+	"tContent": "{weimicms:$bargain['wxinfo']|shareFilter}"
+};
+</script>
+{weimicms:$shareScript}
+</body>
+</html>

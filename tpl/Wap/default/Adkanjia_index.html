@@ -1,0 +1,125 @@
+﻿<html lang="en"><head>
+<meta charset="utf-8">
+
+<title>{weimicms:$p.title}</title>
+<script type="text/javascript">
+//缩放比例
+if(/Android (\d+\.\d+)/.test(navigator.userAgent)){
+	var version = parseFloat(RegExp.$1);
+	if(version>2.3){
+		var phoneScale = parseInt(window.screen.width)/640;
+		document.write('<meta name="viewport" content="width=640, minimum-scale = '+ phoneScale +', maximum-scale = '+ phoneScale +', target-densitydpi=device-dpi">');
+	}else{
+		document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+	}
+}else{
+	document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+}
+</script><meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">
+<link rel="stylesheet" href="tpl/static/Adkanjia/css/skin.css">
+<meta name="format-detection" content="telephone=no">
+</head>
+<body style="background:{weimicms:$p.bgcolor} url({weimicms:$p.top_pic}) no-repeat center top;">
+	<div class="main" style="background:url({weimicms:$p.xq_pic}) no-repeat;">
+		<div class="photo"><img src="{weimicms:$user.portrait}"></div>
+		<div class="xj">现价</div>
+		<div class="money">￥<strong id="yuan">{weimicms:$user.price}</strong></div>
+		<div class="who">原价￥{weimicms:$p.price}</div>
+	</div>
+	<ul class="button">
+		<li class="ido">{weimicms:$p.title}</li>					
+		<li class="gz">活动规则</li>
+		<li class="get">我要领取</li>
+	</ul>
+		
+	<div class="ad">
+		<a href="{weimicms::U('Adkanjia/adlink',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$info['id']))}">
+			<img src="{weimicms:$p.ad_pic}" class="ad-img">
+			<p></p>
+		</a>
+		<span class="closes"></span>
+	</div>
+			
+	<div id="shade" style="display: none;">
+		<div class="shade" id="ido" style="display: none;">
+			<!--div class="bqss"><img src="tpl/static/Adkanjia/images/bq.png"></div-->
+			
+			<if condition="$share_key neq ''">
+			<div class="shade-tipss" id="tjnk"><strong>温馨提示：</strong><a href="{weimicms::U('Adkanjia/index',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$info['id']))}">你已为{weimicms:$user.username} 成功砍价！当砍至{weimicms:$p.okprice} 元他就可以拿到奖品了！亲，还在犹豫什么，查看我的砍价信息，一起来拿奖品吧！</a></div>
+			<a class="back" href="{weimicms::U('Adkanjia/index',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$info['id']))}">查看我的砍价信息</a>
+			<else/>
+			<div class="shade-tipss" id="tjnk"><strong>温馨提示：</strong>拉着你的小伙伴一起来帮你砍价吧，当你的小伙伴们帮你把价格砍至 {weimicms:$p.okprice} 元的时候，就可用领取本次奖品了！</div>
+			<a class="back">确定</a>
+			</if>
+			<a class="close">关闭</a>
+		</div>
+		<div class="shade" id="get" style="display: none;">
+			<div class="bq"><img src="tpl/static/Adkanjia/images/bq-1.png"></div>
+			<div class="shade-tipss">对不起，您的价格不为{weimicms:$p.okprice}元，不能领取哦，赶紧要求好友帮忙砍价吧！</div>
+			<a class="back">继续努力</a>
+			<a class="close">关闭</a>
+		</div>
+		<div class="guize" id="guize" style="display: none;">
+			<div class="guizes" id="scroll">
+				<div class="auto" style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); -webkit-transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; -webkit-transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+					<p>
+	<br>
+</p>
+<p>
+	活动时间
+</p>
+<p>
+	{weimicms:$info['start']|date="Y.m.d",###} 到 {weimicms:$info['end']|date="Y.m.d",###}
+</p>
+<p>
+	活动规则
+</p>
+<p>
+{weimicms:$p.info}
+</p>
+<p>
+	活动最终解释权归举办方所有。
+</p>				</div>
+			<div class="iScrollVerticalScrollbar iScrollLoneScrollbar" style="pointer-events: none; transform: translateZ(0px); transition-duration: 0ms; -webkit-transition-duration: 0ms; opacity: 0;"><div class="iScrollIndicator" style="transition-duration: 0ms; -webkit-transition-duration: 0ms; display: none; height: 908px; transform: translate(0px, 0px) translateZ(0px); transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); -webkit-transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1);"></div></div></div>
+			<!--a class="queding">确　定</a-->
+			<a class="back">确　定</a>
+			<a class="close">关闭</a>
+		</div>
+		<div class="share" id="share" style="display: none;"><img src="tpl/static/Adkanjia/images/share.png"></div>
+	</div>
+	<script type="text/javascript" src="tpl/static/Adkanjia/js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="tpl/static/Adkanjia/js/iscroll.js"></script>
+	<script type="text/javascript" src="tpl/static/Adkanjia/js/swiper.js"></script>
+	<div style="display:none;"></div>
+</script>
+
+<script type="text/javascript">
+$(function(){
+    <if condition="$share_key neq '' and $is_over eq 0">
+    	$.getJSON("{weimicms::U('Adkanjia/add_share',array('token'=>$token,'id'=>$info['id']))}",{share_key:'{weimicms:$share_key}',wecha_id:'{weimicms:$wecha_id}'},function(res){
+    		alert(res.info);
+    	}); 
+    </if>
+
+});
+
+</script>
+
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Adkanjia",
+            "moduleID":"0",
+            "imgUrl": "{weimicms:$f_siteUrl}{weimicms:$info.reply_pic}", 
+            "timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U('Adkanjia/index',array('token'=>$token,'id'=>$info['id'],'share_key'=>$user['share_key']))}",
+            "sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Adkanjia/index',array('token'=>$token,'id'=>$info['id'],'share_key'=>$user['share_key']))}",
+            "weiboLink": "{weimicms:$f_siteUrl}{weimicms::U('Adkanjia/index',array('token'=>$token,'id'=>$info['id'],'share_key'=>$user['share_key']))}",
+            "tTitle": "{weimicms:$info.title}",
+            "tContent": "{weimicms:$info.intro}"
+};
+</script>
+{weimicms:$shareScript}
+
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/public-framework/scripts/owl.carousel.min.js"></script>
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/public-framework/scripts/jquery.swipebox.js"></script>
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/public-framework/scripts/framework.launcher.js"></script>
+</body></html>

@@ -1,0 +1,288 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml">
+    
+    <head>
+		
+        <meta http-equiv="Content-Type" content="text/html; charset=UFF-8" />
+        <title>
+            一个神奇的魔术
+        </title>
+        <script src="http://lib.sinaapp.com/js/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="tpl/Wap/default/common/hcar/pic/4003/jquery.innerfade.js"></script>
+ 
+		<style type="text/css"> 
+			#banner_list img {border:0px;} 
+ 			#banner_list img{position:absolute;}  
+		</style>
+        
+		<script src="tpl/Wap/default/common/hcar/pic/4003/showcard2.js" type="text/javascript" charset="utf-8">
+        </script>
+        <script>
+            gSizeMode = 'bodywidth';
+            gAnimateMode = 'left';
+            gSound = 'http://dabaoku.com/dabaoku/uploads/soft/yinxiao/yinyue/086.mp3';
+            gColor = '#0F7AA8';
+            gTextAreaLeft = 0.04;
+            gTextAreaTop = 0.001;
+            gTextAreaWidth = 0.9;
+            gTextAreaHeight = 0.8;
+            gCardTextNoWrap = '一个古老而神奇的魔术，你能看穿吗~~';
+            gCardText = '一个古老而神奇的魔术，你能看穿吗~~';
+            share_url = window.location.href;
+			// script place
+            
+        </script>
+		<script>
+			function randomInteger(low, high)
+			{
+				return low + Math.floor(Math.random() * (high - low));
+			}
+		</script>
+        <script>
+            (function() {
+                var onBridgeReady = function() {
+                    var appId = '',
+                    imgUrl = '{weimicms:$f_siteUrl}/tpl/Wap/default/common/hcar/pic/4003/x4003.jpg',
+                    link = location.href,
+                    title = '一个古老而神奇的魔术，你能看穿吗~~',
+                    desc = '一个古老而神奇的魔术，你能看穿吗~~';
+
+                    // 发送给好友;
+                    WeixinJSBridge.on('menu:share:appmessage',
+                    function(argv) {
+                        WeixinJSBridge.invoke('sendAppMessage', {
+                            'img_url': imgUrl,
+                            'img_width': '640',
+                            'img_height': '640',
+                            'link': link,
+                            'desc': desc,
+                            'title': title
+                        },
+                        function(res) {location.href="{weimicms:$fxlj}"})
+                    });
+                    // 分享到朋友圈;
+                    WeixinJSBridge.on('menu:share:timeline',
+                    function(argv) {
+                        WeixinJSBridge.invoke('shareTimeline', {
+                            'img_url': imgUrl,
+                            'img_width': '640',
+                            'img_height': '640',
+                            'link': link,
+                            'desc': desc,
+                            'title': title
+                        },
+                        function(res) {location.href="{weimicms:$fxlj}"});
+                    });
+
+                };
+
+                if (document.addEventListener) {
+                    document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+                } else if (document.attachEvent) {
+                    document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+                    document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+                }
+            })();
+        </script>
+    </head>
+    
+    <body bgcolor="#111111" onload="onLoad()" onclick='javascript:playsound()'><div id="banner_list">
+		
+			<!--img src='http://img03.taobaocdn.com/bao/uploaded/i3/1857839951/T2QCQIXkpXXXXXXXXX_!!1857839951.jpg_728x728.jpg' width='100%'/>
+			<img src='http://img03.taobaocdn.com/bao/uploaded/i3/1857839951/T2IXh0Xq8aXXXXXXXX_!!1857839951.jpg_728x728.jpg' width='100%'/>
+			<img src='http://img01.taobaocdn.com/bao/uploaded/i1/1857839951/T231B0XsRaXXXXXXXX_!!1857839951.jpg_728x728.jpg' width='100%'/>
+			<img src='http://img02.taobaocdn.com/bao/uploaded/i2/1857839951/T20vN2XwBXXXXXXXXX_!!1857839951.jpg_728x728.jpg' width='100%'/>
+			<img src='http://img02.taobaocdn.com/bao/uploaded/i2/1857839951/T2I4d2XydXXXXXXXXX_!!1857839951.jpg_728x728.jpg' width='100%'/>
+			<img src='http://img02.taobaocdn.com/bao/uploaded/i2/1857839951/T2YUJ0XDVXXXXXXXXX_!!1857839951.jpg_728x728.jpg' width='100%'/-->
+				
+		
+		</div>
+		
+		<script>
+		
+			
+			var imgDiv = document.getElementById("banner_list")
+			
+						
+			
+
+			var pno=randomInteger(1,4);
+
+			if (pno == 1)
+			{
+				var img1 = document.createElement('img');
+				img1.src = "tpl/Wap/default/common/hcar/pic/4003/139633287158.jpg";	
+				img1.style.width="100%";				
+				imgDiv.appendChild(img1);
+				
+				var img2 = document.createElement('img');
+				img2.src = "tpl/Wap/default/common/hcar/pic/4003/139633286585.jpg";	
+				img2.style.width="100%";				
+				imgDiv.appendChild(img2);
+				
+				var img3 = document.createElement('img');
+				img3.src = "tpl/Wap/default/common/hcar/pic/4003/139633286656.jpg";	
+				img3.style.width="100%";				
+				imgDiv.appendChild(img3);
+				
+				var img4 = document.createElement('img');
+				img4.src = "tpl/Wap/default/common/hcar/pic/4003/139633286728.jpg";	
+				img4.style.width="100%";				
+				imgDiv.appendChild(img4);
+				
+				var img5 = document.createElement('img');
+				img5.src = "tpl/Wap/default/common/hcar/pic/4003/139633286793.jpg";	
+				img5.style.width="100%";				
+				imgDiv.appendChild(img5);
+				
+				var img6 = document.createElement('img');
+				img6.src = "tpl/Wap/default/common/hcar/pic/4003/139633287067.jpg";	
+				img6.style.width="100%";				
+				imgDiv.appendChild(img6);
+				/*
+				document.write("<img src='http://img.taobaocdn.com/bao/uploaded/i1/T1w8DRFcFbXXcApLQ2_728x728.jpg' width='100%'/>");
+				document.write("<img src='http://img03.taobaocdn.com/bao/uploaded/i3/1857839951/T2IXh0Xq8aXXXXXXXX_!!1857839951.jpg_728x728.jpg' width='100%'/>");
+				document.write("<img src='http://img01.taobaocdn.com/bao/uploaded/i1/1857839951/T231B0XsRaXXXXXXXX_!!1857839951.jpg_728x728.jpg' width='100%'/>");
+				document.write("<<img src='http://img02.taobaocdn.com/bao/uploaded/i2/1857839951/T20vN2XwBXXXXXXXXX_!!1857839951.jpg_728x728.jpg' width='100%'/>");
+				document.write("<<img src='http://img02.taobaocdn.com/bao/uploaded/i2/1857839951/T2I4d2XydXXXXXXXXX_!!1857839951.jpg_728x728.jpg' width='100%'/>");
+				document.write("<img src='http://img01.taobaocdn.com/bao/uploaded/i1/1857839951/T2cPp1XB0XXXXXXXXX_!!1857839951.jpg_728x728.jpg' width='100%'/>");
+				*/
+			
+			}else if (pno == 2)
+			{
+				var img1 = document.createElement('img');
+				img1.src = "tpl/Wap/default/common/hcar/pic/4003/139633287158.jpg";	
+				img1.style.width="100%";				
+				imgDiv.appendChild(img1);
+				
+				var img2 = document.createElement('img');
+				img2.src = "tpl/Wap/default/common/hcar/pic/4003/139633286585.jpg";	
+				img2.style.width="100%";				
+				imgDiv.appendChild(img2);
+				
+				var img3 = document.createElement('img');
+				img3.src = "tpl/Wap/default/common/hcar/pic/4003/139633286656.jpg";	
+				img3.style.width="100%";				
+				imgDiv.appendChild(img3);
+				
+				var img4 = document.createElement('img');
+				img4.src = "tpl/Wap/default/common/hcar/pic/4003/139633286728.jpg";	
+				img4.style.width="100%";				
+				imgDiv.appendChild(img4);
+				
+				var img5 = document.createElement('img');
+				img5.src = "tpl/Wap/default/common/hcar/pic/4003/139633286793.jpg";	
+				img5.style.width="100%";				
+				imgDiv.appendChild(img5);
+				
+				var img6 = document.createElement('img');
+				img6.src = "tpl/Wap/default/common/hcar/pic/4003/139633287067.jpg";	
+				img6.style.width="100%";				
+				imgDiv.appendChild(img6);
+				/*
+				document.write("<img src='http://img04.taobaocdn.com/bao/uploaded/i4/1857839951/T2dK40XD8XXXXXXXXX_!!1857839951.jpg_728x728.jpg' width='100%'/>");
+				document.write("<img src='http://img03.taobaocdn.com/bao/uploaded/i3/1857839951/T2IXh0Xq8aXXXXXXXX_!!1857839951.jpg_728x728.jpg' width='100%'/>");
+				document.write("<img src='http://img01.taobaocdn.com/bao/uploaded/i1/1857839951/T231B0XsRaXXXXXXXX_!!1857839951.jpg_728x728.jpg' width='100%'/>");
+				document.write("<img src='http://img02.taobaocdn.com/bao/uploaded/i2/1857839951/T20vN2XwBXXXXXXXXX_!!1857839951.jpg_728x728.jpg' width='100%'/>");
+				document.write("<img src='http://img02.taobaocdn.com/bao/uploaded/i2/1857839951/T2I4d2XydXXXXXXXXX_!!1857839951.jpg_728x728.jpg' width='100%'/>");
+				document.write("<img src='http://img03.taobaocdn.com/bao/uploaded/i3/1857839951/T2KR04XuNXXXXXXXXX_!!1857839951.jpg_728x728.jpg' width='100%'/>");
+				*/
+			
+			
+			}else{
+				var img1 = document.createElement('img');
+				img1.src = "tpl/Wap/default/common/hcar/pic/4003/139633287158.jpg";	
+				img1.style.width="100%";				
+				imgDiv.appendChild(img1);
+				
+				var img2 = document.createElement('img');
+				img2.src = "tpl/Wap/default/common/hcar/pic/4003/139633286585.jpg";	
+				img2.style.width="100%";				
+				imgDiv.appendChild(img2);
+				
+				var img3 = document.createElement('img');
+				img3.src = "tpl/Wap/default/common/hcar/pic/4003/139633286656.jpg";	
+				img3.style.width="100%";				
+				imgDiv.appendChild(img3);
+				
+				var img4 = document.createElement('img');
+				img4.src = "tpl/Wap/default/common/hcar/pic/4003/139633286728.jpg";	
+				img4.style.width="100%";				
+				imgDiv.appendChild(img4);
+				
+				var img5 = document.createElement('img');
+				img5.src = "tpl/Wap/default/common/hcar/pic/4003/139633286793.jpg";	
+				img5.style.width="100%";				
+				imgDiv.appendChild(img5);
+				
+				var img6 = document.createElement('img');
+				img6.src = "tpl/Wap/default/common/hcar/pic/4003/139633287067.jpg";	
+				img6.style.width="100%";				
+				imgDiv.appendChild(img6);
+				/*
+				document.write("<img src='http://img03.taobaocdn.com/bao/uploaded/i3/1857839951/T2QCQIXkpXXXXXXXXX_!!1857839951.jpg_728x728.jpg' width='100%'/>");
+				document.write("<img src='http://img03.taobaocdn.com/bao/uploaded/i3/1857839951/T2IXh0Xq8aXXXXXXXX_!!1857839951.jpg_728x728.jpg' width='100%'/>");
+				document.write("<img src='http://img01.taobaocdn.com/bao/uploaded/i1/1857839951/T231B0XsRaXXXXXXXX_!!1857839951.jpg_728x728.jpg' width='100%'/>");
+				document.write("<img src='http://img02.taobaocdn.com/bao/uploaded/i2/1857839951/T20vN2XwBXXXXXXXXX_!!1857839951.jpg_728x728.jpg' width='100%'/>");
+				document.write("<img src='http://img02.taobaocdn.com/bao/uploaded/i2/1857839951/T2I4d2XydXXXXXXXXX_!!1857839951.jpg_728x728.jpg' width='100%'/>");
+				document.write("<img src='http://img02.taobaocdn.com/bao/uploaded/i2/1857839951/T2YUJ0XDVXXXXXXXXX_!!1857839951.jpg_728x728.jpg' width='100%'/>");
+				*/
+			}
+			
+		
+		</script>	
+		
+		
+
+        <script type="text/javascript">
+            // <![CDATA[ 
+            $(document).ready(function() {
+
+				$("#banner_list img:not(:first-child)").hide(); 
+			
+                $("#banner_list img").click(function() {
+
+                    if ($(this).index() == 0) {
+                        $("#banner_list img").fadeOut(500).parent().children().eq(1).fadeIn(1000,
+                        function() {
+                            $(this).hide();
+                            $("#banner_list").innerfade({
+                                animationtype: 'fade',
+                                speed: 1000,
+                                timeout: 2000,
+                                type: 'sequence',
+                                containerheight: '20px',
+                                autoStop: 'yes',
+                                reloadWeb:window.location.href,
+                                replayImgURL: 'tpl/Wap/default/common/hcar/pic/4003/139633286211.jpg',
+                                replayLeft: '35%',
+                                replayTop: '85%',
+                                startIndex: 1
+                            });
+
+                        });
+                    }
+
+                });
+
+            })
+
+            // ]]>
+            
+        </script>
+ 
+	<div id="ruler" style="width:100%;height:0"></div>
+	<audio id="bgsound" loop="loop"></audio>
+	<div id="textsuper" style="position:absolute;top:-1000;left:-1000;overflow-x:hidden;overflow-y:hidden;z-index:2000" onclick="javascript:playsound()">
+	<div id="textsub" style="color:white;line-height:35pt;position:relative;font-size:33pt;" onclick="javascript:playsound()">
+		<b id="textcontent">
+        </b><br>
+    </div>
+	</div>
+	
+	<div style="position:absolute;left:70%;top:72%;z-index:2000">
+		<a href="{weimicms:$fxlj}"><img src="tpl/Wap/default/common/hcar/pic/4003/139579480904.gif" width="200%"></a><br>
+	</div></body>
+
+</html>

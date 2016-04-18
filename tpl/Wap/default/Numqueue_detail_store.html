@@ -1,0 +1,374 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link href="{weimicms:$staticPath}/tpl/static/numqueue/css/css.css" type="text/css" rel="stylesheet"  />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>{weimicms:$store_info['name']}</title>
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/numqueue/js/jquery1.8.3.js"></script>
+<script language="javascript" src="http://webapi.amap.com/maps?v=1.3&key=b6c2c19cf45cd3d2b82541bc857eed7c"></script>
+</head>
+<body class="body" <if condition="!isset($is_loaded)">onLoad="mapInit()" </if>>
+<div class="content" style="padding:0; width:100%">
+  <div class="zhuang_herd">
+    <div class="zhuang_herd_top">
+      <div class="zhuang_herd_txt"> 等待类型 </div>
+      <div class="zhuang_herd_txt"> 等待数 </div>
+      <div class="zhuang_herd_txt"> 预计等待时间 </div>
+      <div style="clear:both"></div>
+    </div>
+    <ul>
+	<volist name="type_name" id="vo" key="k">
+      <li class="zhuang_li1">
+        <div class="zhuang_herd_txt">
+          <div class="zhuang_li_top"><php>list($name,$count,$value) = explode("_",$vo);echo $name;</php></div>
+		  <div class="zhuang_li_bottom"><php>echo $value</php></div>
+        </div>
+        <div class="zhuang_herd_txt">
+          <div class="zhuang_0"><php>echo $count;</php><span>位</span></div>
+        </div>
+        <div class="zhuang_herd_txt">
+          <div class="zhuang_li_top"><php>echo $count*$store_info['wait_time']</php></div>
+          <div class="zhuang_li_bottom">分钟</div>
+        </div>
+        <div style="clear:both"></div>
+      </li>
+	  </volist>
+    </ul>
+    <div class="yuyue">
+	<if condition="$business eq 'close'">
+	<div class="yueyue_img"><img src="{weimicms:$staticPath}/tpl/static/numqueue/images/close.png" width="30"  style=" margin-top: 5px;"/></div>
+      <div class="yueyue_txt">
+        <div class="yueyue_title"> 营业时间未到 </div></div>
+      <div style="clear:both"></div>
+	  <elseif condition="$business eq 'not_line'" />
+	    <div class="yueyue_img"><img src="{weimicms:$staticPath}/tpl/static/numqueue/images/canying.png" width="30" style="margin-top: 5px;"/></div>
+       <div class="yueyue_txt">
+        <div class="yueyue_title">本店现在无需排队 </div>
+        <span>快带上小伙伴们来吧</span> </div>
+      <div style="clear:both"></div>
+	<else />
+    <div class="yueyue_txt1">
+        <div class="yueyue_title" id="get_location"><if condition="!isset($is_loaded)">定位中...<else />{weimicms:$distancestr}</if></div>
+        <span>当前距离</span> </div>
+      <div class="yueyue_txt1">
+         <div><span>{weimicms:$store_info['allow_distance']}km</span></div> 
+        <span>限制距离</span> </div>
+         <button id="btnclick2" class="yueyue_yue">立即领号</button>
+		</if>
+    </div>
+  </div>
+</div>
+<div id="info"></div>
+ <!--就餐人数弹框-->
+<div class="divShow2"></div>
+<div class="dis2"> 
+<div class="ttop2" style="top:20%">
+  <div class="txtspan2">
+   <div  class="jiucan_tan">
+	 <div id="cadiv1" style="bottom:-18px;">  
+	<button style="background:none" onclick="hidediv(2)">
+	 <img src="{weimicms:$staticPath}/tpl/static/numqueue/images/error.png" width="10" /></button>
+	 </div>
+  <div class="content" style="padding:0; width:100%; " >
+  <div class="jiu">
+    <div class="jiu_title"> <span>请输入人数</span></div>
+      <div class="jiu_form">
+         <input class="jiu_input" id="tmp_number" value="" ></div>
+        <div class="jit_bot">
+          <button class="quxiao" onclick="hidediv(2)">取消</button>
+          <button class="queding" onclick="set_number_meals()">确定</button>
+          <div style="clear:both"></div>
+      </div>
+      <div style="clear:both"></div>
+  </div>
+</div>
+   </div>
+ </div >
+</div> 
+</div>  
+<!--选择等待类型弹框-->
+<div class="divShow3"></div>
+<div class="dis3"> 
+<div class="ttop3" style="top:20%">
+  <div class="txtspan3">
+   <div  class="jiucan_tan">
+	 <div id="cadiv1" style="bottom:-25px;left:45%">  
+	  <button  style="background:none" onclick="hidediv(3)">
+		<img src="{weimicms:$staticPath}/tpl/static/numqueue/images/error.png" width="10"/></button>
+	 </div>
+<div class="content" style="padding:0; width:100%">
+  <div class="zhuang_herd">
+    <div class="zhuang_herd_top">
+      <div class="houtai_txt" style="width:30%"> 排号类型 </div>
+      <div class="houtai_txt"> 排队数 </div>
+	   <div class="houtai_txt"> 选择类型 </div>
+      <div style="clear:both"></div>
+    </div>
+    <ul>
+	<foreach name="type_name" item="vo">
+      <li class="zhuang_li1">
+        <div class="houtai_txt">
+          <div class="zhuang_li_top"><php>list($name,$count,$value) = explode("_",$vo);echo $name;</php></div>
+          <div class="zhuang_li_bottom"><php>echo $value;</php></div>
+        </div>
+        <div class="houtai_txt">
+          <div class="zhuang_0"><php>echo $count;</php><span>个</span></div>
+        </div>
+        <div class="houtai_right_txt">
+     <button class="houtai_an" onclick="set_type('{weimicms:$key}')" style="width:100%;">选<php>echo $name;</php></button >
+        <div style="clear:both"></div>
+        </div>
+        <div style="clear:both"></div>
+      </li>
+	  </foreach>
+    </ul>
+      <div style="clear:both"></div>
+  </div>
+ </div >
+</div> 
+</div>  
+</div>
+</div>
+<!--手机号弹框-->
+<div class="divShow4"></div>
+<div class="dis4"> 
+<div class="ttop4" style="top:20%">
+  <div class="txtspan4">
+   <div  class="jiucan_tan">
+	 <div id="cadiv1" style="bottom:-18px;">  
+	  <button style="background:none" onclick="hidediv(4)">
+	 <img src="{weimicms:$staticPath}/tpl/static/numqueue/images/error.png" width="10"/></button>
+	 </div>
+<div class="content" style="padding:0; width:100%; " >
+  <div class="jiu">
+    <div class="jiu_title"> <span>请输入手机号</span><span> </span></div>
+      <div class="jiu_form">
+         <div><input class="jiu_input" placeholder="手机号" id="temp_phone" value="" /></div>
+         <div>
+           </div>
+        <div class="jit_bot">
+          <button class="quxiao" onclick="hidediv(4)">取消</button>
+          <button class="queding" onclick="get_phone();">确定</button>
+          <div style="clear:both"></div>
+      </div>
+      <div style="clear:both"></div>
+  </div>
+</div>
+   </div>
+ </div >
+</div> 
+</div>  
+</div>
+<!--领号成功提示-->
+<div class="divShow5"></div>
+<div class="dis5"> 
+<div class="ttop5" style="top:20%">
+  <div class="txtspan5">
+   <div  class="jiucan_tan">
+	 <div id="cadiv1" style="">  
+	 <button style="background:none" onclick="hidediv(5)">
+	 <img src="{weimicms:$staticPath}/tpl/static/numqueue/images/error.png" width="10"/></button>
+	 </div>
+<div class="content" style="padding:0; width:100%; " >
+  <div class="jiu" >
+    <div class="jiu_title">取号成功</div>
+      <div class="chenggong_form" style="text-align: left;">
+        <div>{weimicms:$store_info['name']}提醒您:过号请重新取号谢谢配合。若不能按时到来请及时取消排号。</div>
+      </div>
+      <div class="chenggong_bot" style="margin-right:20%;">
+       <a href="javascript:;"> <div class="queding" style="width:30%;padding-top:4%;" onclick="window.location.href= '{weimicms::U('Numqueue/recevice_detial',array('store_id'=>$store_id,'token'=>$token,'id'=>$id))}';return false">确定</div></a>
+      </div>
+  </div>
+ <div style="clear:both"></div>
+</div>
+ </div >
+</div> 
+</div>  
+</div>
+<!--点击ok时提交表单,全部是隐藏表单-->
+<input type="hidden" name="numbers" id="numbers" value="" />
+<input type="hidden" name="queue_type" id="queue_type" value="" />
+<input type="hidden" name="phone" id="phone" value=""/>
+<div id="vote_notice" style="z-index:99;left:65%;top: 30%;width:200px;height:40px; line-height:40px;color:#fff; font-size:18px;  border-radius: 9px;  background-color: #D93232;  margin: 0 auto; text-align:center; font-family:'微软雅黑';margin-left:-150px!important;margin-top:-60px!important;margin-top:0px;position:fixed!important;display:none"></div>
+</body>
+</html>
+<script>
+$(function(){
+	var isFuwu = '{weimicms:$isFuwu}';
+	var loadurl = '';
+	if(isFuwu != "" && isFuwu == 1){
+		loadurl = '/index.php?g=Wap&m=Numqueue&a=store_info&store_id={weimicms:$store_id}&id={weimicms:$id}&token={weimicms:$token}&action_name={weimicms:$action_name}&rget=1';
+		$.get(loadurl,function(html){
+			$("#info").html(html);
+		});
+	}else{
+		loadurl = '/index.php?g=Wap&m=Numqueue&a=store_info&store_id={weimicms:$store_id}&id={weimicms:$id}&token={weimicms:$token}&action_name={weimicms:$action_name}';
+		$("#info").load(loadurl);
+	}
+});
+$(function(){
+	var h =document.body.scrollHeight;
+	var w = window.innerWidth;
+	var t=document.body.scrollTop;
+	$("#btnclick2").click(function(){
+		//ajax判断是否在排队中
+		 $.ajax({async: false});
+		$.get("{weimicms::U('Numqueue/check_waiting',array('store_id'=>$store_id,'token'=>$_GET['token']))}",function(data){
+			//排队中
+			if(data == 1){
+				window.location.href="{weimicms::U('Numqueue/recevice_detial',array('store_id'=>$store_id,'token'=>$token,'id'=>$id))}";
+				return false;
+			}else{
+				//定位中
+				var get_location = $("#get_location").text();
+				if(get_location == '定位中...'){
+					notice('正在定位中,请稍后.');
+					return false;
+				}
+				//判断距离
+				var distance = parseFloat('{weimicms:$distance}');
+				var max_distance = parseFloat("{weimicms:$store_info['allow_distance']}");
+				if(distance > max_distance){
+					notice('超过最大领号限制距离');
+					return false;
+				}
+				//后台设置是否需要填写人数
+				var need_numbers = "{weimicms:$store_info['need_numbers']}";
+				if(need_numbers == 1){
+					$('.ttop2').css('height',t);
+					$('.divShow2').css('width',w).css('height',h).addClass('show1');
+					$('.ttop2').css('height',t);
+					$('.dis2').show();
+				}else{
+					$('.ttop3').css('height',t);
+					$('.divShow3').css('width',w).css('height',h).addClass('show1');
+					$('.ttop3').css('height',t);
+					$('.dis3').show();
+				}
+			}
+		});
+	});
+});
+//设置就餐人数
+var h =document.body.scrollHeight;
+var w = window.innerWidth;
+var t=document.body.scrollTop;
+function set_number_meals(){
+	hidediv(2);
+	var tmp_number = $("#tmp_number").val();
+	var re = /^[1-9]+[0-9]*]*$/;
+	if(!re.test(tmp_number)){
+		notice('请输入正整数');
+		return false;
+	}
+	$("#numbers").val(tmp_number);
+	$('.ttop3').css('height',t);
+	$('.divShow3').css('width',w).css('height',h).addClass('show1');
+	$('.ttop3').css('height',t);
+	$('.dis3').show();
+}
+//选择等待类型
+function set_type(type){
+	hidediv(3);
+	$("#queue_type").val(type);
+	$('.ttop4').css('height',t);
+	$('.divShow4').css('width',w).css('height',h).addClass('show1');
+	$('.ttop4').css('height',t);
+	$('.dis4').show();
+}
+//填写手机号
+function get_phone(){
+	hidediv(4);
+	var numbers = $("#numbers").val();
+	var queue_type = $("#queue_type").val();
+	var temp_phone = $("#temp_phone").val();
+	var re = /^(1([0-9]){7}|^1([0-9]){10})$/;
+	if(!re.test(temp_phone)){
+		notice('请输入有效的手机号');
+		return false;
+	}
+	$("#phone").val(temp_phone);
+	$.post("{weimicms::U('Numqueue/receive_number')}",{'store_id':'{weimicms:$store_id}','token':'{weimicms:$token}','numbers':numbers,'queue_type':queue_type,'phone':temp_phone,'action_id':'{weimicms:$id}'},function(data){
+		if(data == 'done'){
+			$('.ttop5').css('height',t);
+			$('.divShow5').css('width',w).css('height',h).addClass('show1');
+			$('.ttop5').css('height',t);
+			$('.dis5').show();
+		}else{
+			notice('领取失败,请返回重新操作');
+		}
+	});
+}
+//隐藏
+function hidediv(id){
+	if(id == 0){
+		$('.dis').hide();
+		$('.divShow').hide();
+		$('.ttop').css('height',0);
+		$('.divShow').css('width',0).css('height',0).removeClass('show1');
+		$('.ttop').css('height',0);
+	}
+	$('.dis'+id).hide();
+	$('.divShow'+id).hide();
+	$('.ttop'+id).css('height',0);
+	$('.divShow'+id).css('width',0).css('height',0).removeClass('show1');
+	$('.ttop'+id).css('height',0);
+}
+
+//提示信息
+function notice(text){
+	$("#vote_notice").text(text);
+	$("#vote_notice").show();
+	$("#bg").show();
+	$("#vote_notice").fadeOut(2000);
+	$("#bg").fadeOut(2000);
+}
+</script>
+<div id="iCenter"style="display:none;"></div>
+<script language="javascript">
+var mapObj,toolBar,locationInfo;
+var locationX,locationY;
+//初始化地图对象，加载地图
+function mapInit(){
+	mapObj = new AMap.Map("iCenter");
+	//地图中添加地图操作ToolBar插件
+	mapObj.plugin(["AMap.ToolBar"],function(){		
+		toolBar = new AMap.ToolBar(); //设置地位标记为自定义标记
+		mapObj.addControl(toolBar);		
+		AMap.event.addListener(toolBar,'location',function callback(e){	
+			locationInfo = e.lnglat;
+			if(locationInfo){
+			  window.location.href=window.location.href+"&nowlat="+locationInfo.lat+"&nowlng="+locationInfo.lng;
+			  //calculateDistance(locationInfo.lat,locationInfo.lng); //改成php来计算 然后按距离远近排序输出
+			}
+		});
+		toolBar.doLocation();
+	});
+}
+	
+//获取定位位置信息
+function showLocationInfo()
+{
+	 locationX = locationInfo.lng; //定位坐标经度值
+	 locationY = locationInfo.lat; //定位坐标纬度值
+}
+</script>
+
+<script>
+	window.shareData = {  
+		"moduleName":"Numqueue",
+		"moduleID":"0",
+		"imgUrl": "{weimicms:$f_siteUrl}/tpl/static/numqueue/images/paidui.png", 
+		"timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U('Numqueue/detail_store',array('store_id'=>$store_id,'token'=>$token,'id'=>$id))}",
+		"sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Numqueue/detail_store',array('store_id'=>$store_id,'token'=>$token,'id'=>$id))}",
+		"weiboLink": "{weimicms:$f_siteUrl}{weimicms::U('Numqueue/detail_store',array('store_id'=>$store_id,'token'=>$token,'id'=>$id))}",
+		"tTitle": "{weimicms:$reply_title}:{weimicms:$store_info['name']}",
+		"tContent": "{weimicms:$reply_title}",
+		"fTitle": "{weimicms:$reply_title}:{weimicms:$store_info['name']}",
+	};
+</script>
+{weimicms:$shareScript}

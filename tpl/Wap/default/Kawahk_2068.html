@@ -1,0 +1,68 @@
+
+<html>
+
+<head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+      <include file="Kawahk:js"/> 
+	<script type="text/javascript">
+            initViewport();
+    </script>
+    <title>送给你</title>
+	<style type="text/css">
+		body
+		{
+			margin: 0;
+		}
+		html { overflow-y:hidden; }
+	</style>
+	<script>
+	// script place
+        	words = '轻轻的我走了，正如我轻轻的来，我轻轻的招手，作别西天的云彩。那河畔的金柳，是夕阳中的新娘；波光里的艳影，在我的心头荡漾';
+
+            kawa_data = {
+                words 			   : words,
+               <if condition=" $words eq ''">
+				replace_words      : '轻轻的我走了，正如我轻轻的来，我轻轻的招手，作别西天的云彩。那河畔的金柳，是夕阳中的新娘；波光里的艳影，在我的心头荡漾',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+                text_box           : '25 80 415 180', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+                mode               : 'print',     // up, left
+                speed              : 400,     // 每秒移动的像素
+                text_color         : 'white', // rgb(1,2,3) 'black'
+                font_size          : '20pt',
+                line_height        : '30pt',
+                //text_align         : 'center',
+                font_weight        : 'bold',
+                music              : 'http://115.28.80.144/mp3/9.mp3',     // url
+                 <if condition=" $music eq ''">
+				replace_music      : 'http://115.28.80.144/mp3/9.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+                music_name         : '',
+                replace_music_name : '#replace_music_name#',
+                icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/fengmian/x2068.jpg',
+                title              : '送给你',
+                desc               : words,
+                modify             : 'no',
+                replace_modify     : 'yes',
+                cardid             : '2068',
+                share_url          : window.location.href,   // 当分享的是微信页面时才需要改这里
+                font_ip            : '115.28.135.41:8000',
+                modify_optfile     : 'aiqing',
+                modify_optwords    : '#modify_optwords#',
+                show_words         : 'yes',
+                write_param_1      : 'inputtype=singleline&showsel=no&prompt=' + encodeURIComponent('输入对方的名字：')
+            };
+        </script>
+
+</head>
+
+<body onload="kawa_init();">
+
+<img src="tpl/Wap/default/common/kawahk/2068/68.gif" width="100%">
+
+
+</body>
+
+</html>

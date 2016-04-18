@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{weimicms:$thisCard.cardname}</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<!-- Mobile Devices Support @begin -->
+<meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+<meta content="telephone=no, address=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<!-- apple devices fullscreen -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<!-- Mobile Devices Support @end -->
+<link href="{weimicms::$staticPath}/tpl/static/card/css/main.css" rel="stylesheet" type="text/css">
+<script src="{weimicms::$staticPath}/tpl/static/jquery.min.js" type="text/javascript"></script>
+</head>
+<body onselectstart="return true;" ondragstart="return false;">
+<div class="container card">
+    <header>
+    <div class="header card">
+        <div id="card" data-role="card" onClick="this.classList.toggle('on');">
+            <div class="front" style="background-image:url(<?php if($thisCard['diybg']!=''){?>{weimicms:$thisCard.diybg}<?php }else{?>{weimicms:$thisCard.bg}<?php }?>);">
+                <span class="logo"><img id="cardlogo" class="logo" src="{weimicms:$thisCard.logo}"></span>
+                <span class="name" style="color:{weimicms:$card.vipnamecolor};padding-right:5px;">{weimicms:$thisCard.cardname}</span>
+                <span class="no" style="color:{weimicms:$card.numbercolor};"><em>会员卡</em>{weimicms:$thisMember.number}</span>
+            </div>
+        </div>
+        <p class="explain"><span>点击卡片查看会员卡条码</span></p>
+        <div class="code">
+            <img src="{weimicms::U('Card/showCode',array('token'=>$token,'cardid'=>$card['id'],'textCode'=>$thisMember['number']))}" alt="">
+        </div>
+        <div class="mask"></div>
+    </div>
+    <div>
+        <ul class="box group_btn">
+            <li><a href="{weimicms::U('Card/topay', array('token' => $token,'wecha_id'=>$wecha_id,'cardid'=>$card['id']))}">充值</a></li>
+            <li><a href="{weimicms::U('Card/consume', array('token' => $token,'wecha_id'=>$wecha_id,'cardid'=>$card['id']))}">付款</a></li>
+        </ul>
+    </div>
+    </header>
+    <div class="body">
+        <ul class="list_ul">
+            <div>
+                <if condition="$previlege neq ''">
+                    <volist name="previlege" id="previlege">
+                        <li class="li_a">
+                            <label class="label" onClick="this.parentNode.classList.toggle('on');"><i>&nbsp;</i>{weimicms:$previlege.title}<span>&nbsp;</span></label>
+                            <ol>
+                                <h6>详细说明：</h6>
+                                <p>
+                                    {weimicms:$previlege.info}
+                                </p>
+                            </ol>
+                        </li>
+                    </volist>
+                </if>
+                <li class="li_b">
+                    <a href="{weimicms::U('Card/my_coupon', array('token' => $token,'wecha_id'=>$wecha_id,'cardid'=>$card['id']))}">
+                        <label class="label">
+                            <i>&nbsp;</i>
+                            会员优惠
+                            <span>&nbsp;</span>
+                        </label>
+                    </a>
+                </li>
+                <li class="li_e">
+                    <a href="{weimicms::U('Card/notice',array('token'=>$token,'wecha_id'=>$wecha_id,'cardid'=>$thisCard['id']))}">
+                        <label class="label">
+                            <i>&nbsp;</i>
+                            消息通知
+                            <span>&nbsp;</span>
+                        </label>
+                    </a>
+                </li>
+                <li class="li_d">
+                    <a href="{weimicms::U('Userinfo/index',array('token'=>$_GET['token'],'cardid'=>(int)$_GET['cardid'],'wecha_id'=>$_GET['wecha_id'],'redirect'=>'Card/card|cardid:'.(int)$_GET['cardid']))}">
+                        <label class="label">
+                            <i>&nbsp;</i>
+                            完善会员卡资料 
+                            <span>&nbsp;</span>
+                        </label>
+                    </a>
+                </li>
+
+            </div>
+            <div>
+                <li class="li_v">
+                    <a href="{weimicms::U('Card/cardIntro',array('token'=>$token,'wecha_id'=>$wecha_id,'cardid'=>$card['id']))}">
+                        <label class="label"><i>&nbsp;</i>
+                            <p class="mutipleLine">
+                                会员卡介绍
+                            </p>
+                            <span>&nbsp;</span>
+                        </label>
+                    </a>
+                </li>
+                <!-- 门店-->
+                <li class="li_k">
+                    <a href="{weimicms::U('Card/companyDetail',array('token'=>$token,'wecha_id'=>$wecha_id,'cardid'=>$card['id']))}">
+                        <label class="label">
+                            <i>&nbsp;</i>
+                            商家门店
+                            <span>&nbsp;</span>
+                        </label>
+                    </a>
+                </li>
+            </div>
+        </ul>
+    </div>
+    <div style="display: none;" id="orderpay"></div>
+
+    <include file="Card:bottom"/>
+    <include file="Card:share"/>
+</div>
+
+<script>
+    $('.explain,.front').click(function(){
+        $('.code').show();
+        $('.mask').show();
+    });
+    $('.mask,.code').click(function(){
+        $('.code').hide();
+        $('.mask').hide();
+    });
+</script>
+</body>
+</html>

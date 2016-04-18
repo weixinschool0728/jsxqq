@@ -1,0 +1,316 @@
+
+<html>  
+<head>  
+<meta http-equiv="content-type" content="text/html; charset=utf-8">  
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <include file="Kawahk:js"/> 
+        <script type="text/javascript">
+            initViewport();
+        </script>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>送给你</title>  
+
+
+<style type="text/css">  
+    <!--   
+    body{   
+		-webkit-touch-callout: none; 
+		-webkit-text-size-adjust: none;
+        margin:0 auto;   		
+        overflow:hidden;   
+		position:relative;
+    }   
+  
+    div#content{
+        position:relative;   
+        border:1px solid #000; 
+		width:500px;		
+		height:750px;
+		margin:0 auto; 
+        top:0px;    
+        overflow:hidden;   
+        clear:both;
+    }
+  
+    div#bg1{   
+        position:absolute;   
+        left:0px;   
+        top:0px;
+		-webkit-backface-visibility:visible;
+		-webkit-transform-origin:center center;
+		-webkit-animation:fangda 4s 1s 1 linear normal both ;
+    } 
+	
+	div#bg2{   
+        position:absolute;   
+        left:0px;   
+        top:0px;		
+		-webkit-backface-visibility:visible;
+		-webkit-transform-origin:center center;
+		-webkit-animation:xiaoshi 4s 0s 1 linear normal both, fadeIn 1s 3.5s linear normal both, Right 4s 4.5s 1 linear normal both ;
+    }
+	
+	
+	div#bg3{   
+        position:absolute;   
+        left:0px;   
+        top:-100px;		
+		-webkit-backface-visibility:visible;
+		-webkit-transform-origin:center center;
+		-webkit-animation:fadeIn 1s 8s linear normal both, Down 4s 9s 1 linear normal both ;
+    }
+	div#bg4{   
+        position:absolute;   
+        left:-100px;   
+        top:0px;		
+		-webkit-backface-visibility:visible;
+		-webkit-transform-origin:center center;
+		-webkit-animation:fadeIn 1s 12.5s linear normal both, Left 4s 13.5s 1 linear normal both ;
+    }
+	div#bg5{   
+         position:absolute;   
+         left:0px;   
+         top:0px;	
+		-webkit-transform:scale(1.2)		 
+		-webkit-backface-visibility:visible;
+		-webkit-transform-origin:center center;
+		-webkit-animation:fadeIn 1s 17s linear normal both, suoxiao 4s 18.5s 1 linear normal both ;
+    }
+	@-webkit-keyframes fangda{
+		0%{
+			-webkit-transform:scale(1);
+		} 100%{
+			-webkit-transform:scale(1.2);
+		} 
+	}
+	@-webkit-keyframes suoxiao{
+		0%{
+			-webkit-transform:scale(1.2);
+		} 
+		100%{
+			-webkit-transform:scale(1);
+		} 
+	}
+	@-webkit-keyframes Down{
+		0%{
+			-webkit-transform:translateY(0px);
+		} 100%{
+			-webkit-transform:translateY(100px);
+		} 
+	}
+	@-webkit-keyframes Right{
+		0%{
+		-webkit-transform:translateX(0px)
+		} 
+		100%{
+		-webkit-transform:translateX(-100px)
+		}
+		} 
+	@-webkit-keyframes Left{
+		0%{
+		-webkit-transform:translateX(0px)
+		} 
+		100%{
+		-webkit-transform:translateX(100px)
+		}
+		} 
+	div#bg01{   
+        position:absolute;   
+        left:0px;   
+        top:450px;		 
+		-webkit-backface-visibility:visible;
+		-webkit-transform-origin:center center;
+		-webkit-animation:fadeInOutUp 3s 0s linear normal both;
+    }	
+	
+	div#bg02{   
+         position:absolute;   
+        left:0px;   
+        top:150px;		 
+		-webkit-backface-visibility:visible;
+		-webkit-transform-origin:center center;
+		-webkit-animation:xiaoshi 5s 0s linear normal both, fadeInOutDown 4s 5s linear normal both;
+    }
+	
+	div#bg03{   
+         position:absolute;   
+        left:0px;   
+        top:450px;		 
+		-webkit-backface-visibility:visible;
+		-webkit-transform-origin:center center;
+		-webkit-animation:xiaoshi 10s 0s linear normal both, fadeInOutUp 4s 10s linear normal both;
+    }
+	
+	div#bg04{   
+         position:absolute;   
+        left:0px;   
+        top:150px;		 
+		-webkit-backface-visibility:visible;
+		-webkit-transform-origin:center center;
+		-webkit-animation:xiaoshi 15s 0s linear normal both,  fadeInOutDown 4s 15s linear normal both;
+    }
+	
+	div#bg06{   
+         position:absolute;   
+        left:26px;   
+        top:320px;		 
+		-webkit-backface-visibility:visible;
+		-webkit-transform-origin:center center;
+		-webkit-animation:xiaoshi 20s 0s linear normal both,  fadeInUp 1s 20s linear normal both;
+    }
+	
+	@-webkit-keyframes fadeIn{
+		0%{
+		opacity:0;
+		} 
+		100%{
+		opacity:1;}
+		} 
+	
+	@-webkit-keyframes xiaoshi{
+		0%{
+		opacity:0;
+		} 
+		100%{
+		opacity:0;}
+		} 
+	@-webkit-keyframes fadeInOutUp{
+		0%{opacity:0;
+		-webkit-transform:translateY(20px)}
+		45%{opacity:1;
+		-webkit-transform:translateY(0)}
+		55%{opacity:1;
+		-webkit-transform:translateY(0)}
+		100%{opacity:0;
+		-webkit-transform:translateY(-20px)}
+	}
+	@-webkit-keyframes fadeInOutDown{
+		0%{opacity:0;
+		-webkit-transform:translateY(-20px)}
+		45%{opacity:1;
+		-webkit-transform:translateY(0)}
+		55%{opacity:1;
+		-webkit-transform:translateY(0)}
+		100%{opacity:0;
+		-webkit-transform:translateY(20px)}
+	}
+	@-webkit-keyframes fadeInUp{
+		0%{opacity:0;
+		-webkit-transform:translateY(0px)}
+		100%{opacity:0.3;
+		-webkit-transform:translateY(-20px)}
+	}
+	#yangguang{
+			position:absolute;
+			-webkit-backface-visibility:visible;
+			-webkit-transform-origin:165px 150px;
+			-webkit-animation:fadeIn 1s 19s linear normal both, sunshine 16s 20s infinite linear normal none ;
+		}
+		
+		@-webkit-keyframes sunshine{
+			0%{-webkit-transform:rotate(0deg);} 
+			100%{-webkit-transform:rotate(360deg);} 
+	}
+	div#foot
+	{
+		position:fixed;
+		right:30px;
+		bottom:20px;
+		z-index:2000;
+	}
+    -->  
+</style>  
+<script>
+function init()
+{
+	document.body.style.margin = '0px';
+    create_base();
+    read_base();
+   
+    add_kawa_icon();
+    create_music();
+    
+	setTimeout('showTxt()',20000);
+}
+
+function showTxt()
+{
+	 create_textdiv();
+	 create_modify();
+}
+</script>
+</head>  
+<body onLoad = "init();">
+    <script>
+    	words = '天高了，云淡了，那两三点缀的金黄，那淡淡的桂花香，点缀着秋的模样，秋天，是个童话般的季节。简单如秋，绚烂如秋，人生如秋。';
+
+        kawa_data = {
+            words 			   : words,
+            <if condition=" $words eq ''">
+				replace_words      : '天高了，云淡了，那两三点缀的金黄，那淡淡的桂花香，点缀着秋的模样，秋天，是个童话般的季节。简单如秋，绚烂如秋，人生如秋!',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+            text_box           : '50 200 226 220', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+            mode               : 'up',     // up, left
+            speed              : 40,     // 每秒n移动的像素
+            text_color         : '#FFFFCC', // rgb(1,2,3) 'black'
+            font_size          : '25pt',
+            line_height        : '40pt',
+            music              : 'http://sound.kagirl.net/sound/qingyinyue1.mp3',     // url
+           <if condition=" $music eq ''">
+				replace_music      : 'http://sound.kagirl.net/sound/qingyinyue1.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+            music_name         : '',
+            replace_music_name : '#replace_music_name#',
+            icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/fengmian/x2030.jpg',
+            title              : '送给你',
+            desc               : words,
+            modify             : 'no',
+            replace_modify     : 'yes',
+            cardid             : '2030',
+            share_url          : window.location.href,    // 当分享的是微信页面时才需要改这里
+            font_ip            : '114.215.157.155:8000',
+            modify_optfile     : 'zhufu',
+            modify_optwords    : '#modify_optwords#',
+            show_words         : 'yes',
+            write_param_1      : 'inputtype=singleline&showsel=no&prompt=' + encodeURIComponent('输入对方的名字：')
+        };
+    </script> 
+    <div id="content">  
+        <div id="bg1" >
+			<img src="tpl/Wap/default/common/kawahk/2030/1.jpg"/>
+		</div>  
+		 <div id="bg2" >
+			<img src="tpl/Wap/default/common/kawahk/2030/2.jpg"/>
+		</div>  
+		 <div id="bg3" >
+			<img src="tpl/Wap/default/common/kawahk/2030/3.jpg"/>
+		</div>  
+		 <div id="bg4" >
+			<img src="tpl/Wap/default/common/kawahk/2030/4.jpg"/>
+		</div>  
+		 <div id="bg5" >
+			<img src="tpl/Wap/default/common/kawahk/2030/5.jpg"/>
+		</div>  
+		<div id="bg01" >
+			<img src="tpl/Wap/default/common/kawahk/2030/zi_1.jpg"/>
+		</div>  
+		 <div id="bg02" >
+			<img src="tpl/Wap/default/common/kawahk/2030/zi_2.jpg"/>
+		</div> 
+		 <div id="bg03" >
+			<img src="tpl/Wap/default/common/kawahk/2030/zi_3.jpg"/>
+		</div> 
+		<div id="bg04" >
+			<img src="tpl/Wap/default/common/kawahk/2030/zi_4.jpg"/>
+		</div> 
+		
+		<div id="yangguang" style="position:absolute;width:500px;top:-105px;left:-100px;z-index:5">
+		<img src="http://tu.kagirl.net/pic/2012/2012_yangguang.png"/>
+		</div>	
+    </div>  
+</body>  
+</html>

@@ -1,0 +1,16 @@
+
+		<script type="text/javascript">
+
+			window.shareData = {  
+				"moduleName":"Img",
+				"moduleID": '{weimicms:$_GET["id"]|intval}',
+				"imgUrl": "{weimicms:$res.pic}", 
+				"timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid'],'id'=>intval($_GET['id'])))}",
+				"sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid'],'id'=>intval($_GET['id'])))}",
+				"weiboLink": "{weimicms:$f_siteUrl}{weimicms::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'classid'=>$_GET['classid'],'id'=>intval($_GET['id'])))}",
+				"tTitle": "{weimicms:$res.title}-{weimicms:$tpl.wxname}",
+				"tContent": "{weimicms:$res.text|htmlspecialchars_decode|strip_tags|trim|mb_substr=###,0,30,'utf-8'|str_replace="\\r\\n",' ',###|str_replace='"','',###}"
+			};
+		</script>	
+
+{weimicms:$shareScript}

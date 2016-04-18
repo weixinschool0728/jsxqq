@@ -1,0 +1,165 @@
+
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+         <include file="Kawahk:js"/> 
+        <script type="text/javascript">
+            initViewport();
+        </script>
+
+	<title>送给你</title>	
+    <style type="text/css">
+
+	<!--		
+		body
+		{
+			margin: 0;
+		}
+		#fade img {border:0px; position:absolute;}	
+
+		#hd{
+			position:absolute;
+			top:1200px;
+			-webkit-backface-visibility:visible;
+			-webkit-transform-origin:center center;
+			-webkit-animation:fly 10s 0.5s infinite ease normal none ;
+		}
+		
+		@-webkit-keyframes fly{
+			0% {opacity: 0; left:300px;top:1200px;}
+			2%,10%,20%,30%,40%,50%,60%,70%,80%,90%,100%{-webkit-transform:scaleX(0.8);} 
+			5%,15%,25%,35%,45%,55%,65%,75%,85%,95%{-webkit-transform:scaleX(0.3);} 
+			2%{opacity: 1;left:300px;top:800px;} 
+			22%{left:19px;top:600px;} 
+			51%{left:230px;top:366px;} 
+			62%{left:100px;top:200px;} 
+			87%{left:322px;top:66px;} 
+			100%{left:-100px;top:-100px;} 
+		}
+				
+		#yangguang{
+			position:absolute;
+			-webkit-backface-visibility:visible;
+			-webkit-transform-origin:165px 150px;
+			-webkit-animation:sunshine 16s 0s infinite linear normal none ;
+		}
+		
+		@-webkit-keyframes sunshine{
+			0%{-webkit-transform:rotate(0deg);} 
+			100%{-webkit-transform:rotate(360deg);} 
+		}
+		
+		div#foot{   
+        position:fixed; 
+		left:320px;
+		bottom:10px;
+        z-index:4000;
+    } 	
+
+	-->
+
+    </style>	
+
+	<script src="tpl/Wap/default/common/kawahk/2010/jquery.innerfade1.js" type="text/javascript"></script>
+
+	<script>
+		//需要调用leafinit（）来启动，需要声明外层div，id="container"，还有内层div，id="leafContainer"
+		//参数设置
+		var leafNum = 7;			//落下叶子的数量
+		var kindNum = 2;			//叶子的种类
+		//叶子使用图片地址，数量应与kindNum相同
+		var kindurl = new Array("tpl/Wap/default/common/kawahk/2010/2010_p1.png","tpl/Wap/default/common/kawahk/2010/2010_p2.png");
+	</script>
+	<script src="tpl/Wap/default/common/kawahk/2010/leavesleft.js"></script>
+	<link rel="stylesheet" href="tpl/Wap/default/common/kawahk/2010/leavesall.css" type="text/css" media="screen" charset="utf-8">
+	
+	<script>
+	function fade(){
+		//图片淡入淡出
+		$("#fade img:not(:first-child)").hide(); ///隐藏第一幅以外的图片
+		
+		$("#fade").innerfade({
+			animationtype: 'fade',
+			speed: 3500,
+			timeout: 4000,
+			type: 'sequence',
+			autoStop: 'no',
+			reloadWeb: '',
+			replayImgURL: '',
+			replayLeft: '10%',
+			replayTop: '80%',
+			insertFuncPos: 3,
+			insertFunc: function(){
+			   onLoad();
+			},
+			'setTimePicNo':	3,
+			'setPictime': 10000
+		});		
+	}
+	</script>
+</head>
+
+<body  onload="kawa_init();"  bgcolor="#000">
+
+<script>
+        	words = '春天到了，阳光洒在我们脸上，让心被快乐填满，让人生充满笑脸，翅膀在我们自己肩上，朝着梦想的方向飞翔，做一个幸福的人！';
+
+            kawa_data = {
+                words 			   : words,
+                  <if condition=" $words eq ''">
+				replace_words      : '春天到了，阳光洒在我们脸上，让心被快乐填满，让人生充满笑脸，翅膀在我们自己肩上，朝着梦想的方向飞翔，做一个幸福的人！',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+                text_box           : '100 175 350 250', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+                mode               : 'up',     // up, left
+                speed              : 40,     // 每秒移动的像素
+                text_color         : '#ffff00', // rgb(1,2,3) 'black'
+                font_size          : '20pt',
+                line_height        : '40pt',
+                //text_align         : 'center',
+                font_weight        : 'bold',
+                music              : 'http://sound.kagirl.net/sound/chongjiao.mp3',     // url
+               <if condition=" $music eq ''">
+				replace_music      : 'http://sound.kagirl.net/sound/chongjiao.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+                music_name         : '',
+                replace_music_name : '#replace_music_name#',
+                icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/fengmian/x2010.jpg',
+                title              : '卡娃微卡',
+                desc               : words,
+                modify             : 'no',
+                replace_modify     : 'yes',
+                cardid             : '2010',
+                share_url          :  window.location.href,   // 当分享的是微信页面时才需要改这里
+                font_ip            : '121.42.24.240:8000',
+                modify_optfile     : 'xinqing',
+                modify_optwords    : '#modify_optwords#',
+                show_words         : 'yes',
+                write_param_1      : 'inputtype=singleline&showsel=no&prompt=' + encodeURIComponent('输入对方的名字：')
+            };
+        </script>
+	<div style="position:absolute;top:0;left:0;width:500px;z-index:0">
+		<img src="tpl/Wap/default/common/kawahk/2010/2010_1.jpg"/>
+	</div>
+	<div style="position:absolute;top:0;left:0;width:500px;z-index:2">
+		<img src="tpl/Wap/default/common/kawahk/2010/2010_2.png"/>
+	</div>
+	<div id="yangguang" style="position:absolute;width:500px;top:-165px;left:-150px;z-index:5">
+		<img src="tpl/Wap/default/common/kawahk/2010/2010_yangguang.png"/>
+	</div>
+		  
+	<div id="container" style="left:0%;top:0%;z-index:1">
+		<div id="leafContainer"></div>
+	</div>
+	
+	<div id="hd">
+			<img src="tpl/Wap/default/common/kawahk/2010/2010_hudie.png" width="76px">
+	</div>
+	<script>
+		leafinit();
+	</script>
+</body>
+
+</html>

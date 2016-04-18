@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=300px">
+<meta charset="utf-8">
+<title>光棍证</title>
+<!--[if lte IE 8]>
+ 			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+<link rel="stylesheet" href="tpl/Wap/default/common/hcar/pic/4004/style1.css" type="text/css" media="screen" title="no title" charset="utf-8">
+<link href="tpl/Wap/default/common/hcar/pic/4004/css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="/tpl/Wap/default/common/hcar/makecard_top.css" type="text/css" media="screen" charset="utf-8">
+
+<script src="tpl/Wap/default/common/hcar/pic/4004/flux.js" type="text/javascript" charset="utf-8"></script>
+<script src="tpl/Wap/default/common/hcar/pic/4004/showcard2.js"  type="text/javascript" charset="utf-8"></script>
+<style type="text/css">
+<!--
+.text1 {
+	font-family: microsoft yahei;
+	text-align: right;
+	font-size: 30px;
+	line-height: 26px;
+	color: black;
+}
+footer {
+	position: fixed;
+	left: 0px;
+	bottom: 10px;
+	text-align: right;
+	width: 100%;
+}
+-->
+</style>
+<script>
+		gSizeMode = 'bodywidth';
+		gAnimateMode = 'print';
+		gSound = 'http://pds26.egloos.com/pds/201311/08/32/hsnzj.mp3';
+		gColor = '#D50012';
+		gTextAreaLeft = 0.23;
+		gTextAreaTop = 0.21;
+		gTextAreaWidth = 0.4;
+		gTextAreaHeight = 0.1;
+		gCardTextNoWrap ='卡  娃';
+		<if condition="$message neq ''">
+			gCardTextNoWrap ='{weimicms:$message}';
+			</if>
+		gCardText ='卡  娃';
+		<if condition="$message neq ''">
+			gCardText ='{weimicms:$message}';
+			</if>
+		// script place
+		</script>
+<script>
+	(function(){
+		var onBridgeReady = function () {
+		var appId = '',
+		imgUrl = '{weimicms:$f_siteUrl}/tpl/Wap/default/common/hcar/pic/4004/x4004.jpg',
+		link = location.href,
+		title = '卡娃微卡',
+		desc = '光棍证——求偶遇，求脱光(脱离光棍，理解歪的都面壁去！)';
+		// card tips
+		
+	// 发送给好友;
+		WeixinJSBridge.on('menu:share:appmessage', function(argv){
+			WeixinJSBridge.invoke('sendAppMessage',{
+				'img_url' : imgUrl,
+				'img_width' : '640',
+				'img_height' : '640',
+				'link' : link,
+				'desc' : desc,
+				'title' : title
+				}, function(res) {location.href="{weimicms:$fxlj}"});
+		});
+		
+	// 分享到朋友圈;
+		WeixinJSBridge.on('menu:share:timeline', function(argv){
+			WeixinJSBridge.invoke('shareTimeline',{
+				'img_url' : imgUrl,
+				'img_width' : '640',
+				'img_height' : '640',
+				'link' : link,
+				'desc' : desc,
+				'title' : desc
+				}, function(res) {location.href="{weimicms:$fxlj}"});
+		});
+		
+		playsound();
+	};
+	
+	if(document.addEventListener){
+	document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+	} else if(document.attachEvent){
+	document.attachEvent('WeixinJSBridgeReady' , onBridgeReady);
+	document.attachEvent('onWeixinJSBridgeReady' , onBridgeReady);
+	}
+	})();
+</script>
+<script type="text/javascript" charset="utf-8">
+			$(function(){
+				if(!flux.browser.supportsTransitions)
+					alert("您的手机不支持该动画");
+					
+				window.f = new flux.slider('#slider', {
+					pagination: false,
+					delay: 3500,
+					controls: false,
+					transitions: ['turn'],
+					autoplay: true
+				});
+			});
+		</script>
+</head>
+<body onload="onLoad();" onclick='javascript:playsound();'>
+<section class="container">
+  <div id="slider"> <img src="tpl/Wap/default/common/hcar/pic/4004/139633400865.jpg" alt=""> <img src="tpl/Wap/default/common/hcar/pic/4004/139633400686.jpg" alt=""> </div>
+</section>
+<div id="ruler" style="width:100%;height:0"></div>
+<audio id="bgsound" loop></audio>
+<div id="textsuper" style="position:absolute;top:-1000;left:-1000;overflow-x:hidden;overflow-y:hidden;z-index:2000" onclick='javascript:playsound()'>
+  <div id="textsub" style='color:white;line-height:22pt;position:relative;font-size:18px;' onclick='javascript:playsound()'> <b id="textcontent"> </b> </div>
+</div>
+<div style="position:absolute;left:60%;top:76%;z-index:2000"> <a href="{weimicms:$fxlj}"><img src="tpl/Wap/default/common/hcar/pic/4004/139579480904.gif" width="80%"/></a><br>
+</div>
+<if condition="$message eq ''">
+	<a href="/index.php?g=Wap&m=Hcar&a=hcar_make&token={weimicms:$token}&id={weimicms:$id}&cardid={weimicms:$cardid}">
+		<div id="makecard">
+			<p>点这里修改名字</p>
+		</div>
+	</a>
+</if>
+</body>
+</html>

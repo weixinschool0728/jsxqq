@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>会员注册 -  {weimicms:$jjrcopyright}</title>
+    <meta content="width=device-width,initial-scale=1.0, maximum-scale=1.0,user-scalable=0;"  name="viewport" />
+    <link rel="stylesheet" type="text/css" href="{weimicms::RES}/jjr/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="{weimicms::RES}/jjr/css/hkb.css" />
+    <link rel="stylesheet" href="{weimicms::RES}/jjr/css/jBox.css" />
+    <link rel="stylesheet" type="text/css" href="{weimicms::RES}/jjr/css/zydialog.css" />
+    <link rel="stylesheet" type="text/css" href="{weimicms::RES}/jjr/css/ui.css" />
+    <link rel="stylesheet" type="text/css" href="{weimicms::RES}/jjr/css/datepicker.css" />
+    <link rel="stylesheet" type="text/css" href="{weimicms::RES}/jjr/css/font-awesome.css" />
+    <script type="text/javascript" src="{weimicms::RES}/jjr/js/jquery.js"></script>
+    <script type="text/javascript" src="{weimicms::RES}/jjr/js/dot.js"></script>
+    <script type="text/javascript" src="{weimicms::RES}/jjr/js/jBox.js"></script>
+    <script type="text/javascript" src="{weimicms::RES}/jjr/js/ui.js"></script>
+    <script type="text/javascript" src="{weimicms::RES}/jjr/js/jquery.bgiframe.js"></script>
+    <script type="text/javascript" src="{weimicms::RES}/jjr/js/zydialog.js"></script>
+    <script type="text/javascript" src="{weimicms::RES}/jjr/js/datepicker.js"></script>
+    <script type="text/javascript" src="{weimicms::RES}/jjr/js/base.js"></script>
+    <script type="text/javascript" src="{weimicms::RES}/jjr/js/hkb.js"></script> 
+</head>
+<body>
+    <div class="all3">
+        <div class="max-640" id="q-height">
+            <div class="m-login-ct tc">
+                <img src="{weimicms::RES}/Jiqian/head.png" alt="">
+            </div>
+            <form class="form" action="" method="post" >
+            <div class="m-pd30">
+                <div class="wbfb" style="padding-bottom: 50px;">
+                    <div class="u-iptct mb10 ra clearfix">
+                        <span class="fl">
+                            <img src="{weimicms::RES}/jjr/images/zh.png" alt=""></span>
+                        <div class="lo-iptct">
+                            <input type="text" id="user_name" name="username" placeholder="雁过留名" />
+                        </div>
+                    </div>
+
+                    <p class="mt10">
+                        <span class="f-tip">提示</span>
+                    </p>
+
+                    <button type="submit" id="regform" style="cursor:pointer;" class="f-loginbtn ysgb tc">
+                        完 成</button>
+                        <!--/wap.php?m=User&a=login
+                    <a href="/index.php?g=wap&m=Supplier&a=login" class="f-loginbtn tc reg-login mt20">登 陆</a>-->
+                    <div class="clearfix">
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div> 
+</body>
+</html>
+ 
+<script type="text/javascript">
+    jQuery(function ($) {
+        $("#type").change(function () {
+            if (2 == this.value) {
+                $("#inviteCodeBox").show();
+            } else {
+                $("#inviteCodeBox").hide();
+            }
+        });
+
+        $("#regform").click(function () {       
+									   
+            var user_name = $.trim($("#user_name").val());
+            if (user_name == '') {
+                $.showError('名称不能为空', 200, function () {
+                    $("#user_name").focus();
+                });
+                return false;
+            }
+            var reg = /^[\u4e00-\u9fa5a-zA-Z0-9]+$/;
+            if (!reg.test(user_name) || user_name.length < 2 || user_name.length > 20) {
+                $.showError('名称由2-20个数字、字母、汉字组成', 200, function () {
+                    $("#user_name").focus();
+                });
+                return false;
+            }
+
+
+        });
+    })
+</script>

@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>票号信息</title>
+<script type="text/javascript" src="./tpl/static/jquery.min.js"></script>
+<script type="text/javascript">
+	function sub(){
+		var val=document.getElementById("buyCount").value;
+		val=parseInt(val)-1;
+		document.getElementById("buyCount").value=val;
+		document.getElementById("decreaseBtn").className = "No_y";
+		document.getElementById("increaseBtn").className = "No_t";
+		document.getElementById("increaseBtn").style.color='#b8b7b7';
+	}
+	function add(){
+		var val=document.getElementById("buyCount").value;
+		val=parseInt(val)+1;
+		document.getElementById("buyCount").value=val;
+		document.getElementById("increaseBtn").className = "No_y";
+		document.getElementById("decreaseBtn").className = "No_t";
+		document.getElementById("increaseBtn").style.color='#bc8900';
+	}
+	
+	
+</script>
+<link rel="stylesheet" href="{weimicms::STATICS}/lapiao/lp_wap.css" />
+</head>
+<body>
+	<div id="Fh_hbotno" class="Fh_hbotno"></div>
+		<section id="order_add" class="F_cqsmt box-shadow marg20" style="">
+			<h2>票号信息</h2>
+			<ul>
+				<li><strong>名称:</strong><span>{weimicms:$wlp['name']}</span></li>
+					<b id="buyCountTip" class="F_red2"></b>
+				</li>
+			</ul>
+			
+			<h2>用户信息</h2>
+			<ul>
+	     		<li><strong>姓名:</strong><input id="un" name="uname" type="text" htip="请输入正确的姓名，2~8个汉字" errtip="请输入正确的姓名，2~8个汉字" class="adress_inp addr_prop" tag="input" value="{weimicms:$op['truename']}"></li>
+	     		<li><strong>手机:</strong><input id="tel" name="tel" type="tel" htip="接收中奖通知的手机号码" errtip="请输入正确的手机号码" class="adress_inp addr_prop" tag="input" maxlength="11" value="{weimicms:$op['tel']}"></li>
+	   		</ul>
+	
+			<div class="marg20"></div>
+			<div class="btn_box">
+				<button id="BtnBack" onclick='location.href="{weimicms::U('Lapiao/index',array('token'=>$token,'id'=>$wlp['id'],'wxid'=>$wxid))}"' class="fc_btn fc_btn_o" type="button">返回</button>
+				<button id="BtnOrder" class="fc_btn" onclick="lingqu();">提交获取票号</button>
+			</div>
+			<input value="" id="token" name="token" type="hidden">
+		</section>
+	<section id="tipMessage" class="Fh_qdown_apv box-shadow" style="display: none; z-index: 10000; ">
+	   <p class="F_red F_font">请输入正确的姓名，2~8个汉字</p>
+	   <span class="F_grey2">--拉票活动--</span>
+	</section>
+<script type="text/javascript">
+var xx=0;
+function lingqu(){
+	var un = $.trim($('#un').val());
+	var tel = $.trim($('#tel').val());
+	var num = $('#buyCount').val();
+	if(un=='' || tel==''){
+		alert('请完善用户信息');
+		return;
+	}
+	if(xx==0){
+		xx=1;
+	}else{
+		alert('请勿重复提交');
+	}
+	document.getElementById("BtnOrder").disabled = "disabled";
+		var data = {
+				un:un,
+				tel:tel,
+				token:"{weimicms:$_GET['token']}",
+				wecha_id:"{weimicms:$_GET['wecha_id']}",
+				id:"{weimicms:$_GET['id']}"
+		}
+		$.get('index.php?g=Wap&m=Lapiao&a=tobuy', data, function(response){
+			if (response.error_code == false) {
+					alert('提交成功');
+					location.href = "{weimicms::U('Lapiao/index',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'],'id'=>$_GET['id']))}";
+
+			} else {
+				alert(response.msg);
+				location.href = "{weimicms::U('Lapiao/index',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'],'id'=>$_GET['id']))}";
+			}
+			
+		}, 'json');
+}
+
+</script>
+<div class="mfooter" id="wxgjfooter" style="text-align: center;width: 100%;height: 20px;line-height: 20px;margin-top:10px;">
+</div>
+<div style="width: 0px;height: 0px;overflow: hidden;">
+</div>
+</body>
+</html>

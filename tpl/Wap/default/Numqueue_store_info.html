@@ -1,0 +1,144 @@
+<div class="zhuang_arc" <if condition="$action_name eq 'admin_manage'">style="margin-top:15%;"</if>>
+  <div class="zhuang_arc_top">
+    <div class="zhuang_title">{weimicms:$store_info.name}</div>
+    <div class="zhuang_arc_txt">{weimicms:$store_info.remark}</div>
+	    <div class="zhuang_arc_txt1">&nbsp;</div>
+    <div class="zhuang_arc_txt">{weimicms:$store_info.price}元/人</div>
+    <div style="clear:both"></div>
+  </div>
+   <table width="100%"  cellspacing="0" cellpadding="0" class="zhuang_content" style="border-bottom:0px;">
+  <tr>
+    <td width="74%"  > <div class="zhuang_arc_left_top">
+        <div  class="zhuang_arc_left_top_left"><img src="{weimicms:$staticPath}/tpl/static/numqueue/images/weizhi.png"  width="20" /></div>
+        <div  class="zhuang_arc_left_top_right" onclick="window.location.href='http://mo.amap.com/share/index/lnglat={weimicms:$store_info.longitude},{weimicms:$store_info['latitude']}&name={weimicms:$store_info.address}'">{weimicms:$store_info.address}</div>
+        <div style="clear:both"></div></td>
+    <td  class="td_img" rowspan="2" >   <div    id="btnclick2"><a href="tel:{weimicms:$store_info.tel}"><img src="{weimicms:$staticPath}/tpl/static/numqueue/images/60X60.png" width="60px;height:60px;"/></a></div></td>
+  </tr>
+  <tr>
+    <td><div  class="zhuang_arc_left_top_left"><img src="{weimicms:$staticPath}/tpl/static/numqueue/images/time.png"  width="20" /></div>
+        <div  class="zhuang_arc_left_top_right">营业时间：{weimicms:$store_info.opentime}:00--{weimicms:$store_info.closetime}:00</div></td>
+    </tr>
+</table>
+
+  <div style="clear:both"></div>
+</div>
+<if condition="$store_info['hankowthames'] neq '' && $store_info['jump_name'] neq ''">
+  <div class="dazhong">
+  <div class="dazhong_txt" onclick="window.location.href='{weimicms:$store_info['hankowthames']}';return false;">
+	{weimicms:$store_info['jump_name']}
+  </div>
+  <div class="dazhong_img">
+  <img src="{weimicms:$staticPath}/tpl/static/numqueue/images/jiantou-hui.png"  width="20"  style="margin-top:5px;"/>
+  </div>
+      <div style="clear:both"></div>
+  </div>
+  </if>
+  
+  <if condition="$store_info['privilege_link'] neq ''">
+  <div class="dazhong">
+  <div class="dazhong_txt" onclick="window.location.href='{weimicms:$store_info['privilege_link']}';return false;">
+	优惠信息
+  </div>
+  <div class="dazhong_img">
+  <img src="{weimicms:$staticPath}/tpl/static/numqueue/images/jiantou-hui.png"  width="20"  style="margin-top:5px;"/>
+  </div>
+      <div style="clear:both"></div>
+  </div>
+  </if>
+  
+  <if condition="$my_receive neq '' && $action_name neq 'admin_manage'">
+  <div class="dazhong">
+  <div class="dazhong_txt" onclick="window.location.href='{weimicms::U('Numqueue/number_list',array('store_id'=>$my_receive['store_id'],'token'=>$my_receive['token'],'id'=>$_GET['id']))}';return false;">
+	我的号单
+  </div>
+  <div class="dazhong_img">
+  <img src="{weimicms:$staticPath}/tpl/static/numqueue/images/jiantou-hui.png"  width="20"  style="margin-top:5px;"/>
+  </div>
+      <div style="clear:both"></div>
+  </div>
+  </if>
+  <if condition="$action_name neq 'admin_manage'">
+   <div class="dazhong">
+   <if condition="$action_name eq 'detail_store' and $store_count gt 1">
+  <div class="dazhong_txt" onclick="window.location.href='{weimicms::U('Numqueue/store_list',array('token'=>$_GET['token'],'id'=>$_GET['id']))}';return false;">
+	返回门店列表
+  </div>
+  <else />
+    <div class="dazhong_txt" onclick="window.location.href='{weimicms::U('Numqueue/index',array('token'=>$_GET['token'],'id'=>$_GET['id']))}';return false;">
+	返回首页
+  </div>
+  </if>
+  <div class="dazhong_img">
+  <img src="{weimicms:$staticPath}/tpl/static/numqueue/images/jiantou-hui.png"  width="20"  style="margin-top:5px;"/>
+  </div>
+      <div style="clear:both"></div>
+  </div>
+  <br />
+  </if>
+ </div>
+ <!--script>
+ //toggle显示优惠信息
+$(function(){
+	var arrow = '{weimicms:$arrow}';
+	var privilege_link = '{weimicms:$store_info.privilege_link}';
+	if(privilege_link != ""){
+		$(".zhuang_bottom_right").click(function(){
+			window.location.href = privilege_link;
+			return false;
+		});
+		return false;
+	}
+	$(".zhuang_bottom_right").toggle(
+	  function(){
+	  	var p = '{weimicms:$store_info.privilege}';
+		var privilege = p ? p : '本店暂无优惠信息';
+		if(arrow != "" && arrow == 'up' &p != ""){
+			var ar = '&nbsp;&nbsp;&#8593';
+		}else{
+			var ar = '&nbsp;';
+		}
+		$(".zhuang_bottom_right").html(privilege+ar);
+		var h = $(".zhuang_bottom_right").height();
+		$(".zhuang_bottom_left").css('height',h);
+	},
+	  function(){
+	  	var p = '{weimicms:$store_info.privilege|mb_substr=0,10,\'utf-8\'}';
+		var privilege = p ? p : '本店暂无优惠信息';
+		if(arrow != "" && arrow == 'up' && p != ""){
+			var arw = '&nbsp;&nbsp;&#8595';
+		}else{
+			var arw = '&nbsp;';
+		}
+		$(".zhuang_bottom_right").html(privilege+arw);
+		var h = $(".zhuang_bottom_right").height();
+		$(".zhuang_bottom_left").css('height',h);
+	}
+	);
+	$(".zhuang_bottom_left").toggle(
+	  function(){
+		var p = '{weimicms:$store_info.privilege}';
+		var privilege = p ? p : '本店暂无优惠信息';
+		if(arrow != "" && arrow == 'up' && p != ""){
+			var ar = '&nbsp;&nbsp;&#8593';
+		}else{
+			var ar = '&nbsp;';
+		}
+		$(".zhuang_bottom_right").html(privilege+ar);
+		var h = $(".zhuang_bottom_right").height();
+		$(".zhuang_bottom_left").css('height',h);
+	},
+	  function(){
+	  	var p = '{weimicms:$store_info.privilege|mb_substr=0,10,\'utf-8\'}';
+		var privilege = p ? p : '本店暂无优惠信息';
+		if(arrow != "" && arrow == 'up' && p != ""){
+			var arw = '&nbsp;&nbsp;&#8595';
+		}else{
+			var arw = '&nbsp;';
+		}
+		$(".zhuang_bottom_right").html(privilege+arw);
+		var h = $(".zhuang_bottom_right").height();
+		$(".zhuang_bottom_left").css('height',h);
+	}
+	);
+ });
+ </script-->

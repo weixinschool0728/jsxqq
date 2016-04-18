@@ -1,0 +1,489 @@
+<html>
+<head>
+<script>var font_svr_ip = '121.42.24.240:8000';</script>
+<title></title>
+<meta http-equiv="imagetoolbar" content="no">
+<meta charset="utf-8">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="viewport" content="width=500px, height=750px,initial-scale=0.64"/>
+<link rel="stylesheet" href="tpl/Wap/default/common/hcar/makecard_top.css" type="text/css" media="screen" charset="utf-8">
+<script src="tpl/Wap/default/common/hcar/showcard_nosound.js"></script>
+
+<script>
+                gSizeMode = 'bodywidth';
+                gAnimateMode = 'left';    // 三种模式 up | left | print
+                gSound = 'tpl/Wap/default/common/hcar/sound/bgm.mp3';
+                gColor = '#FFFFEE';    // 文字颜色
+                gTextAreaLeft = 0.1;   // 文字出现的区域，单位是屏幕百分比
+                gTextAreaTop = 0.1;
+                gTextAreaWidth = 0.8;
+                gTextAreaHeight = 0.1;
+                gSpeed = 400;          // 文字滚动或者打印的速度，越小越快
+                gCardTextNoWrap ='';
+        
+                gCardText ='有一种鸿沟叫做周一到周五，有一种飞跃叫做到周末，恭喜你成功的飞跃过鸿沟，享受完美新世界，周末了，趁秋高气爽，雾霾已散，好好感受下大自然吧！祝周末愉快！';
+                share_url =window.location.href;
+			<if condition="$message neq ''">
+			gCardText ='{weimicms:$message}';
+			</if>
+
+                // script place
+
+                appId  = '';
+                imgUrl = '{weimicms:$f_siteUrl}/tpl/Wap/default/common/hcar/pic/2033/x2033.jpg';
+                link   = location.href;
+                title  = '送给你';
+                desc   = '有一种鸿沟叫做周一到周五，有一种飞跃叫做到周末，恭喜你成功的飞跃过鸿沟，享受完美新世界，周末了，趁秋高气爽，好好感受下大自然吧！祝周末愉快！！';
+              <if condition="$message neq ''">
+			desc ='{weimicms:$message}';
+			</if>
+				
+                //做卡页面参数
+                gcardid = 2033;
+                goptiontxt = "zhoumo";
+        
+                //function showTxt()
+               // {
+                    //Init();
+ //                   var text = document.getElementById("textsuper");
+ //                  text.style.display = "block";
+ //                   onLoad();
+              // }
+        var leafNum = 7;           //落下叶子的数量
+        var kindNum = 4;            //叶子种类
+        var leafIntervlaId;           
+        //叶子使用图片地址
+        var kindurl = new Array("tpl/Wap/default/common/hcar/pic/2033/2033_p1.png","tpl/Wap/default/common/hcar/pic/2033/2033_p2.png","tpl/Wap/default/common/hcar/pic/2033/2033_p3.png","tpl/Wap/default/common/hcar/pic/2033/2033_p4.png");
+        function id(name)
+        {
+           return document.getElementById(name);
+        }
+        function rand(min,max)
+        {
+            return min+Math.floor(Math.random()*(max-min+1));
+        }
+        function Init()
+        {
+            leafIntervlaId = setInterval(initLeaves,1500);
+            showcontent();
+            // initLeaves();
+            // initLeaves();
+            // initLeaves();
+        }
+        function initLeaves()
+        {
+            leafNum--;
+            if(leafNum<0)
+                clearInterval(leafIntervlaId);
+
+            var leaf = document.createElement('div');
+            var leafimg = document.createElement('img');
+            var imgkind = rand(0,3);
+            leafimg.src = kindurl[imgkind];
+            leaf.style.top = 0+'px';
+            leaf.style.left = rand(250,800) +'px';
+            leaf.className = 'leaf';
+            leafimg.className = 'leafimg';
+            leaf.appendChild(leafimg); 
+            id('body1').appendChild(leaf);      
+        }
+
+        </script>
+<script>
+        speed=150;
+
+        function showcontent()
+        {
+            id('textcontent').innerHTML=gCardText;
+            length=id('textcontent').innerHTML.length;
+            movelength=length*35+470;
+            time=movelength/speed;
+            setTimeout(moveposition,1);
+
+            
+           // setTimeout(Initposition,100);
+
+        }
+        function moveposition1()
+
+        {
+            id('textcontent').style.webkitTransition='';
+            id('textcontent').style.webkitTransform='translate(0px,0px)';
+            setTimeout(moveposition,100)
+        }
+        function moveposition()
+        {
+            setTimeout(moveposition1,time*1000+10);
+            id('textcontent').style.webkitTransition='-webkit-transform '+time+'s linear';
+            id('textcontent').style.webkitTransform='translate(-'+movelength+'px,0px)';
+        }
+        </script>
+<style type="text/css">
+div#foot {
+	position: fixed;
+	right: 10px;
+	bottom: 30px;
+	z-index: 1000;
+}
+ @-webkit-keyframes float {
+ 0% {
+-webkit-transform:translate(0px, 0px) rotate(0deg);
+}
+ 30% {
+-webkit-transform:translate(-300px, 250px) rotate(360deg);
+}
+ 70% {
+-webkit-transform:translate(-600px, 550px) rotate(720deg);
+}
+ 100% {
+-webkit-transform:translate(-800px, 750px) rotate(1080deg);
+}
+}
+.leaf {
+	-webkit-transform-origin: 50% 0%;
+	position: absolute;
+	padding: 0px;
+	margin: 0px;
+	width: 100px;
+	height: 100px;
+	z-index: 200;
+	-webkit-animation: float 6s linear infinite;
+}
+.leafimg {
+	position: absolute;
+	z-index: 200;
+}
+ @-webkit-keyframes left_1 {
+ 0% {
+-webkit-transform:translate(0px, 0px);
+}
+ 100% {
+-webkit-transform:translate(-1554px, 0px);
+}
+}
+ @-webkit-keyframes lefta_1 {
+ 0% {
+-webkit-transform:translate(0px, 0px)
+}
+ 67.82% {
+-webkit-transform:translate(0px, 0px)
+}
+ 100% {
+-webkit-transform:translate(-500px, 0px)
+}
+}
+ @-webkit-keyframes left {
+ 0% {
+-webkit-transform:translate(0px, 0px);
+}
+ 100% {
+-webkit-transform:translate(-812px, 0px);
+}
+}
+ @-webkit-keyframes lefta {
+ 0% {
+-webkit-transform:translate(0px, 0px)
+}
+ 38.42% {
+-webkit-transform:translate(0px, 0px)
+}
+ 100% {
+-webkit-transform:translate(-500px, 0px)
+}
+}
+ @-webkit-keyframes left_2 {
+ 0% {
+-webkit-transform:translate(0px, 0px);
+}
+ 100% {
+-webkit-transform:translate(-540px, 0px);
+}
+}
+ @-webkit-keyframes lefta_2 {
+ 0% {
+-webkit-transform:translate(0px, 0px)
+}
+ 7.407% {
+-webkit-transform:translate(0px, 0px)
+}
+ 100% {
+-webkit-transform:translate(-500px, 0px)
+}
+}
+</style>
+<style type="text/css">
+@-webkit-keyframes roll {
+ from {
+-webkit-transform:rotate(0deg);
+}
+ to {
+-webkit-transform:rotate(360deg);
+}
+}
+ @-webkit-keyframes bike-jolt {
+ 0% {
+-webkit-transform:rotate(0deg);
+}
+ 5% {
+-webkit-transform:rotate(-3deg);
+}
+ 10% {
+-webkit-transform:rotate(0deg);
+-webkit-transform-origin:70% 70%;
+}
+ 11% {
+-webkit-transform:rotate(0deg);
+-webkit-transform-origin:70% 70%;
+}
+ 20% {
+-webkit-transform:rotate(0deg);
+}
+ 25% {
+-webkit-transform:rotate(3deg);
+}
+ 30% {
+-webkit-transform:rotate(0deg);
+}
+}
+#left-wheel {
+	-webkit-transform-origin: 48% 54.5%;
+	-webkit-animation: roll 3s linear infinite;
+}
+#right-wheel {
+	-webkit-animation: roll 3s linear infinite;
+}
+#container {
+	-webkit-transform-origin: 20% 70%;
+	-webkit-animation: bike-jolt 5s linear infinite;
+}
+</style>
+</head>
+<body onload="Init()" style='margin:0px'>
+<div id="body1" style="height:750px;width:500px;position:absolute;z-index:101;
+    			margin:0px;padding:0px;overflow:hidden;">
+  <div style="position:absolute;top:0px; left:0px; width:500px; height:750px;"> <img src="tpl/Wap/default/common/hcar/pic/2033/2033_bg1.jpg"> </div>
+  <div id="container" style="position:absolute;z-index:105;top:480px;
+	        	left:135px; width:250px; height:250px;"> <img id="gril" src="tpl/Wap/default/common/hcar/pic/2033/2033_6.png" style="position:absolute;"> <img id="left-wheel" src="tpl/Wap/default/common/hcar/pic/2033/2033_4.png" style="position:absolute; left:0px; top:146px;"> <img id="right-wheel" src="tpl/Wap/default/common/hcar/pic/2033/2033_5.png" style="position:absolute; left:143px; top:148px;"> </div>
+  <div style="position:absolute;z-index:107;margin:0px;padding:0px;">
+    <div style="width:812px;left:0px;position:absolute;margin:0px;padding:0px;
+                 -webkit-animation:left 5s linear infinite;"> <img width="406px" height="750px" src="tpl/Wap/default/common/hcar/pic/2033/2033_1.png" style="left:0px;position:absolute;z-index:107;"> <img width="406px" height="750px" src="tpl/Wap/default/common/hcar/pic/2033/2033_1.png" style="position:absolute;left:406px;z-index:107;-webkit-transform:scale(-1,1);"> </div>
+    <div style="width:812px;left:500px;position:absolute;margin:0px;padding:0px;
+                    -webkit-animation:lefta 5s linear infinite;"> <img width="406px" height="750px" src="tpl/Wap/default/common/hcar/pic/2033/2033_1.png" style="left:0px;position:absolute;z-index:107;"> <img width="406px" height="750px" src="tpl/Wap/default/common/hcar/pic/2033/2033_1.png" style="position:absolute;left:406px;z-index:107;-webkit-transform:scale(-1,1);"> </div>
+  </div>
+  <div style="position:absolute;z-index:101;margin:0px;padding:0px;">
+    <div style="width:1554px;left:0px;position:absolute;
+	    			-webkit-animation:left_1 17s linear infinite;"> <img width="777px" height="750px" src="tpl/Wap/default/common/hcar/pic/2033/2033_2.png" style="left:0px;position:absolute;z-index:101;"> <img width="777px" height="750px" src="tpl/Wap/default/common/hcar/pic/2033/2033_2.png" style="position:absolute;left:777px;z-index:101;-webkit-transform:scale(-1,1)"> </div>
+    <div style="width:1554px;left:500px;position:absolute;
+                    -webkit-animation:lefta_1 17s linear infinite;"> <img width="777px" height="750px" src="tpl/Wap/default/common/hcar/pic/2033/2033_2.png" style="left:0px;position:absolute;z-index:101;"> <img width="777px" height="750px" src="tpl/Wap/default/common/hcar/pic/2033/2033_2.png" style="position:absolute;left:777px;z-index:101;-webkit-transform:scale(-1,1)"> </div>
+  </div>
+  <div style="position:absolute;z-index:100;margin:0px;padding:0px;">
+    <div style="width:540px;left:0px;top:30px;position:absolute;
+	    			-webkit-animation:left_2 15s linear infinite;"> <img width="272px" height="750px" src="tpl/Wap/default/common/hcar/pic/2033/2033_3.png" style="left:0px;position:absolute;z-index:100;"> <img width="272px" height="750px" src="tpl/Wap/default/common/hcar/pic/2033/2033_3.png" style="position:absolute;left:270px;z-index:100;-webkit-transform:scale(-1,1)"> </div>
+    <div style="width:540px;left:500px;position:absolute;top:30px;
+                    -webkit-animation:lefta_2 15s linear infinite;"> <img width="272px" height="750px" src="tpl/Wap/default/common/hcar/pic/2033/2033_3.png" style="left:0px;position:absolute;z-index:100;"> <img width="272px" height="750px" src="tpl/Wap/default/common/hcar/pic/2033/2033_3.png" style="position:absolute;left:270px;z-index:100;-webkit-transform:scale(-1,1)"> </div>
+  </div>
+</div>
+<div id="audiocontainer"></div>
+<div id="ruler" style="width:100%;height:0"></div>
+<div id="textsuper" style="position:absolute;width:470px;height:40px;left:15px;top:50px;
+        z-index:500;overflow:hidden;">
+  <div id="textcontent" style="position:absolute;z-index:600;left:470px;color:#ffffff;
+            top:0px;height:40px;white-space:nowrap;font-family:SimHei;font-size:35px;font-weight:bold;"> </div>
+</div>
+<div id="foot" class="fixed"> <a href="{weimicms:$fxlj}"><img width="150px" src="tpl/Wap/default/common/hcar/kawa1.gif"></a> </div>
+<if condition="$message eq ''"> 
+  <script>
+			function gomakecard()
+			{
+				url = "/index.php?g=Wap&m=Hcar&a=hcar_make&token={weimicms:$token}&id={weimicms:$id}&cardid={weimicms:$cardid}&defaulttxt=" + gCardTextNoWrap;
+				location.href = url;
+			}
+		</script> 
+  <a onClick="gomakecard();">
+  <div style="height:100px;" id="makecard"> <img style="left:10%; width: 80%;" src="tpl/Wap/default/common/hcar/dingzhi.png"> </div>
+  </a> </if>
+</body><script>
+var pop_up_note_mode = true;
+var note_id = 1;
+
+function id(name)
+{
+	return document.getElementById(name);
+}
+
+function translateUrl(url)
+{
+	if(typeof(share_url) != "undefined" && share_url != '')
+	{
+		url = share_url;
+	}
+
+//    pos1 = url.indexOf("//", 0);
+    
+  //  if(pos1 != -1)
+  //  {
+   //     pos2 = url.indexOf("/", pos1 + 2);
+  //      n = Math.floor(Math.random() * 5100 + 1);
+   //     url = "http://ec" + n + ".kagirl.com.cn" + url.substring(pos2);
+  //  }
+    
+    return url;
+}
+
+function switchsound()
+{
+	au = id('bgsound');
+	ai = id('sound_image');
+	if(au.paused)
+	{
+		au.play();
+		ai.src = "/tpl/Wap/default/common/hcar/music_note_big.png";
+		pop_up_note_mode = true;
+		popup_note();
+		id("music_txt").innerHTML = "打开";
+		id("music_txt").style.visibility = "visible";
+		setTimeout(function(){id("music_txt").style.visibility="hidden"}, 2500);
+	}
+	else
+	{
+		pop_up_note_mode = false;
+		au.pause();
+		ai.src = "/tpl/Wap/default/common/hcar/music_note_big.png";
+		id("music_txt").innerHTML = "关闭";
+		id("music_txt").style.visibility = "visible";
+		setTimeout(function(){id("music_txt").style.visibility="hidden"}, 2500);
+	}
+}
+
+function on_pop_note_end(event)
+{
+	note = event.target;
+	
+	if(note.parentNode == id("note_box"))
+	{
+		id("note_box").removeChild(note);
+		console.log("remove note id " + note.getAttribute("id"));
+	}
+}
+
+function popup_note()
+{
+	box = id("note_box");
+	
+	note = document.createElement("span");
+	note.style.cssText = "visibility:visible;position:absolute;background-image:url('/tpl/Wap/default/common/hcar/music_note_small.png');width:15px;height:25px";
+	note.style.left = Math.random() * 20 + 20;
+	note.style.top = "75px";
+	this_node = "music_note_" + note_id;
+	note.setAttribute("ID", this_node);
+	note_id += 1;
+	scale = Math.random() * 0.4 + 0.4;
+	note.style.webkitTransform = "rotate(" + Math.floor(360 * Math.random()) + "deg) scale(" + scale + "," + scale + ")";
+	note.style.webkitTransition = "top 2s ease-in, opacity 2s ease-in, left 2s ease-in";
+	note.addEventListener("webkitTransitionEnd", on_pop_note_end);
+	box.appendChild(note);
+
+	setTimeout("document.getElementById('" + this_node + "').style.left = '0px';", 100);
+	setTimeout("document.getElementById('" + this_node + "').style.top = '0px';", 100);
+	setTimeout("document.getElementById('" + this_node + "').style.opacity = '0';", 100);
+	
+	if(pop_up_note_mode)
+	{
+		setTimeout("popup_note()", 600);
+	}	
+}
+
+function playbksound()
+{
+	var audiocontainer = id('audiocontainer');
+	if(audiocontainer != undefined)
+	{
+		audiocontainer.innerHTML = '<audio id="bgsound" loop="loop" autoplay="autoplay"> <source src="' + gSound + '" /> </audio>';
+	}
+			
+	var audio = id('bgsound');
+	audio.play();
+	
+	sound_div = document.createElement("div");
+	sound_div.setAttribute("ID", "cardsound");
+	sound_div.style.cssText = "position:fixed;left:440px;top:40px;z-index:5000;visibility:visible;";
+	box_htm = "<div id='note_box' style='height:100px;width:44px;position:absolute;left:-20px;top:-80px'></div>";
+	bg_htm = "<img id='sound_image' onclick='switchsound()' src='/tpl/Wap/default/common/hcar/music_note_big.png'>";
+	txt_htm = "<div id='music_txt' style='color:white;position:absolute;left:-40px;top:30px;width:60px'></div>";
+	sound_div.innerHTML = bg_htm + box_htm + txt_htm;
+	document.body.appendChild(sound_div);
+	setTimeout("popup_note()", 100);
+}	
+
+function in_weixin()
+{
+	var ua = navigator.userAgent.toLowerCase();
+
+	if(ua.match(/MicroMessenger/i) == "micromessenger") {return true;}
+	
+	return false;
+}
+
+(function(){
+	
+	var onBridgeReady = function () {	
+
+		playbksound();			
+		link2 = translateUrl(link)
+
+		WeixinJSBridge.on('menu:share:appmessage', function(argv){
+			WeixinJSBridge.invoke('sendAppMessage',{
+				'img_url' : imgUrl,
+				'img_width' : '640',
+				'img_height' : '640',
+				'link' : link2,
+				'desc' : desc,
+				'title' : title
+				}, function(res) {
+			switch(res.err_msg) {
+			case "send_app_msg:confirm":
+			case "send_app_msg:ok":
+			    location.href="{weimicms:$fxlj}"
+			    break;
+			}
+		});
+		});
+
+		WeixinJSBridge.on('menu:share:timeline', function(argv){
+			WeixinJSBridge.invoke('shareTimeline',{
+			'img_url' : imgUrl,
+			'img_width' : '640',
+			'img_height' : '640',
+			'link' : link2,
+			'desc' : desc,
+			'title' : desc
+			}, function(res) {
+			switch(res.err_msg) {
+			case "share_timeline:confirm":
+			case "share_timeline:ok":
+			location.href="{weimicms:$fxlj}"
+			    break;
+			}
+			});
+		});
+	};
+	
+	if(document.addEventListener){
+		document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+	} else if(document.attachEvent){
+		document.attachEvent('WeixinJSBridgeReady' , onBridgeReady);
+		document.attachEvent('onWeixinJSBridgeReady' , onBridgeReady);
+	}
+	
+	if(!in_weixin())
+	{
+		setTimeout("playbksound()", 500);
+		//setTimeout("translateUrl(link)", 1000);
+	}
+})();
+
+</script> 
+</html>
+</html>

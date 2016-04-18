@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'/>
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" href="{weimicms:$staticPath}/tpl/static/helping/new/css/base.css">
+    <link rel="stylesheet" href="{weimicms:$staticPath}/tpl/static/helping/new/css/style.css">
+    <script src="{weimicms:$staticPath}/tpl/static/helping/new/js/jquery-2.1.4.min.js"></script>
+    <script>
+/**
+ * Created by tanytree on 2015/7/15.
+ */
+var timer=0;
+$(function(){
+    var docHeight = $(document).height();
+    $(".fullBg").height(docHeight);
+    tab(".tabBox .hd ul li",".tabBox .bd .row","on");
+    centerWindow(".window");
+    $(".fullBg").click(function(){
+        $(".window").removeClass("animate").hide();
+        $(this).hide();
+        clearTimeout(timer);
+    });
+	btnClick()
+});
+function btnClick(){
+    $.getJSON("{weimicms::U('Helping/add_share',array('token'=>$token,'id'=>$info['id']))}",{share_key:'{weimicms:$share_key}',wecha_id:'{weimicms:$wecha_id}'},function(res){
+		if(res.err == 0){
+			$(".fullBg").show();
+			$(".w1").addClass("animate").show();
+			closedWindow();
+		}else{
+			alert(res.info)
+		}
+	}); 
+	
+	
+}
+
+function showWindow(){
+    $(".fullBg").show();
+    $(".w0").addClass("animate").show();
+}
+function closedWindow(){
+    timer=setTimeout(function(){
+        $(".fullBg").hide();$(".window").removeClass("animate").hide();location.reload();
+    },5000);
+}
+
+function tab(a,b,c){
+    var len=$(a);
+    len.bind("click",function(){
+        var index = 0;
+        $(this).addClass(c).siblings().removeClass(c);
+        index = len.index(this);
+        $(b).eq(index).show().siblings().hide();
+        return false;
+    }).eq(0).trigger("click");
+}
+//2.将盒子方法放入这个方，方便法统一调用
+function centerWindow(a) {
+    center(a);
+    //自适应窗口
+    $(window).bind('scroll resize',
+        function() {
+            center(a);
+        });
+}
+
+//1.居中方法，传入需要剧中的标签
+function center(a) {
+    var wWidth = $(window).width();
+    var wHeight = $(window).height();
+    var boxWidth = $(a).width();
+    var boxHeight = $(a).height();
+    var scrollTop = $(window).scrollTop();
+    var scrollLeft = $(window).scrollLeft();
+    var top = scrollTop + (wHeight - boxHeight) / 2;
+    var left = scrollLeft + (wWidth - boxWidth) / 2;
+    $(a).css({
+        "top": top,
+        "left": left
+    });
+}
+
+function share(){
+	$('.share_bg').show();
+	$('.share_bg').click(function(){
+		if($(this).css('display') == 'block'){
+			$(this).css('display','none');
+		}
+	});
+}
+	</script>
+	<style>
+	.share_bg {
+		display: none;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		text-align: center;
+		background: rgba(0,0,0,0.7);
+		z-index: 99;
+	}
+	</style>
+</head>
+<body>
+<section class="topInfo">
+    <div class="light0 animate">
+        <img class="rotate360" src="{weimicms:$staticPath}/tpl/static/helping/new/images/roundLight.png"/>
+    </div>
+    <div class="singleInfo">
+        <h2>{weimicms:$user.wechaname}</h2>
+        <div class="ulBox">
+            <ul>
+                <li>排&nbsp;&nbsp;&nbsp;名：<?php echo $user['help_rank']?"第<i>".$user['help_rank']."</i>位":"未参与";?></li>
+                <li>助力值：<i>{weimicms:$user['help_count']}</i></li>
+                <li>转发数：<i>{weimicms:$user['share_num']}</i></li>
+            </ul>
+        </div>
+
+        <div class="topAvatar">
+            <div class="imgT0">
+                <i class="starl0"></i>
+                <i class="starl1"></i>
+                <i class="starr0"></i>
+                <i class="starr1"></i>
+            </div>
+        </div>
+        <div class="avatarThis">
+            <div class="avatarImg">
+                <img src="<?php if($user['portrait']!=''){echo $user['portrait'];}else{?>{weimicms:$staticPath}/tpl/static/helping/new/images/portrait.jpg<?php }?>"/>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="otherUser">
+    <div class="hd">
+        <div class="tit">
+            <h2><?php if($share_key!=''){echo '给TA助力的人';}else{echo '给我助力的人';}?></h2>
+        </div>
+        <div class="line">
+            <i class="fr"></i>
+            <i class="fl"></i>
+            <div class="lineThis"></div>
+        </div>
+    </div>
+    <div class="bd">
+        <ul>
+			
+			<volist name="helps_list" id="vo">
+            <li>
+                <div class="userAvatar fl">
+                    <img src="<?php if($vo['portrait']!=''){echo $vo['portrait'];}else{?>{weimicms:$staticPath}/tpl/static/helping/new/images/portrait.jpg<?php }?>"/>
+                </div>
+                <div class="desc">
+                    <h3>{weimicms:$vo.wechaname}</h3>
+                    <p>{weimicms:$vo.addtime|date='Y-m-d',###}</p>
+                </div>
+            </li>
+			</volist>
+			<?php if($user['is_join2'] == 1){ ?>
+			<li>
+                <div class="userAvatar fl">
+                    <img src="<?php if($user['portrait']!=''){echo $user['portrait'];}else{?>{weimicms:$staticPath}/tpl/static/helping/new/images/portrait.jpg<?php }?>"/>
+                </div>
+                <div class="desc">
+                    <h3>{weimicms:$user.wechaname}</h3>
+                    <p>{weimicms:$user.add_time|date='Y-m-d',###}</p>
+                </div>
+            </li>
+			<?php } ?>
+			<?php if($helps_count > 99){ ?>
+			<li><center style="color:#fff">只显示最新的100位</center></li>
+			<?php } ?>
+        </ul>
+    </div>
+</section>
+<footer>
+    <div class="oBtn">
+		<?php if($is_over == 1){echo "<a href='#' style='background:#ddd'>活动未开始</a>";}elseif($is_over == 2){echo "<a href='#' style='background:#ddd'>活动已结束</a>";}else{ ?>
+		<?php if($share_key != ''){ ?>
+        <a href="<?php echo U('Helping/index',array('token'=>$token,'id'=>$_GET['id'],'share_key'=>$_GET['share_key']));?>">
+            返回TA的页面
+        </a>
+        <a href="javascript:;" onclick="share()">
+            给他助力
+        </a>
+		<?php }else{ ?>
+		<a href="<?php echo U('Helping/index',array('token'=>$token,'id'=>$_GET['id']));?>">
+            返回我的页面
+        </a>
+		<?php } ?>
+		<?php } ?>
+    </div>
+</footer>
+
+
+<div class="fullBg"></div>
+<div class="window w1">
+    <div class="windowThis">
+
+        <div class="succeed">
+            <div class="userAvatar">
+                <div class="imgBox">
+                    <img src="<?php if($my['portrait']!=''){echo $my['portrait'];}else{?>{weimicms:$staticPath}/tpl/static/helping/new/images/portrait.jpg<?php }?>"/>
+                </div>
+            </div>
+            <div class="title">
+                <h3>恭喜 {weimicms:$my.wechaname}</h3>
+                <div class="tipWord">
+
+                </div>
+            </div>
+            <div class="roundLight rotate360">
+                <img class="" src="{weimicms:$staticPath}/tpl/static/helping/new/images/roundLight.png"/>
+            </div>
+            <div class="shareLine">
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="window w0">
+    <div class="windowThis">
+        <div class="hd"></div>
+        <div class="bd">
+            <div class="adMargin">
+                <div class="row">
+                    <div class="putBorder">
+                        <i></i><input type="text" placeholder="手机号"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="putBorder">
+                        <a href="javascript:;" class="getCode">获取验证码</a> <i></i><input type="text" placeholder="验证码"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <P>活动时间：{weimicms:$info.start|date="Y-m-d",###}至{weimicms:$info.end|date="Y-m-d",###}</P>
+                </div>
+            </div>
+        </div>
+        <div class="ft"></div>
+    </div>
+</div>
+<div class="share_bg">
+    <img src="{weimicms:$staticPath}/tpl/static/live/default/share-guide.png">
+</div>
+<style>
+	.w0 .windowThis .bd .row button{width: 100%;height: 30px;background: #f6514b;text-align: center;line-height: 30px;font-size: 1.4rem;color: #fff;border-radius: 5px}
+	.tips{width: 100%;position: fixed;top: 0;left: 0;display: none;z-index: 9999}
+	.tips h3{width: 70%;padding: 10px 0;  margin: 0 auto;  background: rgba(255,255,255,1);  text-align: center;  font-size: 1.2rem; color: red;}
+</style>
+<div class="tips" style="display: none;"><h3></h3></div>
+
+<script type="text/javascript">
+function alert(text){
+	var t=null;
+	clearTimeout(t);
+	var tip= $(".tips");
+	tip.find('h3').text(text);
+	tip.slideDown();
+	t=setTimeout(function(){ tip.slideUp()},3000);
+}
+<?php if($memberNotice == '' || $share_key != ''){?>
+window.shareData = {  
+            "moduleName":"Helping",
+            "moduleID":"0",
+            "imgUrl": "{weimicms:$info.reply_pic}", 
+            "timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U('Helping/index',array('token'=>$token,'id'=>$info['id'],'share_key'=>$user['share_key']))}",
+            "sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Helping/index',array('token'=>$token,'id'=>$info['id'],'share_key'=>$user['share_key']))}",
+            "weiboLink": "{weimicms:$f_siteUrl}{weimicms::U('Helping/index',array('token'=>$token,'id'=>$info['id'],'share_key'=>$user['share_key']))}",
+            <?php if($info['fxtitle'] == ''){?>
+            "tTitle": "我正在参加“<?php echo $info['title'];?>”活动，快来帮我拿大奖！",
+			<?php }else{
+			$info['fxtitle'] = str_replace(array('{{活动名称}}','{{助力值}}'),array($info['title'],$user['help_count']),$info['fxtitle']);
+			?>
+			"tTitle": "<?php echo $info['fxtitle'];?>",
+			<?php }?>
+            <?php if($info['fxinfo'] == ''){?>
+            "tContent": "{weimicms:$info.intro|shareFilter}",
+            "fTitle": "{weimicms:$info.intro|shareFilter}",
+			<?php }else{
+			$info['fxinfo'] = str_replace(array('{{活动名称}}','{{助力值}}'),array($info['title'],$user['help_count']),$info['fxinfo']);
+			?>
+			"tContent": "{weimicms:$info.fxinfo|shareFilter}",
+			"fTitle": "{weimicms:$info.fxinfo|shareFilter}",
+			<?php }?>
+			"isShareNum":1,
+			"ShareNumData":"helping_user,share_key,{weimicms:$user['share_key']},share_num"
+};
+<?php }else{?>
+window.shareData = {  
+            "moduleName":"Helping",
+            "moduleID":"0",
+            "imgUrl": "{weimicms:$info.reply_pic}", 
+            "timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U('Helping/index',array('token'=>$token,'id'=>$info['id']))}",
+            "sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Helping/index',array('token'=>$token,'id'=>$info['id']))}",
+            "weiboLink": "{weimicms:$f_siteUrl}{weimicms::U('Helping/index',array('token'=>$token,'id'=>$info['id']))}",
+            "tTitle": "我正在参加“<?php echo $info['title'];?>”活动，快来帮我拿大奖！",
+            "tContent": "{weimicms:$info.intro|shareFilter}"
+};
+<?php }?>
+</script>
+{weimicms:$shareScript}
+</body>
+</html>

@@ -1,0 +1,656 @@
+
+<html>
+	<head>
+		<title>咏莲</title>
+		<meta http-equiv="imagetoolbar" content="no">
+        <include file="Kawahk:js"/> 
+        <script type="text/javascript">
+            initViewport();
+        </script>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="format-detection" content="telephone=no">
+		
+		
+		<script type="text/javascript">
+            if (typeof(AN) === "undefined") {
+                var AN = {}
+            }
+            AN.instances = {
+                symbols: [],
+                controllers: []
+            };
+            AN.apiVersion = 1;
+            AN.Controller = function() {
+                return {
+                    currentScene: false,
+                    userData: {},
+                    setConfig: function(a) {
+                        AN.instances.controllers.push(this);
+                        this.events = a.events;
+                        this.prefix = a.cssPrefix;
+                        this.projectActions = a.projectActions;
+                        this.basePath = a.basePath ? a.basePath: "";
+                        this.olElement = document.querySelector("#" + a.parentId + " ol");
+                        var d = this.olElement.children;
+                        this.useOrmma = a.ormma;
+                        this.scenes = [];
+                        this.scenesById = {};
+                        this.sceneByName = {};
+                        var g;
+                        for (var e = 0; e < a.scenes.length; e++) {
+                            g = a.scenes[e];
+                            g.element = d[e];
+                            g.timelinesById = {};
+                            g.timelinesByName = {};
+                            for (var c = 0; c < g.timelines.length; c++) {
+                                g.timelinesById[g.timelines[c].id] = g.timelines[c];
+                                g.timelinesByName[g.timelines[c].name] = g.timelines[c]
+                            }
+                            this.scenesById[g.id] = g;
+                            this.scenes.push(g);
+                            if (g.name) {
+                                this.sceneByName[g.name] = g
+                            }
+                        }
+                        this.setupListeners();
+                        this.startSceneByName = this.goToSceneByName;
+                        this.startSceneById = this.goToSceneById;
+                        this.startSceneByID = this.startSceneById;
+                        this.symbolInstancesByHtmlId = {};
+                        this.symbolInstancesById = {};
+                        this.symbols = [];
+                        var h, b, f;
+                        for (var e = 0; e < a.symbols.length; e++) {
+                            h = a.symbols[e];
+                            this.symbolInstancesById[h.id] = [];
+                            b = this.olElement.querySelectorAll(".an-symbol-container-" + h.id);
+                            for (var c = 0; c < b.length; c++) {
+                                f = new AN.Symbol();
+                                f.setConfig(b[c], h, this);
+                                this.symbolInstancesByHtmlId[b[c].id] = f;
+                                this.symbolInstancesById[h.id].push(f);
+                                this.symbols.push(f)
+                            }
+                        }
+                        this.fireAction(this.projectActions, "init");
+                        this.goToScene(this.scenes[0])
+                    },
+                    setupListeners: function() {
+                        var l = this;
+                        this.browser = "unknown";
+                        if (document.body.style.MozAnimationName !== undefined) {
+                            this.browser = "moz"
+                        }
+                        function h(j) {
+                            var i;
+                            if (l.browser === "moz") {
+                                i = j.target;
+                                while (i = i.parentNode) {
+                                    if (i === l.currentScene.element) {
+                                        l.onAnimationEnd();
+                                        return
+                                    }
+                                }
+                            } else {
+                                l.onAnimationEnd()
+                            }
+                        }
+                        this.olElement.addEventListener("webkitAnimationEnd", h, false);
+                        this.olElement.addEventListener("animationend", h, false);
+                        function c(i) {
+                            i.element.addEventListener("mousemove",
+                            function(j) {
+                                i.mousemoveAction.call(l.userData, l, j)
+                            },
+                            false)
+                        }
+                        var g;
+                        for (var e = 0; e < this.scenes.length; e++) {
+                            g = this.scenes[e];
+                            if (g.mousemoveAction) {
+                                c(g)
+                            }
+                        }
+                        function a(m, j, i) {
+                            m.addEventListener(j,
+                            function(n) {
+                                i.call(l.userData, l, n)
+                            },
+                            false)
+                        }
+                        var f, b, k;
+                        for (var e = 0; e < this.events.length; e++) {
+                            b = this.events[e];
+                            k = b.type;
+                            f = document.getElementById(b.id);
+                            for (var d = 0; d < k.length; d++) {
+                                a(f, k[d], b.handler)
+                            }
+                        }
+                    },
+                    onAnimationEnd: function() {
+                        this.runningAnimationCount--;
+                        if (this.runningAnimationCount === 0) {
+                            this.onAllAnimationEnd()
+                        }
+                    },
+                    onAllAnimationEnd: function() {
+                        var a = this.currentScene.currentTimeline.endWaitTime;
+                        if (a) {
+                            var b = this;
+                            this.sceneTimeout = setTimeout(function() {
+                                b.onSceneFinish()
+                            },
+                            a * 1000)
+                        } else {
+                            this.onSceneFinish()
+                        }
+                    },
+                    forceRefresh: function(a) {
+                        this.forceRefreshValue = a.element.offsetHeight
+                    },
+                    fireAction: function(b, a) {
+                        if (b && b[a]) {
+                            b[a].call(this.userData, this)
+                        }
+                    },
+                    getSymbolByHtmlId: function(a) {
+                        return this.symbolInstancesByHtmlId[a]
+                    },
+                    getSymbolByInstanceId: function(b) {
+                        var a = this.olElement.querySelector(".an-symbol-container.an-symbol-" + b);
+                        return this.getSymbolByHtmlId(a.id)
+                    },
+                    getSymbols: function() {
+                        return this.symbols
+                    },
+                    getSymbolsBySymbolMasterId: function(a) {
+                        return this.symbolInstancesById[a]
+                    },
+                    getUserData: function() {
+                        return this.userData
+                    },
+                    getTimelineByIndex: function(a) {
+                        return this.currentScene.timelines[a]
+                    },
+                    getTimelineById: function(a) {
+                        return this.currentScene.timelinesById[a]
+                    },
+                    getTimelineByName: function(a) {
+                        return this.currentScene.timelinesByName[a]
+                    },
+                    getCurrentTimeline: function() {
+                        return this.currentScene.currentTimeline
+                    },
+                    getCurrentScene: function() {
+                        return this.currentScene
+                    },
+                    getSceneByIndex: function(a) {
+                        return this.scenes[a]
+                    },
+                    getSceneById: function(a) {
+                        return this.scenesById[a]
+                    },
+                    getSceneByName: function(a) {
+                        return this.sceneByName[a]
+                    },
+                    goToNextTimeline: function() {
+                        var b = this.currentScene.timelines.indexOf(this.currentScene.currentTimeline);
+                        var a = Math.min(b + 1, this.currentScene.timelines.length - 1);
+                        if (a === b) {
+                            return
+                        }
+                        this.goToTimelineByIndex(a)
+                    },
+                    goToPreviousTimeline: function() {
+                        var b = this.currentScene.timelines.indexOf(this.currentScene.currentTimeline);
+                        var a = Math.max(b - 1, 0);
+                        if (b === a) {
+                            return
+                        }
+                        this.goToTimelineByIndex(a)
+                    },
+                    goToTimelineById: function(a) {
+                        this.goToScene(this.currentScene, this.currentScene.timelinesById[a])
+                    },
+                    goToTimelineByName: function(a) {
+                        this.goToScene(this.currentScene, this.currentScene.timelinesByName[a])
+                    },
+                    goToTimelineByIndex: function(a) {
+                        this.goToScene(this.currentScene, this.currentScene.timelines[a])
+                    },
+                    goToTimeline: function(a) {
+                        this.goToScene(this.currentScene, a)
+                    },
+                    goToNextScene: function() {
+                        var b = this.scenes.indexOf(this.currentScene);
+                        var a = Math.min(b + 1, this.scenes.length - 1);
+                        if (b === a) {
+                            return
+                        }
+                        this.goToSceneByIndex(a)
+                    },
+                    goToPreviousScene: function() {
+                        var a = this.scenes.indexOf(this.currentScene);
+                        var b = Math.max(a - 1, 0);
+                        if (a === b) {
+                            return
+                        }
+                        this.goToSceneByIndex(b)
+                    },
+                    goToSceneByIndex: function(a) {
+                        this.goToScene(this.scenes[a])
+                    },
+                    goToSceneByName: function(a) {
+                        this.goToScene(this.sceneByName[a])
+                    },
+                    goToSceneById: function(a, b) {
+                        var c = this.scenesById[a];
+                        this.goToScene(c, c.timelinesById[b])
+                    },
+                    goToScene: function(g, f) {
+                        var d = g;
+                        var e = this.currentScene;
+                        var a = f;
+                        var c = e ? e.currentTimeline: false;
+                        if (a === undefined) {
+                            a = d.timelines[0]
+                        }
+                        var b = false;
+                        if (c === a && e === d) {
+                            b = true
+                        } else {
+                            if (e) {
+                                e.element.setAttribute("class", "")
+                            }
+                        }
+                        this.fireAction(c, "exitAction");
+                        clearTimeout(this.sceneTimeout);
+                        if (e !== d) {
+                            this.fireAction(e, "exitAction");
+                            this.fireAction(d, "initAction")
+                        }
+                        this.fireAction(a, "initAction");
+                        this.runningAnimationCount = a.animationCount;
+                        this.currentScene = d;
+                        d.currentTimeline = a;
+                        var h = "t-" + a.id;
+                        if (b || this.browser === "moz") {
+                            d.element.setAttribute("class", "run restart " + h);
+                            this.forceRefresh(d)
+                        }
+                        d.element.setAttribute("class", "run " + h);
+                        if (!b && this.useOrmma) {
+                            this.ormmaNextScene(d)
+                        }
+                        this.fireAction(a, "startAction");
+                        if (a.animationCount === 0) {
+                            this.onAllAnimationEnd()
+                        }
+                    },
+                    replayScene: function() {
+                        console.warn("replayScene is deprecated. Use restartScene instead.");
+                        this.restartScene()
+                    },
+                    restartScene: function() {
+                        this.goToScene(this.currentScene)
+                    },
+                    restartTimeline: function() {
+                        this.goToScene(this.currentScene, this.currentScene.currentTimeline)
+                    },
+                    onSceneFinish: function() {
+                        this.fireAction(this.currentScene.currentTimeline, "endAction")
+                    },
+                    goToURL: function(a) {
+                        document.location.href = a
+                    },
+                    getElementById: function(a) {
+                        return document.getElementById(this.getElementIdById(a))
+                    },
+                    getElementIdById: function(a) {
+                        return this.prefix + a
+                    },
+                    getUrlForLocalAsset: function(b) {
+                        var a = "assets/" + b;
+                        if (this.basePath) {
+                            a = this.basePath + "/" + a
+                        }
+                        return a
+                    },
+                    ormmaNextScene: function(c) {
+                        var a = ormma.getState();
+                        if (c.dimensions.expanded) {
+                            var i = ormma.getMaxSize();
+                            if (a !== "expanded") {
+                                ormma.expand({
+                                    x: 0,
+                                    y: 0,
+                                    width: i.width,
+                                    height: i.height
+                                })
+                            }
+                            var b = "";
+                            var d = c.element.offsetHeight;
+                            var g = c.element.offsetWidth;
+                            var e = (i.height - d) / 2;
+                            var h = (i.width - g) / 2;
+                            b += " translate3d(" + Math.round(h) + "px," + Math.round(e) + "px,0)";
+                            if (c.dimensions.fit) {
+                                var f = Math.min(i.width / g, i.height / d);
+                                b += " scale3d(" + f + "," + f + ",1)"
+                            }
+                            c.element.style.webkitTransform = b
+                        } else {
+                            if (a === "expanded") {
+                                ormma.close()
+                            }
+                            ormma.resize(c.dimensions.width, c.dimensions.height)
+                        }
+                    }
+                }
+            };
+            window.addEventListener('load',
+            function() {
+                var configData = {
+                    parentId: 'an-anim',
+                    cssPrefix: '',
+                    ormma: false,
+                    mraid: false,
+                    layout: {
+                        "type": "scene-dependent"
+                    },
+                    scenes: [{
+                        id: 0,
+                        dimensions: {
+                            height: 750,
+                            width: 500,
+                            expanded: false,
+                            fit: false
+                        },
+                        timelines: [{
+                            id: "0",
+                            name: 'Timeline 1',
+                            animationCount: 10,
+                            duration: Infinity,
+                            lastKeyframeTime: 12
+                        }]
+                    }],
+                    symbols: [],
+                    projectActions: {},
+                    events: [],
+                    externalResources: []
+                };
+                setTimeout(function() {
+                    var controller = new AN.Controller;
+                    controller.setConfig(configData);
+                },
+                0);
+            },
+            false);
+        </script>
+        <style type="text/css">
+            #an-anim > ol{list-style:none;margin:0;padding:0;}#an-anim > ol > li{margin:0;padding:0;display:none;}#an-anim
+            > ol > li.run{display:block;}#an-anim .an-stage{overflow:hidden;margin:0;padding:0;}#an-anim
+            .an-stage div{position:absolute;}.an-stage *{margin:0;padding:0;font-smoothing:antialiased;-webkit-font-smoothing:antialiased;}#an-anim
+            .an-stage img{position:absolute;top:0;left:0;}#an-anim .AN-Scene-Description{display:none;}#an-anim
+            iframe{border:none;height:100%;width:100%}#an-anim .an-stage{position:relative;}#an-anim{display:inline-block;}#an-obj-1{transform:translate3d(0px,
+            0px, 0px);-webkit-transform:translate3d(0px, 0px, 0px);width:500px;height:750px;top:0;left:0;transform-origin:43.33%
+            40%;-webkit-transform-origin:43.33% 40%;animation-iteration-count:infinite;-webkit-animation-iteration-count:infinite;}#an-obj-2{transform:translate3d(0px,
+            0px, 0px);-webkit-transform:translate3d(0px, 0px, 0px);width:500px;height:750px;top:0;left:0;animation-direction:alternate;-webkit-animation-direction:alternate;animation-iteration-count:infinite;-webkit-animation-iteration-count:infinite;}@-webkit-keyframes
+            ani-an-obj-2-0{0%{-webkit-transform:translate3d(0px, 0px, 0px);opacity:0;-webkit-animation-timing-function:linear;}100%{-webkit-transform:translate3d(0px,
+            0px, 0px);opacity:1;-webkit-animation-timing-function:ease;}}@keyframes
+            ani-an-obj-2-0{0%{transform:translate3d(0px, 0px, 0px);opacity:0;animation-timing-function:linear;}100%{transform:translate3d(0px,
+            0px, 0px);opacity:1;animation-timing-function:ease;}}.run.t-0 #an-obj-2{animation-name:ani-an-obj-2-0;-webkit-animation-name:ani-an-obj-2-0;animation-duration:3.3194s;-webkit-animation-duration:3.3194s;animation-delay:0.0179s;-webkit-animation-delay:0.0179s;animation-fill-mode:both;-webkit-animation-fill-mode:both;}.t-0
+            #an-obj-2{transform:translate3d(0px, 0px, 0px);-webkit-transform:translate3d(0px,
+            0px, 0px);opacity:1;animation-timing-function:ease;-webkit-animation-timing-function:ease;}.restart.t-0
+            #an-obj-2{transform:translate3d(0px, 0px, 0px);-webkit-transform:translate3d(0px,
+            0px, 0px);opacity:0;animation-timing-function:linear;-webkit-animation-timing-function:linear;}.restart
+            #an-obj-2{animation-name:none !important;-webkit-animation-name:none !important;}#an-obj-3{transform:translate3d(10px,
+            19px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(20deg);-webkit-transform:translate3d(10px,
+            19px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(20deg);width:500px;height:750px;top:0;left:0;transform-origin:61%
+            54.83%;-webkit-transform-origin:61% 54.83%;animation-iteration-count:infinite;-webkit-animation-iteration-count:infinite;}@-webkit-keyframes
+            ani-an-obj-3-0{0%{-webkit-transform:translate3d(15px, 20px, 0px) rotateX(0deg)
+            rotateY(0deg) rotateZ(-16.9deg);opacity:0;-webkit-transform-origin:61.6%
+            54%;-webkit-animation-timing-function:ease-in;}14.7541%{-webkit-transform:translate3d(15px,
+            20px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(-14.299999999999997deg);opacity:1;-webkit-transform-origin:61.08%
+            54.72%;-webkit-animation-timing-function:linear;}27.7028%{-webkit-transform:translate3d(15px,
+            20px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(11.6deg);opacity:1;-webkit-transform-origin:61%
+            54.83%;-webkit-animation-timing-function:linear;}40.4689%{-webkit-transform:translate3d(65px,
+            110px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(-6.199999999999999deg);opacity:1;-webkit-transform-origin:62.4%
+            57.2%;-webkit-animation-timing-function:linear;}53.402%{-webkit-transform:translate3d(-19px,
+            199px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(23.4deg);opacity:1;-webkit-transform-origin:59.2%
+            62.8%;-webkit-animation-timing-function:linear;}65.548%{-webkit-transform:translate3d(65px,
+            369px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(-9.8deg);opacity:1;-webkit-transform-origin:76%
+            64.13%;-webkit-animation-timing-function:linear;}100%{-webkit-transform:translate3d(65px,
+            369px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(-9.8deg);opacity:0;-webkit-transform-origin:76%
+            64.13%;-webkit-animation-timing-function:linear;}}@keyframes ani-an-obj-3-0{0%{transform:translate3d(15px,
+            20px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(-16.9deg);opacity:0;transform-origin:61.6%
+            54%;animation-timing-function:ease-in;}14.7541%{transform:translate3d(15px,
+            20px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(-14.299999999999997deg);opacity:1;transform-origin:61.08%
+            54.72%;animation-timing-function:linear;}27.7028%{transform:translate3d(15px,
+            20px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(11.6deg);opacity:1;transform-origin:61%
+            54.83%;animation-timing-function:linear;}40.4689%{transform:translate3d(65px,
+            110px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(-6.199999999999999deg);opacity:1;transform-origin:62.4%
+            57.2%;animation-timing-function:linear;}53.402%{transform:translate3d(-19px,
+            199px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(23.4deg);opacity:1;transform-origin:59.2%
+            62.8%;animation-timing-function:linear;}65.548%{transform:translate3d(65px,
+            369px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(-9.8deg);opacity:1;transform-origin:76%
+            64.13%;animation-timing-function:linear;}100%{transform:translate3d(65px,
+            369px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(-9.8deg);opacity:0;transform-origin:76%
+            64.13%;animation-timing-function:linear;}}.run.t-0 #an-obj-3{animation-name:ani-an-obj-3-0;-webkit-animation-name:ani-an-obj-3-0;animation-duration:11.9821s;-webkit-animation-duration:11.9821s;animation-delay:0.0179s;-webkit-animation-delay:0.0179s;animation-fill-mode:both;-webkit-animation-fill-mode:both;}.t-0
+            #an-obj-3{transform:translate3d(65px, 369px, 0px) rotateX(0deg) rotateY(0deg)
+            rotateZ(-9.8deg);-webkit-transform:translate3d(65px, 369px, 0px) rotateX(0deg)
+            rotateY(0deg) rotateZ(-9.8deg);opacity:0;transform-origin:76% 64.13%;-webkit-transform-origin:76%
+            64.13%;animation-timing-function:linear;-webkit-animation-timing-function:linear;}.restart.t-0
+            #an-obj-3{transform:translate3d(15px, 20px, 0px) rotateX(0deg) rotateY(0deg)
+            rotateZ(-16.9deg);-webkit-transform:translate3d(15px, 20px, 0px) rotateX(0deg)
+            rotateY(0deg) rotateZ(-16.9deg);opacity:0;transform-origin:61.6% 54%;-webkit-transform-origin:61.6%
+            54%;animation-timing-function:ease-in;-webkit-animation-timing-function:ease-in;}.restart
+            #an-obj-3{animation-name:none !important;-webkit-animation-name:none !important;}#an-obj-4{transform:translate3d(26px,
+            18px, 0px);-webkit-transform:translate3d(26px, 18px, 0px);width:500px;height:750px;top:0;left:0;animation-iteration-count:infinite;-webkit-animation-iteration-count:infinite;animation-direction:alternate;-webkit-animation-direction:alternate;transform-origin:49.8%
+            99.74%;-webkit-transform-origin:49.8% 99.74%;}@-webkit-keyframes ani-an-obj-4-0{0%{-webkit-transform:translate3d(26px,
+            18px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);-webkit-animation-timing-function:ease;}100%{-webkit-transform:translate3d(26px,
+            18px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(-3deg);-webkit-animation-timing-function:linear;}}@keyframes
+            ani-an-obj-4-0{0%{transform:translate3d(26px, 18px, 0px) rotateX(0deg)
+            rotateY(0deg) rotateZ(0deg);animation-timing-function:ease;}100%{transform:translate3d(26px,
+            18px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(-3deg);animation-timing-function:linear;}}.run.t-0
+            #an-obj-4{animation-name:ani-an-obj-4-0;-webkit-animation-name:ani-an-obj-4-0;animation-duration:3s;-webkit-animation-duration:3s;animation-delay:0s;-webkit-animation-delay:0s;animation-fill-mode:both;-webkit-animation-fill-mode:both;}.t-0
+            #an-obj-4{transform:translate3d(26px, 18px, 0px) rotateX(0deg) rotateY(0deg)
+            rotateZ(-3deg);-webkit-transform:translate3d(26px, 18px, 0px) rotateX(0deg)
+            rotateY(0deg) rotateZ(-3deg);animation-timing-function:linear;-webkit-animation-timing-function:linear;}.restart.t-0
+            #an-obj-4{transform:translate3d(26px, 18px, 0px) rotateX(0deg) rotateY(0deg)
+            rotateZ(0deg);-webkit-transform:translate3d(26px, 18px, 0px) rotateX(0deg)
+            rotateY(0deg) rotateZ(0deg);animation-timing-function:ease;-webkit-animation-timing-function:ease;}.restart
+            #an-obj-4{animation-name:none !important;-webkit-animation-name:none !important;}#an-obj-5{transform:translate3d(116px,
+            599px, 0px);-webkit-transform:translate3d(116px, 599px, 0px);width:54px;height:88px;top:0;left:0;animation-iteration-count:infinite;-webkit-animation-iteration-count:infinite;}@-webkit-keyframes
+            ani-an-obj-5-0{0%{-webkit-transform:translate3d(116px, 599px, 0px);opacity:1;}100%{-webkit-transform:translate3d(122px,
+            145px, 0px);opacity:0;}}@keyframes ani-an-obj-5-0{0%{transform:translate3d(116px,
+            599px, 0px);opacity:1;}100%{transform:translate3d(122px, 145px, 0px);opacity:0;}}.run.t-0
+            #an-obj-5{animation-name:ani-an-obj-5-0;-webkit-animation-name:ani-an-obj-5-0;animation-duration:3.2837s;-webkit-animation-duration:3.2837s;animation-delay:0.0536s;-webkit-animation-delay:0.0536s;animation-fill-mode:both;-webkit-animation-fill-mode:both;}.t-0
+            #an-obj-5{transform:translate3d(122px, 145px, 0px);-webkit-transform:translate3d(122px,
+            145px, 0px);opacity:0;}.restart.t-0 #an-obj-5{transform:translate3d(116px,
+            599px, 0px);-webkit-transform:translate3d(116px, 599px, 0px);opacity:1;}.restart
+            #an-obj-5{animation-name:none !important;-webkit-animation-name:none !important;}#an-obj-6{transform:translate3d(48px,
+            613px, 0px);-webkit-transform:translate3d(48px, 613px, 0px);width:54px;height:54px;top:0;left:0;animation-iteration-count:infinite;-webkit-animation-iteration-count:infinite;}@-webkit-keyframes
+            ani-an-obj-6-0{0%{-webkit-transform:translate3d(48px, 613px, 0px);opacity:1;}100%{-webkit-transform:translate3d(44px,
+            119px, 0px);opacity:0;}}@keyframes ani-an-obj-6-0{0%{transform:translate3d(48px,
+            613px, 0px);opacity:1;}100%{transform:translate3d(44px, 119px, 0px);opacity:0;}}.run.t-0
+            #an-obj-6{animation-name:ani-an-obj-6-0;-webkit-animation-name:ani-an-obj-6-0;animation-duration:4.3035s;-webkit-animation-duration:4.3035s;animation-delay:0.0536s;-webkit-animation-delay:0.0536s;animation-fill-mode:both;-webkit-animation-fill-mode:both;}.t-0
+            #an-obj-6{transform:translate3d(44px, 119px, 0px);-webkit-transform:translate3d(44px,
+            119px, 0px);opacity:0;}.restart.t-0 #an-obj-6{transform:translate3d(48px,
+            613px, 0px);-webkit-transform:translate3d(48px, 613px, 0px);opacity:1;}.restart
+            #an-obj-6{animation-name:none !important;-webkit-animation-name:none !important;}#an-obj-7{transform:translate3d(48px,
+            613px, 0px);-webkit-transform:translate3d(48px, 613px, 0px);width:54px;height:88px;top:0;left:0;animation-iteration-count:infinite;-webkit-animation-iteration-count:infinite;}@-webkit-keyframes
+            ani-an-obj-7-0{0%{-webkit-transform:translate3d(356px, 621px, 0px) rotateX(0deg)
+            rotateY(0deg) rotateZ(0deg);opacity:1;}100%{-webkit-transform:translate3d(362px,
+            451px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(-28.9deg);opacity:0;}}@keyframes
+            ani-an-obj-7-0{0%{transform:translate3d(356px, 621px, 0px) rotateX(0deg)
+            rotateY(0deg) rotateZ(0deg);opacity:1;}100%{transform:translate3d(362px,
+            451px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(-28.9deg);opacity:0;}}.run.t-0
+            #an-obj-7{animation-name:ani-an-obj-7-0;-webkit-animation-name:ani-an-obj-7-0;animation-duration:1.7321s;-webkit-animation-duration:1.7321s;animation-delay:0.0536s;-webkit-animation-delay:0.0536s;animation-fill-mode:both;-webkit-animation-fill-mode:both;}.t-0
+            #an-obj-7{transform:translate3d(362px, 451px, 0px) rotateX(0deg) rotateY(0deg)
+            rotateZ(-28.9deg);-webkit-transform:translate3d(362px, 451px, 0px) rotateX(0deg)
+            rotateY(0deg) rotateZ(-28.9deg);opacity:0;}.restart.t-0 #an-obj-7{transform:translate3d(356px,
+            621px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);-webkit-transform:translate3d(356px,
+            621px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);opacity:1;}.restart
+            #an-obj-7{animation-name:none !important;-webkit-animation-name:none !important;}#an-obj-8{transform:translate3d(48px,
+            613px, 0px);-webkit-transform:translate3d(48px, 613px, 0px);width:54px;height:54px;top:0;left:0;animation-iteration-count:infinite;-webkit-animation-iteration-count:infinite;}@-webkit-keyframes
+            ani-an-obj-8-0{0%{-webkit-transform:translate3d(20px, 567px, 0px);opacity:1;}100%{-webkit-transform:translate3d(44px,
+            119px, 0px);opacity:0;}}@keyframes ani-an-obj-8-0{0%{transform:translate3d(20px,
+            567px, 0px);opacity:1;}100%{transform:translate3d(44px, 119px, 0px);opacity:0;}}.run.t-0
+            #an-obj-8{animation-name:ani-an-obj-8-0;-webkit-animation-name:ani-an-obj-8-0;animation-duration:2.8393s;-webkit-animation-duration:2.8393s;animation-delay:0.0536s;-webkit-animation-delay:0.0536s;animation-fill-mode:both;-webkit-animation-fill-mode:both;}.t-0
+            #an-obj-8{transform:translate3d(44px, 119px, 0px);-webkit-transform:translate3d(44px,
+            119px, 0px);opacity:0;}.restart.t-0 #an-obj-8{transform:translate3d(20px,
+            567px, 0px);-webkit-transform:translate3d(20px, 567px, 0px);opacity:1;}.restart
+            #an-obj-8{animation-name:none !important;-webkit-animation-name:none !important;}#an-obj-9{transform:translate3d(48px,
+            613px, 0px);-webkit-transform:translate3d(48px, 613px, 0px);width:54px;height:54px;top:0;left:0;animation-iteration-count:infinite;-webkit-animation-iteration-count:infinite;}@-webkit-keyframes
+            ani-an-obj-9-0{0%{-webkit-transform:translate3d(204px, 531px, 0px);opacity:1;}100%{-webkit-transform:translate3d(202px,
+            -77px, 0px);opacity:0;}}@keyframes ani-an-obj-9-0{0%{transform:translate3d(204px,
+            531px, 0px);opacity:1;}100%{transform:translate3d(202px, -77px, 0px);opacity:0;}}.run.t-0
+            #an-obj-9{animation-name:ani-an-obj-9-0;-webkit-animation-name:ani-an-obj-9-0;animation-duration:3.5178s;-webkit-animation-duration:3.5178s;animation-delay:0.0536s;-webkit-animation-delay:0.0536s;animation-fill-mode:both;-webkit-animation-fill-mode:both;}.t-0
+            #an-obj-9{transform:translate3d(202px, -77px, 0px);-webkit-transform:translate3d(202px,
+            -77px, 0px);opacity:0;}.restart.t-0 #an-obj-9{transform:translate3d(204px,
+            531px, 0px);-webkit-transform:translate3d(204px, 531px, 0px);opacity:1;}.restart
+            #an-obj-9{animation-name:none !important;-webkit-animation-name:none !important;}#an-obj-10{transform:translate3d(48px,
+            613px, 0px);-webkit-transform:translate3d(48px, 613px, 0px);width:54px;height:54px;top:0;left:0;animation-iteration-count:infinite;-webkit-animation-iteration-count:infinite;}@-webkit-keyframes
+            ani-an-obj-10-0{0%{-webkit-transform:translate3d(316px, 559px, 0px);opacity:1;}100%{-webkit-transform:translate3d(318px,
+            189px, 0px);opacity:0;}}@keyframes ani-an-obj-10-0{0%{transform:translate3d(316px,
+            559px, 0px);opacity:1;}100%{transform:translate3d(318px, 189px, 0px);opacity:0;}}.run.t-0
+            #an-obj-10{animation-name:ani-an-obj-10-0;-webkit-animation-name:ani-an-obj-10-0;animation-duration:3.125s;-webkit-animation-duration:3.125s;animation-delay:0.0536s;-webkit-animation-delay:0.0536s;animation-fill-mode:both;-webkit-animation-fill-mode:both;}.t-0
+            #an-obj-10{transform:translate3d(318px, 189px, 0px);-webkit-transform:translate3d(318px,
+            189px, 0px);opacity:0;}.restart.t-0 #an-obj-10{transform:translate3d(316px,
+            559px, 0px);-webkit-transform:translate3d(316px, 559px, 0px);opacity:1;}.restart
+            #an-obj-10{animation-name:none !important;-webkit-animation-name:none !important;}#an-obj-11{transform:translate3d(48px,
+            613px, 0px);-webkit-transform:translate3d(48px, 613px, 0px);width:54px;height:54px;top:0;left:0;animation-iteration-count:infinite;-webkit-animation-iteration-count:infinite;}@-webkit-keyframes
+            ani-an-obj-11-0{0%{-webkit-transform:translate3d(430px, 545px, 0px) scale3d(1,
+            1, 1);opacity:1;}100%{-webkit-transform:translate3d(434px, -27px, 0px)
+            scale3d(1, 1, 1);opacity:0;}}@keyframes ani-an-obj-11-0{0%{transform:translate3d(430px,
+            545px, 0px) scale3d(1, 1, 1);opacity:1;}100%{transform:translate3d(434px,
+            -27px, 0px) scale3d(1, 1, 1);opacity:0;}}.run.t-0 #an-obj-11{animation-name:ani-an-obj-11-0;-webkit-animation-name:ani-an-obj-11-0;animation-duration:1.3393s;-webkit-animation-duration:1.3393s;animation-delay:0.0536s;-webkit-animation-delay:0.0536s;animation-fill-mode:both;-webkit-animation-fill-mode:both;}.t-0
+            #an-obj-11{transform:translate3d(434px, -27px, 0px) scale3d(1, 1, 1);-webkit-transform:translate3d(434px,
+            -27px, 0px) scale3d(1, 1, 1);opacity:0;}.restart.t-0 #an-obj-11{transform:translate3d(430px,
+            545px, 0px) scale3d(1, 1, 1);-webkit-transform:translate3d(430px, 545px,
+            0px) scale3d(1, 1, 1);opacity:1;}.restart #an-obj-11{animation-name:none
+            !important;-webkit-animation-name:none !important;}#an-scene-0 .an-stage{height:750px;width:500px;background-color:rgba(255,255,255,1);}
+           
+		   div#foot{   
+                position:fixed; 
+        		left:320px;
+        		bottom:80px;
+            } 
+		 div#foot1{   
+                position:fixed; 
+        		left:0px;
+        		bottom:0px;
+            } 			
+        </style>
+
+    </head>
+     <script>
+            words = '出淤泥而不染，濯清涟而不妖；莲，廉也；花瓣腐，然随风飘落；世间沉浮皆泡影，疾恶不恭贪赃虫；常愁风惊民间苦，珍芳尽瘁袖清风！';
+
+
+            kawa_data = {
+                words              : words,
+                <if condition=" $words eq ''">
+				replace_words      : '出淤泥而不染，濯清涟而不妖；莲，廉也；花瓣腐，然随风飘落；世间沉浮皆泡影，疾恶不恭贪赃虫；常愁风惊民间苦，珍芳尽瘁袖清风~',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+                text_box           : '50 75 400 290', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+                mode               : 'up',     // up, left
+                speed              : 40,     // 每秒移动的像素
+                text_color         : '#99FFCC', // rgb(1,2,3) 'black'
+                font_size          : '20pt',
+                line_height        : '50pt',
+                music              : 'http://sound.kagirl.net/sound/gudian1.mp3',     // url
+               <if condition=" $music eq ''">
+				replace_music      : 'http://sound.kagirl.net/sound/gudian1.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+                music_name         : '',
+                replace_music_name : '#replace_music_name#',
+                icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/fengmian/x2017.jpg',
+                title              : '咏莲',
+                desc               : words,
+                modify             : 'no',
+                replace_modify     : 'yes',
+                cardid             : '2017',
+                share_url          : window.location.href,  // 当分享的是微信页面时才需要改这里
+                font_ip            : '114.215.157.155:8000',
+                modify_optfile     : 'xinqing',
+                modify_optwords    : '#modify_optwords#',
+                show_words         : 'yes',
+                write_param_1      : 'inputtype=singleline&showsel=no&prompt=' + encodeURIComponent('输入对方的名字：')
+            };
+        </script>
+    
+	<body style="margin:0; height: 100%;" onload="kawa_init();">
+        <div id="an-anim">
+            <ol>
+                <li id="an-scene-0">
+                    <div class="an-stage">
+                        <div id="an-obj-1">
+                            <div>
+                                <img height="750" width="500" src="tpl/Wap/default/common/kawahk/2017/2017_2.jpg">
+                            </div>
+                        </div>
+                        <div id="an-obj-2">
+                            <div>
+                                <img height="750" width="500" src="tpl/Wap/default/common/kawahk/2017/2017_1.jpg">
+                            </div>
+                        </div>
+                        <div id="an-obj-3">
+                            <div>
+                                <img height="750" width="500" src="tpl/Wap/default/common/kawahk/2017/2017_huaban.png">
+                            </div>
+                        </div>
+                        <div id="an-obj-4">
+                            <div>
+                                <img height="750" width="500" src="tpl/Wap/default/common/kawahk/2017/2017_hehua.png">
+                            </div>
+                        </div>
+                        <div id="an-obj-5">
+                            <div>
+                                <img height="88" width="54" src="tpl/Wap/default/common/kawahk/2017/2017_p1.png">
+                            </div>
+                        </div>
+                        <div id="an-obj-6">
+                            <div>
+                                <img height="54" width="54" src="tpl/Wap/default/common/kawahk/2017/2017_p2.png">
+                            </div>
+                        </div>
+                        <div id="an-obj-7">
+                            <div>
+                                <img height="88" width="54" src="tpl/Wap/default/common/kawahk/2017/2017_p1.png">
+                            </div>
+                        </div>
+                        <div id="an-obj-8">
+                            <div>
+                                <img height="54" width="54" src="tpl/Wap/default/common/kawahk/2017/2017_p2.png">
+                            </div>
+                        </div>
+                        <div id="an-obj-9">
+                            <div>
+                                <img height="54" width="54" src="tpl/Wap/default/common/kawahk/2017/2017_p2.png">
+                            </div>
+                        </div>
+                        <div id="an-obj-10">
+                            <div>
+                                <img height="54" width="54" src="tpl/Wap/default/common/kawahk/2017/2017_p2.png">
+                            </div>
+                        </div>
+                        <div id="an-obj-11">
+                            <div>
+                                <img height="54" width="54" src="tpl/Wap/default/common/kawahk/2017/2017_p2.png">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+        </div>
+		
+    </body>
+
+</html>

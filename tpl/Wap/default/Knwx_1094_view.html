@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html>
+	
+	<head>
+	<title>我的微秀</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="target-densitydpi=320,width=640,min-height:900px;user-scalable=no"/>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" type="text/css" href="/tpl/Wap/default/common/knwx/js/style1.css"/>
+	<link rel="stylesheet" type="text/css" href="/tpl/Wap/default/common/knwx/js/button1.css"/>
+    <script>
+		/*var changeViewport = function(){
+				var scale = document.documentElement.clientWidth/640;
+				var vpcontent = "width=device-width, initial-scale=" + scale + ", maximum-scale=" + scale ;
+				
+				var meta = document.getElementsByTagName('meta');
+				for(var i=0;i<meta.length;i++){
+					if(meta[i].getAttribute('name') == "viewport"){
+						meta[i].setAttribute('content',vpcontent);
+					}			  
+				}
+			};
+			changeViewport();*/
+		</script>
+	<!--[if lt IE 9]>
+            <link rel="stylesheet" type="text/css" href="/tpl/Wap/default/common/knwx/js/pcstyle1.css" />
+        <![endif]-->
+	<link media="screen and (min-width:1000px)" rel="stylesheet" type="text/css" href="/tpl/Wap/default/common/knwx/js/pcstyle1.css"/>
+    <script type="text/javascript" src="/tpl/Wap/default/common/knwx/jquery.min.js"></script>
+<script type="text/javascript" src="/tpl/Wap/default/common/knwx/js/jquery-1.2.6.pack.js"></script>
+<script type="text/javascript" src="/tpl/Wap/default/common/knwx/js/jquery.innerfade.js"></script>
+<script src="/tpl/Wap/default/common/knwx/js/jquery.innerfade1.js" type="text/javascript"></script>
+<script src="/tpl/Wap/default/common/knwx/js/warterfall.js"></script>
+	<link rel="stylesheet" type="text/css" href="/tpl/Wap/default/common/knwx/js/ms2.css"/>
+	<script>
+			var leafNum = 40;
+			var kindNum = 2;
+			var kindurl = new Array("tpl/Wap/default/common/knwx/1094/1094_p2.png","tpl/Wap/default/common/knwx/1094/1094_p3.png");
+		</script>
+	<script src="/tpl/Wap/default/common/knwx/js/fleaves.min.js"></script>
+	<link rel="stylesheet" href="/tpl/Wap/default/common/knwx/js/leavesGeneral.css" type="text/css" media="screen" charset="utf-8">
+	<style>
+body {
+	-webkit-touch-callout: none;
+	-webkit-text-size-adjust: none;
+}
+.page-bizinfo {
+	position: absolute;
+	padding: 0;
+	margin: 0;
+	top: 84px;
+	text-align: left;
+	width: 640px;
+}
+.page-button {
+	position: absolute;
+	padding: 0;
+	margin: 0;
+	top: 340px;
+	width: 640px;
+}
+.page-content {
+	background: url(tpl/Wap/default/common/knwx/1094/1094_2.jpg) repeat-y center top;
+	top: 438px;
+	min-height: 500px;
+	_height: 500px;
+	width: 640px;
+}
+.page-content {
+	background: url(tpl/Wap/default/common/knwx/1094/1094_2.jpg) repeat-y center top;
+	top: 438px;
+	min-height: 500px;
+	_height: 500px;
+	width: 640px;
+}
+#activity-detail .page-content .text p {
+	padding: 4px 22px 15px 25px;
+	font-size: 32px;
+	line-height: 1.5em;
+	color: #FFFFFF;
+}
+#activity-detail .page-content .text p img {
+	width: 95%;
+}
+.page-foot {
+	background: url(tpl/Wap/default/common/knwx/1094/1094_3.jpg) repeat-y center top;
+	margin: 0 auto;
+	min-height: 203px;
+	_height: 203px;
+	width: 640px;
+}
+#activity-detail .page-bizinfo .header #activity-name {
+	padding: 9px 40px 9px 40px;
+	color: #FFFFCC
+}
+.activity-meta {
+	display: inline-block;
+	padding-left: 38px;
+	;
+	padding-top: 0px;
+	padding-bottom: 15px;
+	color: #F5F0E0;
+	font-size: 24px;
+}
+.klink {
+	font-size: 12px;
+	text-decoration: none;
+	color: #F5F0E0
+}
+.text img {
+	-webkit-box-shadow: 3px 6px 10px rgba(0, 0, 0, .5), 0 2px 3px rgba(0, 0, 0, .5);
+	-moz-box-shadow: 3px 6px 10px rgba(0, 0, 0, .5), 0 2px 3px rgba(0, 0, 0, .5);
+	-o-box-shadow: 3px 6px 10px rgba(0, 0, 0, .5), 0 2px 3px rgba(0, 0, 0, .5);
+	box-shadow: 3px 6px 10px rgba(0, 0, 0, .5), 0 2px 3px rgba(0, 0, 0, .5);
+}
+div#content {
+	position: relative;
+	border: 0px;
+	width: 640px;
+	height: 388px;
+	margin: 0 auto;
+	top: 0px;
+	overflow: hidden;
+	clear: both;
+}
+#pitf74Vua-an-obj-1 {
+	position: absolute;
+	-webkit-transform: translate3d(0px, 0px, 0px);
+	width: 640px;
+	height: 388px;
+	top: 0;
+	left: 0;
+}
+#pitf74Vua-an-obj-2 {
+	position: absolute;
+	-webkit-transform: translate3d(0px, -1px, 0px);
+	width: 408px;
+	height: 128px;
+	top: 0;
+	left: 0;
+	-webkit-animation: ani-pitf74Vua-an-obj-2-0 2.9846s 0s infinite linear alternate both;
+}
+ @-webkit-keyframes ani-pitf74Vua-an-obj-2-0 {
+ 0% {
+ -webkit-transform: translate3d(0px, -1px, 0px);
+ opacity: 1;
+}
+ 32.9897% {
+ -webkit-transform: translate3d(0px, -1px, 0px);
+ opacity: 1;
+}
+ 67.0103% {
+ -webkit-transform: translate3d(0px, -1px, 0px);
+ opacity: 1;
+}
+ 100% {
+ -webkit-transform: translate3d(0px, -1px, 0px);
+ opacity: 0.8;
+}
+}
+#pitf74Vua-an-obj-3 {
+	position: absolute;
+	-webkit-transform: translate3d(0px, 0px, 0px);
+	width: 408px;
+	height: 128px;
+	top: 0;
+	left: 0;
+	-webkit-animation: ani-pitf74Vua-an-obj-3-0 2.9846s 0s infinite linear alternate both;
+}
+ @-webkit-keyframes ani-pitf74Vua-an-obj-3-0 {
+ 0% {
+ -webkit-transform: translate3d(0px, 0px, 0px);
+ -webkit-animation-timing-function:ease;
+ opacity: 0;
+}
+ 32.9897% {
+ -webkit-transform: translate3d(0px, 0px, 0px);
+ -webkit-animation-timing-function:ease;
+ opacity: 1;
+}
+ 67.0103% {
+ -webkit-transform: translate3d(0px, 0px, 0px);
+ -webkit-animation-timing-function:ease;
+ opacity: 0;
+}
+ 100% {
+ -webkit-transform: translate3d(0px, 0px, 0px);
+ -webkit-animation-timing-function:ease;
+ opacity: 1;
+}
+}
+#pitf74Vua-an-obj-4 {
+	position: absolute;
+	-webkit-transform: translate3d(0px, 1px, 0px);
+	width: 408px;
+	height: 128px;
+	top: 0;
+	left: 0;
+	-webkit-animation: ani-pitf74Vua-an-obj-4-0 2.9846s 0s infinite linear alternate both;
+}
+ @-webkit-keyframes ani-pitf74Vua-an-obj-4-0 {
+ 0% {
+ -webkit-transform: translate3d(0px, 1px, 0px);
+ opacity: 0;
+}
+ 32.9897% {
+ -webkit-transform: translate3d(0px, 1px, 0px);
+ opacity: 1;
+}
+ 67.0103% {
+ -webkit-transform: translate3d(0px, 1px, 0px);
+ opacity: 0;
+}
+ 100% {
+ -webkit-transform: translate3d(0px, 1px, 0px);
+ opacity: 1;
+}
+}
+#pitf74Vua-an-obj-5 {
+	position: absolute;
+	-webkit-transform: translate3d(233px, -2px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(22.9deg) scale3d(1.69, 1.69, 1);
+	width: 408px;
+	height: 128px;
+	top: 0;
+	left: 0;
+	-webkit-animation: ani-pitf74Vua-an-obj-5-0 2.6s 1.4308s infinite linear alternate both;
+}
+ @-webkit-keyframes ani-pitf74Vua-an-obj-5-0 {
+ 0% {
+ -webkit-transform: translate3d(233px, -2px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(22.9deg) scale3d(1.69, 1.69, 1);
+ opacity: 1;
+}
+ 32.9897% {
+ -webkit-transform: translate3d(233px, -2px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(22.9deg) scale3d(1.69, 1.69, 1);
+ opacity: 1;
+}
+ 67.0103% {
+ -webkit-transform: translate3d(233px, -2px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(22.9deg) scale3d(1.69, 1.69, 1);
+ opacity: 1;
+}
+ 100% {
+ -webkit-transform: translate3d(233px, -2px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(22.9deg) scale3d(1.69, 1.69, 1);
+ opacity: 0.8;
+}
+}
+#pitf74Vua-an-obj-6 {
+	position: absolute;
+	-webkit-transform: translate3d(0px, 0px, 0px);
+	width: 408px;
+	height: 128px;
+	top: 0;
+	left: 0;
+	-webkit-animation: ani-pitf74Vua-an-obj-6-0 2.6s 1.4308s infinite linear alternate both;
+}
+ @-webkit-keyframes ani-pitf74Vua-an-obj-6-0 {
+ 0% {
+ -webkit-transform: translate3d(0px, 0px, 0px);
+ -webkit-animation-timing-function:ease;
+ opacity: 0;
+}
+ 32.9897% {
+ -webkit-transform: translate3d(0px, 0px, 0px);
+ -webkit-animation-timing-function:ease;
+ opacity: 1;
+}
+ 67.0103% {
+ -webkit-transform: translate3d(0px, 0px, 0px);
+ -webkit-animation-timing-function:ease;
+ opacity: 0;
+}
+ 100% {
+ -webkit-transform: translate3d(0px, 0px, 0px);
+ -webkit-animation-timing-function:ease;
+ opacity: 1;
+}
+}
+#pitf74Vua-an-obj-7 {
+	position: absolute;
+	-webkit-transform: translate3d(0px, 1px, 0px);
+	width: 408px;
+	height: 128px;
+	top: 0;
+	left: 0;
+	-webkit-animation: ani-pitf74Vua-an-obj-7-0 2.6s 1.4308s infinite linear alternate both;
+}
+ @-webkit-keyframes ani-pitf74Vua-an-obj-7-0 {
+ 0% {
+ -webkit-transform: translate3d(0px, 1px, 0px);
+ opacity: 0;
+}
+ 32.9897% {
+ -webkit-transform: translate3d(0px, 1px, 0px);
+ opacity: 1;
+}
+ 67.0103% {
+ -webkit-transform: translate3d(0px, 1px, 0px);
+ opacity: 0;
+}
+ 100% {
+ -webkit-transform: translate3d(0px, 1px, 0px);
+ opacity: 1;
+}
+}
+#pitf74Vua-an-obj-8 {
+	position: absolute;
+	-webkit-transform: translate3d(303px, -22px, 0px) scale3d(0.65, 0.65, 1);
+	width: 408px;
+	height: 128px;
+	top: 0;
+	left: 0;
+	-webkit-animation: ani-pitf74Vua-an-obj-8-0 2.9846s 0.6308s infinite linear alternate both;
+}
+ @-webkit-keyframes ani-pitf74Vua-an-obj-8-0 {
+ 0% {
+ -webkit-transform: translate3d(303px, -22px, 0px) scale3d(0.65, 0.65, 1);
+ opacity: 1;
+}
+ 32.9897% {
+ -webkit-transform: translate3d(303px, -22px, 0px) scale3d(0.65, 0.65, 1);
+ opacity: 1;
+}
+ 67.0103% {
+ -webkit-transform: translate3d(303px, -22px, 0px) scale3d(0.65, 0.65, 1);
+ opacity: 1;
+}
+ 100% {
+ -webkit-transform: translate3d(303px, -22px, 0px) scale3d(0.65, 0.65, 1);
+ opacity: 0.8;
+}
+}
+#pitf74Vua-an-obj-9 {
+	position: absolute;
+	-webkit-transform: translate3d(0px, 0px, 0px);
+	width: 408px;
+	height: 128px;
+	top: 0;
+	left: 0;
+	-webkit-animation: ani-pitf74Vua-an-obj-9-0 2.9846s 0.6308s infinite linear alternate both;
+}
+ @-webkit-keyframes ani-pitf74Vua-an-obj-9-0 {
+ 0% {
+ -webkit-transform: translate3d(0px, 0px, 0px);
+ -webkit-animation-timing-function:ease;
+ opacity: 0;
+}
+ 32.9897% {
+ -webkit-transform: translate3d(0px, 0px, 0px);
+ -webkit-animation-timing-function:ease;
+ opacity: 1;
+}
+ 67.0103% {
+ -webkit-transform: translate3d(0px, 0px, 0px);
+ -webkit-animation-timing-function:ease;
+ opacity: 0;
+}
+ 100% {
+ -webkit-transform: translate3d(0px, 0px, 0px);
+ -webkit-animation-timing-function:ease;
+ opacity: 1;
+}
+}
+#pitf74Vua-an-obj-10 {
+	position: absolute;
+	-webkit-transform: translate3d(0px, 1px, 0px);
+	width: 408px;
+	height: 128px;
+	top: 0;
+	left: 0;
+	-webkit-animation: ani-pitf74Vua-an-obj-10-0 2.9846s 0.6308s infinite linear alternate both;
+}
+ @-webkit-keyframes ani-pitf74Vua-an-obj-10-0 {
+ 0% {
+ -webkit-transform: translate3d(0px, 1px, 0px);
+ opacity: 0;
+}
+ 32.9897% {
+ -webkit-transform: translate3d(0px, 1px, 0px);
+ opacity: 1;
+}
+ 67.0103% {
+ -webkit-transform: translate3d(0px, 1px, 0px);
+ opacity: 0;
+}
+ 100% {
+ -webkit-transform: translate3d(0px, 1px, 0px);
+ opacity: 1;
+}
+}
+#pitf74Vua-an-obj-11 {
+	position: absolute;
+	-webkit-transform: translate3d(160px, 164px, 0px);
+	width: 20px;
+	height: 20px;
+	top: 0;
+	left: 0;
+}
+#pitf74Vua-an-obj-12 {
+	position: absolute;
+	-webkit-transform: translate3d(-38px, -26px, 0px);
+	width: 57px;
+	height: 56px;
+	top: 0;
+	left: 0;
+	-webkit-animation: ani-pitf74Vua-an-obj-12-0 2.3846s 0s infinite linear alternate both;
+}
+ @-webkit-keyframes ani-pitf74Vua-an-obj-12-0 {
+ 0% {
+ -webkit-transform: translate3d(-38px, -26px, 0px);
+ opacity: 1;
+}
+ 40.6452% {
+ -webkit-transform: translate3d(-38px, -26px, 0px);
+ opacity: 0;
+}
+ 100% {
+ -webkit-transform: translate3d(-38px, -26px, 0px);
+ opacity: 0;
+}
+}
+#pitf74Vua-an-obj-13 {
+	position: absolute;
+	-webkit-transform: translate3d(-39px, -26px, 0px);
+	width: 57px;
+	height: 56px;
+	top: 0;
+	left: 0;
+	-webkit-animation: ani-pitf74Vua-an-obj-13-0 2.3846s 0s infinite linear alternate both;
+}
+ @-webkit-keyframes ani-pitf74Vua-an-obj-13-0 {
+ 0% {
+ -webkit-transform: translate3d(-39px, -26px, 0px);
+ opacity: 0;
+}
+ 30.3226% {
+ -webkit-transform: translate3d(-39px, -26px, 0px);
+ opacity: 1;
+}
+ 67.7419% {
+ -webkit-transform: translate3d(-39px, -26px, 0px);
+ opacity: 0;
+}
+ 100% {
+ -webkit-transform: translate3d(-39px, -26px, 0px);
+ opacity: 1;
+}
+}
+#pitf74Vua-an-obj-14 {
+	position: absolute;
+	-webkit-transform: translate3d(-38px, -26px, 0px);
+	width: 57px;
+	height: 56px;
+	top: 0;
+	left: 0;
+	-webkit-animation: ani-pitf74Vua-an-obj-14-0 2.3692s 0.0154s infinite linear alternate both;
+}
+ @-webkit-keyframes ani-pitf74Vua-an-obj-14-0 {
+ 0% {
+ -webkit-transform: translate3d(-38px, -26px, 0px);
+ opacity: 0;
+}
+ 42.2078% {
+ -webkit-transform: translate3d(-38px, -26px, 0px);
+ opacity: 0;
+}
+ 100% {
+ -webkit-transform: translate3d(-38px, -26px, 0px);
+ opacity: 1;
+}
+}
+#pitf74Vua-an-obj-15 {
+	position: absolute;
+	-webkit-transform: translate3d(-137px, -148px, 0px);
+	width: 295px;
+	height: 295px;
+	top: 0;
+	left: 0;
+	-webkit-animation: ani-pitf74Vua-an-obj-15-0 3.6154s 0s infinite linear alternate both;
+}
+ @-webkit-keyframes ani-pitf74Vua-an-obj-15-0 {
+ 0% {
+ -webkit-transform: translate3d(-137px, -148px, 0px) scale3d(0.5, 0.5, 1);
+ opacity: 0.3;
+ -webkit-animation-timing-function:linear;
+}
+ 65.9574% {
+ -webkit-transform: translate3d(-137px, -148px, 0px) scale3d(1, 1, 1);
+ opacity: 0.8;
+ -webkit-animation-timing-function:ease;
+}
+ 100% {
+ -webkit-transform: translate3d(-137px, -148px, 0px) scale3d(1, 1, 1);
+ opacity: 1;
+ -webkit-animation-timing-function:ease;
+}
+}
+#pitf74Vua-an-obj-16 {
+	position: absolute;
+	-webkit-transform: translate3d(279px, 269px, 0px);
+	width: 20px;
+	height: 20px;
+	top: 0;
+	left: 0;
+	-webkit-transform-origin: 381.25% -106.25%;
+	-webkit-animation: ani-pitf74Vua-an-obj-16-0 1.9077s 4.0308s infinite linear alternate both;
+}
+ @-webkit-keyframes ani-pitf74Vua-an-obj-16-0 {
+ 0% {
+ -webkit-transform: translate3d(279px, 269px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(30.6deg);
+ -webkit-animation-timing-function:linear;
+}
+ 100% {
+ -webkit-transform: translate3d(279px, 269px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(-3.6deg);
+ -webkit-animation-timing-function:linear;
+}
+}
+#pitf74Vua-an-obj-17 {
+	position: absolute;
+	-webkit-transform: translate3d(-160px, -693px, 0px);
+	width: 415px;
+	height: 846px;
+	top: 0;
+	left: 0;
+	-webkit-animation: ani-pitf74Vua-an-obj-17-0 3s 1.0154s 1 linear normal both;
+}
+ @-webkit-keyframes ani-pitf74Vua-an-obj-17-0 {
+ 0% {
+ -webkit-transform: translate3d(-160px, -693px, 0px);
+}
+ 100% {
+ -webkit-transform: translate3d(-160px, -240px, 0px);
+}
+}
+#pitf74Vua-an-obj-18 {
+	position: absolute;
+	-webkit-transform: translate3d(215px, 352px, 0px);
+	width: 331px;
+	height: 17px;
+	top: 0;
+	left: 0;
+}
+ @-webkit-keyframes ani-pitf74Vua-an-obj-18-0 {
+ 0% {
+ -webkit-transform: translate3d(243px, 350px, 0px);
+ -webkit-animation-timing-function:ease;
+}
+ 100% {
+ -webkit-transform: translate3d(179px, 356px, 0px);
+ -webkit-animation-timing-function:linear;
+}
+}
+
+
+			/* ------------ SYMBOL CSS -------------- */
+</style>
+	<script>
+			
+			 <if condition="$music eq ''">
+							var gSound = 'tpl/Wap/default/common/knwx/music/merrychrismas.mp3';
+			<else/>
+			var gSound = '{weimicms:$music}';</if>
+			function playbksound()
+			{
+				var audiocontainer = document.getElementById('audiocontainer');
+				audiocontainer.innerHTML = '<audio id="bgsound" loop="loop" autoplay="autoplay"></audio>';
+						
+				var audio = document.getElementById('bgsound');
+				audio.src = gSound;
+				audio.play();
+			}	
+						
+		</script>
+			<script type="text/javascript">
+			window.shareData = {  
+					"moduleName":"Index",
+					"moduleID": '0',
+					"imgUrl": "{weimicms:$wql.pic}", 
+					"timeLineLink": "{weimicms::C('site_url')}{weimicms::U(Knwx/indexhi,array('token'=>$token,'wecha_id'=>$wecha_id,'action'=>'save','catgroy'=>$_GET['catgroy'],'id'=>$id,'music'=>$music))}",
+					"sendFriendLink":"{weimicms::C('site_url')}{weimicms::U(Knwx/indexhi,array('token'=>$token,'wecha_id'=>$wecha_id,'action'=>'save','catgroy'=>$_GET['catgroy'],'id'=>$id,'music'=>$music))}",
+					"weiboLink":"{weimicms::C('site_url')}{weimicms::U(Knwx/indexhi,array('token'=>$token,'wecha_id'=>$wecha_id,'action'=>'save','catgroy'=>$_GET['catgroy'],'id'=>$id,'music'=>$music))}",
+					"tTitle": "{weimicms:$time.title}",
+					"tContent": "【{weimicms:$time.title}】{weimicms:$wqlinfo.content}"
+				};
+		</script>
+	<script>document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+		playbksound();	
+        WeixinJSBridge.on('menu:share:appmessage', function (argv) {
+		<if condition="$time.save neq 'save'">
+			alert("请先保存再分享");
+			return;
+		</if>
+         shareHandle('friend');
+            WeixinJSBridge.invoke('sendAppMessage', { 
+                "img_url": window.shareData.imgUrl,
+                "img_width": "640",
+                "img_height": "640",
+                "link": window.shareData.sendFriendLink,
+                "desc": window.shareData.tContent,
+                "title": window.shareData.tTitle
+            }, function (res) {
+                _report('send_msg', res.err_msg);
+            })
+        });
+
+        WeixinJSBridge.on('menu:share:timeline', function (argv) {
+		<if condition="$time.save neq 'save'">
+					alert("请先保存再分享");
+						return;
+					</if>
+         shareHandle('frineds');
+            WeixinJSBridge.invoke('shareTimeline', {
+                "img_url": window.shareData.imgUrl,
+                "img_width": "640",
+                "img_height": "640",
+                "link": window.shareData.sendFriendLink,
+                "desc": window.shareData.tContent,
+                "title": window.shareData.tTitle
+            }, function (res) {
+                _report('timeline', res.err_msg);
+            });
+        });
+
+        WeixinJSBridge.on('menu:share:weibo', function (argv) {
+		<if condition="$time.save neq 'save'">
+					alert("请先保存再分享");
+						return;
+					</if>
+         shareHandle('weibo');
+            WeixinJSBridge.invoke('shareWeibo', {
+                "content": window.shareData.tContent,
+                "url": window.shareData.sendFriendLink,
+            }, function (res) {
+                _report('weibo', res.err_msg);
+            });
+        });
+        }, false)
+        
+        function shareHandle(to) {
+	var submitData = {
+		module: window.shareData.moduleName,
+		moduleid: window.shareData.moduleID,
+		token:'{weimicms:$token}',
+		wecha_id:'{weimicms:$wecha_id}',
+		url: window.shareData.sendFriendLink,
+		to:to
+	};
+	$.post('/index.php?g=Wap&m=Knwx&a=share&token={weimicms:$token}&wecha_id={weimicms:$wecha_id}&catgroy={weimicms:$catgroy}',submitData,function (data) {},'json')
+}
+        </script> 
+	</head>
+
+	<body id="activity-detail">
+<div class="top_div">
+      <marquee width=640 behavior=scroll direction=left>
+  完成后请"保存"，保存后无法修改，未保存微秀两日后删除。禁止任何诱导分享和政治相关的内容。
+  </marquee>
+    </div>
+    <script src="/tpl/Wap/default/common/knwx/js/jquery.lazyload.min.js"></script>
+    <script src="/tpl/Wap/default/common/knwx/js/load.js"></script>
+
+<script type="text/javascript">
+					
+		function openModel(){
+			var td = document.getElementById("model");
+			
+			var scrollTop = (window.pageYOffset || document.documentElement.scrollTop) ;
+			td.style.display = "block";
+			td.style.top = scrollTop+"px";
+		}
+		function closeModel(){
+			var td = document.getElementById("model");
+			td.style.display = "none";
+		}
+		function showmodel1(){
+			var td = document.getElementById("model1");
+			td.style.display = "block";
+			closeModel();
+		}
+		function closeModel1(){
+			var td = document.getElementById("model1");
+			td.style.display = "none";			
+		}
+		
+		var showNum1 = 7;
+		var showNum2 = 3;
+		
+		$(document).ready(function() {
+			$("#ms_content").find("[id^='tab']").hide(); // Hide all content
+			$("#tabs li:first").attr("id","current"); // Activate the first tab
+			$("#ms_content #tab1").fadeIn(500); // Show first tab's content
+			
+			$('#tabs a').click(function(e) {
+				e.preventDefault();
+				if ($(this).closest("li").attr("id") == "current"){ //detection for current tab
+					return;       
+				}
+				else{             
+				  $("#ms_content").find("[id^='tab']").hide(); // Hide all content
+				  $("#tabs li").attr("id",""); //Reset id's
+				  $(this).parent().attr("id","current"); // Activate this
+				  $('#' + $(this).attr('name')).fadeIn(500); // Show content for the current tab
+				}
+			});
+		});
+	</script> 
+<include file="Knwx:model"/>
+<!--script src="/tpl/Wap/default/common/knwx/js/load.js"></script>
+	<script src="/tpl/Wap/default/common/knwx/js/jquery.lazyload.min.js"></script-->
+
+
+<script type="text/javascript" src="/tpl/Wap/default/common/knwx/js/autoHeight.js"></script> 
+<script type="text/javascript">
+					
+		function modify(){
+			var td = document.getElementById("div_modify");
+			
+			//var scrollTop = (window.pageYOffset || document.documentElement.scrollTop) ;
+			td.style.display = "block";
+			td.style.top = scrollTop+"px";
+			
+			$("textarea").each(function(){
+				var cid = $(this).attr("id");
+				var cta = document.getElementById(cid);
+				cta.style.height = cta.scrollHeight + "px";				
+			});
+		}
+		function closeModify(){
+			var td = document.getElementById("div_modify");
+			td.style.display = "none";
+		}
+		
+		
+		$(document).ready( function(){
+			
+			
+			$("label").click(function(){
+				
+				var cid = $(this).attr("id");
+				var flag = cid.substr(cid.length-1);
+				if (flag == "a"){
+					var otherid = cid.substr(0,cid.length-1)+"b";
+					$("#"+cid).removeClass();
+					$("#"+cid).addClass('blueButton');
+					$("#"+otherid).removeClass();
+					$("#"+otherid).addClass('greyButton');
+				}else{
+					var otherid = cid.substr(0,cid.length-1)+"a";
+					$("#"+cid).removeClass();
+					$("#"+cid).addClass('blackButton');
+					$("#"+otherid).removeClass();
+					$("#"+otherid).addClass('greyButton');
+				}
+				
+			});
+			
+		});
+		
+	</script>
+
+<div style="width:0;height:0;" id = "audiocontainer"></div>
+
+<div id="content">
+      <div id="pitf74Vua-an-obj-1"><img  height="388" width="640"  src="tpl/Wap/default/common/knwx/1094/1094_1.jpg"></div>
+      <div id="pitf74Vua-an-obj-2"><img  height="128" width="408"  src="tpl/Wap/default/common/knwx/1094/1094_3.png">
+    <div id="pitf74Vua-an-obj-3"><img  height="128" width="408"  src="tpl/Wap/default/common/knwx/1094/1094_1.png"></div>
+    <div id="pitf74Vua-an-obj-4"><img  height="128" width="408"  src="tpl/Wap/default/common/knwx/1094/1094_2.png"></div>
+  </div>
+      <div id="pitf74Vua-an-obj-5"><img  height="128" width="408"  src="tpl/Wap/default/common/knwx/1094/1094_3.png">
+    <div id="pitf74Vua-an-obj-6"><img  height="128" width="408"  src="tpl/Wap/default/common/knwx/1094/1094_1.png"></div>
+    <div id="pitf74Vua-an-obj-7"><img  height="128" width="408"  src="tpl/Wap/default/common/knwx/1094/1094_2.png"></div>
+  </div>
+      <div id="pitf74Vua-an-obj-8"><img  height="128" width="408"  src="tpl/Wap/default/common/knwx/1094/1094_3.png">
+    <div id="pitf74Vua-an-obj-9"><img  height="128" width="408"  src="tpl/Wap/default/common/knwx/1094/1094_1.png"></div>
+    <div id="pitf74Vua-an-obj-10"><img  height="128" width="408"  src="tpl/Wap/default/common/knwx/1094/1094_2.png"></div>
+  </div>
+      <div id="pitf74Vua-an-obj-11">
+    <div id="pitf74Vua-an-obj-12"><img  height="56" width="57"  src="tpl/Wap/default/common/knwx/1094/1094_6.png"></div>
+    <div id="pitf74Vua-an-obj-13"><img  height="56" width="57"  src="tpl/Wap/default/common/knwx/1094/1094_7.png"></div>
+    <div id="pitf74Vua-an-obj-14"><img  height="56" width="57"  src="tpl/Wap/default/common/knwx/1094/1094_8.png"></div>
+    <div id="pitf74Vua-an-obj-15"><img  height="295" width="295"  src="tpl/Wap/default/common/knwx/1094/1094_5.png"></div>
+  </div>
+      <div id="pitf74Vua-an-obj-18"><img  height="17" width="331"  src="tpl/Wap/default/common/knwx/1094/1094_11.png"></div>
+    </div>
+<div id="container" style="left:0%;top:0%;">
+      <div id="leafContainer"></div>
+    </div>
+<script>		
+			leafinit();
+		</script>
+<div class="page-bizinfo">
+      <div class="header">
+    <h1 id="activity-name"> {weimicms:$time.title}  </h1>
+    <p class="activity-info"> <span id="post-date" class="activity-meta no-extra" style="top:0%;"> {weimicms:$time.time|date="Y-m-d H:i:s",###} </span> </p>
+  </div>
+    </div>
+    <if condition="$time.save eq 'save'">
+<div class="page-button">	
+					<li><a  style="left:320px" class="super button green" href="{weimicms:$info.gzlj}">点这里，自己做微秀</a></li>
+		
+		</div>
+</if>
+<if condition="$time.save neq 'save'">
+<div class="page-button">
+  <li><a id="musicm" class="super button yellow" onClick="openMusic();">选音乐</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id="modm" class="super button blue" onClick="openModel();">换背景</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a id="modify" class="super button orange"  href="/index.php?g=Wap&m=Knwx&a=changnr&id={weimicms:$id}&token={weimicms:$token}&wecha_id={weimicms:$wecha_id}&catgroy={weimicms:$_GET['catgroy']}">改内容</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a class="super button green" href="/index.php?g=Wap&m=Knwx&a=indexhi&id={weimicms:$id}&token={weimicms:$token}&wecha_id={weimicms:$wecha_id}&action=save&catgroy={weimicms:$_GET['catgroy']}&music={weimicms:$music}&tpid=1094">保存</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+</div></if>
+<div class="page-content"> <br>
+      <br>
+      <div class="text">
+    <volist name="Kndatas" id="infoitem" offset="1" length='999' >
+   
+
+   <if condition="$infoitem['content'] neq ''"><p style='text-indent:2em;'>{weimicms:$infoitem.content}</p><else />
+ <p style='text-align:center;'> <img data-src='{weimicms:$infoitem.pic}'/></p></if>
+
+	
+   </volist>
+    </p>
+    <br>
+  </div>
+      <include file="Knwx:footer"/>
+       </div>
+<div class="page-foot" style="background: url(tpl/Wap/default/common/knwx/1094/1094_3.jpg) repeat-y center top;
+margin: 0 auto;
+
+width: 640px;">	</div>
+</body>
+</html>

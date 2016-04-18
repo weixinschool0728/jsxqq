@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta charset="utf-8">
+<title>{weimicms:$info.name}</title>
+<link rel="stylesheet" href="{weimicms:$staticPath}/tpl/static/crowdfunding/css/zc-common.css">
+<link rel="stylesheet" href="{weimicms:$staticPath}/tpl/static/crowdfunding/css/zc-index.css">
+
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/jquery.min.js"></script>
+</head>
+<body>
+<div class="wrapbox">
+    <!-- heard -->
+    <header class="header">
+    <h2><a href="javascript:void(0);" class="text-red">产品信息</a></h2>
+    <a href="javascript:window.history.go(-1);" class="icon btn-goback"></a>
+    <a href="{weimicms::U('Crowdfunding/my_support',array('token'=>$token,'wecha_id'=>$wecha_id))}" class="icon btn-person"></a>
+    </header>
+    <!-- / -->
+    <!-- main -->
+    <div class="pd-b50">
+        <div class="title-box">
+            <h4 class="h4-title">
+                <strong>{weimicms:$info.name}</strong>
+            </h4>
+            <p>
+                {weimicms:$info['start']|date="Y/m/d",###}-{weimicms:$info['end']|date="Y/m/d",###}火热筹款中
+            </p>
+        </div>
+        <div class="initiater-box">
+            <div class="gridbox">
+                <div class="headpic">
+                    <img src="{weimicms:$company.logourl}" alt="" height="50" width="50">
+                </div>
+                <div class="grid-1">
+                    <h4>
+                        {weimicms:$company.name}
+                    <!-- <i class="icon i-approve"></i>
+                    <i class="icon i-medal"></i> -->
+                    </h4>
+                    <p>
+                        {weimicms:$company.shortname}
+                    </p>
+                    <p>
+                        <span class="mr20">发起：{weimicms:$originate}</span><span>支持：{weimicms:$support}</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="detail-box">
+            {weimicms:$info.detail|htmlspecialchars_decode}
+        </div>
+
+
+    <include file="Crowdfunding:footer" />
+    </div>
+</div>
+
+</div>
+{weimicms::WechatShare::getShareData(array(
+	'moduleName'=>'Crowdfunding',
+	'moduleID'=>0,
+	'imgUrl'=>$info['pic'],
+	'tTitle'=>$info['name'],
+	'tContent'=>$info['intro'],
+	'sendFriendLink'=>$f_siteUrl.U('Crowdfunding/index', array('token'=>$token,'id'=>$info['id'])),
+))}
+{weimicms:$shareScript}
+</body>
+</html>

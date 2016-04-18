@@ -1,0 +1,189 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>修改内容</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+
+ <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" type="text/css" href="/tpl/Wap/default/common/knwx/js/style1.css"/>
+<link rel="stylesheet" type="text/css" href="/tpl/Wap/default/common/knwx/js/button1.css"/>
+<link media="screen and (min-width:1000px)" rel="stylesheet" type="text/css" href="/tpl/Wap/default/common/knwx/js/pcstyle1.css"/>
+<script type="text/javascript" src="/tpl/User/default/common/js/select/js/jquery.js"></script>
+<link rel="stylesheet" type="text/css" href="/tpl/Wap/default/common/knwx/js/button1.css"/>
+<script type="text/javascript">window.jQuery || document.write('<script type="text/javascript" src="{weimicms::RES}/css/guajiang/js/jquery.js">\x3C/script>')</script>
+
+<script src="/tpl/static/artDialog/jquery.artDialog.js?skin=default"></script>
+
+<script src="/tpl/static/artDialog/plugins/iframeTools.js"></script>
+<script src="/tpl/static/upyun.js?2013"></script>
+
+<link rel="stylesheet" type="text/css" href="/tpl/Wap/default/common/knwx/js/ms2.css"/>
+<style>
+body {
+	-webkit-touch-callout: none;
+	-webkit-text-size-adjust: none;
+}
+.page-bizinfo {
+	background: url(/tpl/Wap/default/common/knwx/1001/1001_1.jpg) #ecf4ec repeat-x center top;
+	height: 320px;
+	width: 640px;
+}
+.page-button {
+	padding: 0;
+	margin: 0;
+	background: url(/tpl/Wap/default/common/knwx/1001/1001_2.jpg);
+repeat;
+	text-align: right;
+	z-index: 2;
+	width: 640px;
+}
+.page-content {
+	background: url(/tpl/Wap/default/common/knwx/1001/1001_2.jpg) repeat;
+	top: 320px;
+	min-height: 750px;
+	_height: 750px;
+	width: 640px;
+}
+.klink {
+	font-size: 12px;
+	text-decoration: none;
+	color: #74aaf0
+}
+img{
+display: block;
+}}
+#hd {
+	position: absolute;
+	top: 1200px;
+	-webkit-backface-visibility: visible;
+	-webkit-transform-origin: center center;
+	-webkit-animation: fly 10s 0.5s infinite ease normal none;
+}
+ @-webkit-keyframes fly {
+ 0% {
+opacity: 0;
+left:550px;
+top:1200px;
+}
+ 2%, 10%, 20%, 30%, 40%, 50%, 60%, 70%, 80%, 90%, 100% {
+-webkit-transform:scaleX(0.8);
+}
+ 5%, 15%, 25%, 35%, 45%, 55%, 65%, 75%, 85%, 95% {
+-webkit-transform:scaleX(0.3);
+}
+ 2% {
+opacity: 1;
+left:550px;
+top:800px;
+}
+ 22% {
+left:29px;
+top:600px;
+}
+ 51% {
+left:530px;
+top:366px;
+}
+ 62% {
+left:200px;
+top:200px;
+}
+ 87% {
+left:422px;
+top:66px;
+}
+ 100% {
+left:-100px;
+top:-100px;
+}
+}
+.text img {
+	-webkit-box-shadow: 3px 6px 10px rgba(0, 0, 0, .5), 0 2px 3px rgba(0, 0, 0, .5);
+	-moz-box-shadow: 3px 6px 10px rgba(0, 0, 0, .5), 0 2px 3px rgba(0, 0, 0, .5);
+	-o-box-shadow: 3px 6px 10px rgba(0, 0, 0, .5), 0 2px 3px rgba(0, 0, 0, .5);
+	box-shadow: 3px 6px 10px rgba(0, 0, 0, .5), 0 2px 3px rgba(0, 0, 0, .5);
+}
+</style>
+<link rel="stylesheet" href="/tpl/Wap/default/common/knwx/js/leavesGeneral.css" type="text/css" media="screen" charset="utf-8">
+</head>
+
+<body id="activity-detail">
+<div id="div_modify" class="modify_div" style="display: block; top: 0px; width:100%; left:0px">
+  <form action="" id="modForm" method="POST">
+  	<input type="hidden" name="token" value="{weimicms:$token}">
+    <input type="hidden" name="wecha_id" value="{weimicms:$wecha_id}">
+  	<input type="hidden" name="style" value="{weimicms:$Kndata.style}" >
+    <input type="hidden" name="id" value="{weimicms:$Kndata.id}" >
+    
+     <volist name="Kndata" id="infoitem"  offset="0" length='1' key="k">
+      <input type="hidden" name="itemid[]" value="{weimicms:$infoitem.id}" >
+      
+ <p style="color:#ff6600;text-align:left;margin-top:20px;">分享标题：</p>
+    <input id="wt" style="width: 90%;padding:10px;" type="text" name="title{weimicms:$infoitem.id}" value="{weimicms:$infoitem.title}">
+<p style="color:#ff6600;text-align:left;margin-top:20px;">分享内容：</p>
+    <input id="wt" style="width: 90%;padding:10px;" type="text" name="sharenr{weimicms:$infoitem.id}" value="{weimicms:$infoitem.sharenr}">
+	<p style="color:#ff6600;text-align:left;margin-top:20px;">分享封面图：</p>
+	<img width="50%" src="{weimicms:$infoitem.sharepic}" style="margin-left:auto; margin-right:auto" id="pic{weimicms:$infoitem.id}_src">
+    <input type="hidden" onclick="document.getElementById('pic{weimicms:$infoitem.id}_src').src=this.value;" id="pic{weimicms:$infoitem.id}" name="sharepic{weimicms:$infoitem.id}" value="{weimicms:$infoitem.sharepic}" checked="checked">
+   <a href="###"  onclick="upyunWapPicUpload('pic{weimicms:$infoitem.id}',400,400,'{weimicms:$Think.get.token}')" class="super button green" style="margin-left: auto;
+margin-right: auto;
+display: block;
+width: 80%;
+text-align: center;
+margin-top: 2%;" >上传封面图片</a>
+
+     </volist>
+     
+     
+     <volist name="Kndata" id="infoitem"  offset="1" length='999' key="k">
+	 <input type="hidden" name="itemid[]" value="{weimicms:$infoitem.id}" >
+	
+<div style="float:left; width:48%; overflow:hidden; margin-right:2%">
+    <p style="color:#ff6600;text-align:left;margin-top:20px;">标题：</p>
+     <input id="wt" style="width:95%;" type="text" name="t{weimicms:$infoitem.id}" value="{weimicms:$infoitem.t}">
+    <p style="color:#ff6600;text-align:left;margin-top:20px;">内容：</p>
+     <textarea id="t0" cols="40"  style="width:95%; height:400%" name="content{weimicms:$infoitem.id}"   >{weimicms:$infoitem.content}</textarea>
+    
+    <script>
+	$("#t0").textareaAutoHeight();<span class=""></span>
+	</script>
+   </div><div>
+    <img width="50%" height="300px"  src="{weimicms:$infoitem.pic}" id="pic{weimicms:$infoitem.id}_src">
+    <input type="hidden" onclick="document.getElementById('pic{weimicms:$infoitem.id}_src').src=this.value;" id="pic{weimicms:$infoitem.id}" name="pic{weimicms:$infoitem.id}" value="{weimicms:$infoitem.pic}" checked="checked">
+   <a href="###"  onclick="upyunWapPicUpload('pic{weimicms:$infoitem.id}',400,400,'{weimicms:$Think.get.token}')" class="super button green" style="margin-left: auto;
+margin-right: auto;
+display: block;
+width: 80%;
+text-align: center;
+margin-top: 2%;" >点击这里修改图片</a>
+  </div>
+   </volist>
+    <br>
+    <br>
+    <p align="center" style="text-indent:0em;"><a class="super button blue" onClick="closeModify();">取消修改</a>&nbsp;&nbsp; <a class="super button green" onClick="tijiao();">完成修改</a> </p>
+    <br>
+    <br>
+  </form>
+</div>
+<script>
+	function closeModify(){
+		 window.location.href="/index.php?g=Wap&m=Wzz&a=index&token={weimicms:$token}&wecha_id={weimicms:$wecha_id}&catgroy={weimicms:$_GET['catgroy']}&id={weimicms:$id}";
+		}
+	function tijiao(){
+		
+		$("#modForm").submit();
+		
+		}
+	setInterval(ddshow,1000);
+			function ddshow(){
+				var pic1=$("#pic").val();
+				if(pic1!="")
+				$("#show_pic").attr('src',pic1);
+			}
+</script>
+
+</body>
+</html>

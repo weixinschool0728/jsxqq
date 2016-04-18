@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html" lang="zh-cn">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta charset="utf-8">
+<title>{weimicms:$info.title}</title>
+<link rel="stylesheet" href="{weimicms:$staticPath}/tpl/static/Aaactivity/css/zc-common.css">
+<link rel="stylesheet" href="{weimicms:$staticPath}/tpl/static/Aaactivity/css/zc-style.css">
+
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/jquery.min.js"></script>
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/alert.js"></script>
+
+<style>
+.window .title{
+    background-image: linear-gradient(#f05c52, #f05c52);
+}
+</style>
+</head>
+<body>
+<div class="wrapper bg-white">
+    <div class="slide-main base-layer">
+        <!-- head -->
+        <header class="header">
+        <h2><a href="javascript:void(0);" class="text-red">我要报名</a></h2>
+        <a href="javascript:window.history.go(-1);" class="icon btn-goback"></a>
+        <a href="{weimicms::U('Aaactivity/home',array('token'=>$token,'wecha_id'=>$wecha_id))}" class="icon btn-home"></a>
+        </header>
+        <!-- / -->
+        <form action="{weimicms::U('Aaactivity/pay',array('token'=>$token,'wecha_id'=>$wecha_id,'share_key'=>$share_key))}" id="main_form" method="post">
+            <div class="cont-layer">
+                <div class="title-box">
+                    <h5>{weimicms:$info.title}</h5>
+                    <h6>简介：{weimicms:$info.intro}</h6>
+                </div>
+                <div class="placeBlock-10 bg-gray">
+                </div>
+                <div class="order-box">
+                    <div class="order-item clearfix">
+                        <div class="order-item-key">
+                            活动信息：
+                        </div>
+                        <div class="order-item-value red-money">
+                            {weimicms:$info.title}
+                        </div>
+                    </div>
+                    <!--div class="order-item clearfix">
+                        <div class="order-item-key">
+                            扣除积分：
+                        </div>
+                        <div class="order-item-value">
+                            {weimicms:$fans.truename} 报名本次活动将扣除 {weimicms:$info.score} 积分 ，您有 {weimicms:$fans.total_score} 积分。
+                        </div>
+                    </div-->
+					<div class="order-item clearfix">
+                        <div class="order-item-key">
+                            剩余名额：
+                        </div>
+                        <div class="order-item-value">
+                            已报 {weimicms:$info.joinnum} 人，剩余 {weimicms:$info.surplus} 空位
+                        </div>
+                    </div>
+                    <div class="order-item clearfix">
+                        <div class="order-item-key">
+                            活动内容：
+                        </div>
+                        <div class="order-item-value">
+                            {weimicms:$info.info}
+                        </div>
+                    </div>
+                    <div class="order-item clearfix">
+                        <div class="order-item-key">
+                            联系人：
+                        </div>
+                        <div class="order-item-value">
+							<input type="text" name="usename" class="order-input" placeholder="请填写联系人" id="usename" value="{weimicms:$info.usename}">
+                        </div>
+                    </div>
+					<div class="order-item clearfix">
+                        <div class="order-item-key">
+                            性别：
+                        </div>
+                        <div class="order-item-value">
+							<select name="sex" style="width:170px;padding: 0 2px">
+								<option value="1">男</option>
+								<option value="2">女</option>
+							</select>
+                        </div>
+                    </div> 					
+                    <div class="order-item clearfix">
+                        <div class="order-item-key">
+                            联系方式：
+                        </div>
+                        <div class="order-item-value">
+                            <input type="text" name="tel" class="order-input" placeholder="请填写联系电话" id="tel" value="{weimicms:$fans.tel}">
+                        </div>
+                    </div>
+                    <div class="order-item clearfix">
+                        <div class="order-item-key">
+                            备注：
+                        </div>
+                        <div class="order-item-value">
+                            <textarea name="note" class="order-textarea" rows="3" cols="32"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <input name="aid" value="{weimicms:$info.id}"  type="hidden">
+				<input name="feiyong" value="{weimicms:$info.feiyong}"  type="hidden">
+				<input name="score" value="{weimicms:$info.score}"  type="hidden">
+				<input name="share_key" value="{weimicms:$share_key}"  type="hidden">
+                <div class="order-pay-box mt10">
+                    <button id="btn_next" type="button" is_over='<if condition="$is_over eq 1">-1<else/>0</if>' is_no='{weimicms:$reward.id}' class="btn btn-large btn-red">确认提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <include file="Aaactivity:footer" />
+</div>
+<script>
+  
+    $(function(){
+        $("#btn_next").click(function () {     
+            if($(this).attr('is_over') == -1){
+                alert("项目已经结束");
+                return false;
+            }
+
+                if($("#usename").val().trim() == ""){
+                    alert("请填写联系人");
+                    return false;
+                }
+                if($("#tel").val().trim() == ""){
+                    alert("请填写联系电话");
+                    return false;
+                }
+ 
+
+            $("#main_form").submit();
+        });
+        
+        $('#editAddress').click(function(){
+            getaddr();
+        });
+        function getaddr(){
+            WeixinJSBridge.invoke('editAddress',{
+                "appId" : "{weimicms:$addrSign.appId}",
+                "scope" : "jsapi_address",
+                "signType" : "sha1",
+                "addrSign" : "{weimicms:$addrSign.addrSign}",
+                "timeStamp": "{weimicms:$addrSign.timeStamp}",
+                "nonceStr" : "{weimicms:$addrSign.nonceStr}",
+            },function(res){
+                if(res.err_msg == 'edit_address:ok'){
+                    $('#username').val(res.userName);
+                    $('#tel').val(res.telNumber);            
+                    $('#address').val(res.proviceFirstStageName+res.addressCitySecondStageName+res.addressCountiesThirdStageName+res.addressDetailInfo);
+                }
+            });
+        }
+
+    });
+</script>
+
+
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Aaactivity",
+            "moduleID":"0",
+            "imgUrl": "{weimicms:$info['pic']}", 
+            "timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U('Aaactivity/index',array('token'=>$token,'id'=>$info['id']))}",
+            "sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Aaactivity/index',array('token'=>$token,'id'=>$info['id']))}",
+            "weiboLink": "{weimicms:$f_siteUrl}{weimicms::U('Aaactivity/index',array('token'=>$token,'id'=>$info['id']))}",
+            "tTitle": "{weimicms:$info['name']}",
+            "tContent": "{weimicms:$info['intro']}"
+};
+</script>
+{weimicms:$shareScript}
+</body>
+</html>

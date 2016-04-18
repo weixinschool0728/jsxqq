@@ -1,0 +1,1205 @@
+<!DOCTYPE html><html><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>我的竞拍</title>
+    <style type="text/css">
+        * {
+            outline: none;
+            -webkit-tap-highlight-color: rgba(255, 0, 0, 0);
+            vertical-align: baseline;
+            font-style: normal;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-size: 12px;
+            font-family: Microsoft Yahei, Arial, Simsun, Helvetica, Segoe UI, sans-serif;
+            color: #404040;
+            background-color: #EFEFF4;
+        }
+
+        img {
+            border: 0
+        }
+
+        ul, ol, li, dt, dl, dd {
+            text-decoration: none;
+            list-style: none;
+            vertical-align: middle;
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            color: #373737;
+            text-decoration: none;
+        }
+	
+        a:visited {
+            color: #373737
+        }
+
+        .topMenu {
+            position: fixed;
+            top: 0px;
+            width: 100%;
+            background-color: #FFF;
+            border-bottom: 1px solid #d9d9d9;
+            z-index: 999;
+            display: table;
+        }
+
+        .topMenu .buyAndSell{
+            display: table;
+            width: 160px;
+            border: 1px solid #776f72;
+            border-radius: 4px;
+            height: 28px;
+            line-height: 28px;
+            margin: 0 auto;
+            margin-top: 10px;
+            color: #776f72;
+        }
+
+        .topMenu .buyAndSell .buy, .topMenu .buyAndSell .sell{
+            float: left;
+            width: 50%;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .topMenu .buyAndSell .now{
+            background-color: #776f72;
+            color: #fff;
+        }
+
+        .topMenu ul {
+            width: 90%;
+            padding: 0 5%;
+        }
+
+        .topMenu ul li {
+            float: left;
+            line-height: 30px;
+            font-size: 14px;
+            width: 16%;
+            text-align: center;
+            margin: 10px 2%;
+        }
+
+        .topMenu ul li.selected {
+            color: #910012;
+            border-bottom: 2px solid #910012
+        }
+
+        .orderMain {
+            padding-top: 60px;
+        }
+
+        .orderMain .orderItem {
+            width: 92%;
+            padding: 0 4%;
+            overflow: hidden;
+            font-size: 12px;
+            margin-bottom: 10px;
+            background-color: #fff;
+        }
+
+        .orderMain .orderItem .title {
+            font-size: 14px;
+            line-height: 44px;
+            height: 44px;
+            width: 100%;
+            background-position: left center;
+            background-repeat: no-repeat;
+            background-size: 18px;
+            border-bottom: 1px solid #eaeae8;
+        }
+
+        .orderMain .orderItem .title .nickname {
+            float: left;
+            text-indent: 25px;
+            background-position: right center;
+            background-repeat: no-repeat;
+            background-size: 12px;
+            background-image: url({weimicms:$staticPath}/tpl/static/auction/images/gray_right_arrow.png);
+            padding-right: 22px;
+        }
+
+
+        .orderMain .orderItem .title .status {
+            float: right;
+            font-size: 12px;
+            height: 28px;
+            line-height: 28px;
+            margin: 8px 0;
+            padding: 0 12px;
+            border-radius: 4px;
+            color: #888;
+        }
+
+        .orderMain .orderItem .title .status.red {
+            color: #d83131;
+        }
+
+        .orderMain .orderItem .title .status.green {
+            color: #4bbe6d;
+        }
+
+        .orderMain .orderItem .info {
+            width: 100%;
+            padding: 10px 0;
+            display: table;
+        }
+
+        .orderMain .orderItem .info .content {
+            position: relative;
+            float: left;
+            width: 100%
+        }
+
+        .orderMain .orderItem .info .content .goodsImg {
+            position: relative;
+            float: left;
+            width: 80px;
+            height: 80px;
+            margin: 1px;
+            margin-right: 12px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+
+        .orderMain .orderItem .info .content .goodsImg .expressFee{
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            background: url({weimicms:$staticPath}/tpl/static/auction/images/freepost.png?t=2) no-repeat right 50%;
+            height: 16px;
+            width: 100%;
+            background-size: contain;
+        }
+
+        .orderMain .orderItem .info .content .desc {
+            line-height: 20px;
+            margin-bottom: 10px;
+            margin-top: -2px;
+            word-break: break-all;
+            text-overflow: ellipsis;
+            padding-left: 93px;
+        }
+
+        .orderMain .orderItem .info .content ul {
+        }
+
+        .orderMain .orderItem .info .content ul li {
+            color: #888;
+            height: 17px;
+            line-height: 17px;
+        }
+
+        .orderMain .orderItem .info .content ul li span.countDown {
+            color: #780018;
+        }
+
+        .orderMain .orderItem .info .content ul li span.countDown em {
+            margin: 0 2px;
+        }
+
+        .orderMain .orderItem .info .content ul li span.countDown em:first-child {
+            margin-left: 0px;
+        }
+        
+        .orderMain .orderItem .info .content ul li span.countDown.done {
+            color: #888;
+        }
+
+        .orderMain .orderItem .info .pay {
+            float: right;
+            color: #898989;
+            line-height: 12px;
+            margin-top: 8px;
+        }
+
+        .orderMain .orderItem .info .pay span {
+            color: #910012;
+            font-size: 14px;
+            font-weight: bold;
+            margin: 0 5px;
+        }
+
+        .orderMain .orderItem .info .whereIsMoney {
+            position: absolute;
+            right: 0px;
+            bottom: 0px;
+            background-repeat: no-repeat, no-repeat;
+            background-size: 13px, 9px;
+            background-position: left center, right center;
+            padding-left: 15px;
+            padding-right: 12px;
+            color: #576b95;
+            height: 20px;
+            line-height: 20px;
+        }
+
+        .orderMain .orderItem .tools {
+            text-align: right;
+            padding: 10px 0;
+            width: 100%;
+            border-top: 1px solid #eaeae8;
+        }
+
+        .orderMain .orderItem .tools button {
+            border: 1px solid #5f646e;
+            border-radius: 4px;
+            width: 75px;
+            height: 28px;
+            background-color: #fff;
+            font-size: 12px;
+            color: #5f646e;
+            margin-left: 10px;
+        }
+
+        .orderMain .orderItem .tools button.dispute {
+            float: left;
+            margin-left: 0;
+            background-repeat: no-repeat;
+            background-position: 5px 50%;
+            background-size: 15px;
+            text-indent: 15px;
+            width: 85px;
+            font-size: 11px;
+        }
+
+        .orderMain .orderItem .tools button:last-child {
+            border: 1px solid #910012;
+            color: #910012;
+        }
+
+        .orderMain .noData {
+            width: 100%;
+            height: 250px;
+            background: url({weimicms:$staticPath}/tpl/static/auction/images/noOrders.png) no-repeat 50% #EFEFF4;
+            background-size: 60%;
+        }
+	
+        .topMenu .search{
+            position: absolute;
+            background-size: 30px;
+            top: 10px;
+            right: 10px;
+            width: 32px;
+            height: 32px;
+        }
+    </style>
+    <script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/auction/js/zepto.js?v=0.7.6.1"></script>
+    <script>
+	function Confirm(type,id){
+		$(document).off('wptConfirm_view:sure').one('wptConfirm_view:sure', function () {
+            window.location.href='<?php echo U('Auction/set',array('token'=>$token));?>&type='+type+'&id='+id;
+        });
+		if(type == 'shouhuo'){
+		wptConfirm('确定收货吗？');
+		}else{
+		wptConfirm('确定关闭吗？');
+		}
+	}
+	</script>
+    
+
+
+</head>
+
+<body>
+	<div id="contentbox" style="min-height: 766px;">
+		<div class="topMenu">
+			<ul>
+				<li class="<?php if($_GET['type'] == ''){echo "selected";}?>" onclick="window.location.href='<?php echo U('Auction/order',array('token'=>$token));?>'">全　部</li>
+				<li class="<?php if($_GET['type'] == 1){echo "selected";}?>" onclick="window.location.href='<?php echo U('Auction/order',array('token'=>$token,'type'=>1));?>'">未付款</li>
+				<li class="<?php if($_GET['type'] == 2){echo "selected";}?>" onclick="window.location.href='<?php echo U('Auction/order',array('token'=>$token,'type'=>2));?>'">待发货</li>
+				<li class="<?php if($_GET['type'] == 3){echo "selected";}?>" onclick="window.location.href='<?php echo U('Auction/order',array('token'=>$token,'type'=>3));?>'">未收货</li>
+				<li class="<?php if($_GET['type'] == 4){echo "selected";}?>" onclick="window.location.href='<?php echo U('Auction/order',array('token'=>$token,'type'=>4));?>'">已收货</li>
+			</ul>
+		</div>
+
+		<div class="orderMain">
+			<volist name="nopay" id="nv" key="ni">
+			<div class="orderItem">
+				<div class="title" style="background-image: url({weimicms:$nv['auction']['logo']})">
+					<div class="nickname">
+						<a href="{weimicms::U('Auction/index',array('token'=>$token,'id'=>$nv['auction']['id']))}"><?php if(mb_strlen($nv['auction']['name'],'utf8') > 10){echo mb_substr($nv['auction']['name'],0,10,'utf-8')."...";}else{echo $nv['auction']['name'];}?></a>
+					</div>
+					<div class="status green">未付款</div>
+				</div>
+
+				<div class="info">
+					<a href="{weimicms::U('Auction/index',array('token'=>$token,'id'=>$nv['auction']['id']))}">
+						<div class="content">
+							<div class="goodsImg" style="background-image:url({weimicms:$nv['auction']['logo']});">
+								<?php if($nv['auction']['postage'] < 1){?>
+								<div class="expressFee"></div>
+								<?php }?>
+							</div>
+							<div class="desc">
+							商品ID：{weimicms:$nv['auction']['id']}<br>
+							金额：￥{weimicms:$nv.price}元<br>
+							邮费：￥{weimicms:$nv['auction']['postage']}元<br>
+							未确认收货信息
+							</div>
+						</div>
+						<div class="pay">应付：￥<span><?php echo $nv['price'] + $nv['auction']['postage'];?></span>元</div>
+					</a>
+				</div>
+				<?php if($nv['state'] == 0){?>
+				<script>
+					<?php
+					$time = ($nv['auction']['nobuytime']*60*60) - (time() - $nv['time']) + 2;
+					$time_hr = floor($time/(60*60));
+					$time_hr_y = $time%(60*60);
+					$time_min = floor($time_hr_y/60);
+					$time_s = $time_hr_y%60;
+					?>
+					var h_toprice_<?php echo $nv['id'];?> = <?php echo $time_hr;?>;
+					var m_toprice_<?php echo $nv['id'];?> = <?php echo $time_min;?>;
+					var s_toprice_<?php echo $nv['id'];?> = <?php echo $time_s;?>;
+					$(function(){daoshi_toprice_<?php echo $nv['id'];?>();});
+					function daoshi_toprice_<?php echo $nv['id'];?>(){
+						s_toprice_<?php echo $nv['id'];?>--;
+						if(s_toprice_<?php echo $nv['id'];?> < 0){
+							s_toprice_<?php echo $nv['id'];?> = 59;
+							m_toprice_<?php echo $nv['id'];?>--;
+						}
+						if(m_toprice_<?php echo $nv['id'];?> < 0){
+							m_toprice_<?php echo $nv['id'];?> = 59;
+							h_toprice_<?php echo $nv['id'];?>--;
+						}
+						if(h_toprice_<?php echo $nv['id'];?> < 0){
+							location.reload();
+						}else{
+							$("#daoshi_toprice_<?php echo $nv['id'];?>").text(h_toprice_<?php echo $nv['id'];?>+':'+m_toprice_<?php echo $nv['id'];?>+':'+s_toprice_<?php echo $nv['id'];?>);
+							setTimeout("daoshi_toprice_<?php echo $nv['id'];?>()",1000);
+						}
+					}
+				</script>
+				<?php }?>
+				<div class="tools">
+					<?php if($nv['state'] == 0){?>
+					<span id="daoshi_toprice_{weimicms:$nv['id']}">00:00:00</span>&nbsp;后自动关闭
+					<button onclick="window.location.href='<?php echo U('Auction/address',array('token'=>$token,'id'=>$nv['auction']['id'],'topriceid'=>$nv['id'],'price'=>$nv['price'],'postage'=>$nv['auction']['postage']));?>'">立即付款</button>
+					<?php }else{echo "此订单已过期关闭";}?>
+				</div>
+			</div>
+			</volist>
+			<volist name="order_list" id="ov" key="oi">
+			<div class="orderItem">
+				<div class="title" style="background-image: url({weimicms:$ov['auction']['logo']})">
+					<div class="nickname">
+						<a href="{weimicms::U('Auction/index',array('token'=>$token,'id'=>$ov['auction']['id']))}"><?php if(mb_strlen($ov['auction']['name'],'utf8') > 10){echo mb_substr($ov['auction']['name'],0,10,'utf-8')."...";}else{echo $ov['auction']['name'];}?></a>
+					</div>
+					<?php if($ov['status'] == 1){?>
+					<div class="status green">未付款</div>
+					<?php }elseif($ov['status'] == 2){?>
+					<div class="status red">未发货</div>
+					<?php }elseif($ov['status'] == 3){?>
+					<div class="status green">未收货</div>
+					<?php }elseif($ov['status'] == 4){?>
+					<div class="status red">已收货</div>
+					<?php }?>
+				</div>
+
+				<div class="info">
+					<a href="{weimicms::U('Auction/index',array('token'=>$token,'id'=>$ov['auction']['id']))}">
+						<div class="content">
+							<div class="goodsImg" style="background-image:url({weimicms:$ov['auction']['logo']});">
+								<?php if($ov['auction']['postage'] < 1){?>
+								<div class="expressFee"></div>
+								<?php }?>
+							</div>
+							<div class="desc">
+							商品ID：{weimicms:$ov['auction']['id']}<br>
+							金额：￥{weimicms:$ov.price}元<br>
+							邮费：￥{weimicms:$ov['auction']['postage']}元<br>
+							姓名：{weimicms:$ov['name']}<br>
+							电话：{weimicms:$ov['tel']}<br>
+							地址：{weimicms:$ov['address']}<br>
+							时间：{weimicms:$ov['addtime']|date='Y-m-d H:i:s',###}<br>
+							<?php if($ov['status'] > 2){?>
+							快递：{weimicms:$ov.expressname}<br>
+							单号：{weimicms:$ov.expressnum}<br>
+							<?php }?>
+							</div>
+						</div>
+						<div class="pay"><?php if($ov['status'] == 1){echo "应付";}else{echo "已付";}?>：￥<span><?php echo $ov['price'] + $ov['auction']['postage'];?></span>元</div>
+					</a>
+				</div>
+				<?php if($ov['paid'] == 0 && $ov['auction_toprice']['state'] == 0){?>
+				<script>
+					<?php
+					$time = ($ov['auction']['nobuytime']*60*60) - (time() - $ov['auction_toprice']['time']) + 2;
+					$time_hr = floor($time/(60*60));
+					$time_hr_y = $time%(60*60);
+					$time_min = floor($time_hr_y/60);
+					$time_s = $time_hr_y%60;
+					?>
+					var h_order_<?php echo $ov['id'];?> = <?php echo $time_hr;?>;
+					var m_order_<?php echo $ov['id'];?> = <?php echo $time_min;?>;
+					var s_order_<?php echo $ov['id'];?> = <?php echo $time_s;?>;
+					$(function(){daoshi_order_<?php echo $ov['id'];?>();});
+					function daoshi_order_<?php echo $ov['id'];?>(){
+						s_order_<?php echo $ov['id'];?>--;
+						if(s_order_<?php echo $ov['id'];?> < 0){
+							s_order_<?php echo $ov['id'];?> = 59;
+							m_order_<?php echo $ov['id'];?>--;
+						}
+						if(m_order_<?php echo $ov['id'];?> < 0){
+							m_order_<?php echo $ov['id'];?> = 59;
+							h_order_<?php echo $ov['id'];?>--;
+						}
+						if(h_order_<?php echo $ov['id'];?> < 0){
+							location.reload();
+						}else{
+							$("#daoshi_order_<?php echo $ov['id'];?>").text(h_order_<?php echo $ov['id'];?>+':'+m_order_<?php echo $ov['id'];?>+':'+s_order_<?php echo $ov['id'];?>);
+							setTimeout("daoshi_order_<?php echo $ov['id'];?>()",1000);
+						}
+					}
+				</script>
+				<?php }?>
+				<div class="tools">
+					<?php if($ov['status'] == 1){?>
+					<?php if($ov['auction_toprice']['state'] == 0){?>
+					<span id="daoshi_order_{weimicms:$ov['id']}">00:00:00</span>&nbsp;后自动关闭
+					<button onclick="window.location.href='<?php echo U('Auction/orderbuy',array('token'=>$token,'orderid'=>$ov['id']));?>'">立即付款</button>
+					<?php }else{echo "此订单已过期关闭";}?>
+					<?php }elseif($ov['status'] == 3){?>
+					<button onclick="Confirm('shouhuo',{weimicms:$ov['id']});">确认收货</button>
+					<?php }?>
+				</div>
+			</div>
+			</volist>
+			<?php if(count($nopay) == 0 && $order_list == ''){?>
+				<div class="noData"></div>
+			<?php }?>
+		</div>
+
+	</div>
+
+<style type="text/css">
+    .supportBanner {
+        width: 100%;
+        text-align: center;
+        height: 49px;
+        line-height: 49px;
+        font-size: 12px;
+        border-top: 1px solid #eaeae8;
+        background-color: #F8F8F8;
+        margin-top: 10px;
+        color: #888;
+        visibility: hidden;
+    }
+    
+    .supportBanner a {
+        color: #F2B896
+    }
+</style>
+<script type="text/javascript">
+    function fixSupport() {
+        if ($.os.android) {
+            bodyWidth = document.body.clientWidth;
+            bodyHeight = document.documentElement.clientHeight;
+        } else {
+            bodyWidth = $(window).width();
+            bodyHeight = $(window).height();
+        }
+        var dHeight = document.documentElement.offsetHeight;
+        if (dHeight < bodyHeight) {
+            $('#contentbox').css('minHeight', bodyHeight - 60);
+        }
+        $(".supportBanner").css("visibility", "visible");
+    }
+    $(function () {
+        fixSupport();
+
+        $(document).off("wptSupport_view:fix").on("wptSupport_view:fix", function () {
+            fixSupport();
+        });
+    });
+</script>
+<style type="text/css">
+    .mainMenu {
+        position:fixed;
+        width: 100%;
+        height: 50px;
+        bottom: 0px;
+        background-color: #F8F8F8;
+        border-top: 1px solid #eaeae8;
+        font-size: 12px;
+    }
+
+    .mainMenu div {
+        width: 33%;
+        height: 22px;
+        line-height: 22px;
+        float: left;
+        text-align: center;
+        padding-top: 28px;
+        background-repeat: no-repeat;
+        background-size: 50px auto;
+        color: #888;
+    }
+
+    .mainMenu div.selected {
+        color: #007aff;
+    }
+
+    .mainMenu a div {
+        color: #888;
+    }
+
+    .mainMenu .myHome {
+        background-position: 50% -7px;
+    }
+
+    .mainMenu .publish {
+        height: 50px;
+        padding-top: 0px;
+        background-position: 50% -64px;
+        background-size: 60px;
+    }
+
+    .mainMenu .my {
+        background-position: 50% -107px;
+    }
+</style>
+
+<style type="text/css">
+    .loadNextPage {
+        width: 100%;
+        height: 40px;
+        visibility: visible;
+    }
+
+    .loadNextPage .loading {
+        width: 110px;
+        height: 40px;
+        line-height: 40px;
+        margin: 0 auto;
+        background-size: auto 70%;
+        background-repeat: no-repeat;
+        background-position: left center;
+        text-align: center;
+        text-indent: 15px;
+    }
+
+    .wptMask {
+        position: fixed;
+        height: 100%;
+        opacity: 0;
+        top: 0px;
+        bottom: 0px;
+        width: 100%;
+        background-color: #000;
+        z-index: 1999;
+    }
+
+    .wptShare,
+    .wptAlert,
+    .wptConfirm,
+    .wptMultiConfirm,
+    .wptLoading {
+        display: none;
+    }
+
+    .wptShare .shareTip {
+        position: fixed;
+        width: 96%;
+        height: 286px;
+        magin: 0 2%;
+        top: 0px;
+        background-image: url({weimicms:$staticPath}/tpl/static/auction/images/share.png);
+        background-repeat: no-repeat;
+        background-position: right top;
+        background-size: auto 55%;
+        z-index: 9999;
+    }
+
+    .wptAlert .dialog,
+    .wptConfirm .dialog,
+    .wptMultiConfirm .dialog {
+        position: fixed;
+        background: #ededed;
+        width: 100%;
+        bottom: -180px;
+        z-index: 1999;
+    }
+
+    .wptAlert .dialog .tip,
+    .wptConfirm .dialog .tip,
+    .wptMultiConfirm .dialog .tip {
+        line-height: 30px;
+        padding: 10px 0px;
+        font-size: 14px;
+        border-radius: 8px;
+    }
+
+    .wptMultiConfirm .dialog .tip {
+        padding: 0;
+    }
+
+    .wptAlert .dialog .tip .msg,
+    .wptConfirm .dialog .tip .msg {
+        text-align: center;
+        line-height: 30px;
+    }
+
+    .wptAlert .dialog .tip .msg.font18,
+    .wptConfirm .dialog .tip .msg.font18 {
+        font-size: 18px;
+    }
+
+    .wptAlert .dialog .tip .msg.faq,
+    .wptConfirm .dialog .tip .msg.faq {
+        font-size: 17px;
+        background-repeat: no-repeat;
+        background-position: 10px center;
+        background-size: auto 100%;
+        line-height: 30px;
+        height: 60px;
+        text-align: left;
+        padding-left: 80px;
+        padding-right: 12px;
+    }
+
+    .wptAlert .dialog .tip .msg.smallFaq,
+    .wptConfirm .dialog .tip .msg.smallFaq {
+        font-size: 18px;
+        background-repeat: no-repeat;
+        background-position: 10px center;
+        background-size: auto 100%;
+        line-height: 40px;
+        height: 40px;
+        text-align: left;
+        padding-left: 60px;
+        padding-right: 12px;
+    }
+
+    .wptAlert .btns,
+    .wptConfirm .btns {
+        width: 87%;
+        margin: 0 auto;
+        padding: 15px 0px;
+    }
+
+    .wptAlert .btns .btn-confirm,
+    .wptAlert .btns .btn-cancel,
+    .wptConfirm .btns .btn-confirm,
+    .wptConfirm .btns .btn-cancel {
+        border: 1px solid #ceced1;
+        background: #f7f7f7;
+        padding: 10px 14px;
+        color: #454545;
+        border-radius: 4px;
+        width: 92%;
+        text-align: center;
+        font-size: 18px;
+    }
+
+    .wptAlert .btns .btn-green,
+    .wptConfirm .btns .btn-green {
+        background-color: #06BE04;
+        color: #fff;
+        border: none;
+    }
+
+    .wptAlert .btns .btn-cancel,
+    .wptConfirm .btns .btn-cancel {
+        background-color: #858c96;
+        margin: 22px 0 7px 0;
+        color: #fff;
+        border: none;
+    }
+
+    .wptAlert .btns .btn-delete,
+    .wptConfirm .btns .btn-delete {
+        background-color: #e95757;
+        color: #fff;
+        border: none;
+    }
+
+    .wptMultiConfirm .btns {
+        width: 100%;
+        background-color: #D4D4DC;
+    }
+
+    .wptMultiConfirm .btns .btn-confirm,
+    .wptMultiConfirm .btns .btn-cancel {
+        height: 49px;
+        line-height: 49px;
+        margin-top: 1px;
+        text-align: center;
+        font-size: 18px;
+        background-color: #F3F3F3;
+    }
+
+    .wptMultiConfirm .btns .btn-cancel{
+        margin-top: 8px;
+    }
+
+    .wptPassword {
+        position: fixed;
+        width: 100%;
+        top: 0px;
+        bottom: 0px;
+        background-color: #efeff4;
+        display: none;
+    }
+
+    .wptPassword .dialog {
+        width: 90%;
+        margin: 80px auto 0 auto;
+        height: 100px;
+    }
+
+    .wptPassword .dialog .tip {
+        width: 100%;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        font-size: 16px;
+    }
+
+    .wptPassword .dialog .password {
+        width: 293px;
+        margin: 10px auto 0 auto;
+        height: 48px;
+        border: 1px solid #c4c4c4;
+    }
+
+    .wptPassword .dialog .password .passwordKey {
+        float: left;
+        width: 48px;
+        border-right: 1px solid #c4c4c4;
+        height: 48px;
+        line-height: 48px;
+        background-color: #FFF;
+        text-align: center;
+        font-size: 20px;
+    }
+
+    .wptPassword .dialog .password .passwordKey:last-child {
+        border-right: none;
+    }
+
+    .wptPassword .dialog .password .passwordKey .point {
+        width: 48px;
+        height: 48px;
+        background-position: center;
+        background-size: 10px;
+        background-repeat: no-repeat;
+    }
+
+    .wptPassword .keyboard {
+        position: absolute;
+        width: 100%;
+        background-color: #FFF;
+        display: table;
+        bottom: 0px;
+    }
+
+    .wptPassword .keyboard ul {
+        padding: 0;
+        margin: 0;
+    }
+
+    .wptPassword .keyboard ul,
+    .wptPassword .keyboard li {
+        text-decoration: none;
+        list-style: none;
+        vertical-align: middle;
+    }
+
+    .wptPassword .keyboard ul li {
+        width: 33.1%;
+        border-bottom: 1px solid #d2d5d8;
+        border-right: 1px solid #d2d5d8;
+        height: 50px;
+        line-height: 50px;
+        float: left;
+        font-size: 28px;
+        font-family: "Helvetica neue", Verdana, Geneva, sans-serif;
+        text-align: center;
+        background-color: #FFF;
+        color: #000;
+    }
+
+    .wptPassword .keyboard ul li:nth-child(3n) {
+        border-right: none;
+    }
+
+    .wptPassword .keyboard ul li.delete {
+        background-image: url({weimicms:$staticPath}/tpl/static/auction/images/backspace.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 30px;
+        background-color: #efeff4;
+    }
+
+    .wptPassword .keyboard ul li.blank {
+        background-color: #efeff4;
+        font-size: 17px;
+    }
+
+    .wptLoading {
+        position: fixed;
+        top: 0px;
+        bottom: 0px;
+        width: 100%;
+        z-index: 1999;
+    }
+
+    .wptLoading .loading{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 200px;
+        height: 80px;
+        margin-top: -40px;
+        margin-left: -100px;
+        background-color: rgba(0,0,0,0.7);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        border-radius: 2px;
+        font-size: 14px;
+        color: #FFF;
+        opacity: 0;
+        line-height: 80px;
+        text-align: center;
+        text-indent: 15px;
+        z-index: 9999;
+    }
+
+    .wptLoading .loading .process {
+        position: absolute;
+        width: 100%;
+        height: 20px;
+        bottom: 5px;
+        color: #FFF;
+        line-height: 20px;
+        font-size: 12px;
+        text-align: center;
+        text-indent: 0px;
+    }
+
+    .wptNotice {
+        position: fixed;
+        bottom: 50px;
+        width: 94%;
+        background-color: rgba(0,0,0,0.7);
+        height: 30px;
+        padding: 8px 3%;
+        color: #FFF;
+        font-size: 14px;
+        display: none;
+    }
+
+    .wptNotice .msg {
+        float: left;
+        width: 80%;
+        height: 30px;
+        line-height: 30px;
+        overflow: hidden;
+    }
+
+    .wptNotice .msg img {
+        width: 45px;
+        height: 45px;
+        border-radius: 6px;
+        position: absolute;
+        bottom: 10px;
+    }
+
+    .wptNotice .msg span {
+        margin-left: 55px;
+    }
+
+    .wptNotice .btn {
+        float: left;
+        width: 20%;
+        height: 28px;
+        line-height: 28px;
+        margin: 1px 0;
+        background-color: #C7160A;
+        border-radius: 2px;
+        text-align: center;
+        font-size: 12px;
+    }
+</style>
+
+<script type="text/javascript">
+    //关注微拍堂
+    var isSubscribe = 1;
+    var hasTelephone = 0;
+    if(hasTelephone == 0 && window.location.hash == "#hasTelephone") {
+        hasTelephone = 1;
+    }
+    var sellerLevel = 1;
+    var buyerLevel = 1;
+
+    //每页数量
+    var PAGE_NUM = 5;
+    var maskIsHide = true;
+    var pushState = null;
+
+    window.onpopstate = function (event) {
+        if ($.os.android) {
+            if (pushState && pushState.backevent) {
+                $(document.body).trigger(pushState.backevent);
+            }
+            pushState = event.state;
+        }
+    };
+
+    function pushStateEvent(e) {
+        if ($.os.android) {
+            if (pushState == null) {
+                pushState = {backevent: e};
+                history.pushState(pushState, document.title, "?backevent=" + pushState.backevent.replace(/#/g, ""));
+            }
+        }
+    }
+
+    function replaceStateUrl(url) {
+        history.replaceState({url:url}, document.title, url);
+    }
+
+    //阻止touchmove事件
+    $('body').on('touchmove', function (e) {
+        if (!maskIsHide) e.preventDefault();
+    });
+
+    //微信版本升级提醒
+    function noticeWeChatVer(){
+        var weChatInfo = navigator.userAgent.match(/MicroMessenger\/([\d\.]+)/i) ;
+
+        if( !weChatInfo || weChatInfo[1] < "6.0.2" ) {
+            wptAlert("您的微信版本太老了，不能发布拍品，请升级至6.1以上版本！");
+            return true;
+        }
+        return false;
+    }
+
+    //微信分享
+    function wptShare() {
+        maskIsHide = false;
+        $(".wptShare").show();
+        $(".wptShare .wptMask").animate({opacity: "0.7"}, 100);
+
+        $(document).off("wptShare_view:hide").one("wptShare_view:hide", function (e) {
+            maskIsHide = true;
+            $('.wptShare').hide();
+            $(".wptShare .wptMask").css("opacity", "0");
+        });
+
+        $('.wptShare').off('touchend').one('touchend', function (e) {
+            e.preventDefault();
+            $(document.body).trigger("wptShare_view:hide");
+        });
+    }
+
+    //alert
+    function wptAlert(msg, callback, onlyBtnClose) {
+        maskIsHide = false;
+
+        $(".wptAlert .tip .msg").html(msg);
+
+        $(".wptAlert").show();
+        $(".wptMask").animate({opacity: "0.4"}, 100);
+        $(".wptAlert .dialog").animate({bottom: "0px"}, 100);
+
+        pushStateEvent('wptAlert_view:hide');
+        $(document).off("wptAlert_view:hide").one("wptAlert_view:hide", function (e) {
+            maskIsHide = true;
+            $(".wptAlert .wptMask").animate({opacity: "0"}, 100);
+            var height = '-' + $(".wptAlert .dialog").height() + 'px';
+            $(".wptAlert .dialog").animate({bottom: height}, 100, function () {
+                $(".wptAlert").hide();
+            });
+            if (typeof(callback) == 'function') setTimeout(callback, 0);
+        });
+
+        var closeObj = $('.wptAlert .wptMask, .wptAlert .btn-confirm');
+        if(typeof onlyBtnClose != "undefined" && onlyBtnClose == true) {
+            closeObj = $('.wptAlert .btn-confirm');
+        }
+        closeObj.off('touchend').one('touchend', function (e) {
+            e.preventDefault();
+            if ($.os.android && pushState && pushState.backevent && pushState.backevent == "wptAlert_view:hide") {
+                history.back();
+            } else {
+                $(document.body).trigger("wptAlert_view:hide");
+            }
+        });
+    }
+
+    //confirm
+    function wptConfirm(msg, sureObj) {
+        maskIsHide = false;
+        $('.wptConfirm .tip .msg').html(msg);
+
+        if(typeof sureObj != "undefined") {
+            //确定按钮上的文字
+            sureObj.text && $('.wptConfirm .btns .sure').text(sureObj.text);
+            //确定按钮的class
+            sureObj.class && $('.wptConfirm .btns .sure').addClass(sureObj.class);
+            //描述文本class
+            sureObj.msgClass && $('.wptConfirm .tip .msg').addClass(sureObj.msgClass);
+        }
+
+        $(".wptConfirm").show();
+        $(".wptConfirm .wptMask").animate({opacity: "0.4"}, 100);
+        $(".wptConfirm .dialog").animate({bottom: "0px"}, 100);
+
+        pushStateEvent("wptConfirm_view:hide");
+        $(document).off("wptConfirm_view:hide").one("wptConfirm_view:hide", function (e) {
+            maskIsHide = true;
+            $(".wptConfirm .wptMask").animate({opacity: "0"}, 100);
+            var height = '-' + $(".wptConfirm .dialog").height() + 'px';
+            $(".wptConfirm .dialog").animate({bottom: height}, 100, function () {
+                $(".wptConfirm").hide();
+            });
+        });
+
+        $('.wptConfirm .wptMask, .wptConfirm .btn-cancel, .wptConfirm .btn-confirm').off('touchend').one('touchend', function (e) {
+            e.preventDefault();
+            if ($(e.target).hasClass('sure')) {
+                $(document.body).trigger('wptConfirm_view:sure');
+            }
+
+            if ($.os.android && pushState && pushState.backevent && pushState.backevent == "wptConfirm_view:hide") {
+                setTimeout(function() {
+                    history.back();
+                }, 0);
+            } else {
+                $(document.body).trigger("wptConfirm_view:hide");
+            }
+        });
+    }
+
+    //multiConfirm
+    function wptMultiConfirm(msg, sureObj) {
+        maskIsHide = false;
+        $('.wptConfirm .tip .msg').html(msg);
+
+        if(typeof sureObj != "undefined") {
+            $(".wptMultiConfirm .btns .btn-cancel").before(sureObj);
+        }
+
+        $(".wptMultiConfirm").show();
+        $(".wptMultiConfirm .wptMask").animate({opacity: "0.4"}, 100);
+        $(".wptMultiConfirm .dialog").animate({bottom: "0px"}, 100);
+
+        pushStateEvent("wptMultiConfirm_view:hide");
+        $(document).off("wptMultiConfirm_view:hide").one("wptMultiConfirm_view:hide", function (e) {
+            maskIsHide = true;
+            $(".wptMultiConfirm .wptMask").animate({opacity: "0"}, 100);
+            var height = '-' + $(".wptMultiConfirm .dialog").height() + 'px';
+            $(".wptMultiConfirm .dialog").animate({bottom: height}, 100, function () {
+                $(".wptMultiConfirm").hide();
+                $(".wptMultiConfirm").find(sureObj).remove();
+            });
+        });
+
+        $('.wptMultiConfirm').off('touchend').one('touchend', '.wptMask, .btn-cancel, .btn-confirm', function (e) {
+            e.preventDefault();
+            if ($.os.android && pushState && pushState.backevent && pushState.backevent == "wptMultiConfirm_view:hide") {
+                setTimeout(function() {
+                    history.back();
+                }, 0);
+            } else {
+                $(document.body).trigger("wptMultiConfirm_view:hide");
+            }
+        });
+    }
+
+</script>
+
+<div class="wptShare">
+    <div class="wptMask"></div>
+    <div class="shareTip"></div>
+</div>
+
+<div class="wptAlert">
+    <div class="wptMask"></div>
+    <div class="dialog">
+        <div class="tip">
+            <div class="msg"></div>
+        </div>
+        <div class="btns">
+            <div class="btn-confirm">知道了</div>
+        </div>
+    </div>
+</div>
+
+<div class="wptConfirm">
+    <div class="wptMask"></div>
+    <div class="dialog">
+        <div class="tip">
+            <div class="msg"></div>
+        </div>
+        <div class="btns">
+            <div class="btn-confirm sure">确定</div>
+            <div class="btn-cancel">取消</div>
+        </div>
+    </div>
+</div>
+
+<div class="wptMultiConfirm">
+    <div class="wptMask"></div>
+    <div class="dialog">
+        <div class="tip">
+            <div class="msg"></div>
+        </div>
+        <div class="btns">
+            <div class="btn-cancel">取消</div>
+        </div>
+    </div>
+</div>
+
+<div class="wptPassword">
+    <div class="dialog">
+        <div class="tip">请输入交易密码</div>
+        <div class="password">
+            <div class="passwordKey" num=""></div>
+            <div class="passwordKey" num=""></div>
+            <div class="passwordKey" num=""></div>
+            <div class="passwordKey" num=""></div>
+            <div class="passwordKey" num=""></div>
+            <div class="passwordKey" num=""></div>
+        </div>
+    </div>
+    <div class="keyboard">
+        <ul>
+            <li class="num">1</li>
+            <li class="num">2</li>
+            <li class="num">3</li>
+            <li class="num">4</li>
+            <li class="num">5</li>
+            <li class="num">6</li>
+            <li class="num">7</li>
+            <li class="num">8</li>
+            <li class="num">9</li>
+            <li class="blank">取 消</li>
+            <li class="num">0</li>
+            <li class="delete"></li>
+        </ul>
+    </div>
+</div>
+
+<div class="wptLoading">
+    <div class="wptMask"></div>
+    <div class="loading"></div>
+</div>
+
+</body></html>

@@ -1,0 +1,225 @@
+
+<html>
+	<head>
+		<title>送给你</title>
+		<meta http-equiv="imagetoolbar" content="no">
+        <include file="Kawahk:js"/> 
+        <script type="text/javascript">
+            initViewport();
+        </script>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black"> 
+<meta name="format-detection" content="telephone=no">
+		
+		<style type="text/css">
+        @-webkit-keyframes draw
+        {
+            0%{-webkit-transform:translate(0px,0px);}
+            8%{-webkit-transform:translate(0px,0px);}
+            14%{-webkit-transform:translate(0px,200px);}
+            18%{-webkit-transform:translate(0px,0px);}
+            22%{-webkit-transform:translate(0px,200px);}
+            26%{-webkit-transform:translate(0px,0px);}
+            30%{-webkit-transform:translate(0px,200px);}
+            34%{-webkit-transform:translate(0px,0px);}
+            39%{-webkit-transform:translate(0px,200px);}
+            43%{-webkit-transform:translate(0px,0px);}
+            100%{-webkit-transform:translate(0px,0px);}
+        }
+        @-webkit-keyframes handmove
+        {
+            0%{-webkit-transform:translate(0px,0px);}
+            8%{-webkit-transform:translate(-400px,-140px);}
+            35%{-webkit-transform:translate(-150px,-140px);}
+            50%{-webkit-transform:translate(0px,0px);}
+            100%{-webkit-transform:translate(0px,0px);}
+        }
+        @-webkit-keyframes handmove1
+        {
+            0%{-webkit-transform:translate(0px,0px);}
+            10%{-webkit-transform:translate(-400px,-100px);}
+            15%{-webkit-transform:translate(-350px,150px);}
+            20%{-webkit-transform:translate(-300px,-100px);}
+            24%{-webkit-transform:translate(0px,0px);}
+            44%{-webkit-transform:translate(0px,0px);}
+            50%{-webkit-transform:translate(0px,0px);}
+            60%{-webkit-transform:translate(0px,0px);}
+            100%{-webkit-transform:translate(0px,0px);}
+        }
+        @-webkit-keyframes divmove
+        {
+            0%{width:0px;}
+            10%{width:0px;}
+            55%{width: 500px;}
+            100%{width:500px;}
+        }
+        @-webkit-keyframes disimg{
+            0%{opacity: 1}
+            10%{opacity: 1}
+            20%{opacity: 0}
+            40%{opacity: 0}
+            41%{opacity: 1}
+            100%{opacity: 1}
+
+        }
+        @-webkit-keyframes textmove{
+            from{width:0px;}
+            to{width:350px;}
+        }
+		</style>
+        <script type="text/javascript">
+
+         function GetStringByteLength(val){
+         
+             var Zhlength=0;// 全角
+             var Enlength=0;// 半角
+             
+             for(var i=0;i<val.length;i++){
+                 if(val.substring(i, i + 1).match(/[^\x00-\xff]/ig) != null)
+                 Zhlength+=1;
+                 else
+                 Enlength+=1;
+             }
+             // 返回当前字符串字节长度
+             return (Zhlength*2)+Enlength;
+         }
+         function settextmodify()
+         {
+            if(GetStringByteLength(kawa_data.replace_words)>200)
+                {kawa_data.mode='up';
+                id('textmask').style.height='300px';
+                id('textdiv').style.color='#FFFFFF';
+            }
+        
+            return;
+         }
+        function id(name)
+        {
+            return document.getElementById(name);
+        }
+        num=2;
+        function Init(){
+            settextmodify();
+            create_base();
+            read_base();
+            //create_textdiv();
+            add_kawa_icon();
+            create_music();
+            create_modify();
+            id('pic').style.display='block';
+            id('div1').style.webkitAnimation='divmove 5s linear infinite';
+            id('pic').style.webkitAnimation='disimg 5s linear 3.7s infinite';
+            id('hand1').style.webkitAnimation='handmove 5s linear infinite';
+            id('hand1_1').style.webkitAnimation='draw 5s linear infinite';
+            id('hand2').style.webkitAnimation='handmove1 5s linear 3.7s infinite';
+            setTimeout(function(){
+                id('textdiv').style.display='block';
+                // id('textmask').style.webkitAnimation='textmove 1.5s linear forwards';
+               create_textdiv();
+                // alert(id('textdiv').style.offsetHeight);
+            },25500)
+            tt=setInterval(function()
+                {
+                    if(num==6)
+                        {
+                            setTimeout(function()
+                            {
+
+                                id('div1').style.webkitAnimation='';
+                                id('pic').style.webkitAnimation='';
+                                id('hand1').style.webkitAnimation='';
+                                id('hand1_1').style.webkitAnimation='';
+                            },5000)
+                            if(kawa_data.mode=='up')
+                            {
+                                id('hand1').style.webkitAnimation='';
+                                id('hand1_1').style.webkitAnimation='';
+                                id('div1').style.overflow='visible';
+                                id('textmask').style.left='-50px';
+                                id('textmask').style.top='-20px';
+                                id('textmask').style.height='340px;'
+                                id('textmask').style.width='380px';
+                            }
+                            id('hand2').style.webkitAnimation='';
+                            clearInterval(tt);
+                            id('pic').style.display='none';
+                            return;
+                        }
+                    id('pic').src='tpl/Wap/default/common/kawahk/2040/tongnian'+num+'.png'
+                    num++;
+
+                        // clearInterval(tt);
+                },5000); 
+
+            
+        }
+
+        </script>
+	</head><!--  -->
+	<body style="margin:0; height: 100%;" onload='Init()'>	
+	
+        <script>
+        	words = '回想童年那一件件不起眼的事，那些年一起玩的小伙伴，那些一起玩过的游戏和闯下的祸，所有的一切都那么无忧无虑。。让我们在送走童年时光的同时，留下童真的心，去面对未来充满奇遇与乐趣的人生。';
+
+            kawa_data = {
+               <if condition=" $words eq ''">
+				replace_words      : '回想童年那一件件不起眼的事，那些年一起玩的小伙伴，那些一起玩过的游戏和闯下的祸，所有的一切都那么无忧无虑。。让我们在送走童年时光的同时，留下童真的心，去面对未来充满奇遇与乐趣的人生',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+               
+                text_box           : '130 160 0 300', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+                mode               : 'static',     // up, left
+                speed              : 40,     // 每秒移动的像素
+                text_color         : '#cccccc', // rgb(1,2,3) 'black'
+                font_size          : '18pt',
+                font_weight        : 'bold',
+                line_height        : '23pt',
+                music              : 'http://sound.kagirl.net/sound/tongnian.mp3',     // url
+             <if condition=" $music eq ''">
+				replace_music      : 'http://sound.kagirl.net/sound/tongnian.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+                music_name         : '',
+                replace_music_name : '#replace_music_name#',
+                icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/fengmian/x2040.jpg',
+                title              : '送给你',
+                desc               : words,
+                modify             : 'no',
+                replace_modify     : 'yes',
+                cardid             : '2040',
+                share_url          : window.location.href,     // 当分享的是微信页面时才需要改这里
+                font_ip            : '115.28.135.41:8000',
+                modify_optfile     : 'tongnian',
+                modify_optwords    : '#modify_optwords#',
+                show_words         : 'yes',
+            };
+        </script>
+        <script src='kawamovie.js?ver=10'></script>
+        <script>
+        </script>
+        <div style='background-image:url(tpl/Wap/default/common/kawahk/2040/heiban.png);position:absolute;overflow:hidden;height:100%;width:500px;'>
+
+            <div style='position:absolute;left:70px;top:150px;height:300px;width:300px;'>   
+                <div id='div1' style='position:absolute;height:400px;left:95px;top:-50px;width:500px;-webkit-transform-origin:0% 0%;-webkit-transform:rotate(20deg);overflow:hidden;'>
+                    <img id='pic' src='tpl/Wap/default/common/kawahk/2040/tongnian1.png' style='position:absolute;top:5px;left:10px;-webkit-transform:rotate(-20deg);display:none;'>
+                    <img src='tpl/Wap/default/common/kawahk/2040/tongnian2.png' style='display:none'>
+                    <img src='tpl/Wap/default/common/kawahk/2040/tongnian3.png' style='display:none'>
+                    <img src='tpl/Wap/default/common/kawahk/2040/tongnian4.png' style='display:none'>
+                    <img src='tpl/Wap/default/common/kawahk/2040/tongnian5.png' style='display:none'>
+                    <div id='textmask' style='position:absolute;-webkit-transform:rotate(-20deg);top:5px;left:30px;width:350px;height:350px;overflow:hidden;'>
+                         <div id='textdiv' style='position:absolute;width;350px;top:50px;color:#cccccc;font-size:20pt;display:none;line-height:25pt;'></div>
+                    </div>
+                </div>
+            </div>
+            <div id='hand1' style='position:absolute;left:470px;top:200px;'>
+                <img id='hand1_1' src='tpl/Wap/default/common/kawahk/2040/shou2.png' style='position:absolute;left:0px;top:0px;'>
+            </div>
+            <div id='hand2' style='position:absolute;left:500px;top:150px;'>
+                <img src='tpl/Wap/default/common/kawahk/2040/shou4.png' style='position:absolute;'>
+            </div>
+        </div>
+    </body>
+
+</html>

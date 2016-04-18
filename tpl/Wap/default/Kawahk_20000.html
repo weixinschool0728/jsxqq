@@ -1,0 +1,250 @@
+
+<html>  
+<head>  
+<meta http-equiv="content-type" content="text/html; charset=utf-8">  
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <include file="Kawahk:js"/> 
+        <script type="text/javascript">
+            initViewport();
+        </script>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<meta name="format-detection" content="telephone=no">
+<title>送给你</title>  
+		<style type="text/css">
+        @-webkit-keyframes moveright
+        {
+            from{-webkit-transform:translate(0px,0px);}
+            to{-webkit-transform:translate(500px,0px);}
+        }
+        @-webkit-keyframes moveleft
+        {
+            from{-webkit-transform:translate(0px,0px);}
+            to{-webkit-transform:translate(-500px,0px);}
+        }
+
+        @-webkit-keyframes cloudmove1
+        {
+            from{-webkit-transform:translate(470px,0px);}
+            to{-webkit-transform:translate(0px,0px);}
+        }
+        @-webkit-keyframes cloudmove1_1
+        {
+            from{-webkit-transform:translate(0px,0px);}
+            to{-webkit-transform:translate(100px,0px);}
+        }
+
+        @-webkit-keyframes cloudmove2
+        {
+            from{-webkit-transform:translate(-520px,0px);}
+            to{-webkit-transform:translate(0px,0px);}
+        }
+        @-webkit-keyframes cloudmove2_1
+        {
+            from{-webkit-transform:translate(0px,0px);}
+            to{-webkit-transform:translate(-70px,0px);}
+        }
+        @-webkit-keyframes cloudmove3
+        {
+            from{-webkit-transform:translate(500px,0px);}
+            to{-webkit-transform:translate(0px,0px);}
+        }
+        @-webkit-keyframes cloudmove3_1
+        {
+            from{-webkit-transform:translate(0px,0px);}
+            to{-webkit-transform:translate(100px,0px);}
+        }
+        @-webkit-keyframes cloudmove5
+        {
+            from{-webkit-transform:translate(-550px,0px);}
+            to{-webkit-transform:translate(0px,0px);}
+        }
+        @-webkit-keyframes cloudmove5_1
+        {
+            from{-webkit-transform:translate(0px,0px);}
+            to{-webkit-transform:translate(-130px,0px);}
+        }
+        @-webkit-keyframes cloudmove4
+        {
+            from{-webkit-transform:translate(-500px,0px);}
+            to{-webkit-transform:translate(0px,0px);}
+        }
+        @-webkit-keyframes cloudmove4_1
+        {
+            from{-webkit-transform:translate(0px,0px);}
+            to{-webkit-transform:translate(-220px,0px);}
+        }
+        @-webkit-keyframes cloudmove6
+        {
+            from{-webkit-transform:translate(500px,0px);}
+            to{-webkit-transform:translate(0px,0px)}
+        }
+        @-webkit-keyframes cloudmove6_1
+        {
+            from{-webkit-transform:translate(0px,0px);}
+            to{-webkit-transform:translate(50px,0px);}
+        }
+        @-webkit-keyframes cloudmove7
+        {
+            from{-webkit-transform:translate(350px,0px);}
+            to{-webkit-transform:translate(0px,0px);}
+        }
+        @-webkit-keyframes cloudmove7_1
+        {
+            from{-webkit-transform:translate(0px,0px);}
+            to{-webkit-transform:translate(70px,0px);}
+        }
+        @-webkit-keyframes cloudmove8
+        {
+            from{-webkit-transform:translate(250px,0px);}
+            to{-webkit-transform:translate(0px,0px);}
+        }
+        @-webkit-keyframes cloudmove8_1
+        {
+            from{-webkit-transform:translate(0px,0px);}
+            to{-webkit-transform:translate(-110px,0px);}
+        }
+        @-webkit-keyframes cloudmove9
+        {
+            from{-webkit-transform:scale(-1,1) translate(520px,0px);}
+            to{-webkit-transform:scale(-1,1) translate(0px,0px);}
+        }
+        @-webkit-keyframes cloudmove9_1
+        {
+            from{-webkit-transform:scale(-1,1) translate(0px,0px);}
+            to{-webkit-transform:scale(-1,1) translate(50px,0px);}
+        }
+        @-webkit-keyframes cloudmove10_1
+        {
+            from{-webkit-transform:scale(-1,1) translate(-100px,0px);}
+            to{-webkit-transform:scale(-1,1) translate(0px,0px);}
+        }
+        @-webkit-keyframes mo{
+            0%{-webkit-transform:scale(0.4,0.4);opacity: 1;}
+            50%{-webkit-transform:scale(1.2,1.2);opacity: 0.8;}
+            100%{-webkit-transform:scale(1.6,1.6);opacity: 0}
+        }
+        @-webkit-keyframes showword
+        {
+            0%{opacity: 0}
+            50%{opacity: 0.3}
+            100%{opacity: 1}
+        }
+        @-webkit-keyframes denglong{
+            from{-webkit-transform:rotate(-5deg);}
+            to{-webkit-transform:rotate(0deg);}
+        }
+        @-webkit-keyframes denglong1
+        {
+            from{-webkit-transform:rotate(-0deg);}
+            to{-webkit-transform:rotate(-5deg);}            
+        }
+		</style>
+	</head>
+	<body style="margin:0;height:100%;background-image:url(tpl/Wap/default/common/kawahk/20000/2000.jpg);" onLoad="Init()">	
+	
+        <script>
+        	words = '如期而至的,不止是寒冬岁末，还有祝福和快乐;日渐增加的,不仅是年轮，还有友情和感情;在心里一如既往深深祝福你：元旦快乐!';
+
+            kawa_data = {
+                words 			   : words,
+               <if condition=" $words eq ''">
+				replace_words      : '如期而至的,不止是寒冬岁末，还有祝福和快乐;日渐增加的,不仅是年轮，还有友情和感情;在心里一如既往深深祝福你：元旦快乐!',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+                text_box           : '30 380 450 200', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+                mode               : 'up',     // up, left
+                speed              : 40,     // 每秒移动的像素
+                text_color         : '#000000', // rgb(1,2,3) 'black'
+                font_size          : '25pt',
+                line_height        : '40pt',
+                music              : 'http://kawaweika.qiniudn.com/sound/gaoshanliushui.mp3',     // url
+                 <if condition=" $music eq ''">
+				replace_music      : 'http://kawaweika.qiniudn.com/sound/gaoshanliushui.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+                music_name         : '',
+                replace_music_name : '#replace_music_name#',
+                icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/20000/m20000.jpg',
+                title              : '送给你',
+                desc               : words,
+                modify             : 'no',
+                replace_modify     : 'yes',
+                cardid             : '20000',
+                share_url          : window.location.href, // 当分享的是微信页面时才需要改这里
+                font_ip            : '115.28.135.41:8000',
+                font_family        : 'mnjsd',
+                modify_optfile     : '10020',
+                modify_optwords    : '#modify_optwords#',
+                show_words         : 'yes',
+            };
+        </script>
+        <script src='kawamovie.js'></script>
+        <script type="text/javascript">
+        function id(name)
+        {
+            return document.getElementById(name);
+        }
+        function Init () {
+            kawa_init();
+            id('yuan').style.webkitAnimation='showword 2s linear 4.5s forwards';
+            id('dan').style.webkitAnimation='showword 2s linear 5.5s forwards';
+            id('moji1').style.webkitAnimation='mo 3s linear 3s forwards';
+            id('moji2').style.webkitAnimation='mo 3s linear 4s forwards';
+            id('cloud1').style.webkitAnimation='cloudmove1 10.5s linear forwards';
+            id('cloud2').style.webkitAnimation='cloudmove2 6.6s linear forwards';
+            id('cloud3').style.webkitAnimation='cloudmove3 10s linear forwards';
+            id('cloud4').style.webkitAnimation='cloudmove4 8s linear 2s forwards';
+            id('cloud5').style.webkitAnimation='cloudmove5 5.3s linear 2s forwards';
+            id('cloud6').style.webkitAnimation='cloudmove6 6.67s linear forwards';
+            id('cloud7').style.webkitAnimation='cloudmove7 4s linear 4s forwards';
+            id('cloud8').style.webkitAnimation='cloudmove8 3.33s linear 3s forwards';
+            id('cloud9').style.webkitAnimation='cloudmove9 4s linear 2s forwards';
+            id('cloud10').style.webkitAnimation='cloudmove10_1 4s linear 6s infinite alternate';
+
+
+            setTimeout('id("cloud1").style.webkitAnimation="cloudmove1_1 6s linear infinite alternate"',10500);
+            setTimeout('id("cloud2").style.webkitAnimation="cloudmove2_1 6s linear infinite alternate"',6600);
+            setTimeout('id("cloud3").style.webkitAnimation="cloudmove3_1 5s linear infinite alternate"',10000);
+            setTimeout('id("cloud4").style.webkitAnimation="cloudmove4_1 10s linear infinite alternate"',10000);
+            setTimeout('id("cloud5").style.webkitAnimation="cloudmove5_1 5s linear infinite alternate"',7300);
+            setTimeout('id("cloud6").style.webkitAnimation="cloudmove6_1 6s linear infinite alternate"',6670);
+            setTimeout('id("cloud7").style.webkitAnimation="cloudmove7_1 4s linear infinite alternate"',8000);
+            setTimeout('id("cloud8").style.webkitAnimation="cloudmove8_1 4s linear infinite alternate"',6330);
+            setTimeout('id("cloud9").style.webkitAnimation="cloudmove9_1 3s linear infinite alternate"',6000);
+            setTimeout('id("denglongcontain").style.webkitAnimation="showword 1s linear forwards"',6000);
+        }
+
+
+
+        </script>
+        <div id='container' style='height:750px;width:500px;overflow:hidden;position:absolute;'>
+            <img id='yuan' src='tpl/Wap/default/common/kawahk/20000/20007.png' style='position: absolute; left: 50px; top: 150px;opacity:0;'>
+            <img id='dan' src='tpl/Wap/default/common/kawahk/20000/20002.png' style='position:absolute;left:240px;top:280px;opacity:0;'>
+
+            <img id='moji1' src='tpl/Wap/default/common/kawahk/20000/20003.png' style='position:absolute;opacity:0;-webkit-transform:scale(0.4,0.4);top:120px;left:40px;'>
+            <img id='moji2' src='tpl/Wap/default/common/kawahk/20000/20003.png' style='position:absolute;left:200px;top:250px;-webkit-transform:scale(0.4,0.4);opacity:0;'>
+
+        	<img id='cloud1' src='tpl/Wap/default/common/kawahk/20000/200013.png' style='position: absolute; left: 30; top: 50;-webkit-transform:translate(450px,0px);'>
+        	<img id='cloud2' src='tpl/Wap/default/common/kawahk/20000/200014.png' style='position: absolute; left: 320; top: 100;-webkit-transform:translate(-520px,0px);'>
+        	<img id='cloud3' src='tpl/Wap/default/common/kawahk/20000/200012.png' style='position: absolute; left: 0; top: 360;-webkit-transform:translate(500px,0px);'>
+        	<img id='cloud4' src='tpl/Wap/default/common/kawahk/20000/200010.png' style='position: absolute; left: 400; top: 150;-webkit-transform:translate(-500px,0px);'>
+        	<img id='cloud5' src='tpl/Wap/default/common/kawahk/20000/20008.png' style='position: absolute; left: 320; top: 180;-webkit-transform:translate(-550px,0px);'>
+        	<img id='cloud6' src='tpl/Wap/default/common/kawahk/20000/20004.png' style='position: absolute; top: 290;left:0px;-webkit-transform:translate(500px,0px);'>
+        	<img id='cloud7' src='tpl/Wap/default/common/kawahk/20000/20005.png' style='position: absolute; top: 450; left: 150;-webkit-transform:translate(350px,0px);'>
+        	<img id='cloud8' src='tpl/Wap/default/common/kawahk/20000/20006.png' style='position: absolute; left: 250; top: 500;-webkit-transform:translate(250px,0px);'>
+            <img id='cloud9' src='tpl/Wap/default/common/kawahk/20000/20006.png' style='position: absolute; top: 350; left: 350;-webkit-transform:scale(-1,1) translate(520px,0px);'>
+        	<img id='cloud10' src='tpl/Wap/default/common/kawahk/20000/98c1132de9275ab81b9a/2000' style='position: absolute; left: 400; top: 330;-webkit-transform:scale(-1,1) translate(-200px,0px);'>
+        	<!-- <img src='http://hg.jielanhua.cn/ps/yuandan/cloud1.png' style='position:absolute'> -->
+
+            <div id='denglongcontain' style='opacity:0;position:absolute;'>
+                <div id='deng' style='width:50px;left:20px;top:70px;position:absolute;-webkit-transform-origin:50% 0%;-webkit-animation:denglong 1.5s linear infinite alternate;height:150px;'>
+                    <img id='denglong' src='tpl/Wap/default/common/kawahk/20000/20001.png' style='position:absolute;width:50px;'>
+                    <img id='denglong1' src='tpl/Wap/default/common/kawahk/20000/2000.png' style='position:absolute;width:50px;top:70px;-webkit-animation:denglong1 2s ease infinite alternate;-webkit-transform-origin:50% 0%;'>
+                </div>
+            </div>
+        </div>
+    </body>
+   
+</html>

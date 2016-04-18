@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<link href="{weimicms:$staticPath}/tpl/static/numqueue/css/css.css" type="text/css" rel="stylesheet"  />
+<title>{weimicms:$reply_title}</title>
+</head>
+<body class="body">
+<div class="content">
+<form action="{weimicms::U('Numqueue/admin_login')}" method="POST">
+  <label for="textfield"></label>
+   <input type="text" name="username" class="sec_input" placeholder="请输入账号" style="margin-bottom:5px;">
+  <input type="text" name="password" class="sec_input" placeholder="请输入密码">
+  <input type="hidden" name="action_id" value="{weimicms:$_GET['id']}" />
+  <input type="hidden" name="token" value="{weimicms:$_GET['token']}" />
+  <input type="hidden" name="store_id" value="{weimicms:$_GET['store_id']}" />
+  <input type="submit" class="tijiao" value="登&nbsp;&nbsp;陆" style="-webkit-appearance: none;"/>
+</form>
+</div>
+</body>
+</html>

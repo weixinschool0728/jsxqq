@@ -1,0 +1,433 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="applicable-device" content="mobile">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport"/>
+<link href="{weimicms:$staticPath}/tpl/static/cointree/css/stylecoin.css" type="text/css" rel="stylesheet"/>
+<link href="{weimicms:$staticPath}/tpl/static/cointree/css/annimatecoin.css" type="text/css" rel="stylesheet"/>
+<title>{weimicms:$cointree.action_name}</title>
+<script src="{weimicms:$staticPath}/tpl/static/cointree/js/jquery-1.7.2.js"></script> 
+<script src="{weimicms:$staticPath}/tpl/static/cointree/js/indexnew.js"></script> 
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/cointree/js/alert.js"></script>
+<script src="{weimicms:$staticPath}/tpl/static/cointree/js/common.js"></script> 
+<script type="text/javascript">
+$(function(){
+	$("#fly_page").hide();
+	//$("#TopTipClose").click();//执行关闭
+	$("#TopTipHolder").hide();
+});
+</script>
+<style type="text/css">
+.table_content_list p{text-align:left;}
+.joined{background-color: #00c17b; margin-left: 5%;}
+.joinedd{background-color: #00c17b; margin-left: 5%;}
+</style>
+</head>
+<body>
+<if condition="$memberNotice neq ''">
+	<if condition="$notice_content eq 'no_follow'">
+	<div style="display:none;" id="membernotice">{weimicms:$memberNotice}</div>
+	<elseif condition="$notice_content eq 'no_register'" />
+	{weimicms:$memberNotice}
+	</if>
+</if>
+<div class="content">
+    <header>
+        <div class="banner clearfix"><a href="{weimicms:$remind_link}">
+            <div class="banner_img"><img src='<if condition="$cointree.remind_logo neq ''">{weimicms:$cointree.remind_logo}<else />{weimicms:$staticPath}/tpl/static/cointree/images/yqs_03.png</if>' /></div>
+            <div class="banner_txt">{weimicms:$cointree.remind_word}</div></a>
+            <div class="banner_close"> </div></div>
+        <div class="king clearfix">
+            <div class="king_num">金币数:</div>
+			<if condition="$cointree_users.coins_count lt 9">
+            <ul class="king_list clearfix">
+			<for start="0" end="$cointree_users.coins_count">
+			<li class="delay{weimicms:$i}"></li>
+			</for>
+			</ul>
+			 <div class="king_num"><span>{weimicms:$cointree_users.coins_count}</span>枚</div>
+			<else />
+			<ul class="king_list clearfix">
+			    <li class="delay"></li>
+                <li class="delay1"></li>
+                <li class="delay2"></li>
+                <li class="delay3"></li>
+                <li class="delay4"></li>
+                <li class="delay5"></li>
+                <li class="delay6"></li>
+				<li class="delay7"></li>
+            </ul>
+            <div class="king_num"><span>{weimicms:$cointree_users.coins_count}</span>枚</div>
+		</if>	
+        </div>
+    </header>
+    <div class="zhezhao" style="display:none"></div>
+	<article class="jibi" style="display:none" >
+        <div class="jibi_jiantou"><img src="{weimicms:$staticPath}/tpl/static/cointree/images/line@2x.png" /></div>
+        <div class="jibi_content tankuang_content ">
+            <div class="jibi_yuan"><img src="{weimicms:$staticPath}/tpl/static/cointree/images/jibi_02.png" /></div>
+			 <div class="jibi_txt">
+                <p>点击右上角</p>
+                <p>发送给朋友,帮TA赚金币</p>
+            </div>
+            <div  class="jibi_gold"><img src="{weimicms:$staticPath}/tpl/static/cointree/images/jibi_03.png" />
+                <div  class="jibi_caidai"><img src="{weimicms:$staticPath}/tpl/static/cointree/images/jibi1_03.png" /></div>
+            </div>
+        </div>
+    </article>
+    <article class="jibi_share" style="display:none">
+        <div class="jibi_content tankuang_content ">
+            <div class="jibi_yuan"><img src="{weimicms:$staticPath}/tpl/static/cointree/images/jibi_02.png" /></div>
+			 <div class="jibi_txt">
+                <p>您为好友"{weimicms:$cointree_users.wecha_name}"</p>
+                <p>集了<span>{weimicms:$addcoins}</span>枚金币</p>
+            </div>
+            <div  class="jibi_gold"><img src="{weimicms:$staticPath}/tpl/static/cointree/images/jibi_03.png" />
+                <div  class="jibi_caidai"><img src="{weimicms:$staticPath}/tpl/static/cointree/images/jibi1_03.png" /></div>
+            </div>
+        </div>
+    </article>
+    <article>
+        <div class="collection_content animate">
+            <div class="collection bounceIn">
+                <div class="collection_txt">
+                    <p class="help"><span>“{weimicms:$cointree_users.wecha_name}”</span>
+					<php>if($cointree_users['coins_count'] - $cointree['usedup_conins'] < 0){ echo '还差<span>'.($cointree['usedup_conins'] - $cointree_users['coins_count']).'</span>枚金币'; }else{ echo '正在参加';}</php><br/>帮TA集金币</p>
+                </div>
+            </div>
+        </div>
+    </article>
+    <article class="cloud">
+        <div class="cloud1 "><img src="{weimicms:$staticPath}/tpl/static/cointree/images/yaoqian_19.png" /></div>
+        <div class="cloud2"><img src="{weimicms:$staticPath}/tpl/static/cointree/images/yaoqian_22.png" /></div>
+        <div class="cloud3"><img src="{weimicms:$staticPath}/tpl/static/cointree/images/yaoqian_25.png" /></div>
+    </article>
+    <article class="tree">
+        <div class="tree_tree rotate45">
+            <div class="coloured">
+                <div class="coloured1"> <img src="{weimicms:$staticPath}/tpl/static/cointree/images/yaoqian_31.png" /> </div>
+                <div class="coloured2"> <img src="{weimicms:$staticPath}/tpl/static/cointree/images/yaoqian_27.png" /> </div>
+                <div class="coloured3"> <img src="{weimicms:$staticPath}/tpl/static/cointree/images/yaoqian_38.png" /> </div>
+                <div class="coloured4"> <img src="{weimicms:$staticPath}/tpl/static/cointree/images/yaoqian_45.png" /> </div>
+            </div>
+            <div class="gift">
+                <div class="gift1 wobble duration1"><img src="{weimicms:$staticPath}/tpl/static/cointree/images/yaoqian_25_33.png"/></div>
+                <div class="gift2 wobble duration3"><img src="{weimicms:$staticPath}/tpl/static/cointree/images/yaoqian_25_27.png"/></div>
+                <div class="gift3 wobble"><img src="{weimicms:$staticPath}/tpl/static/cointree/images/yaoqian_25_38.png"/></div>
+            </div>
+            <div class="gold_tree">
+                <div class="gold_tree1 duration1 delay"><img src="{weimicms:$staticPath}/tpl/static/cointree/images/yaoqian_27_27.png" /></div>
+                <div class="gold_tree2 duration2 delay"><img src="{weimicms:$staticPath}/tpl/static/cointree/images/yaoqian_27_32.png" /></div>
+                <div class="gold_tree3 duration3 delay1"><img src="{weimicms:$staticPath}/tpl/static/cointree/images/yaoqian_27_40.png" /></div>
+                <div class="gold_tree4 duration2 delay1"><img src="{weimicms:$staticPath}/tpl/static/cointree/images/yaoqian_27_50.png" /></div>
+                <div class="gold_tree5 duration4 delay2"><img src="{weimicms:$staticPath}/tpl/static/cointree/images/yaoqian_27_57.png" /></div>
+                <div class="gold_tree6 duration5 delay2"><img src="{weimicms:$staticPath}/tpl/static/cointree/images/yaoqian_27_66.png" /></div>
+                <div class="gold_tree7 duration2 delay1"><img src="{weimicms:$staticPath}/tpl/static/cointree/images/yaoqian_27_69.png" /></div>
+                <div class="gold_tree8 duration1 delay1"><img src="{weimicms:$staticPath}/tpl/static/cointree/images/yaoqian_27_75.png" /></div>
+                <div class="gold_tree9 duration6 delay1"><img src="{weimicms:$staticPath}/tpl/static/cointree/images/yaoqian_27_78.png" /></div>
+                <div class="gold_tree10 duration3 delay"><img src="{weimicms:$staticPath}/tpl/static/cointree/images/yaoqian_27_82.png" /></div>
+                <div class="gold_tree11 duration4 delay1"><img src="{weimicms:$staticPath}/tpl/static/cointree/images/yaoqian_27_85.png" /></div>
+            </div>
+            <div class="star">
+                <div class="star1 duration1"><img src="{weimicms:$staticPath}/tpl/static/cointree/images/yaoqian_03_07.png" /> </div>
+                <div class="star2 duration2"><img src="{weimicms:$staticPath}/tpl/static/cointree/images/yaoqian_03_03.png" /> </div>
+                <div class="star3 duration3"><img src="{weimicms:$staticPath}/tpl/static/cointree/images/yaoqian_03_10.png" /> </div>
+            </div>
+            <div class="gold_bottom">
+                <div class="gold_bottom1"><img src="{weimicms:$staticPath}/tpl/static/cointree/images/yaoqian_27_114.png" /></div>
+                <div class="gold_bottom2"><img src="{weimicms:$staticPath}/tpl/static/cointree/images/yaoqian_27_99.png" /></div>
+                <div class="gold_bottom3"><img src="{weimicms:$staticPath}/tpl/static/cointree/images/yaoqian_27_104.png" /></div>
+            </div>
+            <div class="tree_top"><img src="{weimicms:$staticPath}/tpl/static/cointree/images/yaoqian_27_27_27.png"></div>
+            <div class="tree_content"><img src="{weimicms:$staticPath}/tpl/static/cointree/images/yaoqian_33.png" /></div>
+            <div class="tree_trunk"><img src="{weimicms:$staticPath}/tpl/static/cointree/images/yaoqian_33_33.png" /></div>
+            <div class="ribbon">
+                <div class="ribbon1"><img src="{weimicms:$staticPath}/tpl/static/cointree/images/yaoqian_37.png" /></div>
+                <div class="ribbon2"><img src="{weimicms:$staticPath}/tpl/static/cointree/images/yaoqian_40.png" /></div>
+                <div class="ribbon3"><img src="{weimicms:$staticPath}/tpl/static/cointree/images/yaoqian_56.png" /></div>
+                <div class="ribbon4"><img src="{weimicms:$staticPath}/tpl/static/cointree/images/yaoqian_51.png" /></div>
+                <div class="ribbon5"><img src="{weimicms:$staticPath}/tpl/static/cointree/images/yaoqin_54.png" /></div>
+            </div>
+        </div>
+        <div class="tree_mountain"><img src="{weimicms:$staticPath}/tpl/static/cointree/images/yaoqian_54.png" /> </div>
+    </article>
+    <article class="meadow"><img src="{weimicms:$staticPath}/tpl/static/cointree/images/yaoqian_64.png" />
+        <div class="meadow_txt">
+            <p>活动截止日期：</p>
+            <p>{weimicms:$cointree.endtime|date='Y-m-d H:i:s',###}</p>
+        </div>
+        <div class="meadow_activity "><img src="{weimicms:$staticPath}/tpl/static/cointree/images/yaoqian_30.png" /></div>
+    </article>
+    <article class="activity_list">
+        <div class="table_list_title">
+            <ul class="clearfix">
+                <li class=" table_title1 table_list_title_on">活动规则</li>
+                <li class=" table_title2">活动奖品</li>
+                <li class=" table_title3">获奖记录</li>
+                <li class=" table_title4">金币记录</li>
+            </ul>
+        </div>
+        <div  class="table_content_list">
+            <ul>
+                <li class="table_List1" style="padding:5% 5%;min-height:50px;">
+                    {weimicms:$cointree['action_desc']|html_entity_decode}
+                </li>
+                <li class="table_List2" style="padding:5% 5%;min-height:50px;" style="display:none;">
+                    <div class="product">
+                        <ul class="clearfix">
+						<if condition="$cointree['first_prize'] neq ''">
+                            <li>
+                                <div class="product_img"><img src="{weimicms:$cointree['first_img']}" /></div>
+                                <div class="product_txt">
+                                    <h1>一等奖</h1>
+                                    <p>{weimicms:$cointree['first_prize']}</p>
+									<if condition="$cointree['is_amount'] eq 1"><p>数量：{weimicms:$cointree['first_nums']}</p></if>
+                                </div>
+                            </li>
+						</if>
+						<if condition="$cointree['second_prize'] neq ''">
+                            <li style="margin:0 3%">
+                                <div class="product_img"><img src="{weimicms:$cointree['second_img']}" /></div>
+                                <div class="product_txt">
+                                    <h1>二等奖</h1>
+                                    <p>{weimicms:$cointree['second_prize']}</p>
+									<if condition="$cointree['is_amount'] eq 1"><p>数量：{weimicms:$cointree['second_nums']}</p></if>
+                                </div>
+                            </li>
+							</if>
+						<if condition="$cointree['third_prize'] neq ''">
+                            <li>
+                                <div class="product_img"><img src="{weimicms:$cointree['third_img']}" /></div>
+                                <div class="product_txt">
+                                    <h1>三等奖</h1>
+                                    <p>{weimicms:$cointree['third_prize']}</p>
+									<if condition="$cointree['is_amount'] eq 1"><p>数量：{weimicms:$cointree['third_nums']}</p></if>
+                                </div>
+                            </li>
+						</if>
+						<if condition="$cointree['fourth_prize'] neq ''">
+                            <li style="margin:3% 0;">
+                                <div class="product_img"><img src="{weimicms:$cointree['fourth_img']}" /></div>
+                                <div class="product_txt">
+                                    <h1>四等奖</h1>
+                                    <p>{weimicms:$cointree['fourth_prize']}</p>
+									<if condition="$cointree['is_amount'] eq 1"><p>数量：{weimicms:$cointree['fourth_nums']}</p></if>
+                                </div>
+                            </li>
+						</if>
+						<if condition="$cointree['fifth_prize'] neq ''">
+                            <li style="margin:3% 3%">
+                                <div class="product_img"><img src="{weimicms:$cointree['fifth_img']}" /></div>
+                                <div class="product_txt">
+                                    <h1>五等奖</h1>
+                                    <p>{weimicms:$cointree['fifth_prize']}</p>
+									<if condition="$cointree['is_amount'] eq 1"><p>数量：{weimicms:$cointree['fifth_nums']}</p></if>
+                                </div>
+                            </li>
+							</if>
+						<if condition="$cointree['sixth_prize'] neq ''">
+                            <li style="margin:3% 0;">
+                                <div class="product_img"><img src="{weimicms:$cointree['sixth_img']}" /></div>
+                                <div class="product_txt">
+                                    <h1>六等奖</h1>
+                                    <p>{weimicms:$cointree['sixth_prize']}</p>
+									<if condition="$cointree['is_amount'] eq 1"><p>数量：{weimicms:$cointree['sixth_nums']}</p></if>
+                                </div>
+                            </li>
+						</if>						
+                        </ul>
+                    </div>
+                </li>
+                <li class="table_List3" style="padding:5% 5%;min-height:50px;" style="display:none;">
+                    <div class="record" id="prizerecord"></div>
+                </li>
+                <li class="table_List4" style="padding:5% 5%;min-height:50px;" style="display:none;">
+                    <div class="record" id="coinrecord"></div>
+                </li>
+            </ul>
+        </div>
+    </article>
+    <footer>
+        <div class="table_list clearfix">
+            <button class="help">帮TA集金币</button>
+			<if condition="$notice_content eq 'no_follow'"><button class="joinedd" onclick="show_follw();">我要参与</button><elseif condition="$notice_content eq 'no_register'" />
+			<button class="joinedd" onclick="show_register();">我要参与</button>
+			<elseif condition="$needverify eq 2" /><button class="joined"><if condition="$already_join eq 1">返回我的<else />我要参与</if></button><else /> <button class="jion">我要参与</button>
+           </if>
+        </div>
+    </footer>
+<!--短信验证提示框start-->
+<article class="validate_content" style="display:none">
+<form action="{weimicms::U('CoinTree/MessageVerify')}" method="POST" id="coin_form">
+<div class="tankuang_content" style=" ">
+<div class="validate">
+	<ul>
+		<li>
+			<div class="validate_tel clearfix"><span></span>
+				<div class="validate_input">
+					<input value="" name="tel" onfocus="this.style.color='#fff'; this.value='';" style="color: #fff;"/>
+				</div>
+			</div>
+		</li>
+		<li style=" margin-top:15px;">
+			<div class="validate_num clearfix"><span></span>
+				<div class="validate_input">
+					<input value="" name="verification_code" onfocus="this.style.color='#fff'; this.value='';" style="color: #fff;"/>
+					<button id="a_verify" onclick="return sendMsg()">获取验证码</button>
+				</div>
+			</div>
+		</li>
+	</ul>
+	<input type="hidden" name="id" value="{weimicms:$cointree.id}" />
+	<input type="hidden" name="token" value="{weimicms:$cointree.token}" />
+	<input type="hidden" name="usedup_conins" value="{weimicms:$cointree.usedup_conins}" />
+	<div class="validate_button">
+		<button id="coin_submit">参&nbsp;与</button>
+	</div>
+</div>
+</div>
+</form>
+</article>
+<!--短信验证提示框end-->
+</div>
+</body>
+</html>
+<script type="text/javascript">
+//锚点
+function show_register(){
+	$("#TopTipHolder").show();
+	if($("#TopTipHolder").css('height') == '0px'){
+		$("#TopTipClose").click();//执行关闭
+		$("#TopTipHolder").css('height','35px');//弹出
+	}
+}
+function show_follw(){
+	$("#membernotice").show();
+	$("#fly_page").show();
+}
+window.onload=function(){
+    var t=null;
+    clearTimeout(t);
+    t=setTimeout(function(){
+        $(".animate").removeClass("animate");
+    },5500);
+}
+$(document).ready(function(){
+	//获奖记录
+    $(".table_title3").click(function() {
+		var PrizeRecordUrl = '/index.php?g=Wap&m=CoinTree&a=ajaxPrizeRecord';
+        aaa('table_List2', 'table_List1', 'table_List4', 'table_List3');
+		var id = '{weimicms:$cointree.id}';
+		var token = '{weimicms:$cointree.token}';
+		var record_nums = '{weimicms:$cointree.record_nums}';
+		var user_id = '{weimicms:$user_id}';
+		$.ajax({
+			type: 'POST',
+			data: "id="+id+"&token="+token+"&record_nums="+record_nums+"&user_id="+user_id,
+			url : PrizeRecordUrl,
+			beforeSend:function(){
+				$("#prizerecord").html("<ul><img src='{weimicms:$staticPath}/tpl/static/cointree/images/loading.gif' style='padding-left: 40%;'/></ul>");
+			},
+			success:function(json){
+				var obj = eval('(' + json + ')');
+				if(obj.status == 'ok'){
+					var str  = '<ul>';
+					$.each(obj.mydata,function(i,d){
+						str += '<li class="clearfix"><div class="record_img"><img src="'+d.wecha_pic+'" /></div><div class="record_txt"><p class="record_txt_title">'+d.wecha_name+'</p><p>兑奖号码：'+d.serialnumber+'</p><p>'+d.shaketime+'</p></div><div class="record_ranking">'+d.prize+'等奖</div></li>';
+					});
+					$.each(obj.otherdata,function(i,d){
+						str += '<li class="clearfix"><div class="record_img"><img src="'+d.wecha_pic+'" /></div><div class="record_txt"><p class="record_txt_title">'+d.wecha_name+'</p><p>'+d.shaketime+'</p></div><div class="record_ranking">'+d.prize+'等奖</div></li>';
+					});
+					str += '</ul>';
+					$("#prizerecord").html(str);
+				}else{
+					$("#prizerecord").html('<span style="padding-left: 40%;font-size: 16px;">暂无记录</span>');
+				}
+			}
+		});
+    });
+	//金币记录
+	 $(".table_title4").click(function() {
+	 	var CoinRecordUrl = '/index.php?g=Wap&m=CoinTree&a=ajaxCoinRecord&id={weimicms:$cointree.id}&token={weimicms:$cointree.token}&share_key={weimicms:$share_key}&type=share_page';
+        aaa('table_List1', 'table_List3', 'table_List2', 'table_List4');
+		$.ajax({
+			type: 'GET',
+			url : CoinRecordUrl,
+			beforeSend:function(){
+				$("#coinrecord").html("<ul><img src='{weimicms:$staticPath}/tpl/static/cointree/images/loading.gif' style='padding-left: 40%;'/></ul>");
+			},
+			success:function(json){
+				var obj = eval('(' + json + ')');
+				if(obj.status == 'ok'){
+					var str  = '<ul>';
+					$.each(obj.data,function(i,d){
+						if(d.addcoins != 'null' && d.opentime != 'null'){
+							str += '<li class="clearfix"><div class="record_img"><img src="'+d.share_wechapic+'" /></div><div class="record_txt"><p class="record_txt_title"><span>'+d.share_wechaname+'</span></p><p>'+d.opentime+'</p></div><div class="record_ranking">'+d.addcoins+'</div></li>';
+						}
+					});
+					if(obj.count >= 100){
+						str += '<p style="margin-left: 26%;margin-top:25px;font-size: 14px;color: #018957;">最多显示100条</p>';
+					}
+					str += '</ul>';
+					$("#coinrecord").html(str);
+				}else{
+					$("#coinrecord").html('<span style="padding-left: 40%;font-size: 16px;">暂无记录</span>');
+				}
+			}
+		});
+    });
+	//短信验证提示框
+	$("#coin_submit").click(function(){
+		var tel = $(":input[name=tel]").val();
+		var verification_code = $(":input[name=verification_code]").val();
+		msg = '';
+		if(tel == ""){
+			msg += '验证的手机号不能为空\n';
+		}
+		if(verification_code == ""){
+			msg += '短信验证码不能为空';
+		}
+		if(msg != ""){
+			alert(msg);
+			return false;
+		}
+		$("#coin_form").submit();
+	});
+	//返回我的 
+	$(".joined").click(function(){
+		window.location.href = '/index.php?g=Wap&m=CoinTree&a=index&id={weimicms:$cointree.id}&token={weimicms:$cointree.token}';
+	});
+	var share_status = '{weimicms:$share_status}';
+	if(share_status == 'success'){
+		$(".jibi_share").show();
+		$(".zhezhao").show();
+	}
+	
+	//隐藏提醒关注注册弹框
+	$(".close").click(function(){
+		$("#no_follow").hide();
+		$("#bg").hide();
+	});
+});
+</script>
+<script>
+window.shareData = {  
+	"moduleName":"CoinTree",
+	"moduleID":"{weimicms:$cointree.id}",
+	"imgUrl": "{weimicms:$cointree.reply_pic}", 
+	"timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U('CoinTree/share_page',array('token'=>$cointree['token'],'id'=>$cointree['id'],'share_key'=>$share_key))}",
+	"sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('CoinTree/share_page',array('token'=>$cointree['token'],'id'=>$cointree['id'],'share_key'=>$share_key))}",
+	"weiboLink": "{weimicms:$f_siteUrl}{weimicms::U('CoinTree/share_page',array('token'=>$cointree['token'],'id'=>$cointree['id'],'share_key'=>$share_key))}",
+	"tTitle": "{weimicms:$cointree['custom_sharetitle']|shareFilter}",
+	"tContent": "{weimicms:$cointree['custom_sharedsc']|shareFilter}",
+	"fTitle": "{weimicms:$cointree['custom_sharedsc']|shareFilter}",
+	"isShareNum":1,
+	"ShareNumData":"cointree,id,{weimicms:$cointree.id},share_count",
+};
+</script>
+{weimicms:$shareScript}

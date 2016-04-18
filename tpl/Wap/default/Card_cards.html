@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{weimicms:$thisCard.cardname}</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<!-- Mobile Devices Support @begin -->
+<meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+<meta content="telephone=no, address=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes" /> <!-- apple devices fullscreen -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<!-- Mobile Devices Support @end -->
+<link href="{weimicms::$staticPath}/tpl/static/card/css/main.css" rel="stylesheet" type="text/css">
+<script src="{weimicms::$staticPath}/tpl/static/jquery.min.js" type="text/javascript"></script>
+</head>
+<body onselectstart="return true;" ondragstart="return false;">
+
+<div class="container my">
+    <header>
+        <div class="header">
+            <a href="{weimicms::U('Userinfo/index',array('token'=>$_GET['token'],'cardid'=>(int)$_GET['cardid'],'wecha_id'=>$_GET['wecha_id'],'redirect'=>'Card/card|cardid:'.(int)$_GET['cardid']))}" class="setting">&nbsp;</a>
+            <div>
+                <ul class="tbox">
+                    <li>
+                        <span id="upload_header">                
+                            <img src="{weimicms:$fans.portrait}" />                          
+                        </span>
+                    </li>
+                    <li>
+                        <h3>{weimicms:$fans.wechaname}</h3>
+                        <p><sban>&nbsp;</sban>{weimicms:$thisCard.cardname}</p>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <ul class="box">
+                    <li>
+                        <a href="javascipt:void(0);">
+                            <label>优惠券</label>
+                            <span>{weimicms:$couponCount1}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascipt:void(0);">
+                            <label>代金券</label>
+                            <span>{weimicms:$couponCount2}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascipt:void(0);">
+                            <label>积分</label>
+                            <span>{weimicms:$userScore}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascipt:void(0);">
+                            <label>余额</label>
+                            <span>{weimicms:$userInfo['balance']}</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="body">
+        <ul class="list_ul">
+            <div>
+                <li class="li_t">
+                    <a href="{weimicms::U('Card/coupon',array('token'=>$token,'wecha_id'=>$wecha_id,'cardid'=>$card['id'],'type'=>1))}"><label class="label"><i>&nbsp;</i>我的优惠券<span>&nbsp;</span></label></a>
+                </li>
+                <li class="li_s">
+                    <a href="{weimicms::U('Card/coupon',array('token'=>$token,'wecha_id'=>$wecha_id,'cardid'=>$card['id'],'type'=>2))}"><label class="label"><i>&nbsp;</i>我的代金券<span>&nbsp;</span></label></a>
+                </li>
+                <li class="li_u">
+                    <a href="{weimicms::U('Card/coupon',array('token'=>$token,'wecha_id'=>$wecha_id,'cardid'=>$card['id'],'type'=>3))}"><label class="label"><i>&nbsp;</i>我的礼品券<span>&nbsp;</span></label></a>
+                </li>
+				<?php if($thisCard['is_jfdhhb'] == 2){?>
+                <li class="li_u">
+                    <a href="<?php echo U('Wap/Card/wdhb',array('token'=>$token,'cardid'=>$card['id']));?>"><label class="label"><i style="background-image:url({weimicms::$staticPath}/tpl/static/card/hongbao/images/1_04.png);background-size: contain;    background-position: 5px 0px;">&nbsp;</i>我的红包<span>&nbsp;</span></label></a>
+                </li>
+				<?php }?>
+                <li class="li_v">
+                    <a href="{weimicms::U('Card/payRecord',array('token'=>$token,'wecha_id'=>$wecha_id,'cardid'=>$card['id'],'month'=>date('n')))}"><label class="label"><i>&nbsp;</i>交易记录<span>&nbsp;</span></label></a>
+                </li>
+            </div>
+            <div>
+                <li class="li_o">
+                    <label class="label"><i>&nbsp;</i>收货地址<a href="{weimicms::U('Card/addr',array('token'=>$token,'wecha_id'=>$wecha_id,'cardid'=>$thisCard['id']))}" class="button">管  理</a></label>
+                </li>
+                
+                <li class="li_y">
+                    <label class="label"><i>&nbsp;</i>会员卡密码<a href="{weimicms::U('Card/paypwd',array('token'=>$token,'wecha_id'=>$wecha_id,'cardid'=>$thisCard['id']))}" class="button">管  理</a></label>
+                    
+                </li>
+
+                <li class="li_b">
+                    <label class="label">
+                        <i>&nbsp;</i>绑定线下会员卡<a  href="{weimicms::U('Card/bind',array('token'=>$token,'wecha_id'=>$wecha_id,'cardid'=>$thisCard['id']))}" class="button" >绑定</a>
+                    </label>
+                </li>
+
+            </div>
+        </ul>
+    </div>
+</div>
+    <include file="Card:bottom"/>
+    <include file="Card:share"/>
+</body>
+</html>

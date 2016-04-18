@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<!-- saved from url=(0076)/auto/index/4085?&weixin.qq.com=#wechat_webview_type=1 -->
+<html lang="ch" manifest="/appcache/act/4085?_t=1408329341"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<title>{weimicms:$title.title}</title>
+	 <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+	<meta charset="utf-8">
+	<meta name="apple-touch-fullscreen" content="YES">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta http-equiv="Expires" content="-1">
+	<meta http-equiv="pragram" content="no-cache">
+	<link rel="stylesheet" type="text/css" href="./tpl/static/live/css/copyright.css">
+<link rel="stylesheet" type="text/css" href="./tpl/static/live/css/main.css">
+<link rel="stylesheet" type="text/css" href="./tpl/static/live/css/add2home.css">
+<link rel="stylesheet" type="text/css" href="/tpl/Wap/default/common/knwx/js/button1.css"/>
+
+<style>
+             body{-webkit-touch-callout: none; -webkit-text-size-adjust: none;}
+			.page-bizinfo{height:422px; width:640px;	}
+			.page-button {overflow: hidden;
+clear: both;
+padding: 0;
+text-align: left;
+z-index: 9999;
+height: 122px;
+width: 640px;
+position: fixed;
+top: 0px;}
+			.page-content{background:url(/tpl/Wap/default/common/knwx/1055/1055_b2.jpg) #ffffff; top:406px; min-height:250px;_height:250px;width:640px;	}
+			
+			#activity-detail .page-content .text p{padding:2px 36px 9px 33px; color:#5B2A2B;}
+			#activity-detail .page-content .text p img{ width:90%;}
+			.page-foot{ background:url(/tpl/Wap/default/common/knwx/1055/1055_b3.jpg) #ffffff repeat-x center top;  margin:0 auto; min-height:194px;_height:194px; width:640px;}			
+			#activity-detail .page-bizinfo .header #activity-name{padding:9px 40px 9px 40px; color:#5B2A2B;}			
+			.activity-meta { display:inline-block;padding-left:50px;;padding-top:0px;padding-bottom:15px;color:#999999;font-size:24px;}
+			.klink{font-size:12px;text-decoration:none;color:#74aaf0}	
+
+			.text img{
+				-webkit-box-shadow: 3px 6px 10px rgba(0, 0, 0, .5), 0 2px 3px rgba(0, 0, 0, .5);
+				-moz-box-shadow: 3px 6px 10px rgba(0, 0, 0, .5), 0 2px 3px rgba(0, 0, 0, .5);
+				-o-box-shadow: 3px 6px 10px rgba(0, 0, 0, .5), 0 2px 3px rgba(0, 0, 0, .5);
+				box-shadow: 3px 6px 10px rgba(0, 0, 0, .5), 0 2px 3px rgba(0, 0, 0, .5);
+			}
+        </style>
+	<script type="text/javascript" src="./tpl/static/live/js/offline.js"></script>	<!--移动端版本兼容 -->
+	<script type="text/javascript">
+		var jsVer = 24;
+		var phoneWidth = parseInt(window.screen.width);
+		var phoneScale = phoneWidth/640;
+
+		var ua = navigator.userAgent;
+		if (/Android (\d+\.\d+)/.test(ua)){
+			var version = parseFloat(RegExp.$1);
+			// andriod 2.3
+			if(version>2.3){
+				document.write('<meta name="viewport" content="width=640, minimum-scale = '+phoneScale+', maximum-scale = '+phoneScale+', target-densitydpi=device-dpi">');
+			// andriod 2.3以上
+			}else{
+				document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+			}
+			// 其他系统
+		} else {
+			document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+		}
+	</script>
+	<script>
+			
+			<if condition="$music eq ''">
+					var gSound = 'tpl/Wap/default/common/knwx/music/ileave.mp3';
+			<else/>
+			var gSound = '{weimicms:$music}';</if>
+		function playbksound()
+			{
+				var audiocontainer = document.getElementById('audiocontainer');
+				audiocontainer.innerHTML = '<audio id="bgsound" loop="loop" autoplay="autoplay"></audio>';
+						
+				var audio = document.getElementById('bgsound');
+				audio.src = gSound;
+				audio.play();
+			}	
+						
+		</script>
+	<!--移动端版本兼容 end -->
+</head>
+
+<body class="f-ofh pc perspective yes-3d" style="-webkit-user-select: none;">
+	<!--模版加载提示-->
+<if condition="$action eq 'save'">
+<div class="page-button">	
+					<li style="list-style: none;
+padding-right: 0px;
+padding-top: 10%;
+padding-bottom: 0px;
+margin-left: 5%;"><a id="modm" style="left:320px" class="super button green" href="{weimicms:$info.gzlj}">点我做微杂志</a></li>
+		
+		</div><else/>
+
+    	<div class="page-button">
+  <li style="list-style: none;
+padding-right: 0px;
+padding-top: 10%;
+padding-bottom: 0px;
+margin-left: 5%;"><a id="musicm" class="super button yellow" onClick="openMusic();">选音乐</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id="modify" class="super button orange"  href="/index.php?g=Wap&m=Wzz&a=changnr&id={weimicms:$id}&token={weimicms:$token}&wecha_id={weimicms:$wecha_id}&catgroy={weimicms:$_GET['catgroy']}">改内容</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="super button green" href="/index.php?g=Wap&m=Wzz&a=index&id={weimicms:$id}&token={weimicms:$token}&wecha_id={weimicms:$wecha_id}&action=save&catgroy={weimicms:$_GET['catgroy']}&music={weimicms:$music}">保存</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+</div></if>
+
+	<section class="u-alert">
+		<img style="display:none;" src="./tpl/static/live/images/loading_large.gif">
+		<div class="loading-animate"></div>
+		<div class="alert-loading z-move" style="display:none;">
+			<div class="cycleWrap">
+				<span class="cycle cycle-1"></span>
+				<span class="cycle cycle-2"></span>
+				<span class="cycle cycle-3"></span>
+				<span class="cycle cycle-4"></span>
+			</div>
+			<div class="lineWrap">
+				<span class="line line-1"></span>
+				<span class="line line-2"></span>
+				<span class="line line-3"></span>
+			</div>
+		</div>
+		
+	</section>
+	<!--模版加载提示 end-->
+		
+				<!-- 声音控件 -->
+				
+		
+		
+				<if condition="$music eq ''">
+				<section class="u-audio f-hide" data-src="">
+				<audio id="bgsound" loop="loop" src="tpl/Wap/default/common/knwx/music/ileave.mp3" autoplay="autoplay"></audio>
+	<else/>
+	<section class="u-audio f-hide" data-src="">
+	<audio id="bgsound" loop="loop" src="{weimicms:$music}" autoplay="autoplay">
+	</if>
+		<p id="coffee_flow" class="btn_audio">
+			<strong class="txt_audio z-hide">关闭</strong>
+			<span class="css_sprite01 audio_open"></span>
+		<div class="coffee-steam-box" style="height: 100px; width: 44px; left: 60px; top: -50px; position: absolute; overflow: hidden; z-index: 0;"></div></p>
+	</section>
+	<!-- 声音控件 end-->
+																																																									<!-- 箭头指示引导 -->
+	<section class="u-arrow f-hide"><p class="css_sprite01"></p></section>
+	<!-- 箭头指示引导 end-->
+
+	<!-- page页面内容 -->
+	<section class="p-ct transformNode-3d" style="height: 799px;">
+		<!-- 旋转正面 data-open: 0->关闭， 1->开启 -->
+		<div id="j-mengban" class="translate-front z-show" data-open="0" style="height: 799px;">
+			<div class="mengban-warn"></div>
+		<canvas style="position: fixed; left: 50%; top: 0px; width: 640px; margin-left: -320px; height: 100%; z-index: 20; background-color: transparent;" width="1600" height="753"></canvas></div>
+		<!-- 旋转正面 end-->
+		
+		<!-- 旋转反面 -->
+		<div class="translate-back f-hide z-pos" style="height: 799px;">
+			<!-- 封页 1-->
+		<volist name="content" id="content"  offset="1" length='1' >	
+		<!-- 擦一擦 -->
+				<!-- 蒙板背景图 -->
+			<div class="m-page m-fengye z-animate" data-page-type="info_pic3" data-statics="info_pic3" style="height: 799px;">
+				<div class="page-con lazy-img" data-src="{weimicms:$content.pic}" data-position="50% 50%" data-size="cover" style="background-image: url({{weimicms:$content.pic}); background-size: cover; background-position: 50% 50%;">
+				<if condition="$content['t'] eq '' "><else/>
+				<div class="bigTxt-bd j-txt" data-height-init="86" data-height-extand="174" style="opacity: 1;height: 86px;position: absolute;
+left: 10%;
+top: 70%;
+width: 80%;
+overflow: hidden;
+border-radius: 12px;
+background: rgba(255,255,255,0.7);"><div class="bigTxt-title j-title"><p>{weimicms:$content.t}</p><span class="bigTxt-arrow txt-arrow css_sprite01 f-cur"></span> </div><div class="bigTxt-detail j-detail action" data-height="88" style="height: 0px;"><p style="-webkit-transform: translate(0, -88px);">{weimicms:$content.content}</p> </div> </div></if></div>
+				</volist>		
+			</div>
+			<!-- 封页 end-->
+		
+
+
+	<volist name="contents" id="content" offset="2" length='100'>	
+		
+			<!-- 大图文 3-->
+			<div class="m-page m-bigTxt f-hide" data-page-type="bigTxt" data-statics="info_list" style="height: 799px;">
+				<div class="page-con j-txtWrap lazy-img" data-src="{weimicms:$content.pic}" data-position="50% 50%" data-size="cover" style="background-image: url(./tpl/static/live/images/loading_large.gif); ">
+				<if condition="$content['t'] eq '' "><else/>
+				<div class="bigTxt-bd j-txt" data-height-init="86" data-height-extand="174" style="height: 86px;position: absolute;
+left: 10%;
+top: 70%;
+width: 80%;
+overflow: hidden;
+border-radius: 12px;
+background: rgba(255,255,255,0.7);"><div class="bigTxt-title j-title"><p>{weimicms:$content.t}</p><span class="bigTxt-arrow txt-arrow css_sprite01 f-cur"></span> </div><div class="bigTxt-detail j-detail" data-height="88" style="height: 0px;"><p style="-webkit-transform: translate(0, -88px);">{weimicms:$content.content}</p> </div> </div></if>
+				</div>
+			</div>
+			<!-- 大图文 end-->
+		
+		
+	</volist>
+	
+	
+
+
+		
+			<!-- 分享 -->
+			
+				<!-- 微信 -->
+				<if condition="$live_info.share_url eq ''">
+				<div class="bigTxt-btn bigTxt-btn-wx lazy-img" data-src="{weimicms:$live_info.share_button}" data-position="50% 50%" data-size="auto" style="background-image: url(./tpl/static/live/images/loading_large.gif);"><a href="javascript:void(0)"></a></div>
+				<div class="bigTxt-weixin"><img src="./tpl/static/live/default/share-guide.png"></div>
+				<else/>
+				<div class="bigTxt-btn bigTxt-btn-wx lazy-img" data-src="{weimicms:$live_info.share_button}" data-position="50% 50%" data-size="auto" style="background-image: url(./tpl/static/live/images/loading_large.gif);"><a href="{weimicms:$live_info.share_url}"></a></div>
+				</if>
+				
+				<!-- 微信 end-->
+			</div>
+			<!-- 分享 -->
+		
+			
+		</div>
+		<!-- 旋转反面 end-->
+	</section>
+	<!-- 正文介绍 end-->
+
+	<!--meeting map-->
+	<div class="ylmap bigOpen">
+		<!--地图插件元素-->
+		<div class="bk"><span class="css_sprite01"></span></div>
+	</div>
+	<!--meeting map end-->
+
+	<!--pageLoading-->
+	<section class="u-pageLoading">
+		<img src="./tpl/static/live/default/load.gif" alt="loading">
+	</section>
+	<!--pageLoading end-->
+	
+	<!-- 资源传递 -->
+	<!-- 模版ID -->	
+	<!-- 微信分享信息 -->
+	<!-- 微信分享信息 -->
+	<!-- 微信分享信息 -->
+	<!-- 微信分享信息 -->
+	<!-- 微信分享信息 -->
+
+	
+	<!-- 资源传递 end-->
+
+
+<!--脚本加载-->
+<script src="./tpl/static/live/js/init_mobile.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="/tpl/Wap/default/common/knwx/js/autoHeight.js"></script><!--脚本加载 end-->
+<script src="tpl\Wap\default\common\wzz/jquery.min.js"></script>
+<div style="width:0;height:0;" id = "audiocontainer"></div>
+<if condition="$live_info.is_masking eq '1'">
+<input id="ca-tips" type="hidden" value="{weimicms:$live_info.warn}"><input id="r-cover" type="hidden" value="{weimicms:$live_info.masking_pic}">
+</if>
+
+
+		<if condition="$title.title eq ''">
+	  <input id="wx-share-title" type="hidden" value="我的生活微杂志" /><else/>
+	  <input id="wx-share-title" type="hidden" value="{weimicms:$title.title}" /></if>
+		<if condition="$title.sharepic eq ''">  
+<input id="wx-share-img" type="hidden" value="{weimicms:$f_siteUrl}\tpl\Wap\default\common\wzz\wzz.jpg" /><else/>
+<input id="wx-share-img" type="hidden" value="{weimicms:$title.sharepic}" /></if>
+<if condition="$title.title eq ''">
+<input id="wx-share-desc" type="hidden" value="我的生活微杂志做好了，快来看看我的微杂志吧，太炫丽了！." />
+				<else/>
+<input id="wx-share-desc" type="hidden" value="{weimicms:$title.sharenr}" /></if>
+
+<input id="wx-share-link" type="hidden" value="{weimicms::C('site_url')}{weimicms::U(Wzz/index,array('token'=>$token,'wecha_id'=>$wecha_id,'action'=>'save','catgroy'=>$_GET['catgroy'],'id'=>$id,'music'=>$music))}" />
+<input id="sharebackurl" type="hidden" value=""/> 
+<script src="tpl/static/sharewx.js" type="text/javascript"></script>
+<include file="Wzz:footer"/> 
+</body>
+</html>

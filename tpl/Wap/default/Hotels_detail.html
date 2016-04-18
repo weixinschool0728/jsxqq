@@ -1,0 +1,58 @@
+<include file="Hotels:header"/>
+<body>
+	<div class="html">
+		<div class="main">
+			<header>
+	<a class="ico-hd arr-hd" href="javascript:history.go(-1);"></a>
+	<h1>订单详情</h1>
+</header>
+<div class="contxt cont-artical">
+	<div class="box-cont box-order">
+		<div class="hd">
+			<b>在线预订客房{weimicms:$company['name']}</b>
+			<i>{weimicms:$order['housename']}</i> | <i>{weimicms:$order['nums']}间</i>
+		</div>
+		<div class="bd box-txt">
+			<p><span>入住日期</span><b>{weimicms:$order['startdate']}</b></p>
+			<p><span>离店日期</span><b>{weimicms:$order['enddate']} </b></p>
+			<p><span>订单状态</span><if condition="$order['status'] eq 1"><em>完成入住</em><elseif condition="$order['paid'] eq 1" /><em>已付款</em><else /><i>已预定</i></if></p>
+			<p><span>操作</span><if condition="$order['status'] eq 1"><a class="btn btn-small to_book" onclick="javascript:cancel('{weimicms:$order['id']}', 3);">删除记录</a><else /><a class="btn btn-small to_book" onclick="javascript:cancel('{weimicms:$order['id']}', 2);">取消订单</a></if></p>
+			
+		</div>
+		<div class="ft box-txt">
+			<p><span>联系人电话：</span><b>{weimicms:$order['tel']}</b></p>
+			<p><span>总 金 额：</span><b>￥{weimicms:$order['price']}</b></p>
+		</div>
+	</div>
+	<br><br>
+</div>
+		</div>
+	</div>
+</body>
+
+<script type="text/javascript">
+function cancel(oid, status)
+{
+	if (confirm('你确定要这么操作吗？')) {
+		$.get("{weimicms::U('Hotels/cancel',array('token' => $_GET['token'], 'wecha_id' => $wecha_id))}&oid=" + oid + "&status=" + status, function(response){
+			if (response.error_code == true) {
+				alert(response.msg);
+			} else {
+				location.href = "{weimicms::U('Hotels/my',array('token' => $_GET['token'], 'wecha_id' => $wecha_id))}"
+			}
+		}, 'json');
+	}
+}
+window.shareData = {  
+            "moduleName":"Hotels",
+            "moduleID":"{weimicms:$company[0]['id']}",
+            "imgUrl": "{weimicms:$company[0]['logourl']}", 
+            "timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U('Hotels/detail',array('token' => $_GET['token']))}",
+            "sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Hotels/detail',array('token' => $_GET['token']))}",
+            "weiboLink": "{weimicms:$f_siteUrl}{weimicms::U('Hotels/detail',array('token' => $_GET['token']))}",
+            "tTitle": "{weimicms:$metaTitle}",
+            "tContent": "{weimicms:$metaTitle}"
+        };
+</script>
+{weimicms:$shareScript}
+</html>

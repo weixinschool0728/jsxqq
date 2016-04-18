@@ -1,0 +1,203 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>{weimicms:$Kndata.title}</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="target-densitydpi=320,width=640,min-height:900px;user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" type="text/css" href="/tpl/Wap/default/common/knwx/js/style1.css"/>
+<link rel="stylesheet" type="text/css" href="/tpl/Wap/default/common/knwx/js/button1.css"/>
+<!--[if lt IE 9]>
+            <link rel="stylesheet" type="text/css" href="/tpl/Wap/default/common/knwx/js/pcstyle1.css" />
+<![endif]-->
+<link media="screen and (min-width:1000px)" rel="stylesheet" type="text/css" href="/tpl/Wap/default/common/knwx/js/pcstyle1.css"/>
+<script src="http://lib.sinaapp.com/js/jquery/1.8.3/jquery.min.js"></script>
+<script src="/tpl/Wap/default/common/knwx/js/warterfall.js"></script>
+<link rel="stylesheet" type="text/css" href="/tpl/Wap/default/common/knwx/js/ms2.css"/>
+<style>
+body {
+	-webkit-touch-callout: none;
+	-webkit-text-size-adjust: none;
+}
+.page-bizinfo {
+	background: url(/tpl/Wap/default/common/knwx/1001/1001_1.jpg) #ecf4ec repeat-x center top;
+	height: 320px;
+	width: 640px;
+}
+.page-button {
+	padding: 0;
+	margin: 0;
+	background: url(/tpl/Wap/default/common/knwx/1001/1001_2.jpg);
+repeat;
+	text-align: right;
+	z-index: 2;
+	width: 640px;
+}
+.page-content {
+	background: url(/tpl/Wap/default/common/knwx/1001/1001_2.jpg) repeat;
+	top: 320px;
+	min-height: 750px;
+	_height: 750px;
+	width: 640px;
+}
+.klink {
+	font-size: 12px;
+	text-decoration: none;
+	color: #74aaf0
+}
+#hd {
+	position: absolute;
+	top: 1200px;
+	-webkit-backface-visibility: visible;
+	-webkit-transform-origin: center center;
+	-webkit-animation: fly 10s 0.5s infinite ease normal none;
+}
+ @-webkit-keyframes fly {
+ 0% {
+opacity: 0;
+left:550px;
+top:1200px;
+}
+ 2%, 10%, 20%, 30%, 40%, 50%, 60%, 70%, 80%, 90%, 100% {
+-webkit-transform:scaleX(0.8);
+}
+ 5%, 15%, 25%, 35%, 45%, 55%, 65%, 75%, 85%, 95% {
+-webkit-transform:scaleX(0.3);
+}
+ 2% {
+opacity: 1;
+left:550px;
+top:800px;
+}
+ 22% {
+left:29px;
+top:600px;
+}
+ 51% {
+left:530px;
+top:366px;
+}
+ 62% {
+left:200px;
+top:200px;
+}
+ 87% {
+left:422px;
+top:66px;
+}
+ 100% {
+left:-100px;
+top:-100px;
+}
+}
+.text img {
+	-webkit-box-shadow: 3px 6px 10px rgba(0, 0, 0, .5), 0 2px 3px rgba(0, 0, 0, .5);
+	-moz-box-shadow: 3px 6px 10px rgba(0, 0, 0, .5), 0 2px 3px rgba(0, 0, 0, .5);
+	-o-box-shadow: 3px 6px 10px rgba(0, 0, 0, .5), 0 2px 3px rgba(0, 0, 0, .5);
+	box-shadow: 3px 6px 10px rgba(0, 0, 0, .5), 0 2px 3px rgba(0, 0, 0, .5);
+}
+</style>
+<script>
+			//需要调用leafinit（）来启动，需要声明外层div，id="container"，还有内层div，id="leafContainer"
+			//参数设置
+			var leafNum = 4;			//落下叶子的数量
+			var kindNum = 3;			//叶子的种类
+			//叶子使用图片地址，数量应与kindNum相同
+			var kindurl = new Array("/tpl/Wap/default/common/knwx/1001/1001_p1.png","/tpl/Wap/default/common/knwx/1001/1001_p2.png","/tpl/Wap/default/common/knwx/1001/1001_p3.png");
+		</script>
+<script src="/tpl/Wap/default/common/knwx/js/fleaves.min.js"></script>
+<link rel="stylesheet" href="/tpl/Wap/default/common/knwx/js/leavesGeneral.css" type="text/css" media="screen" charset="utf-8">
+</head>
+
+<body id="activity-detail">
+<if condition="$action neq 'save'">
+<div class="top_div">
+  <marquee width=640 behavior=scroll direction=left>
+  完成后请"保存"，保存后无法修改,未保存请勿分享。禁止任何诱导分享和政治相关的内容。
+  </marquee>
+</div>
+</if>
+<div style="width:0;height:0;" id = "audiocontainer"></div>
+<div id="container" style="left:0%;top:0%;">
+  <div id="leafContainer"></div>
+</div>
+<div id="hd"> <img src="/tpl/Wap/default/common/knwx/1001/1001_hd.png" width="76px"> </div>
+<script>
+leafinit();
+</script> 
+<script type="text/javascript">
+					
+		function openModel(){
+			var td = document.getElementById("model");
+			
+			var scrollTop = (window.pageYOffset || document.documentElement.scrollTop) ;
+			td.style.display = "block";
+			td.style.top = scrollTop+"px";
+		}
+		function closeModel(){
+			var td = document.getElementById("model");
+			td.style.display = "none";
+		}
+		function showmodel1(){
+			var td = document.getElementById("model1");
+			td.style.display = "block";
+			closeModel();
+		}
+		function closeModel1(){
+			var td = document.getElementById("model1");
+			td.style.display = "none";			
+		}
+		
+		var showNum1 = 6;
+		var showNum2 = 2;
+	</script> 
+<script src="/tpl/Wap/default/common/knwx/js/load.js"></script> 
+<script src="/tpl/Wap/default/common/knwx/js/jquery.lazyload.min.js"></script>
+<script type="text/javascript" src="/tpl/Wap/default/common/knwx/js/autoHeight.js"></script> 
+   
+<include file="Knwx:model"/>
+<!--模板主体-->
+<div class="page-bizinfo">
+  <div class="header"> <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1 id="activity-name"> {weimicms:$kndata.title} </h1>
+    <p class="activity-info"> <span id="post-date" class="activity-meta no-extra" style="color:#ffffff;top:0%;"> 
+	{weimicms:$kndata.time|date="Y-m-d",###} </span> </p>
+  </div>
+</div>
+
+<if condition="$time.save neq 'save'">
+<div class="page-button">
+  <li><a id="musicm" class="super button yellow" onclick="openMusic();">选音乐</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id="modm" class="super button blue" onClick="openModel();">换背景</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a id="modify" class="super button orange"  href="/index.php?g=Wap&m=Knwx&a=changnr&id={weimicms:$id}&token={weimicms:$token}&catgroy={weimicms:$_GET['catgroy']}&wecha_id={weimicms:$wecha_id}">改内容</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a class="super button green" href="/index.php?g=Wap&m=Knwx&a=indexhi&id={weimicms:$id}&token={weimicms:$token}&wecha_id={weimicms:$wecha_id}&catgroy={weimicms:$_GET['catgroy']}&action=save">保存</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+</div></elseif condition="$time.save eq 'save'">
+<div class="page-button">	
+					<li><a id="modm" class="super button green" href="{weimicms:$info.gzlj}">点这里，自己做微秀</a></li>
+		
+		</div><else />
+</if>
+<div class="page-content">
+  <div class="text">
+  <volist name="Kndatas" id="infoitem"  >
+   
+
+   <if condition="$infoitem['content'] neq ''"><p style='text-indent:2em;'>{weimicms:$infoitem.content}</p><else />
+ <p style='text-align:center;'> <img data-src='{weimicms:$infoitem.pic}'/></p></if>
+
+	
+   </volist>
+    <br>
+  </div>
+  
+  
+ <include file="Knwx:footer"/> 
+</div>
+
+<!--模板主体-and-->
+</body>
+</html>

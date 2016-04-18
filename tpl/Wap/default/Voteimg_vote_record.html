@@ -1,0 +1,22 @@
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="ddtab">
+<tbody>
+<tr style="background-color:#fc6; line-height:40px;">
+	<td>排名</td>
+	<td>选项</td>
+	<td>我投的票数</td>
+	<td>得票数</td>
+</tr>
+<if condition="$vote_record neq ''">
+<volist name="vote_record" id="vo" key="k">
+<tr>
+<td>{weimicms:$k}</td>
+<td>{weimicms:$vo.vote_title}</td>
+<td>{weimicms:$vo.my_vote_count}</td>
+<td>{weimicms:$vo.vote_count}</td>
+</tr>
+</volist>
+<else />
+<tr><td colspan=4 align="center">暂无记录</td></tr>
+</if>
+</tbody>
+</table>

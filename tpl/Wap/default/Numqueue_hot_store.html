@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link href="{weimicms:$staticPath}/tpl/static/numqueue/css/css.css" type="text/css" rel="stylesheet"  />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/numqueue/js/jquery1.8.3.js"></script>
+<title>{weimicms:$reply_title}</title>
+</head>
+
+<body class="body">
+<div class="content" style="padding-top:0">
+<ul>
+<volist name="store_list" id="vo">
+<li onclick="window.location.href= '{weimicms::U('Numqueue/detail_store',array('store_id'=>$vo['id'],'id'=>$vo['action_id'],'token'=>$vo['token']))}';return false">
+<div class="data">
+<div class="data_img"><img src="{weimicms:$vo.logo}" /></div>
+<div class="data_arc">
+<div class="data_title">{weimicms:$vo.name}</div>
+<div class="data_arc_arc">
+<div class="data_left" style="width:52%;">
+<div class="data_left_top">
+<div class="data_left_left">{weimicms:$vo.remark}</div>
+<div style="clear:both"></div>
+</div>
+<div class="data_left_top">
+<div class="data_left_left"> <div class="data_left_txt" style="color:#777B7E">{weimicms:$vo['opentime']}:00--{weimicms:$vo['closetime']}:00</div></div>
+<div style="clear:both"></div>
+</div>
+<div class="data_left_top">
+<div class="data_left_left">&yen;{weimicms:$vo.price}/人</div>
+<div style="clear:both"></div>
+</div>
+</div>
+<div class="data_right">
+<div class="data_right_right"><img src="{weimicms:$icon}" style="  margin-top: 15px; width:30px;" /></div>
+<div class="data_right_right0" id="wait_count_{weimicms:$vo.id}">{weimicms:$vo.receive_count}</div>
+<!--script>
+$(function(){
+	var id = '{weimicms:$vo.id}';
+	var token = '{weimicms:$vo.token}';
+	$("#wait_count_"+id).load("/index.php?g=Wap&m=Numqueue&a=ajax_waits&store_id="+id+"&token="+token);
+});
+</script-->
+<div class="data_right_right"><span>位</span><br /><span>在等待</span></div>
+<div style="clear:both"></div>
+</div>
+<div style="clear:both"></div>
+</div>
+</div>
+</div>
+</li>
+</volist>
+</ul>
+</div>
+   <div class="dazhong" style="margin-bottom:6%;">
+    <div class="dazhong_txt" onclick="window.location.href='{weimicms::U('Numqueue/index',array('token'=>$_GET['token'],'id'=>$_GET['id']))}';return false;">
+	返回首页
+  </div>
+  <div class="dazhong_img">
+  <img src="{weimicms:$staticPath}/tpl/static/numqueue/images/jiantou-hui.png"  width="20"  style="margin-top:5px;"/>
+  </div>
+      <div style="clear:both"></div>
+  </div>
+  <br /><br />
+<!--div class="content" style="padding:0; width:100%">
+<volist name="store_list" id="vo">
+  <div class="remen_img"> <a href="{weimicms::U('Numqueue/detail_store',array('id'=>$action_id,'store_id'=>$vo['id'],'token'=>$vo['token']))}"> <img src="{weimicms:$vo.logo}" width="100%;"/></a><br /><div style="width:98%;height:auto;overflow:hidden;">{weimicms:$vo.name}</div></div>
+ </volist>
+</div-->
+ <script>
+	window.shareData = {  
+		"moduleName":"Numqueue",
+		"moduleID":"0",
+		"imgUrl": "{weimicms:$f_siteUrl}/tpl/static/numqueue/images/paidui.png", 
+		"timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U('Numqueue/index',array('token'=>$token,'id'=>$id))}",
+		"sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Numqueue/index',array('token'=>$token,'id'=>$id))}",
+		"weiboLink": "{weimicms:$f_siteUrl}{weimicms::U('Numqueue/index',array('token'=>$token,'id'=>$id))}",
+		"tTitle": "{weimicms:$reply_title}",
+		"tContent": "{weimicms:$reply_title}",
+		"fTitle": "{weimicms:$reply_title}",
+	};
+</script>
+{weimicms:$shareScript}
+</body>
+</html>

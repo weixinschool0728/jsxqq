@@ -1,0 +1,254 @@
+
+<html>  
+<head>  
+<meta http-equiv="content-type" content="text/html; charset=utf-8">  
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <include file="Kawahk:js"/> 
+        <script type="text/javascript">
+            initViewport();
+        </script>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>求传播</title>  
+
+
+<style type="text/css">  
+    <!--   
+    body{   
+		-webkit-touch-callout: none; 
+		-webkit-text-size-adjust: none;
+        margin:0 auto;   		
+        overflow:hidden;   
+		position:relative;
+    }   
+  
+    div#content{
+        position:relative;   
+        border:1px solid #000; 
+		width:500px;		
+		height:750px;
+		margin:0 auto; 
+        top:0px;    
+        overflow:hidden;   
+        clear:both;
+    }
+  
+    div#bg{   
+        position:absolute;   
+        left:0px;   
+        top:0px;
+    } 
+	
+	div#huli{   
+        position:absolute;   
+        left:0px;   
+        top:250px;
+		-webkit-animation:fadeInLeft 1s 0.5s 1 ease-in-out normal both;
+    } 
+	
+	@-webkit-keyframes fadeInLeft{
+		0%{opacity:0;
+		-webkit-transform:translateX(-20px)}
+		100%{opacity:1;
+		-webkit-transform:translateX(0)}
+	}
+			
+	div#paopao1
+	{ 
+		position:absolute; 
+		width:21px;
+		height:10px;
+		left:426px;
+		top:370px;
+		-webkit-animation:fadeIn 0.5s 1.8s 1 ease-in-out normal both;
+	}
+	div#paopao2
+	{ 
+		position:absolute; 
+		width:50px;
+		height:34px;
+		left:412px;
+		top:294px;
+		-webkit-animation:fadeIn 0.5s 2.2s 1 ease-in-out normal both;
+	}
+	div#paopao3
+	{ 
+		position:absolute; 
+		width:323px;
+		height:227px;
+		left:166px;
+		top:42px;
+		-webkit-animation:fadeIn 0.5s 2.6s 1 ease-in-out normal both;
+	}
+		
+	@-webkit-keyframes fadeIn{
+		0%{opacity:0;}
+		100%{opacity:1;}
+	}
+	
+	div#yanlei
+	{ 
+		position:absolute; 
+		width:16px;
+		height:26px;
+		left:266px;
+		top:480px;
+		-webkit-transform-origin:center top;
+		-webkit-animation:fadeInOut 6s 1.5s infinite linear normal both;
+	}
+	
+	@-webkit-keyframes fadeInOut{
+		0%{opacity:0;-webkit-transform:scale(0.2,0.2);}
+		20%{opacity:0;-webkit-transform:scale(0.6,0.6);}
+		50%{opacity:1;-webkit-transform:scale(1,1);}		
+		70%{opacity:1;-webkit-transform:scale(1,1);}
+		100%{opacity:0;-webkit-transform:translate(0px,500px) scale(1,1);}
+	}
+	
+	div#foot{   
+        position:fixed; 
+		left:320px;
+		bottom:10px;
+		z-index:50001;
+    } 	
+  
+    div#relative{   
+        position:relative;   
+        left:100px;   
+        top:0px;   
+    }   
+  
+    div#static{   
+        background-color:#bbb;   
+		top:20;
+		left:30px;
+        position:static;   
+    }   
+	
+	@-webkit-keyframes bounceOut{
+		0%{
+			left:181px;
+			top:240px;
+		}
+		10%
+		{
+			left:181px;
+			top:247px;
+		}		
+		100%{
+			left:300px;
+			top:-245px;
+		}
+	}
+	
+	
+    -->  
+</style>  
+<script>
+		//需要调用leafinit（）来启动，需要声明外层div，id="container"，还有内层div，id="leafContainer"
+		//参数设置
+		var leafNum = 40;			//落下叶子的数量
+		var kindNum = 5;			//叶子的种类
+		//叶子使用图片地址，数量应与kindNum相同
+		var kindurl = new Array("http://tu.kagirl.net/pic/2020/2020_xue1.png","http://tu.kagirl.net/pic/2020/2020_xue2.png","http://tu.kagirl.net/pic/2020/2020_xue3.png","http://tu.kagirl.net/pic/2020/2020_xue4.png","http://tu.kagirl.net/pic/2020/2020_xue5.png");
+	</script>
+	<script src="js/fleaves.min.js"></script>
+	<link rel="stylesheet" href="js/leavesGeneral.css" type="text/css" media="screen" charset="utf-8">
+		<script>
+		function init()
+		{
+			document.body.style.margin = '0px';
+		    create_base();
+		    read_base();
+		   
+		    add_kawa_icon();
+		    create_music();
+		    
+			setTimeout('showTxt()',3000);
+		}
+
+		function showTxt()
+		{
+			 create_textdiv();
+			 create_modify();
+		}
+		</script>
+</head>  
+<body onLoad = "init();">
+ <script>
+    	words ='天冷了，爱护小动物！没有买卖，就没有杀害！希望朋友们转发，拒绝皮草!';
+        kawa_data = {
+            words 			   : words,
+          <if condition=" $words eq ''">
+				replace_words      : '天冷了，爱护小动物！没有买卖，就没有杀害！希望朋友们转发，拒绝皮草!',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+            text_box           : '230 85 260 150', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+            mode               : 'up',     // up, left
+            speed              : 40,     // 每秒移动的像素
+            text_color         : '#4E372F', // rgb(1,2,3) 'black'
+            font_size          : '20pt',
+            line_height        : '40pt',
+            font_weight        : 'bold',
+            music              : 'http://sound.kagirl.net/sound/xusong.mp3',     // url
+            <if condition=" $music eq ''">
+				replace_music      : 'http://sound.kagirl.net/sound/xusong.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+            music_name         : '',
+            replace_music_name : '#replace_music_name#',
+            icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/fengmian/x2034.jpg',
+            title              : '求传播',
+            desc               : words,
+            modify             : 'no',
+            replace_modify     : 'yes',
+            cardid             : '2034',
+            share_url          : window.location.href,   // 当分享的是微信页面时才需要改这里
+            font_ip            : '115.28.135.41:8000',
+            modify_optfile     : 'lidong',
+            modify_optwords    : '#modify_optwords#',
+            show_words         : 'yes',
+            write_param_1      : 'inputtype=singleline&showsel=no&prompt=' + encodeURIComponent('输入对方的名字：')
+        };
+    </script>	
+    <div id="content">  
+		<div id="bg">
+			<img src="tpl/Wap/default/common/kawahk/2034/2034_2.jpg"/>
+		</div> 
+		<div id="huli">
+			<img src="tpl/Wap/default/common/kawahk/2034/2034_1.jpg"/>
+		</div> 
+		<div id="paopao1">
+			<img src="tpl/Wap/default/common/kawahk/2034/2034_5.png"/>
+		</div> 
+		<div id="paopao2">
+			<img src="tpl/Wap/default/common/kawahk/2034/2034_4.png"/>
+		</div> 		
+		<div id="paopao3">
+			<img src="tpl/Wap/default/common/kawahk/2034/2034_3.png"/>
+		</div> 
+		<div id="yanlei">
+			<img src="tpl/Wap/default/common/kawahk/2034/2034_6.png"/>
+		</div> 
+		<div id="container" style="left:0%;top:0%;z-index:10">
+			<div id="leafContainer"></div>
+		</div>
+
+		<script>
+			leafinit();
+		</script>
+		
+		
+		<div id="container" onclick="clickbg();" style="left:0%;top:0%;">
+			<div id="leafContainer"></div>
+		</div>
+		
+         
+        <div id="relative"></div>  
+        <div id="relative"></div> 
+		
+	</div>
+    </div>  
+</body>  
+</html>  

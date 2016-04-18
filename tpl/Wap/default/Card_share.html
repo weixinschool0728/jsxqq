@@ -1,0 +1,33 @@
+<script type="text/javascript">
+/*var phoneWidth = parseInt(window.screen.width);
+var phoneScale = phoneWidth/520;
+var ua = navigator.userAgent;
+var meta = document.createElement("meta"); 
+	meta.setAttribute("name","viewport");
+
+if (/Android (\d+\.\d+)/.test(ua)){
+	var version = parseFloat(RegExp.$1);
+	// andriod 2.3
+	if(version>2.3){
+		meta.setAttribute("content",'width=520, minimum-scale = '+phoneScale+', maximum-scale = '+phoneScale+', target-densitydpi=device-dpi');
+	// andriod 2.3以上
+	}else{
+		meta.setAttribute("content",'width=520, target-densitydpi=device-dpi');
+	}
+	// 其他系统
+} else {
+	meta.setAttribute("content",'width=520, user-scalable=no, target-densitydpi=device-dpi');
+}
+document.head.appendChild(meta);
+*/
+
+window.shareData = {  
+            "moduleName":"Card",
+            "moduleID":"0",
+            "imgUrl": "", 
+            "sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Card/index',array('token'=>$token))}",
+            "tTitle": "会员卡",
+            "tContent": ""
+};
+</script>
+{weimicms:$shareScript}

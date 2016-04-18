@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="applicable-device" content="mobile">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="{weimicms:$staticPath}/tpl/static/frontpage/css/stylefrontnew.css"  type="text/css" rel="stylesheet"/>
+<link href="{weimicms:$staticPath}/tpl/static/frontpage/css/annimatefront.css"  type="text/css" rel="stylesheet"/>
+<script src="{weimicms:$staticPath}/tpl/static/frontpage/js/jquery-1.7.2.js"></script>
+<script src="{weimicms:$staticPath}/tpl/static/frontpage/js/index.js"></script>
+</head>
+<div class="zhezhao" style="display: none"></div>
+<div class="shear_box" style="display: none">
+    <div class="shear_jiantou"><img src="{weimicms:$staticPath}/tpl/static/frontpage/images/line@2x.png" /></div>
+    <div class="shear_txt">赶紧分享给朋友，带你朋友一起飞</div>
+</div>
+<body class="play_content body_h">
+<header>
+ 
+    <div  class="banner clearfix">
+        <ul  >
+            <li class="clearfix"> <a href="{weimicms:$actioninfo.remind_link}">
+                <div class="banner_img"><img src="{weimicms:$actioninfo.remind_img}"></div>
+                <div class="banner_txt">{weimicms:$actioninfo.remind_word}</div>
+                </a> </li>
+        </ul>
+        <div  ></div>
+    </div>
+    <div class="banner_close"> </div>
+</header>
+<article class="content play">
+    <section class="play_se">
+        <div class="play_box"><img src="{weimicms:$staticPath}/tpl/static/frontpage/images/piantou_03_03.png" />
+            <div class="play_border"><img src="{weimicms:$staticPath}/tpl/static/frontpage/images/piantou1_03.png" />
+                <div class="play_bor" onclick="pausevoice();"><img src="{weimicms:$staticPath}/tpl/static/frontpage/images/bofang1_03.png" />
+                    <div class="play_bor_box">
+                    <div class="play_small"><if condition="$news['frontpage_img'] neq ''"><img src="{weimicms:$news.frontpage_img}" style="width:60px;height:60px;" /><else /><img src="{weimicms:$userinfo['wecha_pic']}" style="width:60px;height:60px;"/></if></div>
+                        <div class="play_gif" id="play"><if condition="$news.per eq 1"><img src="{weimicms:$staticPath}/tpl/static/frontpage/images/123.gif" /><else /><img src="{weimicms:$staticPath}/tpl/static/frontpage/images/2.gif" /></if></div>
+						<div class="play_gif" id="pause" style="display:none;"><if condition="$news.per eq 1"><img src="{weimicms:$staticPath}/tpl/static/frontpage/images/men.jpg" /><div style="position: absolute;  top: 0;  left: 100px;"><img src="{weimicms:$staticPath}/tpl/static/frontpage/images/play.png" style="width: 38px;margin-top:55px;"/></div><else /><img src="{weimicms:$staticPath}/tpl/static/frontpage/images/women.jpg" /><div style="position: absolute;top:0;left:100px;"> <img src="{weimicms:$staticPath}/tpl/static/frontpage/images/play.png"style="width: 38px;margin-top:55px;"/></div></if></div>
+                    </div>
+                    <div class="play_banner clearfix">
+                        <div class="play_banner_img"><img src="{weimicms:$staticPath}/tpl/static/frontpage/images/jiazai_03.png" /></div>
+                        <div class="play_txt" style="overflow: hidden;width: 150px;"><span>{weimicms:$news.news_title}</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="play_bottom"><img src="{weimicms:$staticPath}/tpl/static/frontpage/images/bb_07.png" />本节目由"<span><if condition="$actioninfo['sponsors'] neq ''">{weimicms:$actioninfo.sponsors}<else />{weimicms:$news.frontpage_name}</if></span>"赞助播出</div>
+        </div>
+	<audio id="myaudio" src='{weimicms:$news.voicepath}' oncanplay="playvoice()" onpause="pausevoice()"></audio>
+    </section>
+    <section  class="remind_se">
+	<volist name="other_news" id="vo">
+	<div class="remind clearfix" style="<if condition='$i neq 1'>display:none;</if>"><span class=""><img src="{weimicms:$staticPath}/tpl/static/frontpage/images/piantou_15.png" /></span>
+	   <p onclick="window.location.href='/index.php?g=Wap&m=FrontPage&a&a=playNews&newsid={weimicms:$vo.id}&token={weimicms:$actioninfo.token}&userid={weimicms:$vo.userid}&id={weimicms:$actioninfo.id}'">用户<i>{weimicms:$vo.frontpage_name}</i>上新闻头条了</p>
+	</div>
+	</volist>
+    </section>
+    <section class="button_se">
+        <button class="meto pulse" onClick="location.href='{weimicms::U('FrontPage/index',array('token'=>$actioninfo['token'],'id'=>$actioninfo['id']))}'">	<if condition="$opentype eq 'mynews'">继续上头条<else />我也要上头条</if></button>
+        <button class="shear duration1 pulse ">发给朋友看看</button>
+    </section>
+</article>
+</body>
+</html>
+<script type="text/javascript">
+pausevoice();
+//播放
+function playvoice(){
+	var oAudio = document.getElementById('myaudio');
+	oAudio.play();
+	$("#pause").hide();
+	$("#play").show();
+	$(".play_bor").attr('onclick','pausevoice()');
+}
+//暂停
+function pausevoice(){
+	var oAudio = document.getElementById('myaudio');
+	oAudio.pause();
+	$("#pause").show();
+	$("#play").hide();
+	$(".play_bor").attr('onclick','playvoice()');
+}
+</script>
+<script type="text/javascript">
+window.shareData = {  
+"moduleName":"FrontPage",
+"moduleID":"{weimicms:$actioninfo.id}",
+"imgUrl": "{weimicms:$actioninfo.reply_pic}", 
+"timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U('FrontPage/playNews',array('token'=>$actioninfo['token'],'id'=>$actioninfo['id'],'newsid'=>$news['id']))}",
+"sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('FrontPage/playNews',array('token'=>$actioninfo['token'],'id'=>$actioninfo['id'],'newsid'=>$news['id']))}",
+"weiboLink": "{weimicms:$f_siteUrl}{weimicms::U('FrontPage/playNews',array('token'=>$actioninfo['token'],'id'=>$actioninfo['id'],'newsid'=>$news['id']))}",
+"tTitle": "{weimicms:$actioninfo['custom_sharetitle']|shareFilter}",
+"tContent": "{weimicms:$actioninfo['custom_sharedsc']|shareFilter}",
+"fTitle": "{weimicms:$actioninfo['custom_sharedsc']|shareFilter}",
+"isShareNum":1,
+"ShareNumData":"frontpage_action,id,{weimicms:$actioninfo.id},sharecount",
+};
+</script>
+{weimicms:$shareScript}

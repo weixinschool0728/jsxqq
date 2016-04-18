@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>{weimicms:$projectinfo.projectname} -  {weimicms:$jjrcopyright}</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+   <link rel="stylesheet" type="text/css" href="{weimicms::RES}/jjr/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="{weimicms::RES}/jjr/css/lp-hkb.css" />  
+    <script type="text/javascript" src="{weimicms::RES}/jjr/js/jquery.js"></script>   
+    <script src="{weimicms::RES}/jjr/js/ui.js"></script>  
+    <script src="{weimicms::RES}/jjr/js/lp-hkb.js"></script>  
+    <link rel="stylesheet" href="{weimicms::RES}/jjr/css/photoswipe.css"> 
+<script src="{weimicms::RES}/jjr/js/simple-inheritance.min.js"></script>
+<script src="{weimicms::RES}/jjr/js/code-photoswipe-1.0.11.min.js"></script> 
+</head>
+<body> 
+ 
+<div class="m-kjnav">
+	<span class="f-gbico f-gbico2"></span>
+	<ul class="u-dhlst mt20" style="display:none;">
+		<li>
+			<i class="ico1"></i><a href="/index.php?g=Wap&m=Supplier&a=projectinfo&id={weimicms:$projectinfo.projectid}&token={weimicms:$projectinfo.token}">返回首页</a>
+		</li> 
+        <li>
+			<i class="ico2"></i><a href="/index.php?g=Wap&m=Supplier&a=projectintroduce&id={weimicms:$projectinfo.projectid}&token={weimicms:$projectinfo.token}">楼盘介绍</a>
+		</li>
+        <li>  
+			<i class="ico3"></i><a href="tel:{weimicms:$projectinfo.tel}">电话联系</a>
+		</li> 
+		
+	</ul>
+</div>
+<div id="photo-gallery">
+    <volist name="projectpic" id="vo">
+    	<a href="{weimicms:$vo.picurl}"></a>
+    </volist>
+</div>
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function(){
+        var thumbEls = Code.photoSwipe('a', '#photo-gallery', {loop:true,captionAndToolbarHide:true});
+        Code.PhotoSwipe.Current.show(0);
+    }, false);
+</script>  
+</body>
+</html> 

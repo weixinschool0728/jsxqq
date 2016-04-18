@@ -1,0 +1,203 @@
+
+<html>
+	<head>
+		<title>送给你</title>
+		<meta http-equiv="imagetoolbar" content="no">
+         <include file="Kawahk:js"/> 
+        <script type="text/javascript">
+            initViewport();
+        </script>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+		 <meta name="copyright" content="版权所有，抄袭必究，（告无忧微米）">
+        <meta name="format-detection" content="telephone=no">
+		
+		<style type="text/css">
+            #left,#up{
+                -webkit-transition:-webkit-transform 1.5s ease-in ;
+                -webkit-transform-style:preserve-3d;
+                -webkit-transform-origin:0% 0%;
+            }
+            #right,#down{
+                -webkit-transition:-webkit-transform 1.5s ease-in;
+                -webkit-transform-style:preserve-3d;
+                -webkit-transform-origin:100% 100%;
+            }
+            .page
+            {
+               
+                width: 460px;
+                height:710px;
+            }
+            div
+            {
+                 position:absolute;
+            }
+            #container
+            {
+                -webkit-perspective: 500;
+
+            }
+		</style>
+        <script>
+        cardtext='123456789';
+        wordnum=0;
+        wordlength=7;
+        imgUrl='tpl/Wap/default/common/kawahk/1041/10001_';
+        imgNum=1;
+        function id(name)
+        {
+            return document.getElementById(name);
+        }
+        function Init()
+        {
+            kawa_init();
+            if(pure_card_text!=undefined)
+                cardtext=pure_card_text();
+            else
+                cardtext=words;
+            wordlength=cardtext.length;
+            setImgSrc('up','down');
+            setImgSrc('left','right');
+            setTimeout(wait,1500);
+            
+        }
+        function wait()
+        {
+            setTimeout(second,1500);
+            id('up').style.webkitTransform='rotateX(270deg)';
+            id('down').style.webkitTransform='rotateX(-270deg)';
+
+            id('up').style.webkitBoxShadow='0px 18px 10px rgba(0, 0, 0, 0.57)';
+            id('down').style.webkitBoxShadow='0px -18px 10px rgba(0, 0, 0, 0.57)';
+            id('up').style.zIndex='99';
+            id('down').style.zIndex='99';
+        }
+        function second()
+        {
+            id('up').style.zIndex='99';
+            id('down').style.zIndex='99';
+
+            id('up').style.webkitBoxShadow='';
+            id('down').style.webkitBoxShadow='';
+
+            id('up').style.webkitTransition='-webkit-transform 0.001s ease-in';
+            id('down').style.webkitTransition='-webkit-transform 0.001s';
+            id('up').style.webkitTransform='rotateX(0deg)';
+            id('down').style.webkitTransform='rotateX(0deg)';
+            setImgSrc('up','down');
+
+            id('left').style.webkitBoxShadow='18px 0px 10px rgba(0, 0, 0, 0.57)';
+            id('right').style.webkitBoxShadow='-18px 0px 10px rgba(0, 0, 0, 0.57)';
+
+            id('left').style.webkitTransition='-webkit-transform 1.5s ease-in';
+            id('right').style.webkitTransition='-webkit-transform 1.5s ease-in';
+            id('left').style.webkitTransform='rotateY(-270deg)';
+            id('right').style.webkitTransform='rotateY(270deg)';
+            setTimeout(first,1500)
+
+        }
+        function first()
+        {
+            id('left').style.webkitBoxShadow='';
+            id('right').style.webkitBoxShadow='';
+
+
+            id('up').style.zIndex='101';
+            id('down').style.zIndex='101';
+            id('right').style.webkitTransition='-webkit-transform 0.001s';
+            id('left').style.webkitTransition='-webkit-transform 0.001s';
+            id('right').style.webkitTransform='rotateY(0deg)';
+            id('left').style.webkitTransform='rotateY(0deg)';
+            setImgSrc('left','right');
+
+            id('up').style.webkitBoxShadow='0px 18px 10px rgba(0, 0, 0, 0.57)';
+            id('down').style.webkitBoxShadow='0px -18px 10px rgba(0, 0, 0, 0.57)';
+
+            id('up').style.webkitTransition='-webkit-transform 1.5s ease-in';
+            id('down').style.webkitTransition='-webkit-transform 1.5s ease-in';
+            id('up').style.webkitTransform='rotateX(270deg)';
+            id('down').style.webkitTransform='rotateX(-270deg)';
+            setTimeout(second,1500);
+        }
+        function setImgSrc(name1,name2)
+        {
+            if(imgNum==5)
+                imgNum=1;
+            imgsrc=imgUrl+imgNum+'.jpg';
+            id(name1+'Img').src=imgsrc;
+            id(name2+'Img').src=imgsrc;
+            imgNum++;
+            if(wordnum==wordlength)
+                wordnum=0;
+            id(name1+'word').innerHTML=cardtext.substring(wordnum,wordnum+1);
+            id(name2+'word').innerHTML=cardtext.substring(wordnum,wordnum+1);            
+            wordnum++;
+        }
+        </script>
+	</head>
+	<body style="margin:0;width:500px;height:750px;" onload="Init();">	
+	
+        <script>
+        	words = '愿天下有情人终成眷属';
+
+            kawa_data = {
+                words 			   : words,
+               	 <if condition=" $words eq ''">
+				replace_words      : '愿天下有情人终成眷属',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+                text_box           : '216 497 226 220', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+                mode               : 'up',     // up, left
+                speed              : 40,     // 每秒移动的像素
+                text_color         : '#FFE1A3', // rgb(1,2,3) 'black'
+                font_size          : '20pt',
+                line_height        : '40pt',
+                music              : 'http://sound.kagirl.net/sound/xuehuadekuaile2.mp3',     // url
+              <if condition=" $music eq ''">
+				replace_music      : 'http://sound.kagirl.net/sound/xuehuadekuaile2.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+                music_name         : '',
+                replace_music_name : '#replace_music_name#',
+                icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/fengmian/x1041.jpg',
+                title              : '送给你',
+                desc               : words,
+                modify             : 'no',
+                replace_modify     : 'yes',
+                cardid             : '1041',
+                share_url          : window.location.href,  // 当分享的是微信页面时才需要改这里
+                font_ip            : '121.42.24.240:8000',
+                modify_optfile     : '11',
+                modify_optwords    : '光棍节，我们不孤单',
+                show_words         : 'no',
+            };
+        </script>
+        <div id="container" style='width:500px;height:100%;background-image:url(tpl/Wap/default/common/kawahk/1041/10001_0.jpg);overflow:hidden;background-size:100% 100%;' >
+            <div style='width:460px;height:710px;-webkit-box-shadow: 10px 8px 10px rgba(0, 0, 0, 0.57), 0 5px 10px rgba(0, 0, 0, 0.6) inset;top:20px;left:20px;'>
+                <div  class="page"  >
+                    <div id='left' style='position:absolute;z-index:100;width:230px;height:710px;overflow:hidden;'>
+                        <img id='leftImg' style='position:absolute;left:0px;top:0px;'>
+                        <div id='leftword' style='position:absolute;width:460px;height:710px;font-size:300px;color:white;text-align:center;line-height:700px;font-family:Simhei;font-weight:bold;'></div>
+                    </div>
+                    <div id='right' style='position:absolute;z-index:100;width:230px;height:710px;overflow:hidden;left:230px;'>
+                        <img id='rightImg' style='position:absolute;left:-230px;top:0px;'>
+                        <div id='rightword' style='position:absolute;width:460px;height:710px;left:-230px;font-size:300px;color:white;text-align:center;line-height:700px;font-family:Simhei;font-weight:bold;'></div>
+                    </div>
+                </div>
+                <div class='page'>
+                    <div id='up' style='position:absolute;z-index:101;width:460px;height:355px;overflow:hidden;'>
+                        <img id='upImg' style='position:absolute;left:0px;top:0px;'>
+                        <div id='upword' style='position:absolute;width:460px;height:710px;font-size:300px;color:white;text-align:center;line-height:700px;font-family:Simhei;font-weight:bold;'></div>
+                    </div>
+                    <div id='down' style='position:absolute;z-index:101;width:460px;height:355px;overflow:hidden;top:355px;'>
+                        <img id='downImg' style='position:absolute;top:-355px;left:0px;'>
+                        <div id='downword' style='position:absolute;width:460px;height:710px;top:-355px;font-size:300px;color:white;text-align:center;line-height:700px;font-family:Simhei;font-weight:bold;'></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>

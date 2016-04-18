@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>提现账号 - {weimicms:$jjrcopyright}</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+      <link rel="stylesheet" type="text/css" href="{weimicms::RES}/jjr/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="{weimicms::RES}/jjr/css/hkb.css" /> 
+</head>
+<body> 
+    <div class="all3">
+
+<div class="max-640" id="q-height">
+    <div class="m-pd30">
+        <div class="wbfb pt10">
+            <form action="index.php?g=Wap&m=Supplier&a=account" class="" method="post">
+                <div class="u-iptct mt15 f-w100 ra clearfix">
+                    <span class="fl"><img src="{weimicms::RES}/jjr/images/card2.png" alt=""></span>
+                    <div class="lo-iptct">
+                        <input type="text" name="bank" placeholder="开户行名称" value="{weimicms:$userinfo.bank}">
+                    </div>                      
+                </div>  
+                 <div class="u-iptct mt15 f-w100 ra clearfix">
+                    <span class="fl"><img src="{weimicms::RES}/jjr/images/zh.png" alt=""></span>
+                    <div class="lo-iptct">
+                        <input type="text" name="card_name" placeholder="开户行姓名" value="{weimicms:$userinfo.card_name}">
+                    </div>                      
+                </div>
+                <div class="u-iptct mt15 ra clearfix">
+                    <span class="fl"><img src="{weimicms::RES}/jjr/images/card.png" alt=""></span>
+                    <div class="lo-iptct">
+                        <input type="text" name="card" placeholder="开户行账号" value="{weimicms:$userinfo.card}">
+                    </div>                      
+                </div>     
+                <p class="mt20">
+                    <span class="f-tip">提示</span>
+                </p>
+                <p class="f14 mt5 mb20 pb20">为了您能快速结佣请提供详细的开户行信息，如招商银行台江分行。</p>
+                <button type="submit" id="submitBtn" class="f-loginbtn ysgb tc" style="margin-top:-20px">保存</button>
+            </form>
+        </div>
+    </div>
+</div>
+    </div>
+    
+</body>
+</html> 

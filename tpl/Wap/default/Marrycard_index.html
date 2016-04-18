@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,user-scalable=no, initial-scale=1">
+		<title>{weimicms:$pagetitle}</title>
+		<script type="text/javascript" src="{weimicms::STATICS}/jQuery/jquery-2.0.3.min.js" charset="utf-8"></script>
+		<script type="text/javascript" src="{weimicms::STATICS}/jQuery/jquery.easing-1.3.js" charset="utf-8"></script>
+		<script type="text/javascript" src="{weimicms::RES}/Marrycard/js/jquery.mobile.events.min.js" charset="utf-8"></script>
+		<script type="text/javascript" src="{weimicms::RES}/Marrycard/js/weimicms.sys.js" charset="utf-8"></script>
+		<script type="text/javascript" src="{weimicms::RES}/Marrycard/js/weimicms.marrycard.js" charset="utf-8"></script>
+		<script type="text/javascript" src="{weimicms::RES}/Marrycard/js/weimicms.play.js" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="{weimicms::RES}/Marrycard/css/weimicms.marrycard.css">
+	</head>
+	<body>
+		<div class="cover">
+			<div class="slogan">
+				<div style="background:url({weimicms:$marrycard.thumbpic});" class="head default"></div>
+				<div class="mask"></div>
+			</div>
+		</div>
+		<div class="main weiba-page">
+			<div class="head tpl-head">
+				<div class="head-icon">
+					<div style="background-image:url({weimicms:$marrycard.thumbpic});" class="head-pic default"></div>
+					<div class="head-mask"></div>
+				</div>
+				<div class="role"><span class="groom_name">{weimicms:$marrycard.husband}</span><span class="loveicon"></span><span class="bride_name">{weimicms:$marrycard.wife}</span></div>
+				<div class="music"></div>
+			</div>
+			<div class="content">
+				<div class="video-box tpl-video">
+					<iframe width="100%" height="100%" frameborder="0" allowfullscreen="" src="{weimicms:$marrycard.video}"></iframe>
+				</div>
+				<div class="photo-list tpl-photolist">
+					<volist name="photo" id="photo">
+					<div class="image-item tpl-photo-item">
+						<img src="{weimicms:$photo.img}" class="image-body tpl-photo-body">
+						<div class="bg"></div>
+						<div class="title tpl-photo-title">&nbsp;</div>
+					</div>
+					</volist>
+				</div>
+				<div class="dec-box tpl-dec-box">
+					<div class="dec-title"></div>
+					<div class="icon"></div>
+					<div class="dec-content">
+						{weimicms:$marrycard.contents}
+					</div>
+				</div>
+				<div class="linkbox date tpl-date">
+					<div class="text-box">
+						<div class="text">{weimicms:$marrycard.partytime|date="Y-m-d H:i:s",###}</div>
+					</div>
+					<div class="icon"></div>
+					<div class="label">宴会时间</div>
+				</div>
+				<a class="link-address tpl-address">
+					<div class="linkbox address">
+						<div class="text-box">
+							<div class="text">{weimicms:$marrycard.partyaddress}</div>
+						</div>
+						<div class="icon"></div>
+						<div class="label">宴会地址</div>
+					</div>
+				</a>
+				<a href="tel:{weimicms:$marrycard.tel}" class="link-tel tpl-tel">
+					<div class="linkbox tel">
+						<div class="text">{weimicms:$marrycard.tel}</div>
+						<div class="icon"></div>
+						<div class="label">接待电话</div>
+					</div>
+				</a>
+				<div class="control-box">
+					<div class="button join">我要赴宴</div>
+					<div class="button bless">送上祝福</div>
+					<div class="button forward">转发喜帖</div>
+				</div>
+			</div>
+			<div class="content-bottom"></div>
+			<div class="support">本喜帖由<span><a href="{weimicms:$f_siteUrl}" class="support-link">{weimicms:$f_siteTitle}</a>幸福提供</span></div>
+			<div class="follow">关注微信公众账号<span class="mp">{weimicms:$wxuser.weixin}</span>获取专属喜帖</div>
+		</div>
+		<div class="dialog join">
+			<div class="button close"></div>
+			<div class="dialog-title">我要赴宴</div>
+			<div class="content">
+				<div class="line">
+					<div class="label">姓名</div>
+					<div class="input"><input class="name" style="width:150px" type="text"></div>
+				</div>
+				<div class="line">
+					<div class="label">手机</div>
+					<div class="input"><input class="tel" style="width:180px" type="tel"></div>
+				</div>
+				<div class="line">
+					<div class="label">人数</div>
+					<div class="input"><input class="num" style="width:100px" value="1" type="number"></div>
+				</div>
+				<div class="sumbit button">提交</div>
+			</div>
+		</div>
+		<div class="dialog bless">
+			<div class="button close"></div>
+			<div class="dialog-title">送上祝福</div>
+			<div class="content">
+				<div class="line">
+					<div class="label">姓名</div>
+					<div class="input"><input class="name" style="width:120px" type="text"></div>
+				</div>
+				<div class="line">
+					<div class="label">手机</div>
+					<div class="input"><input class="tel" style="width:180px" type="tel"></div>
+				</div>
+				<textarea class="blesstext" placeholder=""></textarea>
+				<div class="sumbit button">提交</div>
+			</div>
+		</div>
+		<div class="helper forward"></div>
+		<audio src="{weimicms:$marrycard.bgmusic}" class="tpl-music"></audio>
+	</body>
+</html>

@@ -1,0 +1,1224 @@
+
+<!doctype html>
+<html>
+    <head>
+        <title>圣诞快乐</title>
+     <meta http-equiv="imagetoolbar" content="no">
+		 <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	
+        <meta name="format-detection" content="telephone=no">
+       
+	   
+        <script type="text/javascript">
+            initViewport();
+        </script>
+        
+
+        <script src='tpl/Wap/default/common/hcar/kawamovie.js?ver=10'></script>
+        <style type="text/css">
+        body{   
+            -webkit-touch-callout: none; 
+            -webkit-text-size-adjust: none;
+            margin:0 auto;          
+            overflow:hidden;   
+            position:relative;          
+            background:black;
+        }
+        #paper1{
+            position:absolute;
+            -webkit-transition:-webkit-transform 3s ease-in;
+        }
+        #paper2{
+            position:absolute;
+            -webkit-transition:-webkit-transform 3s ease-in;
+        }
+        #card{
+            position:absolute;
+            -webkit-transition:-webkit-transform 1.5s ease-in;
+            -webkit-transform-style:preserve-3d;
+            -webkit-transform-origin:42% 20%;
+        }
+        #card2{
+            position:absolute;
+            -webkit-transition:-webkit-transform 1.5s linear;
+            -webkit-transform-style:preserve-3d;
+            -webkit-transform-origin:42% 20%;
+            /*-webkit-perspective:1000;*/
+        }
+        #kawa_obj_14{
+            position:absolute;
+            -webkit-transition:-webkit-transform 1.5s linear;
+            -webkit-transform-style:preserve-3d;
+            -webkit-transform-origin:10% 50%;
+            /*-webkit-transform-origin:42% 20%;*/
+            /*-webkit-perspective:1000;*/
+        }
+        #kawa_obj_16{
+            position:absolute;
+            -webkit-transition:-webkit-transform 1.5s ease-in;
+            -webkit-transform-style:preserve-3d;
+            -webkit-transform-origin:10% 50%;
+            /*-webkit-transform-origin:42% 20%;*/
+            /*-webkit-perspective:1000;*/
+        }
+        #kawa_obj_18{
+            position:absolute;
+            -webkit-transition:-webkit-transform 1.5s ease-in;
+            -webkit-transform-style:preserve-3d;
+            -webkit-transform-origin:10% 50%;
+            /*-webkit-transform-origin:42% 20%;*/
+            /*-webkit-perspective:1000;*/
+        }
+        @-webkit-keyframes ShowIn
+        {
+            0%{opacity:1;}
+            90%{opacity: 1;}
+            100%{opacity: 0;}
+        } 
+        @-webkit-keyframes BgFade
+        {
+            0%{opacity:1;}
+            100%{opacity:0;}
+        } 
+        </style>
+        <script>
+        function rand(min,max)
+        {
+            return min+Math.floor(Math.random()*(max-min));
+        }
+        function child()
+        { 
+
+            objid('body1').appendChild(shu11);
+            objid('body1').appendChild(shu22);
+            objid('body1').appendChild(shu33);
+            objid('body1').appendChild(shu44);
+            objid('body1').appendChild(shu55);
+            objid('body1').appendChild(star);  
+            objid('body1').appendChild(hezi1);
+            objid('body1').appendChild(hezi2); 
+            objid('body1').appendChild(hezi3);
+            objid('body1').appendChild(hezi4);
+
+            objid('body1').appendChild(shu101);
+            objid('body1').appendChild(shu202);
+            objid('body1').appendChild(shu303);
+            objid('body1').appendChild(shu404);
+            objid('body1').appendChild(shu505);
+              
+            objid('body1').appendChild(light101);   
+            objid('body1').appendChild(light102); 
+            objid('body1').appendChild(light103);
+            //objid('body1').appendChild(light104);  
+            //objid('body1').appendChild(light105); 
+            objid('body1').appendChild(light106); 
+            objid('body1').appendChild(light107); 
+            objid('body1').appendChild(light1);      
+            objid('body1').appendChild(moon3);
+            objid('body1').appendChild(moon1);            
+            objid('body1').appendChild(moon2);
+            objid('body1').appendChild(moon4);
+           
+        }
+        function addsnow()
+        {
+            objid('body1').appendChild(snow);
+        }
+        // function Open1()
+        // {            
+        //     objid('card').style.webkitTransition ='-webkit-transform 3s';
+        //     objid('card').style.webkitTransform ='rotate3d(0.35,-0.21,0,-180deg) ';             
+        // }
+        // function Open2()
+        // {
+        //     objid('paper3').style.webkitTransition ='-webkit-transform 3s';
+        //     objid('paper3').style.webkitTransform ='translate(-120px,-65px) '; 
+        // }
+
+        // function ShowOut()
+        // {
+        //     objid('card').style.visibility = 'hidden';
+        //     objid('paper3').style.visibility = 'hidden';
+            
+        // }
+
+        function Move()
+        {
+            objid('paper1').style.webkitTransform ='translate(-600px,-200px) ';   
+            objid('paper2').style.webkitTransform ='translate(-600px,-200px) ';             
+        }
+
+
+        function run()
+        {
+            create_base();
+            read_base();
+            setTimeout(create_textdiv,5500);
+            add_kawa_icon();
+            create_music();
+            <if condition=" $words eq ''">
+            create_modify();</if>
+
+            child();
+            setTimeout("objid('bg2').style.webkitAnimation='BgFade 3.5s linear forwards';",500);
+            Move(500);
+            //Open1();
+            //setTimeout(Open2,500);
+            //setTimeout(ShowOut,1800);
+            //setTimeout("objid('paper2').style.visibility ='visible'",1800);
+            setTimeout(Tree,2200);
+            setTimeout(Hezi,4500);
+            setTimeout(Moon,7000);
+            setTimeout(Lightning,9000);
+            setTimeout(Fire,10500);
+        }
+
+        </script>
+    </head>
+    <body style='margin:0px' onload='run();'>
+        <script>
+            words = '圣诞节到了，愿“平安”，伴你走过一年中的每一天，愿“快乐”，随你渡过一天中的每一时，愿“甜蜜”，同你走过每一时的每一分，愿“温馨”，和你渡过每一分的每一秒！圣诞快乐！';
+            kawa_data = {
+                words              : words,
+                <if condition=" $words eq ''">
+				replace_words      : '圣诞节到了，愿“平安”，伴你走过一年中的每一天，愿“快乐”，随你渡过一天中的每一时，愿“甜蜜”，同你走过每一时的每一分，愿“温馨”，和你渡过每一分的每一秒！圣诞快乐！',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+                text_box           : '30 20 340 130', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+                mode               : 'up',     // up, left
+                speed              : 50,     // 每秒移动的像素
+                text_color         : 'white', // rgb(1,2,3) 'black'
+                font_size          : '18pt',
+                line_height        : '34pt',
+                music              : 'tpl/Wap/default/common/hcar/sound/shengdan1.mp3',     // url
+                <if condition=" $music eq ''">
+				replace_music      : 'tpl/Wap/default/common/hcar/sound/shengdan1.mp3', 
+				<else/> 
+				 replace_music      : 'tpl/Wap/default/common/hcar/sound/{weimicms:$music}.mp3',</if>
+                music_name         : '',
+                replace_music_name : '#replace_music_name#',
+                icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/hcar/pic/9506/m9506.jpg',
+                title              : '送给你',
+                desc               : words,
+                modify             : 'yes',
+                replace_modify     : 'yes',
+                cardid             : '9506',
+                share_url          : window.location.href, // 当分享的是微信页面时才需要改这里
+                font_ip            : '115.28.135.41:8000',
+                modify_optfile     : 'Xmas',
+                modify_optwords    : '#modify_optwords#',
+                show_words         : 'yes',
+                write_param_1      : 'inputtype=singleline&showsel=no&prompt=' + encodeURIComponent('输入对方的名字：')
+            };    
+        </script>
+
+        <script >
+        kawa_images = {
+            kawahezi1 : { url : 'tpl/Wap/default/common/hcar/pic/9506/20013.png'},
+            kawahezi2 : { url : 'tpl/Wap/default/common/hcar/pic/9506/20012.png'},
+            kawahezi3 : { url : 'tpl/Wap/default/common/hcar/pic/9506/20021.png'},
+            kawahezi4 : { url : 'tpl/Wap/default/common/hcar/pic/9506/20018.png'},
+            kawashu11 : { url : 'tpl/Wap/default/common/hcar/pic/9506/20004.png'},
+            kawashu22 : { url : 'tpl/Wap/default/common/hcar/pic/9506/20002.png'},
+            kawashu33 : { url : 'tpl/Wap/default/common/hcar/pic/9506/20002.png'},
+            kawamoon1 : { url : 'tpl/Wap/default/common/hcar/pic/9506/20009.png'},
+            kawamoon2 : { url : 'tpl/Wap/default/common/hcar/pic/9506/20020.png'},
+            kawamoon3 : { url : 'tpl/Wap/default/common/hcar/pic/9506/20022.png'},
+            kawamoon4 : { url : 'tpl/Wap/default/common/hcar/pic/9506/20016.png'},
+            kawaqiu   : { url : 'tpl/Wap/default/common/hcar/pic/9506/20023.png'},
+            kawastar  : { url : 'tpl/Wap/default/common/hcar/pic/9506/20008.png'},
+            kawalight1: { url : 'tpl/Wap/default/common/hcar/pic/9506/20010.png'},
+            kawalight2: { url : 'tpl/Wap/default/common/hcar/pic/9506/20006.png'},
+            kawalight101:{ url: 'tpl/Wap/default/common/hcar/pic/9506/20007.png'},
+            kawalight102:{ url: 'tpl/Wap/default/common/hcar/pic/9506/20015.png'},
+            kawalight103:{ url: 'tpl/Wap/default/common/hcar/pic/9506/20019.png'},
+            kawalight104:{ url: 'tpl/Wap/default/common/hcar/pic/9506/20026.png'},
+            kawalight105:{ url: 'tpl/Wap/default/common/hcar/pic/9506/20027.png'},
+            kawalight106:{ url: 'tpl/Wap/default/common/hcar/pic/9506/20005.png'},
+            kawalight107:{ url: 'tpl/Wap/default/common/hcar/pic/9506/20003.png'},
+            kawasnow  : { url : 'tpl/Wap/default/common/hcar/pic/9506/20024.png'},
+            kawafirework:{url : 'tpl/Wap/default/common/hcar/pic/9506/20025.png'},
+            kawashu101: { url : 'tpl/Wap/default/common/hcar/pic/9506/2000.png'},
+            kawashu202: { url : 'tpl/Wap/default/common/hcar/pic/9506/20014.png'},
+            kawashu303: { url : 'tpl/Wap/default/common/hcar/pic/9506/2000.png'},
+        };
+
+        hezi1 = new_sprite('kawahezi1','120,287',false); hezi1.style.zIndex = 4;
+        hezi2 = new_sprite('kawahezi2','205,330',false); hezi2.style.zIndex = 4;
+        hezi3 = new_sprite('kawahezi3','280,280',false); hezi3.style.zIndex = 4;
+        hezi4 = new_sprite('kawahezi4','335,275',false); hezi4.style.zIndex = 4;
+
+        shu11 = new_sprite('kawashu11','100,255',false); shu11.style.zIndex = 4;
+        shu22 = new_sprite('kawashu22','25,380',false);  shu22.style.zIndex = 4;
+        shu33 = new_sprite('kawashu33','110,253',false);  shu33.style.zIndex = 4;
+        shu44 = new_sprite('kawashu33','382,447',false);  shu44.style.zIndex = 4;
+        shu55 = new_sprite('kawashu33','277,555',false);  shu55.style.zIndex = 4;
+        shu101 = new_sprite('kawashu101','245,360',false);  shu101.style.zIndex = 4;
+        shu202 = new_sprite('kawashu202','60,360',false);  shu202.style.zIndex = 4;
+        shu303 = new_sprite('kawashu303','130,240',false);  shu303.style.zIndex = 4;
+        shu404 = new_sprite('kawashu303','405,435',false);  shu404.style.zIndex = 4;
+        shu505 = new_sprite('kawashu303','300,540',false);  shu505.style.zIndex = 4;
+        
+        moon2 = new_sprite('kawamoon2','340,-10',false); moon2.style.zIndex = 4; 
+        moon1 = new_sprite('kawamoon1','340,-10',false);  moon1.style.zIndex = 4;
+        moon3 = new_sprite('kawamoon3','270,-35',false);  moon3.style.zIndex = 4; 
+        moon4 = new_sprite('kawamoon4','320,270',false);  moon4.style.zIndex = 4; moon4.style.opacity = 0.4;
+
+        star = new_sprite('kawastar','170,130',false); star.style.zIndex = 4;
+        light1 = new_sprite('kawalight1','190,195',false);  light1.style.zIndex = 4;
+        light2 = new_sprite('kawalight2','30,30',false);  light2.style.zIndex = 4;
+        light101 = new_sprite('kawalight101','245,400',false); light101.style.zIndex = 4;
+        light102 = new_sprite('kawalight102','212.5,350.5',false); light102.style.zIndex = 4;
+        light103 = new_sprite('kawalight103','193.5,310',false); light103.style.zIndex = 4;
+        //light104 = new_sprite('kawalight104','200,290',true); light104.style.zIndex = 4;
+        //light105 = new_sprite('kawalight105','195,200',true); light105.style.zIndex = 3;
+        light106 = new_sprite('kawalight106','195.5,238',false); light106.style.zIndex = 4;
+        light107 = new_sprite('kawalight107','218,198',false); light107.style.zIndex = 4;
+        
+
+        pathhezi1 = 'x0,y0->0.3->x0,y60->0.1->x0,y50->0.1->x0,y60';
+        pathhezi2 = 'x0,y0->0.3->x0,y95->0.1->x0,y85->0.1->x0,y95';
+        pathhezi3 = 'x0,y0->0.3->x0,y80->0.1->x0,y70->0.1->x0,y80';
+        pathhezi4 = 'x0,y0->0.3->x0,y110->0.1->x0,y100->0.1->x0,y110';
+        
+        pathshu1 = 'x0,y0->2->x0,y50';
+
+        pathMoon = 'x0,y0->0.5->x0,y50->0.2->x0,y40';
+        pathmoonshink = 'x0,y100,w1.1,h1.1->2->x0,y100,w1.2,h1.2->2->x0,y100,w1.1,h1.1';
+        
+        pathqiu = 'x0,y0->0.5->x0,y40->0.1->x5,y40->0.1->x0,y40';
+        pathqiu2 = 'x0,y40->0.3->x5,y40->0.3->x0,y40';
+        pathSnow1 = 'x0,y0->4->x30,y260';
+        pathSnow2 = 'x0,y0->4->x60,y450';
+        //pathSnow1 = 'x0,y0->1->x30,y80->1->x15,y160->1->x30,y240';
+        //pathSnow2 = 'x0,y0->1->x40,y100->1->x20,y200->1->x60,y300';
+        
+       
+        actionFadeIn = new_opacity_action(0,1,2,'show','forwards');
+        actionFadeMoon = new_opacity_action(0,0.4,0.2,'show','4 alternate');
+        actionFadeMoon2 = new_opacity_action(0,0.55,3,'show','forwards');
+        actionFadeMoon3 = new_opacity_action(0,1,0.2,'show','4 alternate');
+
+        actionFadeOut = new_opacity_action(1,0,3,'show','forwards');
+
+        actionhezi1 = new_path_action(pathhezi1,'linear forwards');
+        actionhezi2 = new_path_action(pathhezi2,'linear forwards');
+        actionhezi3 = new_path_action(pathhezi3,'linear forwards');
+        actionhezi4 = new_path_action(pathhezi4,'linear forwards');
+
+        //actionshu1 = new_path_action(pathshu1,'linear forwards');
+        actionMoon = new_path_action(pathMoon,'linear forwards');
+        //actionMoonshink = new_path_action(pathmoonshink,'linear infinite');
+
+        actionQiu = new_path_action(pathqiu,'linear forwards');
+        actionQiu2 = new_path_action(pathqiu2,'linear infinite ');
+        actionSnow1 = new_path_action(pathSnow1,'linear infinite');
+        actionSnow2 = new_path_action(pathSnow2,'linear infinite');
+
+        
+        
+        function Tree()
+        {
+            action_at_time(500,shu101,actionFadeIn);
+            //objid('kawa_obj_18').style.background = 'yellow';
+            objid('kawa_obj_18').style.webkitTransition ='-webkit-transform 4s';
+            objid('kawa_obj_18').style.webkitTransform ='rotate3d(0.5,-0.5,0,-180deg) ';
+            action_at_time(1300,shu11,actionFadeIn);
+
+            //objid('card').style.webkitTransform ='rotateY(180deg)';
+
+            action_at_time(500,shu202,actionFadeIn);
+            //objid('kawa_obj_18').style.background = 'yellow';
+            objid('kawa_obj_20').style.webkitTransition ='-webkit-transform 4s';
+            objid('kawa_obj_20').style.webkitTransform ='rotate3d(0.5,-0.5,0,-180deg) ';
+            action_at_time(1300,shu22,actionFadeIn);
+
+            action_at_time(500,shu303,actionFadeIn);
+            //objid('kawa_obj_18').style.background = 'yellow';
+            objid('kawa_obj_22').style.webkitTransition ='-webkit-transform 4s';
+            objid('kawa_obj_22').style.webkitTransform ='rotate3d(0.5,-0.5,0,-180deg) ';
+            action_at_time(1300,shu33,actionFadeIn);
+
+            action_at_time(500,shu404,actionFadeIn);
+            objid('kawa_obj_24').style.webkitTransition ='-webkit-transform 4s';
+            objid('kawa_obj_24').style.webkitTransform ='rotate3d(0.5,-0.5,0,-180deg) ';
+            action_at_time(1300,shu44,actionFadeIn);
+
+            action_at_time(500,shu505,actionFadeIn);
+            objid('kawa_obj_26').style.webkitTransition ='-webkit-transform 4s';
+            objid('kawa_obj_26').style.webkitTransform ='rotate3d(0.5,-0.5,0,-180deg) ';
+            action_at_time(1300,shu55,actionFadeIn);
+        }
+
+        function Hezi()
+        {
+            actionFadeInHe = new_opacity_action(0,1,0.5,'show','forwards');
+            action_at_time(1500,hezi1,actionFadeInHe);
+            action_at_time(1800,hezi1,actionhezi1);
+            action_at_time(1600,hezi2,actionFadeIn);
+            action_at_time(1900,hezi2,actionhezi2);
+            action_at_time(1700,hezi3,actionFadeIn);
+            action_at_time(2000,hezi3,actionhezi3);
+            action_at_time(1800,hezi4,actionFadeIn);
+            action_at_time(2100,hezi4,actionhezi4);        
+            var j = 0;
+            var qiu =[];
+            for(var i=0;i<6;i++)
+            {
+                var a = [214,265,305,242,287,264];
+                var b = [278,255,234,319,292,348];
+                var c = [600,500,700,800,900,1000];
+                
+                qiu[i] = new_sprite('kawaqiu',a[j]+','+b[j],false); qiu[i].style.zIndex = 4;
+                action_at_time(c[j]-100,qiu[i],actionFadeIn);
+                action_at_time(c[j],qiu[i],actionQiu);
+                j++;
+            }
+            // setTimeout(function()
+            // {
+            //     // action_at_time(0,qiu[0],actionQiu2);
+            //     // action_at_time(0,qiu[1],actionQiu2);
+            //     // action_at_time(0,qiu[2],actionQiu2);
+            //     // action_at_time(0,qiu[3],actionQiu2);
+            //     // action_at_time(0,qiu[4],actionQiu2);
+            //     // action_at_time(0,qiu[5],actionQiu2);
+            //     for(var t=0;t<6;t++)
+            //         action_at_time(0,qiu[t],actionQiu2);
+            // },1000);
+        }
+        
+
+        function Moon()
+        {
+            action_at_time(500,moon1,actionFadeMoon3);
+            action_at_time(500,moon2,actionFadeMoon3);
+            action_at_time(500,moon3,actionFadeMoon2);
+            action_at_time(500,moon4,actionFadeMoon);
+            action_at_time(500,moon2,actionMoon);
+            action_at_time(500,moon3,actionMoon);
+            action_at_time(500,moon1,actionMoon);
+            setTimeout("objid('bg2').style.opacity=0;",500);
+            // var sn1 = [30,60,100,140,190,220];
+            // var t1 = [300,700,1100,1500,2000,2500];
+            // for(var i=0;i<6;i++)
+            // {
+            //     snow = new_sprite('kawasnow',sn1[i]+',50',false);snow.style.zIndex=5;
+            //     snow.img.style.width = '12px';
+            //     snow.img.style.height= '25px';
+            //     action_at_time(t1[i]-100,snow,actionFadeIn);
+            //     action_at_time(t1[i],snow,actionSnow1);
+            // }
+            // var sn2 = [250,150,300];
+            // var t2 = [1000,2000,3000];
+            // for(var j=0;j<6;j++)
+            // {
+            //     snow = new_sprite('kawasnow',sn2[j]+',50',false);snow.style.zIndex=5;
+            //     snow.img.style.width = '10px';
+            //     snow.img.style.height= '20px';
+            //     action_at_time(t2[j]-100,snow,actionFadeIn);
+            //     action_at_time(t2[j],snow,actionSnow2);
+            // }
+            var num=0;
+            t=setInterval(function()
+            {
+                {
+                    snow = new_sprite('kawasnow',rand(10,380)+',20',false);snow.style.zIndex=5;
+                    snow.img.style.width = '10px';
+                    snow.img.style.height= '20px';
+                    //objid('snow1').appendChild(snow);
+                    action_at_time(0,snow,actionFadeIn);
+                    action_at_time(0,snow,actionSnow2);
+                }
+                num++;
+                if(num>15) {clearInterval(t);}
+            },500)
+        }
+
+
+        function Lightning()
+        {
+            actionLightIn = new_opacity_action(0,1,0.3,'show','forwards');
+            actionLightOut = new_opacity_action(1,0,0.3,'hide','forwards');
+            actionLightall = new_opacity_action(0,1,1,'show','infinite alternate forwards');
+            action_at_time(0,light101,actionLightIn);
+            action_at_time(200,light101,actionLightOut);
+            action_at_time(200,light102,actionLightIn);
+            action_at_time(300,light102,actionLightOut);
+            action_at_time(300,light103,actionLightIn);
+            action_at_time(400,light103,actionLightOut);
+            //action_at_time(500,light104,actionLightIn);
+            //action_at_time(700,light104,actionLightOut);
+            //action_at_time(800,light105,actionLightIn);
+            //action_at_time(1000,light105,actionLightOut);
+            action_at_time(500,light106,actionLightIn);
+            action_at_time(600,light106,actionLightOut);
+            action_at_time(600,light107,actionLightIn);
+            action_at_time(700,light107,actionLightOut);
+            action_at_time(700,star,actionLightIn);
+            action_at_time(700,light1,actionLightall);
+
+            action_at_time(700,light2,actionLightIn);
+        }
+
+        function Fire()
+        {
+            var fa = [265,270,275,263,260];
+            var fb = [190,195,200,205,210];
+            var ft = [500,1000,2300,3500,4000];
+            var fx = [-30,-40,-50,-60,-20];
+            var ftt = [700,1700,2500,3200,4300];
+            for (var i=0;i<5;i++)
+            {
+                firework = new_sprite('kawafirework',fa[i]+','+fb[i],false);  firework.style.zIndex = 3;
+                pathfirework1 = 'x0,y0,w0.8,h0.8->0.3->x20,y'+fx[i]+',w0.8,h0.8->1.5->x90,y'+(50+10*i)+',w0.2,h0.2';
+                actionFirework1 = new_path_action(pathfirework1,'linear infinite');
+                action_at_time(ft[i]-500,firework,actionFadeIn);
+                action_at_time(ft[i],firework,actionFirework1);
+            }
+
+            for (var j=0;j<5;j++)
+            {
+                firework = new_sprite('kawafirework',fa[j]+','+fb[j],false);  firework.style.zIndex = 3;
+                pathfirework2 = 'x0,y0,w0.8,h0.8->0.3->x-20,y'+fx[j]+',w0.8,h0.8->1.5->x-80,y'+(50+10*j)+',w0.2,h0.2';
+                actionFirework2 = new_path_action(pathfirework2,'linear infinite');
+                action_at_time(ftt[j]-500,firework,actionFadeIn);
+                action_at_time(ftt[j],firework,actionFirework2);
+            }
+            
+        }
+
+
+        </script>
+
+        <div id='body1' style='width:500px;height:750px;position:absolute;overflow:hidden;'>
+            <img id ='bg1' src='tpl\Wap\default\common\hcar\pic\9506\2000.jpg' style='position:absolute;width:500px;height:750px;'/>
+            <img id ='bg2' src='tpl\Wap\default\common\hcar\pic\9506\20001.jpg' style='position:absolute;width:500px;height:760px;'/>
+         <div id='paper1' style='position:absolute;left:694px;top:554px;z-index:2'>
+            <img  src="tpl\Wap\default\common\hcar\pic\9506\20001.png" />
+         </div>
+         <div id='paper2' style='position:absolute;left:502px;top:431px;z-index:1;'>
+             <img  src="tpl\Wap\default\common\hcar\pic\9506\20011.png" />
+         </div>
+<!--    <div id='paper1' style='position:absolute;left:94px;top:254px;z-index:2'>
+            <img  src="/pic/1045/paper1.png" />
+         </div>
+         <div id='paper2' style='position:absolute;left:-98px;top:231px;z-index:1;visibility:hidden'>
+             <img  src="/pic/1045/paper2.png" />
+         </div>
+         <div id='card' style='position:absolute;left:97px;top:350px;z-index:3;'>
+             <img  src="/pic/1045/bg55.png" />
+         </div>
+         <div id='paper3' style='position:absolute;left:90px;top:350px;z-index:1;opacity:0.2'>
+             <img  src="/pic/1045/paper3.png" />
+         </div> -->
+        
+        </div>
+
+
+            
+    </body>
+	<script>
+note_id = 0;
+win_height = 0;
+music_player = null;
+pop_up_note_mode = true;
+
+text_prepared = false;
+font_img = null;
+
+// pure_card_text
+
+// ---------------------------------------------------------------------
+// sdk
+
+function add_keyframes(name, cssbody)
+{
+    csstext = '@-webkit-keyframes ' + name + '{' + cssbody + '}';
+
+    style = document.createElement('style');
+    document.head.appendChild(style);
+    sheet = style.sheet;
+    sheet.insertRule(csstext, 0);
+}
+
+function create_imgdiv(url, idname, visible, x, y)
+{
+    imgdiv = document.createElement('div');
+}
+
+function objid(idname)
+{
+    return document.getElementById(idname);
+}
+
+function _kv(value)
+{
+    if(typeof(value) == 'undefined')
+    {
+        return false;
+    }
+
+    if(value == '')
+    {
+        return false;
+    }
+
+    if(value.charAt(0) == '#')
+    {
+        return false;
+    }
+
+    return true;
+}
+
+function _v(keyname)
+{
+    if(typeof(kawa_data[keyname]) == 'undefined')
+    {
+        return '';
+    }
+
+    return kawa_data[keyname];
+}
+
+// ---------------------------------------------------------------------
+// text
+
+function kawa_init_async()
+{
+    read_base();
+    create_textdiv();
+    add_kawa_icon();
+    create_music();
+    create_modify();
+
+}
+
+function kawa_init()
+{
+    document.body.style.margin = '0px';
+    create_base();
+    setTimeout("kawa_init_async()", 100);
+ }
+
+function is_show_words()
+{
+    if(typeof(kawa_data.show_words) == 'undefined')
+    {
+        return true;
+    }
+
+    if(kawa_data.show_words != 'no')
+    {
+        return true;
+    }
+
+    return false;
+}
+
+function read_base()
+{
+    win_height = objid('basepoint').offsetTop;
+}
+
+function create_base()
+{
+    div = document.createElement('div');
+    div.style.position = 'fixed';
+    div.style.bottom = '0px';
+    div.style.width = '1px';
+    div.style.height = '1px';
+    div.style.left = '-100px';
+    div.id = 'basepoint';
+    document.body.appendChild(div);
+}
+
+function make_text_animation()
+{
+    //if(!is_show_words())
+    //    return;
+
+    var mask = objid('textmask');
+    var textdiv = objid('textdiv');
+
+    if(kawa_data.mode == 'up')
+    {
+        var keycss = 'from{-webkit-transform:translate(0px, ' + mask.offsetHeight + 'px);}' +
+                 'to{-webkit-transform:translate(0px, -' + textdiv.offsetHeight + 'px);}' 
+
+        add_keyframes('textdivani', keycss);
+
+        var dt = (mask.offsetHeight + textdiv.offsetHeight) / kawa_data.speed;
+
+        textdiv.style.webkitAnimation = 'textdivani ' + dt + 's linear infinite';
+    }
+    else if(kawa_data.mode == 'left')
+    {
+        var keycss = 'from{-webkit-transform:translate(' + mask.offsetWidth + 'px, 0px);}' +
+                 'to{-webkit-transform:translate(-' + textdiv.offsetWidth + 'px, 0px);}' 
+
+        add_keyframes('textdivani', keycss);
+
+        var dt = (mask.offsetWidth + textdiv.offsetWidth) / kawa_data.speed;
+
+        textdiv.style.webkitAnimation = 'textdivani ' + dt + 's linear infinite';
+    }
+    else if (kawa_data.mode == 'print')
+    {
+        onPrint();
+        setTimeout("onPrintAni()", 1500);
+    }
+}
+function onPrint()
+{
+    objid('textdiv').style.top = objid('textmask').offsetHeight;
+    gPrText          = card_text();
+    gOrgCardText       = card_text();
+
+}
+
+function onPrintAni()
+{
+    pushText = '';
+    
+    var reachEnd = 0;
+    
+    if(gPrText.length <1)
+    {
+        reachEnd = 1;
+    }
+    
+    var cutlen = 0;
+
+    if(gPrText.length >= 4 && gPrText.substring(0, 4) == '<br>')
+    {
+        gPrText  = gPrText .substring(4);
+        pushText = '<br>';
+        cutlen = 4;
+    }
+    else if(gPrText.substring(0, 2) == '/:')
+    {
+        result = ConvFaceOnBegin(gPrText );
+        cutlen = result[1];
+        if(cutlen > 0)
+        {
+            gPrText  = gPrText .substring(cutlen);
+            pushText = result[0];
+        }
+    }
+    
+    if(cutlen == 0 && gPrText.length >= 1)
+    {
+        pushText   = gPrText.substring(0, 1);
+        gPrText  = gPrText.substring(1);
+    }
+
+    objid('textdiv').innerHTML = objid('textdiv').innerHTML + pushText;
+    //alert(objid('textmask').offsetHeight);
+    if((objid('textdiv').offsetTop + objid('textdiv').offsetHeight)> objid('textmask').offsetHeight)
+    {
+        trans = objid('textmask').offsetHeight - objid('textdiv').offsetHeight;
+        objid('textdiv').style.top = trans+ 'px';
+        //alert(objid('textdiv').style.top);
+    }
+
+    if(reachEnd == 1)
+    {
+        //setTimeout("", 2000); 
+        
+        setTimeout("pauseShow()",2000);
+        
+    }
+    else
+    {
+        var gSpeed = kawa_data.speed;
+        setTimeout("onPrintAni()", gSpeed);
+    }
+}
+function pauseShow()
+{
+    reachEnd=0;
+    trans = 0;
+    objid('textdiv').style.top =trans+'px';
+    gPrText              = gOrgCardText;
+    objid('textdiv').innerHTML = "";
+    setTimeout("onPrintAni()",1000);
+}
+function show_textdiv()
+{
+        var box = kawa_data.text_box.split(' ');
+
+        var mask = document.createElement('div');
+        mask.id = 'textmask';
+        mask.style.position = 'absolute';
+        mask.style.left     = box[0] + 'px';
+        mask.style.top      = box[1] + 'px';
+        mask.style.width    = box[2] + 'px';
+        mask.style.height   = box[3] + 'px';
+        mask.style.overflow = 'hidden';
+
+        var textdiv = document.createElement('div');
+        textdiv.id = 'textdiv';
+        textdiv.style.position = 'absolute';
+        textdiv.style.color = kawa_data.text_color;
+        textdiv.style.fontSize  = kawa_data.font_size;
+        textdiv.style.lineHeight = kawa_data.line_height;
+		textdiv.style.fontWeight = '600';		
+		textdiv.style.fontFamily = '微软雅黑';
+        textdiv.style.zIndex = 50000;
+
+        if(_kv(kawa_data.text_align))
+        {
+            textdiv.style.textAlign = kawa_data.text_align;
+        }
+
+        if(_kv(kawa_data.font_weight))
+        {
+            textdiv.style.fontWeight = kawa_data.font_weight;
+        }
+
+        if(kawa_data.mode == 'left')
+        {
+            textdiv.style.float = 'left';
+        }
+
+        document.body.appendChild(mask);    
+        mask.appendChild(textdiv);
+
+        set_up_words();
+}
+
+function create_textdiv()
+{
+    if(is_show_words())
+    {
+        show_textdiv();
+    }
+}
+
+function set_up_words()
+{
+    if(_kv(kawa_data.font_family))
+    {
+        var text = pure_card_text();
+
+        if(kawa_data.mode == 'up')
+        {
+            text = wrap_text(text);
+        }
+
+        var font_ip = 'aliyun7.kagirl.cn:8000';
+
+        if(_kv(kawa_data.font_ip))
+        {
+            font_ip = kawa_data.font_ip;
+        }
+
+        var re_d = /^\d+/;
+        var font_size = parseFloat(re_d.exec(kawa_data.font_size)[0]);
+        var line_height = parseFloat(re_d.exec(kawa_data.line_height)[0]);
+        var gap = line_height - font_size;
+
+        var box = kawa_data.text_box.split(' ');
+
+        var color = kawa_data.text_color.substring(1);
+
+        var url = "http://" + font_ip + "/fontimg?words=" + encodeURIComponent(text) + "&fontname=" + 
+            kawa_data.font_family + "&fontsize=" + font_size + "&gap=" + gap + "&width=" + box[2] + 
+            "&color=" + color;
+
+        font_img = document.createElement('Img');
+        font_img.onload = on_font_img_load;
+        font_img.src = url;
+        setTimeout('on_check_font_img()', 1000);
+    }
+    else
+    {
+        textdiv = objid('textdiv');
+        if (kawa_data.mode=='print')
+            textdiv.innerHTML = '';
+        else
+            textdiv.innerHTML = card_text();
+        make_text_animation();
+    }
+}
+
+function on_font_img_load()
+{
+    if(!text_prepared)
+    {
+        text_prepared = true;
+        var textdiv = objid('textdiv');
+        textdiv.appendChild(font_img);
+        make_text_animation();
+    }
+}
+
+function on_check_font_img()
+{
+    if(!text_prepared)
+    {
+        var textdiv = objid('textdiv');
+        text_prepared = true;
+        textdiv.innerHTML = card_text();
+        make_text_animation();
+    }
+}
+
+function pure_card_text()
+{
+    text = kawa_data.words;
+
+    if(kawa_data.replace_words != '#replace_words#')
+    {
+        text = kawa_data.replace_words;
+    }
+
+    return text;
+}
+
+function card_text()
+{
+    text = pure_card_text();
+
+    if((kawa_data.mode == 'up')||(kawa_data.mode == 'print'))
+    {
+        text = wrap_text(text);
+    }
+    else if(kawa_data.mode == 'left')
+    {
+        text = '<nobr>' + text + '</nobr>';
+    }
+
+    return text;
+}
+
+function wrap_text(in_text)
+{
+    text = in_text.replace(/,/g, ',<br>');
+    text = text.replace(/，/g, '，<br>');
+    text = text.replace(/\./g, '.<br>');
+    text = text.replace(/。/g, '。<br>');
+    text = text.replace(/;/g, ';<br>');
+    text = text.replace(/；/g, '；<br>');
+    text = text.replace(/!/g, '!<br>');
+    text = text.replace(/！/g, '！<br>');
+    text = text.replace(/～/g, '～<br>');
+    text = text.replace(/：/g, '：<br>');
+    text = text.replace(/:/g, ':<br>');
+    return text;
+}
+
+// ---------------------------------------------------------------------
+// kawa icon
+
+function add_kawa_icon()
+{
+    url = 'http://tu.kagirl.net/pic/kawa1.gif';
+
+    div = document.createElement('div');
+    img = document.createElement('img');
+    img.src = url;
+    div.appendChild(img);
+
+    div.style.position = 'fixed';
+    div.style.top = (win_height - 150) + 'px';
+    //div.style.top = (700 - 20) + 'px';
+    div.style.right = '10px';
+    div.style.zIndex = '30000';
+    //div.style.left = '10px';
+    //alert('kawa');
+    div.onclick = goto_kawa;
+
+    document.body.appendChild(div);
+}
+
+function goto_kawa()
+{
+    location.href = '{weimicms:$fxlj}';
+}
+
+// ---------------------------------------------------------------------
+// kawa music
+
+
+function switchsound()
+{
+    au = music_player
+    ai = objid('sound_image');
+    if(au.paused)
+    {
+        au.play();
+        ai.src = "http://tu.kagirl.net/pic/music_note_big.png";
+        pop_up_note_mode = true;
+        popup_note();
+        objid("music_txt").innerHTML = "打开";
+        objid("music_txt").style.visibility = "visible";
+        setTimeout(function(){objid("music_txt").style.visibility="hidden"}, 2500);
+    }
+    else
+    {
+        pop_up_note_mode = false;
+        au.pause();
+        ai.src = "http://tu.kagirl.net/pic/music_note_big.png";
+        objid("music_txt").innerHTML = "关闭";
+        objid("music_txt").style.visibility = "visible";
+        setTimeout(function(){objid("music_txt").style.visibility="hidden"}, 2500);
+    }
+}
+
+function create_music()
+{
+    music = kawa_data.music;
+
+    if(kawa_data.replace_music != '#replace_music#')
+    {
+        music = kawa_data.replace_music;
+    }
+
+    music_player = document.createElement('audio');
+    music_player.src = music;
+    music_player.loop = 'loop';
+    music_player.play();
+
+    sound_div = document.createElement("div");
+    sound_div.setAttribute("ID", "cardsound");
+    sound_div.style.cssText = "position:fixed;right:20px;top:40px;z-index:50000;visibility:visible;";
+    sound_div.onclick = switchsound;
+    bg_htm = "<img id='sound_image' src='http://tu.kagirl.net/pic/music_note_big.png'>";
+    box_htm = "<div id='note_box' style='height:100px;width:44px;position:absolute;left:0px;top:-80px'></div>";
+    txt_htm = "<div id='music_txt' style='color:white;position:absolute;left:-40px;top:30px;width:60px'></div>"
+    sound_div.innerHTML = bg_htm + box_htm + txt_htm;
+    document.body.appendChild(sound_div);
+    setTimeout("popup_note()", 100);
+}   
+
+function on_pop_note_end(event)
+{
+    note = event.target;
+    
+    if(note.parentNode == objid("note_box"))
+    {
+        objid("note_box").removeChild(note);
+    }
+}
+
+function popup_note()
+{
+    box = objid("note_box");
+    
+    note = document.createElement("span");
+    note.style.cssText = "visibility:visible;position:absolute;background-image:url('http://tu.kagirl.net/pic/music_note_small.png');width:15px;height:25px";
+    note.style.left = Math.random() * 20 + 20;
+    note.style.top = "75px";
+    this_node = "music_note_" + note_id;
+    note.setAttribute("ID", this_node);
+    note_id += 1;
+    scale = Math.random() * 0.4 + 0.4;
+    note.style.webkitTransform = "rotate(" + Math.floor(360 * Math.random()) + "deg) scale(" + scale + "," + scale + ")";
+    note.style.webkitTransition = "top 2s ease-in, opacity 2s ease-in, left 2s ease-in";
+    note.addEventListener("webkitTransitionEnd", on_pop_note_end);
+    box.appendChild(note);
+
+    setTimeout("document.getElementById('" + this_node + "').style.left = '0px';", 100);
+    setTimeout("document.getElementById('" + this_node + "').style.top = '0px';", 100);
+    setTimeout("document.getElementById('" + this_node + "').style.opacity = '0';", 100);
+    
+    if(pop_up_note_mode)
+    {
+        setTimeout("popup_note()", 600);
+    }   
+}
+
+// ---------------------------------------------------------------------
+// weixin
+
+function get_host()
+{
+    if(location.href.indexOf('jielanhua') != -1)
+    {
+        return 'hg.jielanhua.cn';
+    }
+
+    // n = Math.floor(Math.random() * 30 + 1);
+    // return 'cd' + n + '.nightsun-led.cn';
+
+    n = Math.floor(Math.random() * 50 + 1);
+    return 'cd' + n + '.naturalgift.cc';
+}
+
+function share_url()
+{
+    if(_v('use_share_url') == 'yes' && _kv(kawa_data.share_url))
+    {
+        //if(kawa_data.modify == 'yes' || kawa_data.replace_modify == 'yes')
+        {
+            return kawa_data.share_url;
+        }
+    }
+
+    /*
+    if(_v('short_url') != '')
+    {
+        if(kawa_data.replace_words == '#replace_words#')
+        {
+            return _v('short_url'); 
+        }
+
+        if(kawa_data.replace_words == kawa_data.words)
+        {
+            return _v('short_url'); 
+        }
+    }
+    */
+    
+    url = 'http://' + get_host() + '/kawa/show.php'
+    url = url + '?cardid=' + kawa_data.cardid;
+
+    encoded_words = encodeURIComponent(pure_card_text());
+    url = url + '&words=' + encoded_words;
+
+    if(kawa_data.replace_music_name != '#replace_music_name#')
+    {
+        url = url + '&music=' + kawa_data.replace_music_name;
+    }
+
+    return url;
+}
+
+function share_data()
+{
+    var desc = '';
+
+    if(_v('user_desc') != '')
+    {
+        desc = _v('user_desc');
+    }
+    else
+    {
+        desc = kawa_data.desc;
+
+        if(kawa_data.replace_words != '#replace_words#')
+        {
+            desc = kawa_data.replace_words;
+        }        
+    }
+
+    return{
+        'img_url'    : kawa_data.icon,
+        'img_width'  : '640',
+        'img_height' : '640',
+        'link'       : window.location.href,
+        'desc'       : desc,
+        'title'      : kawa_data.title
+    }
+}
+
+function share_data_timeline()
+{
+    var desc = '';
+
+    if(_v('user_desc') != '')
+    {
+        desc = _v('user_desc');
+    }
+    else
+    {
+        desc = kawa_data.desc;
+
+        if(kawa_data.replace_words != '#replace_words#')
+        {
+            desc = kawa_data.replace_words;
+        }        
+    }
+
+    return{
+        'img_url'    : kawa_data.icon,
+        'img_width'  : '640',
+        'img_height' : '640',
+        'link'       : window.location.href,
+        'desc'       : desc,
+        'title'      : desc
+    }
+}
+
+function on_weixin_reply(res)
+{
+    switch(res.err_msg)
+    {
+        case "share_timeline:confirm":
+        case "share_timeline:ok":
+        case "send_app_msg:confirm":
+        case "send_app_msg:ok":
+            location.href = '{weimicms:$fxlj}';
+            break;
+    }
+}
+
+function on_weixin_ready()
+{
+        WeixinJSBridge.on('menu:share:appmessage', function(argv){
+            WeixinJSBridge.invoke('sendAppMessage', share_data(), on_weixin_reply);
+        });
+
+        WeixinJSBridge.on('menu:share:timeline', function(argv){
+            WeixinJSBridge.invoke('shareTimeline', share_data_timeline(), on_weixin_reply);
+        });
+
+}
+
+document.addEventListener('WeixinJSBridgeReady', on_weixin_ready, false);
+
+// ---------------------------------------------------------------------
+// modify
+
+function on_modify_click()
+{
+    url = "/index.php?g=Wap&m=Hcar&a=hcar_make1&token={weimicms:$token}&id={weimicms:$id}&cardid={weimicms:$cardid}";	
+   location.href = url;
+
+    if(kawa_data.modify_optwords != '#modify_optwords#')
+    {
+        url = url + '&optwords=' + encodeURIComponent(kawa_data.modify_optwords);
+    }
+
+    if(typeof(kawa_data.write_param) != 'undefined' && kawa_data.write_param != '')
+    {
+        url = url + '&' + kawa_data.write_param;
+    }
+
+    location.href = url;
+}
+<if condition="$words eq ''">
+function create_modify()
+{ 
+  
+    {
+        div = document.createElement('div');
+        img = document.createElement('img');
+        img.src = 'tpl/Wap/default/common/hcar/dingzhi.png';
+        div.style.position = 'fixed';
+        div.style.left = '0px';
+        div.style.top = '0px';
+        div.style.height = '80px';
+        div.style.textAlign = 'center';
+        div.style.zIndex = '10000';
+        div.style.backgroundColor = 'black';
+        div.style.opacity = 0.6;
+        div.style.width = '100%';
+        img.style.width = '60%';
+        img.style.top = '-5px';
+        img.style.position = 'absolute';
+        img.style.left = '95px';
+        img.style.zIndex = '10001';
+        img.onclick = on_modify_click;
+        document.body.appendChild(div);
+        document.body.appendChild(img);
+    }
+}
+</if>
+</script>
+</html>

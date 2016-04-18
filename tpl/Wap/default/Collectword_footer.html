@@ -1,0 +1,183 @@
+
+    <footer class="footer">
+        <div class="oBtn">
+        	<?php if(ACTION_NAME == 'index'): ?>
+	        	<?php if($shareCount && empty($share_key)): ?>
+	            <a href="{weimicms::U('Collectword/share', array('token'=>$token, 'id'=>$_GET['id'], 'key'=>$user['share_key']))}">
+	                	 查看谁帮了我
+	            </a>
+	            <?php endif;?>
+            
+		       <?php if($is_over == 2): ?>
+		            <a href="javascript:;">
+		            	已结束        
+		            </a>  
+		        <?php else: ?>
+			        <?php if(empty($share_key) && $my['is_join']): ?>
+		            <a href="javascript:;" onclick="showWindow('.w4')">
+			            	帮{weimicms:$TA}增加集字机会          
+		            </a>  
+			        <?php endif; ?>   
+			        <?php if($share_key && empty($user['is_prize'])): ?>
+		            <a href="javascript:;" onclick="showWindow('.w4')">
+			            	帮{weimicms:$TA}增加集字机会          
+		            </a>  
+			        <?php endif; ?>  
+		        <?php endif; ?>
+	            
+	            <?php if($share_key) :?>
+	            	<?php if($my['is_join']): ?>
+	            		<a href="{weimicms::U('Collectword/index', array('token'=>$token, 'id'=>$_GET['id']))}">返回我的</a>
+	            	<?php else :?>
+	            		<?php if($is_over != 2): ?>
+	            		<a href="javascript:;" class="in" >我要参与</a>
+	            		<?php endif; ?>
+	            	<?php endif;?>
+	            <?php endif; ?>
+            <?php else: ?>            
+	            <a href="{weimicms::U('Collectword/index', array('token'=>$token, 'id'=>$_GET['id']))}">
+	                	返回首页
+	            </a>
+            <?php endif; ?>
+        </div>   
+    </footer>
+    
+    <div class="fullBg"></div>   
+    <div class="window w4">
+        <div class="share">
+            <h3>
+	            	帮{weimicms:$TA}增加集字机会
+            </h3>
+            <div class="prizePic ro2">
+				<p style="color:#fff;font-size:14px;">点击右上角，分享给好友帮{weimicms:$TA}增加集字机会</p>
+            </div>
+            <div class="shareLine"></div>
+        </div>
+    </div>
+    <div class="window w3">
+        <div class="prize">
+            <div class="title"></div>
+            <div class="info">
+                <div class="textp">
+                    <p>您集到了“<em><?php echo implode('', $info['word']); ?></em>”获得{weimicms:$prize_list[0]['title']}</p>
+                </div>
+                <div class="prizePic ro2">
+                   <img src="{weimicms:$prize_list[0]['imgurl']}"/>
+                </div>
+                <div class="towBtn">
+                    
+                </div>
+				<p style="text-align:center;margin-top:10px;color:#eee">点击右上角，分享给好友</p>
+            </div>
+            <div class="roundLight"></div>
+        </div>
+    </div>
+    <div class="window w1">
+        <div class="windowThis">
+            <div class="succeed">
+                <div class="top">
+                    <div class="userAvatar">
+                        <img src="<?php if($user['portrait']!=''){echo $user['portrait'];}else{?>{weimicms:$staticPath}/tpl/static/collectword/images/portrait.jpg<?php }?>">
+                    </div>
+                    <div class="succeedTitle">
+                        <div class="sCenter">
+                            <em>{weimicms:$user['wechaname']}</em>
+                        </div>
+                    </div>
+                </div>
+                <p>感谢您为TA增加{weimicms:$info['help_count']}次集字机会</p>
+            </div>
+        </div>
+    </div>
+    <div class="window w0">
+        <div class="windowThis">
+            <div class="bd">
+                <div class="adMargin">
+                    <div class="row">
+                        <div class="putBorder">
+                            <i></i><input type="text" name="tel" onfocus="this.value = ''; this.style.color = '#ff6d81';" onblur="if (!value) { value = defaultValue; this.style.color = '#ff6d81'; }" value="手机号">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="putBorder">
+                            <a href="javascript:;" class="getCode">获取验证码</a> <i></i><input type="text" name="code" onfocus="this.value = ''; this.style.color = '#ff6d81';" onblur="if (!value) { value = defaultValue; this.style.color = '#ff6d81'; }" value="验证码">
+                        </div>
+                    </div>
+                    <div class="row">
+                       <button id="telyzbut">确定</button>
+                    </div>
+                </div>
+                <a href="javascript:;" class="oClosed"></a>
+            </div>
+        </div>
+    </div>
+    <params 
+    		url="{weimicms::U('Collectword/ajaxPrize',array('token'=>$token,'id'=>$info['id']))}"
+    		date="<?php echo date('m/d/Y H:i:s', $info['end'])?>"
+    		url-sms="{weimicms::U('Collectword/sms',array('token'=>$token,'id'=>$info['id']))}"
+    		url-smsyz="{weimicms::U('Collectword/smsyz',array('token'=>$token,'id'=>$info['id']))}"
+    		url-smsyz-success="{weimicms::U('Collectword/index',array('token'=>$token,'id'=>$info['id']))}"
+    		url-join="{weimicms::U('Collectword/index',array('token'=>$token,'id'=>$info['id']))}"
+    		wecha_id="{weimicms:$wecha_id}"
+    		token="{weimicms:$token ? $token : 0}"
+    		id="{weimicms:$info['id'] ? $info['id'] : 0}"
+    		is-sms="{weimicms:$info['is_sms']}"
+    		tel="{weimicms:$my['tel']}"
+    		prize_fxtitle="{weimicms:$info['prize_fxtitle']}"
+    		prize_fxinfo="{weimicms:$info['prize_fxinfo']}"
+    		fxtitle_d="{weimicms:$info['fxtitle_d']}"
+    		fxinfo_d="{weimicms:$info['fxinfo_d']}"
+    />
+<?php if($my['is_prize']): ?>
+	{weimicms::WechatShare::getShareData(array(
+			'tTitle'=>  $info['prize_fxtitle'],	  //标题
+			'tContent'=> $info['prize_fxinfo'],  //简介
+			'fTitle'=> $info['prize_fxinfo'],	  //简介
+			'imgUrl'=>$info['reply_pic'], //图片地址
+			'moduleID'=>$info['id'],  // id 如果为空 则等于 0
+			'moduleName' => 'Collectword',
+			'sendFriendLink'=>$f_siteUrl.U('Collectword/index',array('token'=>$token,'id'=>$info['id'],'share_key'=>$share_key ? $share_key : $user['share_key']))
+			// 为空则使用当前的URL 如果当前URL包含wecha_id 则会把 wecha_id去掉
+	))}
+<?php else: ?>
+	<?php if(($memberNotice == '' || $share_key != '' || $my['is_join']) && $is_over == 0): ?>
+	{weimicms::WechatShare::getShareData(array(
+			'tTitle'=> ($share_key) ? '我正在帮“'.$user['wechaname'].'”增加集字次数，快来帮我吧！' : $info['fxtitle'],	  //标题
+			'tContent'=>($share_key) ? '我正在帮“'.$user['wechaname'].'”增加集字次数，快来帮我吧！' : $info['fxinfo'],  //简介
+			'fTitle'=>($share_key) ? '我正在帮“'.$user['wechaname'].'”增加集字次数，快来帮我吧！' : $info['fxinfo'],	  //简介
+			'imgUrl'=>$info['reply_pic'], //图片地址
+			'moduleID'=>$info['id'],  // id 如果为空 则等于 0
+			'moduleName' => 'Collectword',
+			'sendFriendLink'=>$f_siteUrl.U('Collectword/index',array('token'=>$token,'id'=>$info['id'],'share_key'=>$share_key ? $share_key : $user['share_key']))
+			// 为空则使用当前的URL 如果当前URL包含wecha_id 则会把 wecha_id去掉
+	))}
+	<?php else: ?>
+	{weimicms::WechatShare::getShareData(array(
+			'tTitle'=>$info['title'],	  //标题
+			'tContent'=>$info['intro'],	  //简介
+			'fTitle'=>$info['intro'],	  //简介
+			'imgUrl'=>$info['reply_pic'],  //图片地址
+			'moduleID'=>$info['id'],  // id 如果为空 则等于 0
+			'moduleName' => 'Collectword',
+			'sendFriendLink'=>$f_siteUrl.U('Collectword/index',array('token'=>$token,'id'=>$info['id']))
+			// 为空则使用当前的URL 如果当前URL包含wecha_id 则会把 wecha_id去掉
+	))}
+	<?php endif;?>
+<?php endif;?>
+<script type="text/javascript">
+function share() {
+	showWindow('.w4');
+}
+$(function () {
+var html = $('.footer .oBtn').html();
+if ('' == html.trim()) {
+	$('.footer').hide();
+}
+
+
+<?php if($subscribe):?>
+	$('#lottery a').removeAttr('class');
+<?php endif;?>
+});
+</script>
+{weimicms:$shareScript}

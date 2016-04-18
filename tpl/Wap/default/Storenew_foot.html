@@ -1,0 +1,18 @@
+<!--页面底部-->
+<div class="foot30"></div>
+<div class="wx_nav">
+	<a href="{weimicms::U('Storenew/index',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'],'cid' => $cid, 'twid' => $twid))}" data-href="###" class="nav_index on">首页</a>
+	<!-- <a href="{weimicms::U('Storenew/jingpai',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'],'cid' => $cid, 'twid' => $twid))}"  class="nav_search" style="display:">限时竞拍</a>
+	 -->
+	 <a href="tel:{weimicms:$com['tel']}"  class="nav_search" style="display:">客服电话</a>
+	<a href="{weimicms::U('Storenew/cart',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'],'cid' => $cid, 'twid' => $twid))}"  class="nav_shopcart">购物车</a>
+	
+	<if condition="$is_sub eq 2">
+	<a href="{weimicms::U('Storenew/myinfo',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'],'cid' => $cid, 'twid' => $twid))}"  class="nav_me">个人中心</a>
+	<a href="{weimicms:$gzhurl}"  class="nav_fav">一键关注</a>
+	<else />
+	<a href="{weimicms::U('Storenew/my',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'],'cid' => $cid, 'twid' => $twid))}"  class="nav_shopping_guide">我的订单</a>
+	<a href="{weimicms::U('Storenew/myinfo',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'],'cid' => $cid, 'twid' => $twid))}"  class="nav_me">个人中心</a>
+	</if>
+</div>
+<!--页面底部-->

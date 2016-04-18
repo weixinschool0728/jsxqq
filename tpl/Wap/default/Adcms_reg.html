@@ -1,0 +1,125 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0058)http://www.zqianqian.cn/index.php/Club/index/register.html -->
+<!DOCTYPE html PUBLIC "" "">
+<HTML>
+<HEAD>
+<META content="IE=10.000" 
+http-equiv="X-UA-Compatible">
+<META charset="utf-8">
+<TITLE>点赚客</TITLE>
+<META name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+<META name="apple-mobile-web-app-capable" content="yes">
+<META name="apple-mobile-web-app-status-bar-style" content="black">
+<LINK 
+href="tpl/static/adcms/font-awesome.min.css" rel="stylesheet" type="text/css">
+<LINK href="tpl/static/adcms/mui.min.css" rel="stylesheet">
+<SCRIPT src="tpl/static/adcms/jquery-1.10.2.min.js" type="text/javascript"></SCRIPT>
+<LINK href="tpl/static/adcms/style.css" rel="stylesheet">
+<META name="GENERATOR" content="MSHTML 10.00.9200.16660">
+</HEAD>
+<!--<body oncontextmenu="return false" onselectstart="return false">-->
+
+<BODY>
+<HEADER class="mui-bar mui-bar-nav"><!--<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>-->
+  
+  <H1 class="mui-title">用户注册</H1>
+</HEADER>
+<DIV class="mui-content">
+  <DIV class="mui-content-padded">
+    <FORM method="post">
+      <DIV class="form-group msg"></DIV>
+       <DIV class="form-group " style="text-align:center">
+       <img src="{weimicms:$fans.portrait}" style="width:80px">
+      </DIV>
+      <DIV class="form-group " style="text-align:center">
+       {weimicms:$fans.wechaname}
+      </DIV>
+      <DIV class="form-group ">
+       <INPUT name="mobile" class="form-control" id="mobile" 
+type="text" placeholder="请填写您的手机号" value="">
+      </DIV>
+      
+      <DIV class="form-group ">
+        <INPUT name="weixin" class="form-control" id="weixin" 
+type="text" placeholder="请填写您的支付宝账号" value="">
+      </DIV>
+      <DIV class="form-group ">
+        <INPUT name="password" class="form-control" id="password" 
+type="password" placeholder="请填写您的银行卡号" value="" autocomplete="off">
+      </DIV>
+      <DIV class="form-group">
+       
+  </DIV>
+</DIV>
+<SCRIPT>
+$("#submit").bind("click",function(){
+	var yzm = $("#yzm").val();
+	var weixin = $("#weixin").val();
+	var mobile = $("#mobile").val();
+	var password = $("#password").val();
+	if(!mobile){
+		$('.msg').html("请填写手机号码");
+		return false;
+	}
+	if(mobile.length!=11){
+		$('.msg').html("手机号码填写有误");
+		return false;
+	}
+	if(!yzm){
+		$('.msg').html("请填写你的验证码");
+		return false;
+	}
+	if(!weixin){
+		$('.msg').html("请填写你的微信号");
+		return false;
+	}
+	if(!password){
+		$('.msg').html("请填写你的密码");
+		return false;
+	}
+	if(password.length<6){
+		$('.msg').html("密码最小为6个字符");
+		return false;
+	}
+	submitForm()
+	});
+	
+//获取验证码
+$('#get_yzm').click( function(){
+	var mobile = $("#mobile").val();
+	if(!mobile){
+		$('.msg').html("请填写用于登陆的手机号码");
+		return false;
+	}
+	if(mobile.length!=11){
+		$('.msg').html("手机号码填写有误");
+		return false;
+	}
+	$.post("/index.php/Club/Index/register_yzm.html", { mobile:mobile}, function(response){
+		var json = response;
+		var stat = json.status;
+		if(stat=="1"){
+			$('.msg').html(json.msg);
+			$('#get_yzm').attr("disabled", "disabled");
+			run();
+			interval=setInterval(run,1000);
+		}else{
+			$('.msg').html(json.msg);
+		}
+		});
+	})
+var time_span=199;		//每隔60秒后才能再次发送验证码
+var interval;			//定时器
+function run()
+{
+	time_span-=1;
+	$('#get_yzm').val(time_span+'秒后重发手机验证码');
+	if(time_span==0){
+		time_span=199;
+		$('#get_yzm').removeAttr("disabled").val('获取验证码');
+		clearInterval(interval);
+	}
+}
+</SCRIPT>
+</BODY>
+</HTML>

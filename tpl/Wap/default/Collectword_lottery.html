@@ -1,0 +1,277 @@
+<?php if($info['wordNum'] == 4): ?>
+    <section id="lottery">
+        <div class="rects rects4 clearfix">
+            <div class="re lottery-unit lottery-unit-0"><em><?=$info['word'][0];?></em><span></span><?=$wordNum[0] ? '<b><i></i>'.$wordNum[0].'</b>' :'';?></div>
+            <div class="re lottery-unit lottery-unit-1"><em><?=$info['word'][1];?></em><span></span><?=$wordNum[1] ? '<b><i></i>'.$wordNum[1].'</b>' :'';?></div>
+            <div class="re clickA">
+            	<?php if($share_key): ?>            	
+	                <a href="javascript:;">
+	                    <div class="row">
+	                        <img style="margin-top: 0;max-height:100%;" src="<?php if($user['portrait']!=''){echo $user['portrait'];}else{?>{weimicms:$staticPath}/tpl/static/collectword/images/portrait.jpg<?php }?>">
+	                    </div>
+	                </a> 
+            	<?php else: ?>
+	            	<?php  if( 'start' == $class): ?>
+	                <a href="javascript:;" class="<?=$class?>">
+	                    <div class="row">
+	                        <img src="{weimicms:$staticPath}/tpl/static/collectword/images/cz@2x.png" height="23">
+	                        <p>({weimicms:$my.count}次)</p>
+	                    </div>
+	                </a>                
+	            	<?php endif; ?>
+	            	<?php  if( 'in' == $class): ?>
+	                <a href="javascript:;" class="<?=$class?>">
+	                    <div class="row">
+	                        <img style="margin-top: 0" src="{weimicms:$staticPath}/tpl/static/collectword/images/wycy@2x.png">
+	                    </div>
+	                </a>                
+	            	<?php endif; ?>
+	            	<?php  if( 'prize' == $class): ?>
+	                <a href="javascript:;" class="<?=$class?>">
+	                    <div class="row">
+	                        <img src="{weimicms:$staticPath}/tpl/static/collectword/images/yzj@2x.png" height="23">
+	                        <p>(晒奖品)</p>
+	                    </div>
+	                </a>                
+	            	<?php endif; ?>
+	            	<?php  if( 'end' == $class): ?>
+	                <a href="javascript:;" class="<?=$class?>">
+	                    <div class="row">
+	                        <img src="{weimicms:$staticPath}/tpl/static/collectword/images/end.png" height="23">
+	                        <p style="font-size:14px;">(谢谢参与)</p>
+	                    </div>
+	                </a>                
+	            	<?php endif; ?>
+	            <?php endif; ?>
+                <img class="lodingGif" src="{weimicms:$staticPath}/tpl/static/collectword/images/lodingGif.GIF"/>
+                <span style="display:none"></span>
+            </div>
+            <div class="re lottery-unit lottery-unit-3"><em><?=$info['word'][3];?></em><span></span><?=$wordNum[3] ? '<b><i></i>'.$wordNum[3].'</b>' :'';?></div>
+            <div class="re lottery-unit lottery-unit-2"><em><?=$info['word'][2];?></em><span></span><?=$wordNum[2] ? '<b><i></i>'.$wordNum[2].'</b>' :'';?></div>
+        </div>
+    </section>
+<?php endif;?>
+
+<?php if($info['wordNum'] == 5): ?>
+    <section id="lottery">
+        <div class="rects rects5 clearfix">
+            <div class="re lottery-unit lottery-unit-0"><em><?=$info['word'][0];?></em><span></span><?=$wordNum[0] ? '<b><i></i>'.$wordNum[0].'</b>' :'';?></div>
+            <div class="re lottery-unit lottery-unit-1"><em><?=$info['word'][1];?></em><span></span><?=$wordNum[1] ? '<b><i></i>'.$wordNum[1].'</b>' :'';?></div>
+            <div class="re lottery-unit lottery-unit-4"><em><?=$info['word'][4];?></em><span></span><?=$wordNum[4] ? '<b><i></i>'.$wordNum[4].'</b>' :'';?></div>
+            <div class="re clickA">
+            	<?php if($share_key): ?>            	
+	                <a href="javascript:;">
+	                    <div class="row">
+	                        <img style="margin-top: 0;max-height:100%;" src="<?php if($user['portrait']!=''){echo $user['portrait'];}else{?>{weimicms:$staticPath}/tpl/static/collectword/images/portrait.jpg<?php }?>">
+	                    </div>
+	                </a> 
+            	<?php else: ?>
+	            	<?php  if( 'start' == $class): ?>
+	                <a href="javascript:;" class="<?=$class?>">
+	                    <div class="row">
+	                        <img src="{weimicms:$staticPath}/tpl/static/collectword/images/cz@2x.png" height="23">
+	                        <p>({weimicms:$my.count}次)</p>
+	                    </div>
+	                </a>                
+	            	<?php endif; ?>
+	            	<?php  if( 'in' == $class): ?>
+	                <a href="javascript:;" class="<?=$class?>">
+	                    <div class="row">
+	                        <img style="margin-top: 0" src="{weimicms:$staticPath}/tpl/static/collectword/images/wycy@2x.png">
+	                    </div>
+	                </a>                
+	            	<?php endif; ?>
+	            	<?php  if( 'prize' == $class): ?>
+	                <a href="javascript:;" class="<?=$class?>">
+	                    <div class="row">
+	                        <img src="{weimicms:$staticPath}/tpl/static/collectword/images/yzj@2x.png" height="23">
+	                        <p>(晒奖品)</p>
+	                    </div>
+	                </a>                
+	            	<?php endif; ?>
+	            	<?php  if( 'end' == $class): ?>
+	                <a href="javascript:;" class="<?=$class?>">
+	                    <div class="row">
+	                        <img src="{weimicms:$staticPath}/tpl/static/collectword/images/end.png" height="23">
+	                        <p style="font-size:14px;">(谢谢参与)</p>
+	                    </div>
+	                </a>                
+	            	<?php endif; ?>  
+	            <?php endif; ?>
+                <img class="lodingGif" src="{weimicms:$staticPath}/tpl/static/collectword/images/lodingGif.GIF"/>
+                <span style="display:none"></span>
+            </div>
+            <div class="re lottery-unit lottery-unit-2"><em><?=$info['word'][2];?></em><span></span><?=$wordNum[2] ? '<b><i></i>'.$wordNum[2].'</b>' :'';?></div>
+            <div class="re lottery-unit lottery-unit-3"><em><?=$info['word'][3];?></em><span></span><?=$wordNum[3] ? '<b><i></i>'.$wordNum[3].'</b>' :'';?></div>
+        </div>
+    </section>
+<?php endif;?>
+
+<?php if($info['wordNum'] == 6): ?>
+    <section id="lottery">
+        <div class="rects rects6 clearfix">
+            <div class="re lottery-unit lottery-unit-0"><em><?=$info['word'][0];?></em><span></span><?=$wordNum[0] ? '<b><i></i>'.$wordNum[0].'</b>' :'';?></div>
+            <div class="re lottery-unit lottery-unit-1"><em><?=$info['word'][1];?></em><span></span><?=$wordNum[1] ? '<b><i></i>'.$wordNum[1].'</b>' :'';?></div>
+            <div class="re lottery-unit lottery-unit-5"><em><?=$info['word'][5];?></em><span></span><?=$wordNum[5] ? '<b><i></i>'.$wordNum[5].'</b>' :'';?></div>
+            <div class="re clickA">
+            	<?php if($share_key): ?>            	
+	                <a href="javascript:;">
+	                    <div class="row">
+	                        <img style="margin-top: 0;max-height:100%;" src="<?php if($user['portrait']!=''){echo $user['portrait'];}else{?>{weimicms:$staticPath}/tpl/static/collectword/images/portrait.jpg<?php }?>">
+	                    </div>
+	                </a> 
+            	<?php else: ?>
+	            	<?php  if( 'start' == $class): ?>
+	                <a href="javascript:;" class="<?=$class?>">
+	                    <div class="row">
+	                        <img src="{weimicms:$staticPath}/tpl/static/collectword/images/cz@2x.png" height="23">
+	                        <p>({weimicms:$my.count}次)</p>
+	                    </div>
+	                </a>                
+	            	<?php endif; ?>
+	            	<?php  if( 'in' == $class): ?>
+	                <a href="javascript:;" class="<?=$class?>">
+	                    <div class="row">
+	                        <img style="margin-top: 0" src="{weimicms:$staticPath}/tpl/static/collectword/images/wycy@2x.png">
+	                    </div>
+	                </a>                
+	            	<?php endif; ?>
+	            	<?php  if( 'prize' == $class): ?>
+	                <a href="javascript:;" class="<?=$class?>">
+	                    <div class="row">
+	                        <img src="{weimicms:$staticPath}/tpl/static/collectword/images/yzj@2x.png" height="23">
+	                        <p>(晒奖品)</p>
+	                    </div>
+	                </a>                
+	            	<?php endif; ?>
+	            	<?php  if( 'end' == $class): ?>
+	                <a href="javascript:;" class="<?=$class?>">
+	                    <div class="row">
+	                        <img src="{weimicms:$staticPath}/tpl/static/collectword/images/end.png" height="23">
+	                        <p style="font-size:14px;">(谢谢参与)</p>
+	                    </div>
+	                </a>                
+	            	<?php endif; ?>  
+	            <?php endif; ?>
+                <img class="lodingGif" src="{weimicms:$staticPath}/tpl/static/collectword/images/lodingGif.GIF"/>
+                <span style="display:none"></span>
+            </div>
+            <div class="re lottery-unit lottery-unit-2"><em><?=$info['word'][2];?></em><span></span><?=$wordNum[2] ? '<b><i></i>'.$wordNum[2].'</b>' :'';?></div>
+            <div class="re lottery-unit lottery-unit-4"><em><?=$info['word'][4];?></em><span></span><?=$wordNum[4] ? '<b><i></i>'.$wordNum[4].'</b>' :'';?></div>
+            <div class="re lottery-unit lottery-unit-3"><em><?=$info['word'][3];?></em><span></span><?=$wordNum[3] ? '<b><i></i>'.$wordNum[3].'</b>' :'';?></div>
+        </div>
+    </section>
+<?php endif;?>
+<?php if($info['wordNum'] == 7): ?>
+    <section id="lottery">
+        <div class="rects rects7 clearfix">
+            <div class="re lottery-unit lottery-unit-0"><em><?=$info['word'][0];?></em><span></span><?=$wordNum[0] ? '<b><i></i>'.$wordNum[0].'</b>' :'';?></div>
+            <div class="re lottery-unit lottery-unit-1"><em><?=$info['word'][1];?></em><span></span><?=$wordNum[1] ? '<b><i></i>'.$wordNum[1].'</b>' :'';?></div>
+            <div class="re lottery-unit lottery-unit-6"><em><?=$info['word'][6];?></em><span></span><?=$wordNum[6] ? '<b><i></i>'.$wordNum[6].'</b>' :'';?></div>
+            <div class="re clickA">
+            	<?php if($share_key): ?>            	
+	                <a href="javascript:;">
+	                    <div class="row">
+	                        <img style="margin-top: 0;max-height:100%;" src="<?php if($user['portrait']!=''){echo $user['portrait'];}else{?>{weimicms:$staticPath}/tpl/static/collectword/images/portrait.jpg<?php }?>">
+	                    </div>
+	                </a> 
+            	<?php else: ?>
+	            	<?php  if( 'start' == $class): ?>
+	                <a href="javascript:;" class="<?=$class?>">
+	                    <div class="row">
+	                        <img src="{weimicms:$staticPath}/tpl/static/collectword/images/cz@2x.png" height="23">
+	                        <p>({weimicms:$my.count}次)</p>
+	                    </div>
+	                </a>                
+	            	<?php endif; ?>
+	            	<?php  if( 'in' == $class): ?>
+	                <a href="javascript:;" class="<?=$class?>">
+	                    <div class="row">
+	                        <img style="margin-top: 0" src="{weimicms:$staticPath}/tpl/static/collectword/images/wycy@2x.png">
+	                    </div>
+	                </a>                
+	            	<?php endif; ?>
+	            	<?php  if( 'prize' == $class): ?>
+	                <a href="javascript:;" class="<?=$class?>">
+	                    <div class="row">
+	                        <img src="{weimicms:$staticPath}/tpl/static/collectword/images/yzj@2x.png" height="23">
+	                        <p>(晒奖品)</p>
+	                    </div>
+	                </a>                
+	            	<?php endif; ?>
+	            	<?php  if( 'end' == $class): ?>
+	                <a href="javascript:;" class="<?=$class?>">
+	                    <div class="row">
+	                        <img src="{weimicms:$staticPath}/tpl/static/collectword/images/end.png" height="23">
+	                        <p style="font-size:14px;">(谢谢参与)</p>
+	                    </div>
+	                </a>                
+	            	<?php endif; ?>    
+	            <?php endif; ?>
+                <img class="lodingGif" src="{weimicms:$staticPath}/tpl/static/collectword/images/lodingGif.GIF"/>
+                <span style="display:none"></span>
+            </div>
+            <div class="re lottery-unit lottery-unit-2"><em><?=$info['word'][2];?></em><span></span><?=$wordNum[2] ? '<b><i></i>'.$wordNum[2].'</b>' :'';?></div>
+            <div class="re lottery-unit lottery-unit-5"><em><?=$info['word'][5];?></em><span></span><?=$wordNum[5] ? '<b><i></i>'.$wordNum[5].'</b>' :'';?></div>
+            <div class="re lottery-unit lottery-unit-4"><em><?=$info['word'][4];?></em><span></span><?=$wordNum[4] ? '<b><i></i>'.$wordNum[4].'</b>' :'';?></div>
+            <div class="re lottery-unit lottery-unit-3"><em><?=$info['word'][3];?></em><span></span><?=$wordNum[3] ? '<b><i></i>'.$wordNum[3].'</b>' :'';?></div>
+        </div>
+    </section>
+<?php endif;?>
+<?php if($info['wordNum'] == 8): ?>
+    <section id="lottery">
+        <div class="rects rects8 clearfix">
+            <div class="re lottery-unit lottery-unit-0"><em><?=$info['word'][0];?></em><span></span><?=$wordNum[0] ? '<b><i></i>'.$wordNum[0].'</b>' :'';?></div>
+            <div class="re lottery-unit lottery-unit-1"><em><?=$info['word'][1];?></em><span></span><?=$wordNum[1] ? '<b><i></i>'.$wordNum[1].'</b>' :'';?></div>
+            <div class="re lottery-unit lottery-unit-2"><em><?=$info['word'][2];?></em><span></span><?=$wordNum[2] ? '<b><i></i>'.$wordNum[2].'</b>' :'';?></div>
+            <div class="re lottery-unit lottery-unit-7"><em><?=$info['word'][7];?></em><span></span><?=$wordNum[7] ? '<b><i></i>'.$wordNum[7].'</b>' :'';?></div>
+            <div class="re clickA">
+            	<?php if($share_key): ?>            	
+	                <a href="javascript:;">
+	                    <div class="row">
+	                        <img style="margin-top: 0;max-height:100%;" src="<?php if($user['portrait']!=''){echo $user['portrait'];}else{?>{weimicms:$staticPath}/tpl/static/collectword/images/portrait.jpg<?php }?>">
+	                    </div>
+	                </a> 
+            	<?php else: ?>
+	            	<?php  if( 'start' == $class): ?>
+	                <a href="javascript:;" class="<?=$class?>">
+	                    <div class="row">
+	                        <img src="{weimicms:$staticPath}/tpl/static/collectword/images/cz@2x.png" height="23">
+	                        <p>({weimicms:$my.count}次)</p>
+	                    </div>
+	                </a>                
+	            	<?php endif; ?>
+	            	<?php  if( 'in' == $class): ?>
+	                <a href="javascript:;" class="<?=$class?>">
+	                    <div class="row">
+	                        <img style="margin-top: 0" src="{weimicms:$staticPath}/tpl/static/collectword/images/wycy@2x.png">
+	                    </div>
+	                </a>                
+	            	<?php endif; ?>
+	            	<?php  if( 'prize' == $class): ?>
+	                <a href="javascript:;" class="<?=$class?>">
+	                    <div class="row">
+	                        <img src="{weimicms:$staticPath}/tpl/static/collectword/images/yzj@2x.png" height="23">
+	                        <p>(晒奖品)</p>
+	                    </div>
+	                </a>                
+	            	<?php endif; ?>
+	            	<?php  if( 'end' == $class): ?>
+	                <a href="javascript:;" class="<?=$class?>">
+	                    <div class="row">
+	                        <img src="{weimicms:$staticPath}/tpl/static/collectword/images/end.png" height="23">
+	                        <p style="font-size:14px;">(谢谢参与)</p>
+	                    </div>
+	                </a>                
+	            	<?php endif; ?>
+	            <?php endif; ?>
+                <img class="lodingGif" src="{weimicms:$staticPath}/tpl/static/collectword/images/lodingGif.GIF"/>
+                <span style="display:none"></span>
+            </div>
+            <div class="re lottery-unit lottery-unit-3"><em><?=$info['word'][3];?></em><span></span><?=$wordNum[3] ? '<b><i></i>'.$wordNum[3].'</b>' :'';?></div>
+            <div class="re lottery-unit lottery-unit-6"><em><?=$info['word'][6];?></em><span></span><?=$wordNum[6] ? '<b><i></i>'.$wordNum[6].'</b>' :'';?></div>
+            <div class="re lottery-unit lottery-unit-5"><em><?=$info['word'][5];?></em><span></span><?=$wordNum[5] ? '<b><i></i>'.$wordNum[5].'</b>' :'';?></div>
+            <div class="re lottery-unit lottery-unit-4"><em><?=$info['word'][4];?></em><span></span><?=$wordNum[4] ? '<b><i></i>'.$wordNum[4].'</b>' :'';?></div>
+        </div>
+    </section>
+<?php endif;?>

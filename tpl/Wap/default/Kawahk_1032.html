@@ -1,0 +1,1070 @@
+
+<html>
+	<head>
+		<title>幸福漂流瓶</title>
+		<meta http-equiv="imagetoolbar" content="no">
+       <include file="Kawahk:js"/> 
+        <script type="text/javascript">
+            initViewport();
+        </script>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="format-detection" content="telephone=no">
+		
+		<script src="tpl/Wap/default/common/kawahk/common/fontcard.js"></script>
+		<script type="text/javascript">
+			if (typeof(AN) === "undefined") {
+				var AN = {}
+			}
+			AN.instances = {
+				symbols: [],
+				controllers: []
+			};
+			AN.apiVersion = 1;
+			AN.Controller = function() {
+				return {
+					currentScene: false,
+					userData: {},
+					setConfig: function(a) {
+						AN.instances.controllers.push(this);
+						this.events = a.events;
+						this.prefix = a.cssPrefix;
+						this.projectActions = a.projectActions;
+						this.basePath = a.basePath ? a.basePath: "";
+						this.olElement = document.querySelector("#" + a.parentId + " ol");
+						var d = this.olElement.children;
+						this.useOrmma = a.ormma;
+						this.scenes = [];
+						this.scenesById = {};
+						this.sceneByName = {};
+						var g;
+						for (var e = 0; e < a.scenes.length; e++) {
+							g = a.scenes[e];
+							g.element = d[e];
+							g.timelinesById = {};
+							g.timelinesByName = {};
+							for (var c = 0; c < g.timelines.length; c++) {
+								g.timelinesById[g.timelines[c].id] = g.timelines[c];
+								g.timelinesByName[g.timelines[c].name] = g.timelines[c]
+							}
+							this.scenesById[g.id] = g;
+							this.scenes.push(g);
+							if (g.name) {
+								this.sceneByName[g.name] = g
+							}
+						}
+						this.setupListeners();
+						this.startSceneByName = this.goToSceneByName;
+						this.startSceneById = this.goToSceneById;
+						this.startSceneByID = this.startSceneById;
+						this.symbolInstancesByHtmlId = {};
+						this.symbolInstancesById = {};
+						this.symbols = [];
+						var h, b, f;
+						for (var e = 0; e < a.symbols.length; e++) {
+							h = a.symbols[e];
+							this.symbolInstancesById[h.id] = [];
+							b = this.olElement.querySelectorAll(".an-symbol-container-" + h.id);
+							for (var c = 0; c < b.length; c++) {
+								f = new AN.Symbol();
+								f.setConfig(b[c], h, this);
+								this.symbolInstancesByHtmlId[b[c].id] = f;
+								this.symbolInstancesById[h.id].push(f);
+								this.symbols.push(f)
+							}
+						}
+						this.fireAction(this.projectActions, "init");
+						this.goToScene(this.scenes[0])
+					},
+					setupListeners: function() {
+						var l = this;
+						this.browser = "unknown";
+						if (document.body.style.MozAnimationName !== undefined) {
+							this.browser = "moz"
+						}
+						function h(j) {
+							var i;
+							if (l.browser === "moz") {
+								i = j.target;
+								while (i = i.parentNode) {
+									if (i === l.currentScene.element) {
+										l.onAnimationEnd();
+										return
+									}
+								}
+							} else {
+								l.onAnimationEnd()
+							}
+						}
+						this.olElement.addEventListener("webkitAnimationEnd", h, false);
+						this.olElement.addEventListener("animationend", h, false);
+						function c(i) {
+							i.element.addEventListener("mousemove",
+							function(j) {
+								i.mousemoveAction.call(l.userData, l, j)
+							},
+							false)
+						}
+						var g;
+						for (var e = 0; e < this.scenes.length; e++) {
+							g = this.scenes[e];
+							if (g.mousemoveAction) {
+								c(g)
+							}
+						}
+						function a(m, j, i) {
+							m.addEventListener(j,
+							function(n) {
+								i.call(l.userData, l, n)
+							},
+							false)
+						}
+						var f, b, k;
+						for (var e = 0; e < this.events.length; e++) {
+							b = this.events[e];
+							k = b.type;
+							f = document.getElementById(b.id);
+							for (var d = 0; d < k.length; d++) {
+								a(f, k[d], b.handler)
+							}
+						}
+					},
+					onAnimationEnd: function() {
+						this.runningAnimationCount--;
+						if (this.runningAnimationCount === 0) {
+							this.onAllAnimationEnd()
+						}
+					},
+					onAllAnimationEnd: function() {
+						var a = this.currentScene.currentTimeline.endWaitTime;
+						if (a) {
+							var b = this;
+							this.sceneTimeout = setTimeout(function() {
+								b.onSceneFinish()
+							},
+							a * 1000)
+						} else {
+							this.onSceneFinish()
+						}
+					},
+					forceRefresh: function(a) {
+						this.forceRefreshValue = a.element.offsetHeight
+					},
+					fireAction: function(b, a) {
+						if (b && b[a]) {
+							b[a].call(this.userData, this)
+						}
+					},
+					getSymbolByHtmlId: function(a) {
+						return this.symbolInstancesByHtmlId[a]
+					},
+					getSymbolByInstanceId: function(b) {
+						var a = this.olElement.querySelector(".an-symbol-container.an-symbol-" + b);
+						return this.getSymbolByHtmlId(a.id)
+					},
+					getSymbols: function() {
+						return this.symbols
+					},
+					getSymbolsBySymbolMasterId: function(a) {
+						return this.symbolInstancesById[a]
+					},
+					getUserData: function() {
+						return this.userData
+					},
+					getTimelineByIndex: function(a) {
+						return this.currentScene.timelines[a]
+					},
+					getTimelineById: function(a) {
+						return this.currentScene.timelinesById[a]
+					},
+					getTimelineByName: function(a) {
+						return this.currentScene.timelinesByName[a]
+					},
+					getCurrentTimeline: function() {
+						return this.currentScene.currentTimeline
+					},
+					getCurrentScene: function() {
+						return this.currentScene
+					},
+					getSceneByIndex: function(a) {
+						return this.scenes[a]
+					},
+					getSceneById: function(a) {
+						return this.scenesById[a]
+					},
+					getSceneByName: function(a) {
+						return this.sceneByName[a]
+					},
+					goToNextTimeline: function() {
+						var b = this.currentScene.timelines.indexOf(this.currentScene.currentTimeline);
+						var a = Math.min(b + 1, this.currentScene.timelines.length - 1);
+						if (a === b) {
+							return
+						}
+						this.goToTimelineByIndex(a)
+					},
+					goToPreviousTimeline: function() {
+						var b = this.currentScene.timelines.indexOf(this.currentScene.currentTimeline);
+						var a = Math.max(b - 1, 0);
+						if (b === a) {
+							return
+						}
+						this.goToTimelineByIndex(a)
+					},
+					goToTimelineById: function(a) {
+						this.goToScene(this.currentScene, this.currentScene.timelinesById[a])
+					},
+					goToTimelineByName: function(a) {
+						this.goToScene(this.currentScene, this.currentScene.timelinesByName[a])
+					},
+					goToTimelineByIndex: function(a) {
+						this.goToScene(this.currentScene, this.currentScene.timelines[a])
+					},
+					goToTimeline: function(a) {
+						this.goToScene(this.currentScene, a)
+					},
+					goToNextScene: function() {
+						var b = this.scenes.indexOf(this.currentScene);
+						var a = Math.min(b + 1, this.scenes.length - 1);
+						if (b === a) {
+							return
+						}
+						this.goToSceneByIndex(a)
+					},
+					goToPreviousScene: function() {
+						var a = this.scenes.indexOf(this.currentScene);
+						var b = Math.max(a - 1, 0);
+						if (a === b) {
+							return
+						}
+						this.goToSceneByIndex(b)
+					},
+					goToSceneByIndex: function(a) {
+						this.goToScene(this.scenes[a])
+					},
+					goToSceneByName: function(a) {
+						this.goToScene(this.sceneByName[a])
+					},
+					goToSceneById: function(a, b) {
+						var c = this.scenesById[a];
+						this.goToScene(c, c.timelinesById[b])
+					},
+					goToScene: function(g, f) {
+						var d = g;
+						var e = this.currentScene;
+						var a = f;
+						var c = e ? e.currentTimeline: false;
+						if (a === undefined) {
+							a = d.timelines[0]
+						}
+						var b = false;
+						if (c === a && e === d) {
+							b = true
+						} else {
+							if (e) {
+								e.element.setAttribute("class", "")
+							}
+						}
+						this.fireAction(c, "exitAction");
+						clearTimeout(this.sceneTimeout);
+						if (e !== d) {
+							this.fireAction(e, "exitAction");
+							this.fireAction(d, "initAction")
+						}
+						this.fireAction(a, "initAction");
+						this.runningAnimationCount = a.animationCount;
+						this.currentScene = d;
+						d.currentTimeline = a;
+						var h = "t-" + a.id;
+						if (b || this.browser === "moz") {
+							d.element.setAttribute("class", "run restart " + h);
+							this.forceRefresh(d)
+						}
+						d.element.setAttribute("class", "run " + h);
+						if (!b && this.useOrmma) {
+							this.ormmaNextScene(d)
+						}
+						this.fireAction(a, "startAction");
+						if (a.animationCount === 0) {
+							this.onAllAnimationEnd()
+						}
+					},
+					replayScene: function() {
+						console.warn("replayScene is deprecated. Use restartScene instead.");
+						this.restartScene()
+					},
+					restartScene: function() {
+						this.goToScene(this.currentScene)
+					},
+					restartTimeline: function() {
+						this.goToScene(this.currentScene, this.currentScene.currentTimeline)
+					},
+					onSceneFinish: function() {
+						this.fireAction(this.currentScene.currentTimeline, "endAction")
+					},
+					goToURL: function(a) {
+						document.location.href = a
+					},
+					getElementById: function(a) {
+						return document.getElementById(this.getElementIdById(a))
+					},
+					getElementIdById: function(a) {
+						return this.prefix + a
+					},
+					getUrlForLocalAsset: function(b) {
+						var a = "tpl/Wap/default/common/kawahk/1032/" + b;
+						if (this.basePath) {
+							a = this.basePath + "/" + a
+						}
+						return a
+					},
+					ormmaNextScene: function(c) {
+						var a = ormma.getState();
+						if (c.dimensions.expanded) {
+							var i = ormma.getMaxSize();
+							if (a !== "expanded") {
+								ormma.expand({
+									x: 0,
+									y: 0,
+									width: i.width,
+									height: i.height
+								})
+							}
+							var b = "";
+							var d = c.element.offsetHeight;
+							var g = c.element.offsetWidth;
+							var e = (i.height - d) / 2;
+							var h = (i.width - g) / 2;
+							b += " translate3d(" + Math.round(h) + "px," + Math.round(e) + "px,0)";
+							if (c.dimensions.fit) {
+								var f = Math.min(i.width / g, i.height / d);
+								b += " scale3d(" + f + "," + f + ",1)"
+							}
+							c.element.style.webkitTransform = b
+						} else {
+							if (a === "expanded") {
+								ormma.close()
+							}
+							ormma.resize(c.dimensions.width, c.dimensions.height)
+						}
+					}
+				}
+			};
+			window.addEventListener('load',
+			function() {
+				var configData = {
+					parentId: 'pUrycbtvq-an-anim',
+					cssPrefix: 'pUrycbtvq-',
+					ormma: false,
+					mraid: false,
+					layout: {
+						"type": "absolute",
+						"width": 500,
+						"height": 750
+					},
+					scenes: [{
+						id: 0,
+						dimensions: {
+							height: 100,
+							width: 100,
+							expanded: false,
+							fit: false
+						},
+						timelines: [{
+							id: "0",
+							name: 'Timeline 1',
+							animationCount: 25,
+							duration: Infinity,
+							lastKeyframeTime: 9.497
+						}]
+					}],
+					symbols: [],
+					projectActions: {},
+					events: [],
+					externalResources: []
+				};
+				setTimeout(function() {
+					var controller = new AN.Controller;
+					controller.setConfig(configData);
+				},
+				0);
+			},
+			false);
+		</script>
+		<style type="text/css">
+			#pUrycbtvq-an-anim > ol {list-style:none; margin:0; padding:0;} #pUrycbtvq-an-anim
+			> ol > li {margin:0; padding:0; display:none;} #pUrycbtvq-an-anim > ol
+			> li.run {display:block;} #pUrycbtvq-an-anim .pUrycbtvq-an-stage { overflow:hidden;
+			margin:0; padding:0; } #pUrycbtvq-an-anim .pUrycbtvq-an-stage div { position:
+			absolute; } .pUrycbtvq-an-stage * {margin:0; padding:0; -webkit-font-smoothing:
+			antialiased;} #pUrycbtvq-an-anim .pUrycbtvq-an-stage img {position: absolute;
+			top:0; left:0;} #pUrycbtvq-an-anim .AN-Scene-Description {display: none;}
+			#pUrycbtvq-an-anim iframe {border: none; height:100%; width:100%} #pUrycbtvq-an-anim
+			.pUrycbtvq-an-stage { position: absolute; top:0; left:0; width: 100%; height:100%;
+			} #pUrycbtvq-an-anim {height: 750px; width: 500px; position: relative;}
+			#pUrycbtvq-an-anim { background-color: rgba(255,255,255,1); font-family:
+			"Helvetica Neue", Arial, Helvetica, Geneva, sans-serif; font-size: 12px;
+			line-height: 1.3; } #pUrycbtvq-an-obj-1 { -webkit-transform: translate3d(0px,
+			0px, 0px); width: 500px; height: 750px; top:0; left:0; } #pUrycbtvq-an-obj-2
+			{ -webkit-transform: translate3d(-789px, 456px, 0px) scale3d(3, 3, 1);
+			width: 557px; height: 111px; top:0; left:0; opacity: 0.8; -webkit-animation-iteration-count:
+			infinite; } @-webkit-keyframes ani-pUrycbtvq-an-obj-2-0 { 0% { -webkit-transform:
+			translate3d(-619px, 429px, 0px) scale3d(3, 3, 1); -webkit-animation-timing-function:linear;
+			} 100% { -webkit-transform: translate3d(521px, 440px, 0px) scale3d(3, 3,
+			1); -webkit-animation-timing-function:linear; } } .run.t-0 #pUrycbtvq-an-obj-2
+			{ -webkit-animation-name: ani-pUrycbtvq-an-obj-2-0; -webkit-animation-duration:
+			3.5s; -webkit-animation-delay: 0s; -webkit-animation-fill-mode: both; }
+			.t-0 #pUrycbtvq-an-obj-2 { -webkit-transform: translate3d(521px, 440px,
+			0px) scale3d(3, 3, 1); -webkit-animation-timing-function:linear; } .restart.t-0
+			#pUrycbtvq-an-obj-2 { -webkit-transform: translate3d(-619px, 429px, 0px)
+			scale3d(3, 3, 1); -webkit-animation-timing-function:linear; } .restart
+			#pUrycbtvq-an-obj-2 { -webkit-animation-name: none !important; } #pUrycbtvq-an-obj-3
+			{ -webkit-transform: translate3d(-34px, 313px, 0px); width: 500px; height:
+			209px; top:0; left:0; opacity: 0.3; } #pUrycbtvq-an-obj-4 { -webkit-transform:
+			translate3d(389px, 322px, 0px); width: 121px; height: 177px; top:0; left:0;
+			-webkit-animation-iteration-count: infinite; -webkit-animation-direction:
+			alternate; } @-webkit-keyframes ani-pUrycbtvq-an-obj-4-0 { 0% { -webkit-transform:
+			translate3d(389px, 322px, 0px); -webkit-animation-timing-function:linear;
+			} 100% { -webkit-transform: translate3d(389px, 328px, 0px); -webkit-animation-timing-function:linear;
+			} } .run.t-0 #pUrycbtvq-an-obj-4 { -webkit-animation-name: ani-pUrycbtvq-an-obj-4-0;
+			-webkit-animation-duration: 1.0044s; -webkit-animation-delay: 0s; -webkit-animation-fill-mode:
+			both; } .t-0 #pUrycbtvq-an-obj-4 { -webkit-transform: translate3d(389px,
+			328px, 0px); -webkit-animation-timing-function:linear; } .restart.t-0 #pUrycbtvq-an-obj-4
+			{ -webkit-transform: translate3d(389px, 322px, 0px); -webkit-animation-timing-function:linear;
+			} .restart #pUrycbtvq-an-obj-4 { -webkit-animation-name: none !important;
+			} #pUrycbtvq-an-obj-5 { -webkit-transform: translate3d(-1262px, 418px,
+			0px) scale3d(3, 3, 1); width: 557px; height: 111px; top:0; left:0; opacity:
+			0.5; -webkit-animation-iteration-count: infinite; } @-webkit-keyframes
+			ani-pUrycbtvq-an-obj-5-0 { 0% { -webkit-transform: translate3d(-565px,
+			528px, 0px) scale3d(3, 3, 1); -webkit-animation-timing-function:linear;
+			} 100% { -webkit-transform: translate3d(485px, 551px, 0px) scale3d(3, 3,
+			1); -webkit-animation-timing-function:linear; } } .run.t-0 #pUrycbtvq-an-obj-5
+			{ -webkit-animation-name: ani-pUrycbtvq-an-obj-5-0; -webkit-animation-duration:
+			3.5s; -webkit-animation-delay: 0s; -webkit-animation-fill-mode: both; }
+			.t-0 #pUrycbtvq-an-obj-5 { -webkit-transform: translate3d(485px, 551px,
+			0px) scale3d(3, 3, 1); -webkit-animation-timing-function:linear; } .restart.t-0
+			#pUrycbtvq-an-obj-5 { -webkit-transform: translate3d(-565px, 528px, 0px)
+			scale3d(3, 3, 1); -webkit-animation-timing-function:linear; } .restart
+			#pUrycbtvq-an-obj-5 { -webkit-animation-name: none !important; } #pUrycbtvq-an-obj-6
+			{ -webkit-transform: translate3d(0px, 396px, 0px); width: 192px; height:
+			215px; top:0; left:0; -webkit-animation-iteration-count: infinite; -webkit-animation-direction:
+			alternate; } @-webkit-keyframes ani-pUrycbtvq-an-obj-6-0 { 0% { -webkit-transform:
+			translate3d(0px, 396px, 0px); -webkit-animation-timing-function:linear;
+
+			} 100% { -webkit-transform: translate3d(0px, 409px, 0px); -webkit-animation-timing-function:linear;
+			} } .run.t-0 #pUrycbtvq-an-obj-6 { -webkit-animation-name: ani-pUrycbtvq-an-obj-6-0;
+			-webkit-animation-duration: 1.0526s; -webkit-animation-delay: 0s; -webkit-animation-fill-mode:
+			both; } .t-0 #pUrycbtvq-an-obj-6 { -webkit-transform: translate3d(0px,
+			409px, 0px); -webkit-animation-timing-function:linear; } .restart.t-0 #pUrycbtvq-an-obj-6
+			{ -webkit-transform: translate3d(0px, 396px, 0px); -webkit-animation-timing-function:linear;
+			} .restart #pUrycbtvq-an-obj-6 { -webkit-animation-name: none !important;
+			} #pUrycbtvq-an-obj-7 { -webkit-transform: translate3d(-532px, 613px, 0px)
+			scale3d(3, 3, 1); width: 557px; height: 111px; top:0; left:0; opacity:
+			0.5; -webkit-animation-iteration-count: infinite; } @-webkit-keyframes
+			ani-pUrycbtvq-an-obj-7-0 { 0% { -webkit-transform: translate3d(-505px,
+			616px, 0px) scale3d(3, 3, 1); -webkit-animation-timing-function:linear;
+			} 100% { -webkit-transform: translate3d(448px, 649px, 0px) scale3d(3, 3,
+			1); -webkit-animation-timing-function:linear; } } .run.t-0 #pUrycbtvq-an-obj-7
+			{ -webkit-animation-name: ani-pUrycbtvq-an-obj-7-0; -webkit-animation-duration:
+			3.5s; -webkit-animation-delay: 0s; -webkit-animation-fill-mode: both; }
+			.t-0 #pUrycbtvq-an-obj-7 { -webkit-transform: translate3d(448px, 649px,
+			0px) scale3d(3, 3, 1); -webkit-animation-timing-function:linear; } .restart.t-0
+			#pUrycbtvq-an-obj-7 { -webkit-transform: translate3d(-505px, 616px, 0px)
+			scale3d(3, 3, 1); -webkit-animation-timing-function:linear; } .restart
+			#pUrycbtvq-an-obj-7 { -webkit-animation-name: none !important; } #pUrycbtvq-an-obj-8
+			{ -webkit-transform: translate3d(99px, 396px, 0px); width: 303px; height:
+			338px; top:0; left:0; -webkit-animation-iteration-count: infinite; -webkit-animation-direction:
+			alternate; } @-webkit-keyframes ani-pUrycbtvq-an-obj-8-0 { 0% { -webkit-transform:
+			translate3d(99px, 396px, 0px); -webkit-animation-timing-function:linear;
+			opacity: 1; } 55.5709% { -webkit-transform: translate3d(98px, 414px, 0px);
+			-webkit-animation-timing-function:linear; opacity: 1; } 100% { -webkit-transform:
+			translate3d(98px, 414px, 0px); -webkit-animation-timing-function:linear;
+			opacity: 1; } } .run.t-0 #pUrycbtvq-an-obj-8 { -webkit-animation-name:
+			ani-pUrycbtvq-an-obj-8-0; -webkit-animation-duration: 2.4783s; -webkit-animation-delay:
+			0s; -webkit-animation-fill-mode: both; } .t-0 #pUrycbtvq-an-obj-8 { -webkit-transform:
+			translate3d(98px, 414px, 0px); -webkit-animation-timing-function:linear;
+			opacity: 1; } .restart.t-0 #pUrycbtvq-an-obj-8 { -webkit-transform: translate3d(99px,
+			396px, 0px); -webkit-animation-timing-function:linear; opacity: 1; } .restart
+			#pUrycbtvq-an-obj-8 { -webkit-animation-name: none !important; } #pUrycbtvq-an-obj-9
+			{ -webkit-transform: translate3d(-1182px, 626px, 0px) scale3d(3, 3, 1);
+			width: 557px; height: 111px; top:0; left:0; opacity: 0.5; -webkit-animation-iteration-count:
+			infinite; } @-webkit-keyframes ani-pUrycbtvq-an-obj-9-0 { 0% { -webkit-transform:
+			translate3d(-435px, 679px, 0px) scale3d(3, 3, 1); -webkit-animation-timing-function:linear;
+			} 100% { -webkit-transform: translate3d(372px, 726px, 0px) scale3d(3, 3,
+			1); -webkit-animation-timing-function:linear; } } .run.t-0 #pUrycbtvq-an-obj-9
+			{ -webkit-animation-name: ani-pUrycbtvq-an-obj-9-0; -webkit-animation-duration:
+			3.5s; -webkit-animation-delay: 0s; -webkit-animation-fill-mode: both; }
+			.t-0 #pUrycbtvq-an-obj-9 { -webkit-transform: translate3d(372px, 726px,
+			0px) scale3d(3, 3, 1); -webkit-animation-timing-function:linear; } .restart.t-0
+			#pUrycbtvq-an-obj-9 { -webkit-transform: translate3d(-435px, 679px, 0px)
+			scale3d(3, 3, 1); -webkit-animation-timing-function:linear; } .restart
+			#pUrycbtvq-an-obj-9 { -webkit-animation-name: none !important; } #pUrycbtvq-an-obj-10
+			{ -webkit-transform: translate3d(0px, 583px, 0px); width: 500px; height:
+			209px; top:0; left:0; opacity: 0.3; } #pUrycbtvq-an-obj-11 { -webkit-transform:
+			translate3d(31px, 381px, 0px); width: 500px; height: 209px; top:0; left:0;
+			opacity: 0.3; } #pUrycbtvq-an-obj-12 { -webkit-transform: translate3d(-101px,
+			291px, 0px) scale3d(0.6, 0.6, 1); width: 500px; height: 209px; top:0; left:0;
+			opacity: 0.3; } #pUrycbtvq-an-obj-13 { -webkit-transform: translate3d(0px,
+			0px, 0px); width: 500px; height: 750px; top:0; left:0; opacity: 0.6; -webkit-animation-iteration-count:
+			infinite; -webkit-animation-direction: alternate; } @-webkit-keyframes
+			ani-pUrycbtvq-an-obj-13-0 { 0% { -webkit-transform: translate3d(0px, 0px,
+			0px); opacity: 0.6; } 100% { -webkit-transform: translate3d(0px, 0px, 0px);
+			opacity: 0.2; } } .run.t-0 #pUrycbtvq-an-obj-13 { -webkit-animation-name:
+			ani-pUrycbtvq-an-obj-13-0; -webkit-animation-duration: 1.0044s; -webkit-animation-delay:
+			0s; -webkit-animation-fill-mode: both; } .t-0 #pUrycbtvq-an-obj-13 { -webkit-transform:
+			translate3d(0px, 0px, 0px); opacity: 0.2; } .restart.t-0 #pUrycbtvq-an-obj-13
+			{ -webkit-transform: translate3d(0px, 0px, 0px); opacity: 0.6; } .restart
+			#pUrycbtvq-an-obj-13 { -webkit-animation-name: none !important; } #pUrycbtvq-an-obj-14
+			{ -webkit-transform: translate3d(484px, 402px, 0px) scale3d(0.66, 0.66,
+			1); width: 92px; height: 97px; top:0; left:0; -webkit-animation-iteration-count:
+			infinite; } @-webkit-keyframes ani-pUrycbtvq-an-obj-14-0 { 0% { -webkit-transform:
+			translate3d(484px, 402px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg)
+			scale3d(0.66, 0.66, 1); -webkit-animation-timing-function:linear; -webkit-transform-origin:
+			50% 50%; opacity: 1; } 70.2041% { -webkit-transform: translate3d(227.09051474999995px,
+			208.37613574999997px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(-143.1deg)
+			scale3d(0.66, 0.66, 1); -webkit-animation-timing-function:linear; -webkit-transform-origin:
+			50% 50%; opacity: 1; } 100% { -webkit-transform: translate3d(143px, 145px,
+			0px) rotateX(0deg) rotateY(0deg) rotateZ(7.9deg) scale3d(0.66, 0.66, 1);
+			-webkit-animation-timing-function:linear; -webkit-transform-origin: 50%
+			50%; opacity: 0; } } .run.t-0 #pUrycbtvq-an-obj-14 { -webkit-animation-name:
+			ani-pUrycbtvq-an-obj-14-0; -webkit-animation-duration: 2.1491s; -webkit-animation-delay:
+			0s; -webkit-animation-fill-mode: both; } .t-0 #pUrycbtvq-an-obj-14 { -webkit-transform:
+			translate3d(143px, 145px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(7.9deg)
+			scale3d(0.66, 0.66, 1); -webkit-animation-timing-function:linear; -webkit-transform-origin:
+			50% 50%; opacity: 0; } .restart.t-0 #pUrycbtvq-an-obj-14 { -webkit-transform:
+			translate3d(484px, 402px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg)
+			scale3d(0.66, 0.66, 1); -webkit-animation-timing-function:linear; -webkit-transform-origin:
+			50% 50%; opacity: 1; } .restart #pUrycbtvq-an-obj-14 { -webkit-animation-name:
+			none !important; } #pUrycbtvq-an-obj-15 { -webkit-transform: translate3d(474px,
+			531px, 0px) scale3d(0.66, 0.66, 1); width: 92px; height: 97px; top:0; left:0;
+			-webkit-animation-iteration-count: infinite; } @-webkit-keyframes ani-pUrycbtvq-an-obj-15-0
+			{ 0% { -webkit-transform: translate3d(474px, 531px, 0px) rotateX(0deg)
+			rotateY(0deg) rotateZ(0deg) scale3d(0.66, 0.66, 1); -webkit-animation-timing-function:linear;
+			-webkit-transform-origin: 50% 50%; opacity: 1; } 61.7594% { -webkit-transform:
+			translate3d(293.09051474999995px, 407.37613575px, 0px) rotateX(0deg) rotateY(0deg)
+			rotateZ(-321.5deg) scale3d(0.66, 0.66, 1); -webkit-animation-timing-function:linear;
+			-webkit-transform-origin: 50% 50%; opacity: 1; } 100% { -webkit-transform:
+			translate3d(133px, 274px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(7.9deg)
+			scale3d(0.66, 0.66, 1); -webkit-animation-timing-function:linear; -webkit-transform-origin:
+			50% 50%; opacity: 0; } } .run.t-0 #pUrycbtvq-an-obj-15 { -webkit-animation-name:
+			ani-pUrycbtvq-an-obj-15-0; -webkit-animation-duration: 2.443s; -webkit-animation-delay:
+			0.1447s; -webkit-animation-fill-mode: both; } .t-0 #pUrycbtvq-an-obj-15
+			{ -webkit-transform: translate3d(133px, 274px, 0px) rotateX(0deg) rotateY(0deg)
+			rotateZ(7.9deg) scale3d(0.66, 0.66, 1); -webkit-animation-timing-function:linear;
+			-webkit-transform-origin: 50% 50%; opacity: 0; } .restart.t-0 #pUrycbtvq-an-obj-15
+			{ -webkit-transform: translate3d(474px, 531px, 0px) rotateX(0deg) rotateY(0deg)
+			rotateZ(0deg) scale3d(0.66, 0.66, 1); -webkit-animation-timing-function:linear;
+			-webkit-transform-origin: 50% 50%; opacity: 1; } .restart #pUrycbtvq-an-obj-15
+			{ -webkit-animation-name: none !important; } #pUrycbtvq-an-obj-16 { -webkit-transform:
+			translate3d(304px, 552px, 0px) scale3d(0.66, 0.66, 1); width: 92px; height:
+			97px; top:0; left:0; -webkit-animation-iteration-count: infinite; } @-webkit-keyframes
+			ani-pUrycbtvq-an-obj-16-0 { 0% { -webkit-transform: translate3d(304px,
+			552px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(0.66, 0.66,
+			1); -webkit-animation-timing-function:linear; opacity: 0; -webkit-transform-origin:
+			50% 50%; } 66.6144% { -webkit-transform: translate3d(123.09051474999995px,
+			428.37613575px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(-321.5deg) scale3d(0.66,
+			0.66, 1); -webkit-animation-timing-function:linear; opacity: 1; -webkit-transform-origin:
+			50% 50%; } 100% { -webkit-transform: translate3d(-37px, 295px, 0px) rotateX(0deg)
+			rotateY(0deg) rotateZ(7.9deg) scale3d(0.66, 0.66, 1); -webkit-animation-timing-function:linear;
+			opacity: 0; -webkit-transform-origin: 50% 50%; } } .run.t-0 #pUrycbtvq-an-obj-16
+			{ -webkit-animation-name: ani-pUrycbtvq-an-obj-16-0; -webkit-animation-duration:
+			2.7982s; -webkit-animation-delay: 0s; -webkit-animation-fill-mode: both;
+			} .t-0 #pUrycbtvq-an-obj-16 { -webkit-transform: translate3d(-37px, 295px,
+			0px) rotateX(0deg) rotateY(0deg) rotateZ(7.9deg) scale3d(0.66, 0.66, 1);
+			-webkit-animation-timing-function:linear; opacity: 0; -webkit-transform-origin:
+			50% 50%; } .restart.t-0 #pUrycbtvq-an-obj-16 { -webkit-transform: translate3d(304px,
+			552px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(0.66, 0.66,
+			1); -webkit-animation-timing-function:linear; opacity: 0; -webkit-transform-origin:
+			50% 50%; } .restart #pUrycbtvq-an-obj-16 { -webkit-animation-name: none
+			!important; } #pUrycbtvq-an-obj-17 { -webkit-transform: translate3d(414px,
+			685px, 0px) scale3d(0.66, 0.66, 1); width: 92px; height: 97px; top:0; left:0;
+			-webkit-animation-iteration-count: infinite; } @-webkit-keyframes ani-pUrycbtvq-an-obj-17-0
+			{ 0% { -webkit-transform: translate3d(414px, 685px, 0px) rotateX(0deg)
+			rotateY(0deg) rotateZ(0deg) scale3d(0.66, 0.66, 1); -webkit-animation-timing-function:linear;
+			opacity: 1; -webkit-transform-origin: 50% 50%; } 66.6144% { -webkit-transform:
+			translate3d(233.09051474999995px, 561.37613575px, 0px) rotateX(0deg) rotateY(0deg)
+			rotateZ(-321.5deg) scale3d(0.66, 0.66, 1); -webkit-animation-timing-function:linear;
+			opacity: 1; -webkit-transform-origin: 50% 50%; } 100% { -webkit-transform:
+			translate3d(73px, 428px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(7.9deg)
+			scale3d(0.66, 0.66, 1); -webkit-animation-timing-function:linear; opacity:
+			0; -webkit-transform-origin: 50% 50%; } } .run.t-0 #pUrycbtvq-an-obj-17
+			{ -webkit-animation-name: ani-pUrycbtvq-an-obj-17-0; -webkit-animation-duration:
+			2.7982s; -webkit-animation-delay: 0.0658s; -webkit-animation-fill-mode:
+			both; } .t-0 #pUrycbtvq-an-obj-17 { -webkit-transform: translate3d(73px,
+			428px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(7.9deg) scale3d(0.66, 0.66,
+			1); -webkit-animation-timing-function:linear; opacity: 0; -webkit-transform-origin:
+			50% 50%; } .restart.t-0 #pUrycbtvq-an-obj-17 { -webkit-transform: translate3d(414px,
+			685px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(0.66, 0.66,
+			1); -webkit-animation-timing-function:linear; opacity: 1; -webkit-transform-origin:
+			50% 50%; } .restart #pUrycbtvq-an-obj-17 { -webkit-animation-name: none
+			!important; } #pUrycbtvq-an-obj-18 { -webkit-transform: translate3d(410px,
+			559px, 0px); width: 74px; height: 74px; top:0; left:0; -webkit-animation-iteration-count:
+			infinite; -webkit-animation-direction: alternate; opacity: 0.8; } @-webkit-keyframes
+			ani-pUrycbtvq-an-obj-18-0 { 0% { -webkit-transform: translate3d(410px,
+			559px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(1, 1, 1);
+			-webkit-animation-timing-function:linear; } 24.7706% { -webkit-transform:
+			translate3d(410px, 559px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(34.4deg)
+			scale3d(0.8, 0.8, 1); -webkit-animation-timing-function:linear; } 43.1193%
+			{ -webkit-transform: translate3d(410px, 559px, 0px) rotateX(0deg) rotateY(0deg)
+			rotateZ(65.6deg) scale3d(0.5, 0.5, 1); -webkit-animation-timing-function:linear;
+			} 59.633% { -webkit-transform: translate3d(410px, 559px, 0px) rotateX(0deg)
+			rotateY(0deg) rotateZ(26.1deg) scale3d(0.8, 0.8, 1); -webkit-animation-timing-function:linear;
+			} 78.8991% { -webkit-transform: translate3d(410px, 559px, 0px) rotateX(0deg)
+			rotateY(0deg) rotateZ(-16.7deg) scale3d(1, 1, 1); -webkit-animation-timing-function:linear;
+			} 100% { -webkit-transform: translate3d(410px, 559px, 0px) rotateX(0deg)
+			rotateY(0deg) rotateZ(39.7deg) scale3d(1, 1, 1); -webkit-animation-timing-function:linear;
+			} } .run.t-0 #pUrycbtvq-an-obj-18 { -webkit-animation-name: ani-pUrycbtvq-an-obj-18-0;
+			-webkit-animation-duration: 0.4781s; -webkit-animation-delay: 0s; -webkit-animation-fill-mode:
+			both; } .t-0 #pUrycbtvq-an-obj-18 { -webkit-transform: translate3d(410px,
+			559px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(39.7deg) scale3d(1, 1,
+			1); -webkit-animation-timing-function:linear; } .restart.t-0 #pUrycbtvq-an-obj-18
+			{ -webkit-transform: translate3d(410px, 559px, 0px) rotateX(0deg) rotateY(0deg)
+			rotateZ(0deg) scale3d(1, 1, 1); -webkit-animation-timing-function:linear;
+			} .restart #pUrycbtvq-an-obj-18 { -webkit-animation-name: none !important;
+			} #pUrycbtvq-an-obj-19 { -webkit-transform: translate3d(53px, 592px, 0px);
+			width: 74px; height: 74px; top:0; left:0; -webkit-animation-iteration-count:
+			infinite; -webkit-animation-direction: alternate; opacity: 0.5; } @-webkit-keyframes
+			ani-pUrycbtvq-an-obj-19-0 { 0% { -webkit-transform: translate3d(53px, 592px,
+			0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(1, 1, 1); -webkit-animation-timing-function:linear;
+			} 24.7706% { -webkit-transform: translate3d(53px, 592px, 0px) rotateX(0deg)
+			rotateY(0deg) rotateZ(34.4deg) scale3d(0.8, 0.8, 1); -webkit-animation-timing-function:linear;
+			} 43.1193% { -webkit-transform: translate3d(53px, 592px, 0px) rotateX(0deg)
+			rotateY(0deg) rotateZ(65.6deg) scale3d(0.5, 0.5, 1); -webkit-animation-timing-function:linear;
+			} 59.633% { -webkit-transform: translate3d(53px, 592px, 0px) rotateX(0deg)
+			rotateY(0deg) rotateZ(26.1deg) scale3d(0.8, 0.8, 1); -webkit-animation-timing-function:linear;
+			} 78.8991% { -webkit-transform: translate3d(53px, 592px, 0px) rotateX(0deg)
+			rotateY(0deg) rotateZ(-16.7deg) scale3d(1, 1, 1); -webkit-animation-timing-function:linear;
+			} 100% { -webkit-transform: translate3d(53px, 592px, 0px) rotateX(0deg)
+			rotateY(0deg) rotateZ(39.7deg) scale3d(1, 1, 1); -webkit-animation-timing-function:linear;
+			} } .run.t-0 #pUrycbtvq-an-obj-19 { -webkit-animation-name: ani-pUrycbtvq-an-obj-19-0;
+			-webkit-animation-duration: 0.4781s; -webkit-animation-delay: 0.0614s;
+			-webkit-animation-fill-mode: both; } .t-0 #pUrycbtvq-an-obj-19 { -webkit-transform:
+			translate3d(53px, 592px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(39.7deg)
+			scale3d(1, 1, 1); -webkit-animation-timing-function:linear; } .restart.t-0
+			#pUrycbtvq-an-obj-19 { -webkit-transform: translate3d(53px, 592px, 0px)
+			rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(1, 1, 1); -webkit-animation-timing-function:linear;
+			} .restart #pUrycbtvq-an-obj-19 { -webkit-animation-name: none !important;
+			} #pUrycbtvq-an-obj-20 { -webkit-transform: translate3d(310px, 592px, 0px);
+			width: 74px; height: 74px; top:0; left:0; -webkit-animation-iteration-count:
+			infinite; -webkit-animation-direction: alternate; opacity: 0.5; } @-webkit-keyframes
+			ani-pUrycbtvq-an-obj-20-0 { 0% { -webkit-transform: translate3d(310px,
+			592px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(1, 1, 1);
+			-webkit-animation-timing-function:linear; } 24.7706% { -webkit-transform:
+			translate3d(310px, 592px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(34.4deg)
+			scale3d(0.8, 0.8, 1); -webkit-animation-timing-function:linear; } 43.1193%
+			{ -webkit-transform: translate3d(310px, 592px, 0px) rotateX(0deg) rotateY(0deg)
+			rotateZ(65.6deg) scale3d(0.5, 0.5, 1); -webkit-animation-timing-function:linear;
+			} 59.633% { -webkit-transform: translate3d(310px, 592px, 0px) rotateX(0deg)
+			rotateY(0deg) rotateZ(26.1deg) scale3d(0.8, 0.8, 1); -webkit-animation-timing-function:linear;
+			} 78.8991% { -webkit-transform: translate3d(310px, 592px, 0px) rotateX(0deg)
+			rotateY(0deg) rotateZ(-16.7deg) scale3d(1, 1, 1); -webkit-animation-timing-function:linear;
+			} 100% { -webkit-transform: translate3d(310px, 592px, 0px) rotateX(0deg)
+			rotateY(0deg) rotateZ(39.7deg) scale3d(1, 1, 1); -webkit-animation-timing-function:linear;
+			} } .run.t-0 #pUrycbtvq-an-obj-20 { -webkit-animation-name: ani-pUrycbtvq-an-obj-20-0;
+			-webkit-animation-duration: 0.4781s; -webkit-animation-delay: 0.0965s;
+			-webkit-animation-fill-mode: both; } .t-0 #pUrycbtvq-an-obj-20 { -webkit-transform:
+			translate3d(310px, 592px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(39.7deg)
+			scale3d(1, 1, 1); -webkit-animation-timing-function:linear; } .restart.t-0
+			#pUrycbtvq-an-obj-20 { -webkit-transform: translate3d(310px, 592px, 0px)
+			rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(1, 1, 1); -webkit-animation-timing-function:linear;
+			} .restart #pUrycbtvq-an-obj-20 { -webkit-animation-name: none !important;
+			} #pUrycbtvq-an-obj-21 { -webkit-transform: translate3d(437px, 533px, 0px);
+			width: 74px; height: 74px; top:0; left:0; -webkit-animation-iteration-count:
+			infinite; -webkit-animation-direction: alternate; opacity: 0.5; } @-webkit-keyframes
+			ani-pUrycbtvq-an-obj-21-0 { 0% { -webkit-transform: translate3d(437px,
+			533px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(1, 1, 1);
+			-webkit-animation-timing-function:linear; } 24.7706% { -webkit-transform:
+			translate3d(437px, 533px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(34.4deg)
+			scale3d(0.8, 0.8, 1); -webkit-animation-timing-function:linear; } 43.1193%
+			{ -webkit-transform: translate3d(437px, 533px, 0px) rotateX(0deg) rotateY(0deg)
+			rotateZ(65.6deg) scale3d(0.5, 0.5, 1); -webkit-animation-timing-function:linear;
+			} 59.633% { -webkit-transform: translate3d(437px, 533px, 0px) rotateX(0deg)
+			rotateY(0deg) rotateZ(26.1deg) scale3d(0.8, 0.8, 1); -webkit-animation-timing-function:linear;
+			} 78.8991% { -webkit-transform: translate3d(437px, 533px, 0px) rotateX(0deg)
+			rotateY(0deg) rotateZ(-16.7deg) scale3d(1, 1, 1); -webkit-animation-timing-function:linear;
+			} 100% { -webkit-transform: translate3d(437px, 533px, 0px) rotateX(0deg)
+			rotateY(0deg) rotateZ(39.7deg) scale3d(1, 1, 1); -webkit-animation-timing-function:linear;
+			} } .run.t-0 #pUrycbtvq-an-obj-21 { -webkit-animation-name: ani-pUrycbtvq-an-obj-21-0;
+			-webkit-animation-duration: 0.4781s; -webkit-animation-delay: 0.0526s;
+			-webkit-animation-fill-mode: both; } .t-0 #pUrycbtvq-an-obj-21 { -webkit-transform:
+			translate3d(437px, 533px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(39.7deg)
+			scale3d(1, 1, 1); -webkit-animation-timing-function:linear; } .restart.t-0
+			#pUrycbtvq-an-obj-21 { -webkit-transform: translate3d(437px, 533px, 0px)
+			rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(1, 1, 1); -webkit-animation-timing-function:linear;
+			} .restart #pUrycbtvq-an-obj-21 { -webkit-animation-name: none !important;
+			} #pUrycbtvq-an-obj-22 { -webkit-transform: translate3d(0px, 0px, 0px);
+			width: 500px; height: 750px; top:0; left:0; } @-webkit-keyframes ani-pUrycbtvq-an-obj-22-0
+			{ 0% { -webkit-transform: translate3d(0px, 0px, 0px); opacity: 0; } 100%
+			{ -webkit-transform: translate3d(0px, 0px, 0px); opacity: 1; } } .run.t-0
+			#pUrycbtvq-an-obj-22 { -webkit-animation-name: ani-pUrycbtvq-an-obj-22-0;
+			-webkit-animation-duration: 1.8788s; -webkit-animation-delay: 3.0116s;
+			-webkit-animation-fill-mode: both; } .t-0 #pUrycbtvq-an-obj-22 { -webkit-transform:
+			translate3d(0px, 0px, 0px); opacity: 1; } .restart.t-0 #pUrycbtvq-an-obj-22
+			{ -webkit-transform: translate3d(0px, 0px, 0px); opacity: 0; } .restart
+			#pUrycbtvq-an-obj-22 { -webkit-animation-name: none !important; } #pUrycbtvq-an-obj-23
+			{ -webkit-transform: translate3d(208px, 229px, 0px); width: 216px; height:
+			219px; top:0; left:0; -webkit-transform-origin: 50.93% 2.97%; -webkit-animation-iteration-count:
+			1; } @-webkit-keyframes ani-pUrycbtvq-an-obj-23-0 { 0% { -webkit-transform:
+			translate3d(208px, 229px, 0px); -webkit-animation-timing-function:linear;
+			opacity: 0; } 12.8111% { -webkit-transform: translate3d(208px, 229px, 0px);
+			-webkit-animation-timing-function:linear; opacity: 0.5; } 57.3011% { -webkit-transform:
+			translate3d(209px, 242px, 0px); -webkit-animation-timing-function:linear;
+			opacity: 1; } 57.3263% { -webkit-transform: translate3d(209px, 243px, 0px);
+			-webkit-animation-timing-function:linear; opacity: 1; } 99.9748% { -webkit-transform:
+			translate3d(210px, 266px, 0px); -webkit-animation-timing-function:linear;
+			opacity: 1; } 100% { -webkit-transform: translate3d(210px, 269px, 0px);
+			-webkit-animation-timing-function:linear; opacity: 0; } } .run.t-0 #pUrycbtvq-an-obj-23
+			{ -webkit-animation-name: ani-pUrycbtvq-an-obj-23-0; -webkit-animation-duration:
+			2.8341s; -webkit-animation-delay: 4.1879s; -webkit-animation-fill-mode:
+			both; } .t-0 #pUrycbtvq-an-obj-23 { -webkit-transform: translate3d(210px,
+			269px, 0px); -webkit-animation-timing-function:linear; opacity: 0; } .restart.t-0
+			#pUrycbtvq-an-obj-23 { -webkit-transform: translate3d(208px, 229px, 0px);
+			-webkit-animation-timing-function:linear; opacity: 0; } .restart #pUrycbtvq-an-obj-23
+			{ -webkit-animation-name: none !important; } #pUrycbtvq-an-obj-24 { -webkit-transform:
+			translate3d(208px, 229px, 0px); width: 216px; height: 219px; top:0; left:0;
+			-webkit-transform-origin: 50.93% 2.97%; -webkit-animation-iteration-count:
+			infinite; -webkit-animation-direction: alternate; } @-webkit-keyframes
+			ani-pUrycbtvq-an-obj-24-0 { 0% { -webkit-transform: translate3d(208px,
+			229px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(1, 1, 1);
+			-webkit-animation-timing-function:linear; opacity: 0; -webkit-transform-origin:
+			50.93% 2.97%; } 0.0404% { -webkit-transform: translate3d(210px, 269px,
+			0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(1, 1, 1); -webkit-animation-timing-function:linear;
+			opacity: 1; -webkit-transform-origin: 50.93% 2.97%; } 47.4276% { -webkit-transform:
+			translate3d(210px, 266px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(9deg)
+			scale3d(1, 1, 1); -webkit-animation-timing-function:linear; opacity: 1;
+			-webkit-transform-origin: 51.32% 4.34%; } 100% { -webkit-transform: translate3d(210px,
+			266px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(-9deg) scale3d(1, 1, 1);
+			-webkit-animation-timing-function:linear; opacity: 1; -webkit-transform-origin:
+			50.93% 2.97%; } } .run.t-0 #pUrycbtvq-an-obj-24 { -webkit-animation-name:
+			ani-pUrycbtvq-an-obj-24-0; -webkit-animation-duration: 2.4756s; -webkit-animation-delay:
+			7.021s; -webkit-animation-fill-mode: both; } .t-0 #pUrycbtvq-an-obj-24
+			{ -webkit-transform: translate3d(210px, 266px, 0px) rotateX(0deg) rotateY(0deg)
+			rotateZ(-9deg) scale3d(1, 1, 1); -webkit-animation-timing-function:linear;
+			opacity: 1; -webkit-transform-origin: 50.93% 2.97%; } .restart.t-0 #pUrycbtvq-an-obj-24
+			{ -webkit-transform: translate3d(208px, 229px, 0px) rotateX(0deg) rotateY(0deg)
+			rotateZ(0deg) scale3d(1, 1, 1); -webkit-animation-timing-function:linear;
+			opacity: 0; -webkit-transform-origin: 50.93% 2.97%; } .restart #pUrycbtvq-an-obj-24
+			{ -webkit-animation-name: none !important; } #pUrycbtvq-an-obj-25 { -webkit-transform:
+			translate3d(194px, 1px, 0px); width: 483px; height: 391px; top:0; left:0;
+			} @-webkit-keyframes ani-pUrycbtvq-an-obj-25-0 { 0% { -webkit-transform:
+			translate3d(194px, 1px, 0px); -webkit-animation-timing-function:linear;
+			opacity: 0; } 12.8146% { -webkit-transform: translate3d(194px, 1px, 0px);
+			-webkit-animation-timing-function:linear; opacity: 0.5; } 57.3166% { -webkit-transform:
+			translate3d(195px, 15px, 0px); -webkit-animation-timing-function:linear;
+			opacity: 1; } 100% { -webkit-transform: translate3d(195px, 41px, 0px);
+			-webkit-animation-timing-function:linear; opacity: 1; } } .run.t-0 #pUrycbtvq-an-obj-25
+			{ -webkit-animation-name: ani-pUrycbtvq-an-obj-25-0; -webkit-animation-duration:
+			2.8333s; -webkit-animation-delay: 4.1879s; -webkit-animation-fill-mode:
+			both; } .t-0 #pUrycbtvq-an-obj-25 { -webkit-transform: translate3d(195px,
+			41px, 0px); -webkit-animation-timing-function:linear; opacity: 1; } .restart.t-0
+			#pUrycbtvq-an-obj-25 { -webkit-transform: translate3d(194px, 1px, 0px);
+			-webkit-animation-timing-function:linear; opacity: 0; } .restart #pUrycbtvq-an-obj-25
+			{ -webkit-animation-name: none !important; } #pUrycbtvq-an-obj-26 { -webkit-transform:
+			translate3d(414px, 696px, 0px) scale3d(0.66, 0.66, 1); width: 92px; height:
+			97px; top:0; left:0; -webkit-animation-iteration-count: infinite; } @-webkit-keyframes
+			ani-pUrycbtvq-an-obj-26-0 { 0% { -webkit-transform: translate3d(414px,
+			696px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(0.66, 0.66,
+			1); -webkit-animation-timing-function:linear; opacity: 1; -webkit-transform-origin:
+			50% 50%; } 66.6144% { -webkit-transform: translate3d(233.09051474999995px,
+			572.37613575px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(-321.5deg) scale3d(0.66,
+			0.66, 1); -webkit-animation-timing-function:linear; opacity: 1; -webkit-transform-origin:
+			50% 50%; } 100% { -webkit-transform: translate3d(73px, 439px, 0px) rotateX(0deg)
+			rotateY(0deg) rotateZ(7.9deg) scale3d(0.66, 0.66, 1); -webkit-animation-timing-function:linear;
+			opacity: 0; -webkit-transform-origin: 50% 50%; } } .run.t-0 #pUrycbtvq-an-obj-26
+			{ -webkit-animation-name: ani-pUrycbtvq-an-obj-26-0; -webkit-animation-duration:
+			2.7982s; -webkit-animation-delay: 5.4716s; -webkit-animation-fill-mode:
+			both; } .t-0 #pUrycbtvq-an-obj-26 { -webkit-transform: translate3d(73px,
+			439px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(7.9deg) scale3d(0.66, 0.66,
+			1); -webkit-animation-timing-function:linear; opacity: 0; -webkit-transform-origin:
+			50% 50%; } .restart.t-0 #pUrycbtvq-an-obj-26 { -webkit-transform: translate3d(414px,
+			696px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(0.66, 0.66,
+			1); -webkit-animation-timing-function:linear; opacity: 1; -webkit-transform-origin:
+			50% 50%; } .restart #pUrycbtvq-an-obj-26 { -webkit-animation-name: none
+			!important; } #pUrycbtvq-an-obj-27 { -webkit-transform: translate3d(304px,
+			563px, 0px) scale3d(0.66, 0.66, 1); width: 92px; height: 97px; top:0; left:0;
+			-webkit-animation-iteration-count: infinite; } @-webkit-keyframes ani-pUrycbtvq-an-obj-27-0
+			{ 0% { -webkit-transform: translate3d(304px, 563px, 0px) rotateX(0deg)
+			rotateY(0deg) rotateZ(0deg) scale3d(0.66, 0.66, 1); -webkit-animation-timing-function:linear;
+			opacity: 0; -webkit-transform-origin: 50% 50%; } 66.6144% { -webkit-transform:
+			translate3d(123.09051474999995px, 439.37613575px, 0px) rotateX(0deg) rotateY(0deg)
+			rotateZ(-321.5deg) scale3d(0.66, 0.66, 1); -webkit-animation-timing-function:linear;
+			opacity: 1; -webkit-transform-origin: 50% 50%; } 100% { -webkit-transform:
+			translate3d(-37px, 306px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(7.9deg)
+			scale3d(0.66, 0.66, 1); -webkit-animation-timing-function:linear; opacity:
+			0; -webkit-transform-origin: 50% 50%; } } .run.t-0 #pUrycbtvq-an-obj-27
+			{ -webkit-animation-name: ani-pUrycbtvq-an-obj-27-0; -webkit-animation-duration:
+			2.7982s; -webkit-animation-delay: 6.5942s; -webkit-animation-fill-mode:
+			both; } .t-0 #pUrycbtvq-an-obj-27 { -webkit-transform: translate3d(-37px,
+			306px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(7.9deg) scale3d(0.66, 0.66,
+			1); -webkit-animation-timing-function:linear; opacity: 0; -webkit-transform-origin:
+			50% 50%; } .restart.t-0 #pUrycbtvq-an-obj-27 { -webkit-transform: translate3d(304px,
+			563px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(0.66, 0.66,
+			1); -webkit-animation-timing-function:linear; opacity: 0; -webkit-transform-origin:
+			50% 50%; } .restart #pUrycbtvq-an-obj-27 { -webkit-animation-name: none
+			!important; } #pUrycbtvq-an-obj-28 { -webkit-transform: translate3d(474px,
+			542px, 0px) scale3d(0.66, 0.66, 1); width: 92px; height: 97px; top:0; left:0;
+			-webkit-animation-iteration-count: infinite; } @-webkit-keyframes ani-pUrycbtvq-an-obj-28-0
+			{ 0% { -webkit-transform: translate3d(474px, 542px, 0px) rotateX(0deg)
+			rotateY(0deg) rotateZ(0deg) scale3d(0.66, 0.66, 1); -webkit-animation-timing-function:linear;
+			-webkit-transform-origin: 50% 50%; opacity: 1; } 61.7594% { -webkit-transform:
+			translate3d(293.09051474999995px, 418.37613575px, 0px) rotateX(0deg) rotateY(0deg)
+			rotateZ(-321.5deg) scale3d(0.66, 0.66, 1); -webkit-animation-timing-function:linear;
+			-webkit-transform-origin: 50% 50%; opacity: 1; } 100% { -webkit-transform:
+			translate3d(133px, 285px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(7.9deg)
+			scale3d(0.66, 0.66, 1); -webkit-animation-timing-function:linear; -webkit-transform-origin:
+			50% 50%; opacity: 0; } } .run.t-0 #pUrycbtvq-an-obj-28 { -webkit-animation-name:
+			ani-pUrycbtvq-an-obj-28-0; -webkit-animation-duration: 2.443s; -webkit-animation-delay:
+			6.1737s; -webkit-animation-fill-mode: both; } .t-0 #pUrycbtvq-an-obj-28
+			{ -webkit-transform: translate3d(133px, 285px, 0px) rotateX(0deg) rotateY(0deg)
+			rotateZ(7.9deg) scale3d(0.66, 0.66, 1); -webkit-animation-timing-function:linear;
+			-webkit-transform-origin: 50% 50%; opacity: 0; } .restart.t-0 #pUrycbtvq-an-obj-28
+			{ -webkit-transform: translate3d(474px, 542px, 0px) rotateX(0deg) rotateY(0deg)
+			rotateZ(0deg) scale3d(0.66, 0.66, 1); -webkit-animation-timing-function:linear;
+			-webkit-transform-origin: 50% 50%; opacity: 1; } .restart #pUrycbtvq-an-obj-28
+			{ -webkit-animation-name: none !important; } #pUrycbtvq-an-obj-29 { -webkit-transform:
+			translate3d(484px, 413px, 0px) scale3d(0.66, 0.66, 1); width: 92px; height:
+			97px; top:0; left:0; -webkit-animation-iteration-count: infinite; } @-webkit-keyframes
+			ani-pUrycbtvq-an-obj-29-0 { 0% { -webkit-transform: translate3d(484px,
+			413px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(0.66, 0.66,
+			1); -webkit-animation-timing-function:linear; -webkit-transform-origin:
+			50% 50%; opacity: 1; } 70.2041% { -webkit-transform: translate3d(227.09051474999995px,
+			219.37613574999997px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(-143.1deg)
+			scale3d(0.66, 0.66, 1); -webkit-animation-timing-function:linear; -webkit-transform-origin:
+			50% 50%; opacity: 1; } 100% { -webkit-transform: translate3d(143px, 156px,
+			0px) rotateX(0deg) rotateY(0deg) rotateZ(7.9deg) scale3d(0.66, 0.66, 1);
+			-webkit-animation-timing-function:linear; -webkit-transform-origin: 50%
+			50%; opacity: 0; } } .run.t-0 #pUrycbtvq-an-obj-29 { -webkit-animation-name:
+			ani-pUrycbtvq-an-obj-29-0; -webkit-animation-duration: 2.1491s; -webkit-animation-delay:
+			5.8551s; -webkit-animation-fill-mode: both; } .t-0 #pUrycbtvq-an-obj-29
+			{ -webkit-transform: translate3d(143px, 156px, 0px) rotateX(0deg) rotateY(0deg)
+			rotateZ(7.9deg) scale3d(0.66, 0.66, 1); -webkit-animation-timing-function:linear;
+			-webkit-transform-origin: 50% 50%; opacity: 0; } .restart.t-0 #pUrycbtvq-an-obj-29
+			{ -webkit-transform: translate3d(484px, 413px, 0px) rotateX(0deg) rotateY(0deg)
+			rotateZ(0deg) scale3d(0.66, 0.66, 1); -webkit-animation-timing-function:linear;
+			-webkit-transform-origin: 50% 50%; opacity: 1; } .restart #pUrycbtvq-an-obj-29
+			{ -webkit-animation-name: none !important; } #pUrycbtvq-an-obj-30 { -webkit-transform:
+			translate3d(0px, 0px, 0px); width: 500px; height: 750px; top:0; left:0;
+			-webkit-animation-iteration-count: infinite; -webkit-animation-direction:
+			alternate; } @-webkit-keyframes ani-pUrycbtvq-an-obj-30-0 { 0% { -webkit-transform:
+			translate3d(0px, 0px, 0px); -webkit-animation-timing-function:linear; opacity:
+			0; } 1.0518% { -webkit-transform: translate3d(0px, 0px, 0px); -webkit-animation-timing-function:linear;
+			opacity: 1; } 100% { -webkit-transform: translate3d(0px, 0px, 0px); -webkit-animation-timing-function:linear;
+			opacity: 0.5; } } .run.t-0 #pUrycbtvq-an-obj-30 { -webkit-animation-name:
+			ani-pUrycbtvq-an-obj-30-0; -webkit-animation-duration: 0.9507s; -webkit-animation-delay:
+			5.6s; -webkit-animation-fill-mode: both; } .t-0 #pUrycbtvq-an-obj-30 {
+			-webkit-transform: translate3d(0px, 0px, 0px); -webkit-animation-timing-function:linear;
+			opacity: 0.5; } .restart.t-0 #pUrycbtvq-an-obj-30 { -webkit-transform:
+			translate3d(0px, 0px, 0px); -webkit-animation-timing-function:linear; opacity:
+			0; } .restart #pUrycbtvq-an-obj-30 { -webkit-animation-name: none !important;
+			} /* ------------ SYMBOL CSS -------------- */
+            div#foot{   
+                position:fixed; 
+        		left:320px;
+        		bottom:10px;
+            } 	
+		</style>
+		<script>
+            prompt = encodeURIComponent('请输入对方名字：');
+
+            kawa_data = {
+                words : '这是幸福漂流瓶，<br>每个瓶子里都载着快乐！<br>收到它便拥有了幸福！<br>来吧！<br>听听音乐，<br>看看浪花，<br>感受这美好的悠闲时刻，<br>愿笑容时刻洋溢在<br>你的脸上！',
+               <if condition=" $words eq ''">
+				replace_words      : '这是幸福漂流瓶，<br>每个瓶子里都载着快乐！<br>收到它便拥有了幸福！<br>来吧！<br>听听音乐，<br>看看浪花，<br>感受这美好的悠闲时刻，<br>愿笑容时刻洋溢在<br>你的脸上！',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+                text_box           : '30 50 450 220', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+                text_align         : 'center',
+                font_weight        : 'bold',
+                mode               : 'up',     // up, left
+                speed              : 40,     // 每秒移动的像素
+                text_color         : '#333646',
+                font_size          : '38pt',
+                line_height        : '65pt',
+                music              : 'http://sound.kagirl.net/sound/qingyinyue14.mp3',     // url
+              <if condition=" $music eq ''">
+				replace_music      : 'http://sound.kagirl.net/sound/qingyinyue14.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+                music_name         : '',
+                replace_music_name : '#replace_music_name#',
+                icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/fengmian/x1032.jpg',
+                title              : 'title',
+                desc               : 'desc',
+                modify             : 'no',
+                replace_modify     : 'yes',
+                cardid             : '1032',
+              share_url          : window.location.href,    // 当分享的是微信页面时才需要改这里
+                font_ip            : '121.42.24.240:8000',
+                font_family        : 'hkww',
+                modify_optfile     : 'xinqing',
+                modify_optwords    : '你好，卡娃 祝福你',
+                show_words         : 'yes',
+                //write_param        : 'inputtype=singleline&showsel=no&prompt=' + prompt,
+            };
+        </script>
+       
+	</head>
+	<body style="margin:0; height: 100%;" onload="kawa_init();">
+		
+		<div id="pUrycbtvq-an-anim">
+			<ol>
+				<li id="pUrycbtvq-an-scene-0">
+					<div class="pUrycbtvq-an-stage">
+						<div id="pUrycbtvq-an-obj-1">
+							<div>
+								<img height="750" width="500" src="tpl/Wap/default/common/kawahk/1032/101-bdijing.jpg">
+							</div>
+						</div>
+						<div id="pUrycbtvq-an-obj-2">
+							<div>
+								<img height="111" width="557" src="tpl/Wap/default/common/kawahk/1032/102-haishui1.png">
+							</div>
+						</div>
+						<div id="pUrycbtvq-an-obj-3">
+							<div>
+								<img height="209" width="500" src="tpl/Wap/default/common/kawahk/1032/100.gif">
+							</div>
+						</div>
+						<div id="pUrycbtvq-an-obj-4">
+							<div>
+								<img height="177" width="121" src="tpl/Wap/default/common/kawahk/1032/103-piaoliuping1.png">
+							</div>
+						</div>
+						<div id="pUrycbtvq-an-obj-5">
+							<div>
+								<img height="111" width="557" src="tpl/Wap/default/common/kawahk/1032/102-haishui1.png">
+							</div>
+						</div>
+						<div id="pUrycbtvq-an-obj-6">
+							<div>
+								<img height="215" width="192" src="tpl/Wap/default/common/kawahk/1032/103-piaoliuping2.png">
+							</div>
+						</div>
+						<div id="pUrycbtvq-an-obj-7">
+							<div>
+								<img height="111" width="557" src="tpl/Wap/default/common/kawahk/1032/102-haishui1.png">
+							</div>
+						</div>
+						<div id="pUrycbtvq-an-obj-8">
+							<div>
+								<img height="338" width="303" src="tpl/Wap/default/common/kawahk/1032/103-piaoliuping3.png">
+							</div>
+						</div>
+						<div id="pUrycbtvq-an-obj-9">
+							<div>
+								<img height="111" width="557" src="tpl/Wap/default/common/kawahk/1032/102-haishui1.png">
+							</div>
+						</div>
+						<div id="pUrycbtvq-an-obj-10">
+							<div>
+								<img height="209" width="500" src="tpl/Wap/default/common/kawahk/1032/100.gif">
+							</div>
+						</div>
+						<div id="pUrycbtvq-an-obj-11">
+							<div>
+								<img height="209" width="500" src="tpl/Wap/default/common/kawahk/1032/100.gif">
+							</div>
+						</div>
+						<div id="pUrycbtvq-an-obj-12">
+							<div>
+								<img height="209" width="500" src="tpl/Wap/default/common/kawahk/1032/100.gif">
+							</div>
+						</div>
+						<div id="pUrycbtvq-an-obj-13">
+							<div>
+								<img height="686" width="418" src="tpl/Wap/default/common/kawahk/1032/105-diangdiang.png">
+							</div>
+						</div>
+						<div id="pUrycbtvq-an-obj-14">
+							<div>
+								<img height="97" width="92" src="tpl/Wap/default/common/kawahk/1032/002-hua.gif">
+							</div>
+						</div>
+						<div id="pUrycbtvq-an-obj-15">
+							<div>
+								<img height="97" width="92" src="tpl/Wap/default/common/kawahk/1032/002-hua.gif">
+							</div>
+						</div>
+						<div id="pUrycbtvq-an-obj-16">
+							<div>
+								<img height="97" width="92" src="tpl/Wap/default/common/kawahk/1032/002-hua.gif">
+							</div>
+						</div>
+						<div id="pUrycbtvq-an-obj-17">
+							<div>
+								<img height="97" width="92" src="tpl/Wap/default/common/kawahk/1032/002-hua.gif">
+							</div>
+						</div>
+						<div id="pUrycbtvq-an-obj-18">
+							<div>
+								<img height="74" width="74" src="tpl/Wap/default/common/kawahk/1032/104-xingxing.png">
+							</div>
+						</div>
+						<div id="pUrycbtvq-an-obj-19">
+							<div>
+								<img height="74" width="74" src="tpl/Wap/default/common/kawahk/1032/104-xingxing.png">
+							</div>
+						</div>
+						<div id="pUrycbtvq-an-obj-20">
+							<div>
+								<img height="74" width="74" src="tpl/Wap/default/common/kawahk/1032/104-xingxing.png">
+							</div>
+						</div>
+						<div id="pUrycbtvq-an-obj-21">
+							<div>
+								<img height="74" width="74" src="tpl/Wap/default/common/kawahk/1032/104-xingxing.png">
+							</div>
+						</div>
+						<div id="pUrycbtvq-an-obj-22">
+							<div>
+								<img height="750" width="500" src="tpl/Wap/default/common/kawahk/1032/201-bdijing.jpg">
+							</div>
+						</div>
+						<div id="pUrycbtvq-an-obj-23">
+							<div>
+								<img height="219" width="216" src="tpl/Wap/default/common/kawahk/1032/202-pai.png">
+							</div>
+						</div>
+						<div id="pUrycbtvq-an-obj-24">
+							<div>
+								<img height="219" width="216" src="tpl/Wap/default/common/kawahk/1032/202-pai.png">
+							</div>
+						</div>
+						<div id="pUrycbtvq-an-obj-25">
+							<div>
+								<img height="391" width="483" src="tpl/Wap/default/common/kawahk/1032/201-piaoliuping1.png">
+							</div>
+						</div>
+						<div id="pUrycbtvq-an-obj-26">
+							<div>
+								<img height="97" width="92" src="tpl/Wap/default/common/kawahk/1032/002-hua.gif">
+							</div>
+						</div>
+						<div id="pUrycbtvq-an-obj-27">
+							<div>
+								<img height="97" width="92" src="tpl/Wap/default/common/kawahk/1032/002-hua.gif">
+							</div>
+						</div>
+						<div id="pUrycbtvq-an-obj-28">
+							<div>
+								<img height="97" width="92" src="tpl/Wap/default/common/kawahk/1032/002-hua.gif">
+							</div>
+						</div>
+						<div id="pUrycbtvq-an-obj-29">
+							<div>
+								<img height="97" width="92" src="tpl/Wap/default/common/kawahk/1032/002-hua.gif">
+							</div>
+						</div>
+						<div id="pUrycbtvq-an-obj-30">
+							<div>
+								<img height="686" width="418" src="tpl/Wap/default/common/kawahk/1032/105-diangdiang.png">
+							</div>
+						</div>
+					</div>
+				</li>
+			</ol>
+		</div>
+	</body>
+
+</html>

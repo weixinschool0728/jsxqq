@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>首页</title> 
+    <link rel="stylesheet" type="text/css" href="{weimicms::RES}/jjr2/css/style.css" />
+</head>
+<body>
+<div class="a_info" id="a_info" style="position: absolute;width:100%;">
+<if condition="$userinfo.username neq ''">
+    <div class="">
+        <div class="a_user_info clearfix">
+            <div class="fl ffl">
+                <img src="{weimicms::RES}/jjr2/images/peo.png"/>
+            </div>
+            <div class="ff">
+                <dl>
+                    <dt>{weimicms:$userinfo.username}</dt>
+                    <dd class="clearfix"> 
+                        <div class="fl commisionCount" style="padding:0;">
+                            <p>推荐客户</p>
+                            <p>
+                                <span>{weimicms:$count.count}</span>名
+                            </p>
+                        </div>
+                        <div class="fl commisionCount" style="padding:0;">
+                            <p>佣金总额</p>
+                            <p>
+                                <span>{weimicms:$userinfo.money}</span>元
+                            </p>
+                        </div>
+                    </dd>
+                </dl>
+            </div>
+        </div> 
+        <else />
+        <div class="slogan" style="border-radius: 5px;    text-align: center;">
+           <a href="/index.php?g=Wap&m=Supplier&a=registered&token={weimicms:$token}&wecha_id={weimicms:$wecha_id}">
+            	<img src="{weimicms::RES}/jjr/images/aa_c1.png" width="100%"  style="overflow:hidden;" />
+            </a>
+        </div>
+        </if>    
+        <div class="a_list_wrap clearfix">
+            <ul>
+                <li>
+                    <p>
+                        <a class="tj" href="/index.php?g=Wap&m=Supplier&a=recommended">我要推荐</a>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <a class="kh" href="/index.php?g=Wap&m=Supplier&a=customer">我的客户</a>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <a class="yj" href="/index.php?g=Wap&m=Supplier&a=commission">我的佣金</a>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <a class="xz" href="/index.php?g=Wap&m=Supplier&a=guize">规则</a> 
+                    </p>
+                </li>
+            </ul>
+        </div>
+        <div class="a_list_con"> 
+            <div class="a_pull clearfix"> 
+                <h4>项目动态</h4>
+                <ul class="a_bdList">
+                 <volist name="projectinfo" id="vo">
+                    <li>
+                        <a class="clearfix" href="/index.php?g=Wap&m=Supplier&a=projectinfo&id={weimicms:$vo.projectid}&token={weimicms:$vo.token}">
+                            <dl>
+                                <dt class="a_hasPhoto"><i>奖</i>
+                                    <span>{weimicms:$vo.projuctprice}</span>
+                                </dt>
+                                <dd class="clearfix"> 
+                                    <span class="fl">{weimicms:$vo.projectname}</span>
+                                </dd>
+                            </dl>
+                        </a> 
+                    </li>
+                     </volist>
+                </ul>  
+            </div>
+              <div class="powered" style="margin-bottom:0px; padding-bottom:8px; padding-top:20px; text-align:center; font-size:12px; color:#6691f3; height:30px;">
+    					{weimicms:$jjrcopyright}
+			 </div> 
+        </div>
+    </div>
+</div> 
+<footer>
+    <ul>
+        <li class="select">
+            <a href='/index.php?g=Wap&m=Supplier&a=index'>
+                <div class="icon30 dynamicicon"></div>
+                <div class="textinfo">首页</div>
+            </a>
+        </li>
+        <li>
+            <a href='/index.php?g=Wap&m=Supplier&a=customer'>
+                <div class="icon30 customericon"></div>
+                <div class="textinfo">客户</div>
+            </a>
+        </li>
+        <li>
+            <a href='/index.php?g=Wap&m=Supplier&a=commission'>
+                <div class="icon30 myicon"></div>
+                <div class="textinfo">佣金</div>
+            </a>
+        </li>
+        <li>
+            <a href='/index.php?g=Wap&m=Supplier&a=guize'>
+                <div class="icon30 buildingicon">
+                    <div class="newimg"></div>  </div>
+                <div class="textinfo">规则</div>
+            </a>
+        </li>
+    </ul>
+</footer>  
+</body>
+</html>

@@ -1,0 +1,268 @@
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <include file="Kawahk:js"/> 
+        <script type="text/javascript">
+            initViewport();
+        </script>
+		<meta name="viewport" content="width=100%, height=100%,initial-scale=0.64"/>
+     
+	<meta name="copyright" content="版权所有，抄袭必究！！">
+		
+	<title>送给你</title>
+<style>
+	
+	div {position:absolute;}
+
+	@-webkit-keyframes heart1move
+	{
+		0%{-webkit-transform:translate(0px,0px)  scale(0.1,0.1);
+		opacity:0;}
+		33%{-webkit-transform:translate(-120px,-100px) scale(0.35,0.35);
+		opacity:0.3}			
+		66%{-webkit-transform:translate(80px,-200px) scale(0.7,0.7);
+		opacity:0.6}
+		100%{-webkit-transform:translate(-10px,-300px) scale(1.05,1.05);
+		opacity:0.8}
+	} 
+	
+	@-webkit-keyframes heart2move
+	{
+		0%	{webkit-transform:translate(20px,-20px);}
+		25% {-webkit-transform:translate(-70px,-180px);}
+		50% {-webkit-transform:translate(20px,-360px);}
+		85% {-webkit-transform:translate(-80px,-720px);}		
+		100% {-webkit-transform:translate(-40px,-960px);opacity:0.5;}
+	}
+	@-webkit-keyframes heart3move
+	{
+		0%	{-webkit-transform:translate(-70px,-150px);}
+		25% {-webkit-transform:translate(-30px,-300px);}
+		50% {-webkit-transform:translate(70px,-450px);}
+		85% {-webkit-transform:translate(-70px,-600px);}		
+		100% {-webkit-transform:translate(-100px,-750px);opacity:0.5;}
+	}
+	@-webkit-keyframes heart4move
+	{
+		0%	{-webkit-transform:translate(50px,-200px);}
+		25% {-webkit-transform:translate(-80px,-400px);}
+		50% {-webkit-transform:translate(120px,-600px);}
+		85% {-webkit-transform:translate(-150px,-800px);}		
+		100% {-webkit-transform:translate(180px,-1000px);opacity:0.5;}
+	}
+	@-webkit-keyframes heart5move
+	{
+		0%	{-webkit-transform:translate(30px,-130px);}
+		25% {-webkit-transform:translate(60px,-260px);}
+		50% {-webkit-transform:translate(90px,-390px);}
+		85% {-webkit-transform:translate(120px,-520px);}		
+		100% {-webkit-transform:translate(150px,-650px);opacity:0.5;}
+	}
+	@-webkit-keyframes heart6move
+	{
+		0%	{-webkit-transform:translate(-50px,-100px);}
+		25% {-webkit-transform:translate(0px,-200px);}
+		50% {-webkit-transform:translate(100px,-300px);}
+		85% {-webkit-transform:translate(-20px,-400px);}		
+		100% {-webkit-transform:translate(-70px,-600px);opacity:0.5;}
+	} 
+	@-webkit-keyframes ballx
+	{
+		0%	{opacity:0}
+		100% {opacity:1;}
+	} 
+	
+	@-webkit-keyframes s2
+	{
+		0%  {opacity:0;}
+		60% {opacity:1;}
+		100% {opacity:0; scale(2,2)}
+	}	
+	
+	@-webkit-keyframes buttonmove
+	{
+		0% {left: 0px;top: 0px;opacity: 0}
+		50% {left: 0px;top: 50px;opacity: 1}
+		100% {left: 0px;top: 0px;opacity: 0}
+	}
+	@-webkit-keyframes bg1fadeOut{
+		0%{opacity:1;}
+		33%{opacity:0;}
+		100%{opacity:0;}
+	}
+	@-webkit-keyframes bg2fadeOut{
+		0%{opacity:0;}
+		33%{opacity:1;}
+		66%{opacity:1;}
+		100%{opacity:0;}
+	}
+	
+	div#foot{   
+        position:fixed; 
+		right:30px;		
+		bottom:20px;
+		
+    } 	
+  </style>
+  </head>
+<body onload="kawa_init()" style='margin:0px' >
+	<script>
+        	words = '只要你回个头，你就能看到我，一生为期。';
+
+            kawa_data = {
+			  
+                 <if condition=" $words eq ''">
+				replace_words      : '只要你回个头，你就能看到我，一生为期。',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+               
+                text_box           : '170 300 350 225', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+                mode               : 'up',     // up, left
+                speed              : 40,     // 每秒移动的像素
+                text_color         : '#ffffff', // rgb(1,2,3) 'black'
+                font_size          : '30pt',
+                line_height        : '40pt',
+                music              : 'http://sound.kagirl.net/sound/rangwoaini.mp3',     // url
+              <if condition=" $music eq ''">
+				replace_music      : 'http://sound.kagirl.net/sound/rangwoaini.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+                music_name         : '',
+                replace_music_name : '#replace_music_name#',
+                icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/fengmian/x3010.jpg',
+                title              : '送给你',
+                desc               : words,
+                modify             : 'no',
+                replace_modify     : 'yes',
+                cardid             : '3010',
+                share_url          : window.location.href,   // 当分享的是微信页面时才需要改这里
+                font_ip            : '121.42.24.240:8000',
+                modify_optfile     : 'xinqing',
+                modify_optwords    : '#modify_optwords#',
+                show_words         : 'yes',
+                write_param_1      : 'inputtype=singleline&showsel=no&prompt=' + encodeURIComponent('输入对方的名字：')
+            };
+        </script>
+	<script>
+		document.body.ontouchstart = on_touch_start;
+		function on_touch_start()
+		{
+			x = event.changedTouches[0].pageX;
+			y = event.changedTouches[0].pageY;
+
+			if(x >= 144 && x <= 500 && y >= 554 && y <= 835)
+			{
+				fun0();				
+				event.preventDefault();
+			}
+		}
+		function fun0()
+		{
+			for(i=0;i<2;i++)
+			{
+				cancel();
+			}
+			document.getElementById("ball").style.cssText +="-webkit-animation:ballx 2s ease-in-out 0s 1 normal forwards ;";
+			document.getElementById("ball").addEventListener('webkitAnimationEnd',fun1,false);
+		}		
+		function fun1()
+		{			
+			var j = 0.1 ,
+				n = 0;
+				
+			
+			document.getElementById('top').style.webkitTransform = 'translate(0px,-370px)';
+			document.getElementById('ball').style.webkitTransform = 'translate(0px,-370px)';			
+			document.getElementById("heart1").style.cssText +="-webkit-animation:heart1move 5s linear 3s 1 alternate forwards;";
+
+			for(i=2;i<7;i++)
+			{
+				
+				document.getElementById("heart" + i).style.cssText += "-webkit-animation:heart" + i + "move 5s infinite linear " + j + "s normal forwards;";	
+				j+=1;
+			}
+
+			document.getElementById('bg1').style.cssText +="-webkit-animation:bg1fadeOut 12s linear 0s infinite alternate;";
+			document.getElementById('bg2').style.cssText +="-webkit-animation:bg2fadeOut 12s linear 0s infinite alternate;";
+			
+			for(m=1;m<6;m++)
+			{
+				n+=0.5; 
+				document.getElementById("star" + m).style.cssText += "-webkit-animation:s2 1.2s linear " + n + "s infinite";
+ 			}
+ 			setTimeout('kawa_init()',3000);		
+		}	
+		function cancel()
+		{
+			 document.getElementById("button").removeChild(document.getElementById("button").firstChild);
+		}
+		
+	</script>
+		<div id="bg3" style='background-image:url(tpl/Wap/default/common/kawahk/3010/bg3.jpg);
+							 background-size:cover;
+							 width:640px;
+							 height:960px;
+						     overflow:hidden'>
+		</div>
+		<div id="bg2" style='background-image:url(tpl/Wap/default/common/kawahk/3010/bg2.jpg);
+							 background-size:cover;
+							 width:640px;
+							 height:960px;
+						     overflow:hidden'>
+		</div>	
+		<div id="bg1" style='background-image:url(tpl/Wap/default/common/kawahk/3010/bg1.jpg); background-size:cover;
+							 width:640px;
+							 height:960px;
+						     overflow:hidden'>
+		</div>
+		<div id="star1" style="top:-20px;left:-20px;">
+		    <img src="tpl/Wap/default/common/kawahk/3010/star.png" height="200px"width="300px">
+		</div>
+		<div id="star2" style="top:50px;left:340px;">
+			<img src="tpl/Wap/default/common/kawahk/3010/star.png" height="200px" width="254px">
+		</div>
+		<div id="star3" style="top:254px;left:100px;">
+			<img src="tpl/Wap/default/common/kawahk/3010/star.png" height="120px"width="180px" >
+		</div>	
+		<div id="star4" style="top:190px;left:290px;">
+			<img src="tpl/Wap/default/common/kawahk/3010/star.png" height="120px"width="180px" >
+		</div>
+		<div id="star5" style="top:300px;left:450px;">
+			<img src="tpl/Wap/default/common/kawahk/3010/star.png" height="80px"width="100px" >
+		</div>
+		<div id="heart2" style="top:680px;left:240px;">
+			<img src="tpl/Wap/default/common/kawahk/3010/heart2.png" height="70px" width="70px" >
+		</div>
+		<div id="heart3" style="top:700px;left:250px;">
+			<img src="tpl/Wap/default/common/kawahk/3010/heart3.png" >
+		</div>
+		<div id="heart4" style="top:680px;left:240px;">
+			<img src="tpl/Wap/default/common/kawahk/3010/heart2.png" height="80px" width="80px" >
+		</div>		
+		<div id="heart5" style="top:680px;left:240px;">
+			<img src="tpl/Wap/default/common/kawahk/3010/heart2.png" height="110px" width="110px" >
+		</div>
+		<div id="heart6" style="top:680px;left:240px;">
+			<img src="tpl/Wap/default/common/kawahk/3010/heart3.png" height="120px" width="120px" >
+		</div>
+		
+		<div id="bottom" style="top:630px;left:150px;">
+			<input type="image" name="bottom" src="tpl/Wap/default/common/kawahk/3010/bottom.png" height="190px">
+		</div>			
+		<div id="top" style="top:530px;left:137px;-webkit-transition:-webkit-transform 5s	ease ;">
+			<input type="image" name="top" src="tpl/Wap/default/common/kawahk/3010/top.png" height="190px" onclick="fun0()">
+		</div>		
+		<div id="ball" style="top:380px;left:190px;opacity:0;-webkit-transition:-webkit-transform 5s ease;">
+			<img src="tpl/Wap/default/common/kawahk/3010/ball.png">
+		</div>
+		<div id="heart1" style="top:480px;left:40px;opacity:0;">
+			<img src="tpl/Wap/default/common/kawahk/3010/heart.png">
+		</div>
+		<div id="button" style="-webkit-animation:buttonmove 1.5s linear 0s infinite;">
+		<img src="tpl/Wap/default/common/kawahk/3010/button.png" style="position:absolute;top:450px;left:300;width:50px;height:65px;">
+	    </div>		
+
+</body>
+
+</html>

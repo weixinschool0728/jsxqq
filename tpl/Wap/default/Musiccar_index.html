@@ -1,0 +1,441 @@
+<script>
+(function(){
+		var onBridgeReady = function () {
+		var appId = '',
+		<if condition="$bigpic eq ''">
+		imgUrl = '{weimicms:$f_siteUrl}/tpl/Wap/default/common/muscicar/b_3.jpg',<else/>
+		imgUrl ='{weimicms:$f_siteUrl}/{weimicms:$bigpic}',</if>
+		link=location.href,
+        title = '想对你说',
+		<if condition="$note eq ''">
+		desc = '好久不见的朋友打开看看。';
+		<else/>
+		desc = '{weimicms:$note}';</if>
+
+		WeixinJSBridge.call('showOptionMenu');
+		
+	 
+		WeixinJSBridge.on('menu:share:appmessage', function(argv){
+			WeixinJSBridge.invoke('sendAppMessage',{
+				'img_url' : imgUrl,
+				'img_width' : '200',
+				'img_height' : '200',
+				'link' : link,
+				'desc' : desc,
+				'title' : title
+				}, function(res) {
+				setTimeout(function () {location.href = "{weimicms:$info.yd}";}, 1500);
+			});
+		});
+	// 
+		WeixinJSBridge.on('menu:share:timeline', function(argv){
+			WeixinJSBridge.invoke('shareTimeline',{
+			'img_url' : imgUrl,
+			'img_width' : '200',
+			'img_height' : '200',
+			'link' : link,
+			'desc' : desc,
+			'title' : desc
+			}, function(res) {
+			setTimeout(function () {location.href = "{weimicms:$info.yd}";}, 1500);
+			});
+		});
+		
+		var audio = document.getElementById('bgsound');
+		audio.play();
+	};
+	
+	if(document.addEventListener){
+	document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+	} else if(document.attachEvent){
+	document.attachEvent('WeixinJSBridgeReady' , onBridgeReady);
+	document.attachEvent('onWeixinJSBridgeReady' , onBridgeReady);
+	}
+	})();</script>
+</script>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>想对你说</title>
+<link href="tpl/Wap/default/common/muscicar/heka.css" rel="stylesheet" type="text/css">
+<link href="tpl/Wap/default/common/muscicar/musicdiv.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="tpl/Wap/default/common/muscicar/jquery.min.js"></script>
+
+<script src="tpl/Wap/default/common/muscicar/audio.js" type="text/javascript"></script>
+
+</head>
+
+<body style="TEXT-ALIGN: center;overflow-y:hidden;height:500px;">
+<div id="BAIDU_DUP_fp_wrapper" style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;"></div>
+<div id="sharemcover0" class="sharemcover" onClick="document.getElementById(&#39;sharemcover0&#39;).style.display=&#39;&#39;;" style=" display:none"> <img src="tpl/Wap/default/common/muscicar/guidetofollow.png" style="width:100%;heigth:100%;"> </div>
+<div onClick="document.getElementById(&#39;sharemcover2&#39;).style.display=&#39;&#39;;" class="sharemcover" id="sharemcover2">
+  <div style="margin-top:20%;color:#FFFFFF;font-size:32px;">分享成功<img src="tpl/Wap/default/common/muscicar/1.png" style="position: absolute;top:5px;right:5px;width:20px;height:20px;z-index:9999;"></div>
+</div>
+<div class="hot" style="position:absolute">
+  <li style="display:inline-block;">点击屏幕上的文字即可进入编辑模式</li>
+</div>
+<div id="div1"><if condition="$bigpic eq ''"> <img class="cardbg" src="tpl/Wap/default/common/muscicar/b_3.jpg" id="cardbg"><else/>
+<img class="cardbg" src="{weimicms:$bigpic}" id="cardbg"></if>
+ </div>
+<div class="cardWrap">
+<style>
+ .btn_music {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    background: url("tpl/Wap/default/common/muscicar/play.png") no-repeat center center;
+    background-size: 100% auto;
+    position: absolute;
+    z-index: 100;
+    left: 15px;
+    top: 30px;
+}
+
+.btn_music.on {
+    background-image: url("tpl/Wap/default/common/muscicar/stop.png");
+}
+#sharemcover0 img {
+    position: fixed;
+    right: 0;
+    top: 5px;
+    width: 100%!important;
+    z-index: 20001;
+}
+   </style>
+    <span id="playbox" class="btn_music on" onClick="playbox.play();return false;">
+   <!--{<span id="playbox" class="btn_music" onClick="playbox.init(this).play();return false;">}-->
+
+   <if condition="$mus eq ''">
+<audio src="tpl/Wap/default/common/muscicar/sound/Cry On My Shoulder.mp3" loop id="audio" autoplay></audio>
+<else/>
+
+<audio src="{weimicms:$mus}" loop id="audio" autoplay></audio></if>
+   </span>
+
+
+<div class="messageBox" id="messagebox">
+  <div>
+    <div class="dh" id="dh" style="display: none;">
+      <div style="width:32%;display:inline-block;position:relative;" id="bjdhs">
+        <select class="selectstyle fl" id="bjdh" onChange="doit()" name="bjdh">
+          <option value="6">更换浮动特效</option>
+          <option value="1">飘落的枫叶</option>
+          <option value="2">飘落的雪花</option>
+          <option value="3">飘落的玫瑰</option>
+          <option value="6">飘落的音符</option>
+          <option value="4">浓浓的爱意</option>
+          <option value="5">深深的思念</option>
+          <option value="7">飘落的羽毛</option>
+          <option value="8">喜庆的灯笼</option>
+        </select>
+      </div>
+      <div style="width:32%;display:inline-block;position:relative;"><a class="sendBtn" onClick=" changebackgroundvoice(this)" id="hekamusic_0_0_0_0" style="background:#FFFFFF;border:#000000;color:#000000;height:31px;margin-top:5px;line-height:31px;"><span>更换背景声音</span></a> </div>
+      <div style="width:32%;display:inline-block;position:relative;"><a class="sendBtn" onClick="changebackgroundpic(this)" id="hekapic_0_0_0_0" style="background:#FFFFFF;border:#000000;color:#000000;height:31px;margin-top:5px;line-height:31px;"><span>更换背景图片</span></a> </div>
+    </div>
+  </div>
+  <div class="clr"></div>
+  <div class="user">
+    <div class="message" contenteditable="true">
+    <if condition="$note eq ''">
+      <textarea id="message" style="border:0;overflow:hidden;color:#000000;text-align: center;">好久不见的朋友，打开看看。不联系不代表不挂念，希望你在未来的路上更加努力，走向更大成功，记得有人挂念着你</textarea><else/>
+        <textarea id="message" style="border:0;overflow:hidden;color:#000000;text-align: center;">{weimicms:$note}</textarea></if>
+    </div>
+    <div style="position: relative;height: 20px;" contenteditable="true">
+	<if condition="$name eq ''">
+      <input name="email" type="text" id="email" style="height:19;border-top: 1px solid #808080;border-right: 1px solid #D4D0C8;border-bottom: 1px solid #D4D0C8;border-left: 1px solid #808080; position: absolute;right: 0;border: 0 solid #ffffff;" value="你永远的朋友" size="29">
+	  <else/>
+	     <input name="email" type="text" id="email" style="height:19;border-top: 1px solid #808080;border-right: 1px solid #D4D0C8;border-bottom: 1px solid #D4D0C8;border-left: 1px solid #808080; position: absolute;right: 0;border: 0 solid #ffffff;" value="{weimicms:$name}" size="29">
+		 </if>
+    </div>
+    <div class="time">{weimicms:$time|date="Y-m-d",###}</div>
+  </div>
+  <div class="clr"></div>
+  <div class="window" id="windowcenter">
+    <div id="title" class="wtitle">操作提示<span class="close" id="alertclose"></span> </div>
+    <div class="content">
+      <div id="txt"></div>
+    </div>
+  </div>
+  <input type="hidden" value="5" id="hekaid">
+  <div class="btnBox" style="top:70%;z-index:900;"><a class="btnPink" id="bj" href="index.php/#">编辑</a><a class="btnBlue" id="zf" onClick=" document.getElementById(&#39;sharemcover0&#39;).style.display=&#39;block&#39;;return false;"><span>转发</span></a> </div>
+</div>
+<script src="tpl/Wap/default/common/muscicar/url.js"></script> 
+<script type="text/javascript">
+	
+        var prehoverid = "0";
+        var currentid = "";
+        var classname = "";
+        var cid = "";
+        var chooseflag = false;
+		var getTime = "2014-12-01";
+		var timeStr = getTime;
+
+        function changebackgroundpic(obj) {
+		var ll="index.php?g=Wap&m=Musiccar&a=bg&token={weimicms:$token}&wecha_id={weimicms:$wecha_id}&tx={weimicms:$tx}&note={weimicms:$note}&pic=&bigpic={weimicms:$bigpic}&mus={weimicms:$mus}$name={weimicms:$name}";
+		var new_ll=setUrlParam('name',encodeURIComponent($.trim($("#email").val())),ll);
+		var new_ll=setUrlParam('note',encodeURIComponent($.trim($("#message").val())),new_ll);
+		var new_ll=setUrlParam('tx','{weimicms:$tx}',new_ll);
+		var new_ll=setUrlParam('time',timeStr,new_ll);
+		
+			window.location.href = new_ll;
+        }
+
+        function changebackgroundvoice(obj) {
+			
+			var ll="index.php?g=Wap&m=Musiccar&a=mp3&token={weimicms:$token}&wecha_id={weimicms:$wecha_id}&tx={weimicms:$tx}&note={weimicms:$note}&pic=&bigpic={weimicms:$bigpic}&mus=./sound/./music/qingyinyue15.mp3$name={weimicms:$name}";
+		var new_ll=setUrlParam('name',encodeURIComponent($.trim($("#email").val())),ll);
+		var new_ll=setUrlParam('note',encodeURIComponent($.trim($("#message").val())),new_ll);
+		var new_ll=setUrlParam('tx','{weimicms:$tx}',new_ll);
+		var new_ll=setUrlParam('time',timeStr,new_ll);
+		
+			window.location.href = new_ll;
+        }
+        var hrefValue = window.location.href;
+        var newurl = hrefValue.split('?')[0];
+        var clickflag = false;
+
+        function doit() {
+            var obj2 = document.getElementById('bjdh');
+            var obj = document.getElementById('leafContainer');
+            obj.innerHTML = '';
+            init(obj2.value);
+			var hh=location.href;
+			new_ll=setUrlParam('tx',obj2.value,hh);
+			var new_ll=setUrlParam('name',encodeURIComponent($.trim($("#email").val())),new_ll);
+		var new_ll=setUrlParam('note',encodeURIComponent($.trim($("#message").val())),new_ll);
+		var new_ll=setUrlParam('time',timeStr,new_ll);
+			location.href=new_ll;
+        }
+
+        function changeText(cont1, cont2, speed) {
+            var Otext = cont1.text();
+            var Ocontent = Otext.split("");
+            var i = 0;
+
+            function show() {
+                if (i < Ocontent.length) {
+                    cont2.append(Ocontent[i]);
+                    i = i + 1;
+                }
+            };
+            var Otimer = setInterval(show, speed);
+        };
+        $(document).ready(function() {
+            $(document).click(function() { //对document绑定一个影藏Div方法
+                /* if (playbox.on == false && clickflag == false) {
+                    playbox.init("playbox").play();
+                    clickflag = true;
+                }*/
+
+                messagehtml = $("#message").val();
+                if ($('#messagebox').is(':hidden')) {
+                    if (messagehtml == "" || messagehtml == " 好久不见的朋友，打开看看。不联系不代表不挂念，希望你在未来的路上更加努力，走向更大成功，记得有人挂念着你") {
+                        $("#message").html(' 好久不见的朋友，打开看看。不联系不代表不挂念，希望你在未来的路上更加努力，走向更大成功，记得有人挂念着你');
+                    }
+                    $("#message").show();
+                    $("#messagebox").show();
+                } else {
+                    if (messagehtml == "" || messagehtml == " 好久不见的朋友，打开看看。不联系不代表不挂念，希望你在未来的路上更加努力，走向更大成功，记得有人挂念着你") {
+                        $(".dh").hide();
+                    } else {
+                        $(".dh").hide();
+                    }
+					
+					$("#bj").html("编辑");
+                }
+                $(".menu_font").hide(500);
+            });
+            $(".dh").click(function() { //对document绑定一个影藏Div方法
+                $(".dh").show();
+                return false;
+            });
+            $("#fontparent").click(function() { //对document绑定一个影藏Div方法
+                $(".menu_font").show(500);
+                return false;
+            });
+            $("#sc").click(function() {
+                document.getElementById('sharemcover1').style.display = 'block';
+                return false;
+            });
+            $("#zf").click(function() {
+                document.getElementById('sharemcover0').style.display = 'block';
+                return false;
+            });
+            $("#bj").click(function() {
+				var w = $(this).text();
+				if(w == "编辑"){
+					$("#bj").html("保存");
+					if ($('#messagebox').is(':hidden')) {
+						if (messagehtml == "" || messagehtml == " 好久不见的朋友，打开看看。不联系不代表不挂念，希望你在未来的路上更加努力，走向更大成功，记得有人挂念着你") {
+							$("#message").html(' 好久不见的朋友，打开看看。不联系不代表不挂念，希望你在未来的路上更加努力，走向更大成功，记得有人挂念着你');
+						}
+						$("#message").show();
+						$("#messagebox").show();
+					}
+					$(".dh").show();
+				}else{
+                    $(".dh").hide();
+				
+					$("#bj").html("编辑");
+sss=setUrlParam('name',encodeURIComponent($.trim($("#email").val())),location.href);
+sss=setUrlParam('note',encodeURIComponent($.trim($("#message").val())),sss);
+location.href=sss;
+				}
+				return false;
+            });
+            $("#menu_font a").click(function() { //对document绑定一个影藏Div方法
+                window.location.href = $(this).attr("href");
+            });
+            $("#email").click(function() {
+
+				$("#bj").html("保存");
+                $(".dh").show();
+                if ($(this).find(".sort_input").attr("type") == "text") {
+                    return false;
+                }
+                var name = $.trim($(this).text());
+                var m = $.trim($(this).text());
+                $(this).html("<input type=text value=\"" + name + "\" class=\"sort_input\">");
+                $(this).find(".sort_input").focus();
+                $(this).find(".sort_input").bind("blur", function() {
+                    var n = $.trim($(this).val());
+                    $(this).parent().html(n);
+                });
+                return false; //在Div区域内的点击事件阻止冒泡到document 
+            });
+            $("#message").click(function() {
+				$("#bj").html("保存");
+                $(".dh").show();
+               /* if ($(this).find(".sort_textarea").attr("name") == "textarea") {
+                    return false;
+                }*/
+                var message = $.trim($(this).text());
+                var mm = $.trim($(this).text());
+             
+                $(this).bind("blur", function() {
+                    var nn = $.trim($(this).val());
+                    if (nn != mm && nn != "") {
+                        
+                    } else {
+                        if (nn == "") {
+                          
+                        } else {
+                            
+                        }
+                    }
+                });
+                return false; //在Div区域内的点击事件阻止冒泡到document 
+            });
+        });
+		
+		
+		
+    </script>
+<div id="leafContainer"></div>
+<style>
+        #leafContainer {
+    position: fixed;
+    z-index: 2;
+    width: 100%;
+    height: 690px;
+    top: 0;
+    overflow: hidden;
+}
+
+#leafContainer > div {
+    position: absolute;
+    max-width: 100px;
+    max-height: 100px;
+    -webkit-animation-iteration-count: infinite, infinite;
+    -webkit-animation-direction: normal, normal;
+    -webkit-animation-timing-function: linear, ease-in;
+}
+
+#leafContainer > div > img {
+    position: absolute;
+    width: 100%;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-direction: alternate;
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-transform-origin: 50% -100%;
+}
+
+@-webkit-keyframes fade {
+   
+    0% {
+        opacity: 1;
+    }
+
+    95% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes drop {
+    0% {
+        -webkit-transform: translate(0px, -50px);
+    }
+
+    100% {
+        -webkit-transform: translate(0px, 650px);
+    }
+}
+
+@-webkit-keyframes clockwiseSpin {
+    0% {
+        -webkit-transform: rotate(-50deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(50deg);
+    }
+}
+
+@-webkit-keyframes counterclockwiseSpinAndFlip {
+    
+    0% {
+        -webkit-transform: scale(-1, 1) rotate(50deg);
+    }
+
+    100% {
+        -webkit-transform: scale(-1, 1) rotate(-50deg);
+    }
+}
+    </style>
+<script language="JavaScript">
+        $(document).ready(function() {     
+		$("#adv_clo").bind("click",function(){$("#cproIframe1Wrap").hide();});  
+var num = "{weimicms:$tx}";
+			if(num!=0){//tx
+init(num);
+}
+        });
+		
+	
+    </script> 
+<script src="tpl/Wap/default/common/muscicar/flash.js" type="text/javascript"></script> 
+<script>
+$("#close_b").click(function(){
+$("#cproIframe1Wrap").hide();
+
+});
+
+</script>
+</body>
+</html>
+<div id="cproIframe1Wrap" style="text-align: center; display: block; font-size: 0px; width: 100%; height:15%; opacity: 0.8; position: fixed; bottom: 0px; padding:3px 0px 3px 0px;background-color: rgb(0, 0, 0); z-index:999;" >
+  <table border="0" cellpadding="0" cellspacing="0" width="100%" height="100%" >
+    <tr>
+      <td><a href="{weimicms:$info.lj}" target="_blank"><img width="100%" src="{weimicms:$info.ad}"></a></td>
+      <td   width="10%;" ><img id="adv_clo"  width="100%" src="tpl/Wap/default/common/muscicar/xuantingClose.png"></td>
+    </tr>
+  </table>
+</div>

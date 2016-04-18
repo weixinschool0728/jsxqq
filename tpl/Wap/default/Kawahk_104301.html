@@ -1,0 +1,229 @@
+
+<!doctype html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="imagetoolbar" content="no">
+        <meta charset="utf-8"> 
+        <meta name="format-detection" content="telephone=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+      
+        <script type="text/javascript">
+                initViewport();
+        </script>
+        <include file="Kawahk:js"/> 
+        <script src='tpl/Wap/default/common/kawahk/104301/kawamovie.js?ver=10'></script>
+        <script src='tpl/Wap/default/common/kawahk/104301/flowerModify.js?ver=11'></script>
+        <style type="text/css">
+        body{   
+            -webkit-touch-callout: none; 
+            -webkit-text-size-adjust: none;
+            margin:0 auto;          
+            overflow:hidden;   
+            position:relative;          
+            background:#8B7652;
+        }        
+        div
+        {
+        	position:absolute;
+        }
+        #open
+        {
+        	position:absolute;
+        	-webkit-transition:-webkit-transform 1.5s ease-in;
+        	-webkit-transform-style: preserve-3d;
+        	-webkit-transform-origin:5% 47%;
+        	-webkit-perspective: 100;
+        }
+        #caidai
+        {
+            position:absolute;
+            -webkit-transition:-webkit-transform 1.5s ease;
+            -webkit-transform-style: preserve-3d;
+            -webkit-transform-origin:50% 95%;
+            -webkit-perspective: 100;
+        }
+
+        @-webkit-keyframes shink
+        {
+        	0%{opacity:0;}
+        	40%{opacity:0.8;}
+        	70%{opacity:1;}
+        	100%{opacity:0;}
+        	
+        }
+        @-webkit-keyframes fadeIn
+        {
+            0%{
+                opacity:0;
+                top:190px;
+                -webkit-transform:scale(0.6,0.6) ;
+            }
+            70%{
+                opacity:1;
+                -webkit-transform:scale(1.2,1.2); 
+            }
+            100%{
+                opacity:1;
+                top:220px;
+                -webkit-transform:scale(1,1);
+            }
+        }
+        @-webkit-keyframes fadeIn2
+        {
+            0%{opacity:0;}
+            40%{opacity: 0.8;}
+            100%{opacity:1;}
+        }
+        @-webkit-keyframes daizi
+        {
+            0%{
+                opacity:1;
+                -webkit-Transform:rotateX(-10deg);
+            }
+            40%{
+                opacity:1;
+                -webkit-Transform:rotateX(-25deg);
+            }
+            60%{
+                opacity:1;
+                -webkit-Transform:rotateX(-35deg);
+            } 
+            80%{
+                opacity:1;
+                -webkit-Transform:rotateX(-25deg);
+            }
+            100%{
+                opacity:1;
+                -webkit-Transform:rotateX(-10deg);
+            }            
+        }
+
+        </style>
+
+        <script >
+        function Move()
+        {
+            objid("caidai").style.webkitAnimation="daizi 2s linear infinite forwards "; 
+        }
+        function Second()
+        {
+            objid("flower").style.webkitAnimation="fadeIn 3s linear forwards";
+            //objid("caidai").style.webkitAnimation='fadeIn 3s linear forwards'; 
+            objid("caidai").style.webkitAnimation="daizi 2s linear 3"; 
+            objid("open").style.visibility='hidden';
+           
+        }
+        function openup()
+        {
+        	objid("open").style.webkitTransform='scale(0.9,0.9) rotateY(200deg) translate(50px,0px)';
+        	objid('2').style.webkitTransform='scale(0.9,0.9)';
+            
+            setTimeout(Second,1500);
+            //setTimeout(Move,5500);
+        	
+   
+        }
+
+        function rand(min,max)
+        {
+        	return min+Math.floor(Math.random()*(max-min+1));
+        }
+
+        function run()
+        {
+        	create_base();
+            read_base();
+            setTimeout(create_textdiv,5000);
+            add_kawa_icon();
+            create_music();
+            //create_modify();
+
+            if(location.href.indexOf('facemodify') != -1)
+            {
+                create_flowermodify();
+            }
+
+            setTimeout(openup,1000);
+         
+
+        }
+        </script>
+    </head>
+
+    <body style='margin:0px' onload='run();'>
+    	<script>
+            words = '送你一束郁金香，郁金香代表开朗、热烈。生活，赋予我们热情;人生，赐给我们幸福;生命，带给我们精彩;日子，洒给我们欢乐。感恩节，感恩一切，祝福朋友们幸福安乐，一切如意!';
+            kawa_data = {
+                words              : words,
+               <if condition=" $words eq ''">
+				replace_words      : '送你一束郁金香，郁金香代表开朗、热烈。生活，赋予我们热情;人生，赐给我们幸福;生命，带给我们精彩;日子，洒给我们欢乐。感恩节，感恩一切，祝福朋友们幸福安乐，一切如意!',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+                text_box           : '140 110 320 145', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+                mode               : 'print',     // up, left
+                speed              : 185,     // 每秒移动的像素
+                text_color         : 'rgb(167,133,61)', // rgb(1,2,3) 'black'
+                font_size          : '20pt',
+                line_height        : '34pt',
+                music              : 'http://sound.kagirl.net/sound/qingyinyue14.mp3',     // url
+                 <if condition=" $music eq ''">
+				replace_music      : 'http://sound.kagirl.net/sound/qingyinyue14.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+                music_name         : '',
+                replace_music_name : '#replace_music_name#',
+                icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/fengmian/icon.jpg',
+                title              : '送给你',
+                desc               : words,
+                modify             : 'no',
+                replace_modify     : 'yes',
+                cardid             : '104301',
+                share_url          : window.location.href,    // 当分享的是微信页面时才需要改这里
+                use_share_url      : 'no',
+                font_ip            : '114.215.157.155:8000',
+                modify_optfile     : 'pic/yu/ganen/ganen',
+                modify_optwords    : '#modify_optwords#',
+                show_words         : 'yes',
+                short_url          : window.location.href,
+            }; 
+
+            optwords = '<option>如果我是诗人，我要用最美的语言,表达对你的感谢，如果我是歌者，我要用最激昂的旋律,为你祝福，感恩节快乐，我最好的朋友。</option><option>母爱如水，似水温柔;父爱若山，如山巍峨。母爱似风，细语呵护;父爱象海，宽广隽永。母爱细致，丝丝入扣;父爱博大，深沉坚定。祝福爱我至深的双亲!感恩节快乐!</option><option>问候如诗充满关怀，感激似歌饱含精彩，愿我在这感恩的日子里，送给你最甜蜜的打扰，愿你在这特殊的日子里有份美丽的心情。感恩节快乐！ </option><option>用宽容的心对待世界，对待生活；用快乐的心创造世界，改变生活；用感恩的心感受世界，感受生活！感恩节快乐！</option><option>因为有了太阳，大地万物自由生长。因为有了月亮，夜晚不再暗淡无光。因为有了星星，天空不再辽远空旷。因为有了你的陪伴，我变的幸福快乐。感恩节快乐</option> <option>人生一世，草木一秋，生我养我，为我担忧。儿行千里，担忧万日。感恩节到了，感恩父母的养育之恩，愿父母永远安康</option><option>Happy Thanksgiving day!</option><option>一年四季不嫌累，一声问候不嫌多，一句祝福不嫌酸，一直关心不嫌烦，一生朋友不嫌长，祝感恩节快乐!</option><option>感谢每个相遇过陪伴过我的人，感谢爱我的人和我爱的人，感谢让我们感受快乐无忧的生活，感恩节快乐!</option> ';  
+        </script> 
+ 
+        <div id="1" style='width:500px;height:750px;position:absolute;overflow:hidden;'>
+        	<div style='z-index:6'>
+        		<img id='open' src="tpl/Wap/default/common/kawahk/104301/9390_01.jpg"  />
+        	</div>
+        	<div id='2' style='width:500px;height:750px;position:absolute;z-index:2;overflow:hidden;-webkit-transition:-webkit-transform 2.5s;'>        		
+        		<img id='pic' src="tpl/Wap/default/common/kawahk/104301/9390_02.jpg" style='position:absolute;width:500px;height:750px;' >
+        		<img id= 'flower' src='tpl/Wap/default/common/kawahk/104301/tulip.png' style='position:absolute;left:90px;top:220px;opacity:0;'/>
+        		<img id='caidai' src="tpl/Wap/default/common/kawahk/104301/caidai.png" style='position:absolute;left:12px;top:520px;width:477px;opacity:1;' > 
+        		<img src='tpl/Wap/default/common/kawahk/104301/star.png' 
+        		style='position:absolute; left:280px;top:350px;opacity:0; -webkit-animation:shink 2s linear 7s infinite'/>
+        		<img src='tpl/Wap/default/common/kawahk/104301/star.png' 
+        		style='position:absolute; left:210px;top:500px;opacity:0; -webkit-animation:shink 2s linear 6.8s infinite'/>
+        		<img src='tpl/Wap/default/common/kawahk/104301/star.png' 
+        		style='position:absolute; width:60px;left:220px;top:330px;opacity:0;-webkit-animation:shink 2s linear 8s infinite'/>
+        		<img src='tpl/Wap/default/common/kawahk/104301/star.png' 
+        		style='position:absolute; left:200px;top:400px;opacity:0; -webkit-animation:shink 2s linear 7.5s infinite'/>
+        		<img src='tpl/Wap/default/common/kawahk/104301/star.png' 
+        		style='position:absolute; left:200px;top:450px;opacity:0; -webkit-animation:shink 2s linear 8.5s infinite'/>
+        		<img src='tpl/Wap/default/common/kawahk/104301/star.png' 
+        		style='position:absolute; left:100px;top:380px;opacity:0; -webkit-animation:shink 2s linear 6s infinite'/>
+        		<img src='tpl/Wap/default/common/kawahk/104301/star.png' 
+        		style='position:absolute; width:50px;left:320px;top:320px;opacity:0; -webkit-animation:shink 2s linear 7s infinite'/>
+                <img src='tpl/Wap/default/common/kawahk/104301/star.png' 
+                style='position:absolute; left:130px;top:280px;opacity:0; -webkit-animation:shink 2s linear 8s infinite'/>
+                <img src='tpl/Wap/default/common/kawahk/104301/star.png' 
+                style='position:absolute; left:320px;top:270px;opacity:0; -webkit-animation:shink 2s linear 6.5s infinite'/>
+        	</div>
+<!--             <div style='width:100px;left:30px;top:620px;position:absolute;z-index:5' >
+                <img id='button' src="/kawa/pic/yu/ganen/button.png"/>
+            </div> -->
+        </div>
+
+
+    </body>
+</html>

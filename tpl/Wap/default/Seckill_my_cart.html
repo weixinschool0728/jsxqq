@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html class="no-js " lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<title>订单信息</title>
+		<!-- _global -->
+		<!-- meta viewport -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		
+		<!-- CSS -->
+		<link rel="stylesheet" href="{weimicms:$staticPath}/tpl/static/seckill/css/shop_base.css">
+		<link rel="stylesheet" href="{weimicms:$staticPath}/tpl/static/seckill/css/order_list.css" >
+
+		<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/seckill/js/jquery.min.js"></script>
+	    <link href="{weimicms:$staticPath}/tpl/static/public-framework/styles/owl.carousel.css" rel="stylesheet" type="text/css">
+	    <link href="{weimicms:$staticPath}/tpl/static/public-framework/styles/owl.theme.css" rel="stylesheet" type="text/css">
+	    <link href="{weimicms:$staticPath}/tpl/static/public-framework/styles/swipebox.css" rel="stylesheet" type="text/css">
+	    <link href="{weimicms:$staticPath}/tpl/static/seckill/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	    <link href="{weimicms:$staticPath}/tpl/static/seckill/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+	    <script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/alert.js"></script>
+	    <script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/seckill/js/bootstrap.min.js"></script>
+
+	    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	    <!--[if lt IE 9]>
+	      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+	    <![endif]-->
+
+	    <style type="text/css">
+			
+			._fly{
+		      height: 200px !important ;
+		      left: 0 !important;
+		    }
+		    .wxname {
+		      position: absolute;
+		      width: 37px !important;
+		      height: 38px !important;
+		      margin: 0 auto !important;
+		      left: 50% ;
+		      margin-left: -20px !important;
+		      z-index: 999
+		    }
+		    .footer {
+		      width: 100% !important ;
+		      height: 75px !important ;
+		      display: block !important ;
+		      text-align: center ;
+		    }
+
+		    .copyright .ft-links  a {
+		        font-size: 12px ;
+		        margin: 0px 6px;
+		        color: #333;
+		    }
+		  
+		    .copyright .ft-links  a:hover{
+		      text-decoration: none ;
+		    }
+
+		    .copyright .ft-copyright {
+		        text-align: center;
+		        margin-top: 10px;
+		        font-size: 12px;
+		    }
+		    .copyright .ft-copyright .company {
+		          color: #F39F6C;
+		      }
+			
+			.content , .container{
+				background: #EEEEEE ;
+			}
+
+			.b-list{
+				margin-top: 10px;
+			}
+
+			.thumb img{
+				width: 58px ;
+				max-height: 58px;
+				height: auto;
+			}
+
+			.opt-btn{
+				height: 32px ;
+			}
+
+			.opt-btn span{
+				height: 32px;
+				line-height: 32px ;
+			}
+	    </style>
+	</head>
+
+	<body style="background: #EEEEEE ; position: relative">
+		<if condition="error eq 1">
+			<div style="text-align:center;">网络错误，请稍后再试！</div>
+		<else />
+        <!-- container -->
+		<div class="container ">
+            <div class="content">
+                <div id="order-list-container">
+                	<volist name="book" id="vo">
+					<div class="b-list">
+						<li class="block block-order animated">
+							<div class="header">
+								<span class="font-size-12">订单号：{weimicms:$vo.orderid}</span>
+
+								<if condition="$vo.paid eq 0">
+				                	<a class="js-cancel-order pull-right font-size-12 c-blue cancle-book" data-id="{weimicms:$vo.orderid}" href="javascript:;">取消</a>
+				                <else />
+				                	<a class="js-cancel-order pull-right font-size-12 c-blue" data-id="{weimicms:$vo.orderid}" href="javascript:;" style="color: #ccc">取消</a>
+				              	</if>
+							</div>
+							
+							<hr class="margin-0 left-10">
+							
+								<div class="block block-list block-border-top-none block-border-bottom-none">
+									<div class="block-item name-card name-card-3col clearfix">
+										<a href="{weimicms::U('shop', array('id'=>$_GET['id'], 'token'=>$_GET['token'], 'sid'=>$vo['shop_id'], 'wecha_id' => $wecha_id))}" class="thumb">
+											<img src="{weimicms:$vo.shop_img}">
+										</a>
+										<div class="detail">
+											<a href="{weimicms::U('shop', array('id'=>$_GET['id'], 'token'=>$_GET['token'], 'sid'=>$vo['shop_id'], 'wecha_id' => $wecha_id))}">
+												<h3>{weimicms:$vo.shop_name}</h3>
+											</a>
+										</div>
+										<div class="right-col">
+											<div class="price">¥&nbsp;<span>{weimicms:$vo.shop_price}</span></div>
+											<div class="num">
+												×<span class="num-txt">1</span>
+											</div>
+										</div>
+									</div>
+	    
+									<hr class="margin-0 left-10">
+								</div>
+						
+							<hr class="margin-0 left-10">
+							
+							<div class="bottom">
+								商品总价：<span class="c-orange">￥{weimicms:$vo.price}</span>
+								<div class="opt-btn">
+									<if condition="$vo.paid eq 0">
+										<if condition="$vo.paytype eq 'daofu' || $vo.paytype eq 'dianfu'">
+										<a class="btn btn-orange btn-in-order-list" href="javascript:;" style="width:65px;"><if condition="$vo.paytype eq 'daofu'">货到付款<else />店到付款</if></a>
+										<else />
+										<a class="btn btn-orange btn-in-order-list buy" data-prices="{weimicms:$vo.price}" data-names="{weimicms:$vo.shop_name}" data-nums="{weimicms:$vo.shop_num}" data-id="{weimicms:$vo.orderid}" href="javascript:;">付款
+										</a>
+										</if>
+					              	<elseif condition="$vo.paid eq 1" />
+					                	<span style="color:red;font-weight: bold">买家已付款，等待卖家发货<span>
+					              	<elseif condition="$vo.paid eq 2" />
+					                	<span style="color:red;font-weight: bold">卖家已发货，等待买家收货<span>
+					                <else />
+					                	<span style="color:green;font-weight: bold">已收货<span>
+					              	</if>
+								</div>
+							</div>
+						</li>
+						
+					</div>
+					</volist>
+					<div class="list-finished"><if condition="$num gt 0">共 <b style="color:red">{weimicms:$num}</b> 个订单<else />居然还没有订单<br/><br/><a href="{weimicms::U("index", array("uid" => $_GET['uid'] ,"id" => $_GET['id'] ,"token" => $_GET['token']))}" class="tag tag-big tag-orange" style="padding:8px 30px;">去逛逛</a></if></div>
+				</div>
+			</div>
+		</div> 
+		<div class="footer">
+			<div class="copyright">
+				<div class="ft-links">
+	                <a href="{weimicms::U("index", array(
+		                "uid" => $_GET['uid'] ,
+		                "id" => $_GET['id'] ,
+		                "token" => $_GET['token']
+		              ))}" >秒杀主页</a>
+		          <a href="{weimicms::U("my_cart", array(
+		                "uid" => $_GET['uid'] ,
+		                "id" => $_GET['id'] ,
+		                "token" => $_GET['token']
+		              ))}">我的信息</a>
+	            </div>
+	            
+				<div class="ft-copyright">
+					<if condition="$iscopyright eq 1">
+		              {weimicms:$homeInfo.copyright}
+		              <else/>
+		              {weimicms:$siteCopyright}
+		              </if>
+				</div>
+			</div>
+		</div>
+		</if>
+	<script type="text/javascript">
+		$(".buy").click(function() {
+			var shop_num = $(this).attr("data-nums");
+			var orderid = $(this).attr("data-id") ;
+			var price = $(this).attr("data-prices") ;
+			var orderName = $(this).attr("data-names") ;
+			if(shop_num <= 0){
+				alert('未及时付款，货品已被抢光');
+				return false;
+			}
+			var url = '' ;
+			url += "{weimicms::U('pay')}" ;
+			url += "&orderid="+orderid ;
+			url += "&token={weimicms:$_GET['token']}" ;
+			url += "&price="+price ;
+			url += "&orderName="+orderName ;
+
+			window.location.href = url ;
+		}) ;
+
+		$(".cancle-book").click(function() {
+			var obj = $(this).parent().parent() ;
+			var orderid = $(this).attr("data-id") ;
+			$.post("{weimicms::U('cancle_book')}", {"orderid":orderid}, function(data) {
+				var info = JSON.parse(data) ;
+				if(info.status == 1) {
+
+					obj.remove() ;
+
+					alert("删除订单成功!") ;
+				}else {
+					alert("网络异常！")
+				}
+			}) ;
+		}) ;
+	</script>
+	</body>
+</html>

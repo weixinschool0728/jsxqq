@@ -1,0 +1,87 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0071)http://www.zqianqian.cn/index.php/Club/user/income_fans/ref_id/106.html -->
+<!DOCTYPE html PUBLIC "" "">
+<HTML>
+<HEAD>
+<META content="IE=10.000" 
+http-equiv="X-UA-Compatible">
+<META charset="utf-8">
+<TITLE>点赚客</TITLE>
+<META name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+<META name="apple-mobile-web-app-capable" content="yes">
+<META name="apple-mobile-web-app-status-bar-style" content="black">
+<LINK 
+href="tpl/static/adcms/font-awesome.min.css" rel="stylesheet" type="text/css">
+<LINK href="tpl/static/adcms/mui.min.css" rel="stylesheet">
+<SCRIPT src="tpl/static/adcms/jquery-1.10.2.min.js" type="text/javascript"></SCRIPT>
+<STYLE>
+.clear {
+	clear: both;
+}
+.mui-table-view span {
+	width: 25%;
+	display: block;
+	float: left;
+	text-align: center;
+}
+.view2 span {
+	width: 50%;
+}
+.sygz {
+	padding: 15px;
+}
+.sygz a {
+	width: 40%;
+	margin: 0 5%;
+	text-align: center;
+	display: block;
+	float: left;
+	background: #EEA236;
+	line-height: 44px;
+	color: #fff;
+}
+.tip {
+	position: absolute;
+	right: 15px;
+	font-size: 12px;
+	background: #ff0000;
+	color: #fff;
+	border-radius: 20px;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	width: 20px !important;
+	height: 20px;
+	text-align: center;
+}
+</STYLE>
+<LINK href="tpl/static/adcms/style.css" rel="stylesheet">
+<META name="GENERATOR" content="MSHTML 10.00.9200.16660">
+</HEAD>
+<!--<body oncontextmenu="return false" onselectstart="return false">-->
+
+<BODY>
+<HEADER class="mui-bar mui-bar-nav">
+  <H1 class="mui-title">下级粉丝收益详细</H1>
+</HEADER>
+<DIV class="mui-content">
+  <DIV class="title"> 粉丝收益报告 </DIV>
+  <UL class="mui-table-view view2">
+    <LI class="mui-table-view-cell"><SPAN>今日粉丝收益：</SPAN><SPAN>{weimicms:$total_income}</SPAN></LI>
+    <LI class="mui-table-view-cell"><SPAN>昨日粉丝收益：</SPAN><SPAN>{weimicms:$total_yestincome}</SPAN></LI>
+    <LI class="mui-table-view-cell"><SPAN>30天粉丝累计收益：</SPAN><SPAN>{weimicms:$total_thirtyincome}</SPAN></LI>
+    <LI class="mui-table-view-cell"><SPAN>粉丝总收益：</SPAN><SPAN>{weimicms:$total_fans}</SPAN></LI>
+  </UL>
+  <DIV class="title">我的下线排行榜&nbsp;（{weimicms:$myfans}） </DIV>
+  <UL class="mui-table-view">
+    <LI 
+  class="mui-table-view-cell"><SPAN>粉丝头像</SPAN><SPAN>粉丝姓名</SPAN><SPAN>粉丝收益</SPAN><SPAN>粉丝效益</SPAN></LI>
+   <volist name="info" id="vo"> <LI 
+  class="mui-table-view-cell" ><SPAN><img style="width:60px" src="{weimicms:$vo.headpic}"></SPAN><SPAN>{weimicms:$vo.name}</SPAN><SPAN>{weimicms:$vo.total_balance}</SPAN><SPAN>{weimicms:$vo.xybalance}</SPAN></LI></volist>
+    
+    <!--<li class="mui-table-view-cell"><span>四级</span><span>0</span></li>--> 
+    <!--<li class="mui-table-view-cell"><span>五级</span><span>0</span></li>-->
+  </UL>
+</DIV>
+ <include file="Adcms:buttom"/>
+</BODY>
+</HTML>

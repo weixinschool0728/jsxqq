@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+	<title>确认订单</title>
+    <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name='apple-touch-fullscreen' content='yes'>
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="format-detection" content="address=no">
+    <link href="{weimicms:$staticPath}/tpl/static/pay/eve.7c92a906.css" rel="stylesheet"/>
+    <link href="{weimicms:$staticPath}/tpl/static/pay/wap_pay_check.css" rel="stylesheet"/>
+<script src="{weimicms::$staticPath}/tpl/static/jquery.min.js" type="text/javascript"></script>
+    <style>
+    /* Start Dropdown Select */
+	.dropdown-select {-webkit-appearance: button; -webkit-user-select: none; font-size: 13px; overflow: visible; text-overflow: ellipsis; white-space: nowrap;color: #999999; display: inline; position: relative; margin: 0px 1px 0px 1px;font-size: 16px; width: 100%; height: auto; outline: none; border:0;background-color: transparent;}
+	.dropdown-option {color: #999;background-color: transparent;}
+	/* End Dropdown Select */
+    </style>
+</head>
+
+<body>
+        <div id="tips" class="tips"></div>
+        <div class="wrapper-list">
+			<h4 style="margin-top:.4rem">{weimicms:$orderName}</h4>
+			<dl class="list">
+			    <dd>
+			        <dl>
+			            <dd class="kv-line-r dd-padding">
+			                <h6>总额：</h6><p><strong class="highlight-price">{weimicms:$price}元</strong></p>
+			            </dd>
+			        </dl>
+			    </dd>
+			</dl>
+			<form action="{weimicms::U('Alipay/to_pay', array('price'=>$price,'orderName'=>$orderName,'orderid'=>$orderid,'from'=>$from,'token'=>$token,'wecha_id'=>$wecha_id))}" method="POST" id="pay-form" class="pay-form">
+				<if condition="$coupons">
+				<h4>可使用的券<span style="color:gray;font-size:12px;">(不支持线下支付)</span></h4>
+				<dl class="list">
+					<dd>
+						<dl>
+				            <dd class="kv-line-r dd-padding">
+				                <h6>选择代金券：</h6>
+				                <select class="dropdown-select" name="coupon_id">
+				                	<option value="0">暂不使用</option>
+				                	<volist name="coupons" id="rw">
+									<option value="{weimicms:$rw['id']}">{weimicms:$rw['name']}</option>
+									</volist>
+								</select>
+				            </dd>
+						</dl>
+					</dd>
+				</dl>
+				</if>
+				<div id="pay-methods-panel" class="pay-methods-panel">
+					<div id="normal-fieldset" class="normal-fieldset" style="height: 100%;">
+						<h4>选择支付方式</h4>
+						<dl class="list">
+							<if condition="$pay_setting['Weixin'] && empty($_GET['notOnline']) && $isFuwu == 0">
+								<dd class="dd-padding">
+									<label class="mt"><i class="bank-icon icon-weixin"></i><span class="pay-wrapper">微信 付款<input type="radio" class="mt" value="{weimicms::U('Alipay/to_pay', array('price'=>$price,'orderName'=>$orderName,'orderid'=>$orderid,'from'=>$from,'token'=>$token,'wecha_id'=>$wecha_id,'pay_type'=>'Weixin','platform'=>0))}" name="pay_type"></span></label>
+								</dd>
+							<elseif condition="$pay_setting['Platform'] && C('platform_open') && C('platform_weixin_open') && empty($_GET['notOnline']) && $isFuwu == 0"/>
+								<dd class="dd-padding">
+									<label class="mt"><i class="bank-icon icon-weixin"></i><span class="pay-wrapper">微信<if condition="$pay_setting['Platform']['platformName']">[{weimicms:$pay_setting.Platform.platformName}]</if> 付款<input type="radio" class="mt" value="{weimicms::U('Alipay/to_pay', array('price'=>$price,'orderName'=>$orderName,'orderid'=>$orderid,'from'=>$from,'token'=>$token,'wecha_id'=>$wecha_id,'pay_type'=>'Weixin','platform'=>1))}" name="pay_type"></span></label>
+								</dd>
+							</if>
+							
+							<if condition="$pay_setting['Alipaytype'] && empty($_GET['notOnline'])">
+								<dd class="dd-padding">
+									<label class="mt"><i class="bank-icon icon-alipay"></i><span class="pay-wrapper">支付宝 付款<input type="radio" class="mt" value="{weimicms::U($isWechat ? 'Alipay/iframe_pay' : 'Alipay/to_pay', array('price'=>$price,'orderName'=>$orderName,'orderid'=>$orderid,'from'=>$from,'token'=>$token,'wecha_id'=>$wecha_id,'pay_type'=>'Alipaytype','platform'=>0))}" name="pay_type"></span></label>
+								</dd>
+							<elseif condition="$pay_setting['Platform'] && C('platform_open') && C('platform_alipay_open') && empty($_GET['notOnline'])"/>
+								<dd class="dd-padding">
+									<label class="mt"><i class="bank-icon icon-alipay"></i><span class="pay-wrapper">支付宝<if condition="$pay_setting['Platform']['platformName']">[{weimicms:$pay_setting.Platform.platformName}]</if> 付款<input type="radio" class="mt" value="{weimicms::U($isWechat ? 'Alipay/iframe_pay' : 'Alipay/to_pay', array('price'=>$price,'orderName'=>$orderName,'orderid'=>$orderid,'from'=>$from,'token'=>$token,'wecha_id'=>$wecha_id,'pay_type'=>'Alipaytype','platform'=>1))}" name="pay_type"></span></label>
+								</dd>
+							</if>
+							
+							
+							<if condition="$pay_setting['Tenpay'] && empty($_GET['notOnline'])">
+								<dd class="dd-padding">
+									<label class="mt"><i class="bank-icon icon-tenpay"></i><span class="pay-wrapper">财付通(WAP手机) 付款<input type="radio" class="mt" value="{weimicms::U('Alipay/to_pay', array('price'=>$price,'orderName'=>$orderName,'orderid'=>$orderid,'from'=>$from,'token'=>$token,'wecha_id'=>$wecha_id,'pay_type'=>'Tenpay','platform'=>0))}" name="pay_type"></span></label>
+								</dd>
+							<elseif condition="$pay_setting['Platform'] && C('platform_open') && C('platform_tenpay_open') && empty($_GET['notOnline'])"/>
+								<dd class="dd-padding">
+									<label class="mt"><i class="bank-icon icon-tenpay"></i><span class="pay-wrapper">财付通(WAP手机)<if condition="$pay_setting['Platform']['platformName']">[{weimicms:$pay_setting.Platform.platformName}]</if> 付款<input type="radio" class="mt" value="{weimicms::U('Alipay/to_pay', array('price'=>$price,'orderName'=>$orderName,'orderid'=>$orderid,'from'=>$from,'token'=>$token,'wecha_id'=>$wecha_id,'pay_type'=>'Tenpay','platform'=>1))}" name="pay_type"></span></label>
+								</dd>
+							</if>
+							
+							<if condition="$pay_setting['Allinpay'] && empty($_GET['notOnline'])">
+								<dd class="dd-padding">
+									<label class="mt"><i class="bank-icon icon-allinpay"></i><span class="pay-wrapper">通联支付 付款<input type="radio" class="mt" value="{weimicms::U('Alipay/to_pay', array('price'=>$price,'orderName'=>$orderName,'orderid'=>$orderid,'from'=>$from,'token'=>$token,'wecha_id'=>$wecha_id,'pay_type'=>'Allinpay','platform'=>0))}" name="pay_type"></span></label>
+								</dd>
+							<elseif condition="$pay_setting['Platform'] && C('platform_open') && C('platform_allinpay_open') && empty($_GET['notOnline'])"/>
+								<dd class="dd-padding">
+									<label class="mt"><i class="bank-icon icon-allinpay"></i><span class="pay-wrapper">通联支付<if condition="$pay_setting['Platform']['platformName']">[{weimicms:$pay_setting.Platform.platformName}]</if> 付款<input type="radio" class="mt" value="{weimicms::U('Alipay/to_pay', array('price'=>$price,'orderName'=>$orderName,'orderid'=>$orderid,'from'=>$from,'token'=>$token,'wecha_id'=>$wecha_id,'pay_type'=>'Allinpay','platform'=>1))}" name="pay_type"></span></label>
+								</dd>
+							</if>
+							<if condition="$pay_setting['Yeepay'] && empty($_GET['notOnline'])">
+								<dd class="dd-padding">
+									<label class="mt"><i class="bank-icon icon-yeepay"></i><span class="pay-wrapper">易宝支付 付款<input type="radio" class="mt" value="{weimicms::U('Alipay/to_pay', array('price'=>$price,'orderName'=>$orderName,'orderid'=>$orderid,'from'=>$from,'token'=>$token,'wecha_id'=>$wecha_id,'pay_type'=>'Yeepay','platform'=>0))}" name="pay_type"></span></label>
+								</dd>
+							<elseif condition="$pay_setting['Platform'] && C('platform_open') && C('platform_yeepay_open') && empty($_GET['notOnline'])"/>
+								<dd class="dd-padding">
+									<label class="mt"><i class="bank-icon icon-yeepay"></i><span class="pay-wrapper">易宝支付<if condition="$pay_setting['Platform']['platformName']">[{weimicms:$pay_setting.Platform.platformName}]</if> 付款<input type="radio" class="mt" value="{weimicms::U('Alipay/to_pay', array('price'=>$price,'orderName'=>$orderName,'orderid'=>$orderid,'from'=>$from,'token'=>$token,'wecha_id'=>$wecha_id,'pay_type'=>'Yeepay','platform'=>1))}" name="pay_type"></span></label>
+								</dd>
+							</if>
+							<if condition="$pay_setting['CardPay'] && empty($_GET['notOnline']) && $_GET['from'] != 'Card'">
+								<dd class="dd-padding">
+									<label class="mt"><i class="bank-icon icon-cardpay"></i><span class="pay-wrapper">会员卡付款<input type="radio" class="mt" value="{weimicms::U('Alipay/to_pay', array('price'=>$price,'orderName'=>$orderName,'orderid'=>$orderid,'from'=>$from,'token'=>$token,'wecha_id'=>$wecha_id,'pay_type'=>'CardPay','platform'=>0))}" name="pay_type"></span></label>
+								</dd>
+							</if>
+					
+							<if condition="$pay_setting['Daofu'] && empty($_GET['notOffline']) && $_GET['from'] != 'Card'">
+								<dd class="dd-padding">
+									<label class="mt"><i class="bank-icon icon-daofu"></i><span class="pay-wrapper">货到付款<input type="radio" class="mt" value="{weimicms::U('Alipay/to_pay', array('price'=>$price,'orderName'=>$orderName,'orderid'=>$orderid,'from'=>$from,'token'=>$token,'wecha_id'=>$wecha_id,'pay_type'=>'Daofu','platform'=>0))}" name="pay_type"></span></label>
+								</dd>
+							</if>
+							<if condition="$pay_setting['Dianfu'] && empty($_GET['notOffline']) && ($from !='DishOut')">
+								<dd class="dd-padding">
+									<label class="mt"><i class="bank-icon icon-dianfu"></i><span class="pay-wrapper">到店付款<input type="radio" class="mt" value="{weimicms::U('Alipay/to_pay', array('price'=>$price,'orderName'=>$orderName,'orderid'=>$orderid,'from'=>$from,'token'=>$token,'wecha_id'=>$wecha_id,'pay_type'=>'Dianfu','platform'=>0))}" name="pay_type"></span></label>
+								</dd>
+							</if>
+						</dl>		
+					</div>
+					<div class="wrapper buy-wrapper">
+						<button type="button" id="sub" class="btn mj-submit btn-strong btn-larger btn-block" style="display:none1;">确认支付</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<script type="text/javascript">
+		$(document).ready(function(){
+			$('#sub').click(function(){
+				if ($('.mt:checked').val() == undefined) {
+					return false;
+				}
+				if ($('.dropdown-select').val() == undefined) {
+					location.href = $('.mt:checked').val();
+				} else {
+					location.href = $('.mt:checked').val() + "&coupon_id=" + $('.dropdown-select').val();
+				}
+				
+			})
+		});
+		</script>
+</body>
+</html>

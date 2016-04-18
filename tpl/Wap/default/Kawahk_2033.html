@@ -1,0 +1,253 @@
+
+<html>
+    <head>
+        <title>送给你</title>
+         <meta http-equiv="imagetoolbar" content="no">
+       <include file="Kawahk:js"/> 
+        <script type="text/javascript">
+            initViewport();
+        </script>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+         <meta name="copyright" content="版权所有，抄袭必究，（告无忧微米）">
+        <meta name="format-detection" content="telephone=no">
+        <script>              
+        var leafNum = 7;           //落下叶子的数量
+        var kindNum = 4;            //叶子种类
+        var leafIntervlaId;           
+        //叶子使用图片地址
+        var kindurl = new Array("tpl/Wap/default/common/kawahk/2033/2033_p1.png","tpl/Wap/default/common/kawahk/2033/2033_p2.png","tpl/Wap/default/common/kawahk/2033/2033_p3.png","tpl/Wap/default/common/kawahk/2033/2033_p4.png");
+
+        function id(name)
+        {
+           return document.getElementById(name);
+        }
+        function rand(min,max)
+        {
+            return min+Math.floor(Math.random()*(max-min+1));
+        }
+        function Init()
+        {
+            leafIntervlaId = setInterval(initLeaves,1500);
+        }
+        function initLeaves()
+        {
+            leafNum--;
+            if(leafNum<0)
+                clearInterval(leafIntervlaId);
+
+            var leaf = document.createElement('div');
+            var leafimg = document.createElement('img');
+            var imgkind = rand(0,3);
+            leafimg.src = kindurl[imgkind];
+            leaf.style.top = 0+'px';
+            leaf.style.left = rand(250,800) +'px';
+            leaf.className = 'leaf';
+            leafimg.className = 'leafimg';
+            leaf.appendChild(leafimg); 
+            id('body1').appendChild(leaf);      
+        }
+
+        </script>
+    
+        <style type="text/css">
+       @-webkit-keyframes float
+        {
+            0% {-webkit-transform:translate(0px,0px) rotate(0deg);}
+            30%{-webkit-transform:translate(-300px,250px) rotate(360deg);}
+            70%{-webkit-transform:translate(-600px,550px) rotate(720deg);}
+            100% {-webkit-transform:translate(-800px,750px) rotate(1080deg);}
+        }
+
+       .leaf
+        {
+            -webkit-transform-origin:50% 0%;
+            position:absolute;
+            padding:0px;
+            margin:0px;
+            width:100px;
+            height:100px;
+            z-index:200; 
+            -webkit-animation:float 6s linear infinite;
+        }
+        .leafimg
+        {
+            position:absolute;
+            z-index: 200;      
+        }
+
+
+        @-webkit-keyframes left_1
+        {
+        	0%{-webkit-transform:translate(0px,0px);}
+        	100%{-webkit-transform:translate(-1554px,0px);}
+        }
+        @-webkit-keyframes lefta_1
+        {
+            0%{-webkit-transform:translate(0px,0px)}
+            67.82%{-webkit-transform:translate(0px,0px)}
+            100%{-webkit-transform:translate(-500px,0px)}
+        }
+        @-webkit-keyframes left
+        {
+        	0%{-webkit-transform:translate(0px,0px);}
+        	100%{-webkit-transform:translate(-812px,0px);}
+        }
+        @-webkit-keyframes lefta
+        {
+            0%{-webkit-transform:translate(0px,0px)}
+            38.42%{-webkit-transform:translate(0px,0px)}
+            100%{-webkit-transform:translate(-500px,0px)}
+        }
+        @-webkit-keyframes left_2
+        {
+        	0%{-webkit-transform:translate(0px,0px);}
+        	100%{-webkit-transform:translate(-540px,0px);}
+        }
+        @-webkit-keyframes lefta_2
+        {
+            0%{-webkit-transform:translate(0px,0px)}
+            7.407%{-webkit-transform:translate(0px,0px)}
+            100%{-webkit-transform:translate(-500px,0px)}
+        }
+        </style>
+        <style type="text/css">
+        @-webkit-keyframes roll
+        {
+            from {-webkit-transform:rotate(0deg);}
+            to {-webkit-transform:rotate(360deg);}
+        }
+
+        @-webkit-keyframes bike-jolt
+        {
+            0% {-webkit-transform:rotate(0deg);}
+            5% {-webkit-transform:rotate(-3deg);} 
+            10% {-webkit-transform:rotate(0deg);-webkit-transform-origin:70% 70%;}
+            11% {-webkit-transform:rotate(0deg);-webkit-transform-origin:70% 70%;}
+            20% {-webkit-transform:rotate(0deg);}
+            25% {-webkit-transform:rotate(3deg);}
+            30% {-webkit-transform:rotate(0deg);}
+        }
+
+        #left-wheel
+        {
+            -webkit-transform-origin:48% 54.5%;
+            -webkit-animation:roll 3s linear infinite;
+        }
+
+        #right-wheel
+        {
+            -webkit-animation:roll 3s linear infinite;
+        }
+
+        #container
+        {
+            -webkit-transform-origin:20% 70%;
+            -webkit-animation:bike-jolt 5s linear infinite;
+        }
+        </style>
+    </head>
+    <body onload="kawa_init()" style='margin:0px'>
+        <script>
+            words = '有一种鸿沟叫做周一到周五，有一种飞跃叫做到周末，恭喜你成功的飞跃过鸿沟，享受完美新世界，周末了，趁秋高气爽，好好感受下大自然吧！周末愉快！';
+
+            kawa_data = {
+                words              : words,
+                <if condition=" $words eq ''">
+				replace_words      : '有一种鸿沟叫做周一到周五，有一种飞跃叫做到周末，恭喜你成功的飞跃过鸿沟，享受完美新世界，周末了，趁秋高气爽，好好感受下大自然吧！周末愉快！',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+                text_box           : '50 0 400 50', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+                mode               : 'left',     // up, left
+                speed              : 40,     // 每秒移动的像素
+                text_color         : '#FFFFEE', // rgb(1,2,3) 'black'
+                font_size          : '20pt',
+                line_height        : '40pt',
+                music              : 'http://sound.kagirl.net/sound/bgm.mp3',     // url
+               <if condition=" $music eq ''">
+				replace_music      : 'http://sound.kagirl.net/sound/bgm.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+                music_name         : '',
+                replace_music_name : '#replace_music_name#',
+                icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/fengmian/x2033.jpg',
+                title              : '送给你',
+                desc               : words,
+                modify             : 'no',
+                replace_modify     : 'yes',
+                cardid             : '2033',
+                share_url          : window.location.href,  // 当分享的是微信页面时才需要改这里
+                font_ip            : '121.42.24.240:8000',
+                modify_optfile     : 'xinqing',
+                modify_optwords    : '#modify_optwords#',
+                show_words         : 'yes',
+                write_param_1      : 'inputtype=singleline&showsel=no&prompt=' + encodeURIComponent('输入对方的名字：')
+            };
+        </script>
+
+    	<div id='body1' style="height:750px;width:500px;position:absolute;z-index:0;
+    			margin:0px;padding:0px;overflow:hidden;">
+			<div style="position:absolute;top:0px; left:0px; width:500px; height:750px;">
+		    	<img src="http://tu.kagirl.net/pic/2033/2033_bg1.jpg">
+		    </div>
+	        <div id="container" style="position:absolute;z-index:1;top:480px;
+	        	left:135px; width:250px; height:250px;">
+		    	<img id="gril" src="tpl/Wap/default/common/kawahk/2033/2033_6.png"/ style='position:absolute;'>
+		        <img id="left-wheel" src="tpl/Wap/default/common/kawahk/2033/2033_4.png" style="position:absolute; left:0px; top:146px;"/>     
+		        <img id="right-wheel" src="tpl/Wap/default/common/kawahk/2033/2033_5.png" style="position:absolute; left:143px; top:148px;"/>
+		    </div>
+
+    		<div style='position:absolute;z-index:2;margin:0px;padding:0px;'>
+	   			<div style='width:812px;left:0px;position:absolute;margin:0px;padding:0px;
+                 -webkit-animation:left 5s linear infinite;'>
+	    			<img width='406px' height='750px' src='tpl/Wap/default/common/kawahk/2033/2033_1.png' 
+	    			style='left:0px;position:absolute;z-index:2;'/>
+	    			<img width='406px' height='750px' src='tpl/Wap/default/common/kawahk/2033/2033_1.png'
+	    			style='position:absolute;left:406px;z-index:2;-webkit-transform:scale(-1,1);'/>
+	    		</div>
+                <div style='width:812px;left:500px;position:absolute;margin:0px;padding:0px;
+                    -webkit-animation:lefta 5s linear infinite;'>
+                    <img width='406px' height='750px' src='tpl/Wap/default/common/kawahk/2033/2033_1.png' 
+                    style='left:0px;position:absolute;z-index:2;'/>
+                    <img width='406px' height='750px' src='tpl/Wap/default/common/kawahk/2033/2033_1.png'
+                    style='position:absolute;left:406px;z-index:2;-webkit-transform:scale(-1,1);'/>
+                </div>
+	    	</div>
+
+	    	<div style='position:absolute;z-index:1;margin:0px;padding:0px;'>
+	    		<div style='width:1554px;left:0px;position:absolute;
+	    			-webkit-animation:left_1 17s linear infinite;'>
+	    			<img width='777px' height='750px' src='tpl/Wap/default/common/kawahk/2033/2033_2.png' 
+	    			style='left:0px;position:absolute;z-index:1;'/>
+	    			<img width='777px' height='750px' src='tpl/Wap/default/common/kawahk/2033/2033_2.png'
+	    			style='position:absolute;left:777px;z-index:1;-webkit-transform:scale(-1,1)'/>
+	    		</div>
+                <div style='width:1554px;left:500px;position:absolute;
+                    -webkit-animation:lefta_1 17s linear infinite;'>
+                    <img width='777px' height='750px' src='tpl/Wap/default/common/kawahk/2033/2033_2.png' 
+                    style='left:0px;position:absolute;z-index:1;'/>
+                    <img width='777px' height='750px' src='tpl/Wap/default/common/kawahk/2033/2033_2.png'
+                    style='position:absolute;left:777px;z-index:1;-webkit-transform:scale(-1,1)'/>
+                </div>
+	    	</div>
+
+	    	<div style='position:absolute;z-index:0;margin:0px;padding:0px;'>
+	    		<div style='width:540px;left:0px;top:30px;position:absolute;
+	    			-webkit-animation:left_2 15s linear infinite;'>
+	    			<img width='272px' height='750px' src='tpl/Wap/default/common/kawahk/2033/2033_3.png' 
+	    			style='left:0px;position:absolute;z-index:0;'/>
+	    			<img width='272px' height='750px' src='tpl/Wap/default/common/kawahk/2033/2033_3.png'
+	    			style='position:absolute;left:270px;z-index:0;-webkit-transform:scale(-1,1)'/>
+	    		</div>
+                <div style='width:540px;left:500px;position:absolute;top:30px;
+                    -webkit-animation:lefta_2 15s linear infinite;'>
+                    <img width='272px' height='750px' src='tpl/Wap/default/common/kawahk/2033/2033_3.png' 
+                    style='left:0px;position:absolute;z-index:0;'/>
+                    <img width='272px' height='750px' src='tpl/Wap/default/common/kawahk/2033/2033_3.png'
+                    style='position:absolute;left:270px;z-index:0;-webkit-transform:scale(-1,1)'/>
+                </div>
+	    	</div>
+    	</div>
+    </body>
+</html>

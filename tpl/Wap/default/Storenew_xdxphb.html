@@ -1,0 +1,192 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <title>销售排行榜</title>
+    <link rel="stylesheet" type="text/css" href="./tpl/static/storenew/css/foundation.css?v=150317X2">
+    <link href="./tpl/static/storenew/css/bottom.css?x=150317X2" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="./tpl/static/storenew/css/common-v4.0.css?v=150317X2">
+	<link rel="stylesheet" type="text/css" href="./tpl/static/storenew/css/person-v4.1.css">
+    <style>
+
+
+        .foot {
+            width: 100%;
+            min-width: 300px;
+            margin-top: 10px;
+            margin-bottom: 30px;
+            padding: 10px 0;
+            color: #555;
+            text-align: center;
+        }
+
+        .foot a {
+            color: #555;
+            margin: 0 3px;
+        }
+
+    </style>
+    <style>
+        .wx_loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: 90;
+            background-color: rgba(0, 0, 0, 0);
+            font-family: Helvetica, STHeiti STXihei, Microsoft JhengHei, Microsoft YaHei, Arial;
+            line-height: 1.5
+        }
+
+        .wx_loading_inner {
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            margin-left: -70px;
+            margin-top: -48px;
+            width: 140px;
+            border-radius: 6px;
+            font-size: 14px;
+            padding: 58px 0 10px 0
+        }
+
+        .wx_loading_icon {
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            margin-left: -16px;
+            width: 24px;
+            height: 24px;
+            border: 2px solid #fff;
+            border-radius: 24px;
+            -webkit-animation: gif 1s infinite linear;
+            animation: gif 1s infinite linear;
+            clip: rect(0 auto 12px 0)
+        }
+
+        @keyframes gif {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg)
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg)
+            }
+        }
+
+        @-webkit-keyframes gif {
+            0% {
+                -webkit-transform: rotate(0deg)
+            }
+            100% {
+                -webkit-transform: rotate(360deg)
+            }
+        }
+    </style>
+</head>
+
+<body class="body-gray">
+<div class="wx_loading" id="wxloading">
+    <div class="wx_loading_inner">
+        <i class="wx_loading_icon"></i>
+        请求加载中...
+    </div>
+</div>
+
+<div class="panel memberhead">
+    <div class="header-l">
+	<img class="icon-level-p1" src="{weimicms:$fans.portrait}"/>
+    </div>
+
+    <div class="header-r">
+        <ul class="distributor-infor">
+
+            <li><span class="distributor-infor-label">昵称：</span><span class="distributor-infor-c">{weimicms:$fans.truename}</span></li>
+            <li><span class="distributor-infor-label">等级：</span><span class="distributor-infor-c">会员(<a class="txt-link" href="#"> 分享微店赚佣金</a>)</span></li>
+            <li>
+				<span class="distributor-infor-label">注册日期：</span>
+				<span class="distributor-infor-c">
+				{weimicms:$fans['regtime']|date="Y-m-d",###}
+				</span>
+            </li>
+			
+        </ul>
+
+    </div>
+</div>
+</div>
+<!--head end-->
+<!--count begin-->
+<div class="row count">
+    <div class="small-4 large-3 columns mid">
+
+        <a href="#" class="count-a">
+            <p class="count-dis-mony">{weimicms:$fans.total_score}</p>
+            <span class="count-title">总积分</span></a>
+
+    </div>
+    <div class="small-4 large-3 columns mid">
+
+        <a href="#" class="count-a">
+            <p class="count-dis-mony">{weimicms:$fans.balance}</p>
+            <span class="count-title">账户余额</span></a>
+
+        <!-- -->
+    </div>
+
+    <div class="small-4 large-3 columns last">
+        <a href="#" class="count-a">
+            <p class="count-dis-mony">{weimicms:$count['total']|default=0}元</p>
+            <span class="count-title">累计佣金</span></a>
+    </div>
+
+</div>
+<!--count end-->
+
+<div class="text-center" style=" margin-top:5px;margin-bottom:5px; font-size:14px;">
+    共 {weimicms:$ordersCount} 参与 推广了 {weimicms:$logcount} 位用户
+</div>
+
+
+<div class="list-myorder">
+    <ul class="ul-product">
+	<volist name="orders" id="orders">
+        <li>
+		<span class="pic">
+           <img src="{weimicms:$orders.portrait}">
+		</span>
+                <div class="text">
+                    <span class="pro-name">昵称：{weimicms:$orders.wechaname}</span>
+                    <div class="pro-pric"><span>粉丝数量：</span>{weimicms:$orders.nums}</div>
+                     <div class="pro-pric"><span>注册日期：：</span>{weimicms:$orders['regtime']|date="Y-m-d",###}</div>
+                </div>
+        </li>
+	</volist>
+	</ul>
+</div>
+
+
+<!--side nav end-->
+
+
+<!--bottom begin
+   <div class="h50"></div>-->
+<footer style="width:100%;min-width:300px;margin-top:10px;margin-bottom:50px;padding:10px 0;color:#555;text-align:center;">
+    <a style="color:#555;margin:0 3px;" href="">&copy; {weimicms:$com['name']}</a></footer>
+<!--bottom end-->
+<include file="Storenew:foot"/>
+</body>
+<script src="/tpl/static/storenew/js/zepto.min.js"></script>
+<script>
+    document.getElementById('wxloading').style.display = 'none';
+</script>
+</html>

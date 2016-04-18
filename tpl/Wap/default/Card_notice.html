@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head> 
+<title>{weimicms:$thisCard.cardname}</title> 
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" /> 
+<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" /> 
+<!-- Mobile Devices Support @begin --> 
+<meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type" /> 
+<meta content="telephone=no, address=no" name="format-detection" /> 
+<meta name="apple-mobile-web-app-capable" content="yes" /> 
+<!-- apple devices fullscreen --> 
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" /> 
+<!-- Mobile Devices Support @end --> 
+
+<link href="{weimicms::$staticPath}/tpl/static/card/css/main.css" rel="stylesheet" type="text/css">
+<script src="/tpl/static/jquery.min.js" type="text/javascript"></script>
+</head> 
+<body onselectstart="return true;" ondragstart="return false;"> 
+  <div class="container coupon message "> 
+   <header> 
+    <nav class="p_10"> 
+      <h3>系统消息</h3>
+    </nav> 
+   </header> 
+   <div class="body"> 
+    <ul class="list_message"> 
+      <volist name="notices" id="item">
+      <li class="Js-read">
+        <a href="javascript:;" onclick="readMsg(this, event,2166482);"> 
+          <dl class="tbox"> 
+            <dd> 
+              <span class="icon_1"><img src="" /></span> 
+            </dd> 
+            <dd> 
+              <h3> {weimicms:$item.title} </h3> 
+              <p> {weimicms:$item.time|date='Y-m-d H:i:s',###} </p> 
+            </dd> 
+          </dl> 
+        </a> 
+        <ol> 
+          <p> {weimicms:$item.content|htmlspecialchars_decode} </p> 
+        </ol> 
+      </li> 
+      </volist>
+    </ul> 
+   </div> 
+
+  <script>
+      function readMsg(thi, evt,id){
+        var li = thi.parentNode;
+        li.classList.toggle("on");
+        li.removeAttribute("data-read");
+
+        if ($(li).hasClass("Js-read"))
+          return false;
+        $(li).addClass("Js-read");
+
+      }
+    </script>
+
+<include file="Card:bottom"/>
+<include file="Card:share"/>
+
+</body>
+</html>

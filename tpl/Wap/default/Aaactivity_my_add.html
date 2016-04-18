@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html" lang="zh-cn">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta charset="utf-8">
+<title>{weimicms:$info.title}</title>
+<link rel="stylesheet" href="{weimicms:$staticPath}/tpl/static/Aaactivity/css/zc-common.css">
+<link rel="stylesheet" href="{weimicms:$staticPath}/tpl/static/Aaactivity/css/zc-style.css">
+
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/jquery.min.js"></script>
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/alert.js"></script>
+
+<style>
+.window .title{
+    background-image: linear-gradient(#f05c52, #f05c52);
+}
+</style>
+</head>
+<body>
+<div class="wrapper bg-white">
+    <div class="slide-main base-layer">
+        <!-- head -->
+        <header class="header">
+        <h2><a href="javascript:void(0);" class="text-red">我要发起活动</a></h2>
+        <a href="javascript:window.history.go(-1);" class="icon btn-goback"></a>
+        <a href="{weimicms::U('Aaactivity/home',array('token'=>$token,'wecha_id'=>$wecha_id))}" class="icon btn-home"></a>
+        </header>
+        <!-- / -->
+        <form action="{weimicms::U('Aaactivity/add',array('token'=>$token,'wecha_id'=>$wecha_id,'share_key'=>$share_key))}" id="main_form" method="post">
+            <div class="cont-layer">
+                <div class="title-box">
+                    <h6>说明：用户创建活动暂时提交部分内容，其他由管理员来完成，一旦你提交的申请通过，我们会将其他信息补完整</h6>
+                </div>
+                <div class="placeBlock-10 bg-gray">
+                </div>
+                <div class="order-box">
+                    <div class="order-item clearfix">
+                        <div class="order-item-key">
+                            活动标题：
+                        </div>
+                        <div class="order-item-value red-money">
+                            <input type="text" name="title" id="title" class="order-input" placeholder="请填写活动标题">
+                        </div>
+                    </div>
+                    <div class="order-item clearfix">
+                        <div class="order-item-key">
+                            活动说明：
+                        </div>
+                        <div class="order-item-value">
+                            <textarea name="intro" class="order-textarea" id="intro" placeholder="请填写简单的活动介绍包含目的地和出发时间，" rows="2" cols="32"></textarea>
+                        </div>
+                    </div>
+					<div class="order-item clearfix">
+                        <div class="order-item-key">
+                            总人数：
+                        </div>
+                        <div class="order-item-value">
+                            <input type="text" name="maxnums" id="maxnums" class="order-input" placeholder="活动人数上限（多少人）">
+                        </div>
+                    </div>
+					<div class="order-item clearfix">
+                        <div class="order-item-key">
+                            AA人均费用：
+                        </div>
+                        <div class="order-item-value">
+                            <input type="text" name="feiyong" id="feiyong" class="order-input" placeholder="请填写AA人均费用，">
+                        </div>
+                    </div>
+                    <div class="order-item clearfix">
+                        <div class="order-item-key">
+                            联系人：
+                        </div>
+                        <div class="order-item-value">
+                            <input type="text" name="usename" class="order-input" placeholder="请填写发起人名字" id="username" value="{weimicms:$fans.truename}">
+                        </div>
+                    </div> 
+                    <div class="order-item clearfix">
+                        <div class="order-item-key">
+                            联系方式：
+                        </div>
+                        <div class="order-item-value">
+                            <input type="text" name="tel" class="order-input" placeholder="请填写联系电话" id="tel" value="{weimicms:$fans.tel}">
+                        </div>
+                    </div>   
+                    <div class="order-item clearfix">
+                        <div class="order-item-key">
+                            申请理由：
+                        </div>
+                        <div class="order-item-value">
+                            <textarea name="txtaudit" id="txtaudit" class="order-textarea" placeholder="此项请认证填写你发起活动的目的和理由，方便管理员判断是否通过" rows="3" cols="32"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-pay-box mt10">
+                    <button id="btn_next" type="button" is_over='<if condition="$is_over eq 1">-1<else/>0</if>' is_no='{weimicms:$reward.id}' class="btn btn-large btn-red">确认提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <include file="Aaactivity:footer" />
+</div>
+<input name="tapp_page_point" id="tapp_page_point" value="1025" type="hidden">
+<script>
+  
+    $(function(){
+        $("#btn_next").click(function () {     
+            if($(this).attr('is_over') == -1){
+                alert("项目已经结束");
+                return false;
+            }
+
+                if($("#username").val().trim() == ""){
+                    alert("请填写联系人");
+                    return false;
+                }
+                if($("#username").val().trim() == ""){
+                    alert("请填写联系电话");
+                    return false;
+                }
+ 
+
+            $("#main_form").submit();
+        });
+        
+        $('#editAddress').click(function(){
+            getaddr();
+        });
+        function getaddr(){
+            WeixinJSBridge.invoke('editAddress',{
+                "appId" : "{weimicms:$addrSign.appId}",
+                "scope" : "jsapi_address",
+                "signType" : "sha1",
+                "addrSign" : "{weimicms:$addrSign.addrSign}",
+                "timeStamp": "{weimicms:$addrSign.timeStamp}",
+                "nonceStr" : "{weimicms:$addrSign.nonceStr}",
+            },function(res){
+                if(res.err_msg == 'edit_address:ok'){
+                    $('#username').val(res.userName);
+                    $('#tel').val(res.telNumber);            
+                    $('#address').val(res.proviceFirstStageName+res.addressCitySecondStageName+res.addressCountiesThirdStageName+res.addressDetailInfo);
+                }
+            });
+        }
+
+    });
+</script>
+
+
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Aaactivity",
+            "moduleID":"0",
+            "imgUrl": "{weimicms:$info['pic']}", 
+            "timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U('Aaactivity/index',array('token'=>$token,'id'=>$info['id']))}",
+            "sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Aaactivity/index',array('token'=>$token,'id'=>$info['id']))}",
+            "weiboLink": "{weimicms:$f_siteUrl}{weimicms::U('Aaactivity/index',array('token'=>$token,'id'=>$info['id']))}",
+            "tTitle": "{weimicms:$info['name']}",
+            "tContent": "{weimicms:$info['intro']}"
+};
+</script>
+{weimicms:$shareScript}
+</body>
+</html>

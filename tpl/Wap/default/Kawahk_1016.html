@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <include file="Kawahk:js"/> 
+	<script type="text/javascript">
+            initViewport();
+    </script>
+		<meta charset="utf-8">
+		<title>冰雪世界</title>
+		<!--[if lte IE 8]>
+ 			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link rel="stylesheet" href="tpl/Wap/default/common/kawahk/1016/style.css" type="text/css" media="screen" title="no title" charset="utf-8">
+		<link href="tpl/Wap/default/common/kawahk/1016/css" rel="stylesheet" type="text/css">		
+		<!-- Use jQuery for best compatibility with other CSS3 enabled browsers -->
+		<script src="tpl/Wap/default/common/kawahk/1016/jquery.min.js" type="text/javascript" charset="utf-8"></script>		
+		<script src="tpl/Wap/default/common/kawahk/1016/flux.js" type="text/javascript" charset="utf-8"></script>		
+		<style type="text/css">
+		<!--
+			.text1 {font-family:microsoft yahei;text-align:right;font-size:30px;line-height:26px;color:black;}	
+			footer {position:fixed;left:0px;bottom:10px;text-align:right;width:100%;}
+			/* line 15, ../compass/sass/style.scss */
+			body
+			{
+				/*background-color: ;*/
+				background:#000000;
+				scroll="no";
+				margin: 0;
+				
+			}	
+			#layer2 {
+				position:absolute;
+				left:0px;
+				top:317px;
+				width:100%;
+				z-index:2;
+			}
+		-->			
+		</style>
+		<script>
+		gSizeMode = 'bodywidth';
+		gAnimateMode = 'print';
+		gSound = 'http://pds26.egloos.com/pds/201311/22/32/tiaopi1.mp3';
+		gColor = 'black';
+		gTextAreaLeft = 0.14;
+		gTextAreaTop = 0.1;
+		gTextAreaWidth = 0.6;
+		gTextAreaHeight = 0.8;
+		gCardTextNoWrap ='冬天来了，寒冷侵袭，保重身体；调整作息，快乐心理；烦恼忘记，幸福相依。';
+		gCardText ='冬天来了，寒冷侵袭；<br>调整作息，保重身体；<br>烦恼忘记，快乐心理；<br>快乐相伴，幸福相依。';
+	// script place
+	</script>
+	<script>
+	// script place
+        	words = '冬天来了  寒冷侵袭；调整作息 保重身体；烦恼忘记 快乐心理；快乐相伴 幸福相依。';
+
+            kawa_data = {
+                words 			   : words,
+               <if condition=" $words eq ''">
+				replace_words      : '冬天来了  寒冷侵袭；调整作息 保重身体；烦恼忘记 快乐心理；快乐相伴 幸福相依。',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+                text_box           : '15 350 500 250', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+                mode               : 'print',     // up, left
+                speed              : 400,     // 每秒移动的像素
+                text_color         : 'black', // rgb(1,2,3) 'black'
+                font_size          : '20pt',
+                line_height        : '40pt',
+                //text_align         : 'center',
+                font_weight        : 'bold',
+                music              : 'http://sound.kagirl.net/sound/tiaopi1.mp3',     // url
+                <if condition=" $music eq ''">
+				replace_music      : 'http://sound.kagirl.net/sound/tiaopi1.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+                music_name         : '',
+                replace_music_name : '#replace_music_name#',
+                icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/fengmian/x1016.jpg',
+                title              : '冰雪世界',
+                desc               : words,
+                modify             : 'no',
+                replace_modify     : 'yes',
+                cardid             : '1016',
+                share_url          :  window.location.href,  // 当分享的是微信页面时才需要改这里
+                font_ip            : '121.42.24.240:8000',
+                modify_optfile     : 'dongtiandezhufu',
+                modify_optwords    : '#modify_optwords#',
+                show_words         : 'yes',
+                write_param_1      : 'inputtype=singleline&showsel=no&prompt=' + encodeURIComponent('输入对方的名字：')
+            };
+        </script>
+    
+		<script type="text/javascript" charset="utf-8">
+			$(function(){
+				if(!flux.browser.supportsTransitions)
+					alert("您的手机不支持该动画");
+					
+				window.f = new flux.slider('#slider', {
+					pagination: false,
+					delay: 3500,
+					controls: false,
+					transitions: ['concentric'],
+					autoplay: true
+				});
+			});
+		</script>
+	</head>
+	<body onload="kawa_init();">
+		<section class="container">
+			<div id="slider">
+				<img src="tpl/Wap/default/common/kawahk/1016/139581576944.jpg" alt="">
+				<img src="tpl/Wap/default/common/kawahk/1016/139581577024.jpg" alt="">
+				<img src="tpl/Wap/default/common/kawahk/1016/139581577096.jpg" alt="">
+				<img src="tpl/Wap/default/common/kawahk/1016/139581577166.jpg" alt="">				
+				<img src="tpl/Wap/default/common/kawahk/1016/139581576714.jpg" alt="">
+			</div>
+		</section>
+	<div id="layer2">
+       <img src="tpl/Wap/default/common/kawahk/1016/139581576829.jpg" top="317px" width="100%">
+	</div>
+	
+	<div id="ruler" style="width:100%;height:0"></div><!--
+	<audio id="bgsound" src="http://www.kagirl.net/kas/sound/tiaopi1.mp3" loop="loop" autoplay="autoplay"></audio>
+	
+	<div id="textsuper" style="position:absolute;top:-1000;left:-1000;overflow-x:hidden;overflow-y:hidden;z-index:20" >
+	<div id="textsub" style='padding:10px;color:white;line-height:42pt;position:relative;font-size:24pt;'>
+		<b id="textcontent">
+        </b>
+    </div>
+	</div>
+<div style="position:absolute;left:70%;top:80%;z-index:2000">
+	<a href="http://mp.weixin.qq.com/mp/appmsg/show?__biz=MjM5MDg0OTE0Mw==&appmsgid=10000026&itemidx=1&sign=73525c7afb1910aff3685be53bcfec1c#wechat_redirect"><img style="width:90%" src="tpl/Wap/default/common/kawahk/1016/139579480904.gif"></a><br>
+</div>-->
+</body></html>

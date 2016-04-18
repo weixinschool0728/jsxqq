@@ -1,0 +1,67 @@
+
+<html>
+
+<head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <include file="Kawahk:js"/> 
+    <script type="text/javascript">
+            initViewport();
+    </script>
+
+    <title>I Love U</title>
+
+	
+
+	<script>
+	// script place
+    	words = '一张小小的卡片，捎去卡妞对您的无限祝福!';
+
+        kawa_data = {
+            words 			   : words,
+          <if condition=" $words eq ''">
+				replace_words      : '一张小小的卡片，捎去卡妞对您的无限祝福!',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+            text_box           : '35 373 392 104', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+            mode               : 'up',     // up, left
+            speed              : 60,     // 每秒移动的像素
+            text_color         : 'white', // rgb(1,2,3) 'black'
+            font_size          : '30pt',
+            line_height        : '40pt',
+            //text_align         : 'center',
+            font_weight        : 'bold',
+            music              : 'http://sound.kagirl.net/sound/sound6.mp3',     // url
+             <if condition=" $music eq ''">
+				replace_music      : 'http://sound.kagirl.net/sound/sound6.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+            music_name         : '',
+            replace_music_name : '#replace_music_name#',
+            icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/fengmian/x3509.jpg',
+            title              : 'I Love U',
+            desc               : words,
+            modify             : 'no',
+            replace_modify     : 'yes',
+            cardid             : '3509',
+            share_url          :  window.location.href,   // 当分享的是微信页面时才需要改这里
+            font_ip            : '114.215.157.155:8000',
+            modify_optfile     : 'zhufu',
+            modify_optwords    : '#modify_optwords#',
+            show_words         : 'yes',
+            write_param_1      : 'inputtype=singleline&showsel=no&prompt=' + encodeURIComponent('输入对方的名字：')
+        };
+    </script>
+
+</head>
+
+<body onload="kawa_init();">
+
+<img src="tpl/Wap/default/common/kawahk/3509/139582009092.gif" width="100%">
+
+
+
+
+</body>
+
+</html>

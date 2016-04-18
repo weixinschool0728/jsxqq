@@ -1,0 +1,243 @@
+<include file="Storenew:header"/>
+<link rel="stylesheet" href="./tpl/static/storenew/css/renk.css">
+<style>
+content{display:none;width:100%;overflow:hidden;position:absolute;top:0}#imgs{-webkit-transition-property:-webkit-transform;-webkit-transition-duration:0.5s;-webkit-transition-timing-function:ease-out;-webkit-transform:translate3d(0px,0px,0px);height:100%}#imgs li{float:left;text-align:center;height:100%;padding-top:65px}#imgs img{width:94%;-webkit-transform:translate3d(0px,0px,0px)}.bg{width:100%;top:0;left:0;background:#000;opacity:0.8;position:absolute;display:none}.close{display:none;position:absolute;z-index:10;right:3%;top:20px;color:#fff;cursor:pointer;background:#999;border-radius:3px;padding:5px 8px}.s_count{display:none;position:absolute;z-index:10;right:3%;top:25px;color:#fff;margin-right:60px}
+.infodetail img{
+    max-width: 100%;
+}
+.chujiakuang input{
+  border: .1rem solid #cfcfcf;
+  margin: 5px 5px;
+  font-size: 14px;
+  display: inline-block;
+  text-align: center;
+  height: 30px;
+  width: 120px;
+  border-radius: 0;
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#e5e5e5),color-stop(0.3, #fff),to(#fff));
+  -webkit-appearance: none;
+  color: #999;}
+.pinglun input{
+  border: .1rem solid #cfcfcf;
+  margin: 1px 1px;
+  font-size: 14px;
+  display: inline-block;
+  text-align: center;
+  height: 30px;
+  width: 200px;
+  border-radius: 0;
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#e5e5e5),color-stop(0.2, #fff),to(#fff));
+  -webkit-appearance: none;
+  color: #999;}
+.chujiak{padding: .5rem .2rem;}
+.disorder-none .icon-none{display:block;width:90px;height:120px;margin:80px auto 0 auto;background:url("{weimicms:$staticPath}/tpl/static/storenew/css/distribution2.png") no-repeat -219px -160px;background-size:300px 1000px;}
+.disorder-none .nonetext{display:block;text-align:center;font-size:14px;color:#999;}
+</style>
+<!--轮播--->
+<div class="focusPic">
+    <div class="views">
+        <if condition="empty($imageList) neq true">
+            <ul class="warp" id="fd">
+                <volist name="imageList" id="img">
+                    <li class="li"><img src="{weimicms:$img.image}"></li>
+                </volist>
+            </ul>
+            <else/>
+            <ul class="warp" id="fd">
+                <li class="li"><img src="{weimicms:$product.logourl}"></li>
+            </ul>
+        </if>
+    </div>
+    <if condition="empty($imageList) neq true">
+        <ul class="tabs">
+            <volist name="imageList" id="img" key="i">
+                <li class="li">{weimicms:$i}</li>
+            </volist>
+        </ul>
+        <else/>
+        <ul class="tabs">
+            <li>0</li>
+        </ul>
+    </if>
+</div>
+<script>
+    var focusPic = new Swiper('.focusPic .views', {pagination: '.focusPic .tabs', autoplay: 3000})
+</script>
+<!--轮播结束--->
+<div class="d-info">
+    <form id="product_buy_form" name="product_buy_form" action="{weimicms::U('Storenew/jpmyprice', array('pid'=>$hostlist['id'],'token'=>$token,'cid'=>$cid))}" method="POST">
+        <h1>{weimicms:$product.name}</h1>
+
+        <div class="price">
+            <span class="okp">起  拍  价：{weimicms:$product.lowprice} 元</span>
+            <span class="okp">当前出价：<em id="price">{weimicms:$product.price} 元</em></span>
+            <span class="okp">加价幅度：{weimicms:$product.increase} 元</span>
+			<span class="okp">开始日期：{weimicms:$product.starttime|date="Y-m-d H:i:s",###}</span>
+			<span class="okp">截止日期：{weimicms:$product.endtime|date="Y-m-d H:i:s",###}</span>
+        </div>
+		
+		<if condition="$product.endtime lt $now">
+		<div id="remainSeconds" style="display:none">{weimicms:$leftSeconds}</div>  
+		<div id="remainTime" style="font-size:20px;font-weight:800;color:#FF9900"></div>
+		</if>
+		
+		<div class="fenxiao">
+		<p id="share_for_money" style="display: block;">
+	     <a href="#" onclick="javascript:location.href = location.href;"><em id="share_for_money_icon" class="inline_b c_txt">￥</em> 刷新页面</a>
+		</p>
+		</div>
+		
+		<if condition="$product.endtime gt $now">
+		<div id="remainSeconds" style="display:none">{weimicms:$leftSeconds}</div>  
+		<div id="remainTime" style="font-size:14px;font-weight:800;color:#e4393c"></div>
+        <div class="i-row chujiak">
+            <div class="c chujiakuang">
+                <input id="myprice" name="price" type="text" value="<?php echo ($product['price']+$product['increase']); ?>"/>
+				<input id="pid" type="hidden" name="pid" type="text" value="{weimicms:$product.id}"/>
+                <span class="stock">(累计出价<span id="stock"> {weimicms:$allcount} </span>次)</span>
+            </div>
+        </div>
+        <div class="i-row act">
+             <button type="submit" class="btn">我要出价</button>
+		</form>
+			 <form id="product_buy_form" name="product_buy_form" action="{weimicms::U('Storenew/jpmyprice', array('pid'=>$hostlist['id'],'token'=>$token,'cid'=>$cid))}" method="POST">
+			 <input id="myprice" type="hidden" name="price" type="text" value="<?php echo ($product['price']+100); ?>"/>
+			 <input id="pid" type="hidden" name="pid" type="text" value="{weimicms:$product.id}"/>
+			 <button type="submit" class="btn-right">加价100元</button>
+			 </form>
+        </div>
+		<else/>
+        <div class="i-row act">
+             <a href="javascript:;" class="buynow">竞拍已结束</a>
+        </div>
+			<if condition="$product.endtime lt time() && $product.is_order neq '1' && $wechaid eq '1'">
+			<div class="i-row act">
+            <a href="{weimicms::U('Storenew/addjingpaiorder',array('id'=>$product['id'],'token'=>$token,'cid'=>$cid,'wecha_id'=>$wecha_id))}" class="buynow">结算并生成订单</a>
+			</div>
+			<else/>
+			</if>
+		</form>
+		</if>
+		<form name="jingpaicommentsave" action="{weimicms::U('Storenew/jingpaicommentSave', array('pid'=>$product['id'],'token'=>$token))}" method="POST">
+						<div class="i-row chujiak">
+								<!--input name="content" type="text" value="" style="width:300px;height:40px;"-->
+								<textarea id="content" name="content" style="width:300px;height:40px;"></textarea>
+								<input id="pid" type="hidden" name="pid" type="text" value="{weimicms:$product.id}"/>
+								<input id="cid" type="hidden" name="cid" type="text" value="{weimicms:$cid}"/>
+						</div>
+						<div class="i-row act">
+							<button type="submit" class="btn">发表评论</button>
+						</div>
+					</form>
+</div>
+
+<div class="go-shop-info">
+	<div class="btn-box clearfix"> 
+		<div class="btn-2-1">
+		<a href="{weimicms::U('Storenew/cats',array('token' => $_GET['token'], 'twid' => $twid, 'cid' => $cid))}"><span class="iconfont icon-fenlei"></span>所有商品</a>
+		</div>
+		<div class="btn-2-1">
+		<a href="{weimicms::U('Storenew/jingpai',array('token' => $_GET['token'],'twid' => $twid, 'cid' => $cid))}"><span class="iconfont icon-store"></span>限时竞拍</a>
+		</div> 
+	</div>
+</div>
+
+<div class="d-info">
+    <div class="detailinfo">
+        <ul class="tabs"><li>出价记录<i>({weimicms:$allcount})</i></li><li>拍品详情</li><li>用户评论<i>({weimicms:$commentcount})</i></li></ul>
+        <div class="views">
+            <div class="warp">
+			    <div class="li">
+                    <div class="com-dec">共<b>{weimicms:$allcount}</b>位参与出价  -->滑动切换
+                    </div>
+					<div class="getList">
+						<div class="luckguys swiper-slid swiper-slide-visible swiper-slide-active" style="width: auto;min-width:330px; height: auto;min-height:350px;">
+									<div class="luck_con swipe_con">
+									<if condition="$log neq ''">
+									<volist name="log" id="log">
+										<div class="luck-manito"><ul><li><img src="{weimicms:$log.portrait}" class="headers"></li><li><div><span class="nickname">{weimicms:$log.truename}</span><br/><span class="date">{weimicms:$log.dateline|date="Y-m-d H:i",###}</span></div><!--div><p>{weimicms:$vo.share_content}</p></div--></li><li><span class="tel">{weimicms:$log.price} 元</span></li></ul></div>
+										</volist>	
+										<else />
+										<div class="fit-plan_end">
+										<div class="disorder-none"><i class="icon-none"></i><span class="nonetext">还没有人出价，赶紧出价捡漏吧！</span></div>
+										</div>
+									</if>
+									</div>
+						</div>
+					</div>
+                </div>
+				
+                <div class="li">
+                    <ul class="detail-list">
+                        <div class="infodetail">{weimicms:$product.intro}</div>
+                    </ul>
+                    <div class="goods_intro"></div>
+                </div>
+				
+				<div class="li">
+					
+					<div class="com-dec">已有<b>{weimicms:$commentcount}</b>位用户参与评论，发表自己的评论</div>
+                    <div class="getList">
+						<div class="luckguys swiper-slid swiper-slide-visible swiper-slide-active" style="width: auto;min-width:330px; height: auto;min-height:350px;">
+									<div class="luck_con swipe_con">
+									<if condition="$comment neq ''">
+									<volist name="comment" id="log">
+										<div class="luck-manito"><ul><li><img src="{weimicms:$log.portrait}" class="headers"></li><li><div><span class="date">{weimicms:$log.truename}</span><br/><span class="date">{weimicms:$log.dateline|date="Y-m-d H:i",###}</span><br/><span class="nickname">{weimicms:$log.content}</span></div><!--div><p>{weimicms:$vo.share_content}</p></div--></li><li><span class="tel"></span></li></ul></div>
+										</volist>	
+										<else />
+										<div class="fit-plan_end">
+										<div class="disorder-none"><i class="icon-none"></i><span class="nonetext">还没有人发表评论！</span></div>
+										</div>
+									</if>
+									</div>
+						</div>
+					</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+	<div style="height:30px"></div>
+</div>
+<script type="text/javascript">
+var detailinfo = new Swiper('.detailinfo .views',{pagination: '.detailinfo .tabs',autoplay:false});
+</script>
+<script type="text/javascript">
+    var SysSecond;
+    var InterValObj;
+    $(document).ready(function () {
+    SysSecond = parseInt($("#remainSeconds").html()); //这里获取倒计时的起始时间 
+	InterValObj = window.setInterval(SetRemainTime, 1000); //间隔函数，1秒执行 
+
+    });
+	//将时间减去1秒，计算天、时、分、秒 
+function SetRemainTime() {
+	if (SysSecond > 0) { 
+		SysSecond = SysSecond - 1; 
+		var second = Math.floor(SysSecond % 60);             // 计算秒     
+		var minite = Math.floor((SysSecond / 60) % 60);      //计算分 
+		var hour = Math.floor((SysSecond / 3600) % 24);      //计算小时 
+		var day = Math.floor((SysSecond / 3600) / 24);        //计算天 
+		$("#remainTime").html('&nbsp;&nbsp;倒计时:'+day + "天&nbsp;" + hour + ":" + minite + ":" + second + ""); 
+	} else {//剩余时间小于或等于0的时候，就停止间隔函数 
+		window.clearInterval(InterValObj); 
+		//这里可以添加倒计时时间为0后需要执行的事件 
+	} 
+}
+</script>
+<include file="Storenew:foot"/>
+</body>
+<script type="text/javascript">
+    window.shareData = {
+        "moduleName": "Store",
+        "moduleID": "{weimicms:$product['id']}",
+        "imgUrl": "{weimicms:$product['logourl']}",
+        "timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U('Storenew/biddingproduct',array('token' => $_GET['token'],'id'=>$product['id'], 'twid' => $mytwid, 'cid' => $cid))}",
+        "sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Storenew/biddingproduct',array('token' => $_GET['token'],'id'=>$product['id'], 'twid' => $mytwid, 'cid' => $cid))}",
+        "weiboLink": "{weimicms:$f_siteUrl}{weimicms::U('Storenew/biddingproduct',array('token' => $_GET['token'],'id'=>$product['id'], 'twid' => $mytwid, 'cid' => $cid))}",
+        "tTitle": "{weimicms:$metaTitle}",
+        "tContent": "{weimicms:$metaTitle}"
+    };
+</script>
+{weimicms:$shareScript}
+</html>

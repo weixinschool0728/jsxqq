@@ -1,0 +1,381 @@
+
+<html>
+    <head>
+        <title>送给你</title>
+        <meta http-equiv="imagetoolbar" content="no">
+        <meta charset="utf-8"> 
+       <include file="Kawahk:js"/> 
+        <script type="text/javascript">
+            initViewport();
+        </script>       
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="format-detection" content="telephone=no">
+        <script src="tpl/Wap/default/common/kawahk/2036/jquery-1.10.2.min.js"></script>
+        
+
+        <style type="text/css">
+        <!--        
+            body
+            {
+                margin: 0;
+            }
+        @-webkit-keyframes flybird 
+        {
+            0%{-webkit-transform:translate(0px,0px);}
+            85%{-webkit-transform:translate(480px,0px);}
+            86%{-webkit-transform: translate(480px,0px) rotate(90deg);}
+            95%{-webkit-transform:translate(480px,700px) rotate(90deg);}
+            100%{-webkit-transform:translate(480px,700px) rotate(90deg);}
+        }
+        @-webkit-keyframes cutecloud 
+        {
+            0%{-webkit-transform:translate(0px,0px);visibility: visible;}
+            25%{-webkit-transform:scale(0.9,0,9);-webkit-transform:translateY(10px);visibility: visible;}
+            75%{-webkit-transform:translateY(10px);-webkit-transform:scale(0.95,0.95);visibility: visible;}
+        }
+        @-webkit-keyframes clouddisplay
+        {
+            0%{opacity:0;}
+            100%{opacity: 1;}
+        }
+        @-webkit-keyframes float
+        {
+            0% {-webkit-transform:translate(0px,0px) ;}
+            30%{-webkit-transform:translate(50px,250px);}
+            70%{-webkit-transform:translate(150px,550px) ;}
+            100% {-webkit-transform:translate(200px,750px) ;}
+        }
+        @-webkit-keyframes zhuanqiukulan 
+        {
+            -webkit-tranform-origin:50% 50%;
+            0%{-webkit-transform:translate(0px,0px);}
+            50%{-webkit-transform:translate(0px,0px);}
+            60%{-webkit-transform:translate(0px,-75px);}
+            65%{-webkit-transform:translate(75px,-100px) rotate(-45deg);} 
+            69%{-webkit-transform:translate(100px,-150px) scale(1.2,1.2) rotate(-90deg);}
+            73%{-webkit-transform:translate(125px,-175px) scale(1.3,1.3) rotate(-135deg);}
+            78%{-webkit-transform:translate(150px,-200px) scale(1.4,1.4) rotate(-180deg);} 
+            81%{-webkit-transform:translate(175px,-250px) scale(1.5,1.5) rotate(-225deg);}          
+            85%{-webkit-transform:translate(200px,-300px) scale(1.6,1.6) rotate(-270deg);}
+            90%{-webkit-transform:translate(225px,-350px) scale(1.7,1.7) rotate(-315deg);}
+            95%{-webkit-transform:translate(265px,-400px) scale(1.7,1.7) rotate(-360deg);}
+            100%{-webkit-transform:translate(300px,-500px) scale(1.7,1.7) rotate(-450deg);}
+        }
+        @-webkit-keyframes zhuanqiukuqing 
+        {
+            -webkit-tranform-origin:50% 50%;
+            0%{-webkit-transform:translate(0px,0px);}
+            50%{-webkit-transform:translate(0px,0px);}
+            60%{-webkit-transform:translate(0px,-75px);}
+            65%{-webkit-transform:translate(-75px,-100px) rotate(-45deg);} 
+            69%{-webkit-transform:translate(-100px,-150px) scale(1.2,1.2) rotate(90deg);}
+            73%{-webkit-transform:translate(-125px,-175px) scale(1.3,1.3) rotate(135deg);}
+            78%{-webkit-transform:translate(-150px,-200px) scale(1.4,1.4) rotate(180deg);} 
+            81%{-webkit-transform:translate(-175px,-250px) scale(1.5,1.5) rotate(225deg);}          
+            85%{-webkit-transform:translate(-200px,-300px) scale(1.6,1.6) rotate(270deg);}
+            90%{-webkit-transform:translate(-225px,-350px) scale(1.7,1.7) rotate(315deg);}
+            95%{-webkit-transform:translate(-265px,-400px) scale(1.7,1.7) rotate(360deg);}
+            100%{-webkit-transform:translate(-300px,-500px) scale(1.7,1.7) rotate(450deg);}
+        }
+
+
+       .snow
+        {
+            -webkit-transform-origin:50% 0%;
+            position:absolute;
+            padding:0px;
+            margin:0px;
+            width:100px;
+            height:100px;
+            z-index:200; 
+            -webkit-animation:float 6s linear infinite;
+        }
+        .snowImg
+        {
+            position:absolute;
+            z-index: 200;      
+        }    
+   
+        .dot
+        {
+            position:absolute;
+            padding:0px;
+            margin:0px;
+            width:20px;
+            height:20px;
+            top :35px;
+            z-index:3; 
+            -webkit-animation: 3s linear infinite;
+        }
+        .dotImg
+        {
+            position:absolute;
+            z-index: 3;      
+        }
+        p
+        {
+            font-size: 20pt;
+            font-weight: bold;
+            line-height: 34pt;
+        }
+        
+        -->
+        </style>
+        <script>
+            Img = new Array("tpl/Wap/default/common/kawahk/2036/10002_6.png","tpl/Wap/default/common/kawahk/2036/10002_7.png");
+            Imgboy = new Array("tpl/Wap/default/common/kawahk/2036/nanhai0038.png","tpl/Wap/default/common/kawahk/2036/nanhai0039.png","tpl/Wap/default/common/kawahk/2036/nanhai0041.png");
+            Imgbox = new Array("tpl/Wap/default/common/kawahk/2036/lihe0021.png","tpl/Wap/default/common/kawahk/2036/lihe0023.png","tpl/Wap/default/common/kawahk/2036/lihe0025.png","tpl/Wap/default/common/kawahk/2036/lihe0026.png","tpl/Wap/default/common/kawahk/2036/lihe0027.png");
+            size = Img.length;
+            size1 = Imgboy.length;
+            size2 = Imgbox.length;
+            i=0;
+            j=0;
+            k=0;
+            var snowNum=20;
+            var dotLeft=-70;
+            var snowIntervlaId;
+            var dotIntervlaId;
+            var dotNum=15;
+            var gPrintText = '';
+            function chImg()
+            {
+                picID.src =Img[i];
+                i++;
+                if (i>=size) i = 0;
+            }
+          
+            function chImg1()
+            {
+                picBoy.src =Imgboy[j];
+                j++;
+                if (j>=size1) j = 0;
+            }
+            function chImg2()
+            {
+                if (k>=size2-1) 
+                    clearInterval(boxIntervlaId);
+                picBox.src =Imgbox[k];
+                k++;
+            }
+            function rand(min,max)
+            {
+                return min+Math.floor(Math.random()*(max-min+1));
+            }
+            function initSnow()
+            {
+                snowNum--;
+                if (snowNum<0)
+                    clearInterval(snowIntervlaId);
+                var snow = document.createElement('div');
+                var snowImg = document.createElement('img');
+                snowImg.src="tpl/Wap/default/common/kawahk/2036/10002_8.png";
+                snow.style.top = 0+'px';
+                snow.style.left = rand(0,400) +'px';
+                snow.className = 'snow';
+                snowImg.className = 'snowImg';
+                snow.appendChild(snowImg); 
+                objid('qianjing').appendChild(snow); 
+            }  
+
+            function showDot()
+            {               
+                dotNum--;
+                if (dotNum<0)
+                    clearInterval(dotIntervlaId);
+                var dot = document.createElement('div');
+                var dotImg = document.createElement('img');
+                dotImg.src="tpl/Wap/default/common/kawahk/2036/10002_dot.png";
+                dotImg.style.left = dotLeft+'px';
+                dot.className = 'dot';
+                dotImg.className = 'dotImg';
+                dot.appendChild(dotImg); 
+                objid('qianjing').appendChild(dot); 
+                dotLeft=dotLeft+30;
+
+            }
+ 
+            function changeContent()
+            {
+                objid('words2').style.visibility="visible";
+                //Print(gCardText2,2);
+                objid('qianjing').style.display = "none"; 
+                objid('bigcloud').style.display = "none";            
+                objid('gift').style.display = "block";
+                objid('bigcloud').style.display = "block";             
+                
+            }
+
+            function reInit()
+            {
+                objid('words1').style.display="none";
+                setTimeout('changeContent()',800);
+            }
+            function clickqiuku()
+            {
+                
+                objid('words2').style.display = "none";
+                objid('words3').style.visibility = "visible";
+                var qiuku=document.getElementById("qiuku");
+                objid('gift').style.display="none";
+                objid('gif3').style.display='none';                
+                objid('qiuku').style.display = "block";
+                //Print(gCardText3,3);
+                setInterval(chImg1,200);
+                boxIntervlaId =setInterval(chImg2,100); 
+                kawa_data.text_color='black';
+                
+                //Print(pure_card_text(),3);
+                show_textdiv();
+                //objid('textmask').style.zIndex= 400;
+                //objid('textdiv').style.zIndex=400;         
+
+            }
+            function Print(gCardText,textNumber)
+            {
+                gPrintText=gCardText;
+                onPrintAnimate(textNumber);
+            }
+            function onPrintAnimate(textNumber)
+            {
+                 pushText = '';
+
+                
+                var reachEnd = 0;
+                
+                if(gPrintText.length <= 1)
+                {
+                    reachEnd = 1;
+                }
+                
+                var cutlen = 0;
+
+                if(gPrintText.length >= 4 && gPrintText.substring(0, 4) == '<br>')
+                {
+                    gPrintText = gPrintText.substring(4);
+                    pushText = '<br>';
+                    cutlen = 4;
+                }
+                
+                if(cutlen == 0 && gPrintText.length >= 1)
+                {
+                    pushText   = gPrintText.substring(0, 1);
+                    gPrintText = gPrintText.substring(1);
+                }
+
+                 objid('words'+textNumber).innerHTML = objid('words'+textNumber).innerHTML + pushText;
+                
+                if (gPrintText.length>0)
+                {
+                    setTimeout('onPrintAnimate('+textNumber+')', 320);
+                }
+            }
+            function Init()
+            {
+                snowIntervlaId = setInterval(initSnow,500);
+                dotIntervlaId = setInterval(showDot,400);
+                setInterval(chImg,100);
+                setTimeout(function(){Print(gCardText1,1);} ,1800);
+                setTimeout('reInit()',13000);
+            }
+
+        </script>        
+    </head>
+    <body onload='kawa_init();'>
+        <script>
+            words = '亲爱的，快把这条秋裤穿上，度过一个温暖的冬天!';
+            gCardText1 = '北风吹，雪花飘，<br>冬日早来到，<br>天气转凉，卡娃提醒大家注意保暖哟！';
+            gCardText2 = '我来送温暖啦!<br>猜猜是什么呢，点开礼盒看看';
+            gCardText3 = '亲爱的，快把这条秋裤穿上，让你一秒变暖男!';
+            kawa_data = {
+                words              : words,
+               <if condition=" $words eq ''">
+				replace_words      : '亲爱的，快把这条秋裤穿上，度过一个温暖的冬天!',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+                text_box           : '45 50 250 180', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+                mode               : 'up',     // up, left
+                speed              : 40,     // 每秒移动的像素
+                text_color         : 'black', // rgb(1,2,3) 'black'
+                font_size          : '20pt',
+                line_height        : '34pt',
+                music              : 'http://sound.kagirl.net/sound/qingyinyue8.mp3',     // url
+                <if condition=" $music eq ''">
+				replace_music      : 'http://sound.kagirl.net/sound/qingyinyue8.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+                music_name         : '',
+                replace_music_name : '#replace_music_name#',
+                icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/fengmian/x2036.jpg',
+                title              : '送给你',
+                desc               : '我来送温暖啦!猜猜是什么呢，点开礼盒看看',
+                modify             : 'no',
+                replace_modify     : 'yes',
+                cardid             : '2036',
+                share_url          : window.location.href,    // 当分享的是微信页面时才需要改这里
+                font_ip            : '114.215.157.155:8000',
+                modify_optfile     : '2036',
+                modify_optwords    : '#modify_optwords#',
+                show_words         : 'no',
+                write_param_1      : 'inputtype=singleline&showsel=no&prompt=' + encodeURIComponent('输入对方的名字：')
+            };
+        </script>
+
+        <div id='body1' style="height:750px;width:500px;position:absolute;z-index=0;
+                margin:0px;padding:0px;overflow:hidden;"> 
+            <div style="position:absolute;top:0;left:0;width:500px;">
+                <img src="tpl/Wap/default/common/kawahk/2036/10002_1.jpg"/>
+            </div>
+            <div id ='qianjing' style="height:750px;width:500px;position:absolute;
+                margin:0px;padding:0px;overflow:hidden;">
+                <div style="position:absolute;top:690px;left:260px;width:200px;">
+                    <img src="tpl/Wap/default/common/kawahk/2036/10002_5.png"/>
+                </div>
+                <div style="position:absolute;top:400px;left:240px;width:260px;">
+                    <img id="picID" border="0">
+                </div>
+                <div style="position:absolute;top:25px;left:-70px;width:66px;z-index:3;-webkit-animation: flybird linear 8s">
+                    <img src="tpl/Wap/default/common/kawahk/2036/10002_bird.png "/>
+                </div>
+                <div id='tinycloud' style="position:absolute;top:350px;left:265px;width:40px;-webkit-animation: clouddisplay 0.5s,cutecloud 3s linear 0.5s infinite">
+                    <img src="tpl/Wap/default/common/kawahk/2036/10002_4.png">
+                </div>
+                <div id='littlecloud' style="position:absolute;top:260px;left:250px;width:96px;visibility:hidden;-webkit-animation: clouddisplay 1s,cutecloud 3s linear 1s infinite">
+                    <img src="tpl/Wap/default/common/kawahk/2036/10002_3.png">
+                </div>
+                
+            </div>
+            <div id='bigcloud' style="position:absolute;top:15px;left:10px;width:314px;visibility:hidden;-webkit-animation: clouddisplay 1.5s,cutecloud 3s linear 1.5s infinite">
+                <img src="tpl/Wap/default/common/kawahk/2036/10002_2.png">
+                <div  style="position:absolute;top:10px;left:40px;width:250px;">
+                    <p id='words1'></p>
+                </div>
+                <div  style="position:absolute;top:35px;left:35px;width:250px;visibility:hidden;">
+                    <p id='words2'></p>
+                </div>
+                <div  style="position:absolute;top:40px;left:35px;width:250px;visibility:hidden;">
+                    <p id='words3'></p>
+                </div>
+            </div>
+            <div id='gift' onclick="clickqiuku();" style="position:absolute;top:200px;left:0px;width:500px;display:none">
+                <img id='gif3' src="tpl/Wap/default/common/kawahk/2036/ff3.gif"/>
+            </div>
+            <div id='qiuku'style="position:absolute;top:200px;left:0px;width:500px;display:none">
+                <img id="picBoy" border="0" >
+                <img src="tpl/Wap/default/common/kawahk/2036/kuzilan0029.png" style="position:absolute;top:0px;left:0px;-webkit-animation:zhuanqiukulan 2s infinite"/>
+                <img src="tpl/Wap/default/common/kawahk/2036/kuziqing0034.png" style="position:absolute;top:20px;left:0px;-webkit-animation:zhuanqiukuqing 2s infinite 1s"/>
+                <img id="picBox" border="0" style="position:absolute;top:0px;left:0px">
+                <img src="tpl/Wap/default/common/kawahk/2036/shou0030.png" style="position:absolute;top:0px;left:0px"/>
+                
+            </div>
+            <script>
+                Init();
+                //words1.innerHTML=gCardText1;
+                words2.innerHTML=gCardText2;
+                //words3.innerHTML=gCardText3;
+            </script>
+        </div>
+
+         
+    </body>
+</html>

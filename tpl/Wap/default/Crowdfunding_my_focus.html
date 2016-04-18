@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta charset="utf-8">
+<title>{weimicms:$info.name}</title>
+<link rel="stylesheet" href="{weimicms:$staticPath}/tpl/static/crowdfunding/css/zc-common.css">
+<link rel="stylesheet" href="{weimicms:$staticPath}/tpl/static/crowdfunding/css/zc-index.css">
+
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/jquery.min.js"></script>
+</head>
+<body>
+    <!-- heard -->
+    <header class="header">
+    <h2><a href="javascript:void(0);" class="text-red">我的众筹</a></h2>
+    <a href="javascript:window.history.go(-1);" class="icon btn-goback"></a>
+    <a href="{weimicms::U('Crowdfunding/home',array('token'=>$token,'wecha_id'=>$wecha_id))}" class="icon btn-home"></a>
+    </header>
+    <!-- / -->
+<!-- main -->
+<div class="my-concern">
+	<div class="tabbox">
+		<ul class="tab-ul myzc">
+			<li><a href="{weimicms::U('Crowdfunding/my_support',array('token'=>$token,'wecha_id'=>$wecha_id))}">支持的项目</a></li>
+			<li><a href="{weimicms::U('Crowdfunding/my_focus',array('token'=>$token,'wecha_id'=>$wecha_id))}" class="current">关注的项目</a></li>
+		</ul>
+		<div class="tab-con">
+			<ul class="goods-list myzc-ul">
+			<volist id="focus" name="focus">
+				<li id="focus{weimicms:$focus.cid}">
+					<a href="{weimicms::U('Crowdfunding/index',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$focus['cid']))}" class="gridbox">
+						<div class="goods-pic">
+							<img src="{weimicms:$focus.pic}" alt="">
+						</div>
+						<div class="grid-1">
+							<h5 class="h5-title">{weimicms:$focus.name}</h5>
+							<div class="gridbox <if condition="$focus.status eq 4">sta-end<else/>sta-ing</if>">
+								<div class="grid-1 mt20">
+									<div class="progresnum">
+										{weimicms:$focus.progress}
+									</div>
+									<div class="progressbar">
+										<div class="progressing" style="width: {weimicms:$focus.percent}">
+										</div>
+									</div>
+								</div>
+								<div class="progrestate">
+									<if condition="$focus.status eq 4">
+										已结束
+									<else/>
+										众筹中
+									</if>
+								</div>
+							</div>
+						</div>
+					</a>
+					<div class="gridbox zc-datum">
+						<div class="grid-3">
+							<strong>￥{weimicms:$focus.price_count}</strong>
+							<p>
+								已筹集
+							</p>
+						</div>
+						<div class="grid-2">
+							<strong>{weimicms:$focus.people_count}</strong>
+							<p>
+								支持人数
+							</p>
+						</div>
+						<div class="grid-2">
+							<strong>{weimicms:$focus.remain_day}天</strong>
+							<p>
+								剩余时间
+							</p>
+						</div>
+					</div>
+					<div class="goods-btnbox clearfix">
+						<a href="{weimicms::U('Crowdfunding/index',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$focus['cid']))}" class="btn btn-red fr">去支持</a>
+						<a name="cancelFocus" code="{weimicms:$focus.cid}" href="javascript:void(0);" class="btn btn-normal fr">取消关注</a>
+					</div>
+				</li>
+			</volist>
+			</ul>
+		</div>
+		<div class="mysupport-btn-holder clearfix">
+			{weimicms:$page}
+		</div>
+	</div>
+	<include file="Crowdfunding:footer" />
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("[name='cancelFocus']").on("click",function(){
+            if (confirm("确认取消关注吗？")){
+                var id = $(this).attr("code");
+                var url = "{weimicms::U('Crowdfunding/cancel_focus',array('token'=>$token,'wecha_id'=>$wecha_id))}&cid="+id;
+                
+	            $.getJSON(url, function (data, e) {
+	                if(data["success"] != undefined && data["success"]==true){
+                        $("#focus" + id).remove();
+                    }else{
+	                    alert("系统繁忙");
+	                }
+	            });
+            }
+        });
+    });
+</script>
+{weimicms::WechatShare::getShareData(array(
+	'moduleName'=>'Crowdfunding',
+	'moduleID'=>0,
+	'imgUrl'=>$focus[0]['pic'],
+	'tTitle'=>'众筹',
+	'tContent'=>'众筹',
+	'sendFriendLink'=>$f_siteUrl.U('Crowdfunding/home', array('token'=>$token)),
+))}
+{weimicms:$shareScript}
+</body>
+</html>

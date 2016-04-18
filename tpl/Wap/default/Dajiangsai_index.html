@@ -1,0 +1,342 @@
+<!DOCTYPE HTML>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<title>{weimicms:$info['title']}</title>
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/public-framework/scripts/jquery.js"></script>
+<link href="{weimicms:$staticPath}/tpl/static/public-framework/styles/framework.css" rel="stylesheet" type="text/css">
+<link href="{weimicms:$staticPath}/tpl/static/public-framework/styles/owl.carousel.css" rel="stylesheet" type="text/css">
+<link href="{weimicms:$staticPath}/tpl/static/public-framework/styles/owl.theme.css" rel="stylesheet" type="text/css">
+<link href="{weimicms:$staticPath}/tpl/static/public-framework/styles/swipebox.css"  rel="stylesheet" type="text/css">
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/alert.js"></script>
+<link href="{weimicms:$staticPath}/tpl/static/Dajiangsai/countdown/jquery.countdown.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/Dajiangsai/countdown/jquery.countdown.js"></script>
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/Dajiangsai/js/script.js"></script>
+
+<link href="/tpl/static/Dajiangsai/css/index2.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+function swapStyleSheet(sheet){
+	document.getElementById('pagestyle').setAttribute('href', sheet);
+}
+</script>
+
+</head>
+<body>
+<if condition="$memberNotice neq ''">
+    {weimicms:$memberNotice}
+</if>
+
+<div id="preloader">
+	<div id="status">
+    	<p class="center-text">
+            <em>Loading...</em>
+        </p>
+    </div>
+</div>
+
+<div class="all-elements">
+    <div id="content" class="page-content">
+    	<div class="content-controls solid-color fixed-header">
+            <if condition="$is_over eq 1">
+                <a class="button-big button-turqoise" href="javascript:void(0);" style="background:#5a5a5a;">活动还没开始</a>
+            <elseif condition="$is_over eq 2"/>    
+                <a class="button-big button-turqoise" href="javascript:void(0);" style="background:#5a5a5a;">活动已经结束</a>
+            <elseif condition="$share_key neq ''"/>
+                <a class="button-big button-turqoise" href="{weimicms::U('Dajiangsai/index',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$info['id']))}">进入我的分享页面</a>
+			<else/>
+                <if condition="$memberNotice eq ''">
+                   <a class="button-big button-turqoise" id="share" href="javascript:void(0);">找朋友助力</a>
+                <else/>
+                   <a class="button-big button-turqoise"  href="#memberNoticeBox" id="modaltrigger_notice">我要参加</a>
+                </if>
+            </if>
+        </div>    
+        
+		<!--gift start-->
+		<div class="content">
+            <div class="container">
+                <div class="top_pic">
+                    <img src="{weimicms:$info['top_pic']}" alt="{weimicms:$info['title']}">
+                </div>
+				<!--gift start-->
+				<!--<div class="wechaimg"><img src="{weimicms:$user.portrait}"></div>-->
+				 <div class="topmain">
+					<div class="wechaidinfo">
+						<span class="name"><b>{weimicms:$user.username}</b></span>
+						<span class="allcounts">分享值</span>
+						<span class="nums"><i class="red-b">{weimicms:$user.help_count}</i></span>
+					</div>
+					<div class="shares">
+						<span class="shareinfo">分享次数<br><i class="red-b">{weimicms:$user.sharecount}</i></span>
+						<span class="line"></span>
+						<span class="countsinfo">当前排名<br>第<i class="red-b">{weimicms:$user.help_rank}</i>名</span>
+					</div>
+				 </div>
+				 <!--gift end-->
+                <div class="blank"></div>
+                <div class="title">
+                    {weimicms:$info['title']}
+                </div>
+                <div class="blank"></div>
+                <div class="times">
+                    <span class="time-ico">
+                        活动时间：{weimicms:$info['start']|date="Y年m月d日",###} - {weimicms:$info['end']|date="m月d日 H时i分",###}
+                    </span>
+                </div>
+                <div class="blank"></div>
+                <if condition="$is_over eq 0">
+				
+				<div class="times red-b">
+					<span class="time-ico">倒计时：
+						<span id="t_d">00天</span>
+						<span id="t_h">00时</span>
+						<span id="t_m">00分</span>
+						<span id="t_s">00秒</span>
+					</span>
+				</div>
+				<script>
+				   function GetRTime(){
+					   var EndTime= new Date('{weimicms:$info['end']|date="Y/M/d H:i:s",###}');
+					   var NowTime = new Date();
+					   var t =EndTime.getTime() - NowTime.getTime();
+					   var d=Math.floor(t/1000/60/60/24);
+					   var h=Math.floor(t/1000/60/60%24);
+					   var m=Math.floor(t/1000/60%60);
+					   var s=Math.floor(t/1000%60);
+
+					   document.getElementById("t_d").innerHTML = d + "天";
+					   document.getElementById("t_h").innerHTML = h + "时";
+					   document.getElementById("t_m").innerHTML = m + "分";
+					   document.getElementById("t_s").innerHTML = s + "秒";
+				   }
+				   setInterval(GetRTime,0);
+				</script>
+                    <!-- <div class="countdown" id="countdown" endtime="{weimicms:$info['end']}"></div>-->
+                    <div class="blank"></div>
+                </if>
+				<!-- <div class="title">
+                    你为 <i class="cl-red">{weimicms:$user.username}</i> 投得一票！<br />
+				</div> -->
+				<if condition="$user.tel eq '无' && $user.wecha_id neq ''">
+				<div class="rule">
+					<p class="btn"><a href="/index.php?g=Wap&m=Index&a=memberReg&token={weimicms:$token}&wecha_id={weimicms:$user['wecha_id']}">请先补充完整资料，方便领取奖励</a></p>
+                </div>
+				</if>
+				<if condition="$share_key neq '' && $issub neq '0'">
+				<div class="title">
+                    <i class="cl-red">↓↓参加请点击< 我的分享页面 >↓↓</a></i><br />
+				</div>
+				</if>
+            </div> 
+        </div> 
+		<!--gift end-->
+		<div class="blank"></div>
+		<!--sharelist start-->
+		<if condition="$info['frist'] neq ''">
+		<div class="content">
+            <div class="rank_title">
+                <div class="top">奖品信息</div>
+                <div class="cot">
+                    参与活动人数: 
+                    <i class="cl-green">{weimicms:$count}</i>
+                </div>
+            </div>
+        </div>
+		 <div class="content half-bottom">
+            <div class="container no-bottom">
+			
+            	<div class="column-responsive half-bottom">
+            		<img src="{weimicms:$info['fristpic']}">
+                    <div class="info">
+                    	<b> {weimicms:$info['frist']}</b>
+                    	<div class="con">
+	                    	<i class="diagram-list"></i>
+	                    	<span class="num">数量：{weimicms:$info['fristnums']}</span>
+	                    	<span class="time">{weimicms:$info['fristdoc']}</span>
+	                    </div>
+	                    <i class="ic_rank1">一等奖</i>
+                	</div>
+            	</div> 
+				<if condition="$info['second'] neq ''">
+				<div class="jiang-bottom"></div>
+				<div class="column-responsive half-bottom">
+            		<img src="{weimicms:$info['secondpic']}">
+                    <div class="info">
+                    	<b> {weimicms:$info['second']}</b>
+                    	<div class="con">
+	                    	<i class="diagram-list"></i>
+	                    	<span class="num">数量：{weimicms:$info['secondnums']}</span>
+	                    	<span class="time">{weimicms:$info['seconddoc']}</span>
+	                    </div>
+	                    <i class="ic_rank1">二等奖</i>
+                	</div>
+            	</div>
+				</if>
+				<if condition="$info['third'] neq ''">
+				<div class="jiang-bottom"></div>
+				<div class="column-responsive half-bottom">
+            		<img src="{weimicms:$info['thirdpic']}">
+                    <div class="info">
+                    	<b> {weimicms:$info['third']}</b>
+                    	<div class="con">
+	                    	<i class="diagram-list"></i>
+	                    	<span class="num">数量：{weimicms:$info['thirdnums']}</span>
+	                    	<span class="time">{weimicms:$info['thirddoc']}</span>
+	                    </div>
+	                    <i class="ic_rank1">三等奖</i>
+                	</div>
+            	</div>
+				</if>
+				<if condition="$info['four'] neq ''">
+				<div class="jiang-bottom"></div>
+				<div class="column-responsive half-bottom">
+            		<img src="{weimicms:$info['fourpic']}">
+                    <div class="info">
+                    	<b> {weimicms:$info['four']}</b>
+                    	<div class="con">
+	                    	<i class="diagram-list"></i>
+	                    	<span class="num">数量：{weimicms:$info['fournums']}</span>
+	                    	<span class="time">{weimicms:$info['fourdoc']}</span>
+	                    </div>
+	                    <i class="ic_rank1">鼓励奖</i>
+                	</div>
+            	</div>
+				</if>
+				<if condition="$info['five'] neq ''">
+				<div class="jiang-bottom"></div>
+				<div class="column-responsive half-bottom">
+            		<img src="{weimicms:$info['fivepic']}">
+                    <div class="info">
+                    	<b> {weimicms:$info['five']}</b>
+                    	<div class="con">
+	                    	<i class="diagram-list"></i>
+	                    	<span class="num">数量：{weimicms:$info['fivenums']}</span>
+	                    	<span class="time">{weimicms:$info['fivedoc']}</span>
+	                    </div>
+	                    <i class="ic_rank1">五等奖</i>
+                	</div>
+            	</div>
+				</if>
+                <div class="clear"></div>
+            </div>
+        </div>
+		</if>
+		<!--sharelist end-->
+		<div class="blank"></div>
+		<!--sharelist start-->
+		 <div class="content">
+            <div class="rank_title">
+                <div class="top">TOP20</div>
+                <div class="cot">
+                    参与活动人数: 
+                    <i class="cl-green">{weimicms:$count}</i>
+                </div>
+            </div>
+        </div>
+		<!--sharelist end-->
+        <div class="content">
+            <div class="container">
+            	<table class="table" border="0" width="100%">
+                    <tr>
+                        <th width="10%">排名</th>
+                        <th  width="28%">姓名</th>
+                        <th>分享值</th>
+						 <th width="22%">手机号</th>
+						<if condition="$info.is_score eq '1'"><th>获得积分</th></if>
+                        <!--th  width="25%">冲刺奖励</th-->
+                    </tr>
+                    <volist id="rank" name="rank" key="key">
+                    <tr>
+                        <td>{weimicms:$key}</td>
+                        <td>{weimicms:$rank.username}</td>
+						<td>{weimicms:$rank.help_count}</td>
+						<td>{weimicms:$rank.tel}</td>
+                        <if condition="$info.is_score eq '1'"><td>{weimicms:$rank.help_score}</td></if>
+                    </tr>
+                    </volist>
+                </table>
+            </div>
+        </div>
+		<!-- 规则开始 -->
+		<div class="blank"></div>
+		<!--sharelist start-->
+		 <div class="content">
+            <div class="rank_title">
+                <div class="top">活动规则</div>
+				<div class="cot">
+                    <a href="{weimicms:$f_siteUrl}{weimicms::U('Dajiangsai/tongji',array('token'=>$token,'id'=>$info['id']))}">查看排行榜</a>
+                </div>
+            </div>
+        </div>
+		<!--sharelist end-->
+		<div class="content">
+            <div class="container con-last">
+				<div class="rule">
+					{weimicms:$info['info']|htmlspecialchars_decode}
+                </div>
+			</div>  
+		</div>
+		<!-- 规则 END -->
+    </div>  
+</div>
+<div class="share_bg">
+    <img src="/tpl/static/live/default/share-guide.png">
+</div>
+<script type="text/javascript">
+/*<if condition="$is_over gt 0">
+document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() { 
+	WeixinJSBridge.call('hideOptionMenu');
+});
+<else/>
+document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {   
+	WeixinJSBridge.call('showOptionMenu');
+});
+</if>*/
+</script>
+
+<script type="text/javascript">
+$(function(){
+	$('#share').click(function(){
+		$('.share_bg').css('display','block');
+	});
+	
+	$('.share_bg').click(function(){
+		if($(this).css('display') == 'block'){
+			$(this).css('display','none');
+		}
+	});
+
+    <if condition="$share_key neq '' and $is_over eq 0 and $issub neq '0'">
+    	$.getJSON("{weimicms::U('Dajiangsai/add_share',array('token'=>$token,'id'=>$info['id']))}",{share_key:'{weimicms:$share_key}',wecha_id:'{weimicms:$wecha_id}'},function(res){
+    		alert(res.info);
+    	}); 
+    </if>
+
+});
+
+</script>
+
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Dajiangsai",
+            "moduleID":"{weimicms:$info.id}",
+			"pid": "{weimicms:$info.id}", 
+            "imgUrl": "{weimicms:$info.share_pic}",
+            "timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U('Dajiangsai/index',array('token'=>$token,'id'=>$info['id'],'share_key'=>$user['share_key']))}",
+            "sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Dajiangsai/index',array('token'=>$token,'id'=>$info['id'],'share_key'=>$user['share_key']))}",
+			"sendQQLink": "{weimicms:$f_siteUrl}{weimicms::U('Dajiangsai/index',array('token'=>$token,'id'=>$info['id'],'share_key'=>$user['share_key']))}",
+            "weiboLink": "{weimicms:$f_siteUrl}{weimicms::U('Dajiangsai/index',array('token'=>$token,'id'=>$info['id'],'share_key'=>$user['share_key']))}",
+            "tTitle": "{weimicms:$info.title}",
+            "tContent": "{weimicms:$user.username}正在参与{weimicms:$info['frist']}争夺战！请求你祝TA一臂之力！当前排名: 第{weimicms:$user.help_rank}名，快快参与其中吧！"
+};
+</script>
+{weimicms:$shareScript}
+
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/public-framework/scripts/owl.carousel.min.js"></script>
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/public-framework/scripts/jquery.swipebox.js"></script>
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/public-framework/scripts/framework.launcher.js"></script>
+
+</body>
+</html>

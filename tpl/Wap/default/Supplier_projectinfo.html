@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>{weimicms:$projectinfo.projectname} -  {weimicms:$jjrcopyright}</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+   <link rel="stylesheet" type="text/css" href="{weimicms::RES}/jjr/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="{weimicms::RES}/jjr/css/lp-hkb.css" /> 
+    <link rel="stylesheet" type="text/css" href="{weimicms::RES}/jjr/css/component.css" />
+    <script type="text/javascript" src="{weimicms::RES}/jjr/js/jquery.js"></script>  
+</head>
+<body> 
+ 
+<div class="lp-app2 por" style="background:none;background-size:100% 100%;">
+		<div class="m-bgc">
+			<ul id="cbp-bislideshow" class="cbp-bislideshow">
+				<li><img src="{weimicms:$projectinfo.faceImg}"/></li> 
+            </ul> 
+		</div>
+		<div class="m-lpindexdw">
+			<div class="m-formct f-porjj">
+				<ul>
+					<li class="clearfix">
+						<a href="/index.php?g=Wap&m=Supplier&a=projectintroduce&id={weimicms:$projectinfo.projectid}&token={weimicms:$projectinfo.token}">
+							<span class="fl"><s class="ico1"></s>楼盘介绍</span>
+							<b class="fr"></b>
+						</a>			
+					</li> 
+				<!--	<li class="clearfix">
+						<a href="/index.php?g=Wap&m=Supplier&a=projecthousetype&id={weimicms:$projectinfo.projectid}">
+							<span class="fl"><s class="ico5"></s>楼盘户型</span>
+							<b class="fr"></b>
+						</a>										
+					</li>-->
+					<li class="clearfix">
+						<a href="/index.php?g=Wap&m=Supplier&a=projectalbum&id={weimicms:$projectinfo.projectid}&token={weimicms:$projectinfo.token}">
+							<span class="fl"><s class="ico6"></s>楼盘相册</span>
+							<b class="fr"></b>
+						</a>										
+					</li>
+				</ul>
+			</div>
+            <div class="m-mapzzct">
+                <p class="f-zz"></p>
+                <div class="m-dhmapct clearfix">
+                    <a href="/index.php?g=Wap&m=Supplier&a=projectintroduce&id={weimicms:$projectinfo.projectid}&token={weimicms:$projectinfo.token}" class="fl"><i></i>地图导航</a> 
+                    <a href="tel:{weimicms:$projectinfo.tel}" class="fr"><i></i>电话预约</a>
+                </div>
+            </div>
+		</div>
+	</div>
+       <script type="text/javascript" src="{weimicms::RES}/jjr/js/modernizr.custom.js"></script>
+	<script type="text/javascript" src="{weimicms::RES}/jjr/js/jquery.imagesloaded.min.js"></script>
+	<script type="text/javascript" src="{weimicms::RES}/jjr/js/cbpBGSlideshow.min.js"></script>
+    <script type="text/javascript" >
+        $(function() {
+            cbpBGSlideshow.init();
+        });
+    </script>
+    <script>
+		$(function(){
+			if($(window).height() > $(".m-lpindexdw").height()){
+				$(".m-lpindexdw").css("position","absolute");
+			}else{
+				$(".m-lpindexdw").css("position","static");
+			}
+
+		})
+	</script>  
+</body>
+</html> 

@@ -1,0 +1,178 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0087)http://www.zqianqian.cn/index.php/home/Article/lists/ref_id/106/type/0/category/41.html -->
+<!DOCTYPE html PUBLIC "" "">
+<HTML>
+<HEAD>
+<META content="IE=10.000" 
+http-equiv="X-UA-Compatible">
+<META charset="utf-8">
+<TITLE>点赚客</TITLE>
+<META name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+<META name="apple-mobile-web-app-capable" content="yes">
+<META name="apple-mobile-web-app-status-bar-style" content="black">
+
+<LINK 
+href="tpl/static/adcms/font-awesome.min.css" rel="stylesheet" type="text/css">
+<LINK href="tpl/static/adcms/mui.min.css" rel="stylesheet">
+
+<script src="tpl/static/adcms/jquery-2.1.1.js"></script>
+
+<script src="tpl/static/adcms/mui.min.js?v=2014-12-30 14:09:32 +0800"></script>
+
+<STYLE>
+html, body {
+	background-color: #efeff4;
+	overflow-x: hidden;
+}
+header.mui-bar {
+	display: none;
+}
+a:active, a:hover {
+	color: #333 !important;
+}
+.mui-content {
+	padding: 0;
+	padding-bottom: 64px;
+}
+.mui-card {
+	border-radius: 0;
+	margin-bottom: 10px;
+}
+.title {
+	margin: 20px 15px 10px;
+	color: #6d6d72;
+	font-size: 15px;
+}
+input, button, .mui-btn {
+	margin-top: 10px;
+	border: none;
+	width: 33%;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	background: none;
+}
+#more {
+	border: 1px solid #ccc;
+	background: #ff0000;
+	color: #fff;
+}
+.mui-btn-primary {
+	background: #007AFF;
+}
+.page {
+	text-align: center;
+}
+.page a, .page span {
+	padding: 6px 10px;
+	background-color: #FFF;
+	border: 1px solid #DDD;
+	margin-left: -1px;
+}
+.title_c {
+	white-space: normal !important;
+}
+</STYLE>
+<LINK href="tpl/static/adcms/style.css" rel="stylesheet">
+<META name="GENERATOR" content="MSHTML 10.00.9200.16660">
+</HEAD>
+<!--<body oncontextmenu="return false" onselectstart="return false">-->
+
+<BODY>
+
+<div id="slider" class="mui-slider">
+	<div  style="height:40%"class="mui-slider-group mui-slider-loop">
+    <volist name="flash" id="vo" offset="0" length='1'>
+		<div class="mui-slider-item ">
+			<a href="{weimicms:$vo.url}">
+				<img src="{weimicms:$vo.pic}">
+			</a>
+			<p class="mui-slider-title">
+				{weimicms:$vo.info}
+			</p>
+		</div></volist>
+    
+         <volist name="flash" id="vo" >
+		<div class="mui-slider-item ">
+			<a href="{weimicms:$vo.url}">
+				<img src="{weimicms:$vo.pic}">
+			</a>
+			<p class="mui-slider-title">
+				{weimicms:$vo.info}
+			</p>
+		</div></volist>
+         <volist name="flash" id="vo" offset="0" length='2'>
+		<div class="mui-slider-item">
+			<a href="{weimicms:$vo.url}">
+				<img src="{weimicms:$vo.pic}">
+			</a>
+			<p class="mui-slider-title">
+				{weimicms:$vo.info}
+			</p>
+		</div></volist>
+		
+		
+	</div>
+	<div class="mui-slider-indicator mui-text-right">
+     <volist name="flash" id="vo">
+		<div class="mui-indicator <if condition="$i eq 1">mui-active</if>"></div></volist>
+		
+	</div>
+</div>
+<script>
+var gallery = mui('.mui-slider');
+gallery.slider({
+  interval:3000//自动轮播周期，若为0则不自动播放，默认为0；
+});
+</script>
+<DIV class="mui-content">
+
+<div class="mui-content-padded" style="padding: 0 5px;">
+				<a href="{weimicms::U('Adcms/lists',array('token'=>$token,'type'=>1))}" class="mui-btn <if condition="$type eq 1">mui-btn-primary</if> "><span>今日头条</span></a><a href="{weimicms::U('Adcms/lists',array('token'=>$token,'type'=>2))}" class="mui-btn <if condition="$type eq 2">mui-btn-primary</if> "><span>生活百科</span></a><a href="{weimicms::U('Adcms/lists',array('token'=>$token,'type'=>3))}" class="mui-btn <if condition="$type eq 3">mui-btn-primary</if> "><span>情感人生</span></a><a href="{weimicms::U('Adcms/lists',array('token'=>$token,'type'=>4))}" class="mui-btn <if condition="$type eq 4">mui-btn-primary</if>"><span>搞笑轻松</span></a><a href="{weimicms::U('Adcms/lists',array('token'=>$token,'type'=>5))}" class="mui-btn <if condition="$type eq 5">mui-btn-primary</if> "><span>职场智慧</span></a><a href="{weimicms::U('Adcms/lists',array('token'=>$token,'type'=>6))}" class="mui-btn <if condition="$type eq 6">mui-btn-primary</if> "><span>旅游星座</span></a>			</div>
+ 
+  <volist name="info"  id="vo"  >
+    <DIV class="mui-card">
+      <UL class="mui-table-view">
+        <volist name="vo"  id="v"  >
+          <LI class="mui-table-view-cell mui-media"><A href="{weimicms::U('Adcms/contents',array('token'=>$token,'id'=>$v['id']))}" "><img class="mui-media-object mui-pull-right" src="{weimicms:$v.pic}">
+            <DIV class="mui-media-body title_c"> {weimicms:$v.title} </DIV>
+             <DIV style="color: #B3ACAC;
+  font-family: 宋体;
+  font-size: 14px;">广告费用： {weimicms:$v.gdadrmb} </DIV>
+            </A></LI>
+        </volist>
+      </UL>
+    </DIV>
+  </volist>
+  <DIV class="mui-content-padded page">
+    <DIV class="mui-content-padded">
+      <UL class="mui-pager">{weimicms:$page}       <!-- <LI class="mui-previous mui-disabled"><SPAN> 上一页 </SPAN></LI>
+        <LI class="mui-disabled"><SPAN>当前是第 1 页</SPAN></LI>
+        <LI class="mui-next"><A href="http://www.zqianqian.cn/index.php/home/Article/lists/ref_id/106/type/0/category/41.html?p=2">下一页</A></LI>-->
+      </UL>
+    </DIV>
+    
+  </DIV>
+</DIV>
+ <include file="Adcms:buttom"/>
+<SCRIPT>
+$('#more').click(
+	function(){
+		$('#list_more').toggle();
+	}
+);
+</SCRIPT> 
+<SCRIPT>
+function tjToPyq(){
+	if($("#shareDivBg").length==0){
+		var html = "<div name=\"tips\" id=\"shareDivBg\" onclick=\"tjToPyq()\" style=\"z-index:10001; width:100%; height:100%; position:fixed; top: 0px;left:0px;background:black;text-align: right;filter:alpha(Opacity=80);-moz-opacity:0.8;opacity: 0.8;\"></div>";
+		html += "<div name=\"tips\" id=\"shareDivTop\" onclick=\"tjToPyq()\" style=\"z-index:10002;position:fixed;top:0px;right:0px;text-align:right;width:100%;\" ><img src=\"/Public/Club/img/collect_white2.png\" style=\"width:100%;\" /></div>";
+		$(document.body).append(html);
+	}
+	else{
+		$("div[name='tips']").hide().remove();
+	}
+}
+</SCRIPT>
+</BODY>
+</HTML>

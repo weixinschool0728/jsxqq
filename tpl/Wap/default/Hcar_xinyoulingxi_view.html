@@ -1,0 +1,526 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>心有灵犀测试</title>
+	<meta charset='UTF-8'>
+	<meta name='viewport' content='width=640, height=960, initial-scale=0.5'/>
+	<style type='text/css'>
+		body
+		{
+			background:black;
+			padding:0px;
+			margin:0px;
+			-webkit-transform-style:preserve-3d;
+			-webkit-perspective:600px;
+		}
+		.card
+		{
+			margin:0px;
+			position:absolute; left:15px; top:20px;
+			width:600px; height:860px; border-radius:10px;
+			border:2px solid tan;
+			-webkit-backface-visibility:hidden;
+			-webkit-transition:-webkit-transform 1s linear;
+			background-image:url('tpl/Wap/default/common/hcar/pic/xinyoulingxi/bg.jpg');
+			background-size:100% 100%;
+			//text-shadow:0px 0px 7px #222222
+		}
+		.front
+		{
+			left:200px; top:150px; width:200px; height:300px;
+			-webkit-transition-property:-webkit-transform, width, height, left, top;
+			-webkit-transition-duration:0.8s;
+			-webkit-transform:rotateX(180deg);
+		}
+		.back
+		{
+			visibility:hidden;
+			-webkit-transform:rotateY(180deg);
+		}
+		.title
+		{
+			position:absolute; left:0px; top:120px; width:100%; height:100%;
+			font-size:50pt; text-align:center; 
+		}
+		.cover
+		{
+			opacity:0; -webkit-transition:opacity 1s linear;
+		}
+		#nametips
+		{
+			position:absolute;
+			left:50px; top:430px;
+			font-size:30pt
+			visibility:hidden;
+		}
+		#username {
+			visibility:hidden;
+			position:absolute;
+			left:50px; top:500px; width:400px; height:70px;
+			line-height:70px;
+			border:0px solid black;
+			border-bottom:2px solid black;
+			border-radius:0px;
+			text-align:center;
+			vertical-align:bottom;
+			margin:0px;
+			background-color:transparent;
+		}
+		#usernameinput
+		{
+			width:98%;
+			height:90%;
+			background-color:transparent;
+			font-size:30pt;
+			vertical-align:middle;
+			border:0px;
+			padding:0px;
+		}	
+		#usernameinput:focus
+		{
+			border:none;
+		}	
+		#btn_begin
+		{
+			position:absolute;
+			left:85px; top:670px; width:450px; height:30px;
+			line-height:60px;
+			border:0px;
+			text-align:center;
+			vertical-align:middle;
+			font-size:40pt;
+		}
+		.qes_pane
+		{
+			font-size:25pt;
+			//text-shadow:0px 0px 10px #222222
+		}
+	</style>
+	<script>
+	
+	url =window.location.href;
+	deg = 0;
+	write_name_tip = '点这里输入名字';
+	user_name = '';
+	current_page = 0;
+	current_qes = 1;
+	finish_qes = false;
+	max_qes = 10;
+	answers = '';
+	target_name = '{weimicms:$target}';
+	target_answer = '{weimicms:$targetanswer}';
+	<if condition="$mode eq ''">
+	game_mode = 'step1';<else/>
+	game_mode = '{weimicms:$mode}';
+	</if>
+	
+	aslist_index = 1;
+	score = 0;
+	question_quote_list = '_93_25_90_57_34_27_40_99_79_98';
+
+	var questions =
+	{
+		q1:"你要坐飞机去旅行了，在你选择航空公司和航班时，除了安全性能，你还会考虑什么？",q1_sel:{a:"空乘人员的服务周到程度", b:"餐饮是否合口味", c:"机舱环境是否够舒适", d:""},q2:"你会一个人去电影院看电影吗？",q2_sel:{a:"会", b:"不会", c:"", d:""},q3:"如果你突然有了很多钱，你还会继续工作吗？",q3_sel:{a:"是", b:"不是", c:"", d:""},q4:"禁烟的高档餐厅，隔壁座位有人抽烟，你会怎么阻止他呢？",q4_sel:{a:"假装咳嗽，引起他注意", b:"叫来服务员，代为转达", c:"忍住不说", d:"走过去，严厉警告"},q5:"你认为哪个阶段的同学感情最深？",q5_sel:{a:"小学", b:"中学", c:"大学", d:""},q6:"你最喜欢以下哪部电影？",q6_sel:{a:"大话西游", b:"肖申克的救赎", c:"变形金刚", d:"小时代"},q7:"与人第一次见面，一番交谈后，你能对他的为人做出准确的评价吗？",q7_sel:{a:"不能", b:"很难说", c:"我想可以", d:""},q8:"你很满足现状，觉得有份稳定收入就足够了，能不能有发展不重要？",q8_sel:{a:"是", b:"不是", c:"", d:""},q9:"下面哪种灾害，让你觉得最难忍受？",q9_sel:{a:"台风", b:"滑坡泥石流", c:"地震", d:"瘟疫传染病"},q10:"你跟朋友在街上走，看见前面聚集了很多人，朋友想去看，你会？",q10_sel:{a:"和他/她一起去", b:"让朋友自己去看", c:"告诉朋友不要凑热闹", d:"问问路人发生了什么事"}
+	};
+
+	function id(name)
+	{
+		return document.getElementById(name);
+	}
+	
+	function turn()
+	{
+		current_page = (current_page + 1) % 2;
+		deg -= 180;
+		id('front').style.webkitTransform = 'rotateY(' + deg + 'deg)';
+		id('back').style.webkitTransform = 'rotateY(' + (deg + 180) + 'deg)';
+	}
+	
+	function init()
+	{
+		if(game_mode == 'step2')
+		{
+			id('targetword').style.visibility = 'visible';
+			id('nametips').style.visibility = 'hidden';
+			id('username').style.visibility = 'hidden';
+		}
+		else if(game_mode == 'step3')
+		{
+			answers = '#answers#';
+			id('person').innerText = '';
+			id('front').appendChild(id('answerlist'));
+			id('answerlist').style.visibility = 'visible';
+			id('answerlist').style.opacity = 0;
+			id('answerlist').style.webkitTransition = 'opacity 1.5s';
+			fill_score();
+			fill_aslist();
+		}
+
+		id('front').style.webkitTransform = 'rotateX(0deg)';
+		id('front').style.width = '600px';
+		id('front').style.height = '860px';
+		id('front').style.top = '20px';
+		id('front').style.left = '15px';
+		id('front').addEventListener('webkitTransitionEnd', on_init_end);
+	}
+	
+	function on_init_end()
+	{
+		id('front').removeEventListener('webkitTransitionEnd', on_init_end);
+		id('front').style.webkitTransition = '-webkit-transform 1s linear';
+		id('back').style.visibility = 'visible';
+		if(game_mode == 'step1' || game_mode == 'step2')
+		{
+			id('cover').style.opacity = 1;
+		}
+		else if(game_mode == 'step3')
+		{
+			id('answerlist').style.opacity = 1;
+		}
+	}
+	
+	function on_cover_end()
+	{
+		id('front').removeEventListener('webkitTransitionEnd', on_cover_end);
+		id('cover').style.visibility = 'hidden';
+		id('targetword').style.visibility = 'hidden';
+	}
+	
+	function on_mail_roate()
+	{
+		id('back').removeEventListener('webkitTransitionEnd', on_mail_roate);
+		id('endding').style.opacity = 1;
+	}
+	
+	function begin()
+	{
+		//uname = id('usernameinput').value;
+		
+		//if(uname == '' || uname == write_name_tip)
+		//{
+		//	id('usernameinput').value = write_name_tip;
+		//	return;
+		//}
+		
+		id('front').addEventListener('webkitTransitionEnd', on_cover_end);
+
+		//user_name = uname;
+		move_qes();
+	}
+	
+	function username_focus()
+	{
+		if(id('usernameinput').value == write_name_tip)
+		{
+			id('usernameinput').value = '';
+		}
+	}
+	
+	function move_qes()
+	{
+		qes_mark = id('qes_mark_' + current_page);
+		qes = id('qes_' + current_page);
+		ans_a = id('ans_a_' + current_page);
+		ans_b = id('ans_b_' + current_page);
+		ans_c = id('ans_c_' + current_page);
+		ans_d = id('ans_d_' + current_page);
+		qes_txt = questions['q' + current_qes];
+		qes_sel = questions['q' + current_qes + '_sel'];
+		qes_mark.innerText = '第' + current_qes + '题：（共10题）';
+		qes.innerText = qes_txt;
+		ans_a.innerText = 'A.' + qes_sel.a;
+		ans_b.innerText = 'B.' + qes_sel.b;
+		ans_c.innerText = 'C.' + qes_sel.c;
+		ans_d.innerText = 'D.' + qes_sel.d;
+		
+		if(qes_sel.a == '') {ans_a.style.visibility = 'hidden'} else {ans_a.style.visibility = 'visible'}
+		if(qes_sel.b == '') {ans_b.style.visibility = 'hidden'} else {ans_b.style.visibility = 'visible'}
+		if(qes_sel.c == '') {ans_c.style.visibility = 'hidden'} else {ans_c.style.visibility = 'visible'}
+		if(qes_sel.d == '') {ans_d.style.visibility = 'hidden'} else {ans_d.style.visibility = 'visible'}
+		
+		id('qes_pane_' + current_page).style.visibility = 'visible';
+		
+		turn();
+	}
+	
+	function select(opt)
+	{
+		answers += opt;
+		if(current_qes == max_qes)
+		{
+			on_select_end();
+			return;
+		}
+		
+		current_qes += 1;
+		move_qes();
+	}
+	
+	function on_select_end()
+	{
+		id('qes_pane_0').style.visibility = 'hidden';
+		id('ans_a_0').style.visibility = 'hidden';
+		id('ans_b_0').style.visibility = 'hidden';
+		id('ans_c_0').style.visibility = 'hidden';
+		id('ans_d_0').style.visibility = 'hidden';
+		
+		finish_qes = true;
+
+		if(game_mode == 'step2' || game_mode == 'step3')
+		{
+			id('answerlist').style.visibility = 'visible';
+			fill_score();
+			fill_aslist();
+		}
+		else
+		{
+			id('back').style.backgroundImage = 'url("tpl/Wap/default/common/hcar/pic/xinyoulingxi/mail.jpg")';
+			id('back').style.transitionProperty = '-webkit-transform, width, height, left, top';
+			id('back').addEventListener('webkitTransitionEnd', on_qes_end);
+		}
+		turn();
+	}
+	
+	function on_qes_end()
+	{
+		id('back').removeEventListener('webkitTransitionEnd', on_qes_end);
+		id('back').addEventListener('webkitTransitionEnd', on_mail_roate);
+		id('back').style.webkitTransform = 'rotateZ(-105deg) scale(0.5)';
+		id('endding').style.visibility = 'visible';
+	}
+	
+	function visit_home()
+	{
+		location.href = url;
+	}
+	
+	function fill_aslist()
+	{
+		you = answers.charAt(aslist_index-1);
+		her = target_answer.charAt(aslist_index-1);
+		qes_txt = questions['q' + aslist_index];
+		qes_sel = questions['q' + aslist_index + '_sel'];
+		id("aslist_qsid").innerText = aslist_index;
+		id("aslist_qes").innerText = qes_txt;
+		console.log(qes_txt);
+		id("aslist_tarans").innerText = her.toUpperCase() + '.' + qes_sel[her];
+		id("aslist_youans").innerText = you.toUpperCase() + '.' + qes_sel[you];
+	}
+	
+	function as_next()
+	{
+		if(aslist_index<target_answer.length)
+		{
+			aslist_index += 1;
+			fill_aslist();
+		}
+	}
+	
+	function as_pre()
+	{
+		if(aslist_index>1)
+		{
+			aslist_index -= 1;
+			fill_aslist();
+		}
+	}
+	
+	function fill_score()
+	{
+		score = 0;
+		for(i=0; i<target_answer.length; i++)
+		{
+			if(answers.charAt(i)==target_answer.charAt(i))
+			{
+				score += 10;
+			}
+		}
+		id('score').innerText = score;
+	}
+	
+	function share_data()
+	{
+		var n = Math.floor(Math.random() * 5100 + 1);
+		var link = window.location.href;
+		
+		title = '心有灵犀测试';
+		desc = '你想说笑，我早已笑了，默契就该如此。';
+
+		if(game_mode == 'step1')
+		{
+			if(finish_qes)
+			{
+				if(user_name == '')
+				{
+					user_name = window.prompt('请输入您的昵称：');
+					if(user_name==null)
+					{
+						user_name='我';
+					}
+				}
+				
+				link += '&target='+encodeURIComponent(user_name)+'&targetanswer='+answers+'&mode=step2';
+				title = '来自'+user_name+'的心有灵犀测试';
+        		link += '&questions='+question_quote_list;
+			}
+		}
+		else if(game_mode == 'step2' || game_mode == 'step3')
+		{
+			if(finish_qes)
+			{
+				link += '&target='+encodeURIComponent(target_name)+'&targetanswer='+target_answer+'&mode=step3&answers='+answers;
+				title = '与{weimicms:$target}的心有灵犀程度是' + score + '%';
+        		link += '&questions='+question_quote_list;
+			}
+			else
+			{
+				link += window.location.href+'target='+encodeURIComponent(target_name)+'&targetanswer='+target_answer+'&mode=step2';
+				title = '来自' + target_name + '的心有灵犀测试';
+        		link += '&questions='+question_quote_list;
+			}	
+		}
+				
+		return {
+			'img_url' : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/hcar/pic/xinyoulingxi/xinyoulingxi.jpg',
+			'img_width' : '320',
+			'img_height' : '480',
+			'link' : link,
+			'title' : title,
+			'desc' : desc
+		}
+	}
+	
+	function on_wx_send(res)
+	{
+		return;
+		switch(res.err_msg)
+		{
+			case "send_app_msg:confirm":
+			case "send_app_msg:ok":
+			case "share_timeline:confirm":
+			case "share_timeline:ok":
+			    location.href="{weimicms:$fxlj}"
+			    break;
+		}
+	}
+	
+	function on_wx_ready()
+	{
+		WeixinJSBridge.on('menu:share:appmessage', function(argv){
+			WeixinJSBridge.invoke('sendAppMessage', share_data(), on_wx_send);
+		});
+
+		WeixinJSBridge.on('menu:share:timeline', function(argv){
+			WeixinJSBridge.invoke('shareTimeline', share_data(), on_wx_send);
+		});
+	}
+	
+	document.addEventListener('WeixinJSBridgeReady', on_wx_ready, false);
+	
+	function go_kawa()
+	{
+	    location.href="{weimicms:$fxlj}"
+	}
+	</script>
+</head>
+<body onload='init();'>
+<div class='card back' id='back'>
+
+	<div id='qes_pane_0' class='qes_pane' style='visibility:hidden'>
+		<div id='qes_mark_0' style='margin:80px 30px 30px 30px'>第1题：（共10题）</div>
+		<div id='qes_0' style='margin:40px 30px 30px 30px'>
+		须菩提言：“甚多，世尊！”须菩提言：“甚多！”
+		</div>
+		<div id='ans_a_0' onclick='select("a");' style='margin:80px 30px 30px 30px'>
+		A.如是如是
+		</div>
+		<div id='ans_b_0' onclick='select("b");' style='margin:60px 30px 30px 30px'>
+		B.如是如是
+		</div>
+		<div id='ans_c_0' onclick='select("c");' style='margin:60px 30px 30px 30px'>
+		C.如是如是
+		</div>
+		<div id='ans_d_0' onclick='select("d");' style='margin:60px 30px 30px 30px'>
+		D.如是如是
+		</div>
+        
+	</div>
+	
+	<div id='answerlist' class='qes_pane'
+		style='font-size:30pt;position:absolute;left:0px;top:0px;width:90%;margin:30px;visibility:hidden'>
+		<span id='person'>您</span>与{weimicms:$target}的心有灵犀程度是
+		<span id='score' style='color:red;font-size:50pt'>90</span>
+		%
+		<div style='font-size:23pt;margin-top:20px;line-height:50pt'>
+		第<span id='aslist_qsid'>1</span>题：<br>
+		<span id='aslist_qes'>可以三十二相见如来否？</span>
+		<div style='height:10px;'></div>
+		{weimicms:$target}：<span id='aslist_tarans'>A.可以</span><br>
+		您的选择：<span id='aslist_youans'>B.不可以</span><br>
+		<span style='float:left;margin-top:20px;margin-left:20px' onclick='as_pre();'>上一题</span>
+		<span style='float:right;margin-right:80px;margin-top:20px' onclick='as_next();'>下一题</span>
+		</div>	
+		<div onclick='visit_home();' style='font-size:35pt;margin:150px 0px 0px 0px;width:570px;text-align:center;color:green'>
+点这里发起新一轮测试
+		</div>	
+	</div>
+   
+</div>
+<div class='card front' id='front'>
+	
+	<div id='cover' class='cover'>	
+		<div class='title'>
+		心有灵犀测试
+     
+			<div id='targetword'   style='visibility:hidden;font-size:30pt;margin:20px;line-height:50pt'>
+				来 自<br>{weimicms:$target}
+			</div>
+            
+		</div>
+		<div id='nametips'></div>
+		<div id='username'><input id='usernameinput' type='text' onfocus='username_focus()' value=''></div>
+		<div id='btn_begin' onclick='begin()'>点这里开始</div>
+	</div>
+	
+	<div id='qes_pane_1' class='qes_pane' style='visibility:hidden'>
+		<div id='qes_mark_1' style='margin:30px 30px 30px 30px'>第1题：（共10题）</div>
+		<div id='qes_1' style='margin:40px 30px 30px 30px'>
+		须菩提言：“甚多，世尊！”须菩提言：“甚多！”
+		</div>
+		<div id='ans_a_1' onclick='select("a");' style='margin:80px 30px 30px 30px'>
+		A.如是如是
+		</div>
+		<div id='ans_b_1' onclick='select("b");' style='margin:60px 30px 30px 30px'>
+		B.如是如是
+		</div>
+		<div id='ans_c_1' onclick='select("c");' style='margin:60px 30px 30px 30px'>
+		C.如是如是
+		</div>
+		<div id='ans_d_1' onclick='select("d");' style='margin:60px 30px 30px 30px'>
+		D.如是如是
+		</div>
+	</div>
+</div>
+
+<div id='endding' style='position:absolute;width:100%;height:100%;top:0px;left:0px;
+				visibility:hidden;;opacity:0;-webkit-transition:opacity 1s;
+				text-align:center;font-size:30pt;'>
+	<div style='position:absolute;top:50px;width:100%;color:white'>
+	发送给你的朋友们<br>看看他们和你心有灵犀的程度
+	</div>
+    <div style='position:absolute;left:480px;top:20px;'>
+    <img src='tpl/Wap/default/common/hcar/pic/xinyoulingxi/fenxiang.gif'>
+    </div>
+	<div style='position:absolute;top:780px;width:100%;color:white' onclick='visit_home()'>
+	点这里重新做题
+	</div>
+</div>
+
+
+<div onclick='go_kawa();' style='color:white;position:absolute;top:900px;text-align:center;width:100%;font-size:24pt'>
+	微乾隆出品，更多精彩点这里
+</div>
+
+</body>
+</html>

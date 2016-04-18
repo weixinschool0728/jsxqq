@@ -1,0 +1,393 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>{weimicms:$vote.title}</title>
+<link href="tpl/static/Weimicmsvote/css/style.css" rel="stylesheet" type="text/css" />
+<link href="tpl/static/Weimicmsvote/css/photo.css" rel="stylesheet" type="text/css" />
+<script src="tpl/static/Weimicmsvote/js/jquery.min.js"></script>
+<!--下面是显示隐藏层js--> 
+<script type="text/javascript">
+//=点击展开关闭效果=
+function openShutManager(oSourceObj,oTargetObj,shutAble,oOpenTip,oShutTip){
+var sourceObj = typeof oSourceObj == "string" ? document.getElementById(oSourceObj) : oSourceObj;
+var targetObj = typeof oTargetObj == "string" ? document.getElementById(oTargetObj) : oTargetObj;
+var openTip = oOpenTip || "";
+var shutTip = oShutTip || "";
+if(targetObj.style.display!="none"){
+   if(shutAble) return;
+   targetObj.style.display="none";
+   if(openTip  &&  shutTip){
+    sourceObj.innerHTML = shutTip; 
+   }
+} else {
+   targetObj.style.display="block";
+   if(openTip  &&  shutTip){
+    sourceObj.innerHTML = openTip; 
+   }
+}
+}
+
+function doSearch(){
+	document.getElementById("searchForm").submit();
+}
+</script>
+
+</head>
+
+<body>
+<form id="searchForm" method="post" action="index.php?g=Wap&m=Weimicmsvote&a=index&token={weimicms:$token}&wecha_id={weimicms:$wecha_id}&id={weimicms:$id}">
+<input type="hidden" name="g" value="Wap"/>
+<input type="hidden" name="m" value="Weimicmsvote"/>
+<input type="hidden" name="a" value="index"/>
+<input type="hidden" name="token" value="{weimicms:$token}"/>
+<input type="hidden" name="wecha_id" value="{weimicms:$wecha_id}"/>
+<input type="hidden" name="id" value="{weimicms:$id}"/>
+<div class="box02" id="search"><div><input name="keyword" value="{weimicms:$keyword}" type="search"  placeholder="请输入选手名字" class="input"/><button class="button" onclick="doSearch()"><div class="search" ></div>搜索</button></div>
+<div class="clr"></div>
+<p>你知道吗？分享后更容易搜索！</p>
+</div>
+</form>
+<div id="mcover" onclick="document.getElementById('mcover').style.display='none';document.getElementById('search').style.display='none';" >
+
+</div>
+<div id="OKmcover" onclick="document.getElementById('OKmcover').style.display='none';" >
+<div class="OKbox">恭喜你，投票成功！</div>
+</div>
+
+
+
+
+
+<div id="mcover01" >
+<div class="box01"><b onclick="document.getElementById('mcover01').style.display='none';"></b>
+<h1>{weimicms:$vote.title}排行榜</h1>
+<table border="0">
+  <tr>
+    <th>排行</th>
+    <th>姓名</th>
+    <th>投票数</th>
+  </tr>
+  <volist name="item_paiming" id="li" key="key">
+  <tr>
+    <td>{weimicms:$key}</td>
+    <td>{weimicms:$li.item}</td>
+    <td>{weimicms:$li.vcount}</td>
+  </tr>
+  </volist>
+</table>
+</div>
+</div>
+
+<div id="mcover02" onclick="document.getElementById('mcover02').style.display='none';" >
+<div class="box"><img src="tpl/static/Weimicmsvote/images/wap-weixin.png"  width="100%"/></div>
+</div>
+<volist name="Mbvote_item" id="li" key="key">
+<div id="mcover{weimicms:$key}">
+<style>
+#mcover{weimicms:$key} {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.7);
+display: none;
+z-index: 20000;
+}
+#mcover{weimicms:$key} b {
+cursor: pointer;
+position: absolute;
+display: block;
+background: rgba(0, 0, 0, 0.6);
+border-radius: 100%;
+width: 26px;
+height: 26px;
+text-indent: 50px;
+transform: none;
+top: 10px;
+right: 10px;
+z-index: 20000;
+}
+#mcover{weimicms:$key} b:after {
+	position: absolute;
+	content: '.';
+	display: block;
+	width: 18px;
+	height: 2px;
+	background: #fff;
+	-webkit-transform: rotate(-45deg);
+	top: 12px;
+	left: 4px;
+}
+#mcover{weimicms:$key} b:before {
+	position: absolute;
+	content: '.';
+	display: block;
+	width: 18px;
+	height: 2px;
+	background: #fff;
+	-webkit-transform: rotate(45deg);
+	top: 12px;
+	left: 4px;
+}
+</style>
+<div class="box03"><b onclick="document.getElementById('mcover{weimicms:$key}').style.display='none';"></b>
+<img src="{weimicms:$li.startpicurl}" width="100%" />
+<h2>{weimicms:$key}号  {weimicms:$li.item}</h2>
+<h3><strong>--------</strong> 已有<span class="nums{weimicms:$li.id}">{weimicms:$li.vcount}</span>票 <strong>--------</strong></h3>
+<button class="greenbutton but button{weimicms:$li.id}" onclick="voteid('{weimicms:$li.id}','{weimicms:$li.vcount}')" >投票</button>
+<button class="greenbutton but"onclick="document.getElementById('mcover02').style.display='block';">分享</button>
+
+<p>{weimicms:$vote.info}</p>
+
+</div>
+</div>
+ </volist>
+
+
+
+
+
+<div class="container">
+<div class="banner"><img src="{weimicms:$vote.tbpic}" /></div>
+<div class="statistics_list">
+
+<ul><li><p>参与选手</p><p>{weimicms:$vcountuser}</p></li><li><p>累计投票</p><p>{weimicms:$vcount}</p></li><li><p>访问量</p><p>{weimicms:$vote.click}</p></li></ul><div class="clr"></div></div>
+<if condition="$wq eq 1"><div class="gameover">活动已结束！</div></if>
+<div class="content" ><ul><li><i class="icon_time icon_Heart"></i>{weimicms:$vote.title}</li><li><i class="icon_time"></i>{weimicms:$vote.statdate|date="Y-m-d",### } 至 {weimicms:$vote.enddate|date="Y-m-d",###}</li><a href="###" onclick="openShutManager(this,'box3',false)"><li><i class="icon_time icon_Clipmark"></i>活动介绍</li></a><div id="box3" style="display:none" class="Introduction">
+                    					{weimicms:$vote.info}
+
+                					</div></ul></div>
+<div  id="main" role="main">
+  <ul id="Gallery" class="gallery">
+     <volist name="Mbvote_item" id="li" key="key">
+    <li><a onclick="document.getElementById('mcover{weimicms:$key}').style.display='block';"><img src="{weimicms:$li.startpicurl}" >
+      <p style="margin-top:0;background-color:#eee; line-height:26px;"> {weimicms:$li.item}</p></a>
+      <p><button class="button button{weimicms:$li.id}" onclick="voteid('{weimicms:$li.id}','{weimicms:$li.vcount}')">投票</button><span class="nums{weimicms:$li.id}">{weimicms:$li.vcount}</span></p>
+	  <input style="display:none" id="vid_{weimicms:$li.id}" name="vid[]"  tabindex="{weimicms:$key}" type="radio"  value="{weimicms:$li.id}">
+      </li>
+	
+   </volist>
+  </ul>
+</div>                                        
+<br />
+
+<br />
+<div class="footermenu">
+  <ul>
+    <li><a href="tel:{weimicms:$vote.tel}">
+    <p><img src="tpl/static/Weimicmsvote/images/phone.png" /></p>
+      <P>电话</P>
+      </a></li>
+    <li><a onclick="document.getElementById('mcover').style.display='block';document.getElementById('search').style.display='block';"><p><img src="tpl/static/Weimicmsvote/images/search.png" /></p>搜索</a></li>
+    <li><a onclick="document.getElementById('mcover01').style.display='block';"><p><img src="tpl/static/Weimicmsvote/images/Ranking.png" /></p>排行</a></li>
+    <li><a onclick="document.getElementById('mcover02').style.display='block';"><p><img src="tpl/static/Weimicmsvote/images/share.png" /></p>分享</a></li>
+  </ul>
+</div>
+</div>
+<!--下面是瀑布流js--> 
+<script src="tpl/static/Weimicmsvote/js/jquery.imagesloaded.js"></script> 
+<script src="tpl/static/Weimicmsvote/js/jquery.wookmark.min.js"></script> 
+<script type="text/javascript">
+    (function ($){
+     lazeload();
+    })(jQuery);
+
+
+function lazeload(){
+
+ $('#Gallery').imagesLoaded(function() {
+        // Prepare layout options.
+        var options = {
+          autoResize: true, // This will auto-update the layout when the browser window is resized.
+          container: $('#main'), // Optional, used for some extra CSS styling
+          offset: 4, // Optional, the distance between grid items
+          itemWidth: 150 // Optional, the width of a grid item
+        };
+
+        // Get a reference to your grid items.
+        var handler = $('#Gallery li');
+
+        // Call the layout function.
+        handler.wookmark(options);
+
+       
+      });
+}
+ 
+ 
+ 
+ 
+ 
+var record = "0";
+var maxpage = "0";
+
+
+var isLoading = false;
+var page = 2;
+
+function pullUpAction() {
+if(isLoading) {
+return;
+}
+$("#tip_message").show();
+$("#tip_more").html("加载中");
+isLoading = true;
+ 
+$.ajax({
+type: 'GET',
+url: 'index.php?ac=votembshtml&tid=0&id=0&keyword=&openid=&page='+page,
+dataType: 'html',
+success: function (data, textStatus) {
+
+if(data!='') { 
+$("#Gallery").append(data);
+ lazeload();
+page++;						
+}
+isLoading = false;
+$("#tip_message").hide();
+$("#tip_more").html("");
+},
+timeout : 15000,
+error : function(xhr, type){
+isLoading = false;
+$("#tip_message").hide();
+$("#tip_more").html("");
+}
+});
+}
+$(function() {	
+$(window).scroll(function(){
+if(record == '1') {
+if($(document).height() <= $(window).height() + $(window).scrollTop() + 60) {
+if(page <= maxpage) {
+
+pullUpAction();
+} else {
+$("#tip_message").show();
+$("#tip_more").html("没有更多内容");
+}
+}
+}
+});
+});
+
+ 
+function openShutManager(oSourceObj,oTargetObj,shutAble,oOpenTip,oShutTip){
+var sourceObj = typeof oSourceObj == "string" ? document.getElementById(oSourceObj) : oSourceObj;
+var targetObj = typeof oTargetObj == "string" ? document.getElementById(oTargetObj) : oTargetObj;
+var openTip = oOpenTip || "";
+var shutTip = oShutTip || "";
+if(targetObj.style.display!="none"){
+   if(shutAble) return;
+   targetObj.style.display="none";
+   if(openTip  &&  shutTip){
+    sourceObj.innerHTML = shutTip; 
+   }
+} else {
+   targetObj.style.display="block";
+   if(openTip  &&  shutTip){
+    sourceObj.innerHTML = openTip; 
+   }
+}
+}
+ 
+function showmb(mbid,title,pic,nums){
+ 
+document.getElementById('name').innerHTML=title;
+document.getElementById('hdpic').src=pic;
+document.getElementById('nums').innerHTML=nums;
+ $('#info').load('index.php?ac=votenewindex&id=0&tid=0&mbid='+mbid);
+
+}
+var dovote = false;
+function voteid(mbid,nums){
+	if(!dovote){
+		dovote = true;
+		nums = parseInt(nums);
+		var wecha_id = "{weimicms:$wecha_id}";
+		var token  = "{weimicms:$token}";
+		var tid = "{weimicms:$id}";
+		var chk = document.getElementsByName("vid[]"); 
+		var objarray = chk.length;
+		var chid = mbid;
+		document.getElementById("vid_"+mbid).checked=true;
+		
+	
+	  var submitData={
+				g : "Wap",
+				m : "Weimicmsvote",
+				a : "add_vote",
+				wecha_id : wecha_id,
+				tid      : tid,
+				chid     :chid,
+				token    : token
+			};
+		
+	$.post('index.php?g=Wap&m=Weimicmsvote&a=add_vote', submitData,
+	function(data) {
+		
+	if (data.success == false) {
+	 
+	$('.OKbox').html(data.msg);
+	dovote = false;
+	}else if(data.success == true){
+	nums =nums+1;
+	$('.button'+mbid).html('已投');
+	$('.nums'+mbid).html(nums);
+	$('.button'+mbid).attr('disabled','disabled');
+	$('.OKbox').html(data.msg);
+	dovote = false;
+	}else {
+	
+	$('.OKbox').html('网络繁忙');
+	dovote = false;
+	 
+	}
+	
+	document.getElementById('OKmcover').style.display='block'; 
+	},
+	"json")
+	}
+}
+
+function wszl(){
+
+var tel = $("#tel").val();
+if (tel.length<8) {
+alert("请输入电话");
+return
+}
+var username = $("#username").val();
+if (username.length<1) {
+alert("请输入姓名");
+return
+}
+
+var submitData = {
+username:username,
+tel: tel,
+formhash: "6ad77314",
+action: "setTel"
+};
+$.post('index.php?ac=votenewid&openid=&id=0&tid=0', submitData,
+function(data) {
+if (data.success == true) {
+document.getElementById('information_mcover').style.display='none';
+return
+} else {}
+},
+"json")
+
+}
+
+</script>
+
+</body>
+</html>

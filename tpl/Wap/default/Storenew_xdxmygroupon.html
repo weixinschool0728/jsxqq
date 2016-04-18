@@ -1,0 +1,112 @@
+<include file="Storenew:header"/>
+<div class="nav_fixed">
+        <a href="{weimicms::U('Storenew/grouponmy',array('token'=>$token,'list'=>0,'wecha_id'=>$wecha_id, 'twid' => $twid,'cid' => $cid))}" class="fixed_nav_item"><span class="nav_txt">全部订单</span></a>
+        <a href="{weimicms::U('Storenew/grouponmy',array('token'=>$token,'list'=>1,'wecha_id'=>$wecha_id, 'twid' => $twid,'cid' => $cid))}" class="fixed_nav_item"><span class="nav_txt nav_payment">待付款<b class="nav_payment_num" style="display:none;"></b></span></a>
+        <a href="{weimicms::U('Storenew/grouponmy',array('token'=>$token,'list'=>2,'wecha_id'=>$wecha_id, 'twid' => $twid,'cid' => $cid))}" class="fixed_nav_item"><span class="nav_txt nav_receiving">已付款<b class="nav_receiving_num" style="display:none;"></b></span></a>
+        <a href="{weimicms::U('Storenew/grouponmy',array('token'=>$token,'list'=>3,'wecha_id'=>$wecha_id, 'twid' => $twid,'cid' => $cid))}" class="fixed_nav_item"><span class="nav_txt nav_receiving">我的团<b class="nav_receiving_num" style="display:none;"></b></span></a>
+</div>
+<if condition="$ordersCount neq 0">
+	<volist name="orders" id="o">
+	<div id="dealliststatus1">
+		<div class="order" ms-repeat-order="orders">
+			<div class="order_hd">
+				{weimicms:$o.addtime|date="Y-m-d H:i",###}
+			</div>
+			<div class="order_bd">
+				<div class="order_glist">
+					<a href="{weimicms::U('Storenew/grouponshare', array('token' => $token, 'wecha_id' => $wecha_id,'codeid' => $o['code'], 'twid' => $twid,'cid' => $cid))}">
+						<div class="order_goods" data-url="">
+							<div class="order_goods_img">
+								<img alt="" src="{weimicms:$o.logourl}">
+							</div>
+							<div class="order_goods_info">
+								<div class="order_goods_name">{weimicms:$o.name}</div>
+								<div class="order_goods_attr">
+									<div class="order_goods_attr_item">
+										<div class="order_goods_price"><i>¥</i>{weimicms:$o.tgprice}<i>元/件</i></div>数量：1
+									</div>
+								</div>
+							</div>
+						</div>
+					</a>
+					<div class="order_ft">
+						<div class="order_total">
+							<span class="order_total_info">共1件商品 ，免运费</span>
+							<span class="order_price">实付：<b>¥{weimicms:$o.tgprice}</b> 元</span>
+						</div>
+						<div class="order_opt">
+							<span class="order_status">状态</span>
+							<div class="order_btn" >
+							<if condition="$o['status'] neq 2">
+								<if condition="$o['paid'] neq 1">
+									<a class="order_btn_receive"  >未付款</a>
+									<a class="order_btn_buy"  href="{weimicms::U('Storenew/grouponorderCart', array('token' => $token, 'wecha_id' => $wecha_id,'orid' => $o['cartid'], 'twid' => $twid,'cid' => $cid))}">立即支付</a>
+								<else/>
+									<a class="order_btn_receive" >已付款</a>
+								</if>
+								<if condition="$o['sent'] eq 1">
+									<a class="order_btn_receive"  >查看物流</a>
+									<a class="order_btn_receive" >已发货</a>
+								<else/>
+									<a class="order_btn_receive" >未发货</a>
+								</if>
+							<else/>
+								<if condition="$o['paid'] neq 1">
+									<a class="order_btn_receive"  >未付款</a>
+								<else/>
+									<if condition="$o['tuikuan'] eq 0">
+									<a class="order_btn_receive" href="{weimicms::U('Storenew/groupontuikuanstatus', array('token' => $token, 'codeid' => $o['codeid'],'id' => $o['id'],'cid' => $cid))}">我要退款</a>
+									<elseif condition="$o['tuikuan'] eq 1"/>
+									<a class="order_btn_receive" >已退款</a>
+									<elseif condition="$o['tuikuan'] eq 2"/>
+									<a class="order_btn_receive" >已提现</a>
+									</if>
+								</if>
+									<a class="order_btn_receive" >团购失败</a>
+							</if>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</volist>
+	<php> if($totalpage > 1) {</php>
+		<div class="m-page uc-orderlist">
+			<if condition="$page eq 1">
+				<div class="pg-pre pg-grey"><a href="javascript:void(0);">上一页<i><em></em></i></a></div>
+			<else/>
+				<div class="pg-pre"><a href="{weimicms::U('Storenew/my',array('token'=>$token,'page'=>intval($page - 1),'wecha_id'=>$wecha_id, 'twid' => $twid,'cid' => $cid))}">上一页<i><em></em></i></a></div>
+			</if>
+			<div class="pg-num">{weimicms:$page}/{weimicms:$totalpage}</div>
+			<if condition="$page eq $totalpage">
+				<div class="pg-next pg-grey"><a href="javascript:void(0);">下一页<i><em></em></i></a></div>
+			<else/>
+				<div class="pg-next"><a href="{weimicms::U('Storenew/my',array('token'=>$token,'page'=>intval($page + 1),'wecha_id'=>$wecha_id, 'twid' => $twid,'cid' => $cid))}">下一页<i><em></em></i></a></div>
+			</if>
+		</div>
+	<php>}else{}</php>
+<else/>
+	<ul style="margin: 15px 10px;border-radius: 4px;line-height: 1.4em;font-size: 16px;border: 1px solid #ddd;background: #f5f5f5;padding: 10px 10px 6px;">
+		<span><li class="p-li" style="padding:10px; text-align:center;">没有订单</li></span>
+	</ul>
+</if>
+<div style="height:58px;visibility:hidden "></div>
+
+<include file="Storenew:foot"/>
+</body>
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Store",
+            "moduleID":"{weimicms:$products[0]['id']}",
+            "imgUrl": "{weimicms:$products[0]['logourl']}", 
+            "timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U('Storenew/grouponmy',array('token' => $_GET['token'], 'catid' => $thisCat['id'], 'twid' => $mytwid, 'cid' => $cid))}",
+            "sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Storenew/grouponmy',array('token' => $_GET['token'], 'catid' => $thisCat['id'], 'twid' => $mytwid, 'cid' => $cid))}",
+            "weiboLink": "{weimicms:$f_siteUrl}{weimicms::U('Storenew/grouponmy',array('token' => $_GET['token'], 'catid' => $thisCat['id'], 'twid' => $mytwid, 'cid' => $cid))}",
+            "tTitle": "{weimicms:$metaTitle}",
+            "tContent": "{weimicms:$metaTitle}"
+        };
+</script>
+{weimicms:$shareScript}
+</html>

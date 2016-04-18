@@ -1,0 +1,487 @@
+
+<html>
+	<head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+		<title>送给你</title>
+        <script>
+            words = '祝你:大财、小财、意外财、财源滚滚；官运、财运、桃花运、运运亨通。';
+
+            kawa_data = {
+                <if condition=" $words eq ''">
+				replace_words      : '祝你:大财、小财、意外财、财源滚滚；官运、财运、桃花运、运运亨通',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+                replace_words      : '#replace_words#',
+                text_box           : '40 130 440 100', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+                mode               : 'static',     // up, left
+                speed              : 40,     // 每秒移动的像素
+                text_color         : '#000000', // rgb(1,2,3) 'black'
+                font_weight        : 'bold',
+                font_size          : '20pt',
+                line_height        : '22pt',
+                music              : 'http://sound.kagirl.net/sound/xiqing.mp3',     // url
+               <if condition=" $music eq ''">
+				replace_music      : 'http://sound.kagirl.net/sound/xiqing.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+                music_name         : '',
+                replace_music_name : '#replace_music_name#',
+                icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/fengmian/m2104.jpg',
+                title              : '送给你',
+                desc               : words,
+                user_desc          : '送你一棵摇钱树，2015财运滚滚来！',
+                modify             : 'no',
+                replace_modify     : '#replace_modify#',
+                cardid             : '2104',
+                share_url          : window.location.href,    // 当分享的是微信页面时才需要改这里
+                font_ip            : '115.28.135.41:8000',
+                modify_optfile     : 'yuandan',
+                modify_optwords    : '#modify_optwords#',
+                show_words         : 'no',
+                write_param_1      : 'inputtype=singleline&showsel=no&prompt=' + encodeURIComponent('输入对方的名字：')
+            };
+        </script>
+
+        <include file="Kawahk:js"/> 
+
+        <script type="text/javascript">
+            initViewport();
+        </script>
+
+		<meta http-equiv="imagetoolbar" content="no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+		 <meta name="copyright" content="版权所有，抄袭必究，（告无忧微米）">
+        <meta name="format-detection" content="telephone=no">
+		
+		<style type="text/css">
+        @-webkit-keyframes yaodown
+        {
+            from{-webkit-transform:translate(0px,0px);}
+            to{-webkit-transform:translate(0px,220px);}
+        }
+        @-webkit-keyframes textup
+        {
+            from{-webkit-transform:translate(0px,0px);}
+            to{-webkit-transform:translate(0px,-100px);}
+        }
+		@-webkit-keyframes treeshake
+		{
+			0%{-webkit-transform:rotate(0deg);}
+			16%{-webkit-transform:rotate(-10deg);}
+			50%{-webkit-transform:rotate(10deg);}
+			84%{-webkit-transform:rotate(-10deg);}
+			100%{-webkit-transform:rotate(0deg);}
+		}
+        @-webkit-keyframes worddown
+        {
+            from{-webkit-transform:translate(0px,0px);}
+            to{-webkit-transform:translate(0px,430px);}
+        }
+        @-webkit-keyframes wordup
+        {
+            from{-webkit-transform:translate(0px,430px);}
+            to{-webkit-transform:translate(0px,0px);}
+        }
+        @-webkit-keyframes opacitychange
+        {
+            from{opacity: 0}
+            to{opacity: 1}
+        }
+        @-webkit-keyframes yaoyiyao
+        {
+            from{-webkit-transform:rotate(-5deg);}
+            to{-webkit-transform:rotate(5deg);}
+        }
+        #container
+        {
+            font-family: '微软雅黑';
+        }
+        @-webkit-keyframes starmove
+        {
+            from{-webkit-transform:scale(0.5,0.5);opacity: 0.5}
+            to{-webkit-transform:scale(1,1);opacity: 1}
+        }
+		</style>
+	</head><!--  -->
+	<body style="margin:0; height: 100%;background-color:black;" onload="Init()" >	
+	
+        <script src='tpl/Wap/default/common/kawahk/common/kawamovie.js?ver=10'></script>
+        <script type="text/javascript">
+        kawa_images = {
+        	hongbao : {url:'tpl/Wap/default/common/kawahk/2014/fu.png'},
+        	yuanbao : {url:'tpl/Wap/default/common/kawahk/2014/yuanbao.png'},
+        	tongqian: {url:'tpl/Wap/default/common/kawahk/2014/tongqian.png'},
+        	guang   : {url:'tpl/Wap/default/common/kawahk/2014/guang1.png'}
+        }
+        var zhufuyu=[
+        '恭喜恭喜！2015，必然事业成功，笑口常开；健康长寿，财神常来！',
+        '吉利吉利！2015，必然左手抓金，右手抓银，大财小财，日日都来！',
+        '有才有财！2015，必然金银财宝进你家，多财多福有钱花！',
+        '有福有福！2015，必然喝水喝到薪水高，家中常种有钱花！',
+        '厉害厉害！2015，必然开怀一笑得钞票，潇潇洒洒乐逍遥！',
+        '服了服了！2015，必然工资奖金腰包藏，财运亨通不停享！',
+        '非同一般！2015，必然大财、小财、意外财、财源滚滚！']
+        var price=[10008,5008,233];
+        var shakelock=true;
+        var hongbao_num=0;
+        var yuanbao_num=0;
+        var tongqian_num=0;
+        var havedrop=false;
+        var haveshowword=false; 
+        var startnum=100;
+        var endnum=100;
+        var word='恭喜你获得了：';
+        var zheheword='折合人民币';
+        var shakebool=false;
+        var SHAKE_THRESHOLD = 2000;//重力速度标准原3000
+        var last_update = 0;
+        var x = y = z = last_x = last_y = last_z = 0;
+        var last_run=0; 
+        function rand(min,max)
+        {
+            return min+Math.floor(Math.random()*(max-min+1));
+        }
+        function id(name)
+        {
+        	return document.getElementById(name);
+        }
+
+        var num=100;
+        function randgiftname(randnum)
+        {
+        	if(randnum==1)
+        		return 'hongbao';
+        	else if(randnum==2)
+        		return 'yuanbao';
+        	else
+        		return 'tongqian'
+        }
+        function Init()
+        {
+            kawa_init();
+        	gifts=new Array();
+        	for(var i=0;i<num;i++)
+        	{
+        		var randnum=rand(1,5);
+        		var x=rand(20,400);
+        		gifts[i]=new_sprite1(randgiftname(randnum),x+','+sety(x),true);
+        		gifts[i].img.style.webkitTransform='scale('+rand(3,10)/10+') rotate('+rand(-50,50)+'deg)';
+        	}
+        	for(var i=0;i<10;i++)
+        	{
+        		var x=rand(20,400);
+        		guang=new_sprite1('guang',x+','+sety(x),true);
+        		path='x0,y0,w1,h1->1->x0,y0,w0.5,h0.5';
+        		road=new_path_action(path,'ease infinite alternate');
+        		randtime=rand(0,4)*250;
+        		action_at_time(randtime,guang,road);
+        		fade = new_opacity_action(1, 0.5, 1, 'show', 'linear infinite alternate');
+        		action_at_time(randtime,guang.img,fade)
+        	}
+            // startnum=10;
+            // starst=setInterval(
+            //     function()
+            //     {
+            //         if(startnum<0)
+            //             clearInterval(starst);
+            //         var star=document.createElement('img');
+            //         var x=rand(20,400);
+            //         star.src='http://tpl/Wap/default/common/kawahk/2014/guang1.png';
+            //         star.style.left=x+'px';
+            //         star.style.position='absolute';
+            //         star.style.top=sety(x)+'px';
+            //         star.style.webkitAnimation='starmove 1s linear infinite alternate';
+            //         id('wholetree').appendChild(star);
+            //         startnum--;
+            //     },100)
+
+            if (window.DeviceMotionEvent) {
+                window.addEventListener('devicemotion', deviceMotionHandler, false);
+            } else {
+                alert('不支持或未开启重力感应');
+            }
+        }
+
+        function dropthing()
+        {
+            shakebool=true;
+            id('yaodiv').style.display='none';
+            id('textdiv').innerHTML='';
+        	id('wholetree').style.webkitAnimation='treeshake 0.5s linear';
+        	randcount=rand(5,20);
+            endnum=startnum-randcount;
+            if(endnum<0)
+                endnum=0;
+        	for(var i=startnum-1;i>=endnum;i--)
+        	{
+        		
+        		if(gifts[i].img.src=='tpl/Wap/default/common/kawahk/2014/fu.png')
+        			hongbao_num++;
+        		else if(gifts[i].img.src=='tpl/Wap/default/common/kawahk/2014/yuanbao.png')
+        			yuanbao_num++;
+        		else
+        			tongqian_num++;
+        		var topstr=gifts[i].style.top;
+                var distance=rand(550,650)-parseInt(topstr.substring(0,3));
+                console.log(distance);
+                // console.log(topstr)
+                path='x0,y0,a'+rand(-50,50)+'->'+rand(5,10)/10+'->x0,y'+distance+',a0';
+                road=new_path_action(path,'linear forwards');
+                action_at_time(rand(0,1000),gifts[i],road);
+        	}
+            if(endnum==0&&(haveshowword==false))
+                {
+                    showword();
+                    haveshowword=true;
+                }
+            startnum=endnum;
+            
+            setTimeout(function()
+                {
+                    shakebool=false;
+                    id('wholetree').style.webkitAnimation='';
+                    havedrop=true;
+                },500);
+            // showword();
+
+        	// alert(hongbao_num);
+
+        }
+
+        function showword()
+        {
+            if(hongbao_num+tongqian_num+yuanbao_num==0)
+                return;
+            id('result').style.webkitAnimation='worddown 1s linear forwards';
+            i=0;
+            setTimeout(printword,1000);
+        }
+
+        function printword()
+        {
+            t=setInterval(function()
+            {   
+                if(i==word.length-1)
+                    {
+                        clearInterval(t);
+                        showthing();
+                    }
+                id('worddiv').innerHTML=id('worddiv').innerHTML+word[i];
+                i++;
+            },200);
+        }
+
+        function showthing()
+        {
+            shownum=0
+            show=setInterval(
+                function()
+                {
+                    switch(shownum)
+                    {
+                        case 0:id('yuanbaoimg').style.display='block';break;
+                        case 1:id('yuanbao_word').innerHTML='×';break;
+                        case 2:id('yuanbao_word').innerHTML=id('yuanbao_word').innerHTML+yuanbao_num;break;
+                        case 3:id('hongbaoimg').style.display='block';break;
+                        case 4:id('hongbao_word').innerHTML='×';break;
+                        case 5:id('hongbao_word').innerHTML=id('hongbao_word').innerHTML+hongbao_num;break;
+                        case 6:id('tongqianimg').style.display='block';break;
+                        case 7:id('tongqian_word').innerHTML='×';break;
+                        case 8:id('tongqian_word').innerHTML=id('tongqian_word').innerHTML+tongqian_num;break;
+                        case 9:clearInterval(show);showzhesuan();
+                    }
+                    shownum++;
+
+                },200)
+        }
+        function showzhesuan()
+        {
+            var m=price[0]*yuanbao_num+price[1]*hongbao_num+price[2]*tongqian_num
+            zheheword1=zheheword+m;
+            var len=zheheword1.length;
+            var i=0;
+            zs=setInterval(
+                function()
+                {
+                    if(i==len)
+                    {
+                       id('zhesuan').innerHTML=id('zhesuan').innerHTML+'元';
+                       clearInterval(zs);
+                       showzhufu();
+                       return;
+                    }
+                    id('zhesuan').innerHTML=id('zhesuan').innerHTML+zheheword1[i]
+                    i++;
+                },150)
+        }
+        function showzhufu()
+        {
+            var bl=true;
+            var money=price[0]*yuanbao_num+price[1]*hongbao_num+price[2]*tongqian_num;
+            var k=Math.floor(money/50000);
+            if(k>6)
+                k=6;
+            words=zhufuyu[k];
+            // if(k==6)
+            // {
+            //     id('textdiv').style.width='440px';
+            // }
+            // else
+            // {
+            //     id('textdiv').style.width='460px';
+            // }
+            var num=words.length;
+            var i=0;
+            // id('textdiv').innerHTML=words;
+            // id('textdiv').style.webkitAnimation='textup 3s linear forwards';
+            // alert(id('textdiv').style.webkitAnimation);
+            se=setInterval(
+                function()
+                {   if(i==num-1)
+                       {
+                         clearInterval(se);
+                         id('yao').style.display='block';
+                         id('yao').style.webkitAnimation='opacitychange 1s linear forwards'
+                        }
+                    id('textdiv').innerHTML=id('textdiv').innerHTML+words[i];
+                    if(words[i]==';')
+                        id('textdiv').innerHTML=id('textdiv').innerHTML+'<br>';
+                    // if(bl&&words[0]=='祝'&&words[1]=='你'&&words[2]==':'&&i==2)
+                    //     {
+                    //         id('textdiv').innerHTML=id('textdiv').innerHTML+'<br>';
+                    //         bl=false;
+                    //     }
+                    i++;
+                },150)
+        }
+
+        function resettree()
+        {
+            id('wholetree').style.webkitAnimation='';
+            for(var i=99;i>=0;i--)
+            {
+                gifts[i].style.webkitAnimation='';
+            }
+            id('result').style.webkitAnimation='wordup 0.5s linear';
+            // alert(id('worddiv').innerHTML)
+            id('worddiv').innerHTML='';
+            id('hongbao_word').innerHTML='';
+            id('tongqian_word').innerHTML='';
+            id('yuanbao_word').innerHTML='';
+            id('yuanbaoimg').style.display='none';
+            id('hongbaoimg').style.display='none';
+            id('tongqianimg').style.display='none';
+            id('yao').style.webkitAnimation='';
+            id('zhesuan').innerHTML='';
+            hongbao_num=0;
+            tongqian_num=0;
+            yuanbao_num=0;
+            startnum=100;
+
+            haveshowword=false;
+            shakebool=false;
+            havedrop=false;
+            // alert(havedrop);
+        }
+
+
+        function deviceMotionHandler(eventData) {
+            var acceleration = eventData.accelerationIncludingGravity;
+            var curTime = new Date().getTime();
+            if ((curTime - last_update) > 100) {
+                var diffTime = curTime - last_update;
+                last_update = curTime;
+                x = acceleration.x;
+                y = acceleration.y;
+                z = acceleration.z;
+                var speed = Math.abs(x + y + z - last_x - last_y - last_z) / diffTime * 10000*2;
+
+                if ((speed > SHAKE_THRESHOLD)&&(shakebool==false)&&(haveshowword==false)) 
+                {
+                    last_run=curTime;
+                	dropthing();
+                    
+                }
+                else if((haveshowword==false)&&(curTime-last_run>2000)&&(shakebool==false)&&havedrop&&(speed <= SHAKE_THRESHOLD))
+                {
+                    haveshowword=true;
+                    showword();
+                }
+                last_x = x;
+                last_y = y;
+                last_z = z;
+            }
+        }
+		function new_sprite1(imgname, pos, visible)
+		{
+		    var x = pos.split(',')[0] + 'px';
+		    var y = pos.split(',')[1] + 'px';
+
+		    var one = document.createElement('div');
+		    var img = document.createElement('img');
+
+		    if(img_url(imgname) != '')
+		    {
+		        img.src = img_url(imgname);
+		    }
+
+		    one.id = 'kawa_obj_' + kawa_id;
+		    img.id = 'kawa_obj_' + (kawa_id + 1);
+
+		    one.appendChild(img);
+		    one.style.position = 'absolute';
+		    one.style.visibility = visible == true ? 'visible' : 'hidden';
+		    one.style.left = x;
+		    one.style.top = y;
+		    one.img = img;
+
+		    id('wholetree').appendChild(one);
+
+		    kawa_id += 2;
+
+		    return one;
+		}
+
+        function sety(x)
+        {
+        	y=370-Math.sqrt(40000-Math.pow(Math.abs(220-x),2));
+        	weizi=rand(y,470);
+        	console.log(weizi);
+        	return weizi;
+        }
+
+        </script>
+        <div id='container' style='height:750px;width:500px;position:absolute;background-image:url(tpl/Wap/default/common/kawahk/2014/back1.jpg);overflow:hidden;'>
+            <!-- <img src='tpl/Wap/default/common/kawahk/2014/back.jpg' style='position:absolute;'> -->
+        	<div id='wholetree' style='height:750px;width:500px;position:absolute;left:0px;top:0px;-webkit-transform-origin:50% 80%;'>
+        		<img id='tree' src='tpl/Wap/default/common/kawahk/2014/shu.png' style='position:absolute;left:0px;top:0px;'>
+        	</div>
+            <div id='result' style='position:absolute;top:10px;left:10px;top:-420px;'>
+                <img src='tpl/Wap/default/common/kawahk/2014/biankuang.png' style='width:480px;height:400px;'>
+                <div style='position:absolute;top:30px;left:30px;width:420px;height:200px;font-size:20pt;color:black;line-height:30pt;font-weight:bold;'>
+                    <div id='worddiv' style='position:absolute;top:0px;left:0px;width:420px;height:200px;font-size:20pt;color:black;line-height:30pt;font-weight:bold;'></div>
+                    <img id='yuanbaoimg' src='tpl/Wap/default/common/kawahk/2014/yuanbao.png' style='position:absolute;top:60px;height:40px;display:none;'>
+                    <div id='yuanbao_word' style='position:absolute;height:50px;width:60px;top:60px;left:70px;'></div>
+
+                    <img id='hongbaoimg' src='tpl/Wap/default/common/kawahk/2014/fu.png' style='position:absolute;height:60px;left:160px;top:50px;display:none'>
+                    <div id='hongbao_word' style='position:absolute;height:50px;width:60px;top:60px;left:200px;'></div>
+
+                    <img id='tongqianimg' src='tpl/Wap/default/common/kawahk/2014/tongqian.png' style='position:absolute;top:60px;left:280px;display:none;'>
+                    <div id='tongqian_word' style='position:absolute;height:50px;width:60px;top:60px;left:330px;'></div>
+                    <div id='zhesuan' style='position:absolute;left:10px;top:120px;width:300px;height:50px;'></div>
+
+                    <div id='textdiv' style='position:absolute;width:420px;height:70px;top:170px;left:10px;line-height:35pt;font-size:20pt;height:100px;'>
+                    </div>
+                    <div id='yao' style='position:absolute;background-image:url(tpl/Wap/default/common/kawahk/2014/button.png);height:45px;width:180px;left:130px;top:280px;color:yellow;font-size:20pt;line-height:45px;opacity:0;display:none;;text-align:center;' onclick='resettree()'>再摇一次</div>
+                </div>
+            </div>
+            <div id='yaodiv' style='top:200px;left:200px;position:absolute;'>
+                <img id='yaoyiyao' src='tpl/Wap/default/common/kawahk/2014/yao.png' style='position:absolute;-webkit-transform-origin:0% 100%;-webkit-animation:yaoyiyao 0.2s linear infinite alternate '>
+                <div id='yaoword' style='position:absolute;top:-400px;width:500px;left:-180px;font-weight:bold;font-size:20pt;color:white;line-height:35pt;-webkit-animation:yaodown 1.5s linear forwards'>送你一棵摇钱树<br>摇一摇试试看吧！<br>越使劲钱越多哦~:)</div>
+            </div>
+        </div>
+    </body>
+
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta charset="utf-8">
+<title>{weimicms:$info.name}</title>
+<link rel="stylesheet" href="{weimicms:$staticPath}/tpl/static/Aaactivity/css/zc-common.css">
+<link rel="stylesheet" href="{weimicms:$staticPath}/tpl/static/Aaactivity/css/zc-index.css">
+<link rel="stylesheet" href="{weimicms:$staticPath}/tpl/static/Aaactivity/css/renk.css">
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/jquery.min.js"></script>
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/alert.js"></script>
+<!-- <script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/Aaactivity/js/zepto.min.js"></script> -->
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/Aaactivity/js/lightbox.js"></script>
+<style>
+.window .title{
+    background-image: linear-gradient(#f05c52, #f05c52);
+}
+</style>
+</head>
+<body>
+<div class="wrapbox">
+<if condition="$memberNotice neq ''">
+    {weimicms:$memberNotice}
+</if>    
+    <!-- heard -->
+    <header class="header">
+        <h2><a href="javascript:void(0);" class="text-red">项目详情</a></h2>
+        <a href="{weimicms::U('Aaactivity/home',array('token'=>$token,'wecha_id'=>$wecha_id,'share_key'=>$share_key))}" class="icon btn-home" style="left:0px;"></a>
+        <a href="{weimicms::U('Aaactivity/my_focus',array('token'=>$token,'wecha_id'=>$wecha_id,'share_key'=>$share_key))}" class="icon btn-person"></a>
+    </header>
+    <!-- / -->
+    <!-- main -->
+    <div class="pb5">
+        <div class="zc-list">
+            <div class="zc-item">
+                <div>
+                    <a href="{weimicms::U('Aaactivity/baoming',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$info['id'],'share_key'=>$share_key))}">
+                        <img src="{weimicms:$info.reply_pic}" alt="">
+                    </a>
+                </div>
+                <div class="pd-0-10 bd-b">
+                    <a href="{weimicms::U('Aaactivity/baoming',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$info['id'],'share_key'=>$share_key))}" class="detail-a">
+                    <h4 class="h4-title"> {weimicms:$info.title} <i class="icon more-r fr"></i></h4>
+                    <p>
+                        {weimicms:$info.intro}
+                    </p>
+                    </a>
+                    <div class="progress-box <if condition="$is_over eq 1">sta-end<else/>sta-ing</if>">
+                        <div class="progrestate-b  fr">
+                            <if condition="$is_ok eq 1">
+                                已爆满
+                            <else/>
+                                招募中
+                            </if>
+                        </div>
+                        <div class="progresnum">
+                            {weimicms:$info.progress}%
+                        </div>
+                        <div class="progressbar">
+                            <div class="progressing" style="width:{weimicms:$info.percent}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gridbox zc-datum">
+						<div class="grid-2">
+                            <strong>{weimicms:$info.minnums} 人</strong>
+                            <p>
+                                最低
+                            </p>
+                        </div>
+                        <div class="grid-3">
+                            <strong>{weimicms:$info.joinnum} 人</strong>
+                            <p>
+                                已报名
+                            </p>
+                        </div>
+                        <div class="grid-2">
+                            <strong>  {weimicms:$info.feiyong} 元</strong>
+                            <p>
+                                AA人均费用
+                            </p>
+                        </div>
+						<div class="grid-1">
+                            <strong>  {weimicms:$info.maxnums} 人</strong>
+                            <p>
+                                总上限
+                            </p>
+                        </div>
+                    </div>
+					<div class="gridbox supportbox">
+						<!--div class="grid-2 supp-price">
+							报名扣除：{weimicms:$info.score} 积分
+						</div-->
+						<div class="grid-2">
+							<if condition="$info.joinnum lt $info.maxnums ">
+									<if condition="$is_ok eq 1">
+									<a href="javascript:void(0);" class="btn btn-disable fr">已经报过名</a>
+									<else/>
+									<a name="btn_support" projectid="3238" redoundid="12176" href="{weimicms::U('Aaactivity/baoming',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$info['id'],'share_key'=>$share_key))}" class="btn btn-red fr is_null">我要报名</a>
+									</if>
+							<else/>
+									<a href="javascript:void(0);" class="btn btn-disable fr">限额已满</a>         
+							</if>
+						</div>
+					</div>
+                </div>
+            </div>
+        </div>
+		<h2 class="h2-title">活动信息 </h2>
+		<ul class="return-list">
+		<li>
+                <div class="info-min">
+                        <img class="lightbox" src="{weimicms:$info.top_pic}">
+					<p>
+                        <b>活动规则：</b>
+						<br/>
+						{weimicms:$info.info}
+                    </p>
+                </div>
+                <div class="gridbox supportfoot">
+                    <div class="grid-1">
+                        <div class="grid-2">
+						<if condition="$info.usename neq ''">
+						此项目发起人 </if>
+                            <span class="text-red"> <strong> {weimicms:$info.usename} </strong></span> （剩余<span class="text-red"> {weimicms:$info.surplus} 空位</span>）
+                        </div>
+                    </div>
+                </div>
+            </li>
+		 </ul>
+		 <h2 class="h2-title">报名信息 <span style="float:right;padding-right:10px;">{weimicms:$info.joinnum} 人报名</span></h2>
+    </div>
+	<div class="getList">
+		<div class="luckguys swiper-slide swiper-slide-visible swiper-slide-active" style="width: auto;min-width:330px; height: auto;min-height:350px;">
+					<div class="luck_con swipe_con">
+					<weimicmsif where="$lucky_guys neq ''">
+					<volist name="lucky_guys" id="vo">
+						<div class="luck-manito"><ul><li><img src="{weimicms:$vo.portrait}" class="headers"></li><li><div><span class="nickname">{weimicms:$vo.usename}</span><br/><span class="date">{weimicms:$vo.add_time|date="Y-m-d H:i",###}</span></div><!--div><p>{weimicms:$vo.share_content}</p></div--></li><li><span class="tel">{weimicms:$vo.tel}</span></li></ul></div>
+						</volist>	
+						<else />
+						<div class="fit-plan_end">
+						<img src="{weimicms:$staticPath}/tpl/static/hongbao/images/cry.png" alt="">
+						<div>还没有人报名赶快加入我们吧~</div>
+						</div>
+					</weimicmsif>
+					</div>
+		</div>
+	</div>
+
+    <include file="Aaactivity:footer" />
+</div>
+
+<script>
+    var projectId   = '{weimicms:$info.id}';
+    <if condition="$is_over eq 1">
+        $('.is_null').each(function(){
+            $(this).attr('href','javascript:alert("项目已经结束");');
+            //$(this).attr('id','modaltrigger_notice');
+            //$(this).addClass('modaltrigger_notice');
+        });
+    <elseif condition="$memberNotice neq ''"/>
+        $('.is_null').each(function(){
+            $(this).attr('href','javascript:alert("关注或者注册后才能操作");');
+            //$(this).attr('id','modaltrigger_notice');
+            //$(this).addClass('modaltrigger_notice');
+        });
+    </if>
+    $(function(){
+        new lightbox({
+            obj: $(".lightbox")
+        });
+
+</script>
+
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Aaactivity",
+            "moduleID":"{weimicms:$info['id']}",
+			"pid":"{weimicms:$info['id']}",
+            "imgUrl": "{weimicms:$info['share_pic']}", 
+            "timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U('Aaactivity/index',array('token'=>$token,'id'=>$info['id'],'share_key'=>$reward['share_key']))}",
+            "sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Aaactivity/index',array('token'=>$token,'id'=>$info['id'],'share_key'=>$reward['share_key']))}",
+            "weiboLink": "{weimicms:$f_siteUrl}{weimicms::U('Aaactivity/index',array('token'=>$token,'id'=>$info['id'],'share_key'=>$reward['share_key']))}",
+            "tTitle": "{weimicms:$info['title']}",
+            "tContent": "{weimicms:$info['intro']}"
+};
+</script>
+{weimicms:$shareScript}
+</body>
+</html>

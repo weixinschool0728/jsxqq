@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+<head>
+<title>{weimicms:$news.title}</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="./tpl/static/storenew/css/oder.css?r=1430970616"/>
+<link rel="stylesheet" href="./tpl/static/storenew/css/news.css"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no" />
+<meta name="mobileOptimized" content="width" />
+<meta name="handheldFriendly" content="true" />
+<meta http-equiv="Cache-Control" content="max-age=0" />
+<meta name="apple-touch-fullscreen" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<link href="./tpl/static/storenew/css/bottom.css?x=150317X2" rel="stylesheet" type="text/css" />
+ <link rel="stylesheet" type="text/css" href="./tpl/static/storenew/css/foundation.css?v=3132323">
+ <link rel="stylesheet" type="text/css" href="./tpl/static/storenew/css/common-v4.0.css?v=3133233">
+<style>
+.main-box{padding:15px 5%;}
+.rule-detail{ width: 100%; background-color: white;   padding: 15px;}
+.border-box{-webkit-box-sizing: border-box;box-sizing: border-box;}
+</style>
+</head>
+<div class="panel memberhead">
+    <div class="header-l">
+	<img class="icon-level-p1" src="{weimicms:$fans.portrait}"/>
+    </div>
+
+    <div class="header-r">
+        <ul class="distributor-infor">
+
+            <li><span class="distributor-infor-label">昵称：</span><span class="distributor-infor-c">{weimicms:$fans.truename}</span></li>
+
+            <li><span class="distributor-infor-label">等级：</span><span class="distributor-infor-c">会员(<a
+                    class="txt-link" href="#"> 分享微店赚佣金</a>)</span>
+            </li>
+            <li><span class="distributor-infor-label">注册日期：</span><span class="distributor-infor-c">
+                   {weimicms:$weiuser|date="Y-m-d",###}</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!--head end-->
+<!--count begin-->
+<body class="body-gray my-memvers">
+<div id="news">
+<div class="page-bizinfo">
+	<div class="header" style="position: relative;">
+		<h1 id="activity-name">{weimicms:$news.title}</h1>
+		<span id="post-date">时间：{weimicms:$news.add_time|date="Y-m-d H:i:s",###}</span>
+	</div>
+	<div class="text" id="content">
+	{weimicms:$news.info|htmlspecialchars_decode}
+	</div>
+ <script>
+function dourl(url){
+location.href= url;
+}
+</script>
+
+    <div id="news">
+		<div class="list">
+			<div id="olload">
+			<span>往期内容</span>
+			</div>
+			<div id="oldlist">
+				<ul>
+					<volist name="newslist" id="o">
+						<li class="newsmore">
+							<a href="{weimicms::U('Storenew/views',array('token'=>$token,'id'=>$o['id'],'wecha_id'=>$wecha_id,'twid' => $twid,'cid'=>$cid))}">
+							<div class="olditem">
+							<div class="title">{weimicms:$o.title}</div> 
+							</div>
+							</a>
+						</li>
+					</volist>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<a class="footer" href="#news" target="_self"><span class="top">返回顶部</span></a>
+
+</div>
+</div>
+<footer style="width:100%;min-width:300px;margin-top:10px;margin-bottom:50px;padding:10px 0;color:#555;text-align:center;"><a style="color:#555;margin:0 3px;" href="">&copy; {weimicms:$com['name']}</a></footer>
+<include file="Storenew:foot"/>
+<script type="text/javascript">
+window.shareData = {  
+				"moduleName":"Storenew",
+				"moduleID": '{weimicms:$_GET["id"]|intval}',
+				"imgUrl": "{weimicms:$news.share_pic}", 
+				"timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'cid'=>$_GET['cid'],'id'=>intval($_GET['id']),'twid'=>$_GET['twid']))}",
+				"sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'cid'=>$_GET['cid'],'id'=>intval($_GET['id']),'twid'=>$_GET['twid']))}",
+				"weiboLink": "{weimicms:$f_siteUrl}{weimicms::U(MODULE_NAME/ACTION_NAME,array('token'=>$_GET['token'],'cid'=>$_GET['cid'],'id'=>intval($_GET['id']),'twid'=>$_GET['twid']))}",
+				"tTitle": "{weimicms:$news.title}",
+				"tContent": "{weimicms:$news.intro|htmlspecialchars_decode|strip_tags|trim|mb_substr=###,0,30,'utf-8'|str_replace="\\r\\n",' ',###|str_replace='"','',###}"
+			};
+</script>
+{weimicms:$shareScript}
+</html> 

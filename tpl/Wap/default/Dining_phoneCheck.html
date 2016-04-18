@@ -1,0 +1,134 @@
+<include file="Dining:header"/>
+<style>
+</style>
+</head>
+
+<body class="mode_webapp">
+<div class="menu_header"> 
+     <div class="menu_topbar">
+      <strong class="head-title">手机验证</strong>
+      <span class="head_btn_left"><a href="javascript:history.go(-1);"><span>返回</span></a><b></b></span> <a class="head_btn_right" href="{weimicms::U('Dining/stores',array('token'=>$_GET['token'],'wecha_id'=>$_GET['wecha_id'],'dining'=>1,'quyuid'=>$_GET['quyuid'],'fenleiid'=>$_GET['fenleiid']))}">
+      <span><i class="menu_header_home"></i></span><b></b>
+      </a>
+     </div>
+</div>
+
+    
+
+<form class="form" method="post" name="formData"  action=""   enctype="multipart/form-data" >
+  <input type="hidden" name="formhash" id="formhash" value="4171ab45" />
+   <input type="hidden" name="insetmb" id="insetmb" value="1" />
+   
+<div class="contact-info" style=" margin-top:10px; padding:10px;">
+	<strong>手机验证：</strong><br>
+	为提高下单的准确性，请您进行手机验证
+</div>
+
+<div class="contact-info" style=" margin-top:10px; padding:10px;">
+<table style="padding: 0; margin: 0; width: 100%;">
+<tbody>
+<tr>
+<td width="80px"><label for="" class="ui-input-text">手机号：</label></td>
+<td>
+<div class="ui-input-text"><input type="text" id="phone" name="phone" placeholder="请输入手机号" class="ui-input-text"></div>
+</td>
+</tr> 
+<tr>
+<td width="80px"><label for="" class="ui-input-text">密 码：</label></td>
+<td>
+<div class="ui-input-text"><input type="text" id="password" name="password" placeholder="请输入密码" class="ui-input-text"></div>
+</td>
+</tr>   
+<if condition="($DiningCheck eq 1)"> 
+<tr>
+<td width="80px"><label for="" class="ui-input-text">验证码：</label></td>
+<td>
+<table width="100%">
+<tr>
+<td id="tr_login" align="center" width="40%">
+	<div class="ui-input-text">
+	<input type="text" id="phoneCode" name="phoneCode" placeholder="请输入收到的验证码" class="ui-input-text">
+	
+</div>
+</td>
+<td><a id="inp_huiqu" class="submit" href="javascript:void(0)" onclick="getPhone()">获取手机验证</a> </td>
+</tr>
+</table>
+
+</td>
+</tr> 
+</if>
+</tbody></table>					
+</div>
+
+<div class="footReturn" style="margin-bottom:80px;">
+<table width="100%">
+<tr>
+<td id="tr_login" align="center" width="50%">
+	<a id="inp_huiqu" class="submit" href="javascript:checkSub();" style="width:90%">注  册</a> 
+</td>
+</tr>
+</table>
+</div>
+
+<input type="hidden" id="DiningCheck" name="DiningCheck" value="{weimicms:$DiningCheck}">
+<input type="hidden" name="isForm">
+</form>
+     
+<include file="Dining:footer"/>    
+    
+<script type="text/javascript"> 
+
+function checkSub(){
+	if(document.formData.phone.value == ""){
+		alert("手机号码不能为空!");
+	}else if(document.formData.password.value == ""){
+		alert("登录密码不能为空!");
+	}else if(document.formData.DiningCheck.value == 1 && document.formData.phoneCode.value == ""){
+		alert("手机验证码不能为空!");
+	}else{
+		document.formData.submit();
+	}
+}
+
+
+function getPhone(){
+	timeoutPhone();
+	var lsPhone = document.getElementById('phone').value;
+	$.ajax({
+		url:'?g=Wap&m=Dining&a=phoneCODE&token={weimicms:$token}&phone='+lsPhone,
+		success : function(data) {
+			if(data){
+				var obj = eval('('+data+')');
+				var rtPhone = obj.info;
+				alert(rtPhone);
+			}
+		}
+	});
+}
+var timeNum = 60;
+var timeobj;
+var inp_huiqu = document.getElementById('inp_huiqu');
+function timeoutPhone(){ 
+	timeNum--;
+	timeobj = setTimeout("timeoutPhone()",1000);
+	if(timeNum < 1){
+		inp_huiqu.style.background = "-webkit-gradient(linear,left top,left bottom,from(#fe444a),to(#c32d32))";
+		inp_huiqu.innerHTML = "获取手机验证";
+		inp_huiqu.onclick = getPhone();
+	
+		clearTimeout(timeobj);
+	}else{
+		if(timeNum == 59){
+			inp_huiqu.style.background = "-webkit-gradient(linear,left top,left bottom,from(#CACACA),to(#BBBBBB))";
+			inp_huiqu.onclick = "";
+		}
+		inp_huiqu.innerHTML = "获取验证码 " + timeNum + "秒";
+	}
+}
+
+</script>
+
+
+</body>
+</html>

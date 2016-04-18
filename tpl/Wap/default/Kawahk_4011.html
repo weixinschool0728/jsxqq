@@ -1,0 +1,224 @@
+
+<html>  
+<head>  
+<meta http-equiv="content-type" content="text/html; charset=utf-8">  
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <include file="Kawahk:js"/> 
+        <script type="text/javascript">
+            initViewport();
+        </script>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>时光穿梭信</title>  
+
+
+<script src="tpl/Wap/default/common/kawahk/4011/fontcard_nomove.js"></script>
+<style type="text/css">  
+    <!--   
+    body{   
+        -webkit-touch-callout: none; 
+        -webkit-text-size-adjust: none;
+        margin:0 auto;          
+        overflow:hidden;   
+        position:relative;
+    }   
+  
+    div#content{
+        position:relative;   
+        border:1px solid #000; 
+        width:500px;        
+        height:750px;
+        margin:0 auto; 
+        top:0px;    
+        overflow:hidden;   
+        clear:both;
+    }
+  
+    div#bg{   
+        position:absolute;   
+        left:0px;   
+        top:0px;
+    } 
+    div#zi{   
+        position:absolute;   
+        left:45px;   
+        top:250px;
+        -webkit-transform-origin:center centers;
+        -webkit-animation:rotate1 2s 1s 1 ease-in-out  both;
+    } 
+    
+    @-webkit-keyframes rotate1{
+        0%{
+            -webkit-transform:rotate(-720deg) scale(0.01);
+        }
+        50%{
+            -webkit-transform:rotate(-8deg) scale(1);
+        }       
+        75%{
+            -webkit-transform:rotate(8deg) scale(1.3);
+        }   
+        100%{
+            -webkit-transform:rotate(-8deg) scale(1);
+        }           
+    }
+    div#shuo{   
+        position:absolute;   
+        left:23px;   
+        top:126px;
+        -webkit-transform-origin:center centers;
+        -webkit-animation:fadeInUp 1s 0s 1 ease-in-out  both;
+    } 
+    
+    @-webkit-keyframes fadeInUp{
+        0%{opacity:0;
+        -webkit-transform:translateY(-20px)}
+        100%{opacity:1;
+        -webkit-transform:translateY(0)}
+        }
+    div#shuming{   
+        position:absolute;   
+        left:334px;   
+        top:455px;
+        -webkit-transform-origin:center centers;
+        -webkit-animation:fadeInLeft 2s 3s 1 ease-in-out  both;
+    } 
+    
+    @-webkit-keyframes fadeInLeft{
+        0%{opacity:0;
+        -webkit-transform:translateX(-20px)}
+        100%{opacity:1;
+        -webkit-transform:translateX(0)}
+        }
+    div#foot{   
+                position:fixed; 
+                left:340px;
+                bottom:20px;
+            }   
+    -->  
+</style>  
+<script>
+    gSizeMode = 'bodywidth';
+    gAnimateMode = 'up';    
+     gSound = 'http://sound.kagirl.net/sound/duanwu2.mp3';
+    gColor = '#ffff99';
+    gTextAreaLeft = 0.1;
+    gTextAreaTop = 0.1;
+    gTextAreaWidth = 0.8;
+    gTextAreaHeight = 0.35;
+    gSpeed = 400;       
+    gCardTextNoWrap ='';
+    gCardText ='双色球第500期的号码是: 53 52 67 38 38 38 38 + 22222';
+	
+    
+    share_url = window.location.href;
+	<if condition=" $words eq ''">
+				gCardText ='双色球第500期的号码是: 53 52 67 38 38 38 38 + 22222';
+				<else/>
+				gCardText ='{weimicms:$words}';
+              </if>
+            // script place
+    g_font_name = "hkww";
+    g_words = gCardText;
+    g_font_size = 38;
+    g_color = "ffff99";
+    g_gap = 12;
+    g_width_c = 10;
+    g_date = "datestrvalue";
+    g_text_x = 30;
+    g_text_y = 212;
+    g_text_w = 450;
+    g_text_h = 210;
+    g_speed = 40;
+    g_checksum = "checksumvalue";
+    
+    
+    var appId = '',
+    imgUrl = 'tpl/Wap/default/common/kawahk/4011/x4011.jpg',
+    link = location.href,
+    title = '时光穿梭信',
+    desc = '我想对十年前的自己说： ';
+    // card tips;
+    gcardid = 4011;
+    goptiontxt = "shinian";
+    </script>
+
+<script src="tpl/Wap/default/common/kawahk/4011/weixin_new.js"></script>
+
+<script>
+function showTxt()
+        {
+            var text = document.getElementById("textsuper");
+            text.style.display = "block";
+            kawa_init();
+        }
+</script>
+</head>  
+<body onLoad = "showTxt();"> 
+    <script>
+            words ='双色球第500期的号码是: 53 52 67 38 38 38 38 + 2';
+
+            kawa_data = {
+                words              : words,
+                <if condition=" $words eq ''">
+				replace_words      : '双色球第500期的号码是: 53 52 67 38 38 38 38 + 2',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+                text_box           : '216 497 226 220', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+                mode               : 'up',     // up, left
+                speed              : 40,     // 每秒移动的像素
+                text_color         : '#ffff00', // rgb(1,2,3) 'black'
+                font_size          : '20pt',
+                line_height        : '40pt',
+                //text_align         : 'center',
+                //font_weight        : 'bold',
+                music              : 'http://sound.kagirl.net/sound/duanwu2.mp3',     // url
+                <if condition=" $music eq ''">
+				replace_music      : 'http://sound.kagirl.net/sound/duanwu2.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+                music_name         : '',
+                replace_music_name : '#replace_music_name#',
+                icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/fengmian/x4011.jpg',
+                title              : '时光穿梭信',
+                desc               : words,
+                modify             : 'no',
+                replace_modify     : 'yes',
+                cardid             : '4011',
+                share_url          : window.location.href,   // 当分享的是微信页面时才需要改这里
+                font_ip            : '121.42.24.240:8000',
+                modify_optfile     : 'xinqing',
+                modify_optwords    : '#modify_optwords#',
+                show_words         : 'no',
+                write_param_1      : 'inputtype=singleline&showsel=no&prompt=' + encodeURIComponent('输入对方的名字：')
+            };
+        </script>
+
+    <div id="content">  
+            
+        <div id="bg" >
+            <img src="tpl/Wap/default/common/kawahk/4011/4011_1.jpg"/>
+        </div>  
+        <div id="shuo">
+            <img src="tpl/Wap/default/common/kawahk/4011/4011_0.png"/>
+        </div>      
+        <div id="zi">
+            <img id="fontimg" />
+        </div>
+        <div id="shuming">
+            <img src="tpl/Wap/default/common/kawahk/4011/4011_2.png"/>
+        </div>
+        
+    </div>  
+    
+
+<div id="textsuper" style="position:absolute;top:-1000;left:-1000;overflow-x:hidden;overflow-y:hidden;z-index:4000;">
+    <div id="textsub" style='color:black;position:relative;font-size:20pt;line-height:36pt' >
+    
+    </div>
+</div>
+
+<script>loadFontImg();</script>
+
+</body>  
+</html>  

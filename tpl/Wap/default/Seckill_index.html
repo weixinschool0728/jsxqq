@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1" />
+<title>{weimicms:$action_name}</title>
+<link rel="stylesheet" href="{weimicms:$staticPath}/tpl/static/seckill/css/style.css"/>
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/alert.js"></script>
+</head>
+
+<body style="background-color:#efefef;">
+<if condition="$memberNotice neq ''">
+	{weimicms:$memberNotice}
+</if>
+<div class="banner" style="height:150px;overflow:hidden;width:100%;">
+	<img src="{weimicms:$action_header_img}" width="100%" alt="" />
+</div>
+
+<div class="time">
+	<h1 class="time_1">您的抢购时间</h1>
+	<h1 class="time_2">{weimicms:$s_time|date="Y-m-d",###}</h1>
+	<h1 class="time_3">{weimicms:$s_time|date="H:i:s",###}</h1>
+    <h2 class="time_old">标准时间<br/>
+    <span style="text-decoration:line-through">{weimicms:$action_sdate|date="Y-m-d H:i:s",###}</span></h2>
+    <h2>当前排名<br/>第<span style=" color:#288b26;">{weimicms:$num}</span>位</h2>
+</div>
+<if condition="$status eq 0">
+	<a href="{weimicms::U('shop_invite', array('id'=>$action_id,'share_code'=>$share_code,'token'=>$token))}"><div class="btn">我要提前抢</div></a>
+<elseif condition = "$status eq 1" />
+	<div class="btn">抢购中点击商品抢购</div>
+<else />
+	<a href="javascript:;"><div class="btn">活动已结束</div></a>
+</if>
+<if condition="$share eq ''">
+<a href="{weimicms::U('shop_invite', array('id'=>$action_id,'share_code'=>$share_code,'token'=>$token))}"><div class="text">暂无好友帮忙，快去邀请吧！</div></a>
+<else />
+<div class="help">
+<h1>帮助过您的好友&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{weimicms::U('see_invite', array('id'=>$action_id,'share_code'=>$share_code,'token'=>$token))}">详细列表</a></h1> 
+<volist name="share" id="vo">
+	<div>
+    	<img src="{weimicms:$vo.share_pic}" width="100%">
+        {weimicms:$vo.share_nickname}帮您提前{weimicms:$vo.share_time}秒
+        <h2>
+        	<span style=" font-weight:bold;">-{weimicms:$vo.share_time}</span>秒
+		</h2>
+    </div>
+ </volist> 
+</div>
+</if>
+
+<div class="guize" style="height:auto;padding-bottom:20px;">
+	<div>活动规则</div>
+{weimicms:$action_rule|html_entity_decode}
+</div>
+<div class="btn" style="width:26%;margin-left:5%;" onclick="window.location.href='/index.php?g=Wap&m=Seckill&a=my_cart&uid={weimicms:$uid}&id={weimicms:$action_id}&token={weimicms:$token}'">我的订单</div>
+<!--a href='{weimicms::U("my_cart", array("uid" => $uid ,"id" => $action_id ,"token" => $token))}'><div class="text">我的订单</div></a-->
+<ul class="product">
+<volist name="shop" id="vo" key="k">
+<if condition="$k%2 neq 0">
+	<li class="product-left">
+	<a <if condition="$notice_content eq 'no_follow'">href="#fly_page" onclick="anchor_follow()"<elseif condition="$notice_content eq 'no_register'" />href="#TopTip" onclick="anchor()"<else />href="{weimicms::U('shop', array('id'=>$action_id,'sid'=>$vo['shop_id'],'uid'=>$uid,'token'=>$token))}"</if> class="link js-goods clearfix" data-goods-id="5507105" title="{weimicms:$vo.shop_name}">
+	<img src="{weimicms:$vo.shop_img}" width="100%"/>
+    	<h3>{weimicms:$vo.shop_name}</h3>
+        <h4><span style="font-size:15px; color:#ff0000; margin-right:2.5%;">￥{weimicms:$vo.shop_price}</span>
+        <!--span style=" font-size:12px; color:#808080; text-decoration:line-through; margin-right:5%;">￥6</span-->
+        数量:{weimicms:$vo.shop_num}
+        </h4>
+	</a>	
+    </li>
+	<else />
+	<li class="product-right">
+	<a <if condition="$notice_content eq 'no_follow'">href="#fly_page" onclick="anchor_follow()"<elseif condition="$notice_content eq 'no_register'" />href="#TopTip" onclick="anchor()"<else />href="{weimicms::U('shop', array('id'=>$action_id,'sid'=>$vo['shop_id'],'uid'=>$uid,'token'=>$token))}"</if> class="link js-goods clearfix" data-goods-id="5507105" title="{weimicms:$vo.shop_name}">
+	<img src="{weimicms:$vo.shop_img}" width="100%"/>
+    	<h3>{weimicms:$vo.shop_name}</h3>
+        <h4><span style="font-size:15px; color:#ff0000; margin-right:2.5%;">￥{weimicms:$vo.shop_price}</span>
+        <!--span style=" font-size:12px; color:#808080; text-decoration:line-through; margin-right:5%;">￥6</span-->
+        数量:{weimicms:$vo.shop_num}
+        </h4>
+	</a>	
+    </li>
+	</if>
+	</volist>	
+</ul>
+
+<script type="text/javascript">
+	window.shareData = {  
+		"moduleName":"Seckill",
+		"moduleID":"{weimicms:$action_id}",
+		"imgUrl": "{weimicms:$action_header_img}", 
+		"timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U('Seckill/index',array('token'=>$token,'id'=>$action_id))}",
+		"sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Seckill/index',array('token'=>$token,'id'=>$action_id))}",
+		"weiboLink": "{weimicms:$f_siteUrl}{weimicms::U('Seckill/index',array('token'=>$token,'id'=>$action_id))}",
+		"tTitle": "{weimicms:$action_name}",
+		"tContent": "{weimicms:$action_name}"
+	};
+</script>
+		{weimicms:$shareScript}
+<script type="text/javascript">
+//锚点
+function anchor(){
+	$(".closed").show();
+    $("._flys").show();
+	$("#TopTipHolder").show();
+	if($("#TopTipHolder").css('height') == '0px'){
+		$("#TopTipClose").click();//执行关闭
+		$("#TopTipHolder").css('height','35px');//弹出
+	}
+}
+function anchor_follow(){
+	$(".closed").show();
+    $("._flys").show();
+	$("#fly_page").show();
+}
+//隐藏提醒关注注册弹框
+$(".close").click(function(){
+	$("#no_follow").hide();
+	$("#bg").hide();
+});
+</script>
+</body>
+</html>

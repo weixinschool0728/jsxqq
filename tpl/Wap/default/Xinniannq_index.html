@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<!-- saved from url=(0033)http://119.29.6.117/2015/1.php#rd -->
+<html  xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>2015乙未羊，为自己摇枚新年签！</title>
+<link  rel="stylesheet"  href="tpl/Wap/default/common/xinnian/233.css">
+<meta  name="viewport"  content="width=device-width, initial-scale=1, maximum-scale=1">
+</head>
+<body>
+<div  style="display:none"> <img  src="tpl/Wap/default/common/xinnian/thumbnail.gif">
+  <p>这是对过去的感悟和对新年的祈望，希望它能为你带来好运…………………………</p>
+</div>
+<div  class="do">摇一摇手机（点我也可以哦）</div>
+<div  class="cover result">
+  <div  class="item">
+    <div  class="sprite a1"></div>
+  </div>
+</div>
+<div  class="cover decode">
+  <div  class="inner"></div>
+</div>
+<script  src="tpl/Wap/default/common/xinnian/zepto.min.js"></script> 
+<script>
+﻿new Image().src="tpl/Wap/default/common/xinnian/decode.png";
+new Image().src="tpl/Wap/default/common/xinnian/234.png";
+var start, showDecode, jumpToDecode, lastTime, lastAcc, isStarted = false;
+
+start = function() {
+	isStarted = true;
+	$('.decode').hide();
+	$('.result').show();
+	
+	setTimeout(showDecode, 3000);
+}
+
+showDecode = function(){
+	$('.result').hide();
+	$('.decode').show();
+	setTimeout(jumpToDecode, 3000);
+}
+
+jumpToDecode = function(){
+	var urls = [
+	
+	<volist name="nq" id="vo">
+	"{weimicms:$vo}",
+	
+	</volist>
+	
+	];
+	var jumpTo = urls[parseInt(Math.random() * urls.length)];
+	window.location = jumpTo;
+}
+
+$('.do').click(start);
+
+//摇一&#65533;
+$(window).on('deviceorientation', function(e) {
+	if (isStarted) {
+		return true;
+	}
+	if (!lastAcc) {
+		lastAcc = e;
+		return true;
+	}
+	var speed = e.alpha + e.beta + e.gamma - lastAcc.alpha - lastAcc.beta - lastAcc.gamma;
+	if (Math.abs(speed) > 50) {
+		start();
+	}
+	lastAcc = e;
+});
+
+
+</script>
+  <input id="wx-share-title" type="hidden" value="2015乙未羊，为自己摇枚新年签" />
+<input id="wx-share-img" type="hidden" value="tpl/Wap/default/common/xinnian/thumbnail.gif" />
+<input id="wx-share-desc" type="hidden" value="这是对过去的感悟和对新年的祈望，希望它能为你带来好运.." />
+<input id="wx-share-link" type="hidden" value="" />
+<input id="sharebackurl" type="hidden" value="tpl/Wap/default/common/xinnian/thumbnail.gif" /> 
+<script src="tpl/static/sharewx.js" type="text/javascript"></script>
+</body>
+</html>

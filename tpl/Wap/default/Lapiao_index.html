@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="description" content="微信">
+<title>{weimicms:$wlp['name']}</title>
+<script type="text/javascript" src="./tpl/static/jquery.min.js"></script>
+<link rel="stylesheet" href="{weimicms::STATICS}/lapiao/lp_wap.css" />
+</head>
+
+<body>
+    <section class="Fh_head"></section>
+	<div class=""></div>
+	<section class="F_home box-shadow marg20">
+		<h1>{weimicms:$wlp['name']}</h1>
+		<div class="Fh_img position_re">
+			<img class="img_width" src="{weimicms:$wlp['pic']}">
+				<span id="countDown" style="display: none;"></span>
+		</div>
+		<div class="Fh_price Fh_teshd F_zindex">
+			<strong>您的排名:{weimicms:$pm}</strong>
+			
+			<span class="F_grey">已有<cite>{weimicms:$sl}</cite>人给您投票</span>
+		    <div style="clear: both;margin-top:10px;">
+				<small class="F_grey">截止日期：{weimicms:$tgsysj}</small>
+				<small style="text-align: bottom;float:right;">奖品数量{weimicms:$wlp['sl']}</small>
+			</div>
+			<strong>您的票号:</strong>{weimicms:$sn}
+		</div>
+		<!-- 商品描述 -->
+		<h2 class="fhdtl_h">
+			<strong>活动描述</strong>
+		</h2>
+		<div class="fhdtl_p">
+			<p>
+				{weimicms:$wlp['ms']}
+			</p>
+		</div>
+		<h2 class="fhdtl_h">
+			<strong>活动规则</strong>
+		</h2>
+		<div class="fhdtl_p">
+			<php>echo htmlspecialchars_decode($wlp['tbtx'])</php>
+		</div>
+		<h2 class="fhdtl_h">
+			<strong>得票排名</strong>
+		</h2>		
+		<div class="fhdtl_p">
+			<p>
+				<table border="0" width="100%" align="center" style="background-color: #b9d8f3;">
+				<tr style="text-align: center; COLOR: #0076C8; BACKGROUND-COLOR: #F4FA4E; font-weight: bold">
+					<th width="15%"> 排名</th>
+					<th width="30%"> 票号</th>
+					<th width="35%"> 昵称 </th>
+					<th width="20%"> 得票 </th>
+				</tr>
+				<tbody>
+				<?php $__i=0; ?>
+				<volist name="list" id="r"> 
+				<?php $__i++; ?>
+				<tr style="text-align: center; COLOR: #0076C8; BACKGROUND-COLOR: #F4FAFF; font-weight: bold">
+						<td width="15%"> <?php echo $__i; ?> </td>
+						<td width="30%"> {weimicms:$r['sn']} </td>
+						<td width="35%"> {weimicms:$r['un']}</td>
+						<td width="20%"> {weimicms:$r['sl']} </td>
+				</tr>
+				</volist>
+				</tbody>
+			</table>
+			</p>
+		</div>
+		<div style="margin-bottom:80px;text-align: center;margin-top:50px;">
+            <p class="page-url">
+                <a href="/" target="_blank" class="page-url-link"></a>
+            </p>
+		</div>
+		<footer>
+			<div class="Fh_btn2 dlt_btn">
+				<i></i>       
+				<if condition="($status lt $time) and ($tgsysj gt $time )">					
+				<if condition="$sn neq ''">
+				<a class="fhbtn F_bB1" id="tuanBtn" href="{weimicms:$wlp['moreurl']}" style="font-size: medium;"> 点击分享,通知小伙伴们来帮忙吧 </a>
+				<else/>
+				<a class="fhbtn F_bB1" id="tuanBtn" href="{weimicms::U('Lapiao/buy',array('token'=>$token,'id'=>$wlp['id'],'wecha_id'=>$wxid))}" style="font-size:large;">立即参与</a>
+				</if>
+				
+				<else/>
+					              
+				<if condition="$status gt $time">
+						<a class="fhbtn F_bB1" id="tuanBtn" href="" style="font-size: medium;"> 活动还没开始,请耐心等待 </a>
+				<else/>         
+				<if condition="$$time lt $tgsysj">
+						<a class="fhbtn F_bB1" id="tuanBtn" href="" style="font-size: medium;"> 活动已经结束 </a>
+				</if>
+				</if>
+				</if>
+				<i class="iright"></i>
+			</div>
+		</footer>
+	</section>
+	<img src="/res/tg/images/tuan_success.png" id="status" style="position: absolute; z-index: 1999; top: 10px; left: 70px; display: none;">
+<div class="mfooter" id="wxgjfooter" style="text-align: center;width: 100%;height: 20px;line-height: 20px;margin-top:10px;">
+</div>
+<style>
+.share-alert-box {
+    position: fixed;
+    top: 0px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(/tpl/static/lapiao/fenxiang.png) no-repeat top center rgba(0, 0, 0, 0.8);
+    background-size: 90% auto;
+    z-index: 9999999;
+}
+</style>
+
+
+<script>
+			function showshare(){
+        var str = '<div class="share-alert-box"></div>';
+        $('body').append(str);
+        $('.share-alert-box').on('click', function () {
+            $('.share-alert-box').remove();
+        })
+      }
+</script>
+<script>
+window.shareData = {  
+		"moduleName":"Lapiao",
+		"moduleID": '111',
+		"imgUrl": "{weimicms:$wlp['pic']}", 
+		"sendFriendLink":"{weimicms:$f_siteUrl}{weimicms::U('Lapiao/index',array('token'=>$token,'id'=>$wlp['id']))}",
+		"timeLineLink":"{weimicms:$f_siteUrl}{weimicms::U('Lapiao/index',array('token'=>$token,'id'=>$wlp['id']))}",
+		"weiboLink":"{weimicms:$f_siteUrl}{weimicms::U('Lapiao/index',array('token'=>$token,'id'=>$wlp['id']))}",
+		"tTitle": "{weimicms:$wlp['name']}"+"_关注后我的票号"+"{weimicms:$sn},一起赢大奖",
+		"tContent": "{weimicms:$wlp['ms']}-小伙伴们快来帮忙赢大奖"
+	};
+</script>
+{weimicms:$shareScript}
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{weimicms:$kndata.title}</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="target-densitydpi=320,width=640,min-height:900px;user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" type="text/css" href="/tpl/Wap/default/common/knwx/js/style1.css"/>
+<link rel="stylesheet" type="text/css" href="/tpl/Wap/default/common/knwx/js/button1.css"/>
+<!--[if lt IE 9]>
+            <link rel="stylesheet" type="text/css" href="/tpl/Wap/default/common/knwx/js/pcstyle1.css" />
+        <![endif]-->
+<link media="screen and (min-width:1000px)" rel="stylesheet" type="text/css" href="/tpl/Wap/default/common/knwx/js/pcstyle1.css"/>
+<script src="http://lib.sinaapp.com/js/jquery/1.8.3/jquery.min.js"></script>
+<script src="/tpl/Wap/default/common/knwx/js/warterfall.js"></script>
+<link rel="stylesheet" type="text/css" href="/tpl/Wap/default/common/knwx/js/ms2.css"/>
+<style>
+            body{-webkit-touch-callout: none; -webkit-text-size-adjust: none;}
+			.page-bizinfo{ background:url(/tpl/Wap/default/common/knwx/1042/1042_1.jpg) #ecf4ec repeat-x center top ;height:428px; width:640px;}
+			.page-button {padding:20px 0px 0px 0px; margin:0;background:url(/tpl/Wap/default/common/knwx/1042/1042_2.jpg) repeat; text-align:right; top:428px; z-index:20; width:640px;height:100px;}
+			.page-content{ background:url(/tpl/Wap/default/common/knwx/1042/1042_3.jpg) repeat; top:428px; min-height:650px; _height:650px; width:640px;}
+			.klink{font-size:12px;text-decoration:none;color:#74aaf0}	
+			.page-foot{ background:url(/tpl/Wap/default/common/knwx/1042/1042_4.jpg) #ffffe6 repeat-x center top;  margin:0 auto; min-height:196px;_height:196px; width:640px;	}	
+			
+			#activity-detail .page-bizinfo .header #activity-name{padding-left:30px;color:#000;}
+			#activity-detail .page-content .text p{padding:3px 32px 9px 42px; color:#42661C;}
+			#activity-detail .page-content .text p img{ width:90%;}
+					
+			#zuqiu{
+				position:absolute; 
+				left:390px;
+				top:190px;
+				-webkit-animation:bounceInDown 2s 0.5s 1 linear normal both, rotatelinear 2s 2.5s infinite linear normal both;
+			}
+			#cover{
+				position:absolute; 
+				left:0px;
+				top:190px;
+				z-index:0;
+			}			
+			
+			 @-webkit-keyframes bounceInDown{
+				0%{opacity:0;
+				-webkit-transform:translateY(-2000px)}
+				
+				100%{-webkit-transform:translateY(0)}
+			}
+			
+			@-webkit-keyframes rotatelinear{				
+					0%{
+					-webkit-transform:rotate(0deg);
+					} 
+					100%{
+					-webkit-transform:rotate(360deg);
+					}
+			}
+			
+			#dengguang{
+					position:absolute;
+					top:140px;
+					-webkit-backface-visibility:visible;
+					-webkit-transform-origin:center center;
+					-webkit-animation:fadeout 4s 0s ease normal none ;
+				}
+					
+			@-webkit-keyframes fadeout{
+				0% {opacity: 0;}				
+				100%{opacity: 1;} 
+			}		
+			.text img{
+				-webkit-box-shadow: 3px 6px 10px rgba(0, 0, 0, .5), 0 2px 3px rgba(0, 0, 0, .5);
+				-moz-box-shadow: 3px 6px 10px rgba(0, 0, 0, .5), 0 2px 3px rgba(0, 0, 0, .5);
+				-o-box-shadow: 3px 6px 10px rgba(0, 0, 0, .5), 0 2px 3px rgba(0, 0, 0, .5);
+				box-shadow: 3px 6px 10px rgba(0, 0, 0, .5), 0 2px 3px rgba(0, 0, 0, .5);
+			}
+        </style>
+<script>
+			
+			 <if condition="$music eq ''">
+						var gSound = '/tpl/Wap/default/common/knwx/1042/1042.mp3';
+			<else/>
+			var gSound = '{weimicms:$music}';</if>
+			function playbksound()
+			{
+				var audiocontainer = document.getElementById('audiocontainer');
+				audiocontainer.innerHTML = '<audio id="bgsound" loop="loop" autoplay="autoplay"></audio>';
+						
+				var audio = document.getElementById('bgsound');
+				audio.src = gSound;
+				audio.play();
+			}	
+						
+		</script>
+			<script type="text/javascript">
+			window.shareData = {  
+					"moduleName":"Index",
+					"moduleID": '0',
+					"imgUrl": "{weimicms:$wql.pic}", 
+					"timeLineLink": "{weimicms::C('site_url')}{weimicms::U(Knwx/indexhi,array('token'=>$token,'wecha_id'=>$wecha_id,'action'=>'save','catgroy'=>$_GET['catgroy'],'id'=>$id,'music'=>$music))}",
+					"sendFriendLink":"{weimicms::C('site_url')}{weimicms::U(Knwx/indexhi,array('token'=>$token,'wecha_id'=>$wecha_id,'action'=>'save','catgroy'=>$_GET['catgroy'],'id'=>$id,'music'=>$music))}",
+					"weiboLink":"{weimicms::C('site_url')}{weimicms::U(Knwx/indexhi,array('token'=>$token,'wecha_id'=>$wecha_id,'action'=>'save','catgroy'=>$_GET['catgroy'],'id'=>$id,'music'=>$music))}",
+					"tTitle": "{weimicms:$time.title}",
+					"tContent": "【{weimicms:$time.title}】{weimicms:$wqlinfo.content}"
+				};
+		</script>
+	<script>document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+		playbksound();	
+        WeixinJSBridge.on('menu:share:appmessage', function (argv) {
+		<if condition="$time.save neq 'save'">
+			alert("请先保存再分享");
+			return;
+		</if>
+         shareHandle('friend');
+            WeixinJSBridge.invoke('sendAppMessage', { 
+                "img_url": window.shareData.imgUrl,
+                "img_width": "640",
+                "img_height": "640",
+                "link": window.shareData.sendFriendLink,
+                "desc": window.shareData.tContent,
+                "title": window.shareData.tTitle
+            }, function (res) {
+                _report('send_msg', res.err_msg);
+            })
+        });
+
+        WeixinJSBridge.on('menu:share:timeline', function (argv) {
+		<if condition="$time.save neq 'save'">
+					alert("请先保存再分享");
+						return;
+					</if>
+         shareHandle('frineds');
+            WeixinJSBridge.invoke('shareTimeline', {
+                "img_url": window.shareData.imgUrl,
+                "img_width": "640",
+                "img_height": "640",
+                "link": window.shareData.sendFriendLink,
+                "desc": window.shareData.tContent,
+                "title": window.shareData.tTitle
+            }, function (res) {
+                _report('timeline', res.err_msg);
+            });
+        });
+
+        WeixinJSBridge.on('menu:share:weibo', function (argv) {
+		<if condition="$time.save neq 'save'">
+					alert("请先保存再分享");
+						return;
+					</if>
+         shareHandle('weibo');
+            WeixinJSBridge.invoke('shareWeibo', {
+                "content": window.shareData.tContent,
+                "url": window.shareData.sendFriendLink,
+            }, function (res) {
+                _report('weibo', res.err_msg);
+            });
+        });
+        }, false)
+        
+        function shareHandle(to) {
+	var submitData = {
+		module: window.shareData.moduleName,
+		moduleid: window.shareData.moduleID,
+		token:'{weimicms:$token}',
+		wecha_id:'{weimicms:$wecha_id}',
+		url: window.shareData.sendFriendLink,
+		to:to
+	};
+	$.post('/index.php?g=Wap&m=Knwx&a=share&token={weimicms:$token}&wecha_id={weimicms:$wecha_id}&catgroy={weimicms:$catgroy}',submitData,function (data) {},'json')
+}
+        </script> 
+</head>
+<body id="activity-detail">
+<div class="top_div">
+<if condition="$time.save neq 'save'">
+  <marquee width=640 behavior=scroll direction=left>
+  完成后请"保存"，保存后无法修改。禁止任何诱导分享和政治相关的内容。
+  </marquee>
+ </if>
+</div>
+<script type="text/javascript">
+					
+		function openModel(){
+			var td = document.getElementById("model");
+			
+			var scrollTop = (window.pageYOffset || document.documentElement.scrollTop) ;
+			td.style.display = "block";
+			td.style.top = scrollTop+"px";
+		}
+		function closeModel(){
+			var td = document.getElementById("model");
+			td.style.display = "none";
+		}
+		function showmodel1(){
+			var td = document.getElementById("model1");
+			td.style.display = "block";
+			closeModel();
+		}
+		function closeModel1(){
+			var td = document.getElementById("model1");
+			td.style.display = "none";			
+		}
+		
+		var showNum1 = 6;
+		var showNum2 = 2;
+	</script>
+<script src="/tpl/Wap/default/common/knwx/js/load.js"></script>
+<script src="/tpl/Wap/default/common/knwx/js/jquery.lazyload.min.js"></script>
+<include file="Knwx:model"/>
+<script type="text/javascript" src="/tpl/Wap/default/common/knwx/js/autoHeight.js"></script>
+<div id="zuqiu"> <img src="/tpl/Wap/default/common/knwx/1042/1042_zuqiu.png"/> </div>
+<div id="cover"> <img src="/tpl/Wap/default/common/knwx/1042/1042_cover.png"/> </div>
+<div class="page-bizinfo">
+  <div class="header"> <br>
+    <br>
+    <br>
+    <br>
+  <h1 id="activity-name"> {weimicms:$time.title} </h1>
+    <p class="activity-info"> <span id="post-date" class="activity-meta no-extra" style="color:#ffffff;top:0%;"> 
+	{weimicms:$time.time|date="Y-m-d H:i:s",###} </span> </p>
+  </div>
+</div>
+<if condition="$time.save eq 'save'">
+<div class="page-button">	
+					<li><a id="modm"  class="super button green" href="{weimicms:$info.gzlj}">点这里，自己做微秀</a></li>
+		
+		</div>
+</if>
+<if condition="$time.save neq 'save'">
+<div class="page-button">
+  <li><a id="musicm" class="super button yellow" onClick="openMusic();">选音乐</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id="modm" class="super button blue" onClick="openModel();">换背景</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a id="modify" class="super button orange"  href="/index.php?g=Wap&m=Knwx&a=changnr&id={weimicms:$id}&token={weimicms:$token}&wecha_id={weimicms:$wecha_id}&catgroy={weimicms:$_GET['catgroy']}">改内容</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a class="super button green" href="/index.php?g=Wap&m=Knwx&a=indexhi&id={weimicms:$id}&token={weimicms:$token}&wecha_id={weimicms:$wecha_id}&action=save&catgroy={weimicms:$_GET['catgroy']}&music={weimicms:$music}&tpid=1042">保存</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+</div></if>
+<div class="page-content"> <br>
+  <br>
+  <br>
+  <div class="text">
+     <volist name="Kndatas" id="infoitem"  >
+   
+
+   <if condition="$infoitem['content'] neq ''"><p style='text-indent:2em;'>{weimicms:$infoitem.content}</p><else />
+ <p style='text-align:center;'> <img data-src='{weimicms:$infoitem.pic}'/></p></if>
+
+	
+   </volist>
+
+    <br>
+  </div>
+   <include file="Knwx:footer"/> 
+</div>
+</body>
+</html>

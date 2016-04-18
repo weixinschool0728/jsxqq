@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>{weimicms:$zhuli.biaoti}</title>
+	<meta name="format-detection" content="telephone=no, address=no">
+	<meta name="apple-mobile-web-app-capable" content="yes" /> <!-- apple devices fullscreen -->
+	<meta name="apple-touch-fullscreen" content="yes"/>
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="{$share['title']}" />
+	<link href="tpl\Wap\default\common\weizhuli/css/bootstrap.min.css" rel="stylesheet">
+	<link href="tpl\Wap\default\common\weizhuli/css/font-awesome.min.css" rel="stylesheet">
+	<link href="tpl\Wap\default\common\weizhuli/css/animate.css" rel="stylesheet">
+	<link href="tpl\Wap\default\common\weizhuli/css/common.css" rel="stylesheet">
+	
+	<script src="tpl/Wap/default/common/weizhuli/js/require.js"></script>
+	<script src="tpl/Wap/default/common/weizhuli/js/app/config.js"></script>
+	<script type="text/javascript" src="tpl/Wap/default/common/weizhuli/js/lib/jquery-1.11.1.min.js"></script>
+	
+	
+</head>
+<body>
+<div class="container container-fill">
+	
+<style>
+	body{ background:url({weimicms:$zhuli.hdbg});background-repeat:no-repeat;background-size:cover;}
+	.panel{margin:.5em;padding-top:90%;border:none;background:rgba(0,0,0,0);text-align:center;}
+	.panel a{color:#fff;line-height:30px;}
+	.btn{border: 0; height: 40px; line-height: 40px; font-size: 18px;}
+	.btn span{color: #FF0000; font-size:26px;}
+	.btn.btn-info{background: #FFF; color: #333;}
+	.btn.btn-primary{background: #F2CB0F; color: #333;}
+	#mcover{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0, 0, 0, 0.7);display:none;z-index:20000;}
+	#mcover img{position:fixed;right: 18px;top:5px;width:260px;height:180px;z-index:20001;}
+	
+	.cropyt {
+		margin-top: 10px;
+		font: 14px/1.5 Microsoft YaHei, Helvitica, Verdana, Arial, san-serif;
+		text-align: center;
+		width: 100%;
+	}
+</style>
+	<script type="text/javascript">
+	$(function(){
+		countDown("{weimicms:$zhuli.statdate|date='Y-m-d',###}","#colockbox1");
+	});
+	function countDown(time,id){
+		var day_elem = $(id).find('.day');
+		var hour_elem = $(id).find('.hour');
+		var minute_elem = $(id).find('.minute');
+		var second_elem = $(id).find('.second');
+		var end_time = new Date(time).getTime(),//月份是实际月份-1
+		sys_second = (end_time-new Date().getTime())/1000;
+		var timer = setInterval(function(){
+			if (sys_second > 1) {
+				sys_second -= 1;
+				var day = Math.floor((sys_second / 3600) / 24);
+				var hour = Math.floor((sys_second / 3600) % 24);
+				var minute = Math.floor((sys_second / 60) % 60);
+				var second = Math.floor(sys_second % 60);
+				day_elem && $(day_elem).text('活动剩余时间：'+day+'天');//计算天
+				$(hour_elem).text(hour<10?"0"+hour+'小时':hour+'小时');//计算小时
+				$(minute_elem).text(minute<10?"0"+minute+'分':minute+'分');//计算分钟
+				$(second_elem).text(second<10?"0"+second+'秒':second+'秒');//计算秒杀
+			} else { 
+				$('#colockbox1').text('该活动已经结束');
+			}
+		}, 1000);
+	}
+	</script>
+<div class="panel panel-info">
+	<div class="panel-body">
+	  <div class="turnTime " style="color: white;
+margin-bottom: 2%;
+font-size: 25px;" id="colockbox1"><span class="day">00</span> <span class="hour">00</span> <span class="minute">00</span> <span class="second">00</span> </div>
+	<if condition="($user neq '') and ($iszhuli neq '1')">
+	<a class="btn btn-info btn-block" style="height:80px">成功为您的朋友助力了<br>{weimicms:$zhuli.ch}<span><b>{weimicms:$a}</b></span>{weimicms:$zhuli.jfdw}</a><elseif condition="$iszhuli eq '1'" /><a class="btn btn-info btn-block" style="height:80px">您已经帮您的好友助力过了！</br>您的好友会对你感激不尽哦！</a><else/>
+		<a class="btn btn-info btn-block">已获得{weimicms:$zhuli.ch}<span><b>{weimicms:$info.score}</b></span>{weimicms:$zhuli.jfdw}</a></if>
+		
+			<if condition="$user neq ''"><else/><a href="javascript:void(0)" id="share_friend" class="btn btn-primary btn-block">邀请好友助力</a></if>
+		
+		
+			
+		<if condition="$user neq ''"><a href="{weimicms:$zhuli.lj}"  class="btn btn-primary btn-block">我也要参加</a><else/>
+		<a href="/index.php?g=Wap&m=Weizhuli&a=sorts&id={weimicms:$ids}&token={weimicms:$token}&wecha_id={weimicms:$wecha_id}"  class="btn btn-primary btn-block">积分排名</a></if>
+		
+		<p>{weimicms:$zhuli.tishi}，<a href="/index.php?g=Wap&m=Weizhuli&a=rule&id={weimicms:$ids}&token={weimicms:$token}&wecha_id={weimicms:$wecha_id}">点击查看活动规则>>></a></p>
+	</div>
+	
+	<span class="cropyt" style="text-align: center;">{weimicms:$zhuli.banquan}</span>
+</div>
+ 
+<div id="mcover" onClick="$(this).hide()"><img src="tpl\Wap\default\common\weizhuli\images\guide.png"></div>
+
+<script type="text/javascript" src="tpl\Wap\default\common\weizhuli/js/lib/bootstrap.min.js"></script>
+	
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+    <script type="text/javascript">
+	$(document).ready(function(){
+	
+		$("#share_friend").click(function(){
+			$("#mcover").show();
+			
+		});
+	});
+			window.shareData = {  
+					"moduleName":"Weizhuli",
+					"moduleID": '0',
+					"imgUrl": "{weimicms:$zhuli.hd}", 
+					"timeLineLink": "{weimicms::C('site_url')}{weimicms::U(MODULE_NAME/ACTION_NAME,array('token'=>$token,user=>$wecha_id,'do'=>'share','ids'=>$ids))}",
+					"sendFriendLink": "{weimicms::C('site_url')}{weimicms::U(MODULE_NAME/ACTION_NAME,array('token'=>$token,user=>$wecha_id,'do'=>'share','ids'=>$ids))}",
+					"weiboLink": "{weimicms::C('site_url')}{weimicms::U(MODULE_NAME/ACTION_NAME,array('token'=>$token,user=>$wecha_id,'do'=>'share','ids'=>$ids))}",
+					"tTitle": "{weimicms:$zhuli.biaoti}",
+					"tContent": "{weimicms:$zhuli.sharenr}"
+				};
+		</script>
+        	
+        {weimicms:$shareScript}
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{weimicms:$thisCard.cardname}</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<meta name="Keywords" content=""/>
+<meta name="Description" content=""/>
+<!-- Mobile Devices Support @begin -->
+<meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+<meta content="telephone=no, address=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<!-- apple devices fullscreen -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<!-- Mobile Devices Support @end -->
+<link href="{weimicms::$staticPath}/tpl/static/card/css/main.css" rel="stylesheet" type="text/css">
+<script src="{weimicms::$staticPath}/tpl/static/jquery.min.js" type="text/javascript"></script>
+</head>
+<body onselectstart="return true;" ondragstart="return false;">
+<div class="container addr_add  integran_teach">
+    <header class="center">
+        <label style="display:inline-block;">
+            <span>&nbsp;</span>
+            会员充值
+        </label>
+    </header>
+    <div class="body">
+        <div>
+            <form action="{weimicms::U('Card/payAction',array('token'=>$token,'wecha_id'=>$wecha_id,'cardid'=>$thisCard['id']))}" name="myform" id="Js-myform" method="post">
+                <table class="table_addr">
+                <tr>
+                    <td>
+                      会员卡号
+                    </td>
+                    <td>
+                        {weimicms:$card.number}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                      充值金额
+                    </td>
+                    <td>
+                        <input type="text" value="" name="price" placeholder="请输入充值金额"/>
+                        <input type="hidden" name="cardid" value="{weimicms:$info.cardid}" />
+                        <input type="hidden" name="number" value="{weimicms:$card.number}" />
+                        <input type="hidden" name="token" value="{weimicms:$info.token}" />
+                        <input type="hidden" name="wecha_id" value="{weimicms:$info.wecha_id}" />
+                    </td>
+                </tr>
+                </table>
+            </form>
+        </div>
+        <div class="pt_10 pb_10 pl_10 pr_10">
+            <a href="javascript:void(0);" class="button">提&nbsp;&nbsp;&nbsp;交</a>
+        </div>
+        <if condition="$thisCard.is_donate eq 1">
+            <article>
+                <h3 style="text-align:center;font-size:18px;">充值赠送说明</h3>
+                {weimicms:$thisCard.donate_intro|htmlspecialchars_decode}
+            </article>
+        </if>
+    </div>
+</div>
+<script>
+$(function(){
+
+
+    $('.button').click(function(){
+        $('#Js-myform').submit();
+    });
+
+});
+</script>
+
+<include file="Card:bottom"/>
+<include file="Card:share"/>
+</body>
+</html>

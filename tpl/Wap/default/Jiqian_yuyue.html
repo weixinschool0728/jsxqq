@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+ <head> 
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+  <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" /> 
+  <script charset="utf-8" async="" src="./tpl/Wap/default/common/Jiqian/jquery.min.js"></script>       
+  <link rel="stylesheet" type="text/css" href="./tpl/Wap/default/common/jiqian/tysj.css" />
+  <link rel="stylesheet" type="text/css" href="./tpl/Wap/default/common/jiqian/component.css" />
+  <title>{weimicms:$Jiqian['title']}</title> 
+  <link href="{weimicms::RES}/Jiqian/index.css" rel="stylesheet" type="text/css" /> 
+  <link type="text/css" rel="stylesheet" href="{weimicms::RES}/Jiqian/gb_v3.s.min.css" /> 
+  <link href="{weimicms::RES}/Jiqian/bootstrap.min.css" rel="stylesheet" />
+  <link href="{weimicms::RES}/Jiqian/chuangkou.min.css" type="text/css" rel="stylesheet" />
+ </head> 
+ <body> 
+  <style>
+        .wrapper img{ opacity:1} 
+        .qq_footer{display: none;}
+        body{background:url({weimicms::RES}/Jiqian/bg.jpg) 0 0 repeat-y; background-size: 100% 1px;}
+   </style> 
+   <style>
+#mcover {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    z-index: 20000;
+}
+#mcover img {
+    position: fixed;
+    right: 18px;
+    top: 5px;
+    width: 260px;
+    height: 180px;
+    z-index: 999;
+}
+</style>
+  <div class="wrapper"> 
+   <img src="{weimicms::RES}/Jiqian/head.png" width="100%" /> 
+   <img src="{weimicms::RES}/Jiqian/index_r1_c1.jpg" width="100%" /> 
+   <div class="rl"> 
+    <img src="{weimicms::RES}/Jiqian/index_r2_c1.jpg" width="100%" /> 
+    <div class="title"> 
+     <div class="marquee"> 
+      <!--WEBPAGEBEGIN@5983--> 
+      <span id="totalNum">一起集礼品demo</span> 
+      <!--WEBPAGEEND@5983--> 
+      <!--[if !IE]>|xGv00|a90ec05b216cc64d37501f3b95a46133<![endif]--> 
+      <!--<span id="totalNum">已有{#num#}人预约</span>--> 
+     </div> 
+    </div> 
+   </div> 
+   <img src="{weimicms::RES}/Jiqian/index_r3_c1.jpg" width="100%" /> 
+   <img src="{weimicms::RES}/Jiqian/index_r4_c1.jpg" width="100%" /> 
+   <div class="rl"> 
+   
+    <div id="myInfo" style="text-align:center; color:#fff;">
+      {weimicms:$yyhu[username]}已经凑集 
+     <strong>{weimicms:$now}</strong>元，还差 
+     <strong>{weimicms:$yusheng}</strong>元 
+    </div> 
+	
+    <div style="width:320px; overflow:hidden; margin:0 auto;" class="zoom"> 
+	<!--帮助过后显示这个-->
+     <div class="btn btn4" id="wantBtn" style="display:none;">
+       我也要免费领联想乐檬K3 
+     </div> 
+	 
+     <div class="btn btn4" id="drawBtn" style="display:none;">
+       为好友抽取兑换资金 
+     </div> 
+	 	<!--帮助过后显示这个-->
+	 <!--判断是否兑换-->
+	 <if condition="$duihuan eq 0">
+        <div class="btn btn7" id="shareBtn"><a href="{weimicms::U('Jiqian/reg',array('token'=>$_GET['token'],'id'=>$_GET['id']))}">我也要免费领{weimicms:$Jiqian['allpeople']}</a></div>
+    <div class="btn btn7" id="shareBtn" ><a href="javascript:;" onclick="document.getElementById('mcover').style.display='block';">邀请好友来帮忙</a></div>	
+	<div id="mcover" onclick="document.getElementById('mcover').style.display='';" style="display: none;">
+     <img src="/tpl/static/assets/public/css/images/121.png">
+</div>
+	<else/>
+	
+        
+<div class="btn btn7" id="shareBtn">		<a href="{weimicms::U('Jiqian/yuyue',array('token'=>$_GET['token'],'id'=>$_GET['id'],'wecha_id'=>$_GET['wecha_id']))}">
+查看我的兑换基金</a></div>	
+    <div class="btn btn7" id="shareBtn" ><a href="javascript:;" onclick="document.getElementById('mcover').style.display='block';">邀请好友来帮忙</a></div>	
+	<div id="mcover" onclick="document.getElementById('mcover').style.display='';" style="display: none;">
+     <img src="/tpl/static/assets/public/css/images/121.png">
+</div>
+	</if>
+		 <!--判断是否兑换-->
+    </div> 
+   </div> 
+   <!--用户信息列表开始-->
+   
+   <ul id="list"> 
+   <volist name="list" id="r"> 
+    <li> 
+		<i><img data-src="Jiqian/face.png" width="100%" /></i>
+		<em>{weimicms:$r['bzname']}帮 [{weimicms:$yyhu[username]}] 集到{weimicms:$r['zz']}元基金</em> 
+		<div class="price"> 
+			<b>{weimicms:$r['zz']}</b>元 
+		</div> 
+	</li> 
+	</volist>
+   </ul> 
+   <!--用户信息列表结束-->
+
+   
+
+</head>
+<body>
+	<div class="md-modal md-effect-1" id="modal-1">
+			<div class="md-content">
+				<h3>活动规则</h3>
+				<div>
+					<ul>
+						{weimicms:$Jiqian['summary']}
+					</ul>
+					<button class="md-close">关闭</button>
+				</div>
+			</div>
+		</div>
+
+<div id="bg" class="bg" style="display:none;"></div>
+   <div class="btn btn5" id="view">
+     <button class="md-trigger" data-modal="modal-1">活动规则</button>
+   </div> 
+   <div class="ad zoom" id="adList"> 
+    <a href="{weimicms:$Jiqian['endtite']}"><img src="{weimicms:$Jiqian['endpicurl']}" /></a> 
+   </div> 
+   <script type="text/javascript">
+      commonFooter_ptags=['37446.1.1','37446.1.2','37446.1.3'];
+    </script> 
+   <!--[if !IE]>|xGv00|5e0eec358566b11a529ba3fd34ca27d6<![endif]--> 
+  </div> 
+  <!--提交信息 begin--> 
+  <div class="msgbox" style="display:none"> 
+   <div class="box"> 
+    <div class="closer"></div> 
+    <input type="text" placeholder="姓名：" class="name" /> 
+    <input type="text" placeholder="手机：" class="phone" /> 
+    <input type="text" placeholder="地址：" class="addressItem" /> 
+    <div class="btn">
+      提交信息 
+    </div> 
+   </div> 
+  </div> 
+  <!--提交信息 end--> 
+  <!--提交信息成功 begin--> 
+  <div class="msgbox" style="display:none" id="post-box"> 
+   <div class="box"> 
+    <div class="closer"></div> 
+    <div class="info">
+      您已经成功提交信息，请耐心等候JD工作人员与您联系 
+    </div> 
+    <div class="btn askBtn">
+      告诉小伙伴 
+    </div> 
+   </div> 
+  </div> 
+  <!--提交信息成功 end--> 
+  <!--提交信息成功2 begin--> 
+  <div class="msgbox" style="display:none" id="help-box"> 
+   <div class="box"> 
+    <div class="closer"></div> 
+    <div class="label">
+      -300 
+    </div> 
+    <div class="info2">
+      你上辈子跟他一定是有仇，给他抽中的金额竟然是-300元！ 
+    </div> 
+    <div class="btn askBtn">
+      确定 
+    </div> 
+   </div> 
+  </div> 
+
+  <div class="msgbox" style="display:none" id="success-box"> 
+   <div class="box"> 
+    <div class="closer"></div> 
+    <div class="info">
+      恭喜！您已经预约成功，并获赠50元兑换资金(需凑齐599元才能免费领取哦）和价值10元的手机配件通用券。 
+    </div> 
+    <div class="btn" id="look-btn">
+      立即查看 
+    </div> 
+   </div> 
+  </div> 
+  
+<div class="md-overlay"></div>
+		<script src="./tpl/Wap/default/common/zjp/classie.js"></script>
+		<script src="./tpl/Wap/default/common/zjp/modalEffects.js"></script>
+  <script type="text/javascript">
+window.shareData = {
+            "moduleName":"Jiqian",
+            "moduleID":"{weimicms:$_GET['id']|intval}",
+            "imgUrl": "{weimicms:$Jiqian['startpicurl']}", 
+            "timeLineLink": "{weimicms::C('site_url')}{weimicms::U('Jiqian/bz',array('token'=>$_GET['token'],'bbzz'=>$_GET['wecha_id'],'id'=>($_GET['id'])))}",
+            "sendFriendLink": "{weimicms::C('site_url')}{weimicms::U('Jiqian/bz',array('token'=>$_GET['token'],'bbzz'=>$_GET['wecha_id'],'id'=>($_GET['id'])))}",
+            "weiboLink": "{weimicms::C('site_url')}{weimicms::U('Jiqian/bz',array('token'=>$_GET['token'],'bbzz'=>$_GET['wecha_id'],'id'=>($_GET['id'])))}",
+            "tTitle": "{weimicms:$Jiqian['title']}",
+            "tContent": "{weimicms:$Jiqian['summary']}",
+        };
+</script>
+{weimicms:$shareScript}
+ </body>
+</html>

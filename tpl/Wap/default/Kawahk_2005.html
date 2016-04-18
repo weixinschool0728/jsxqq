@@ -1,0 +1,123 @@
+
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+     <include file="Kawahk:js"/> 
+	<script type="text/javascript">
+            initViewport();
+    </script>
+
+	<title>夜深了</title>	
+	<script src="http://lib.sinaapp.com/js/jquery/1.3.2/jquery.min.js"></script>
+    <style type="text/css">
+
+	<!--
+			
+		#stars{ 
+			width:450px;
+			height:200px;
+			position:absolute; 
+			left:0;
+			top:0;
+			z-index:1;
+		}
+		#stars img{ position:absolute }
+	
+	-->
+
+    </style>
+
+	
+	
+ <script>
+	// script place
+        	words = '夜深了,天上的星星闪啊闪,我窝在被子里,睡不着,想你的声音,想你的微笑,想你温暖的拥抱,想你熟悉的味道,亲爱的  我想你了,你也在想我吗？';
+
+            kawa_data = {
+                words 			   : words,
+              <if condition=" $words eq ''">
+				replace_words      : '夜深了,天上的星星闪啊闪,我窝在被子里,睡不着,想你的声音,想你的微笑,想你温暖的拥抱,想你熟悉的味道,亲爱的  我想你了,你也在想我吗？',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+                text_box           : '38 50 426 225', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+                mode               : 'print',     // up, left
+                speed              : 400,     // 每秒移动的像素
+                text_color         : '#66ffff', // rgb(1,2,3) 'black'
+                font_size          : '20pt',
+                line_height        : '30pt',
+                //text_align         : 'center',
+                font_weight        : 'bold',
+                music              : 'http://pds26.egloos.com/pds/201310/26/32/woyuanyi.mp3',     // url
+                <if condition=" $music eq ''">
+				replace_music      : 'http://pds26.egloos.com/pds/201310/26/32/woyuanyi.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+                music_name         : '',
+                replace_music_name : '#replace_music_name#',
+                icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/fengmian/x2005.jpg',
+                title              : '夜深了',
+                desc               : words,
+                modify             : 'no',
+                replace_modify     : 'yes',
+                cardid             : '2005',
+                share_url          : window.location.href,   // 当分享的是微信页面时才需要改这里
+                font_ip            : '121.42.24.240:8000',
+                modify_optfile     : 'aiqing',
+                modify_optwords    : '#modify_optwords#',
+                show_words         : 'yes',
+                write_param_1      : 'inputtype=singleline&showsel=no&prompt=' + encodeURIComponent('输入对方的名字：')
+            };
+        </script>
+
+
+<script>
+function randomInteger(low, high)
+{
+    return low + Math.floor(Math.random() * (high - low));
+}
+
+$(document).ready(function(){
+	var num=15;
+	for(var i=0;i<num;i++)
+	{
+		var posL=Math.random()*$('#stars').width()+'px';
+		var posT=Math.random()*$('#stars').height()+'px';
+		$('#stars').append("<img src='http://tu.kagirl.net/images/xingxing"+randomInteger(1,6)+".png' id='star"+i+"' style=\'"+"left:"+posL+";top:"+posT+"\'/>");
+	}
+	
+	$("#stars img").each(function(){
+		dark($(this).attr("id"));
+	});
+	onLoad();
+});
+
+function dark(name){
+       $("#"+name+"").animate({opacity:'0'},randomInteger(1000,2000),function(){light(name)});
+}
+function light(name){
+    $("#"+name+"").animate({opacity:'0.9'},randomInteger(1000,2000),function(){dark(name)});
+}
+
+</script>
+
+
+
+</head>
+
+<body bgcolor="#111111" onload="kawa_init()">
+
+<div style="position:absolute;left:0;top:0;z-index:0">
+	<img src="tpl/Wap/default/common/kawahk/2005/139582387733.jpg" width="500px"/>
+</div>
+
+<div id="stars"></div>
+
+		
+
+<div id="ruler" style="width:100%;height:0"></div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{weimicms:$kndata.title}</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="target-densitydpi=320,width=640,min-height:900px;user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" type="text/css" href="/tpl/Wap/default/common/knwx/js/style1.css"/>
+<link rel="stylesheet" type="text/css" href="/tpl/Wap/default/common/knwx/js/button1.css"/>
+<link media="screen and (min-width:1000px)" rel="stylesheet" type="text/css" href="/tpl/Wap/default/common/knwx/js/pcstyle1.css"/>
+<script src="http://lib.sinaapp.com/js/jquery/1.8.3/jquery.min.js"></script>
+<script src="/tpl/Wap/default/common/knwx/js/warterfall.js"></script>
+<link rel="stylesheet" type="text/css" href="/tpl/Wap/default/common/knwx/js/ms2.css"/>
+<script type="text/javascript">
+
+		if(typeof(AN)==="undefined"){var AN={}}AN.instances={symbols:[],controllers:[]};AN.apiVersion=1;AN.Controller=function(){return{currentScene:false,userData:{},setConfig:function(a){AN.instances.controllers.push(this);this.events=a.events;this.prefix=a.cssPrefix;this.projectActions=a.projectActions;this.basePath=a.basePath?a.basePath:"";this.olElement=document.querySelector("#"+a.parentId+" ol");var d=this.olElement.children;this.useOrmma=a.ormma;this.scenes=[];this.scenesById={};this.sceneByName={};var g;for(var e=0;e<a.scenes.length;e++){g=a.scenes[e];g.element=d[e];g.timelinesById={};g.timelinesByName={};for(var c=0;c<g.timelines.length;c++){g.timelinesById[g.timelines[c].id]=g.timelines[c];g.timelinesByName[g.timelines[c].name]=g.timelines[c]}this.scenesById[g.id]=g;this.scenes.push(g);if(g.name){this.sceneByName[g.name]=g}}this.setupListeners();this.startSceneByName=this.goToSceneByName;this.startSceneById=this.goToSceneById;this.startSceneByID=this.startSceneById;this.symbolInstancesByHtmlId={};this.symbolInstancesById={};this.symbols=[];var h,b,f;for(var e=0;e<a.symbols.length;e++){h=a.symbols[e];this.symbolInstancesById[h.id]=[];b=this.olElement.querySelectorAll(".an-symbol-container-"+h.id);for(var c=0;c<b.length;c++){f=new AN.Symbol();f.setConfig(b[c],h,this);this.symbolInstancesByHtmlId[b[c].id]=f;this.symbolInstancesById[h.id].push(f);this.symbols.push(f)}}this.fireAction(this.projectActions,"init");this.goToScene(this.scenes[0])},setupListeners:function(){var l=this;this.browser="unknown";if(document.body.style.MozAnimationName!==undefined){this.browser="moz"}function h(j){var i;if(l.browser==="moz"){i=j.target;while(i=i.parentNode){if(i===l.currentScene.element){l.onAnimationEnd();return}}}else{l.onAnimationEnd()}}this.olElement.addEventListener("webkitAnimationEnd",h,false);this.olElement.addEventListener("animationend",h,false);function c(i){i.element.addEventListener("mousemove",function(j){i.mousemoveAction.call(l.userData,l,j)},false)}var g;for(var e=0;e<this.scenes.length;e++){g=this.scenes[e];if(g.mousemoveAction){c(g)}}function a(m,j,i){m.addEventListener(j,function(n){i.call(l.userData,l,n)},false)}var f,b,k;for(var e=0;e<this.events.length;e++){b=this.events[e];k=b.type;f=document.getElementById(b.id);for(var d=0;d<k.length;d++){a(f,k[d],b.handler)}}},onAnimationEnd:function(){this.runningAnimationCount--;if(this.runningAnimationCount===0){this.onAllAnimationEnd()}},onAllAnimationEnd:function(){var a=this.currentScene.currentTimeline.endWaitTime;if(a){var b=this;this.sceneTimeout=setTimeout(function(){b.onSceneFinish()},a*1000)}else{this.onSceneFinish()}},forceRefresh:function(a){this.forceRefreshValue=a.element.offsetHeight},fireAction:function(b,a){if(b&&b[a]){b[a].call(this.userData,this)}},getSymbolByHtmlId:function(a){return this.symbolInstancesByHtmlId[a]},getSymbolByInstanceId:function(b){var a=this.olElement.querySelector(".an-symbol-container.an-symbol-"+b);return this.getSymbolByHtmlId(a.id)},getSymbols:function(){return this.symbols},getSymbolsBySymbolMasterId:function(a){return this.symbolInstancesById[a]},getUserData:function(){return this.userData},getTimelineByIndex:function(a){return this.currentScene.timelines[a]},getTimelineById:function(a){return this.currentScene.timelinesById[a]},getTimelineByName:function(a){return this.currentScene.timelinesByName[a]},getCurrentTimeline:function(){return this.currentScene.currentTimeline},getCurrentScene:function(){return this.currentScene},getSceneByIndex:function(a){return this.scenes[a]},getSceneById:function(a){return this.scenesById[a]},getSceneByName:function(a){return this.sceneByName[a]},goToNextTimeline:function(){var b=this.currentScene.timelines.indexOf(this.currentScene.currentTimeline);var a=Math.min(b+1,this.currentScene.timelines.length-1);if(a===b){return}this.goToTimelineByIndex(a)},goToPreviousTimeline:function(){var b=this.currentScene.timelines.indexOf(this.currentScene.currentTimeline);var a=Math.max(b-1,0);if(b===a){return}this.goToTimelineByIndex(a)},goToTimelineById:function(a){this.goToScene(this.currentScene,this.currentScene.timelinesById[a])},goToTimelineByName:function(a){this.goToScene(this.currentScene,this.currentScene.timelinesByName[a])},goToTimelineByIndex:function(a){this.goToScene(this.currentScene,this.currentScene.timelines[a])},goToTimeline:function(a){this.goToScene(this.currentScene,a)},goToNextScene:function(){var b=this.scenes.indexOf(this.currentScene);var a=Math.min(b+1,this.scenes.length-1);if(b===a){return}this.goToSceneByIndex(a)},goToPreviousScene:function(){var a=this.scenes.indexOf(this.currentScene);var b=Math.max(a-1,0);if(a===b){return}this.goToSceneByIndex(b)},goToSceneByIndex:function(a){this.goToScene(this.scenes[a])},goToSceneByName:function(a){this.goToScene(this.sceneByName[a])},goToSceneById:function(a,b){var c=this.scenesById[a];this.goToScene(c,c.timelinesById[b])},goToScene:function(g,f){var d=g;var e=this.currentScene;var a=f;var c=e?e.currentTimeline:false;if(a===undefined){a=d.timelines[0]}var b=false;if(c===a&&e===d){b=true}else{if(e){e.element.setAttribute("class","")}}this.fireAction(c,"exitAction");clearTimeout(this.sceneTimeout);if(e!==d){this.fireAction(e,"exitAction");this.fireAction(d,"initAction")}this.fireAction(a,"initAction");this.runningAnimationCount=a.animationCount;this.currentScene=d;d.currentTimeline=a;var h="t-"+a.id;if(b||this.browser==="moz"){d.element.setAttribute("class","run restart "+h);this.forceRefresh(d)}d.element.setAttribute("class","run "+h);if(!b&&this.useOrmma){this.ormmaNextScene(d)}this.fireAction(a,"startAction");if(a.animationCount===0){this.onAllAnimationEnd()}},replayScene:function(){console.warn("replayScene is deprecated. Use restartScene instead.");this.restartScene()},restartScene:function(){this.goToScene(this.currentScene)},restartTimeline:function(){this.goToScene(this.currentScene,this.currentScene.currentTimeline)},onSceneFinish:function(){this.fireAction(this.currentScene.currentTimeline,"endAction")},goToURL:function(a){document.location.href=a},getElementById:function(a){return document.getElementById(this.getElementIdById(a))},getElementIdById:function(a){return this.prefix+a},getUrlForLocalAsset:function(b){var a="assets/"+b;if(this.basePath){a=this.basePath+"/"+a}return a},ormmaNextScene:function(c){var a=ormma.getState();if(c.dimensions.expanded){var i=ormma.getMaxSize();if(a!=="expanded"){ormma.expand({x:0,y:0,width:i.width,height:i.height})}var b="";var d=c.element.offsetHeight;var g=c.element.offsetWidth;var e=(i.height-d)/2;var h=(i.width-g)/2;b+=" translate3d("+Math.round(h)+"px,"+Math.round(e)+"px,0)";if(c.dimensions.fit){var f=Math.min(i.width/g,i.height/d);b+=" scale3d("+f+","+f+",1)"}c.element.style.webkitTransform=b}else{if(a==="expanded"){ormma.close()}ormma.resize(c.dimensions.width,c.dimensions.height)}}}};window.addEventListener('load',function(){var configData={parentId:'pAS0EpyGS-an-anim',cssPrefix:'pAS0EpyGS-',ormma:false,mraid:false,layout:{"type":"absolute","width":640,"height":422},scenes:[{id:0,dimensions:{height:100,width:100,expanded:false,fit:false},timelines:[{id:"0",name:'Timeline 1',animationCount:6,duration:Infinity,lastKeyframeTime:3.765}]}],symbols:[],projectActions:{},events:[],externalResources:[]};setTimeout(function(){var controller=new AN.Controller;controller.setConfig(configData);},0);},false);
+		</script>
+<script>
+			//需要调用leafinit（）来启动，需要声明外层div，id="container"，还有内层div，id="leafContainer"
+			//参数设置
+			var leafNum = 12;			//落下叶子的数量
+			var kindNum = 3;			//叶子的种类
+			//叶子使用图片地址，数量应与kindNum相同
+			var kindurl = new Array("/tpl/Wap/default/common/knwx/1066/1066_p1.png","/tpl/Wap/default/common/knwx/1066/1066_p2.png","/tpl/Wap/default/common/knwx/1066/1066_p3.png");
+		</script>
+<script src="/tpl/Wap/default/common/knwx/js/fleaves.min.js"></script>
+<link rel="stylesheet" href="/tpl/Wap/default/common/knwx/js/leavesGeneral.css" type="text/css" media="screen" charset="utf-8">
+<style>
+             body{-webkit-touch-callout: none; -webkit-text-size-adjust: none;}
+			.page-bizinfo{position:absolute; padding:0; margin:0; top:155px; text-align:left; width:640px;}
+			.page-button {position:absolute; padding:0; margin:0; top:405px; width:640px;}
+			.page-content{background:-webkit-linear-gradient(#F7F5CA,#FFFAD7); top:460px; min-height:650px;_height:650px;width:640px;	}
+			
+			#activity-detail .page-content .text p{padding:2px 36px 9px 33px; color:#262626;}
+			#activity-detail .page-content .text p img{ width:90%;}
+			.page-foot{ background:url(/tpl/Wap/default/common/knwx/1066/1066_2.jpg) #3e0451 repeat-x center top;  margin:0 auto; min-height:396px;_height:396px; width:640px;	}			
+			#activity-detail .page-bizinfo .header #activity-name{padding:9px 40px 9px 40px;color:#CC3300 }			
+			.activity-meta{display:inline-block;padding-left:38px;;padding-top:0px;padding-bottom:15px;color:#262626;font-size:24px;}
+			.klink{font-size:12px;text-decoration:none;color:#74aaf0}	
+
+			.text img{
+				-webkit-box-shadow: 3px 6px 10px rgba(0, 0, 0, .5), 0 2px 3px rgba(0, 0, 0, .5);
+				-moz-box-shadow: 3px 6px 10px rgba(0, 0, 0, .5), 0 2px 3px rgba(0, 0, 0, .5);
+				-o-box-shadow: 3px 6px 10px rgba(0, 0, 0, .5), 0 2px 3px rgba(0, 0, 0, .5);
+				box-shadow: 3px 6px 10px rgba(0, 0, 0, .5), 0 2px 3px rgba(0, 0, 0, .5);
+			}
+						
+						
+			#pAS0EpyGS-an-anim > ol {list-style:none; margin:0; padding:0;}
+			#pAS0EpyGS-an-anim > ol > li {margin:0; padding:0; display:none;}
+			#pAS0EpyGS-an-anim > ol > li.run {display:block;}
+			#pAS0EpyGS-an-anim .pAS0EpyGS-an-stage { overflow:hidden; margin:0; padding:0; }
+			#pAS0EpyGS-an-anim .pAS0EpyGS-an-stage div { position: absolute; }
+			.pAS0EpyGS-an-stage * {margin:0; padding:0; -webkit-font-smoothing: antialiased;}
+			#pAS0EpyGS-an-anim .pAS0EpyGS-an-stage img {position: absolute; top:0; left:0;}
+			#pAS0EpyGS-an-anim .AN-Scene-Description {display: none;}
+			#pAS0EpyGS-an-anim iframe {border: none; height:100%; width:100%}
+			#pAS0EpyGS-an-anim .pAS0EpyGS-an-stage { position: absolute; top:0; left:0; width: 100%; height:100%; }
+			#pAS0EpyGS-an-anim {height: 422px; width: 640px; position: relative;}
+			#pAS0EpyGS-an-anim {
+				background-color: rgba(255,255,255,1);
+				font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+				font-size: 12px;
+				line-height: 1.3;
+			}
+			#pAS0EpyGS-an-obj-1 {
+				-webkit-transform: translate3d(0px, 0px, 0px);
+				width: 640px;
+				height: 460px;
+				top:0; left:0;
+			}
+
+			.t-0 #pAS0EpyGS-an-obj-3 {
+				-webkit-transform: translate3d(292px, -46px, 0px);
+
+			}
+			#pAS0EpyGS-an-obj-4 {
+				-webkit-transform: translate3d(382px, 40px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(7.7deg);
+				width: 135px;
+				height: 145px;
+				top:0; left:0;
+				-webkit-transform-origin: 104.63% 35.34%;
+				-webkit-animation-iteration-count: infinite;
+				-webkit-animation-direction: alternate;
+			}
+
+			@-webkit-keyframes ani-pAS0EpyGS-an-obj-4-0 {
+				0% {
+					-webkit-transform: translate3d(382px, 40px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(14.3deg);
+					-webkit-animation-timing-function:linear;
+				}
+				100% {
+					-webkit-transform: translate3d(382px, 40px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(7.7deg);
+					-webkit-animation-timing-function:linear;
+				}
+			}
+			.run.t-0 #pAS0EpyGS-an-obj-4 {    
+			  -webkit-animation-name: ani-pAS0EpyGS-an-obj-4-0;    
+			  -webkit-animation-duration: 1.6428s;    
+			  -webkit-animation-delay: 0.2143s;    
+			  -webkit-animation-fill-mode: both;    
+			}
+			.t-0 #pAS0EpyGS-an-obj-4 {
+				-webkit-transform: translate3d(382px, 40px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(7.7deg);
+				-webkit-animation-timing-function:linear;
+
+			}
+			.restart.t-0 #pAS0EpyGS-an-obj-4 {
+				-webkit-transform: translate3d(382px, 40px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(14.3deg);
+				-webkit-animation-timing-function:linear;
+
+			}
+			.restart #pAS0EpyGS-an-obj-4 {    
+			  -webkit-animation-name: none !important;    
+			}
+			#pAS0EpyGS-an-obj-5 {
+				-webkit-transform: translate3d(495px, -3px, 0px);
+				width: 108px;
+				height: 155px;
+				top:0; left:0;
+				-webkit-transform-origin: 97.45% 16.94%;
+				-webkit-animation-iteration-count: infinite;
+				-webkit-animation-direction: alternate;
+			}
+
+			@-webkit-keyframes ani-pAS0EpyGS-an-obj-5-0 {
+				0% {
+					-webkit-transform: translate3d(495px, -3px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+					-webkit-animation-timing-function:linear;
+				}
+				100% {
+					-webkit-transform: translate3d(495px, -3px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(-10.3deg);
+					-webkit-animation-timing-function:linear;
+				}
+			}
+			.run.t-0 #pAS0EpyGS-an-obj-5 {    
+			  -webkit-animation-name: ani-pAS0EpyGS-an-obj-5-0;    
+			  -webkit-animation-duration: 2.1285s;    
+			  -webkit-animation-delay: 0.3429s;    
+			  -webkit-animation-fill-mode: both;    
+			}
+			.t-0 #pAS0EpyGS-an-obj-5 {
+				-webkit-transform: translate3d(495px, -3px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(-10.3deg);
+				-webkit-animation-timing-function:linear;
+
+			}
+			.restart.t-0 #pAS0EpyGS-an-obj-5 {
+				-webkit-transform: translate3d(495px, -3px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+				-webkit-animation-timing-function:linear;
+
+			}
+			.restart #pAS0EpyGS-an-obj-5 {    
+			  -webkit-animation-name: none !important;    
+			}
+			#pAS0EpyGS-an-obj-6 {
+				-webkit-transform: translate3d(196px, 156px, 0px);
+				width: 105px;
+				height: 94px;
+				top:0; left:0;
+				-webkit-transform-origin: 92.86% 36.7%;
+				-webkit-animation-iteration-count: infinite;
+				-webkit-animation-direction: alternate;
+			}
+
+			@-webkit-keyframes ani-pAS0EpyGS-an-obj-6-0 {
+				0% {
+					-webkit-transform: translate3d(196px, 156px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+					-webkit-animation-timing-function:linear;
+				}
+				100% {
+					-webkit-transform: translate3d(196px, 156px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(-7deg);
+					-webkit-animation-timing-function:linear;
+				}
+			}
+			.run.t-0 #pAS0EpyGS-an-obj-6 {    
+			  -webkit-animation-name: ani-pAS0EpyGS-an-obj-6-0;    
+			  -webkit-animation-duration: 1.75s;    
+			  -webkit-animation-delay: 0.0571s;    
+			  -webkit-animation-fill-mode: both;    
+			}
+			.t-0 #pAS0EpyGS-an-obj-6 {
+				-webkit-transform: translate3d(196px, 156px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(-7deg);
+				-webkit-animation-timing-function:linear;
+
+			}
+			.restart.t-0 #pAS0EpyGS-an-obj-6 {
+				-webkit-transform: translate3d(196px, 156px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+				-webkit-animation-timing-function:linear;
+
+			}
+			.restart #pAS0EpyGS-an-obj-6 {    
+			  -webkit-animation-name: none !important;    
+			}
+			#pAS0EpyGS-an-obj-7 {
+				-webkit-transform: translate3d(284px, 191px, 0px);
+				width: 118px;
+				height: 117px;
+				top:0; left:0;
+				-webkit-transform-origin: 73.31% 6.2%;
+				-webkit-animation-iteration-count: infinite;
+				-webkit-animation-direction: alternate;
+			}
+
+			@-webkit-keyframes ani-pAS0EpyGS-an-obj-7-0 {
+				0% {
+					-webkit-transform: translate3d(284px, 191px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+					-webkit-animation-timing-function:linear;
+				}
+				100% {
+					-webkit-transform: translate3d(284px, 191px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(-8.3deg);
+					-webkit-animation-timing-function:linear;
+				}
+			}
+			.run.t-0 #pAS0EpyGS-an-obj-7 {    
+			  -webkit-animation-name: ani-pAS0EpyGS-an-obj-7-0;    
+			  -webkit-animation-duration: 2.1285s;    
+			  -webkit-animation-delay: 0.2429s;    
+			  -webkit-animation-fill-mode: both;    
+			}
+			.t-0 #pAS0EpyGS-an-obj-7 {
+				-webkit-transform: translate3d(284px, 191px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(-8.3deg);
+				-webkit-animation-timing-function:linear;
+
+			}
+			.restart.t-0 #pAS0EpyGS-an-obj-7 {
+				-webkit-transform: translate3d(284px, 191px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+				-webkit-animation-timing-function:linear;
+
+			}
+			.restart #pAS0EpyGS-an-obj-7 {    
+			  -webkit-animation-name: none !important;    
+			}
+			#pAS0EpyGS-an-obj-8 {
+				-webkit-transform: translate3d(435px, 185px, 0px);
+				width: 165px;
+				height: 165px;
+				top:0; left:0;
+				-webkit-animation-iteration-count: infinite;
+				-webkit-animation-direction: alternate;
+			}
+
+			@-webkit-keyframes ani-pAS0EpyGS-an-obj-8-0 {
+				0% {
+					-webkit-transform: translate3d(330px, 156px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+					-webkit-transform-origin: 66.67% 3.79%;
+					-webkit-animation-timing-function:linear;
+				}
+				100% {
+					-webkit-transform: translate3d(330px, 156px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(-9.8deg);
+					-webkit-transform-origin: 66.67% 3.79%;
+					-webkit-animation-timing-function:linear;
+				}
+			}
+			.run.t-0 #pAS0EpyGS-an-obj-8 {    
+			  -webkit-animation-name: ani-pAS0EpyGS-an-obj-8-0;    
+			  -webkit-animation-duration: 1.8929s;    
+			  -webkit-animation-delay: 0s;    
+			  -webkit-animation-fill-mode: both;    
+			}
+			.t-0 #pAS0EpyGS-an-obj-8 {
+				-webkit-transform: translate3d(330px, 156px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(-9.8deg);
+				-webkit-transform-origin: 66.67% 3.79%;
+				-webkit-animation-timing-function:linear;
+
+			}
+			.restart.t-0 #pAS0EpyGS-an-obj-8 {
+				-webkit-transform: translate3d(330px, 156px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+				-webkit-transform-origin: 66.67% 3.79%;
+				-webkit-animation-timing-function:linear;
+
+			}
+			.restart #pAS0EpyGS-an-obj-8 {    
+			  -webkit-animation-name: none !important;    
+			}
+
+			/* ------------ SYMBOL CSS -------------- */
+
+
+		</style>
+<script>
+			
+			<if condition="$music eq ''">
+				var gSound = '/tpl/Wap/default/common/knwx/1066/yujian.mp3';
+			<else/>
+			var gSound = '{weimicms:$music}';</if>
+			function playbksound()
+			{
+				var audiocontainer = document.getElementById('audiocontainer');
+				audiocontainer.innerHTML = '<audio id="bgsound" loop="loop" autoplay="autoplay"></audio>';
+						
+				var audio = document.getElementById('bgsound');
+				audio.src = gSound;
+				audio.play();
+			}	
+						
+		</script>
+			<script type="text/javascript">
+			window.shareData = {  
+					"moduleName":"Index",
+					"moduleID": '0',
+					"imgUrl": "{weimicms:$wql.pic}", 
+					"timeLineLink": "{weimicms::C('site_url')}{weimicms::U(Knwx/indexhi,array('token'=>$token,'wecha_id'=>$wecha_id,'action'=>'save','catgroy'=>$_GET['catgroy'],'id'=>$id,'music'=>$music))}",
+					"sendFriendLink":"{weimicms::C('site_url')}{weimicms::U(Knwx/indexhi,array('token'=>$token,'wecha_id'=>$wecha_id,'action'=>'save','catgroy'=>$_GET['catgroy'],'id'=>$id,'music'=>$music))}",
+					"weiboLink":"{weimicms::C('site_url')}{weimicms::U(Knwx/indexhi,array('token'=>$token,'wecha_id'=>$wecha_id,'action'=>'save','catgroy'=>$_GET['catgroy'],'id'=>$id,'music'=>$music))}",
+					"tTitle": "{weimicms:$time.title}",
+					"tContent": "【{weimicms:$time.title}】{weimicms:$wqlinfo.content}"
+				};
+		</script>
+	<script>document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+		playbksound();	
+        WeixinJSBridge.on('menu:share:appmessage', function (argv) {
+		<if condition="$time.save neq 'save'">
+			alert("请先保存再分享");
+			return;
+		</if>
+         shareHandle('friend');
+            WeixinJSBridge.invoke('sendAppMessage', { 
+                "img_url": window.shareData.imgUrl,
+                "img_width": "640",
+                "img_height": "640",
+                "link": window.shareData.sendFriendLink,
+                "desc": window.shareData.tContent,
+                "title": window.shareData.tTitle
+            }, function (res) {
+                _report('send_msg', res.err_msg);
+            })
+        });
+
+        WeixinJSBridge.on('menu:share:timeline', function (argv) {
+		<if condition="$time.save neq 'save'">
+					alert("请先保存再分享");
+						return;
+					</if>
+         shareHandle('frineds');
+            WeixinJSBridge.invoke('shareTimeline', {
+                "img_url": window.shareData.imgUrl,
+                "img_width": "640",
+                "img_height": "640",
+                "link": window.shareData.sendFriendLink,
+                "desc": window.shareData.tContent,
+                "title": window.shareData.tTitle
+            }, function (res) {
+                _report('timeline', res.err_msg);
+            });
+        });
+
+        WeixinJSBridge.on('menu:share:weibo', function (argv) {
+		<if condition="$time.save neq 'save'">
+					alert("请先保存再分享");
+						return;
+					</if>
+         shareHandle('weibo');
+            WeixinJSBridge.invoke('shareWeibo', {
+                "content": window.shareData.tContent,
+                "url": window.shareData.sendFriendLink,
+            }, function (res) {
+                _report('weibo', res.err_msg);
+            });
+        });
+        }, false)
+        
+        function shareHandle(to) {
+	var submitData = {
+		module: window.shareData.moduleName,
+		moduleid: window.shareData.moduleID,
+		token:'{weimicms:$token}',
+		wecha_id:'{weimicms:$wecha_id}',
+		url: window.shareData.sendFriendLink,
+		to:to
+	};
+	$.post('/index.php?g=Wap&m=Knwx&a=share&token={weimicms:$token}&wecha_id={weimicms:$wecha_id}&catgroy={weimicms:$catgroy}',submitData,function (data) {},'json')
+}
+        </script> 
+</head>
+<body id="activity-detail">
+<if condition="$time.save neq 'save'">
+<div class="top_div">
+  <marquee width=640 behavior=scroll direction=left>
+  完成后请"保存"，保存后无法修改,未保存请勿分享。禁止任何诱导分享和政治相关的内容。
+  </marquee>
+</div>
+</if>
+<script type="text/javascript">
+					
+		function openModel(){
+			var td = document.getElementById("model");
+			
+			var scrollTop = (window.pageYOffset || document.documentElement.scrollTop) ;
+			td.style.display = "block";
+			td.style.top = scrollTop+"px";
+		}
+		function closeModel(){
+			var td = document.getElementById("model");
+			td.style.display = "none";
+		}
+		function showmodel1(){
+			var td = document.getElementById("model1");
+			td.style.display = "block";
+			closeModel();
+		}
+		function closeModel1(){
+			var td = document.getElementById("model1");
+			td.style.display = "none";			
+		}
+		
+		var showNum1 = 6;
+		var showNum2 = 2;
+	</script>
+<script src="/tpl/Wap/default/common/knwx/js/load.js"></script>
+<script src="/tpl/Wap/default/common/knwx/js/jquery.lazyload.min.js"></script>
+<script type="text/javascript" src="/tpl/Wap/default/common/knwx/js/autoHeight.js"></script>
+<include file="Knwx:model"/>
+<div style="width:0;height:0;" id = "audiocontainer"></div>
+<div id="pAS0EpyGS-an-anim">
+  <ol>
+    <li id="pAS0EpyGS-an-scene-0" >
+      <div class="pAS0EpyGS-an-stage">
+        <div id="pAS0EpyGS-an-obj-1">
+          <div><img  height="422" width="640"  src="/tpl/Wap/default/common/knwx/1066/1066_1.jpg"></div>
+        </div>
+        <div id="pAS0EpyGS-an-obj-3">
+          <div><img  height="248" width="426"  src="/tpl/Wap/default/common/knwx/1066/1066_3.png"></div>
+        </div>
+        <div id="pAS0EpyGS-an-obj-4">
+          <div><img  height="145" width="135"  src="/tpl/Wap/default/common/knwx/1066/1066_4.png"></div>
+        </div>
+        <div id="pAS0EpyGS-an-obj-5">
+          <div><img  height="155" width="108"  src="/tpl/Wap/default/common/knwx/1066/1066_5.png"></div>
+        </div>
+        <div id="pAS0EpyGS-an-obj-6">
+          <div><img  height="94" width="105"  src="/tpl/Wap/default/common/knwx/1066/1066_6.png"></div>
+        </div>
+        <div id="pAS0EpyGS-an-obj-7">
+          <div><img  height="117" width="118"  src="/tpl/Wap/default/common/knwx/1066/1066_7.png"></div>
+        </div>
+        <div id="pAS0EpyGS-an-obj-8">
+          <div><img  height="165" width="165"  src="/tpl/Wap/default/common/knwx/1066/1066_8.png"></div>
+        </div>
+      </div>
+    </li>
+  </ol>
+</div>
+<div id="container" style="left:0%;top:0%;">
+  <div id="leafContainer"></div>
+</div>
+<script>		
+			leafinit();
+		</script>
+<div class="page-bizinfo">
+  <div class="header">
+   <h1 id="activity-name"> {weimicms:$time.title} </h1>
+    <p class="activity-info"> <span id="post-date" class="activity-meta no-extra" style="color:#ffffff;top:0%;">
+	{weimicms:$time.time|date="Y-m-d H:i:s",###}
+	</span> 
+	</p>
+  </div>
+</div>
+<if condition="$time.save eq 'save'">
+<div class="page-button">	
+					<li><a id="modm" style="left:320px" class="super button green" href="{weimicms:$info.gzlj}">点这里，自己做微秀</a></li>
+		
+		</div>
+</if>
+<if condition="$time.save neq 'save'">
+<div class="page-button">
+  <li><a id="musicm" class="super button yellow" onClick="openMusic();">选音乐</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id="modm" class="super button blue" onClick="openModel();">换背景</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a id="modify" class="super button orange"  href="/index.php?g=Wap&m=Knwx&a=changnr&id={weimicms:$id}&token={weimicms:$token}&wecha_id={weimicms:$wecha_id}&catgroy={weimicms:$_GET['catgroy']}">改内容</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a class="super button green" href="/index.php?g=Wap&m=Knwx&a=indexhi&id={weimicms:$id}&token={weimicms:$token}&wecha_id={weimicms:$wecha_id}&action=save&catgroy={weimicms:$_GET['catgroy']}&music={weimicms:$music}&tpid=1066">保存</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+</div></if>
+<div class="page-content"> <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="text">
+     <volist name="Kndatas" id="infoitem"  >
+   
+
+   <if condition="$infoitem['content'] neq ''"><p style='text-indent:2em;'>{weimicms:$infoitem.content}</p><else />
+ <p style='text-align:center;'> <img data-src='{weimicms:$infoitem.pic}'/></p></if>
+
+	
+   </volist>
+
+    <br>
+  </div>
+   <include file="Knwx:footer"/> 
+</div>
+
+</body>
+</html>

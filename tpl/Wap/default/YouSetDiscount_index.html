@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{weimicms:$info.name}</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'/>
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" href="{weimicms:$staticPath}/tpl/static/yousetdiscount/css/base.css">
+    <link rel="stylesheet" href="{weimicms:$staticPath}/tpl/static/yousetdiscount/css/style.css">
+    <script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/yousetdiscount/js/jquery-2.1.1.min.js"></script>
+    <script>
+/**
+ * Created by tanytree on 2015/10/20.
+ */
+
+$(function(){
+    $(".otherUser .bd .desc>a.arrowa").on("click",function(){
+        $(this).toggleClass('on');
+        $(this).parent().parent().parent().find(".subInfo").slideToggle();
+    });
+});
+//窗口处理
+$(function(){
+$(".aRule").on('click',function(){
+    rule();
+});
+    //login();
+});
+
+//登录窗口
+var daoshi = 60;
+function login(){
+    $(".fullBg").show();
+    $(".oLogin").fadeIn();
+	$('.getCode').click(function(){
+		var tel = $('input[name=tel]').val();
+		var tel_length = tel.length;
+		var thisget = $(this).text();
+		if(tel == ''){
+			alert('请填写您的手机号');
+		}else if(tel_length != 11){
+			alert('请填写正确的手机号');
+		}else{
+			if(thisget == '获取验证码' || thisget == '重新获取'){
+				$('.getCode').text('正在发送');
+				$.ajax({
+					type:"POST",
+					url:"{weimicms::U('Wap/YouSetDiscount/sms',array('token'=>$token,'id'=>$info['id']))}",
+					dataType:"json",
+					data:{
+						tel:tel,
+						token:'<?php echo $token?$token:0;?>',
+						id:<?php echo $info['id']?$info['id']:0;?>,
+						wecha_id:'{weimicms:$wecha_id}'
+					},
+					success:function(data){
+						if(data.error == 0){
+							smsdaoshi()
+						}else if(data.error == 'tel'){
+							alert('该手机号码已被注册');$('.getCode').text('获取验证码');
+						}else if(data.error == 4085){
+							alert('该手机号码发送验证码超过每日限制');$('.getCode').text('获取验证码');
+						}else if(data.error == null){
+							alert('发送失败：该商家未购买短信');$('.getCode').text('获取验证码');
+						}else{
+							alert('发送失败：请稍后再试<br/>失败原因：'+data.error);$('.getCode').text('获取验证码');
+						}
+					}
+				});
+				
+			}
+		}
+		
+	});
+	$('#telyzbut').click(function(){
+		var tel = $('input[name=tel]').val();
+		var code = $('input[name=code]').val();
+		var tel_length = tel.length;
+		if(tel == ''){
+			alert('请填写您的手机号');
+		}else if(tel_length != 11){
+			alert('请填写正确的手机号');
+		}else if(code == ''){
+			alert('请填写您收到的验证码');
+		}else{
+			$('#telyzbut').text('手机号码验证中');
+			$.ajax({
+				type:"POST",
+				url:"{weimicms::U('Wap/YouSetDiscount/smsyz',array('token'=>$token,'id'=>$info['id']))}",
+				dataType:"json",
+				data:{
+					tel:tel,
+					code:code,
+					token:'<?php echo $token?$token:0;?>',
+					id:<?php echo $info['id']?$info['id']:0;?>,
+					wecha_id:'{weimicms:$wecha_id}'
+				},
+				success:function(data){
+					if(data.error == 0){
+						$('#telyzbut').text('验证成功');
+						window.location.href='<?php echo U('Wap/YouSetDiscount/index',array('token'=>$token,'id'=>$_GET['id']));?>&tel='+tel;
+					}else if(data.error == 1){
+						alert('验证码不正确');
+					}else if(data.error == 2){
+						alert('验证码和手机不匹配');
+					}else if(data.error == 3){
+						alert('验证码超时');
+					}
+				}
+			});
+		}
+	});
+};
+function smsdaoshi(){
+	if(daoshi < 1){
+		daoshi = 60;
+		$('.getCode').text('重新获取');
+		$('.getCode').addClass('butCode');
+	}else{
+		if(daoshi == 60){
+			$('.getCode').text('发送成功');
+		}else{
+			$('.getCode').text(daoshi+'s');
+		}
+		daoshi--;
+		setTimeout("smsdaoshi()",1000);
+	}
+}
+//规则窗口
+function rule(){
+    setWindow.centerWindow('.wRule');
+    $(".fullBg").fadeIn();
+    $(".wRule").fadeIn();
+}
+function direction(){
+    setWindow.centerWindow('.direction');
+    $(".fullBg").fadeIn();
+    $(".direction").fadeIn();
+}
+
+var setWindow = {
+    //1.居中方法，传入需要剧中的标签
+    center: function(a) {
+        var wWidth = $(window).width();
+        var wHeight = $(window).height();
+        var boxWidth = $(a).outerWidth(true);
+        var boxHeight = $(a).height();
+        var scrollTop = $(window).scrollTop();
+        var scrollLeft = $(window).scrollLeft();
+        var top = scrollTop + (wHeight - boxHeight) / 2;
+        var left = scrollLeft + (wWidth - boxWidth) / 2;
+        $(a).css({"top": top, "left": left});
+    },
+    //2.将盒子方法放入这个方，方便法统一调用
+    centerWindow: function(a) {
+        setWindow.center(a);
+        //自适应窗口
+        $(window).bind('scroll resize', function() {
+            setWindow.center(a);
+        });
+    },
+    //3.点击弹窗方法
+    clickaShowWindow: function(a, b) {
+        $(b).click(function() {
+            setWindow.centerWindow(a);
+            $(".fullBg").show();
+            $(a).slideDown(300);
+            return false;
+        });
+    },
+    xClosed:function(){
+        $(".fullBg").hide();
+        $(".window").hide();
+        $(".flagPosition").removeClass("hidden");
+        $(".userWord ").css('visibility','visible');
+    },
+    closedWindow:function(){
+        var timer=null;
+        timer=setTimeout(function(){
+            $(".fullBg").hide();$(".window").hide();
+        },4000);
+    },
+    windowClosed:function(){
+        $(".fullBg").hide();
+        $(".window").hide();
+    }
+};
+
+
+<?php if($is_over != 2){?>
+(function timeShow(){
+    var show_time = $(".timeShow");
+    var auto=null;
+    endtime = new Date("<?php if($is_over == 1){echo date('m',$info['startdate']).'/'.date('d',$info['startdate']).'/'.date('Y',$info['startdate']).' '.date('H:i:s',$info['startdate']);}else{echo date('m',$info['enddate']).'/'.date('d',$info['enddate']).'/'.date('Y',$info['enddate']).' '.date('H:i:s',$info['enddate']);}?>");//结束时间
+    today = new Date();//当前时间
+    delta_T = endtime.getTime() - today.getTime();//时间间隔
+    if(delta_T < 0){
+        clearInterval(auto);
+        location.reload();
+        return;
+    }
+    auto=window.setTimeout(timeShow,1000);
+    total_days = delta_T/(24*60*60*1000);//总天数
+    total_show = Math.floor(total_days);//实际显示的天数
+    total_hours = (total_days - total_show)*24;//剩余小时
+    hours_show = Math.floor(total_hours);//实际显示的小时数
+    total_minutes = (total_hours - hours_show)*60;//剩余的分钟数
+    minutes_show = Math.floor(total_minutes);//实际显示的分钟数
+    total_seconds = (total_minutes - minutes_show)*60;//剩余的分钟数
+    seconds_show = Math.floor(total_seconds);//实际显示的秒数
+    if(total_days<10){
+        total_days="0"+total_days;
+    }
+    if(hours_show<10){
+        hours_show="0"+hours_show;
+    }
+    if(minutes_show<10){
+        minutes_show="0"+minutes_show;
+    }
+    if(seconds_show<10){
+        seconds_show="0"+seconds_show;
+    }
+    show_time.find("li").eq(0).text(total_show);//显示在页面上
+    show_time.find("li").eq(2).text(hours_show);
+    show_time.find("li").eq(4).text(minutes_show);
+    show_time.find("li").eq(6).text(seconds_show);
+})();
+<?php }?>
+function share(){
+	$('.share_bg').show();
+	$('.share_bg').click(function(){
+		if($(this).css('display') == 'block'){
+			$(this).css('display','none');
+		}
+	});
+}
+
+	</script>
+</head>
+<body style="padding-bottom: 40px;">
+<if condition="$memberNotice neq ''">
+    {weimicms:$memberNotice}
+</if>
+<section class="banner">
+    <img src="{weimicms:$info.bg1}" class="bn" alt="bn" style="width: 100%;" />
+    <img src="{weimicms:$info.bg2}" class="bannertit" alt="bannertit" height="78.5"/>
+    <!-- <img src="{weimicms:$info.bg3}" class="yellowtit" alt="yellowtit" height="50"/> -->
+    <section class="boom oTime">
+        <img src="{weimicms:$staticPath}/tpl/static/yousetdiscount/images/boom.png" alt="boom"/>
+            <div class="timeBox">
+                <h2>
+                    <?php if($is_over == 1){echo '距离开始还剩';}elseif($is_over == 0){echo '时间还剩';}else{echo "活动结束";} ?>
+                </h2>
+                <ul class="timeShow">
+                    <li class="bg">00</li>
+                    <li class="oText">天</li>
+                    <li class="bg">00</li>
+                    <li class="oText">时</li>
+                    <li class="bg">00</li>
+                    <li class="oText">分</li>
+                    <li class="bg">00</li>
+                    <li class="oText">秒</li>
+                </ul>
+            </div>
+    </section>
+    <a class="aRule"></a>
+</section>
+<?php if($info['discount_type'] == 1){ ?>
+<section class="coupon">
+    <div class="fl">
+        <div class="avatar">
+            <img src="<?php if($user['userinfo']['portrait'] != ''){echo $user['userinfo']['portrait'];}else{?>{weimicms:$staticPath}/tpl/static/yousetdiscount/images/portrait.jpg<?php }?>" alt="avatar">
+            <h2>
+				<?php $user['userinfo']['wechaname'] = mb_substr($user['userinfo']['wechaname'],0,10,'utf-8');?>
+                <?php echo $user['userinfo']['wechaname']?$user['userinfo']['wechaname']:'匿名';?>
+            </h2>
+        </div>
+        <p class="endTime">有效期:{weimicms:$info.discount_endtime|date="y/m/d",###}止</p>
+
+    </div>
+    <div class="rightPart mt20">
+	<?php if($helps_sum != 0){?>
+        <div class="limit"><i>￥</i><em <?php if($share_key == '' && $user['state'] != 1){?>style="font-size: 2.5rem;"<?php }else{?>style="font-size: 4rem;"<?php }?>>{weimicms:$helps_sum}</em></div>
+		
+        <p><a href="javascript:direction();">点此查看优惠说明</a></p>
+		<?php if($user['state'] != 1){?><p>接力越多，抵扣越多</p><?php }?>
+		
+        <?php if($share_key == ''){?><div class="code">兑换码<em><?php if($user['state'] == 1){echo '已使用';}else{echo 10000000 + $user['id'];}?></em></div><?php }?>
+	<?php }else{?>
+		<div class="limit"><i>￥</i><em style="font-size: 5rem;">{weimicms:$helps_sum}</em></div>
+		<p>快去玩游戏，赚取优惠吧</p>
+	<?php }?>
+    </div>
+
+</section>
+<?php }elseif($info['discount_type'] == 2){ ?>
+<section class="coupon">
+    <div class="fl">
+        <div class="avatar">
+            <img src="<?php if($user['userinfo']['portrait'] != ''){echo $user['userinfo']['portrait'];}else{?>{weimicms:$staticPath}/tpl/static/yousetdiscount/images/portrait.jpg<?php }?>" alt="avatar">
+            <h2>
+                <?php $user['userinfo']['wechaname'] = mb_substr($user['userinfo']['wechaname'],0,10,'utf-8');?>
+                <?php echo $user['userinfo']['wechaname']?$user['userinfo']['wechaname']:'匿名';?>
+				<?php echo mb_strlen($hv['userinfo']['wechaname'],'UTF8')>10?'...':'';?>
+            </h2>
+        </div>
+        <p class="endTime">有效期:{weimicms:$info.discount_endtime|date="y/m/d",###}止</p>
+
+    </div>
+    <div class="rightPart mt20">
+	<?php if($helps_sum != 0){?>
+        <div class="cut" <?php if($share_key == ''){?>style="font-size: 4.5rem;"<?php }else{?>style="font-size: 6rem;"<?php }?>>
+            <?php echo (10 - $helps_sum)<$info['discount_min']?$info['discount_min']:(10 - $helps_sum);?><i>折</i>
+			<p class="endTime">最高可优惠到{weimicms:$info.discount_min}折</p>
+        </div>
+        <?php if($share_key == ''){?><div class="code">兑换码<em><?php if($user['state'] == 1){echo '已使用';}else{echo 10000000 + $user['id'];}?></em></div><?php }?>
+	<?php }else{?>
+		<div class="cut" style="font-size: 5rem;">
+			<?php echo (10 - $helps_sum)<$info['discount_min']?$info['discount_min']:(10 - $helps_sum);?><i>折</i>
+		</div>
+		<p>快去玩游戏，赚取优惠吧</p>
+	<?php }?>
+    </div>
+
+</section>
+<?php } ?>
+<?php if($user['state'] != 1){ ?>
+<?php if($share_key == ''){?>
+<section class="tip tc mb20">
+    <img src="{weimicms:$staticPath}/tpl/static/yousetdiscount/images/tip.png" alt="tip" height="120" />
+</section>
+<?php }?>
+<section class="aBtn">
+	<?php
+	$cishu = $share_key?($info['friends_count']-$playcount):($info['my_count']-$playcount);
+	if($cishu > 0){
+		$cishu_text = '帮'.$wota.'抢优惠('.$cishu.')次';
+		$cishu_url = U('Wap/YouSetDiscount/index',array('token'=>$token,'id'=>$info['id'],'share_key'=>$share_key,'game'=>'go'));
+	}else{
+		$cishu_text = '次数已用完';
+		$cishu_url = "javascript:;";
+	}
+	?>
+	<?php if($is_over != 0){?>
+	<a><?php echo $is_over==1?'未开始':'已结束';?></a>
+	<?php }else{?>
+		<?php if($memberNotice != ''){?>
+			<?php if($sms == 1){?>
+				<a href="javascript:login();">{weimicms:$cishu_text}</a>
+			<?php }else{?>
+				<a href="#memberNoticeBox" id="modaltrigger_notice">{weimicms:$cishu_text}</a>
+			<?php }?>
+		<?php }else{?>
+			<a href="<?php echo $cishu_url;?>" <?php if($cishu <= 0){?>style="background: url('{weimicms:$staticPath}/tpl/static/yousetdiscount/images/abtn1.png') no-repeat;background-size: cover;"<?php }?>>{weimicms:$cishu_text}</a>
+		<?php }?>
+	<a href="javascript:share();">邀请好友帮{weimicms:$wota}抢优惠</a>
+	<?php }?>
+</section>
+<?php }?>
+
+<?php if(count($helps) < 1){?>
+<section class="noData">
+    <img src="{weimicms:$staticPath}/tpl/static/yousetdiscount/images/nodata.png" alt="nodata">
+</section>
+<?php }else{?>
+<section class="otherUser">
+    <div class="hd">
+        <div class="tit">
+            <h2>有<?php echo count($helps);?>人给{weimicms:$wota}抢优惠</h2>
+        </div>
+        <div class="line">
+            <i class="fr"></i>
+            <i class="fl"></i>
+            <div class="lineThis"></div>
+        </div>
+    </div>
+    <div class="bd">
+        <ul>
+			<volist name="helps" id="hv">
+            <li>
+                <div class="liwrap">
+                    <div class="clearfix">
+                        <div class="userAvatar fl">
+                            <img src="<?php if($hv['userinfo']['portrait'] != ''){echo $hv['userinfo']['portrait'];}else{?>{weimicms:$staticPath}/tpl/static/yousetdiscount/images/portrait.jpg<?php }?>">
+                        </div>
+                        <div class="desc">
+                            <h3><?php echo $hv['userinfo']['wechaname']?mb_substr($hv['userinfo']['wechaname'],0,6,'utf-8'):'匿名';?><?php echo mb_strlen($hv['userinfo']['wechaname'],'UTF8')>6?'...':'';?></h3>
+                            <p class="money"><?php echo $info['discount_type']==1?'':'<i>下降</i>';?><?php echo round($hv['discount'],2)?><i><?php echo $info['discount_type']==1?'元':'折';?></i></p>
+                            <p class="tipText">玩了<?php echo count($hv['helps_data']);?>次</p>
+                            <!-- <a class="texta" style="right:13%" href="<?php echo U('Wap/YouSetDiscount/index',array('token'=>$token,'id'=>$info['id'],'share_key'=>$hv['help']));?>">帮TA抢优惠</a> -->
+                            <a class="arrowa" href="javascript:;">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="subInfo">
+                        <ol>
+							<?php foreach($hv['helps_data'] as $hdv){?>
+                            <li>
+                                <span style="width:23%"><?php echo $info['discount_type']==1?'抢到优惠':'下降了';?></span>
+                                <span style="width:37%"><?php echo round($hdv['discount'],2);?><?php echo $info['discount_type']==1?'元':'折';?></span>
+                                <span>{weimicms:$hdv.addtime|date='Y-m-d',###}</span>
+                            </li>
+                            <?php }?>
+                        </ol>
+                    </div>
+                </div>
+                <div class="no">
+                    <i>{weimicms:$i}</i>
+                </div>
+
+            </li>
+            </volist>
+        </ul>
+    </div>
+</section>
+<?php }?>
+<?php if($share_key != ''){?>
+<a class="backTo" href="<?php echo U('Wap/YouSetDiscount/index',array('token'=>$token,'id'=>$info[id]));?>"><i>我要优惠</i></a>
+<?php }?>
+<div class="fullBg"></div>
+<div class="window oLogin">
+    <div class="windowThis">
+        <div class="bd">
+            <div class="adMargin">
+                <div class="row">
+                    <div class="putBorder"> <i></i>
+                        <input type="text" placeholder="手机号" value="" name='tel'>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="putBorder"> <a href="javascript:;" class="getCode">获取验证码</a> <i></i>
+                        <input type="text" placeholder="验证码" value="" name='code'>
+                    </div>
+                </div>
+                <div class="row">
+                    <button id="telyzbut">确定</button>
+                </div>
+            </div>
+            <a href="javascript:;" onClick="setWindow.windowClosed()" class="oClosed"></a> </div>
+    </div>
+</div>
+
+<div class="window wRule">
+    <div class="addPad" style="height: 280px;overflow: auto;">
+        <h2>活动规则</h2>
+        {weimicms:$info.info|htmlspecialchars_decode}
+    </div>
+    <a class="xClosed" href="javascript:;" onclick="setWindow.windowClosed()"></a>
+</div>
+<style>
+.direction{width: 290px;border: 5px solid rgba(46,37,79,.8);border-radius: 5px;background:#463870 url("{weimicms:$staticPath}/tpl/static/yousetdiscount/images/ball.png") no-repeat left bottom; background-size:50px 50px;color: #fff}
+.direction .addPad{padding: 15px 20px 50px 20px;background: url("{weimicms:$staticPath}/tpl/static/yousetdiscount/images/rulebg.png") repeat top center;}
+.direction h2{color: #ffde20;font-size: 16px;font-weight: normal}
+.direction p{padding-top: 15px;}
+.direction .xClosed,.oLogin .oClosed {position: absolute;top:-12px;right:-12px;width: 20px;height: 20px;background:#ffea73 url("{weimicms:$staticPath}/tpl/static/yousetdiscount/images/xclosed.png") center center no-repeat;background-size: 15px 15px;border-radius: 100%;padding: 5px; }
+</style>
+<div class="window direction">
+    <div class="addPad">
+        <h2>优惠说明</h2>
+        <volist name='direction' id="div">
+		<?php if($div['discount']!=0){?>
+		消费满{weimicms:$div.at_least}元可以抵{weimicms:$div.discount}元优惠<br/>
+		<?php }else{?>
+		消费满{weimicms:$div.at_least}元可无上限抵用<br/>
+		<?php }?>
+		</volist>
+		<br/>
+		注意：本券仅可使用一次，抵现金额请参照以上范围，超出部分不计入下次使用
+    </div>
+    <a class="xClosed" href="javascript:;" onclick="setWindow.windowClosed()"></a>
+</div>
+
+<div class="share_bg" style="display: none;position: fixed;top: 0;left: 0;width: 100%;height: 100%;text-align: center;background: rgba(0,0,0,0.7);z-index: 99;">
+    <img src="{weimicms:$staticPath}/tpl/static/yousetdiscount/images/share-guide.png">
+</div>
+<style>
+.tips{width: 100%;position: fixed;top: 0;left: 0;display: none;z-index: 999999}
+.tips h3{width: 70%;padding: 10px 0;  margin: 0 auto;  background: rgba(255,255,255,1);  text-align: center;  font-size: 1.2rem; color: red;}
+</style>
+<div class="tips" style="display: none;"><h3></h3></div>
+<script>
+function alert(text){
+	var t=null;
+	clearTimeout(t);
+	var tip= $(".tips");
+	tip.find('h3').text(text);
+	tip.slideDown();
+	t=setTimeout(function(){ tip.slideUp()},3000);
+}
+</script>
+<?php
+$helps_sum = $helps_sum?$helps_sum:0;
+if($info['discount_type']==1){
+	$youhuizhi = $helps_sum.'元';
+}else{
+	$youhuizhi = (10 - $helps_sum)<$info['discount_min']?$info['discount_min']:(10 - $helps_sum);
+	$youhuizhi = $youhuizhi.'折';
+}
+?>
+<script type="text/javascript">
+<?php if($memberNotice == '' && $is_over == 0){?>
+window.shareData = {  
+            "moduleName":"YouSetDiscount",
+            "moduleID":"0",
+            "imgUrl": "<?php echo $info['fxpic']?$info['fxpic']:$info['wxpic'];?>", 
+            "timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U('Wap/YouSetDiscount/index',array('token'=>$token,'id'=>$info['id'],'share_key'=>$user['share_key']))}",
+            "sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Wap/YouSetDiscount/index',array('token'=>$token,'id'=>$info['id'],'share_key'=>$user['share_key']))}",
+            "weiboLink": "{weimicms:$f_siteUrl}{weimicms::U('Wap/YouSetDiscount/index',array('token'=>$token,'id'=>$info['id'],'share_key'=>$user['share_key']))}",
+            <?php if($info['fxtitle'] == ''){?>
+            "tTitle": "我正在参加“<?php echo $info['name'];?>”活动，快来帮我拿优惠！",
+			<?php }else{
+			$info['fxtitle'] = str_replace(array('{{活动名称}}','{{优惠值}}'),array($info['name'],$youhuizhi),$info['fxtitle']);
+			?>
+			"tTitle": "<?php echo $info['fxtitle'];?>",
+			<?php }?>
+            <?php if($info['fxinfo'] == ''){?>
+            "tContent": "{weimicms:$info.wxinfo|shareFilter}",
+            "fTitle": "{weimicms:$info.wxinfo|shareFilter}",
+			<?php }else{
+			$info['fxinfo'] = str_replace(array('{{活动名称}}','{{优惠值}}'),array($info['name'],$youhuizhi),$info['fxinfo']);
+			?>
+			"tContent": "{weimicms:$info.fxinfo|shareFilter}",
+			"fTitle": "{weimicms:$info.fxinfo|shareFilter}",
+			<?php }?>
+};
+<?php }else{?>
+window.shareData = {  
+            "moduleName":"YouSetDiscount",
+            "moduleID":"0",
+            "imgUrl": "{weimicms:$info.wxpic}", 
+            "timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U('Wap/YouSetDiscount/index',array('token'=>$token,'id'=>$info['id']))}",
+            "sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Wap/YouSetDiscount/index',array('token'=>$token,'id'=>$info['id']))}",
+            "weiboLink": "{weimicms:$f_siteUrl}{weimicms::U('Wap/YouSetDiscount/index',array('token'=>$token,'id'=>$info['id']))}",
+            "tTitle": "{weimicms:$info.name}",
+            "tContent": "{weimicms:$info.wxinfo|shareFilter}"
+			
+};
+<?php }?>
+</script>
+{weimicms:$shareScript}
+</body>
+</html>

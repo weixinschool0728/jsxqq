@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=1.0 user-scalable=yes" />
+<title>闷骚指数测试</title>
+<link href="tpl/Wap/default/common/hcar/pic/bk/bootstrap.min.css?m=0711" rel="stylesheet">
+<link rel="stylesheet" href="tpl/Wap/default/common/hcar/pic/bk/style.css?m=0711" />
+<style type="text/css">
+body {
+	background: #000 url(tpl/Wap/default/common/hcar/pic/bk/bk.jpg) top center no-repeat !important;
+	background-size: 100% auto !important;
+}
+.addthumb {
+	padding-left: 0;
+	padding-right: 0;
+	height: 50px;
+	overflow: hidden;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="text-center header">
+    <h1 class="bold">闷骚指数测试</h1>
+    <div class="avatar1 text-center">
+      <div class="img-circle" id="sicon"> <span class="glyphicon glyphicon-pencil"></span> </div>
+    </div>
+  </div>
+  <div id="bd" class="panel">
+    <div id="panel1" class="panel-body">
+      <dl>
+        <dd style="font-size:18px;">所谓“闷”，中规中矩，严肃内向也；所谓“骚”，性感，张扬也；<br>
+          “闷骚”顾名思义，隐忍而不失优雅的性感，一般是指外表冷静，沉默而实际富有思想和内涵的人，都说21世纪，对人最好的评价是闷骚。</dd>
+      </dl>
+      <div class="buttons"> <a href="#result" class="btn btn-danger btn-block" onclick="return next(0);"> 开始测试</a> </div>
+    </div>
+    <div id="panel2" class="panel-body js_answer" data-type="0" style="display: none;">
+      <dl>
+        <dd>假设逛街的时候，看到地上有100块钱，你会有什么反应？ </dd>
+      </dl>
+      <ul class="list-group js_group">
+        <li class="list-group-item" data-score="10" onclick="return toggle(this);"><i class="glyphicon glyphicon-unchecked"></i> A 装作没看见，从旁边走过。</li>
+        <li class="list-group-item" data-score="4" onclick="return toggle(this);"><i class="glyphicon glyphicon-unchecked"></i> B 大大方方的捡起来放进口袋，我捡到就是我的。</li>
+        <li class="list-group-item" data-score="2" onclick="return toggle(this);"><i class="glyphicon glyphicon-unchecked"></i> C 一脚踩上去，然后装作系鞋带，瞧瞧捡起来。</li>
+        <li class="list-group-item" data-score="5" onclick="return toggle(this);"><i class="glyphicon glyphicon-unchecked"></i> D 捡起来，大喊一句：谁丢钱了?</li>
+      </ul>
+    </div>
+    <div id="panel2" class="panel-body js_answer" data-type="0" style="display: none;">
+      <dl>
+        <dd>公司开party，要求必须带“家属”，你却恰逢单身，你会？</dd>
+      </dl>
+      <ul class="list-group js_group">
+        <li class="list-group-item" data-score="1" onclick="return toggle(this);"><i class="glyphicon glyphicon-unchecked"></i> A 靠，歧视光棍，老子不参加了</li>
+        <li class="list-group-item" data-score="4" onclick="return toggle(this);"><i class="glyphicon glyphicon-unchecked"></i> B 找个好基友（好闺蜜），一起参加</li>
+        <li class="list-group-item" data-score="10" onclick="return toggle(this);"><i class="glyphicon glyphicon-unchecked"></i> C 趁机向他/她苦诉，求假扮女/男票，然后。。。你懂的</li>
+        <li class="list-group-item" data-score="5" onclick="return toggle(this);"><i class="glyphicon glyphicon-unchecked"></i> D 买个充气的，带上去</li>
+      </ul>
+    </div>
+    <div id="panel2" class="panel-body js_answer" data-type="0" style="display: none;">
+      <dl>
+        <dd>去听你最喜欢歌手的演唱会，主持人要求台下上去一名观众，你会？</dd>
+      </dl>
+      <ul class="list-group js_group">
+        <li class="list-group-item" data-score="7" onclick="return toggle(this);"><i class="glyphicon glyphicon-unchecked"></i> A 被朋友起哄，推着站起来，表现出一付害羞、无奈的样子</li>
+        <li class="list-group-item" data-score="5" onclick="return toggle(this);"><i class="glyphicon glyphicon-unchecked"></i> B 探身、举手，就差踩着人头冲上去了！</li>
+        <li class="list-group-item" data-score="9" onclick="return toggle(this);"><i class="glyphicon glyphicon-unchecked"></i> C 要是没有去就举手，有人去，就算了</li>
+        <li class="list-group-item" data-score="1" onclick="return toggle(this);"><i class="glyphicon glyphicon-unchecked"></i> D 虽然很想去，但是还是不举手了</li>
+      </ul>
+    </div>
+    <div id="panel2" class="panel-body js_answer" data-type="0" style="display: none;">
+      <dl>
+        <dd>你一般怎么样吃冰淇淋？</dd>
+      </dl>
+      <ul class="list-group js_group">
+        <li class="list-group-item" data-score="5" onclick="return toggle(this);"><i class="glyphicon glyphicon-unchecked"></i> A 用舌头舔着吃</li>
+        <li class="list-group-item" data-score="3" onclick="return toggle(this);"><i class="glyphicon glyphicon-unchecked"></i> B 一口一口咬着吃</li>
+        <li class="list-group-item" data-score="10" onclick="return toggle(this);"><i class="glyphicon glyphicon-unchecked"></i> C 用嘴唇轻吮着吃</li>
+        <li class="list-group-item" data-score="1" onclick="return toggle(this);"><i class="glyphicon glyphicon-unchecked"></i> D 边吃边说，超好吃，实在是太好吃了！</li>
+      </ul>
+    </div>
+    <div id="panel2" class="panel-body js_answer" data-type="0" style="display: none;">
+      <dl>
+        <dd>你喜欢什么样的音乐？</dd>
+      </dl>
+      <ul class="list-group js_group">
+        <li class="list-group-item" data-score="7" onclick="return toggle(this);"><i class="glyphicon glyphicon-unchecked"></i> A 摇滚</li>
+        <li class="list-group-item" data-score="4" onclick="return toggle(this);"><i class="glyphicon glyphicon-unchecked"></i> B 时下流行</li>
+        <li class="list-group-item" data-score="10" onclick="return toggle(this);"><i class="glyphicon glyphicon-unchecked"></i> C 小众但风格独特的</li>
+        <li class="list-group-item" data-score="1" onclick="return toggle(this);"><i class="glyphicon glyphicon-unchecked"></i> D 最炫民族风</li>
+      </ul>
+    </div>
+    <div id="panel2" class="panel-body js_answer" data-type="0" style="display: none;">
+      <dl>
+        <dd>一个人在家的时候，你会？</dd>
+      </dl>
+      <ul class="list-group js_group">
+        <li class="list-group-item" data-score="10" onclick="return toggle(this);"><i class="glyphicon glyphicon-unchecked"></i> A 一杯清茶，一本好书，感受阳光</li>
+        <li class="list-group-item" data-score="1" onclick="return toggle(this);"><i class="glyphicon glyphicon-unchecked"></i> B 窝在床上看电视，上网，打游戏</li>
+        <li class="list-group-item" data-score="8" onclick="return toggle(this);"><i class="glyphicon glyphicon-unchecked"></i> C 一杯咖啡，一份零食，一部小电影</li>
+        <li class="list-group-item" data-score="3" onclick="return toggle(this);"><i class="glyphicon glyphicon-unchecked"></i> D 打电话找人来玩</li>
+      </ul>
+    </div>
+    <div id="panel2" class="panel-body js_answer" data-type="0" style="display: none;">
+      <dl>
+        <dd>对于自己的表现能力，你？</dd>
+      </dl>
+      <ul class="list-group js_group">
+        <li class="list-group-item" data-score="10" onclick="return toggle(this);"><i class="glyphicon glyphicon-unchecked"></i> A 只跟很熟的人，才会大谈特谈</li>
+        <li class="list-group-item" data-score="8" onclick="return toggle(this);"><i class="glyphicon glyphicon-unchecked"></i> B 说话不是我强项，但文字就木有难度了</li>
+        <li class="list-group-item" data-score="4" onclick="return toggle(this);"><i class="glyphicon glyphicon-unchecked"></i> C 对任何人都能找到适合的话题，张弛有度</li>
+        <li class="list-group-item" data-score="1" onclick="return toggle(this);"><i class="glyphicon glyphicon-unchecked"></i> D 木有表现能力</li>
+      </ul>
+    </div>
+    <div id="panel2" class="panel-body js_answer" data-type="0" style="display: none;">
+      <dl>
+        <dd>假设你身价过亿，参加一个高档酒会，你会？</dd>
+      </dl>
+      <ul class="list-group js_group">
+        <li class="list-group-item" data-score="5" onclick="return toggle(this);"><i class="glyphicon glyphicon-unchecked"></i> A 带一瓶82年的拉菲，用碗喝</li>
+        <li class="list-group-item" data-score="15" onclick="return toggle(this);"><i class="glyphicon glyphicon-unchecked"></i> B 整个舞会上都不动声色，舞会结束时，送心仪的她/他回家，出门口，一辆劳斯莱斯缓缓驶来</li>
+        <li class="list-group-item" data-score="0" onclick="return toggle(this);"><i class="glyphicon glyphicon-unchecked"></i> C 全程做听众，中途默默离场</li>
+        <li class="list-group-item" data-score="8" onclick="return toggle(this);"><i class="glyphicon glyphicon-unchecked"></i> D 找一帮兔女郎活跃气氛</li>
+      </ul>
+    </div>
+    <div id="panel2" class="panel-body js_answer" data-type="0" style="display: none;">
+      <dl>
+        <dd>你在微信朋友圈中的表现</dd>
+      </dl>
+      <ul class="list-group js_group">
+        <li class="list-group-item" data-score="1" onclick="return toggle(this);"><i class="glyphicon glyphicon-unchecked"></i> A 从来不分享</li>
+        <li class="list-group-item" data-score="3" onclick="return toggle(this);"><i class="glyphicon glyphicon-unchecked"></i> B 偶然分享，无人问津</li>
+        <li class="list-group-item" data-score="7" onclick="return toggle(this);"><i class="glyphicon glyphicon-unchecked"></i> C 经常分享，反应平平</li>
+        <li class="list-group-item" data-score="13" onclick="return toggle(this);"><i class="glyphicon glyphicon-unchecked"></i> D 偶尔分享，大多反响热烈</li>
+      </ul>
+    </div>
+    <div id="panel2" class="panel-body js_answer" data-type="0" style="display: none;">
+      <dl>
+        <dd>化装舞会，要求一定要着装暴露，你更愿意露哪里?</dd>
+      </dl>
+      <ul class="list-group js_group">
+        <li class="list-group-item" data-score="5" onclick="return toggle(this);"><i class="glyphicon glyphicon-unchecked"></i> A 胸</li>
+        <li class="list-group-item" data-score="4" onclick="return toggle(this);"><i class="glyphicon glyphicon-unchecked"></i> B 腿</li>
+        <li class="list-group-item" data-score="8" onclick="return toggle(this);"><i class="glyphicon glyphicon-unchecked"></i> C 背</li>
+        <li class="list-group-item" data-score="10" onclick="return toggle(this);"><i class="glyphicon glyphicon-unchecked"></i> D 腰</li>
+      </ul>
+    </div>
+    <div id="panel3" class="panel-body js_result" data-id="0" style="display:none;">
+      <h1 class="bold text-danger">得分：#score#</h1>
+      <hr>
+      <dl>
+        <dd>
+          <p>undefined&quot;&quot;</p>
+        </dd>
+      </dl>
+      <div class="buttons"> </div>
+    </div>
+    <div id="panel3" class="panel-body js_result" data-id="1" style="display:none;">
+      <h1 class="bold text-danger">得分：#score#</h1>
+      <hr>
+      <dl>
+        <dd>
+          <p>你绝对够得上是稀有物种，在众多人眼里，你简直就是平行世界中另一个次元的生命。你简直是闷骚的反义词，你看不惯假正经的人，觉得他们很虚伪，可是，亲爱的，有时候适当释放一下也无可厚非。~&quot;&quot;</p>
+        </dd>
+      </dl>
+      <div class="buttons"> </div>
+    </div>
+    <div id="panel3" class="panel-body js_result" data-id="2" style="display:none;">
+      <h1 class="bold text-danger">得分：#score#</h1>
+      <hr>
+      <dl>
+        <dd>
+          <p>你属于非常非常正常的人类，你有的时候会显示出非常清纯的一面，有的时候处理事情的时候又显得格外的沉着冷静。你给人一种真实可靠的感觉，但有一点是肯定的，你与闷骚无缘。</p>
+        </dd>
+      </dl>
+      <div class="buttons"> </div>
+    </div>
+    <div id="panel3" class="panel-body js_result" data-id="3" style="display:none;">
+      <h1 class="bold text-danger">得分：#score#</h1>
+      <hr>
+      <dl>
+        <dd>
+          <p>与骚无关，但也不算太闷，属于正常范围，有点自己的小乐趣，小生活，自娱自乐，其实也挺好~</p>
+        </dd>
+      </dl>
+      <div class="buttons"> </div>
+    </div>
+    <div id="panel3" class="panel-body js_result" data-id="4" style="display:none;">
+      <h1 class="bold text-danger">得分：#score#</h1>
+      <hr>
+      <dl>
+        <dd>
+          <p>你实属”骚“客，与闷无关，豪放，无畏，众星捧月之“月”，鹤立鸡群之“鹤”，我行故我在！</p>
+        </dd>
+      </dl>
+      <div class="buttons"> </div>
+    </div>
+    <div id="panel3" class="panel-body js_result" data-id="5" style="display:none;">
+      <h1 class="bold text-danger">得分：#score#</h1>
+      <hr>
+      <dl>
+        <dd>
+          <p>恰倒好处的比例，不会过于沉闷，也免于过度风骚。时而腼腆的微笑，时而妩媚的眼神！实在是拿捏的恰到好处，情场高手，职场风云！顶礼膜拜！</p>
+        </dd>
+      </dl>
+      <div class="buttons"> </div>
+    </div>
+    <div id="panel3" class="panel-body js_result" data-id="6" style="display:none;">
+      <h1 class="bold text-danger">得分：#score#</h1>
+      <hr>
+      <dl>
+        <dd>
+          <p>你会在陌生人面前装闷，但只要混熟就会乱发骚。刚认识的时候想把你当偶像，越熟悉就越有掐死你的冲动！</p>
+        </dd>
+      </dl>
+      <div class="buttons"> </div>
+    </div>
+    <div id="panel3" class="panel-body js_result" data-id="7" style="display:none;">
+      <h1 class="bold text-danger">得分：#score#</h1>
+      <hr>
+      <dl>
+        <dd>
+          <p>你简直就是闷骚的代名词，你表面冷若冰霜，但其实无时无刻都在暗自发骚，逼格之高，令众人仰慕！不得不尊称阁下一句：骚爷。。</p>
+        </dd>
+      </dl>
+      <div class="buttons"> </div>
+    </div>
+  </div>
+</div>
+<div class="container addthumb"><a href="{weimicms:$fxlj}"><img src="tpl/Wap/default/common/hcar/pic/bk/guanzhu.gif" style="width:100%" /></a></div>
+<div class="footer text-center" style="margin-top:10px">
+  <div class="container"><a href="{weimicms:$fxlj}">&copy;卡娃微卡</a> </div>
+</div>
+<div id="mcover" onclick="$(this).hide()"> <img src="tpl/Wap/default/common/hcar/pic/bk/guide.png"> </div>
+<div class="loads" style="display:bolck"><i></i></div>
+<script src="tpl/Wap/default/common/hcar/pic/bk/zepto.min.js"></script> 
+<script src="tpl/Wap/default/common/hcar/pic/bk/WeixinApi.min.js"></script> 
+<script type="text/javascript">
+    // var audio = new Audio();
+    var total = '10';
+    var tScore = 0;
+    var scoreArr = new Array();
+        scoreArr[0] = undefined;
+        scoreArr[1] = 0;
+        scoreArr[2] = 20;
+        scoreArr[3] = 30;
+        scoreArr[4] = 40;
+        scoreArr[5] = 50;
+        scoreArr[6] = 70;
+        scoreArr[7] = 90;
+    function next(t){
+        console.log(t);
+        $(".panel-body").hide();
+        var $_this = $(".js_answer").eq(t);
+            $_this.show();
+        var type = $_this.attr('data-type');
+        if(type==2){
+            // audio.src = $_this.find('audio').attr('src');
+            // audio.load();
+            // audio.play();
+            $('#sicon').html('<span class="glyphicon glyphicon-picture"></span>');
+        }
+        else if(type==1){
+            // stop = true;
+            // audio.pause();
+            $('#sicon').html('<span class="glyphicon glyphicon-picture"></span>');
+        }
+        else{
+            // stop = true;
+            // audio.pause();
+            $('#sicon').html('<span class="glyphicon glyphicon-pencil"></span>');
+        }
+    }
+
+    function result(t){
+        console.log("得分"+tScore);
+        $(".panel-body").hide();
+        for (var i = scoreArr.length - 1; i >= 0; i--) {
+            if ( parseInt(t) >= parseInt(scoreArr[i]) ) {
+                console.log("应该弹"+i);
+                $(".js_result").eq(i).show();
+                if(i>(total/2)){
+                    $('#sicon').html('<span class="glyphicon glyphicon-thumbs-up"></span>');
+                }
+                else{
+                    $('#sicon').html('<span class="glyphicon glyphicon-thumbs-up"></span>');
+                }
+                $.get("mobile.php?act=module&name=dialect&do=detail&weid=1", {id: "2",score: tScore});
+                return false;
+            }
+            else{
+                continue;    
+            }
+        };
+    }
+
+    function toggle(t){
+        $(".list-group-item").removeClass('active')
+        var score = $(t).attr("data-score");
+        tScore  = parseInt(tScore) + parseInt(score);
+        $(t).find('i').removeClass('glyphicon-unchecked').addClass('glyphicon-ok');
+        var t = $(".js_answer").index($(t).parents(".js_answer")) + 1;
+        if(t == total){
+	    eles = document.getElementsByClassName("bold text-danger");
+            for(ei=0;ei<eles.length;ei++)
+            {
+                org = eles[ei].innerHTML;
+                if(org.indexOf("#score#") != -1)
+	        {
+                    eles[ei].innerHTML = org.replace("#score#", tScore);
+                }
+            }
+	    result(tScore);
+        }
+        else{
+            setTimeout(function(){next(t);},300);
+        }
+    }
+    Zepto(function($){
+        $('.loads').hide();
+    })
+    WeixinApi.ready(function(Api) {
+        Api.showOptionMenu();
+        n = Math.floor(Math.random() * 2600 + 1);
+	var wxData = {
+            "appId": "",
+            "imgUrl" : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/hcar/pic/bk/bk.jpg',
+            "link" : window.location.href,
+            "desc" : '我刚参加了#dialect#，我的闷骚指数：#score#分，你们也来测测吧~',
+            "title" : '我的闷骚指数是#score#点！'
+        };
+        // 分享的回调
+        var wxCallbacks = {
+            // 分享操作开始之前
+            ready:function () {
+                wxData['title']=wxData['title'].replace('#score#',tScore);
+                wxData['title']=wxData['title'].replace('#dialect#',"闷骚指数测试");
+                wxData['desc']=wxData['desc'].replace('#score#',tScore);
+                wxData['desc']=wxData['desc'].replace('#dialect#',"闷骚指数测试");
+            },
+            // 分享被用户自动取消
+            cancel : function(resp) {
+                //alert("别这样的啦，好东西要和朋友分享的嘛！分享后我告诉你一个秘密。");
+            },
+            // 分享失败了
+            fail : function(resp) {
+                alert("分享失败，可能是网络问题，一会儿再试试？");
+            },
+            // 分享成功
+            confirm : function(resp) {
+                window.location.href='{weimicms:$fxlj}';
+            },
+        };
+        Api.shareToFriend(wxData,wxCallbacks);
+        Api.shareToTimeline(wxData,wxCallbacks);
+        Api.shareToWeibo(wxData,wxCallbacks);
+    });
+</script>
+<div class="hide"></div>
+</body>
+</html>

@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <include file="Kawahk:js"/> 
+	<script type="text/javascript">
+            initViewport();
+    </script>
+		<meta charset="utf-8">
+		<title>冬之精灵</title>
+		<!--[if lte IE 8]>
+ 			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link rel="stylesheet" href="tpl/Wap/default/common/kawahk/1017/style.css" type="text/css" media="screen" title="no title" charset="utf-8">
+		<link href="13110501/css" rel="stylesheet" type="text/css">		
+		<!-- Use jQuery for best compatibility with other CSS3 enabled browsers -->
+		<script src="tpl/Wap/default/common/kawahk/1017/jquery.min.js" type="text/javascript" charset="utf-8"></script>		
+		<script src="tpl/Wap/default/common/kawahk/1017/flux.js" type="text/javascript" charset="utf-8"></script>		
+		<style type="text/css">
+		<!--
+			.text1 {font-family:microsoft yahei;text-align:right;font-size:30px;line-height:26px;color:black;}	
+			footer {position:fixed;left:0px;bottom:10px;text-align:right;width:100%;}
+			/* line 15, ../compass/sass/style.scss */
+			body
+			{
+				/*background-color: ;*/
+				background:#000000;
+				scroll="no";
+				margin: 0;
+				
+			}	
+			#layer2 {
+				position:absolute;
+				left:0px;
+				top:317px;
+				width:100%;
+				z-index:2;
+			}
+		-->			
+		</style>
+	<script>
+	// script place
+        	words = '简单的生活，需要有一双发现美的眼睛，冬之精灵 送给你 很美吧！';
+
+            kawa_data = {
+                words 			   : words,
+                 <if condition=" $words eq ''">
+				replace_words      : '简单的生活，需要有一双发现美的眼睛，冬之精灵 送给你 很美吧！',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+                text_box           : '15 490 500 150', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+                mode               : 'print',     // up, left
+                speed              : 400,     // 每秒移动的像素
+                text_color         : 'black', // rgb(1,2,3) 'black'
+                font_size          : '20pt',
+                line_height        : '30pt',
+                //text_align         : 'center',
+                font_weight        : 'bold',
+                music              : 'http://sound.kagirl.net/sound/tiaopi2.mp3',     // url
+                <if condition=" $music eq ''">
+				replace_music      : 'http://sound.kagirl.net/sound/tiaopi2.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+                music_name         : '',
+                replace_music_name : '#replace_music_name#',
+                icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/fengmian/x1017.jpg',
+                title              : '送给你',
+                desc               : words,
+                modify             : 'no',
+                replace_modify     : '#replace_modify#',
+                cardid             : '1017',
+                share_url          :  window.location.href,   // 当分享的是微信页面时才需要改这里
+                font_ip            : '114.215.157.155:8000',
+                modify_optfile     : 'dongtiandezhufu',
+                modify_optwords    : '#modify_optwords#',
+                show_words         : 'yes',
+                write_param_1      : 'inputtype=singleline&showsel=no&prompt=' + encodeURIComponent('输入对方的名字：')
+            };
+        </script>
+    
+	
+		<script type="text/javascript" charset="utf-8">
+			$(function(){
+				if(!flux.browser.supportsTransitions)
+					alert("您的手机不支持该动画");
+					
+				window.f = new flux.slider('#slider', {
+					pagination: false,
+					delay: 3500,
+					controls: false,
+					transitions: ['concentric'],
+					autoplay: true
+				});
+			});
+		</script>
+	</head>
+	<body onload="kawa_init();">
+		<section class="container">
+			<div id="slider">
+				<img src="tpl/Wap/default/common/kawahk/1017/2007_1.jpg" alt="">
+				<img src="tpl/Wap/default/common/kawahk/1017/2007_2.jpg" alt="">
+				<img src="tpl/Wap/default/common/kawahk/1017/2007_3.jpg" alt="">
+				<img src="tpl/Wap/default/common/kawahk/1017/2007_4.jpg" alt="">				
+				<img src="tpl/Wap/default/common/kawahk/1017/2007_5.jpg" alt="">				
+				<img src="tpl/Wap/default/common/kawahk/1017/2007_6.jpg" alt="">				
+				<img src="tpl/Wap/default/common/kawahk/1017/2007_7.jpg" alt="">		
+			</div>
+		</section>
+	<div id="layer2">
+       <img src="tpl/Wap/default/common/kawahk/1017/11203077966_b8893aa3b5_o.jpg" top="317px" width="100%">
+	</div>
+	<div id="ruler" style="width:100%;height:0"></div>
+		
+	
+</body></html>

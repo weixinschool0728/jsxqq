@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{weimicms:$info.name}</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'/>
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" href="{weimicms:$staticPath}/tpl/static/yousetdiscount/css/base.css">
+    <link rel="stylesheet" href="{weimicms:$staticPath}/tpl/static/yousetdiscount/css/style.css">
+    <script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/yousetdiscount/js/jquery-2.1.1.min.js"></script>
+	</head>
+<body style="background:#000">
+<a href="<?php echo U('Wap/YouSetDiscount/index',array('token'=>$token,'id'=>$info['id'],'share_key'=>$share_key));?>"><img src='{weimicms:$staticPath}/tpl/static/yousetdiscount/images/share-guide.png' style="width: 100%;height: 100%;"></a>
+<?php
+$helps_sum = $_GET['discount']?$_GET['discount']:0;
+if($info['discount_type']==1){
+	$youhuizhi = $helps_sum.'元';
+}else{
+	$youhuizhi = '下降'.$helps_sum.'折';
+}
+?>
+<script type="text/javascript">
+<?php if($memberNotice == '' && $is_over == 0){?>
+window.shareData = {  
+            "moduleName":"YouSetDiscount",
+            "moduleID":"0",
+            "imgUrl": "<?php echo $info['fxpic']?$info['fxpic']:$info['wxpic'];?>", 
+            "timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U('Wap/YouSetDiscount/index',array('token'=>$token,'id'=>$info['id'],'share_key'=>$user['share_key']))}",
+            "sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Wap/YouSetDiscount/index',array('token'=>$token,'id'=>$info['id'],'share_key'=>$user['share_key']))}",
+            "weiboLink": "{weimicms:$f_siteUrl}{weimicms::U('Wap/YouSetDiscount/index',array('token'=>$token,'id'=>$info['id'],'share_key'=>$user['share_key']))}",
+            <?php if($info['fxtitle2'] == ''){?>
+            "tTitle": "我在<?php echo $info['playtime'];?>秒内获得了<?php echo $youhuizhi;?>的优惠，手都快抽筋，你也来试试看！",
+			<?php }else{
+			$info['fxtitle2'] = str_replace(array('{{时间}}','{{优惠值}}'),array($info['playtime'],$youhuizhi),$info['fxtitle2']);
+			?>
+			"tTitle": "<?php echo $info['fxtitle2'];?>",
+			<?php }?>
+            <?php if($info['fxinfo2'] == ''){?>
+            "tContent": "{weimicms:$info.wxinfo|shareFilter}",
+            "fTitle": "{weimicms:$info.wxinfo|shareFilter}",
+			<?php }else{
+			$info['fxinfo2'] = str_replace(array('{{时间}}','{{优惠值}}'),array($info['playtime'],$youhuizhi),$info['fxinfo2']);
+			?>
+			"tContent": "{weimicms:$info.fxinfo2|shareFilter}",
+			"fTitle": "{weimicms:$info.fxinfo2|shareFilter}",
+			<?php }?>
+};
+<?php }else{?>
+window.shareData = {  
+            "moduleName":"YouSetDiscount",
+            "moduleID":"0",
+            "imgUrl": "{weimicms:$info.wxpic}", 
+            "timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U('Wap/YouSetDiscount/index',array('token'=>$token,'id'=>$info['id']))}",
+            "sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Wap/YouSetDiscount/index',array('token'=>$token,'id'=>$info['id']))}",
+            "weiboLink": "{weimicms:$f_siteUrl}{weimicms::U('Wap/YouSetDiscount/index',array('token'=>$token,'id'=>$info['id']))}",
+            "tTitle": "{weimicms:$info.name}",
+            "tContent": "{weimicms:$info.wxinfo|shareFilter}"
+			
+};
+<?php }?>
+</script>
+{weimicms:$shareScript}
+</body>
+</html>

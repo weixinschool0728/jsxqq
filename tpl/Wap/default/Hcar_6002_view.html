@@ -1,0 +1,1166 @@
+
+<html>
+<head>
+<title>送月亮</title>
+<meta http-equiv="imagetoolbar" content="no">
+<meta name="viewport" content="width=440px, height=580px,initial-scale=0.64"/>
+
+<style type="text/css">
+html {
+overflow: hidden;
+}
+body {
+	position: absolute;
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+	height: 100%;
+	"overflow-x":"hidden";
+}
+#screen {
+position: absolute;
+
+left: 10%;
+top: 10%;
+width: 80%;
+height: 80%;
+}
+#screen img {
+position: absolute;
+cursor: pointer;
+width: 0px;
+height: 0px;
+-ms-interpolation-mode:nearest-neighbor;
+}
+#bankImages {
+visibility: hidden;
+}
+#showImages li{
+	position:absolute;
+	left:0px;
+	top:0px;
+	width:100%;
+	list-style:none;
+	z-index:-1;
+}
+#FPS {
+position: absolute;
+right: 5px;
+bottom: 5px;
+font-size: 10px;
+color: #666;
+font-family: verdana;
+}
+#layer3{
+position:absolute;
+left:0px;
+top:0px;
+width:100%;
+hight:100%
+z-index:3;
+}
+#layer4{
+position:absolute;
+left:0px;
+top:0px;
+width:100%;
+hight:100%
+z-index:4;
+}
+
+</style>
+<script src="http://lib.sinaapp.com/js/jquery/1.3.2/jquery.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="/tpl/Wap/default/common/hcar/makecard3.css" type="text/css" media="screen" charset="utf-8">
+<script>
+		gSizeMode = 'bodywidth';
+		gAnimateMode = 'print';
+		gSound = 'tpl/Wap/default/common/hcar/sound/woyuanyi.mp3';
+		gColor = '#000099';		 
+		gCardTextNoWrap ='卡  娃';
+		gCardText ='卡  娃';
+		gTextAreaLeft = 0.54;
+		gTextAreaTop = 0.43;
+		gTextAreaWidth = 0.9;
+		gTextAreaHeight = 0.09;
+		gSpeed = 300;
+		//gFontSize = 120
+	    share_url =window.location.href;
+			// script place
+		var appId = '',
+		imgUrl = 'tpl/Wap/default/common/hcar/pic/6002/x6002.jpg',
+		link = location.href,
+		title = '卡娃微卡',
+		desc = 'I LOVE U';
+			// card tips
+		gcardid = 6002;
+		goptiontxt = "aiqing";
+	</script>
+	
+	
+	<script src="/tpl/Wap/default/common/hcar/mweixin1.js"></script>
+	
+<script type="text/javascript">
+
+/******************************************
+
+* Snow Effect Script- By Altan d.o.o. (http://www.altan.hr/snow/index.html)
+
+* Visit Dynamic Drive DHTML code library (http://www.dynamicdrive.com/) for full source code
+
+* Last updated Nov 9th, 05' by DD. This notice must stay intact for use
+
+******************************************/
+
+  
+
+  //Configure below to change URL path to the snow image
+ 
+  var snowsrc ="tpl/Wap/default/common/hcar/pic/6002/5.png"
+  var snowsrc1 ="tpl/Wap/default/common/hcar/pic/6002/5.png"
+  var flag =0
+
+  // Configure below to change number of snow to render
+
+  var no = 4;
+
+  // Configure whether snow should disappear after x seconds (0=never):
+
+  var hidesnowtime = 0;
+
+  // Configure how much snow should drop down before fading ("windowheight" or "pageheight")
+
+  var snowdistance = "pageheight";
+
+
+
+///////////Stop Config//////////////////////////////////
+
+
+
+  var ie4up = (document.all) ? 1 : 0;
+
+  var ns6up = (document.getElementById&&!document.all) ? 1 : 0;
+
+
+
+	function iecompattest(){
+
+	return (document.compatMode && document.compatMode!="BackCompat")? document.documentElement : document.body
+
+	}
+
+
+
+  var dx, xp, yp;    // coordinate and position variables
+
+  var am, stx, sty;  // amplitude and step variables
+
+  var i, doc_width = 800, doc_height = 800; 
+
+  
+
+  if (ns6up) {
+
+    doc_width = self.innerWidth;
+
+    doc_height = 800;
+
+  } else if (ie4up) {
+
+    doc_width = iecompattest().clientWidth;
+
+    doc_height = 800;
+
+  }
+
+
+
+  dx = new Array();
+
+  xp = new Array();
+
+  yp = new Array();
+
+  am = new Array();
+
+  stx = new Array();
+
+  sty = new Array();
+
+  snowsrc= flag ? snowsrc1 : snowsrc;
+
+  for (i = 0; i < no; ++ i) {  
+
+    dx[i] = 0;                        // set coordinate variables
+
+    xp[i] = Math.random()*(doc_width-200);  // set position variables
+
+    yp[i] = Math.random()*doc_height;
+
+    am[i] = 0;         // set amplitude variables
+
+    stx[i] = 0.8; // set step variables
+
+    sty[i] = 0.7;     // set step variables
+
+		if (ie4up||ns6up) {
+
+      if (i == 0) {
+
+        document.write("<div id=\"dot"+ i +"\" style=\"POSITION: absolute; Z-INDEX: "+ i +"; VISIBILITY: visible; TOP: 15px; LEFT: 15px;\"><img src='"+snowsrc+"' border=\"0\"><\/div>");
+
+      } else {
+
+        document.write("<div id=\"dot"+ i +"\" style=\"POSITION: absolute; Z-INDEX: "+ i +"; VISIBILITY: visible; TOP: 15px; LEFT: 15px;\"><img src='"+snowsrc+"' border=\"0\"><\/div>");
+
+      }
+
+    }
+
+  }
+
+
+
+  function snowIE_NS6() {  // IE and NS6 main animation function
+
+    doc_width = ns6up?window.innerWidth-80 : iecompattest().clientWidth-80;
+
+	doc_height = 800;
+
+    for (i = 0; i < no; ++ i) {  // iterate for every dot
+
+      yp[i] += sty[i];
+	  xp[i] += stx[i];
+	  
+      if ((yp[i] > doc_height-150) || (xp[i] > doc_width-100)){
+
+        xp[i] = Math.random()*(doc_width-am[i]-30);
+
+        yp[i] = Math.random()*10;
+
+        stx[i] = 0.2;
+
+        sty[i] = 0.7;
+
+      }
+
+      dx[i] += stx[i];
+
+      document.getElementById("dot"+i).style.top=yp[i]+"px";
+	  
+      document.getElementById("dot"+i).style.left=xp[i] + am[i]+"px";  
+
+    }
+	
+    snowtimer = setTimeout("snowIE_NS6()", 5);
+
+  }
+
+
+
+	function hidesnow(){
+
+		if (window.snowtimer) clearTimeout(snowtimer)
+
+		for (i=0; i<no; i++) document.getElementById("dot"+i).style.visibility="hidden"
+
+	}
+
+		
+
+
+
+if (ie4up||ns6up){
+
+    snowIE_NS6();
+
+		if (hidesnowtime>0)
+
+		setTimeout("hidesnow()", hidesnowtime*1000)
+
+		}
+
+
+
+/* ==== fadein ==== */
+
+
+/* ==== Easing function ==== */
+var Library = {};
+Library.ease = function () {
+this.target = 0;
+this.position = 0;
+this.move = function (target, speed) {
+this.position += (target - this.position) * speed;
+}
+}
+
+var n = 8;
+var tv = {
+/* ==== variables ==== */
+O : [],
+fps : 0,
+screen : {},
+angle : {
+x : new Library.ease(),
+y : new Library.ease()
+},
+camera : {
+x : new Library.ease(),
+y : new Library.ease()
+},
+create3DHTML : function (i, x, y, z, sw, sh) {
+/* ==== create HTML image element ==== */
+var o = document.createElement('img');
+o.src = i.src;
+tv.screen.obj.appendChild(o);
+/* ==== 3D coordinates ==== */
+o.point3D = {
+x : x,
+y : y,
+z : new Library.ease(),
+sw : sw,
+sh : sh,
+w : i.width,
+h : i.height
+};
+o.point3D.z.target = z;
+/* ==== push object ==== */
+o.point2D = {};
+tv.O.push(o);
+
+/* ==== on mouse over event ==== */
+o.onclick = function () {
+if (this != tv.o) {
+this.point3D.z.target = tv.mouseZ;
+tv.camera.x.target = this.point3D.x;
+tv.camera.y.target = this.point3D.y;
+if (tv.o) tv.o.point3D.z.target = 0;
+tv.o = this;
+}
+return false;
+}
+
+/* ==== on mousedown event ==== */
+
+o.onmousedown = function () {
+	if (n == 9)
+	{
+		for (var i =0; i<=8; i++)
+				$("#showImages li").eq(i).fadeIn(10);
+	}
+	if( n == 8 )
+	{
+		hidesnow();
+	}
+	
+	document.getElementById("layer3").style.visibility="hidden"
+	
+	
+	if(! $("#showImages li").eq(n).is(":hidden")){
+	
+		if ( n==1 )
+		{
+			n--;
+		}
+		else
+		{
+			$("#showImages li").eq(n).fadeOut(2000);
+		}
+		}
+		
+	else
+	{		
+		 $("#showImages li").eq(n).fadeIn("slow");
+	}
+	
+	n--;
+	if ((n == 0) || (n == -1))
+	{
+			n = 9;
+	};
+	
+	
+	
+if (this == tv.o) {
+if (this.point3D.z.target == tv.mouseZ) this.point3D.z.target = 0;
+else {
+tv.o = false;
+this.onclick();
+}
+}
+}
+
+/* ==== main 3D function ==== */
+o.animate = function () {
+/* ==== 3D coordinates ==== */
+var x = this.point3D.x - tv.camera.x.position;
+var y = this.point3D.y - tv.camera.y.position;
+this.point3D.z.move(this.point3D.z.target, this.point3D.z.target ? .15 : .08);
+/* ==== rotations ==== */
+var xy = tv.angle.cx * y - tv.angle.sx * this.point3D.z.position;
+var xz = tv.angle.sx * y + tv.angle.cx * this.point3D.z.position;
+var yz = tv.angle.cy * xz - tv.angle.sy * x;
+var yx = tv.angle.sy * xz + tv.angle.cy * x;
+/* ==== 2D transform ==== */
+var scale = tv.camera.focalLength / (tv.camera.focalLength + yz);
+x = yx * scale;
+y = xy * scale;
+var w = Math.round(Math.max(0, this.point3D.w * scale * this.point3D.sw));
+var h = Math.round(Math.max(0, this.point3D.h * scale * this.point3D.sh));
+/* ==== HTML rendering ==== */
+var o = this.style;
+
+o.left = Math.round(x + tv.screen.w - w * .5) + 'px';
+o.top = Math.round(y + tv.screen.h - h * .5) + 'px';
+o.width = w + 'px';
+o.height = h + 'px';
+o.zIndex = 10000 + Math.round(scale * 1000);
+}
+},
+
+/* ==== init script ==== */
+init : function (structure, FL, mouseZ, rx, ry) {
+this.screen.obj = document.getElementById('screen');
+this.screen.obj.onselectstart = function () { return false; }
+this.screen.obj.ondrag = function () { return false; }
+this.mouseZ = mouseZ;
+this.camera.focalLength = FL;
+this.angle.rx = rx;
+this.angle.ry = ry;
+/* ==== create objects ==== */
+var i = 0, o;
+while( o = structure[i++] )
+this.create3DHTML(o.img, o.x, o.y, o.z, o.sw, o.sh);
+/* ==== start script ==== */
+this.resize();
+mouse.y = this.screen.y + this.screen.h;
+mouse.x = this.screen.x + this.screen.w;
+/* ==== loop ==== */
+setInterval(tv.run, 16);
+setInterval(tv.dFPS, 1000);
+},
+
+/* ==== resize window ==== */
+resize : function () {
+var o = tv.screen.obj;
+if (o) {
+tv.screen.w = o.offsetWidth / 2;
+tv.screen.h = o.offsetHeight / 2;
+for (tv.screen.x = 0, tv.screen.y = 0; o != null; o = o.offsetParent) {
+tv.screen.x += o.offsetLeft;
+tv.screen.y += o.offsetTop;
+}
+}
+},
+
+/* ==== main loop ==== */
+run : function () {
+tv.fps++;
+/* ==== motion ease ==== */
+tv.angle.x.move(-(mouse.y - tv.screen.h - tv.screen.y) * tv.angle.rx, .1);
+tv.angle.y.move( (mouse.x - tv.screen.w - tv.screen.x) * tv.angle.ry, .1);
+tv.camera.x.move(tv.camera.x.target, .025);
+tv.camera.y.move(tv.camera.y.target, .025);
+/* ==== angles sin and cos ==== */
+tv.angle.cx = Math.cos(tv.angle.x.position);
+tv.angle.sx = Math.sin(tv.angle.x.position);
+tv.angle.cy = Math.cos(tv.angle.y.position);
+tv.angle.sy = Math.sin(tv.angle.y.position);
+/* ==== loop through images ==== */
+var i = 0, o;
+while( o = tv.O[i++] ) o.animate();
+},
+
+/* ==== trace frames per seconds ==== */
+dFPS : function () {
+document.getElementById('FPS').innerHTML = tv.fps + ' FPS';
+tv.fps = 0;
+}
+}
+
+/* ==== global mouse position ==== */
+var mouse = {
+x : 0,
+y : 0
+}
+document.onmousemove = function(e) {
+if (window.event) e = window.event;
+mouse.x = e.clientX;
+mouse.y = e.clientY;
+return false;
+}
+
+/* ==== starting script ==== */
+onload = function() {
+onresize = tv.resize;
+/* ==== build grid ==== */
+var img = document.getElementById('bankImages').getElementsByTagName('img');
+var structure = [];
+/*
+for (var i = -300; i <= 300; i += 120)
+for (var j = -300; j <= 300; j += 120)
+      if((i == -60 && j == -300) || (i == 180 && j == -300) || ( i == -180 && j == -180) ||( i == 60 && j == -180) || (i == 300 && j == -180) 
+	    ||(i == -60 && j == -60) || (i == 180 && j == -60) || (i == 60 && j == 60))
+	  {
+	  	   structure.push({ img:img[0], x:i, y:j, z:0, sw:.5, sh:.5 });
+	  }
+*/
+ structure.push({ img:img[0], x:0, y:-100, z:0, sw:.5, sh:.5 });
+ structure.push({ img:img[0], x:-60, y:-140, z:0, sw:.5, sh:.5 });
+ structure.push({ img:img[0], x:60, y:-140, z:0, sw:.5, sh:.5 });
+ structure.push({ img:img[0], x:-120, y:-70, z:0, sw:.5, sh:.5 });
+ structure.push({ img:img[0], x:120, y:-70, z:0, sw:.5, sh:.5 });
+ structure.push({ img:img[0], x:-80, y:-20, z:0, sw:.5, sh:.5 });
+ structure.push({ img:img[0], x:80, y:-20, z:0, sw:.5, sh:.5 });
+ structure.push({ img:img[0], x:0, y:60, z:0, sw:.5, sh:.5 });
+/* ==== let's go ==== */
+tv.init(structure, 350, -200, .005, .0025);
+
+onLoad();
+}
+
+</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+</head>
+
+<body>
+<style>
+div#foot {
+position: fixed;
+width: 500px;
+left: 320px;
+bottom: 20px;
+z-index:111;
+}
+</style>
+ <div id="foot" class="fixed">		
+			<a href="{weimicms:$fxlj}"><img width="150px" src="tpl/Wap/default/common/hcar/kawa1.gif"/></a>
+		</div> 
+<div id="screen"></div>
+
+<div id="bankImages">
+<img alt="" src="/tpl/Wap/default/common/hcar/pic/6002/3.png">
+</div>
+<div id="showImages">	
+	<li><img src="/tpl/Wap/default/common/hcar/pic/6002/6002_8.jpg" width="100%"></li>	
+	<li>	
+	<div id="ruler" style="width:100%;height:0"></div>
+		<div id="audiocontainer"></div>
+
+		<div id="textsuper" style="position:absolute;top:-1000;left:-1000;overflow-x:hidden;overflow-y:hidden;" onclick='javascript:playsound()'>
+
+		<div id="textsub" style='position:relative;font-size:14pt;line-height:25pt' onclick='javascript:playsound()'>
+
+			<b id="textcontent">
+			</b>
+
+		</div>
+
+	</div>
+
+	</li>
+	<li><img src="/tpl/Wap/default/common/hcar/pic/6002/6002_7.jpg" width="100%"></li>
+	<li><img src="/tpl/Wap/default/common/hcar/pic/6002/6002_6.jpg" width="100%"></li>
+	<li><img src="/tpl/Wap/default/common/hcar/pic/6002/6002_5.jpg" width="100%"></li>
+	<li><img src="/tpl/Wap/default/common/hcar/pic/6002/6002_4.jpg" width="100%"></li>
+	<li><img src="/tpl/Wap/default/common/hcar/pic/6002/6002_3.jpg" width="100%"></li>
+	<li><img src="/tpl/Wap/default/common/hcar/pic/6002/6002_2.jpg" width="100%"></li>
+	<li><img src="/tpl/Wap/default/common/hcar/pic/6002/6002_1.jpg" width="100%"></li>
+</div>
+
+
+ <div id="layer3">
+
+	<img src="/tpl/Wap/default/common/hcar/pic/6002/6001_10.gif" width="100%">
+
+</div>
+
+<if condition="$message eq ''">
+		<script>
+			function gomakecard()
+			{
+				url = "/index.php?g=Wap&m=Hcar&a=hcar_make&token={weimicms:$token}&id={weimicms:$id}&cardid={weimicms:$cardid}&defaulttxt=" + gCardTextNoWrap;
+				location.href = url;
+			}
+		</script>
+
+		<a onClick="gomakecard();">
+			<div style="height:100px; top:0px" id="makecard">
+					<img style="left:10%; width: 80%;" src="/tpl/Wap/default/common/hcar/dingzhi.png">
+			</div>
+		</a>
+		</if>
+
+<script>
+var pop_up_note_mode = true;
+var note_id = 1;
+
+function id(name)
+{
+	return document.getElementById(name);
+}
+
+function translateUrl(url)
+{
+	if(typeof(share_url) != "undefined" && share_url != '')
+	{
+		url = share_url;
+	}
+
+//    pos1 = url.indexOf("//", 0);
+    
+  //  if(pos1 != -1)
+  //  {
+   //     pos2 = url.indexOf("/", pos1 + 2);
+  //      n = Math.floor(Math.random() * 5100 + 1);
+   //     url = "http://ec" + n + ".kagirl.com.cn" + url.substring(pos2);
+  //  }
+    
+    return url;
+}
+
+function switchsound()
+{
+	au = id('bgsound');
+	ai = id('sound_image');
+	if(au.paused)
+	{
+		au.play();
+		ai.src = "/tpl/Wap/default/common/hcar/music_note_big.png";
+		pop_up_note_mode = true;
+		popup_note();
+		id("music_txt").innerHTML = "打开";
+		id("music_txt").style.visibility = "visible";
+		setTimeout(function(){id("music_txt").style.visibility="hidden"}, 2500);
+	}
+	else
+	{
+		pop_up_note_mode = false;
+		au.pause();
+		ai.src = "/tpl/Wap/default/common/hcar/music_note_big.png";
+		id("music_txt").innerHTML = "关闭";
+		id("music_txt").style.visibility = "visible";
+		setTimeout(function(){id("music_txt").style.visibility="hidden"}, 2500);
+	}
+}
+
+function on_pop_note_end(event)
+{
+	note = event.target;
+	
+	if(note.parentNode == id("note_box"))
+	{
+		id("note_box").removeChild(note);
+		console.log("remove note id " + note.getAttribute("id"));
+	}
+}
+
+function popup_note()
+{
+	box = id("note_box");
+	
+	note = document.createElement("span");
+	note.style.cssText = "visibility:visible;position:absolute;background-image:url('/tpl/Wap/default/common/hcar/music_note_small.png');width:15px;height:25px";
+	note.style.left = Math.random() * 20 + 20;
+	note.style.top = "75px";
+	this_node = "music_note_" + note_id;
+	note.setAttribute("ID", this_node);
+	note_id += 1;
+	scale = Math.random() * 0.4 + 0.4;
+	note.style.webkitTransform = "rotate(" + Math.floor(360 * Math.random()) + "deg) scale(" + scale + "," + scale + ")";
+	note.style.webkitTransition = "top 2s ease-in, opacity 2s ease-in, left 2s ease-in";
+	note.addEventListener("webkitTransitionEnd", on_pop_note_end);
+	box.appendChild(note);
+
+	setTimeout("document.getElementById('" + this_node + "').style.left = '0px';", 100);
+	setTimeout("document.getElementById('" + this_node + "').style.top = '0px';", 100);
+	setTimeout("document.getElementById('" + this_node + "').style.opacity = '0';", 100);
+	
+	if(pop_up_note_mode)
+	{
+		setTimeout("popup_note()", 600);
+	}	
+}
+
+function playbksound()
+{
+	var audiocontainer = id('audiocontainer');
+	if(audiocontainer != undefined)
+	{
+		audiocontainer.innerHTML = '<audio id="bgsound" loop="loop" autoplay="autoplay"> <source src="' + gSound + '" /> </audio>';
+	}
+			
+	var audio = id('bgsound');
+	audio.play();
+	
+	sound_div = document.createElement("div");
+	sound_div.setAttribute("ID", "cardsound");
+	sound_div.style.cssText = "position:fixed;left:440px;top:40px;z-index:5000;visibility:visible;";
+	box_htm = "<div id='note_box' style='height:100px;width:44px;position:absolute;left:-20px;top:-80px'></div>";
+	bg_htm = "<img id='sound_image' onclick='switchsound()' src='/tpl/Wap/default/common/hcar/music_note_big.png'>";
+	txt_htm = "<div id='music_txt' style='color:white;position:absolute;left:-40px;top:30px;width:60px'></div>"
+	sound_div.innerHTML = bg_htm + box_htm + txt_htm;
+	document.body.appendChild(sound_div);
+	setTimeout("popup_note()", 100);
+}	
+
+function in_weixin()
+{
+	var ua = navigator.userAgent.toLowerCase();
+
+	if(ua.match(/MicroMessenger/i) == "micromessenger") {return true;}
+	
+	return false;
+}
+
+(function(){
+	
+	var onBridgeReady = function () {	
+
+		playbksound();			
+		link2 = translateUrl(link)
+
+		WeixinJSBridge.on('menu:share:appmessage', function(argv){
+			WeixinJSBridge.invoke('sendAppMessage',{
+				'img_url' : imgUrl,
+				'img_width' : '640',
+				'img_height' : '640',
+				'link' : link2,
+				'desc' : desc,
+				'title' : title
+				}, function(res) {
+			switch(res.err_msg) {
+			case "send_app_msg:confirm":
+			case "send_app_msg:ok":
+			    location.href="{weimicms:$fxlj}"
+			    break;
+			}
+		});
+		});
+
+		WeixinJSBridge.on('menu:share:timeline', function(argv){
+			WeixinJSBridge.invoke('shareTimeline',{
+			'img_url' : imgUrl,
+			'img_width' : '640',
+			'img_height' : '640',
+			'link' : link2,
+			'desc' : desc,
+			'title' : desc
+			}, function(res) {
+			switch(res.err_msg) {
+			case "share_timeline:confirm":
+			case "share_timeline:ok":
+			location.href="{weimicms:$fxlj}"
+			    break;
+			}
+			});
+		});
+	};
+	
+	if(document.addEventListener){
+		document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+	} else if(document.attachEvent){
+		document.attachEvent('WeixinJSBridgeReady' , onBridgeReady);
+		document.attachEvent('onWeixinJSBridgeReady' , onBridgeReady);
+	}
+	
+	if(!in_weixin())
+	{
+		setTimeout("playbksound()", 500);
+		//setTimeout("translateUrl(link)", 1000);
+	}
+})();
+
+</script>
+<script>
+/*
+var ua = navigator.userAgent.toLowerCase();
+	if(ua.match(/MicroMessenger/i)=="micromessenger") {
+		
+ 	} else {
+		window.location.href="http://mp.weixin.qq.com/s?__biz=MzAwOTA0MTQ3OQ==&mid=200750001&idx=1&sn=89c7d2e3eb38e2e27f439d902ae05269#rd";
+	}
+	
+*/	
+	
+var gTextSub        = 0;
+var gTextSuper      = 0;
+var gTextContent    = 0;
+var gPrintText      = '';
+var gOrgCardText    = '';
+
+var faces = [':)', ':~', ':B',':|','8-)',':<',':$',':X',':Z',
+             ':-|',':@',':P',':D',':O',':(',':+','--b',':Q',':T',
+			 ',@P',',@-D',':d',',@o',':g','|-)',':!',':L',':>',':,@',
+			 ',@f',':-S','?/',':,@x',',@@',':8',',@!','!!!','xx','bye',
+			 'wipe','dig','handclap','&-(','B-)','<@','@>',':-O','>-|','P-(',
+			 'X-)',':*','@x','8*','pd','<W>','beer','basketb','oo',
+			 'coffee','eat','pig','rose','fade','showlove','heart','break','cake','li',
+			 'bome','kn','footb','ladybug','shit','moon','sun','gift','hug','strong',
+			 'weak','share','v','@)','jj','@@','bad','lvu','no','ok',
+			 'love','<L>','jump','shake','<O>','circle','kotow','turn','skip','oY'];
+var urls  = ['http://cache.soso.com/img/img/e100.gif',
+    'http://cache.soso.com/img/img/e101.gif','http://cache.soso.com/img/img/e102.gif','http://cache.soso.com/img/img/e103.gif',
+	'http://cache.soso.com/img/img/e104.gif','http://cache.soso.com/img/img/e105.gif','http://cache.soso.com/img/img/e106.gif',
+	'http://cache.soso.com/img/img/e107.gif','http://cache.soso.com/img/img/e108.gif',
+	'http://cache.soso.com/img/img/e110.gif','http://cache.soso.com/img/img/e111.gif','http://cache.soso.com/img/img/e112.gif',
+	'http://cache.soso.com/img/img/e113.gif','http://cache.soso.com/img/img/e114.gif','http://cache.soso.com/img/img/e115.gif',
+	'http://cache.soso.com/img/img/e116.gif','http://cache.soso.com/img/img/e117.gif','http://cache.soso.com/img/img/e118.gif',
+	'http://cache.soso.com/img/img/e119.gif','http://cache.soso.com/img/img/e120.gif','http://cache.soso.com/img/img/e121.gif',
+	'http://cache.soso.com/img/img/e122.gif','http://cache.soso.com/img/img/e123.gif','http://cache.soso.com/img/img/e124.gif',
+	'http://cache.soso.com/img/img/e125.gif','http://cache.soso.com/img/img/e126.gif','http://cache.soso.com/img/img/e127.gif',
+	'http://cache.soso.com/img/img/e128.gif','http://cache.soso.com/img/img/e129.gif','http://cache.soso.com/img/img/e130.gif',
+	'http://cache.soso.com/img/img/e131.gif','http://cache.soso.com/img/img/e132.gif','http://cache.soso.com/img/img/e133.gif',
+	'http://cache.soso.com/img/img/e134.gif','http://cache.soso.com/img/img/e135.gif','http://cache.soso.com/img/img/e136.gif',
+	'http://cache.soso.com/img/img/e137.gif','http://cache.soso.com/img/img/e138.gif','http://cache.soso.com/img/img/e139.gif',
+	'http://cache.soso.com/img/img/e140.gif','http://cache.soso.com/img/img/e141.gif','http://cache.soso.com/img/img/e142.gif',
+	'http://cache.soso.com/img/img/e143.gif','http://cache.soso.com/img/img/e144.gif','http://cache.soso.com/img/img/e145.gif',
+	'http://cache.soso.com/img/img/e146.gif','http://cache.soso.com/img/img/e147.gif','http://cache.soso.com/img/img/e148.gif',
+	'http://cache.soso.com/img/img/e149.gif','http://cache.soso.com/img/img/e151.gif',
+	'http://cache.soso.com/img/img/e152.gif','http://cache.soso.com/img/img/e153.gif','http://cache.soso.com/img/img/e154.gif',
+	'http://cache.soso.com/img/img/e155.gif','http://cache.soso.com/img/img/e156.gif','http://cache.soso.com/img/img/e157.gif',
+	'http://cache.soso.com/img/img/e158.gif','http://cache.soso.com/img/img/e159.gif','http://cache.soso.com/img/img/e160.gif',
+	'http://cache.soso.com/img/img/e161.gif','http://cache.soso.com/img/img/e162.gif','http://cache.soso.com/img/img/e163.gif',
+	'http://cache.soso.com/img/img/e164.gif','http://cache.soso.com/img/img/e165.gif','http://cache.soso.com/img/img/e166.gif',
+	'http://cache.soso.com/img/img/e167.gif','http://cache.soso.com/img/img/e168.gif','http://cache.soso.com/img/img/e169.gif',
+	'http://cache.soso.com/img/img/e170.gif','http://cache.soso.com/img/img/e171.gif','http://cache.soso.com/img/img/e172.gif',
+	'http://cache.soso.com/img/img/e173.gif','http://cache.soso.com/img/img/e174.gif','http://cache.soso.com/img/img/e175.gif',
+	'http://cache.soso.com/img/img/e176.gif','http://cache.soso.com/img/img/e177.gif','http://cache.soso.com/img/img/e178.gif',	
+	'http://cache.soso.com/img/img/e179.gif','http://cache.soso.com/img/img/e180.gif','http://cache.soso.com/img/img/e181.gif',	
+	'http://cache.soso.com/img/img/e182.gif','http://cache.soso.com/img/img/e183.gif','http://cache.soso.com/img/img/e184.gif',	
+	'http://cache.soso.com/img/img/e185.gif','http://cache.soso.com/img/img/e186.gif','http://cache.soso.com/img/img/e187.gif',	
+	'http://cache.soso.com/img/img/e188.gif','http://cache.soso.com/img/img/e189.gif','http://cache.soso.com/img/img/e190.gif',	
+	'http://cache.soso.com/img/img/e191.gif','http://cache.soso.com/img/img/e192.gif','http://cache.soso.com/img/img/e193.gif',
+	'http://cache.soso.com/img/img/e194.gif','http://cache.soso.com/img/img/e195.gif','http://cache.soso.com/img/img/e196.gif',
+	'http://cache.soso.com/img/img/e197.gif','http://cache.soso.com/img/img/e198.gif','http://cache.soso.com/img/img/e199.gif'
+];
+
+
+if(typeof(gTextAreaLeft) == 'undefined')
+{
+    var gTextAreaLeft = 0.1;
+}
+
+if(typeof(gTextAreaTop) == 'undefined')
+{
+    var gTextAreaTop = 0.2;
+}
+
+if(typeof(gTextAreaWidth) == 'undefined')
+{
+    var gTextAreaWidth = 0.8;
+}
+
+if(typeof(gTextAreaHeight) == 'undefined')
+{
+    var gTextAreaHeight = 0.2;
+}
+
+if(typeof(gCardText) == 'undefined')
+{
+    var gCardText = '一张小小的卡片，捎去卡妞对您的无限祝福!';
+}
+
+if(typeof(gCardTextNoWrap) == 'undefined')
+{
+    var gCardTextNoWrap = '一张小小的卡片，捎去卡妞对您的无限祝福!';
+}
+
+if(typeof(gSizeMode) == 'undefined')
+{
+    var gSizeMode = 'img';  // img or bodywidth
+}
+
+if(typeof(gAnimateMode) == 'undefined')
+{
+    var gAnimateMode = 'left';
+}
+
+if(typeof(gSpeed) == 'undefined')
+{
+    var gSpeed = 350;
+}
+
+function ConvFaceOnBegin(message)
+{
+	var result = '';
+
+	var i = 0;
+	
+	if(message.substring(i, i + 2) == '/:')
+	{
+		for(f=0; f<faces.length; f++)
+		{
+			facestr = faces[f];
+			if(message.substring(i + 2, i + 2 + facestr.length) == facestr)
+			{
+				result = '<img src="' + urls[f] +'" width="48" height="48">';
+				i = i + 2 + facestr.length;
+				break;
+			}
+		}
+	}
+	
+	return [result, i];
+}
+
+function ConvFace(message)
+{
+	var msglen = message.length;
+	var result = '';
+
+	var i = 0;
+	
+	while(i < msglen)
+	{
+		var found = false;
+		
+		if(message.substring(i, i + 2) == '/:')
+		{
+			for(f=0; f<faces.length; f++)
+			{
+				facestr = faces[f];
+				if(message.substring(i + 2, i + 2 + facestr.length) == facestr)
+				{
+					result = result + '<img src="' + urls[f] +'" width="36" height="36">';
+					i = i + 2 + facestr.length;
+					found = true;
+					break;
+				}
+			}
+		}
+		
+		if(found == false)
+		{
+			result = result + message.substring(i, i + 1);
+			i += 1;
+		}
+	}
+	
+	return result;
+}
+
+function playsound()
+{
+    if(typeof(gSound) != 'undefined')
+    {
+        var audio = document.getElementById('bgsound');
+        audio.play();
+    }
+}
+
+function onLoad()
+{
+    gTextSub     = document.getElementById("textsub");
+    gTextSuper   = document.getElementById("textsuper");
+    gTextContent = document.getElementById("textcontent");
+    
+    if(gSizeMode == 'img')
+    {
+        var cardimg = document.getElementById("cardimg");
+        gTextSuper.style.left   = cardimg.offsetLeft + cardimg.offsetWidth  * gTextAreaLeft;
+        gTextSuper.style.top    = cardimg.offsetTop  + cardimg.offsetHeight * gTextAreaTop;
+        gTextSuper.style.height = cardimg.offsetHeight * gTextAreaHeight;
+        gTextSuper.style.width  = cardimg.offsetWidth  * gTextAreaWidth;
+    }
+    else if(gSizeMode == 'bodywidth')
+    {
+        var ruler   = document.getElementById("ruler");
+        var baseLen = ruler.offsetWidth;
+        gTextSuper.style.left   = baseLen * gTextAreaLeft;
+        gTextSuper.style.top    = baseLen * gTextAreaTop;
+        gTextSuper.style.height = baseLen * gTextAreaHeight;
+        gTextSuper.style.width  = baseLen * gTextAreaWidth;
+    }
+    
+    if(gAnimateMode == 'print')
+    {
+        onPrintLoad();
+        setTimeout("onPrintAnimate()", 1500);
+    }
+    else if(gAnimateMode == 'up')
+    {
+        onUpLoad();
+        setTimeout("onUpAnimate()", 10);
+    }
+    else if(gAnimateMode == 'left')
+    {
+		gCardText = gCardText.replace(/<br>/g, "");
+        onLeftLoad();
+        setTimeout("onLeftAnimate()", 10);
+    }
+	else if(gAnimateMode == 'static')
+	{
+		gCardText = gCardText.replace(/<br>/g, "");
+        onStaticLoad();
+	}
+
+    gTextContent.innerHTML = gCardText;
+    
+
+    // sound
+	//var audio = document.getElementById('bgsound');
+	//audio.src = gSound;
+	//audio.play();
+    
+    // font size
+    if(typeof(gFontSize) != 'undefined')
+    {
+        gTextContent.style.fontSize = gFontSize;
+    }
+	
+	// font color
+    if(typeof(gColor) != 'undefined')
+    {
+        gTextContent.style.color = gColor;
+    }
+}
+
+function onPrintLoad()
+{
+	gTextSub.style.top = gTextSuper.offsetHeight;
+    gPrintText         = gCardText;
+    gOrgCardText       = gCardText;
+    gCardText          = '';
+}
+    
+function onUpLoad()
+{
+	gCardText = ConvFace(gCardText);
+    gTextSub.style.top = gTextSuper.offsetHeight;
+}
+
+  
+function onLeftLoad()
+{
+	gCardText = ConvFace(gCardText);
+    textwidth = 75 * gCardText.length;
+    if(textwidth < 500) textwidth = 500;
+    
+    gTextSub.style.width = textwidth;
+    gTextSub.style.left  = gTextSuper.offsetWidth;
+}
+
+function onStaticLoad()
+{
+	gCardText = ConvFace(gCardText);
+    gTextSub.style.top = gTextSuper.offsetHeight;
+}
+  
+function goguanzhu()
+{
+    location.href = '{weimicms:$fxlj}';
+}
+
+function onPrintAnimate()
+{
+    pushText = '';
+    
+	var reachEnd = 0;
+	
+	if(gPrintText.length <= 1)
+	{
+		reachEnd = 1;
+	}
+	
+	var cutlen = 0;
+
+    if(gPrintText.length >= 4 && gPrintText.substring(0, 4) == '<br>')
+    {
+        gPrintText = gPrintText.substring(4);
+        pushText = '<br>';
+		cutlen = 4;
+    }
+	else if(gPrintText.substring(0, 2) == '/:')
+	{
+		result = ConvFaceOnBegin(gPrintText);
+		cutlen = result[1];
+		if(cutlen > 0)
+		{
+			gPrintText = gPrintText.substring(cutlen)
+			pushText = result[0]
+		}
+	}
+	
+    if(cutlen == 0 && gPrintText.length >= 1)
+    {
+        pushText   = gPrintText.substring(0, 1)
+        gPrintText = gPrintText.substring(1)
+    }
+
+    textcontent.innerHTML = textcontent.innerHTML + pushText
+
+    if(textsub.offsetTop + textsub.offsetHeight > textsuper.offsetHeight)
+    {
+        textsub.style.top = textsuper.offsetHeight - textsub.offsetHeight;
+    }
+
+	if(reachEnd == 1)
+	{
+		setTimeout("onPrintAnimate()", 10000);
+	}
+    else if(gPrintText.length == 0)
+	{
+        gTextSub.style.top     = gTextSuper.offsetHeight;
+        gPrintText             = gOrgCardText;
+        gTextContent.innerHTML = gCardText;
+        
+        setTimeout("onPrintAnimate()", 1500);
+    }
+    else
+	{
+		setTimeout("onPrintAnimate()", gSpeed);
+    }
+}
+
+function onUpAnimate()
+{
+    textsub.style.top = textsub.offsetTop - 1;
+    
+    if(textsub.offsetTop < - textsub.offsetHeight)
+    {
+        textsub.style.top = textsuper.offsetHeight;
+    }
+    
+    setTimeout("onUpAnimate()", 20);
+}
+
+function onLeftAnimate()
+{
+    gTextSub.style.left = gTextSub.offsetLeft - 1;
+    
+    if(gTextSub.offsetLeft < - textwidth)
+    {
+        gTextSub.style.left = gTextSuper.offsetWidth;
+    }
+    
+    setTimeout("onLeftAnimate()", 10);
+}
+
+function weixinAddContact()
+{
+    if(typeof(WeixinJSBridge) != "undefined")
+    {
+        WeixinJSBridge.invoke(
+            "addContact",
+            {webtype: "1",username: "kagirl"},
+            function(e){
+                if(e.err_msg == "access_control:not_allow")
+                {
+                    document.location = "../kagirl/htm/t1.htm"
+                }
+                }
+            )
+    }
+    else
+    {
+        document.location = "../kagirl/htm/t1.htm"
+    }
+}
+
+
+</script></body>
+</html>

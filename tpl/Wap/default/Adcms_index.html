@@ -1,0 +1,101 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0065)http://www.zqianqian.cn/index.php/Club/user/index/ref_id/106.html -->
+<!DOCTYPE html PUBLIC "" "">
+<HTML>
+<HEAD>
+<META content="IE=10.000" 
+http-equiv="X-UA-Compatible">
+<META charset="utf-8">
+<TITLE>点赚客</TITLE>
+<META name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+<META name="apple-mobile-web-app-capable" content="yes">
+<META name="apple-mobile-web-app-status-bar-style" content="black">
+<LINK 
+href="tpl/static/adcms/font-awesome.min.css" rel="stylesheet" type="text/css">
+<LINK href="tpl/static/adcms/mui.min.css" rel="stylesheet">
+<SCRIPT src="tpl/static/adcms/jquery-1.10.2.min.js" type="text/javascript"></SCRIPT>
+<STYLE>
+.clear {
+	clear: both;
+}
+.mui-table-view span {
+	width: 50%;
+	display: block;
+	float: left;
+}
+.sygz {
+	padding: 15px;
+}
+.sygz a {
+	width: 40%;
+	margin: 0 5% 15px;
+	text-align: center;
+	display: block;
+	float: left;
+	background: #EEA236;
+	line-height: 44px;
+	color: #fff;
+}
+.tip {
+	position: absolute;
+	right: 15px;
+	font-size: 12px;
+	background: #ff0000;
+	color: #fff;
+	border-radius: 20px;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	width: 20px !important;
+	height: 20px;
+	text-align: center;
+}
+</STYLE>
+<LINK href="tpl/static/adcms/style.css" rel="stylesheet">
+<META name="GENERATOR" content="MSHTML 10.00.9200.16660">
+</HEAD>
+<!--<body oncontextmenu="return false" onselectstart="return false">-->
+
+<BODY>
+<HEADER class="mui-bar mui-bar-nav"><!--<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>-->
+  
+  <H1 class="mui-title">个人信息</H1>
+</HEADER>
+<DIV class="mui-content">
+  <DIV class="title"> 我的信息 </DIV>
+  <UL class="mui-table-view">
+  <LI class="mui-table-view-cell"><SPAN style="line-height:80px">头像：</SPAN><SPAN> <img src="{weimicms:$fans.portrait}" style="width:80px"></LI>
+    <LI class="mui-table-view-cell"><SPAN>用户名：</SPAN><SPAN>{weimicms:$fans.wechaname}</SPAN><SPAN 
+  class="tip">普</SPAN></LI>
+  <if condition="$invite_user.name neq ''">
+   <LI class="mui-table-view-cell"><SPAN>推荐商家：</SPAN><SPAN>{weimicms:$invite_user.name}</SPAN></LI></if>
+    
+  </UL>
+  <DIV class="title">收益报告</DIV>
+  <UL class="mui-table-view">
+    <LI class="mui-table-view-cell"><SPAN>可提现余额：</SPAN><SPAN>{weimicms:$info.balance}</SPAN></LI>
+    <LI class="mui-table-view-cell"><SPAN>历史个人收益：</SPAN><SPAN>{weimicms:$total}</SPAN><A style="right: 15px; color: rgb(0, 0, 204); position: absolute;" 
+  href="{weimicms::U('Adcms/income',array('token'=>$token))}">详情&gt;</A></LI>
+    <LI class="mui-table-view-cell"><SPAN>历史粉丝收益：</SPAN><SPAN>{weimicms:$total_fans}</SPAN><A style="right: 15px; color: rgb(0, 0, 204); position: absolute;" 
+  href="{weimicms::U('Adcms/income_fans',array('token'=>$token))}">详情&gt;</A></LI>
+  </UL>
+  <!--<div class="title">我上传的文章</div>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<span>文章数：</span>
+					<span>0</span>
+					<a href="/index.php/Club/user/myarticle/ref_id/106.html" style=" position: absolute; right: 15px; color: #0000CC;">详情></a>
+				</li>
+			</ul>-->
+  
+  <DIV class="sygz"><A style="background: #007AFF" href="{weimicms::U('Adcms/lists',array('token'=>$token,'type'=>1))}">转发赚钱</A><A 
+style="background: #007AFF" href="{weimicms::U('Adcms/notice',array('token'=>$token,'type'=>1))}">新手学堂</A><A 
+style="background: #007AFF" href="{weimicms::U('Adcms/exchange',array('token'=>$token,'wecha_id'=>$fans['wecha_id']))}">申请提现</A><!--<a style="background: #0ab33e;">申请提现</a>--> 
+    <A style="background:#007AFF" href="{weimicms::U('Adcms/news_lists',array('token'=>$token))}">公告</A>
+    <A style="background: #007AFF;" href="{weimicms::U('Adcms/hezuo',array('token'=>$token))}">广告合作</A>
+    <A style="background: #007AFF;" href="#">软文提交</A>
+    <DIV class="clear"></DIV>
+  </DIV>
+</DIV>
+ <include file="Adcms:buttom"/>
+</BODY>
+</HTML>

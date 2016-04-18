@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>我的客户 -{weimicms:$jjrcopyright}</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;"
+        name="viewport" />
+     <link rel="stylesheet" type="text/css" href="{weimicms::RES}/jjr/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="{weimicms::RES}/jjr/css/hkb.css" /> 
+ 
+</head>
+<body>
+    <div class="all2">
+        <div class="max-640 pb50" id="q-height">
+            <div class="m-uimgct2 clearfix">
+            </div>
+            <div class="m-pd30">
+                <div class="wbfb">
+                    <ul class="m-nklst clearfix mb20">
+                        <li><a href="/index.php?g=Wap&m=Supplier&a=customer&st=1">
+                            <img src="{weimicms::RES}/jjr/images/nk11.png" alt=""></a></li>
+                        <li><a href="/index.php?g=Wap&m=Supplier&a=customer&st=2">
+                            <img src="{weimicms::RES}/jjr/images/nk2.png" alt=""></a></li>
+                        <li><a href="/index.php?g=Wap&m=Supplier&a=customer&st=3">
+                            <img src="{weimicms::RES}/jjr/images/nk3.png" alt=""></a></li>
+                        <li><a href="/index.php?g=Wap&m=Supplier&a=customer&st=4">
+                            <img src="{weimicms::RES}/jjr/images/nk4.png" alt=""></a></li>
+                        <li><a href="/index.php?g=Wap&m=Supplier&a=customer&st=5">
+                            <img src="{weimicms::RES}/jjr/images/nk5.png" alt=""></a></li>
+                        <li><a href="/index.php?g=Wap&m=Supplier&a=customer&st=6">
+                            <img src="{weimicms::RES}/jjr/images/nk6.png" alt=""></a></li>
+                    </ul>
+                    <form action="/index.php?g=Wap&m=Supplier&a=customer"  method="post">
+                    <div class="u-iptct ra clearfix" id="u-sflx">
+                        <span class="fl">
+                            <img src="{weimicms::RES}/jjr/images/lpico.png" alt=""></span>
+                        <div class="lo-iptct clearfix">
+                            <select name="projectid" id="eid" class="sele">
+                                <option value="">请选择楼盘</option>
+                                <volist name="projectinfo" id="vo">
+                                	<option value="{weimicms:$vo.projectid}">{weimicms:$vo.projectname}</option>
+                                </volist>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="u-iptct mt10 ra searchform clearfix">
+                        <button type="submit" class="fr">
+                        </button>
+                        <span class="fl">
+                            <img src="{weimicms::RES}/jjr/images/zh.png" alt=""></span>
+                        <div class="lo-iptct">
+                            <input type="text" placeholder="请输入客户的姓名" name="user_name" value="">
+                        </div>
+                    </div>
+                    </form>
+                    <volist name="curinfo" id="vo" empty="$empty" >
+                     <div class="mt15 m-tjlb">
+                           <div class="tj-row">
+                            <div class="tj-coll">
+                                <span>
+                                    <img src="{weimicms::RES}/jjr/images/tjlst1.png" alt="">
+                                    {weimicms:$vo.custom}
+                                </span>
+                            </div>
+                            <div class="tj-colr">
+                                <a href="">
+                            		<img src="{weimicms::RES}/jjr/images/tjlst2.png" alt="">
+                           	 		{weimicms:$vo.projectname} </a>
+                 		   </div>
+               			 </div>
+                            <div class="tj-row">
+                                <div class="tj-coll">
+                                    <a href="tel:{weimicms:$vo.customTel}">
+                                        <img src="{weimicms::RES}/jjr/images/tjlst3.png" alt="">
+                                       {weimicms:$vo.customTel}</a>
+                                </div>
+                                <div class="tj-colr">
+                                    <span>
+                                        <img src="{weimicms::RES}/jjr/images/tjlst4.png" alt=""> 
+                                        <if condition="$vo.status eq 0">
+                                            待登记
+                                            <elseif condition="$vo.status eq 1"/>
+                                            已登记
+                                            <elseif condition="$vo.status eq 2"/>
+                                            已到访
+                                            <elseif condition="$vo.status eq 3"/>
+                                            已认筹
+                                            <elseif condition="$vo.status eq 4"/>
+                                            已认购
+                                            <elseif condition="$vo.status eq 5"/>
+                                            已签约
+                                            <elseif condition="$vo.status eq 6"/>
+                                            已打款
+                                        </if> 
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="tj-row">
+                                <a href="">
+                                    <img src="{weimicms::RES}/jjr/images/tjlst5.png" alt="">
+                                     {weimicms:$vo.creatTime|date="Y-m-d h:m",###}</a>
+                            </div>
+                            <div class="tjlbbtnct">                
+                                <a href="/index.php?g=Wap&m=Supplier&a=record&id={weimicms:$vo.id}&projectid={weimicms:$vo.projectid}">跟进记录</a>
+                                <a href="/index.php?g=Wap&m=Supplier&a=status&salerid={weimicms:$vo.salerid}&projectid={weimicms:$vo.projectid}&id={weimicms:$vo.id}&token={weimicms:$vo.token}">查看状态</a>
+                            </div>
+                        </div> 
+                        </volist>
+                        <div style="margin-top:8px;">
+                    <a href="/index.php?g=Wap&m=Supplier&a=recommended" class="f-loginbtn ysgb tc">客户推荐</a>
+                    </div>
+                </div>
+                 <div class="powered" style="margin-bottom:0px; padding-bottom:8px; padding-top:20px; text-align:center; font-size:12px; color:#6691f3; height:30px;">
+    			{weimicms:$jjrcopyright}
+				</div> 
+            </div>
+        </div>
+    </div>
+     <footer  style="position: fixed; height:55px;">
+    <ul>
+        <li class="">
+            <a href="/index.php?g=Wap&m=Supplier&a=index">
+                <div class="icon30 buildingicon"></div>
+                <div class="textinfo">首页</div>
+            </a>
+        </li>
+        <li class="select">
+            <a href="/index.php?g=Wap&m=Supplier&a=customer">
+                <div class="icon30 customericon"></div>
+                <div class="textinfo">客户</div>
+            </a>
+        </li>
+        <li class="">
+            <a href="/index.php?g=Wap&m=Supplier&a=commission">
+                <div class="icon30 dynamicicon"></div>
+                <div class="textinfo">佣金</div>
+            </a>
+        </li>
+        <li class="">
+            <a href="/index.php?g=Wap&m=Supplier&a=guize">
+                <div class="icon30 myicon">
+                </div>
+                <div class="textinfo">细则</div>
+            </a>
+        </li>
+    </ul>
+</footer> 
+</body>
+</html>
+ 

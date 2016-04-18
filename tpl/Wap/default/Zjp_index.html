@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=yes" name="format-detection">
+<title></title>
+<meta content="" name="keywords">
+<meta content="" name="description">
+<link type="text/css" href="./tpl/Wap/default/common/zjp/idangerous.swiper.css?v=2014121116" charset="utf-8" rel="stylesheet" />
+<link type="text/css" href="./tpl/Wap/default/common/zjp/rxhk-luck.css?v=201412111115" charset="utf-8" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="./tpl/Wap/default/common/zjp/tysj.css" />
+		<link rel="stylesheet" type="text/css" href="./tpl/Wap/default/common/zjp/component.css" />
+<script>
+        var wecha_id ="{weimicms:$wecha_id}";
+		 var id ="{weimicms:$id}";
+		  var token ="{weimicms:$token}";
+    </script>
+</head>
+
+	
+<body onload="$('#loading').hide();">
+	<div id="loading" style="background: #f8e1b1; position: absolute; z-index: 999999; width: 100%; height: 100%;">
+		<img src="./tpl/Wap/default/common/zjp/luck-load.png" style="margin: 75px auto 50px auto;">
+		<p style="./tpl/Wap/default/common/zjp/text-align: center; font-size: 24px;">抽奖游戏加载中，请稍后...</p>
+	</div>
+	
+	
+	<div class="md-modal md-effect-1" id="modal-1">
+			<div class="md-content">
+				<h3>活动规则</h3>
+				<div>
+					
+					<ul>
+						{weimicms:$Zjp['info']}
+					</ul>
+					<button class="md-close">Close me!</button>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+	<div style="background-image: -moz-linear-gradient(top, #1f2b4f, #20243f); height: 100%; width: 100%;">
+		<div class="luck-top-bg" id="topbg">
+		 
+			<img src="./tpl/Wap/default/common/zjp/feJBp3MNjheMNtK6tpMK3NM237zh7D.jpg" width="100%">
+				</div>
+		<div class="switch-btn">
+			<img src="./tpl/Wap/default/common/zjp/hand-btn.png" width="70%">
+		</div>
+		<ul class="word">
+			<li><button class="md-trigger" data-modal="modal-1"><a href="{weimicms::U('Zjp/jp',array('token'=>$_GET['token'],'id'=>$_GET['id'],'wecha_id'=>$_GET['wecha_id']))}" class="my-prize">我的奖品</a></button></li>
+			<li><button class="md-trigger" data-modal="modal-1">活动规则</button></li>
+		</ul>
+		<div class="con">
+			<div class="arm-area" id="armArea">
+				<div id="arm" class="arm" style="background-image:url(./tpl/Wap/default/common/zjp/arm-bg-0.png);">
+					<div id="armImg" class="arm-img" style="background-image:url(./tpl/Wap/default/common/zjp/arm-0.png);"></div>
+				</div>
+			</div>
+			<div id="luckTips" class="luck-tips"></div>
+			<div id="finger" class="finger"></div>
+			<div class="box">
+				<div id="luckBox" class="box-front"></div>
+				<div class="box-back"></div>
+			</div>
+		</div>
+
+	</div>
+	<!--弹出框：获得奖品-->
+	<div id="luckPopup" class="popup">
+		<div class="popup-bg"></div>
+		<div class="popup-con-wrap">
+			<div class="popup-con popup-con-bg">
+				<div class="popup-con-img"  style=" padding-top:320px;">
+					<img id="prizeImg">
+				</div>
+			
+				<div class="popup-con-tips tips">
+				
+				<p></p>
+					<p>
+						<span id="prizeName"></span>
+					</p>
+					<p id="luckText">
+						<span id="surplusCount"></span>
+					</p>
+				
+				</div>
+			</div>
+			<a href="javascript:closeLuckPopup();" class="popup-btn" id="luckPopupBtn"></a>
+		</div>
+	</div>
+	<!--弹出框：输入手机号码-->
+	<div id="phonePopup" class="popup">
+		<div class="popup-bg"></div>
+		<div class="popup-con-wrap">
+			<div class="popup-con">
+				<div class="popup-con-head"  style=" padding-top:330px;">输入联系方式</div>
+			<!--	<div class="popup-con-word">请留下您真实的联系方式，以作为领取奖品的有效凭证。</div>-->
+				<div class="popup-con-input">
+						<span class="popup-con-error">*请输入您的姓名！</span>	<input name="realname" type="text">
+					<div class="phone-border"></div>
+				</div>	
+					<div class="popup-con-input">		<span class="popup-con-error">*请输入有效的手机号码！</span>
+					<input name="phone" type="text">
+					<div class="phone-border"></div>
+				</div>
+		
+			</div>
+			<a href="javascript:setPhone();" class="popup-btn">确认提交</a>
+		</div>
+	</div>
+	<!--弹出框：提示-->
+	<div id="promptPopup" class="popup">
+		<div class="popup-bg"></div>
+		<div class="popup-con-wrap">
+			<div class="popup-con">
+				<div class="popup-con-head" id="promptHead">提示</div>
+				
+				<div class="popup-con-tips tips" id="promptWord">恭喜你获得<span>10</span>次抽奖机会，继续加油！</div>
+			</div>
+			<a href="javascript:closePromptPopup();" class="popup-btn" id="prompBtn"></a>
+		</div>
+	</div>
+	
+
+	<!--分享遮罩层-->
+	<div id="shareMask" class="mask" onclick="closeShareMask();">
+		<div class="mask-bg"></div>
+		<div class="mask-cont">
+			<img src="./tpl/Wap/default/common/zjp/arrow.png" class="indicate">
+			<div class="clear"></div>
+			<div class="mask-cont-text">
+				点击右上角的<img src="./tpl/Wap/default/common/zjp/icon.png">分享给朋友可获得抽奖机会。不勇敢点，永远不知道好运什么时候临幸自己。
+			</div>
+			<div class="mask-close">
+			
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="./tpl/Wap/default/common/zjp/jquery.min.js" charset="utf-8"></script>
+	
+
+	<script type="text/javascript" src="./tpl/Wap/default/common/zjp/rxhk.js?v=2014121115" charset="utf-8"></script>
+	<script type="text/javascript" src="./tpl/Wap/default/common/zjp/rxhk-luck.js?v=2011921119" charset="utf-8"></script>
+
+			<div class="md-overlay"></div>
+		<script src="./tpl/Wap/default/common/zjp/classie.js"></script>
+		<script src="./tpl/Wap/default/common/zjp/modalEffects.js"></script>
+
+
+<script type="text/javascript">
+window.shareData = {  
+		"moduleName":"Zjp",
+		"moduleID": "{weimicms:$Zjp['id']}",
+		"imgUrl": "{weimicms:$Zjp['starpicurl']}", 
+		"sendFriendLink":"{weimicms:$f_siteUrl}{weimicms::U('Zjp/index',array('token'=>$Zjp['token'],'id'=>$Zjp['id']))}",
+		"timeLineLink":"{weimicms:$f_siteUrl}{weimicms::U('Zjp/index',array('token'=>$Zjp['token'],'id'=>$Zjp['id']))}",
+		"weiboLink":"{weimicms:$f_siteUrl}{weimicms::U('Zjp/index',array('token'=>$Zjp['token'],'id'=>$Zjp['id']))}",
+		"tTitle": "{weimicms:$Zjp['title']}",
+		"tContent": "{weimicms:$Zjp['info']}"
+	};
+</script>
+{weimicms:$shareScript}
+
+</body>
+</html>

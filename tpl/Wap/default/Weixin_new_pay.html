@@ -1,0 +1,116 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="format-detection" content="telephone=no" />
+	<link href="/tpl/Wap/default/common/css/style/css/hotels.css" rel="stylesheet" type="text/css" />
+	<title>微信支付</title>
+	<script language="javascript">
+	<if condition="$issystem eq 0">
+		function callpay(){
+			WeixinJSBridge.invoke('getBrandWCPayRequest',{weimicms:$jsApiParameters},function(res){
+				WeixinJSBridge.log(res.err_msg);
+				if(res.err_msg=='get_brand_wcpay_request:ok'){
+				    document.getElementById('payDom').style.display='none';
+					document.getElementById('successDom').style.display='';
+					setTimeout("window.location.href = '{weimicms:$returnUrl}'",2000);
+				}else{
+					//var flag = false;
+					if(res.err_msg == 'get_brand_wcpay_request:cancel'){
+						var err_msg = '您取消了支付';
+					}else if(res.err_msg == 'get_brand_wcpay_request:fail'){
+						//'不允许跨号支付';
+						//if (res.err_desc.search(/不允许跨号支付/) != -1) {
+						//	flag = true;
+						//	document.getElementById('cross_pay').style.display = 'block';
+						//}
+						var err_msg = '支付失败<br/>错误信息：'+res.err_desc;
+					}else{
+						var err_msg = res.err_msg +'<br/>'+res.err_desc;
+					}
+					//if (flag) {
+						//document.getElementById('pay_div').style.display = 'none';
+					//} else {
+						document.getElementById('payDom').style.display = 'none';
+						document.getElementById('failDom').style.display = '';
+						document.getElementById('failRt').innerHTML = err_msg;
+					//}
+				}
+			});
+		}
+	</if>
+	</script>
+</head>
+<body style="padding-top:20px;">
+	<style>
+		.deploy_ctype_tip{z-index:1001;width:100%;text-align:center;position:fixed;top:50%;margin-top:-23px;left:0;}
+		.deploy_ctype_tip p{display:inline-block;padding:13px 24px;border:solid #d6d482 1px;background:#f5f4c5;font-size:16px;color:#8f772f;line-height:18px;border-radius:3px;}
+	</style>
+	<div id="payDom" class="cardexplain">
+		<ul class="round">
+			<li class="title mb"><span class="none">支付信息</span></li>
+			<li class="nob">
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" class="kuang">
+					<tr>
+						<th>金额</th>
+						<td><?php echo floatval($price);?>元</td>
+					</tr>
+				</table>
+			</li>
+		</ul>
+		<if condition="$issystem">
+		<ul class="round" id="cross_pay">
+			<li class="title mb" style="text-align:center"><span class="none">微信扫描支付</span></li>
+			<li class="nob" style="margin-bottom: 18px;">
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" class="kuang">
+					<!--tr><th style="text-align:center">遇到不允许跨号支付？</th></tr-->
+					<tr><td style="text-align:center" ><img src="{weimicms::U('Weixin/qrcode', array('url' => $url))}" height="200" id="show_success"></td></tr>
+					<tr><td style="text-align:center">长按图片[识别二维码]付款</td></tr>
+				</table>
+			</li>
+			<li class="mb" style="text-align:center;margin-top: 20px;border-top: 1px solid #C6C6C6;" id="success"><span class="none"><a href="{weimicms:$returnUrl}" style="color:#459ae9">我已经支付成功</a></span></li>
+		</ul>
+		<else />
+			<div class="footReturn" style="text-align:center" id="pay_div">
+				<input type="button" style="margin:0 auto 20px auto;width:100%"  onclick="callpay()"  class="submit" value="点击进行微信支付" />
+			</div>
+		</if>
+	</div>
+	<div id="failDom" style="display:none" class="cardexplain">
+		<ul class="round">
+			<li class="title mb">
+				<span class="none">支付结果</span>
+			</li>
+			<li class="nob">
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" class="kuang">
+					<tr>
+						<th>支付失败</th>
+						<td><div id="failRt"></div></td>
+					</tr>
+				</table>
+			</li>
+		</ul>
+		
+		<div class="footReturn" style="text-align:center">
+			<input type="button" style="margin:0 auto 20px auto;width:100%"  onclick="callpay()"  class="submit" value="重新进行支付" />
+		</div>
+	</div>
+	<div id="successDom" style="display:none" class="cardexplain">
+		<ul class="round">
+			<li class="title mb">
+				<span class="none">支付成功</span>
+			</li>
+			<li class="nob">
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" class="kuang">
+					<tr>
+						<td>您已支付成功，页面正在跳转...</td>
+					</tr>
+				</table>
+				<div id="failRt"></div>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>

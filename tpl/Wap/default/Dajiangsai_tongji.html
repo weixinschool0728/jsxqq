@@ -1,0 +1,165 @@
+<!DOCTYPE HTML>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<title>{weimicms:$info['title']}</title>
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/public-framework/scripts/jquery.js"></script>
+<link href="{weimicms:$staticPath}/tpl/static/public-framework/styles/framework.css" rel="stylesheet" type="text/css">
+<link href="{weimicms:$staticPath}/tpl/static/public-framework/styles/owl.carousel.css" rel="stylesheet" type="text/css">
+<link href="{weimicms:$staticPath}/tpl/static/public-framework/styles/owl.theme.css" rel="stylesheet" type="text/css">
+<link href="{weimicms:$staticPath}/tpl/static/public-framework/styles/swipebox.css"  rel="stylesheet" type="text/css">
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/alert.js"></script>
+<link href="{weimicms:$staticPath}/tpl/static/Dajiangsai/countdown/jquery.countdown.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/Dajiangsai/countdown/jquery.countdown.js"></script>
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/Dajiangsai/js/script.js"></script>
+
+<link href="/tpl/static/Dajiangsai/css/index2.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+function swapStyleSheet(sheet){
+	document.getElementById('pagestyle').setAttribute('href', sheet);
+}
+</script>
+
+</head>
+<body>
+<if condition="$memberNotice neq ''">
+    {weimicms:$memberNotice}
+</if>
+
+<div id="preloader">
+	<div id="status">
+    	<p class="center-text">
+            <em>Loading...</em>
+        </p>
+    </div>
+</div>
+
+<div class="all-elements">
+    <div id="content" class="page-content">
+    	<div class="content-controls solid-color fixed-header">
+            <if condition="$is_over eq 1">
+                <a class="button-big button-turqoise" href="javascript:void(0);" style="background:#5a5a5a;">活动还没开始</a>
+            <elseif condition="$is_over eq 2"/>    
+                <a class="button-big button-turqoise" href="javascript:void(0);" style="background:#5a5a5a;">活动已经结束</a>
+            <elseif condition="$share_key neq ''"/>
+                <a class="button-big button-turqoise" href="{weimicms::U('Dajiangsai/index',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$info['id']))}">进入我的分享页面</a>
+			<else/>
+                <if condition="$memberNotice eq ''">
+                   <a class="button-big button-turqoise" id="share" href="javascript:void(0);">找朋友助力</a>
+                <else/>
+                   <a class="button-big button-turqoise"  href="#memberNoticeBox" id="modaltrigger_notice">我要参加</a>
+                </if>
+            </if>
+        </div>    
+
+		<!--sharelist end-->
+		<div class="blank"></div>
+		<!--sharelist start-->
+		 <div class="content">
+            <div class="rank_title">
+                <div class="top">TOP106</div>
+                <div class="cot">
+                    参与活动人数: 
+                    <i class="cl-green">{weimicms:$count}</i>
+                </div>
+            </div>
+        </div>
+		<!--sharelist end-->
+        <div class="content">
+            <div class="container">
+            	<table class="table" border="0" width="100%">
+                    <tr>
+                        <th width="10%">排名</th>
+                        <th  width="28%">姓名</th>
+                        <th>分享值</th>
+						 <th width="22%">手机号</th>
+						<if condition="$info.is_score eq '1'"><th>获得积分</th></if>
+                        <!--th  width="25%">冲刺奖励</th-->
+                    </tr>
+                    <volist id="rank" name="rank" key="key">
+                    <tr>
+                        <td>{weimicms:$key}</td>
+                        <td>{weimicms:$rank.username}</td>
+						<td>{weimicms:$rank.help_count}</td>
+						<td>{weimicms:$rank.tel}</td>
+                        <if condition="$info.is_score eq '1'"><td>{weimicms:$rank.help_score}</td></if>
+                        
+                    </tr>
+                    </volist>
+                </table>
+            </div>
+        </div>
+		<!-- 规则开始 -->
+		<div class="blank"></div>
+		<!--sharelist start-->
+		 <div class="content">
+            <div class="rank_title">
+                <div class="top">活动规则</div>
+            </div>
+        </div>
+		<!--sharelist end-->
+		<div class="content">
+            <div class="container con-last">
+				<div class="rule">
+					{weimicms:$info['info']|htmlspecialchars_decode}
+                </div>
+			</div>  
+		</div>
+		<!-- 规则 END -->
+    </div>  
+</div>
+<div class="share_bg">
+    <img src="/tpl/static/live/default/share-guide.png">
+</div>
+<script type="text/javascript">
+/*<if condition="$is_over gt 0">
+document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() { 
+	WeixinJSBridge.call('hideOptionMenu');
+});
+<else/>
+document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {   
+	WeixinJSBridge.call('showOptionMenu');
+});
+</if>*/
+</script>
+
+<script type="text/javascript">
+$(function(){
+	$('#share').click(function(){
+		$('.share_bg').css('display','block');
+	});
+	
+	$('.share_bg').click(function(){
+		if($(this).css('display') == 'block'){
+			$(this).css('display','none');
+		}
+	});
+
+});
+
+</script>
+
+<script type="text/javascript">
+window.shareData = {  
+            "moduleName":"Dajiangsai",
+            "moduleID":"{weimicms:$info.id}",
+			"pid": "{weimicms:$info.id}", 
+            "imgUrl": "{weimicms:$info.share_pic}", 
+            "timeLineLink": "{weimicms:$f_siteUrl}{weimicms::U('Dajiangsai/index',array('token'=>$token,'id'=>$info['id'],'share_key'=>$user['share_key']))}",
+            "sendFriendLink": "{weimicms:$f_siteUrl}{weimicms::U('Dajiangsai/index',array('token'=>$token,'id'=>$info['id'],'share_key'=>$user['share_key']))}",
+			"sendQQLink": "{weimicms:$f_siteUrl}{weimicms::U('Dajiangsai/index',array('token'=>$token,'id'=>$info['id'],'share_key'=>$user['share_key']))}",
+            "weiboLink": "{weimicms:$f_siteUrl}{weimicms::U('Dajiangsai/index',array('token'=>$token,'id'=>$info['id'],'share_key'=>$user['share_key']))}",
+            "tTitle": "{weimicms:$info.title}",
+            "tContent": "{weimicms:$user.username}正在参与{weimicms:$info['frist']}争夺战！请求你祝TA一臂之力！当前排名: 第{weimicms:$user.help_rank}名，快快参与其中吧！"
+};
+</script>
+{weimicms:$shareScript}
+
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/public-framework/scripts/owl.carousel.min.js"></script>
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/public-framework/scripts/jquery.swipebox.js"></script>
+<script type="text/javascript" src="{weimicms:$staticPath}/tpl/static/public-framework/scripts/framework.launcher.js"></script>
+
+</body>
+</html>

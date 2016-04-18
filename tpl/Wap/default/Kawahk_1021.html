@@ -1,0 +1,447 @@
+
+<html>  
+<head>  
+<meta http-equiv="content-type" content="text/html; charset=utf-8">  
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <include file="Kawahk:js"/> 
+        <script type="text/javascript">
+            initViewport();
+        </script>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>送给你</title>  
+
+<script>
+	var changeViewport = function(){
+		var scale = document.documentElement.clientWidth/500.0;
+		var vpcontent = "width=device-width, initial-scale=" + scale + ", maximum-scale=" + scale ;
+		
+		var meta = document.getElementsByTagName('meta');
+		for(var i=0;i<meta.length;i++){
+			if(meta[i].getAttribute('name') == "viewport"){
+				meta[i].setAttribute('content',vpcontent);
+			}
+		  
+		}
+	};
+	//changeViewport();
+</script>
+
+<script src="http://lib.sinaapp.com/js/jquery/1.3.2/jquery.min.js"></script>
+<style type="text/css">  
+    <!--   
+    body{   
+		-webkit-touch-callout: none; 
+		-webkit-text-size-adjust: none;
+        margin:0 auto;   		
+        overflow:hidden;   
+		position:relative;
+    }   
+  
+    div#content{
+        position:relative;   
+        border:1px solid #000; 
+		width:500px;		
+		height:750px;
+		margin:0 auto; 
+        top:0px;    
+        overflow:hidden;   
+        clear:both;
+    }
+  
+    div#bg{   
+        position:absolute;   
+        left:0px;   
+        top:0px;
+    } 
+	
+	div#stars
+	{ 
+		position:absolute; 
+		width:400px;
+		height:500px;
+		left:40px
+		top:300px;
+	}
+	#stars img{ position:absolute }
+	
+	div#diqiu
+	{ 
+		position:absolute; 
+		left:0px;
+		top:60px;
+		-webkit-animation:up 3s 0.1s 1 linear both;
+	}
+	div#diqiu1
+	{
+		position:absolute; 
+		left:0px;
+		top:0px;
+		-webkit-animation:fadeOut 1s 3.2s 1 linear both;
+	}
+	
+	div#diqiu2
+	{
+		position:absolute; 
+		left:0px;
+		top:0px;
+		-webkit-animation:fadeOut 1s 4.2s 1 linear both;
+	}
+	
+	div#fly1
+	{ 
+		position:absolute; 
+		left:-500px;
+		top:29px;
+		-webkit-animation:left 8s 5.2s infinite linear alternate both;
+	}
+	
+	div#fly2
+	{ 
+		position:absolute; 
+		left:500px;
+		top:450px;	
+		-webkit-animation:right 12s 5.2s infinite linear alternate both;
+	}
+	
+	div#zhipian1
+	{ 
+		position:absolute; 
+		left:48px;
+		top:462px;
+	}
+	
+	div#zhipian2
+	{ 
+		position:absolute; 
+		left:48px;
+		top:462px;		
+		display:none;
+	}
+	
+	div#zhipian3
+	{ 
+		position:absolute; 
+		left:44px;
+		top:357px;		
+		display:none;
+	}
+	
+	
+	div#fly3
+	{ 
+		position:absolute; 
+		left:209px;
+		top:339px;		
+		display:none;
+	}
+	
+	div#fly4
+	{ 
+		position:absolute; 
+		left:219px;
+		top:339px;		
+		display:none;
+	}
+	
+	div#fly5
+	{ 
+		position:absolute; 
+		left:219px;
+		top:339px;		
+		display:none;
+	}
+	div#tishi
+	{ 
+		position:absolute; 
+		left:153px;
+		top:560px;		
+	}
+	
+	div#foot{   
+        position:fixed; 
+		width:500px;
+		bottom:0px;
+    } 	
+  
+    div#relative{   
+        position:relative;   
+        left:100px;   
+        top:0px;   
+    }   
+  
+    div#static{   
+        background-color:#bbb;   
+		top:20;
+		left:30px;
+        position:static;   
+    }   
+	
+	@-webkit-keyframes bounceOut{
+		0%{
+			left:181px;
+			top:240px;
+		}
+		10%
+		{
+			left:181px;
+			top:247px;
+		}		
+		100%{
+			left:300px;
+			top:-245px;
+		}
+	}
+	
+	@-webkit-keyframes up{
+		0%{
+			left:0px;
+			top:-2000px;
+		}
+		100%{
+			left:0px;
+			top:0px;
+		}		
+	}
+	@-webkit-keyframes right{
+		0%{
+			opacity:0.8;
+			left:-600px;
+		}
+		50%{
+			opacity:1;
+			left:0px;
+		}	
+		100%{
+			opacity:0.4;
+			left:200px;
+		}		
+	}
+	@-webkit-keyframes left{
+		0%{
+			opacity:0.9;
+			left:600px;
+		}
+		50%{
+			opacity:0.6;
+			left:0px;
+		}	
+		100%{
+			opacity:1;
+			left:-600px;
+		}		
+	}
+	
+	@-webkit-keyframes fadeOut{
+		0%{opacity:0;}
+		100%{
+		opacity:1;}
+	}
+	
+	@-webkit-keyframes fly1{
+		0%{-webkit-transform:translate(0px,00px) rotateX(0deg) rotateY(0deg) rotatez(0deg) scale(0.2,0.2);
+		opacity:1}
+		30%{-webkit-transform:translate(60px,-200px) rotateX(10deg) rotateY(30deg) rotatez(20deg) scale(0.5,0.5);
+		opacity:1}
+		60%{-webkit-transform:translate(-10px,-300px) rotateX(50deg) rotateY(20deg) rotatez(60deg) scale(0.8,0.8);
+		opacity:0.6}
+		100%{-webkit-transform:translate(-300px,-500px) rotateX(-50deg) rotateY(-20deg) rotatez(10deg) scale(1,1);
+		opacity:0.2}
+	}
+	
+	@-webkit-keyframes fly2{
+		0%{-webkit-transform:translate(0px,0px) rotateX(0deg) rotateY(0deg) rotatez(0deg) scale(0.6,0.6);
+		opacity:1}
+		30%{-webkit-transform:translate(80px,-100px) rotateX(40deg) rotateY(10deg) rotatez(5deg) scale(0.8,0.8);
+		opacity:1}
+		60%{-webkit-transform:translate(120px,-200px) rotateX(5deg) rotateY(30deg) rotatez(-10deg) scale(1,1);
+		opacity:0.8}
+		100%{-webkit-transform:translate(200px,-300px) rotateX(-10deg) rotateY(-5deg) rotatez(10deg) scale(1.2,1.2);
+		opacity:0.2}
+	}
+	
+	@-webkit-keyframes fly3{
+		0%{-webkit-transform:translate(0px,0px) rotateX(0deg) rotateY(0deg) rotatez(0deg) scale(1,1);
+		opacity:1}
+		30%{-webkit-transform:translate(30px,-100px) rotateX(-40deg) rotateY(10deg) rotatez(5deg) scale(1.2,1.2);
+		opacity:1}
+		60%{-webkit-transform:translate(40px,-250px) rotateX(5deg) rotateY(-30deg) rotatez(-10deg) scale(1.3,1.3);
+		opacity:0.8}
+		100%{-webkit-transform:translate(60px,-350px) rotateX(-10deg) rotateY(-5deg) rotatez(40deg) scale(1.5,1.5);
+		opacity:0.2}
+	}
+	
+	@-webkit-keyframes fly4{
+		0%{-webkit-transform:translate(0px,0px) rotateX(0deg) rotateY(0deg) rotatez(0deg) scale(1,1);
+		opacity:1}
+		20%{-webkit-transform:translate(50px,-100px) rotateX(20deg) rotateY(-10deg) rotatez(-5deg) scale(1.2,1.2);
+		opacity:1}
+		40%{-webkit-transform:translate(-50px,-200px) rotateX(-5deg) rotateY(20deg) rotatez(10deg) scale(1.3,1.3);
+		opacity:0.8}
+		60%{-webkit-transform:translate(30px,-300px) rotateX(5deg) rotateY(-30deg) rotatez(10deg) scale(1.3,1.3);
+		opacity:1}
+		80%{-webkit-transform:translate(-30px,-400px) rotateX(20deg) rotateY(5deg) rotatez(-10deg) scale(1.3,1.3);
+		opacity:0.8}
+		100%{-webkit-transform:translate(60px,-500px) rotateX(-10deg) rotateY(10deg) rotatez(20deg) scale(1.5,1.5);
+		opacity:0.2}
+	}
+	
+	@-webkit-keyframes fly5{
+		0%{-webkit-transform:translate(0px,0px) rotateX(0deg) rotateY(0deg) rotatez(0deg) scale(1.5,1.5);
+		opacity:1}
+		30%{-webkit-transform:translate(100px,-100px) rotateX(-40deg) rotateY(10deg) rotatez(5deg) scale(1.8,1.8);
+		opacity:1}
+		60%{-webkit-transform:translate(200px,-250px) rotateX(5deg) rotateY(-30deg) rotatez(-10deg) scale(2.3,2.3);
+		opacity:0.8}
+		100%{-webkit-transform:translate(180px,-350px) rotateX(-10deg) rotateY(-5deg) rotatez(40deg) scale(2.5,2.5);
+		opacity:0.2}
+	}
+	
+	div#foot{   
+        position:fixed; 
+		left:320px;
+		bottom:10px;
+		z-index:4000;
+    } 	
+    -->  
+</style>  
+<script>
+
+	function randomInteger(low, high)
+	{
+		return low + Math.floor(Math.random() * (high - low));
+	}
+
+	function starshine(){
+		var num=7;
+		for(var i=0;i<num;i++)
+		{
+			var posL=Math.random()*$('#stars').width()+'px';
+			var posT=Math.random()*$('#stars').height()+'px';
+			$('#stars').append("<img src='tpl/Wap/default/common/kawahk/1021/1021_p1.png' id='star"+i+"' style=\'"+"left:"+posL+";top:"+posT+"\'/>");
+		}
+		
+		$("#stars img").each(function(){
+			dark($(this).attr("id"));
+		});
+	}
+
+	function dark(name){
+		   $("#"+name+"").animate({opacity:'0.1'},randomInteger(2000,4000),function(){light(name)});
+	}
+	function light(name){
+		$("#"+name+"").animate({opacity:'1'},randomInteger(2000,6000),function(){dark(name)});
+	}
+</script>
+
+
+<script>
+function clickbg(){
+
+		var tishi = document.getElementById("tishi");
+		tishi.style.display = "none";
+		
+		var saizi2 = document.getElementById("saizi2");
+		saizi2.style.webkitAnimation = "bounceOut 0.3s 0s ease-in-out both";
+		
+		var zhipian1 = document.getElementById("zhipian1");		
+		zhipian1.style.webkitAnimation = "fadeOut 0.3s 0.5s ease both";
+		zhipian3.style.display = "block";
+		zhipian3.style.webkitAnimation = "rotateandup 0.8s 0.7s ease both";
+		
+		var fly1 = document.getElementById("fly1");		
+		fly1.style.display = "block";
+		fly1.style.webkitAnimation = "fly1 4s 0.8s infinite linear both";
+		
+		
+		var fly2 = document.getElementById("fly2");		
+		fly2.style.display = "block";
+		fly2.style.webkitAnimation = "fly2 6s 1s infinite linear both";
+		
+		var fly3 = document.getElementById("fly3");		
+		fly3.style.display = "block";
+		fly3.style.webkitAnimation = "fly3 5s 1s infinite linear both";
+		
+		var fly4 = document.getElementById("fly4");		
+		fly4.style.display = "block";
+		fly4.style.webkitAnimation = "fly4 5s 1.2s infinite linear both";
+		
+		var fly5 = document.getElementById("fly5");		
+		fly5.style.display = "block";
+		fly5.style.webkitAnimation = "fly5 3s 1.2s infinite linear both";
+		
+		//leafinit();
+		setTimeout("showTxt()",1000);
+		}
+
+</script>
+</head>  
+<body onload = "kawa_init();"> 
+	<script>
+    	words = '每天，带着一份好心情，欣赏大自然的美丽，呼吸清新的空气。爱生活，爱自己。';
+
+        kawa_data = {
+            words 			   : words,
+               <if condition=" $words eq ''">
+				replace_words      : '每天，带着一份好心情，欣赏大自然的美丽，呼吸清新的空气。爱生活，爱自己。',
+				<else/>
+                replace_words      : '{weimicms:$words}',</if>
+            text_box           : '100 40 450 100', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+            mode               : 'up',     // up, left
+            speed              : 40,     // 每秒移动的像素
+            text_color         : '#006600', // rgb(1,2,3) 'black'
+            font_size          : '23pt',
+            line_height        : '40pt',
+            //text_align         : 'center',
+            font_weight        : 'bold',
+            music              : 'http://sound.kagirl.net/sound/niaojiao.mp3',     // url
+            <if condition=" $music eq ''">
+				replace_music      : 'http://sound.kagirl.net/sound/niaojiao.mp3', 
+				<else/> 
+				 replace_music      : '{weimicms:$music}',</if>
+            music_name         : '',
+            replace_music_name : '#replace_music_name#',
+            icon               : '{weimicms:$f_siteUrl}/tpl/Wap/default/common/kawahk/fengmian/x1039.jpg',
+            title              : '卡娃微卡',
+            desc               : words,
+            modify             : 'no',
+            replace_modify     : 'yes',
+            cardid             : '1021',
+            share_url          :  window.location.href,  // 当分享的是微信页面时才需要改这里
+            font_ip            : '114.215.157.155:8000',
+            modify_optfile     : 'xinqing',
+            modify_optwords    : '#modify_optwords#',
+            show_words         : 'yes',
+            write_param_1      : 'inputtype=singleline&showsel=no&prompt=' + encodeURIComponent('输入对方的名字：')
+        };
+    </script>
+    <div id="content">  
+			
+        <div id="bg">
+			<img src="tpl/Wap/default/common/kawahk/1021/1021_1.jpg"/>
+		</div> 
+		<div id="diqiu">
+			<img src="tpl/Wap/default/common/kawahk/1021/1021_diqiu.png"/>
+		</div>  
+		<div id="diqiu1">
+			<img src="tpl/Wap/default/common/kawahk/1021/1021_2.jpg"/>
+		</div> 
+		<div id="diqiu2">
+			<img src="tpl/Wap/default/common/kawahk/1021/1021_3.jpg"/>
+		</div>  		
+		<div id="fly1">
+			<img src="tpl/Wap/default/common/kawahk/1021/1021_yun1.png"/>
+		</div>
+		<div id="fly2">
+			<img src="tpl/Wap/default/common/kawahk/1021/1021_yun2.png"/>
+		</div>
+		<div id="stars"></div>
+		<script>
+			starshine();
+		</script>
+		  		
+    </div>  
+
+</body>  
+</html>  

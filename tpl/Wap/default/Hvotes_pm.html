@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>{weimicms:$vote.title}</title>
+<link rel="stylesheet" href="/tpl/Wap/default/common/nvshen/animate.css">
+<link rel="stylesheet" href="/tpl/Wap/default/common/nvshen/style.css">
+<link href="/tpl/Wap/default/common/nvshen/bootstrap.css" rel="stylesheet" media="screen">
+<link href="/tpl/Wap/default/common/nvshen/docs.css" rel="stylesheet" media="screen">
+<script type="text/javascript" src="/tpl/Wap/default/common/nvshen/jquery.js"></script>
+
+<style type="text/css">
+#more { margin: 10px auto; border: 1px solid #999; text-align: center; }
+.single_item { border-bottom: 1px dotted #d3d3d3; }
+.get_more { margin: 10px; text-align: center; float: left; width: 96% }
+.more_loader_spinner { width: 20px; height: 20px; margin: 10px auto; background: url(loader.gif) no-repeat; }
+ul, ul li { list-style: outside none none; margin: 0; padding: 0; }
+a { text-decoration: none }
+a, img, button, input, select { outline: 0 none; }
+body { background-color: #e4edd8; height: 100%; margin: 0 auto; max-width: 640px; min-width: 320px; }
+.wp { background-color: #F2F7E8; padding: 10px 10px 50px 10px; }
+input#filesInput { width: 100%; height: 100%; position: relative; opacity: 0; font-size: 30px; }
+#id_match_oath { height: 100px; }
+.btn.btn-primary { width: 96%; height: 34px; }
+.btn.btn-warning { width: 96%; height: 34px; margin-top: 10px; }
+.info { display: none; background: #e0fdeb; border: 1px solid #e84a6b; border-radius: 5px; width: 90%; margin: 5%; position: fixed; top: 0; font-size: 13px; }
+.info span { display: block; text-align: center; width: 100%; padding: 10px; }
+.info p { display: block; text-align: left; width: 100%; padding: 0 10px; }
+.info .btn { width: 90%; margin-left: 5%; margin-bottom: 10px; }
+.hotroadshow li { }
+.pb10 { padding-bottom: 10px; }
+.pb20 { padding-bottom: 20px; }
+.m10 { margin: 10px; }
+.hotroadshow .roadshow-img { margin-bottom: 10px; position: relative; }
+img { vertical-align: middle; }
+.default-color { color: #0c293f; }
+.fb { font-weight: bold; }
+.f16 { font-size: 16px; }
+.wd100 { width: 100%; }
+.page { display: block; padding: 10px; margin: 10px; }
+.page a { float: left; display: inline; padding: 5px 10px; margin: 1px; border: 1px solid #eee; }
+.page b { float: left; display: inline; padding: 5px 10px; margin: 1px; }
+.epages a b { padding: 0; margin: 0 }
+#ft { border-top: 1px solid #ccc; color: #666; margin: 30px 10px 10px 10px; padding: 10px; text-align: center; }
+#ft p { padding: 5px 0; }
+#stage { margin: 0 auto; padding: 0; width: 880px; }
+#stage li { margin: 0; padding: 0; list-style: none; float: left; width: 100%; }
+#stage li div { font-size: 12px; padding: 10px; color: #999999; text-align: left; }
+.mingci { display: block; width: 20px; height: 20px; line-height: 20px; color: #fff; background-color: #F00; text-align: center; }
+.jibie { text-align: center; color: #f00; }
+.head_paihang { height: 40px; line-height: 40px; padding-left: 10px; color: #517F34; }
+.fense { color: #EA57AA; }
+.baise { color: #fff }
+#favor_weixin { width: 100%; height: 100%; position: fixed; top: 0; left: 0; z-index: 1000; background: url(http://www.taian.com/weixin/mengbao/from/temp/nvshen/favor_weixin.png) top right no-repeat rgba(0,0,0,.8); background-size: 290px; display: none; }
+.picCon { width: 28.7%; padding: 0 2%; margin: 0; border: 0; margin-top: 10px; }
+/*.picCon{width:90px;}*/
+.picCon1 { min-width: 66px; overflow: hidden; margin: 0 auto; }
+.picCon2 ul li.pli1 { font-size: 14px; height: 20px; line-height: 20px; font-weight: bold; }
+.picCon2 ul li.pli2 { font-size: 14px; height: 20px; line-height: 20px; }
+.picCon2 { min-width: 66px; margin: 0 auto; }
+.picCon2_1 { background: #EC842D; }
+.picCon2_2 { background: #ADEC2D; }
+.picCon { margin: 7px 7px 0 0; background: #f2f7e8; width: 100%; float: left; display: inline; }
+.picCon img { width: 100%; }
+.picCon1 { width: 100%; }
+.picCon1 img { width: 105px; height: 105px; }
+.picCon2 { padding: 5px 0; width: 100%; background: #e4edd8; cursor: pointer; }
+.picCon2 ul li { margin: 0; width: 100%; color: #98C18B; display: block; text-align: center; overflow: hidden; }
+.picCon2 ul li.pli3:after { content: "票"; font-size: 16px; margin-left: 3px; color: #FFF; line-height: 1; }
+.picCon2 ul li.pli1 img { padding: 0 0 4px 4px; width: auto; height: 12px; }
+.picCon2 ul li.pli2 img { padding: 0 0 5px 6px; width: auto; height: 14px; }
+.picCon3 { width: 100%; height: 0; position: relative; }
+.picCon3_1 { padding: 3px 0 2px 0; width: 100%; position: absolute; opacity: 0.65; color: #FFF; font-size: 13px; bottom: 0; text-indent: 16px; background: #000; background-image: url(add_bg1.png); background-repeat: no-repeat; background-position: 5px center; background-size: 9px auto; text-shadow: 1px 1px 1px #000; }
+#jiajiang { background: #E74C3C; color: #fff; display: block; font-size: 10px; height: 15px; left: 56px; line-height: 14px; position: absolute; top: -1px; width: 22px; z-index: 10; border-radius: 5px }
+</style>
+</head>
+
+<body>
+<img src="{weimicms:$vote.picurl}" style="width:100%;">
+<div class="byhd">
+  <div style="width: 25%"> <a id="rule1" class="tab" href="{weimicms::U('Hvotes/index',array('id'=>$id,'token'=>$token,'wecha_id'=>$wecha_id))}">活动流程</a> </div>
+  <div style="width: 25%"> <a id="rule2" class="tab" href="{weimicms::U('Hvotes/index',array('id'=>$id,'token'=>$token,'wecha_id'=>$wecha_id))}">投票拉票</a> </div>
+  <div style="width: 25%"> <a id="rule3" class="tab" href="{weimicms::U('Hvotes/index',array('id'=>$id,'token'=>$token,'wecha_id'=>$wecha_id))}">丰厚大奖</a> </div>
+  <div style="width: 25%"> <a id="rule4" class="tab" href="{weimicms::U('Hvotes/index',array('id'=>$id,'token'=>$token,'wecha_id'=>$wecha_id))}">赞助协办</a> </div>
+</div>
+
+
+{weimicms:$vote.hdggs|html_entity_decode}
+
+<div class="hotroadshow content wp">
+<div class="head_paihang"> 已有<span class="f16"><b>{weimicms:$total}</b></span>报名&nbsp;&nbsp;已投<span class="f16"><b>{weimicms:$count}</b></span>票
+  &nbsp;&nbsp;<a style="float:right" href="{weimicms:$vote.lj}" class=" btn btn-info">活动详情</a> </div>
+<ul>
+  <li style="margin:10px 0px 0 0px;">
+  
+ 
+  
+    <form name="form1" method="post" action="index.php?g=Wap&m=Hvotes&a=toupiao&token={weimicms:$token}&id={weimicms:$id}" class="form-inline" role="form">
+      <input type="text" class="form-control" name="key" id="key" style="width:83%;float:left" placeholder="请输入编号或姓名">
+      <button type="submit" class="btn" style="background-color:#a3d091;color:#fff;margin-left:2px;">搜索</button>
+    </form>
+    <div style="width:100%;height:32px;margin:10px 0 10px 0px"> <a href="{weimicms::U('Hvotes/pm',array('id'=>$id,'token'=>$token,'wecha_id'=>$wecha_id))}" style="display:block;float:left;background-color:#46b8da;height:32px;text-align:center;line-height:32px;font-size:16px;width:49%;color:#fff;">排行榜</a> <a style="float:right;background-color:#a3d091;height:32px;text-align:center;line-height:32px;font-size:16px;width:49%;color:#fff;" href="{weimicms::U('Hvotes/toupiao',array('id'=>$id,'token'=>$token,'wecha_id'=>$wecha_id))}">最新参赛</a> </div>
+  </li>
+</ul>
+<div style="clear:both"></div>
+<div id="main">
+  <div id="more">
+  <volist name="vote_item" id="li">
+  
+  <div class="single_item" id="more_element_{weimicms:$i}">
+        <div class="bblist"><a href="index.php?g=Wap&m=Hvotes&a=item_view&token={weimicms:$token}&wecha_id={weimicms:$wecha_id}&id={weimicms:$id}&vid={weimicms:$li.id}"><li><div class="bs-docs-grid" style="margin:0px;"><div class="row show-grid" style="margin:0"><div class="col-xs-1"><span class="mingci"><b>{weimicms:$i}</b></span></div><div class="col-xs-9"><div class="row" style="margin:0"><div class="col-xs-3" style="padding:0;"><img alt="{weimicms:$li.item}" width="45" height="45" title="{weimicms:$li.item}" src="{weimicms:$li.startpicurl}" style="float:left; " class="img-rounded"></div><div class="col-xs-9" style="padding:0 0 0px 10px"><span style="margin-top:2px; float:left;"><b>{weimicms:$li.item}</b></span><div style="clear:both"></div><div style="margin-top:2px; float:left;"><span style="color:#999;">编号:</span><span style="color:#e48632;"><b>{weimicms:$li.rank}</b></span>&nbsp;&nbsp;<span style="color:#999;">人气:</span><span style="color:#EA57AA;"><b>{weimicms:$li.vcount}</b></span></div></div></div></div></div></div></li></a></div>
+        </div>
+   </volist>
+     </div>
+     
+     <input type="hidden" name="page" id="page" value="1"/>
+    <a href="javascript:;" class="get_more btn btn-info" onClick="get_morepm();">::点击加载更多::</a>
+</div>
+<div style="clear:both"></div>
+<div id="ft" class="cl">
+  <p></p>
+  <p>{weimicms:$siteCopyright|html_entity_decode}</p>
+</div>
+<div id="favor_weixin" ontouchstart="" style="opacity:1;-webkit-transition:opacity 200ms ease;transition:opacity 200ms ease;">
+  <p id="float_knowed" class="abs c_txt">知道了</p>
+</div>
+<div class="activity_foot">
+  <ul>
+ <li><a href="{weimicms::U('Hvotes/toupiao',array('id'=>$id,'token'=>$token,'wecha_id'=>$wecha_id))}" class="dom_flex_box">查看更多</a></li>
+    <li><a href="{weimicms::U('Hvotes/tplp',array('id'=>$id,'token'=>$token,'wecha_id'=>$wecha_id))}" class="dom_flex_box">我要投票</a></li>
+    <li><a href="{weimicms::U('Hvotes/fhdj',array('id'=>$id,'token'=>$token,'wecha_id'=>$wecha_id))}" class="dom_flex_box">丰厚大奖</a></li>
+    <li><a href="{weimicms::U('Hvotes/baoming',array('id'=>$id,'token'=>$token,'wecha_id'=>$wecha_id))}" class="dom_flex_box">我要报名</a></li>
+  </ul>
+</div>
+<script language="javascript" type="text/javascript">
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        var link_str = '';
+        if (link_str == '') {
+            link_str = document.location.href;
+        }
+        // 发送给好友;
+        WeixinJSBridge.on('menu:share:appmessage', function(argv){
+            WeixinJSBridge.invoke('sendAppMessage',{
+                "appid":"wx53718372f3ce10e6",
+                "img_url":"{weimicms:$vote.picurl}",
+                "img_width":"320",
+                "img_height":"320",
+                "link":link_str,
+                "desc":"{weimicms:$vote.title}",
+                "title":"{weimicms:$vote.title}"
+            }, function(res) {});
+        });
+        // 分享到朋友圈;
+        WeixinJSBridge.on('menu:share:timeline', function(argv){
+            WeixinJSBridge.invoke('shareTimeline',{
+                "img_url":"{weimicms:$vote.picurl}",
+                "img_width":"320",
+                "img_height":"320",
+                "link":link_str,
+                "desc":"{weimicms:$vote.title}",
+                "title":"{weimicms:$vote.title}"
+            }, function(res) {});
+        });
+        // 分享到微博;
+        var weiboContent = '';
+        WeixinJSBridge.on('menu:share:weibo', function(argv){
+            WeixinJSBridge.invoke('shareWeibo',{
+                "content":"{weimicms:$vote.title}",
+                "url":link_str,
+            }, function(res) {});
+        });
+    }, false)
+</script> 
+<script type="text/javascript">
+	$(function(){
+		
+		$("#share").click(function(){
+			  $("#favor_weixin").show();
+			});
+		$("#favor_weixin").click(function(){
+			  $("#favor_weixin").hide();
+			});
+ 
+	});
+</script>
+
+<script>
+function get_morepm(){
+	
+	var pages=$("#page").val();
+	$.ajax({
+            type: "GET",
+            url: "{weimicms::U('Hvotes/morepm',array('token'=>$token,'wecha_id'=>$wecha_id,'id'=>$id))}",
+            data: "page="+pages,
+            dataType: "html",
+            success: function (result) {
+                // Play with returned data in JSON format
+				if(result=='1'){
+					alert("没有更多数据了");
+				}else {
+					$("#more").append(result);
+					var p=parseInt(pages)+1;
+					$("#page").val(p);	
+				}
+            },
+            error: function (msg) {
+                alert(msg);
+            }
+        });
+	}
+</script>
+<div style="display:none"> 
+{weimicms:$vote.tongji|html_entity_decode}
+</div>
+</body>
+</html>
