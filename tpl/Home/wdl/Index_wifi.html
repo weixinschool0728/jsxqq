@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>{weimicms:$f_siteName}-{weimicms:$f_siteTitle}</title>                                                                                                      
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="description" content="{weimicms:$f_metaDes}"/>
+<meta name="keywords" content="{weimicms:$f_metaKeyword}"/>
+<link href="{weimicms::RES}/css/com.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src='{weimicms::RES}/js/jquery-1.6.2.min.js' ></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $('.logo').mousedown(function(){
+        $(this).css('margin-top','11px');
+        $(this).css('margin-left','1px');
+    });	
+});
+</script>
+<link href="favicon.ico" rel="Shortcut Icon"></link>
+</head>
+<body>
+<include file="$includeHeaderPath"/>
+			<div class="bannerbg bj5"><div class="bannercon" style="padding-left:20px;"><span>关于我们</span><br>专注于以创新为核心的互联网及移动应用开发</div></div>
+		</div>
+		<!-- top end -->
+<div id="mainer" class="bg4">
+<div class="about">
+<h2>什么是<span>微米WMWIFI</span> </h2>
+<p>
+	&nbsp; &nbsp; &nbsp;微米WMWIFI是由无线wifi广告路由器+智能营销管理系统+CRM客户关系管理系统+PC/Web网站组成。
+</p>
+<p>
+	&nbsp; &nbsp; &nbsp;微米WMWIFI能为餐饮、酒店、美容美发、休闲娱乐场所、卖场展会、银行汽车4S店、教育连锁、学校等提供wifi热点覆盖、用户资源搜集、精准wifi广告推广、客户营销、多样化媒体应用等一系列的服务。
+</p>
+<p>
+	<h2>你所得到的并不是一个普通的路由器！而是：</h2>
+</p>
+<img src="{weimicms::RES}/images/weimi01.jpg"  width="220" height="430" align="right" alt="" /> 
+<p>
+	&nbsp; &nbsp; &nbsp;一个精美的电脑版/手机版门户网站；
+</p>
+<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一个高图形化的CRM客户关系管理系统;
+</p>
+<p>
+	&nbsp; &nbsp; &nbsp;<span>一个无需投资任何成本的会员卡管理系统；</span> 
+</p>
+<p>
+	<span>&nbsp; &nbsp; &nbsp;一个永远不叫累的"美女"在线预订接线员；</span> 
+</p>
+<p>
+	<span>&nbsp; &nbsp; &nbsp;一个永远不收手续费的第三方结账系统；</span> 
+</p>
+<p>
+	<span>&nbsp; &nbsp; &nbsp;一个公平公正、不偏不倚的员工考勤系统；</span> 
+</p>
+<p>
+	<span>&nbsp; &nbsp; &nbsp;一个永不发工资的广告宣传"机器人"；</span> 
+</p>
+<p>
+	&nbsp; &nbsp; &nbsp;一个智能化<span>网络推广/</span>营销平台；
+</p>
+<p>
+	&nbsp; &nbsp; &nbsp;一个免费的短信群发平台；
+</p>
+<p>
+	&nbsp; &nbsp; &nbsp;一个人机互动设备管理平台；
+</p>
+<h2>联系我们</h2>
+<p>{weimicms:$f_siteName}信息科技有限公司<br>
+地址：{weimicms::C('site_adress')}<br>
+QQ：{weimicms::C('site_qq')}<br>
+网址：{weimicms::C('site_url')}</p>
+<div class="contact">
+<img src="{weimicms::RES}/images/ewm2.jpg" class="f_l">
+<div class="contactcon f_l">
+<img src="{weimicms::RES}/images/phone.jpg" class="f_l">
+<span>
+<p>服务热线</p>
+<h3>{weimicms::C('site_mp')}</h3>
+周一至周六：AM 09:00-PM 18:00
+</span>
+</div><!--end contactcon-->
+</div><!--end contact-->
+<br>
+</div><!--end about-->
+</div><!--end mainer-->
+<div id="header" class="bg4"><div class="dibg"><div class="dimg"><img src="{weimicms::RES}/images/dimg.png"></div></div></div>
+<include file="$includeFooterPath"/>
+</div><!--end footer-->
+</div><!-- wrapper end -->
+</body>
+</html>
+<script>
+$.fn.smartFloat = function() {
+	var position = function(element) {
+		$(window).scroll(function() {
+			$('#ding').removeClass('yincang');
+			var scrolls = $(this).scrollTop();
+				if (window.XMLHttpRequest) {
+					element.css({
+						position: "fixed",
+						top:0
+					});	
+				} else {
+					element.css({
+						top: scrolls
+					});	
+				}
+		});
+};
+	return $(this).each(function() {
+		position($(this));						 
+	});
+};
+//绑定
+$(".nav").smartFloat();
+</script>
+<script type="text/javascript" src="{weimicms::RES}/js/scrolltopcontrol.js"></script>

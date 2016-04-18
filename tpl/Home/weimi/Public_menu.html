@@ -1,0 +1,20 @@
+﻿<div class="wrap_header">
+    <div class="header">
+        <div class="navigation">
+            <div class="logo"> <a href="/"><img src="{weimicms::C('site_logo')}" alt=""  border="0" /></a>
+            </div>
+            <ul><li class="current"><a href="/">首页</a></li><li><a href="{weimicms::U('Index/index')}#func">功能</a></li>
+          
+            <li><a href="{weimicms::U('Index/case')}">案例</a></li><li><a href="{weimicms::U('Index/agency')}">代理</a></li><li><a href="{weimicms::U('Index/price')}">套餐</a></li><li><a href="http://bbs.weimicms.com">论坛</a></li></ul>
+            <div class="login">
+                <if condition="$_SESSION[uid]==false">
+                  <a href="{weimicms::U('Index/login')}">登录</a>
+                  <a href="{weimicms::U('Index/reg')}" <if condition="$curr eq 'reg' ">class="current"</if>>注册</a>
+                <else />
+                  <a href="{weimicms::U('System/Admin/logout')}">注销</a><a href="{weimicms::U('User/Index/index')}"><php>echo $_SESSION['uname']</php></a>
+                </if>
+            </div>
+          
+        </div>
+    </div>
+</div>

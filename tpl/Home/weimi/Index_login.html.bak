@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<link rel="stylesheet" type="text/css" href="{iMicms::RES}/reg/style.css?2013-9-13-2" media="all" />
+<script type="text/javascript" src="{iMicms::RES}/reg/jQuery.js?2013-9-13-2"></script>
+<script type="text/javascript" src="{iMicms::RES}/js/placeholder.js?v=2c99b443.js"></script>
+<include file="Public:header" />
+<body onkeydown="bindEnterKey(event);">
+        <!---header begin--->
+        <include file="Public:menu" />
+<div class="header_login">
+	<div class="header_login_main">
+    	
+  </div>
+</div>
+<div id="bd" class="quc-clearfix reg-wrapper-quick">
+        <div class="content">
+            <div id="loginWrap">
+                <div id="modLoginWrap" class="mod-qiuser-pop">
+                    <dl class="login-wrap">
+                        <dt>
+                            <span id="loginTitle"></span>
+                        </dt>
+                        <div class="ipbox">
+                            <b class="r1"></b>
+                            <b class="r2"></b>
+                            <b class="r5"></b>
+                            <div class="con">
+<div class="bg_login_main">
+	<div class="login_main">
+      <div class="img">
+        <img src="{imicms::STATICS}/Home/summer/images/login/img.png" width="485" height="485"/>
+      </div>
+      <div class="img02">
+        <img src="{imicms::STATICS}/Home/summer/images/login/img02.png" width="127" height="127"/>
+      </div>
+      
+      
+   	  <input name="username" type="text" class="txt_name" placeholder="平台账号" />
+      <input name="password" type="password" class="txt_pwd" placeholder="密码" />
+    
+      	<b class="r5"></b>
+                            <b class="r3"></b>
+                            <b class="r4"></b>
+                        </div>
+                        <dd class="find">
+                            <label onClick="changeCheckbox();">
+                                <span id="keepalive" value="1" class="checked checkbox" tabindex="3"></span>自动登录
+                            </label>
+                            <a href="{iMicms::U('Index/getpass')}" target="_blank" class="fac" style="display:;">找回密码</a>
+                        </dd>
+                        <div style="margin:0 0 10px; color:#c35d00;" id="error_box">
+                            <span id="error_tips"></span>
+                        </div>
+                        <dd class="submit">
+                            <span><input type="submit" tabindex="4" class="btn-login" id="btn-login" value="" /></span>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+</div>
+
+<script type="text/javascript">
+$(function(){
+	$(".img").addClass("active");
+	$(".btn_reg").animate({right:"22px"},"slow");
+
+    //刷新验证码
+    $('#J_captcha_img').click(function(){
+        var timenow = new Date().getTime(),
+            url = $(this).attr('data-url').replace(/js_rand/g,timenow);
+        $(this).attr("src", url);
+    });
+    $('#J_captcha_change').click(function(){
+        $('#J_captcha_img').trigger('click');
+    }); 
+
+})
+</script>
+<script type="text/javascript" src="/tpl/static/huishuo.js"></script>
+<script type="text/javascript" src="{iMicms::RES}/reg/login.js"></script>
+
+
+         <include file="Public:footer" />
+
+
+    </body>
+</html>

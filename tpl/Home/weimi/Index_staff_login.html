@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>登陆－{weimicms:$f_siteTitle}</title>
+        <link href="./tpl/Home/weimicms/common/css/public.css" rel="stylesheet" type="text/css" />
+        <script src="./tpl/Home/weimicms/common/js/jquery.js" type="text/javascript"></script>
+        <script src="./tpl/Home/weimicms/common/js/daohang.js" type="text/javascript"></script>
+        <link href="./tpl/Home/weimicms/common/css/manage.css" rel="stylesheet" type="text/css" />
+    </head>
+    
+    <body>
+    	<!--startof header-->
+    	<include file="Public:header_staff"/>
+            <!--banner-->
+            <div class="banner clr" >
+            	<p class="zhutu clr" style="background:#cbfef7;">
+                    <if condition="$images['login'] eq null">
+                	    <img src="./tpl/Home/weimicms/common/images/images/5.png" />
+                    <else />
+                        <img src="{weimicms:$images['login']}" style="width:100%;height:300px;">
+                    </if>
+                </p>
+            </div>
+            <!--end banner-->
+        <!--ENDOF header-->
+        
+        <!--startof content-->
+        <div class="content clr">
+        	<div class="congtS clr">
+            	<div class="shangLt clr">当前位置</div>
+                <div class="shangRt clr">
+                    <p class="twoth clr"><a href="#">店员登陆</a></p>
+                </div>
+            </div>
+            <!--end congtX-->
+            <div class="congtX" style="margin-left:230px;">
+            	<div class="contLt clr">
+                    <form action="{weimicms::U('Users/staff_checklogin')}" method="post" class="login">
+                    	<p class="denglu clr">登录</p>
+                    	<div class="name clr">
+                        	<span style="padding-right:10px;">用户名</span> 
+                            <input class="text" type="text" name="username" />
+                        </div><br />
+                        <div class="password clr">
+                        	<span style="padding-right:10px;">密码</span> 
+                            <input class="text" type="password" name="password" />
+                        </div><br />
+                        <div class="yanzheng clr">
+                        	<span style="padding-right:10px;">验证码</span> 
+                             <input name="verifycode2" type="text" size="8" style="width:80px;" class="text" maxlength="4" />&nbsp;<img src="{weimicms::U('Index/verifyLogin')}" id="txtCheckCode2" style="width:70px;margin-top:-5px"/>&nbsp;<a href="javascript:refreshImg2();" style="color:#666">看不清？换一张</a>
+                            <script>
+                            function refreshImg2(){
+                                document.getElementById("txtCheckCode2").src="/index.php?g=Home&m=Index&a=verifyLogin&s="+Math.random();
+                            }
+                            </script>
+                        </div><br />
+						<input type="hidden" name="token" value="{weimicms:$token}" />
+                        <button class="submit" type="submit">登录</button>
+                    </form>
+                </div>
+              
+                <!--end right-->
+                
+            </div>
+        </div>
+        	<include file="Public:footer00"/>
+    </body>
+</html>
