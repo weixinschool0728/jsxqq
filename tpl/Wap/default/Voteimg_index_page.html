@@ -111,6 +111,16 @@ $(function(){
       </ul>
        <div style="clear: both;"></div>
 	  </if>
+	  <if condition="$menu[4]['hide'] eq 1">
+              <ul>
+                <a href="javascript:;" onclick="apply()"><dt><div id="article_pic"><img src="<php>if(strpos($menu[4]['menu_icon'],'http') !== false){ echo $menu[4]['menu_icon'];}else{ echo $staticPath.$menu[4]['menu_icon'];}</php>"/></div>
+                  <div id="article_word">
+                   <!-- {weimicms:$menu[4]['menu_name']} -->
+						<input type="button" value="{$menu[4]['menu_name']}">
+                  </div></dt>
+                </a>   
+              </ul><div style="clear: both;"></div>
+			  </if>
 	  <if condition="$menu[1]['hide'] eq 1">
       <ul>
         <li class="jiajian">
@@ -139,16 +149,29 @@ $(function(){
                 {weimicms:$menu[2]['menu_name']}
               </div></dt>
               <dd class="qiehuan_s" style="display: none;"> <div  id="jiandiv1" >
+              	<if condition="strip_tags($action_info['award_desc']) neq ''">
+				<div id="jiandiv2">
+                  <div id="jiandiv">
+                     奖品介绍
+                  </div>
+                  <div  class="toupiao_s">
+                    {weimicms:$action_info['award_desc']|html_entity_decode}<br>
+                  </div>
+                </div>
+                </if>
+                </div></dd>    
+              </dl><div style="clear: both;"></div>
+			</if>
                 <div  id="jiandiv2">
                   <div id="jiandiv">
                     活动介绍
                   </div>
-                  <div  class="toupiao_s">
-                    {weimicms:$action_info['action_desc']|html_entity_decode}<br>
-					您一共可以投票的次数：<if condition="$action_info['limit_vote'] eq 0">不限制<else />{weimicms:$action_info['limit_vote']}次</if><br>
-					您每天可以投票的次数：<if condition="$action_info['limit_vote_day'] eq 0">不限制<else />{weimicms:$action_info['limit_vote_day']}次</if><br>
-					每个投票选项您可以投票的次数：<if condition="$action_info['limit_vote_item'] eq 0">不限制<else />{weimicms:$action_info['limit_vote_item']}次</if>
-                  </div>
+                 <!--  <div  class="toupiao_s">
+                   {weimicms:$action_info['action_desc']|html_entity_decode}<br>
+                 					您一共可以投票的次数：<if condition="$action_info['limit_vote'] eq 0">不限制<else />{weimicms:$action_info['limit_vote']}次</if><br>
+                 					您每天可以投票的次数：<if condition="$action_info['limit_vote_day'] eq 0">不限制<else />{weimicms:$action_info['limit_vote_day']}次</if><br>
+                 					每个投票选项您可以投票的次数：<if condition="$action_info['limit_vote_item'] eq 0">不限制<else />{weimicms:$action_info['limit_vote_item']}次</if>
+                 </div> -->
                 </div>
                 <if condition="strip_tags($action_info['join_desc']) neq ''">
 				<div  id="jiandiv2">
@@ -170,16 +193,16 @@ $(function(){
                   </div>
                 </div> 
                 </if>
-			<if condition="strip_tags($action_info['award_desc']) neq ''">
+			<!-- <if condition="strip_tags($action_info['award_desc']) neq ''">
 				<div id="jiandiv2">
-                  <div id="jiandiv">
-                     奖品介绍
-                  </div>
-                  <div  class="toupiao_s">
-                    {weimicms:$action_info['award_desc']|html_entity_decode}<br>
-                  </div>
-                </div>
-                </if>
+			                  <div id="jiandiv">
+			                     奖品介绍
+			                  </div>
+			                  <div  class="toupiao_s">
+			                    {weimicms:$action_info['award_desc']|html_entity_decode}<br>
+			                  </div>
+			                </div>
+			                </if> -->
                 </div></dd>    
               </dl><div style="clear: both;"></div>
 			</if>
@@ -193,15 +216,15 @@ $(function(){
                 <dd id="vote_record" class="qiehuan_s" style="display: none;"></dd>   
               </dl><div style="clear: both;"></div>
 			</if>
-		  <if condition="$menu[4]['hide'] eq 1">
-              <ul>
-                <a href="javascript:;" onclick="apply()"><dt><div id="article_pic"><img src="<php>if(strpos($menu[4]['menu_icon'],'http') !== false){ echo $menu[4]['menu_icon'];}else{ echo $staticPath.$menu[4]['menu_icon'];}</php>"/></div>
-                  <div id="article_word">
-                   {weimicms:$menu[4]['menu_name']}
-                  </div></dt>
-                </a>   
-              </ul><div style="clear: both;"></div>
-			  </if>
+		 <!--  <if condition="$menu[4]['hide'] eq 1">
+		               <ul>
+		                 <a href="javascript:;" onclick="apply()"><dt><div id="article_pic"><img src="<php>if(strpos($menu[4]['menu_icon'],'http') !== false){ echo $menu[4]['menu_icon'];}else{ echo $staticPath.$menu[4]['menu_icon'];}</php>"/></div>
+		                   <div id="article_word">
+		                    {weimicms:$menu[4]['menu_name']}
+		                   </div></dt>
+		                 </a>   
+		               </ul><div style="clear: both;"></div>
+		 			  </if> -->
 			  <volist name="custom_menu" id="me">
 			   <dl>
 			    <a href="javascript:;" onclick="window.location.href='{weimicms:$me.menu_link}'">
