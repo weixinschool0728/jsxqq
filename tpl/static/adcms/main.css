@@ -1,0 +1,1650 @@
+html {
+	font-family: sans-serif; -ms-overflow-x: hidden; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+body {
+	margin: 0px; color: rgb(51, 51, 51); line-height: 1.4285; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 14px; -ms-overflow-x: hidden; background-color: rgb(255, 255, 255);
+}
+article {
+	display: block;
+}
+aside {
+	display: block;
+}
+details {
+	display: block;
+}
+figcaption {
+	display: block;
+}
+figure {
+	display: block;
+}
+footer {
+	display: block;
+}
+header {
+	display: block;
+}
+hgroup {
+	display: block;
+}
+main {
+	display: block;
+}
+menu {
+	display: block;
+}
+nav {
+	display: block;
+}
+section {
+	display: block;
+}
+summary {
+	display: block;
+}
+audio {
+	vertical-align: baseline; display: inline-block;
+}
+canvas {
+	vertical-align: baseline; display: inline-block;
+}
+progress {
+	vertical-align: baseline; display: inline-block;
+}
+video {
+	vertical-align: baseline; display: inline-block;
+}
+[hidden] {
+	display: none;
+}
+template {
+	display: none;
+}
+a {
+	color: rgb(66, 139, 202); text-decoration: none; background-color: transparent;
+}
+a:hover {
+	outline: 0px; color: rgb(42, 100, 150); text-decoration: underline;
+}
+a:focus {
+	outline: 0px; color: rgb(42, 100, 150); text-decoration: underline;
+}
+a:focus {
+	outline: dotted thin; outline-offset: -2px;
+}
+abbr[title] {
+	border-bottom-color: currentColor; border-bottom-width: 1px; border-bottom-style: dotted;
+}
+b {
+	font-weight: bold;
+}
+strong {
+	font-weight: bold;
+}
+dfn {
+	font-style: italic;
+}
+h1 {
+	margin: 0.67em 0px; font-size: 2em;
+}
+mark {
+	background: rgb(255, 255, 0); color: rgb(0, 0, 0);
+}
+small {
+	font-size: 80%;
+}
+sub {
+	line-height: 0; font-size: 75%; vertical-align: baseline; position: relative;
+}
+sup {
+	line-height: 0; font-size: 75%; vertical-align: baseline; position: relative;
+}
+sup {
+	top: -0.5em;
+}
+sub {
+	bottom: -0.25em;
+}
+img {
+	border: 0px currentColor; max-width: 100%;
+}
+figure {
+	margin: 1em 40px;
+}
+hr {
+	height: 0px; box-sizing: content-box; -moz-box-sizing: content-box;
+}
+pre {
+	overflow: auto;
+}
+code {
+	font-family: monospace, monospace; font-size: 1em;
+}
+kbd {
+	font-family: monospace, monospace; font-size: 1em;
+}
+pre {
+	font-family: monospace, monospace; font-size: 1em;
+}
+samp {
+	font-family: monospace, monospace; font-size: 1em;
+}
+button {
+	font: inherit; margin: 0px; color: inherit; font-size-adjust: inherit; font-stretch: inherit;
+}
+input {
+	font: inherit; margin: 0px; color: inherit; font-size-adjust: inherit; font-stretch: inherit;
+}
+optgroup {
+	font: inherit; margin: 0px; color: inherit; font-size-adjust: inherit; font-stretch: inherit;
+}
+select {
+	font: inherit; margin: 0px; color: inherit; font-size-adjust: inherit; font-stretch: inherit;
+}
+textarea {
+	font: inherit; margin: 0px; color: inherit; font-size-adjust: inherit; font-stretch: inherit;
+}
+button {
+	overflow: visible;
+}
+button {
+	text-transform: none;
+}
+select {
+	text-transform: none;
+}
+button {
+	cursor: pointer; -webkit-appearance: button;
+}
+html input[type='button'] {
+	cursor: pointer; -webkit-appearance: button;
+}
+input[type='reset'] {
+	cursor: pointer; -webkit-appearance: button;
+}
+input[type='submit'] {
+	cursor: pointer; -webkit-appearance: button;
+}
+button[disabled] {
+	cursor: default;
+}
+html input[disabled] {
+	cursor: default;
+}
+input {
+	line-height: normal;
+}
+input[type='checkbox'] {
+	padding: 0px; box-sizing: border-box;
+}
+input[type='radio'] {
+	padding: 0px; box-sizing: border-box;
+}
+input[type='search'] {
+	box-sizing: content-box; -webkit-appearance: textfield; -webkit-box-sizing: content-box; -moz-box-sizing: content-box;
+}
+fieldset {
+	margin: 0px 2px; padding: 0.35em 0.62em 0.75em; border: 1px solid rgb(192, 192, 192);
+}
+legend {
+	padding: 0px; border: 0px currentColor;
+}
+textarea {
+	overflow: auto;
+}
+optgroup {
+	font-weight: bold;
+}
+table {
+	border-collapse: collapse; border-spacing: 0;
+}
+td {
+	padding: 0px;
+}
+th {
+	padding: 0px;
+}
+* {
+	-webkit-box-sizing: border-box; -moz-box-sizing: border-box;
+}
+input {
+	line-height: inherit; font-family: inherit; font-size: inherit;
+}
+button {
+	line-height: inherit; font-family: inherit; font-size: inherit;
+}
+select {
+	line-height: inherit; font-family: inherit; font-size: inherit;
+}
+textarea {
+	line-height: inherit; font-family: inherit; font-size: inherit;
+}
+figure {
+	margin: 0px;
+}
+img {
+	vertical-align: middle;
+}
+.img-responsive {
+	height: auto; display: block; max-width: 100%;
+}
+.thumbnail > img {
+	height: auto; display: block; max-width: 100%;
+}
+.thumbnail a > img {
+	height: auto; display: block; max-width: 100%;
+}
+.carousel-inner > .item > img {
+	height: auto; display: block; max-width: 100%;
+}
+.carousel-inner > .item > a > img {
+	height: auto; display: block; max-width: 100%;
+}
+.img-rounded {
+	border-radius: 6px;
+}
+.img-thumbnail {
+	padding: 4px; border-radius: 4px; border: 1px solid rgb(221, 221, 221); transition:0.2s ease-in-out; height: auto; line-height: 1.4285; display: inline-block; max-width: 100%; background-color: rgb(255, 255, 255); -webkit-transition: all .2s ease-in-out; -o-transition: all .2s ease-in-out;
+}
+.img-circle {
+	border-radius: 50%;
+}
+hr {
+	border-width: 1px 0px 0px; border-style: solid none none; border-color: rgb(238, 238, 238) currentColor currentColor; margin-top: 20px; margin-bottom: 20px;
+}
+.sr-only {
+	margin: -1px; padding: 0px; border: 0px currentColor; width: 1px; height: 1px; overflow: hidden; position: absolute; clip: rect(0px, 0px, 0px, 0px);
+}
+.sr-only-focusable:active {
+	margin: 0px; width: auto; height: auto; overflow: visible; position: static; clip: auto;
+}
+.sr-only-focusable:focus {
+	margin: 0px; width: auto; height: auto; overflow: visible; position: static; clip: auto;
+}
+h1 {
+	color: inherit; line-height: 1.1; font-family: inherit; font-weight: 500;
+}
+h2 {
+	color: inherit; line-height: 1.1; font-family: inherit; font-weight: 500;
+}
+h3 {
+	color: inherit; line-height: 1.1; font-family: inherit; font-weight: 500;
+}
+h4 {
+	color: inherit; line-height: 1.1; font-family: inherit; font-weight: 500;
+}
+h5 {
+	color: inherit; line-height: 1.1; font-family: inherit; font-weight: 500;
+}
+h6 {
+	color: inherit; line-height: 1.1; font-family: inherit; font-weight: 500;
+}
+.h1 {
+	color: inherit; line-height: 1.1; font-family: inherit; font-weight: 500;
+}
+.h2 {
+	color: inherit; line-height: 1.1; font-family: inherit; font-weight: 500;
+}
+.h3 {
+	color: inherit; line-height: 1.1; font-family: inherit; font-weight: 500;
+}
+.h4 {
+	color: inherit; line-height: 1.1; font-family: inherit; font-weight: 500;
+}
+.h5 {
+	color: inherit; line-height: 1.1; font-family: inherit; font-weight: 500;
+}
+.h6 {
+	color: inherit; line-height: 1.1; font-family: inherit; font-weight: 500;
+}
+h1 small {
+	color: rgb(119, 119, 119); line-height: 1; font-weight: normal;
+}
+h2 small {
+	color: rgb(119, 119, 119); line-height: 1; font-weight: normal;
+}
+h3 small {
+	color: rgb(119, 119, 119); line-height: 1; font-weight: normal;
+}
+h4 small {
+	color: rgb(119, 119, 119); line-height: 1; font-weight: normal;
+}
+h5 small {
+	color: rgb(119, 119, 119); line-height: 1; font-weight: normal;
+}
+h6 small {
+	color: rgb(119, 119, 119); line-height: 1; font-weight: normal;
+}
+.h1 small {
+	color: rgb(119, 119, 119); line-height: 1; font-weight: normal;
+}
+.h2 small {
+	color: rgb(119, 119, 119); line-height: 1; font-weight: normal;
+}
+.h3 small {
+	color: rgb(119, 119, 119); line-height: 1; font-weight: normal;
+}
+.h4 small {
+	color: rgb(119, 119, 119); line-height: 1; font-weight: normal;
+}
+.h5 small {
+	color: rgb(119, 119, 119); line-height: 1; font-weight: normal;
+}
+.h6 small {
+	color: rgb(119, 119, 119); line-height: 1; font-weight: normal;
+}
+h1 .small {
+	color: rgb(119, 119, 119); line-height: 1; font-weight: normal;
+}
+h2 .small {
+	color: rgb(119, 119, 119); line-height: 1; font-weight: normal;
+}
+h3 .small {
+	color: rgb(119, 119, 119); line-height: 1; font-weight: normal;
+}
+h4 .small {
+	color: rgb(119, 119, 119); line-height: 1; font-weight: normal;
+}
+h5 .small {
+	color: rgb(119, 119, 119); line-height: 1; font-weight: normal;
+}
+h6 .small {
+	color: rgb(119, 119, 119); line-height: 1; font-weight: normal;
+}
+.h1 .small {
+	color: rgb(119, 119, 119); line-height: 1; font-weight: normal;
+}
+.h2 .small {
+	color: rgb(119, 119, 119); line-height: 1; font-weight: normal;
+}
+.h3 .small {
+	color: rgb(119, 119, 119); line-height: 1; font-weight: normal;
+}
+.h4 .small {
+	color: rgb(119, 119, 119); line-height: 1; font-weight: normal;
+}
+.h5 .small {
+	color: rgb(119, 119, 119); line-height: 1; font-weight: normal;
+}
+.h6 .small {
+	color: rgb(119, 119, 119); line-height: 1; font-weight: normal;
+}
+h1 {
+	margin-top: 20px; margin-bottom: 10px;
+}
+.h1 {
+	margin-top: 20px; margin-bottom: 10px;
+}
+h2 {
+	margin-top: 20px; margin-bottom: 10px;
+}
+.h2 {
+	margin-top: 20px; margin-bottom: 10px;
+}
+h3 {
+	margin-top: 20px; margin-bottom: 10px;
+}
+.h3 {
+	margin-top: 20px; margin-bottom: 10px;
+}
+h1 small {
+	font-size: 65%;
+}
+.h1 small {
+	font-size: 65%;
+}
+h2 small {
+	font-size: 65%;
+}
+.h2 small {
+	font-size: 65%;
+}
+h3 small {
+	font-size: 65%;
+}
+.h3 small {
+	font-size: 65%;
+}
+h1 .small {
+	font-size: 65%;
+}
+.h1 .small {
+	font-size: 65%;
+}
+h2 .small {
+	font-size: 65%;
+}
+.h2 .small {
+	font-size: 65%;
+}
+h3 .small {
+	font-size: 65%;
+}
+.h3 .small {
+	font-size: 65%;
+}
+h4 {
+	margin-top: 10px; margin-bottom: 10px;
+}
+.h4 {
+	margin-top: 10px; margin-bottom: 10px;
+}
+h5 {
+	margin-top: 10px; margin-bottom: 10px;
+}
+.h5 {
+	margin-top: 10px; margin-bottom: 10px;
+}
+h6 {
+	margin-top: 10px; margin-bottom: 10px;
+}
+.h6 {
+	margin-top: 10px; margin-bottom: 10px;
+}
+h4 small {
+	font-size: 75%;
+}
+.h4 small {
+	font-size: 75%;
+}
+h5 small {
+	font-size: 75%;
+}
+.h5 small {
+	font-size: 75%;
+}
+h6 small {
+	font-size: 75%;
+}
+.h6 small {
+	font-size: 75%;
+}
+h4 .small {
+	font-size: 75%;
+}
+.h4 .small {
+	font-size: 75%;
+}
+h5 .small {
+	font-size: 75%;
+}
+.h5 .small {
+	font-size: 75%;
+}
+h6 .small {
+	font-size: 75%;
+}
+.h6 .small {
+	font-size: 75%;
+}
+h1 {
+	font-size: 36px;
+}
+.h1 {
+	font-size: 36px;
+}
+h2 {
+	font-size: 30px;
+}
+.h2 {
+	font-size: 30px;
+}
+h3 {
+	font-size: 24px;
+}
+.h3 {
+	font-size: 24px;
+}
+h4 {
+	font-size: 18px;
+}
+.h4 {
+	font-size: 18px;
+}
+h5 {
+	font-size: 14px;
+}
+.h5 {
+	font-size: 14px;
+}
+h6 {
+	font-size: 12px;
+}
+.h6 {
+	font-size: 12px;
+}
+p {
+	margin: 0px 0px 10px;
+}
+.lead {
+	line-height: 1.4; font-size: 16px; font-weight: 300; margin-bottom: 20px;
+}
+.alert {
+	padding: 15px; border-radius: 4px; border: 1px solid transparent; margin-bottom: 0px;
+}
+.alert h4 {
+	color: inherit; margin-top: 0px;
+}
+.alert .alert-link {
+	font-weight: bold;
+}
+.alert > p {
+	margin-bottom: 0px;
+}
+.alert > ul {
+	margin-bottom: 0px;
+}
+.alert > p + p {
+	margin-top: 5px;
+}
+.alert-dismissable {
+	padding-right: 35px;
+}
+.alert-dismissible {
+	padding-right: 35px;
+}
+.alert-dismissable .close {
+	top: -2px; right: -21px; color: inherit; position: relative;
+}
+.alert-dismissible .close {
+	top: -2px; right: -21px; color: inherit; position: relative;
+}
+.alert-success {
+	border-color: rgb(214, 233, 198); color: rgb(60, 118, 61); background-color: rgb(223, 240, 216);
+}
+.alert-success hr {
+	border-top-color: rgb(201, 226, 179);
+}
+.alert-success .alert-link {
+	color: rgb(43, 84, 44);
+}
+.alert-info {
+	border-color: rgb(188, 232, 241); color: rgb(49, 112, 143); background-color: rgb(217, 237, 247);
+}
+.alert-info hr {
+	border-top-color: rgb(166, 225, 236);
+}
+.alert-info .alert-link {
+	color: rgb(36, 82, 105);
+}
+.alert-warning {
+	border-color: rgb(250, 235, 204); color: rgb(138, 109, 59); background-color: rgb(252, 248, 227);
+}
+.alert-warning hr {
+	border-top-color: rgb(247, 225, 181);
+}
+.alert-warning .alert-link {
+	color: rgb(102, 81, 44);
+}
+.alert-danger {
+	border-color: rgb(235, 204, 209); color: rgb(169, 68, 66); background-color: rgb(242, 222, 222);
+}
+.alert-danger hr {
+	border-top-color: rgb(228, 185, 192);
+}
+.alert-danger .alert-link {
+	color: rgb(132, 53, 52);
+}
+.alert-success {
+	border-color: rgb(214, 233, 198); color: rgb(60, 118, 61); background-color: rgb(223, 240, 216);
+}
+.close {
+	color: rgb(0, 0, 0); line-height: 1; font-size: 21px; font-weight: bold; float: right; opacity: 0.2; text-shadow: 0px 1px 0px #fff;
+}
+.close:hover {
+	color: rgb(0, 0, 0); text-decoration: none; cursor: pointer; opacity: 0.5;
+}
+.close:focus {
+	color: rgb(0, 0, 0); text-decoration: none; cursor: pointer; opacity: 0.5;
+}
+.modal-header .close {
+	margin-top: -2px;
+}
+.alert-dismissable .close {
+	top: -2px; right: -21px; color: inherit; position: relative;
+}
+.alert-dismissible .close {
+	top: -2px; right: -21px; color: inherit; position: relative;
+}
+button.close {
+	padding: 0px; border: 0px currentColor; cursor: pointer; -webkit-appearance: none;
+}
+.sr-only {
+	margin: -1px; padding: 0px; border: 0px currentColor; width: 1px; height: 1px; overflow: hidden; position: absolute; clip: rect(0px, 0px, 0px, 0px);
+}
+.sr-only-focusable:active {
+	margin: 0px; width: auto; height: auto; overflow: visible; position: static; clip: auto;
+}
+.sr-only-focusable:focus {
+	margin: 0px; width: auto; height: auto; overflow: visible; position: static; clip: auto;
+}
+.has-feedback label .sr-only .form-control-feedback {
+	top: 0px;
+}
+.container {
+	padding-right: 15px; padding-left: 15px; margin-right: auto; margin-left: auto;
+}
+.textad {
+	margin: 10px auto;
+}
+@media all and (min-width:768px)
+{
+.container {
+	width: 750px;
+}
+.textad {
+	margin: 10px auto 60px !important;
+}
+}
+@media all and (min-width:992px)
+{
+.container {
+	width: 970px;
+}
+.textad {
+	margin: 10px auto 60px !important;
+}
+}
+@media all and (min-width:1200px)
+{
+.container {
+	width: 1170px;
+}
+.textad {
+	margin: 10px auto 60px !important;
+}
+}
+.container-fluid {
+	padding-right: 15px; padding-left: 15px; margin-right: auto; margin-left: auto;
+}
+.container .jumbotron {
+	border-radius: 6px;
+}
+.container-fluid .jumbotron {
+	border-radius: 6px;
+}
+.jumbotron .container {
+	max-width: 100%;
+}
+@media screen and (min-width:768px)
+{
+.jumbotron {
+	padding: 48px 0px;
+}
+.container .jumbotron {
+	padding-right: 60px; padding-left: 60px;
+}
+.jumbotron h1 {
+	font-size: 63px;
+}
+.jumbotron .h1 {
+	font-size: 63px;
+}
+}
+.topad2 img {
+	width: 100%;
+}
+.clearfix::before {
+	display: table; content: " ";
+}
+.clearfix::after {
+	display: table; content: " ";
+}
+.dl-horizontal dd::before {
+	display: table; content: " ";
+}
+.dl-horizontal dd::after {
+	display: table; content: " ";
+}
+.container::before {
+	display: table; content: " ";
+}
+.container::after {
+	display: table; content: " ";
+}
+.container-fluid::before {
+	display: table; content: " ";
+}
+.container-fluid::after {
+	display: table; content: " ";
+}
+.row::before {
+	display: table; content: " ";
+}
+.row::after {
+	display: table; content: " ";
+}
+.form-horizontal .form-group::before {
+	display: table; content: " ";
+}
+.form-horizontal .form-group::after {
+	display: table; content: " ";
+}
+.nav::before {
+	display: table; content: " ";
+}
+.nav::after {
+	display: table; content: " ";
+}
+.pager::before {
+	display: table; content: " ";
+}
+.pager::after {
+	display: table; content: " ";
+}
+.panel-body::before {
+	display: table; content: " ";
+}
+.panel-body::after {
+	display: table; content: " ";
+}
+.modal-footer::before {
+	display: table; content: " ";
+}
+.modal-footer::after {
+	display: table; content: " ";
+}
+.clearfix::after {
+	clear: both;
+}
+.dl-horizontal dd::after {
+	clear: both;
+}
+.container::after {
+	clear: both;
+}
+.container-fluid::after {
+	clear: both;
+}
+.row::after {
+	clear: both;
+}
+.form-horizontal .form-group::after {
+	clear: both;
+}
+.nav::after {
+	clear: both;
+}
+.pager::after {
+	clear: both;
+}
+.panel-body::after {
+	clear: both;
+}
+.modal-footer::after {
+	clear: both;
+}
+.categories a {
+	width: 15%;
+}
+.categories_xiala {
+	display: none;
+}
+.categories_xiala a {
+	width: 16.5%;
+}
+.form-inline .input-group .input-group-addon {
+	width: auto;
+}
+.form-inline .input-group .input-group-btn {
+	width: auto;
+}
+.form-inline .input-group .form-control {
+	width: auto;
+}
+.btn {
+	margin: 0px 2px; padding: 6px 12px; border-radius: 4px; border: 1px solid transparent; text-align: center; line-height: 1.4285; font-size: 14px; font-weight: normal; vertical-align: middle; display: inline-block; white-space: nowrap; cursor: pointer; -ms-user-select: none; background-image: none; -webkit-user-select: none; touch-action: manipulation; -moz-user-select: none; user-select: none;
+}
+.btn:focus {
+	outline: dotted thin; outline-offset: -2px;
+}
+.btn:focus:active {
+	outline: dotted thin; outline-offset: -2px;
+}
+.active.btn:focus {
+	outline: dotted thin; outline-offset: -2px;
+}
+.focus.btn {
+	outline: dotted thin; outline-offset: -2px;
+}
+.focus.btn:active {
+	outline: dotted thin; outline-offset: -2px;
+}
+.focus.active.btn {
+	outline: dotted thin; outline-offset: -2px;
+}
+.btn:hover {
+	color: rgb(51, 51, 51); text-decoration: none;
+}
+.btn:focus {
+	color: rgb(51, 51, 51); text-decoration: none;
+}
+.focus.btn {
+	color: rgb(51, 51, 51); text-decoration: none;
+}
+.btn:active {
+	outline: 0px; box-shadow: inset 0px 3px 5px rgba(0,0,0,0.125); background-image: none; -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.active.btn {
+	outline: 0px; box-shadow: inset 0px 3px 5px rgba(0,0,0,0.125); background-image: none; -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.disabled.btn {
+	cursor: not-allowed; opacity: 0.65; pointer-events: none; box-shadow: none; -webkit-box-shadow: none;
+}
+[disabled].btn {
+	cursor: not-allowed; opacity: 0.65; pointer-events: none; box-shadow: none; -webkit-box-shadow: none;
+}
+fieldset[disabled] .btn {
+	cursor: not-allowed; opacity: 0.65; pointer-events: none; box-shadow: none; -webkit-box-shadow: none;
+}
+.btn-default {
+	border-color: rgb(204, 204, 204); color: rgb(51, 51, 51); background-color: rgb(255, 255, 255);
+}
+.btn-default:hover {
+	border-color: rgb(173, 173, 173); color: rgb(51, 51, 51); background-color: rgb(230, 230, 230);
+}
+.btn-default:focus {
+	border-color: rgb(173, 173, 173); color: rgb(51, 51, 51); background-color: rgb(230, 230, 230);
+}
+.focus.btn-default {
+	border-color: rgb(173, 173, 173); color: rgb(51, 51, 51); background-color: rgb(230, 230, 230);
+}
+.btn-default:active {
+	border-color: rgb(173, 173, 173); color: rgb(51, 51, 51); background-color: rgb(230, 230, 230);
+}
+.active.btn-default {
+	border-color: rgb(173, 173, 173); color: rgb(51, 51, 51); background-color: rgb(230, 230, 230);
+}
+.open > .btn-default.dropdown-toggle {
+	border-color: rgb(173, 173, 173); color: rgb(51, 51, 51); background-color: rgb(230, 230, 230);
+}
+.btn-default:active {
+	background-image: none;
+}
+.active.btn-default {
+	background-image: none;
+}
+.open > .btn-default.dropdown-toggle {
+	background-image: none;
+}
+.disabled.btn-default {
+	border-color: rgb(204, 204, 204); background-color: rgb(255, 255, 255);
+}
+[disabled].btn-default {
+	border-color: rgb(204, 204, 204); background-color: rgb(255, 255, 255);
+}
+fieldset[disabled] .btn-default {
+	border-color: rgb(204, 204, 204); background-color: rgb(255, 255, 255);
+}
+.disabled.btn-default:hover {
+	border-color: rgb(204, 204, 204); background-color: rgb(255, 255, 255);
+}
+[disabled].btn-default:hover {
+	border-color: rgb(204, 204, 204); background-color: rgb(255, 255, 255);
+}
+fieldset[disabled] .btn-default:hover {
+	border-color: rgb(204, 204, 204); background-color: rgb(255, 255, 255);
+}
+.disabled.btn-default:focus {
+	border-color: rgb(204, 204, 204); background-color: rgb(255, 255, 255);
+}
+[disabled].btn-default:focus {
+	border-color: rgb(204, 204, 204); background-color: rgb(255, 255, 255);
+}
+fieldset[disabled] .btn-default:focus {
+	border-color: rgb(204, 204, 204); background-color: rgb(255, 255, 255);
+}
+.focus.disabled.btn-default {
+	border-color: rgb(204, 204, 204); background-color: rgb(255, 255, 255);
+}
+[disabled].focus.btn-default {
+	border-color: rgb(204, 204, 204); background-color: rgb(255, 255, 255);
+}
+fieldset[disabled] .focus.btn-default {
+	border-color: rgb(204, 204, 204); background-color: rgb(255, 255, 255);
+}
+.disabled.btn-default:active {
+	border-color: rgb(204, 204, 204); background-color: rgb(255, 255, 255);
+}
+[disabled].btn-default:active {
+	border-color: rgb(204, 204, 204); background-color: rgb(255, 255, 255);
+}
+fieldset[disabled] .btn-default:active {
+	border-color: rgb(204, 204, 204); background-color: rgb(255, 255, 255);
+}
+.active.disabled.btn-default {
+	border-color: rgb(204, 204, 204); background-color: rgb(255, 255, 255);
+}
+[disabled].active.btn-default {
+	border-color: rgb(204, 204, 204); background-color: rgb(255, 255, 255);
+}
+fieldset[disabled] .active.btn-default {
+	border-color: rgb(204, 204, 204); background-color: rgb(255, 255, 255);
+}
+.btn-default .badge {
+	color: rgb(255, 255, 255); background-color: rgb(51, 51, 51);
+}
+.btn-primary {
+	border-color: rgb(53, 126, 189); color: rgb(255, 255, 255); background-color: rgb(66, 139, 202);
+}
+.btn-primary:hover {
+	border-color: rgb(40, 94, 142); color: rgb(255, 255, 255); background-color: rgb(48, 113, 169);
+}
+.btn-primary:focus {
+	border-color: rgb(40, 94, 142); color: rgb(255, 255, 255); background-color: rgb(48, 113, 169);
+}
+.focus.btn-primary {
+	border-color: rgb(40, 94, 142); color: rgb(255, 255, 255); background-color: rgb(48, 113, 169);
+}
+.btn-primary:active {
+	border-color: rgb(40, 94, 142); color: rgb(255, 255, 255); background-color: rgb(48, 113, 169);
+}
+.active.btn-primary {
+	border-color: rgb(40, 94, 142); color: rgb(255, 255, 255); background-color: rgb(48, 113, 169);
+}
+.open > .btn-primary.dropdown-toggle {
+	border-color: rgb(40, 94, 142); color: rgb(255, 255, 255); background-color: rgb(48, 113, 169);
+}
+.btn-primary:active {
+	background-image: none;
+}
+.active.btn-primary {
+	background-image: none;
+}
+.open > .btn-primary.dropdown-toggle {
+	background-image: none;
+}
+.disabled.btn-primary {
+	border-color: rgb(53, 126, 189); background-color: rgb(66, 139, 202);
+}
+[disabled].btn-primary {
+	border-color: rgb(53, 126, 189); background-color: rgb(66, 139, 202);
+}
+fieldset[disabled] .btn-primary {
+	border-color: rgb(53, 126, 189); background-color: rgb(66, 139, 202);
+}
+.disabled.btn-primary:hover {
+	border-color: rgb(53, 126, 189); background-color: rgb(66, 139, 202);
+}
+[disabled].btn-primary:hover {
+	border-color: rgb(53, 126, 189); background-color: rgb(66, 139, 202);
+}
+fieldset[disabled] .btn-primary:hover {
+	border-color: rgb(53, 126, 189); background-color: rgb(66, 139, 202);
+}
+.disabled.btn-primary:focus {
+	border-color: rgb(53, 126, 189); background-color: rgb(66, 139, 202);
+}
+[disabled].btn-primary:focus {
+	border-color: rgb(53, 126, 189); background-color: rgb(66, 139, 202);
+}
+fieldset[disabled] .btn-primary:focus {
+	border-color: rgb(53, 126, 189); background-color: rgb(66, 139, 202);
+}
+.focus.disabled.btn-primary {
+	border-color: rgb(53, 126, 189); background-color: rgb(66, 139, 202);
+}
+[disabled].focus.btn-primary {
+	border-color: rgb(53, 126, 189); background-color: rgb(66, 139, 202);
+}
+fieldset[disabled] .focus.btn-primary {
+	border-color: rgb(53, 126, 189); background-color: rgb(66, 139, 202);
+}
+.disabled.btn-primary:active {
+	border-color: rgb(53, 126, 189); background-color: rgb(66, 139, 202);
+}
+[disabled].btn-primary:active {
+	border-color: rgb(53, 126, 189); background-color: rgb(66, 139, 202);
+}
+fieldset[disabled] .btn-primary:active {
+	border-color: rgb(53, 126, 189); background-color: rgb(66, 139, 202);
+}
+.active.disabled.btn-primary {
+	border-color: rgb(53, 126, 189); background-color: rgb(66, 139, 202);
+}
+[disabled].active.btn-primary {
+	border-color: rgb(53, 126, 189); background-color: rgb(66, 139, 202);
+}
+fieldset[disabled] .active.btn-primary {
+	border-color: rgb(53, 126, 189); background-color: rgb(66, 139, 202);
+}
+.btn-primary .badge {
+	color: rgb(66, 139, 202); background-color: rgb(255, 255, 255);
+}
+.btn-success {
+	border-color: rgb(76, 174, 76); color: rgb(255, 255, 255); background-color: rgb(92, 184, 92);
+}
+.btn-success:hover {
+	border-color: rgb(57, 132, 57); color: rgb(255, 255, 255); background-color: rgb(68, 157, 68);
+}
+.btn-success:focus {
+	border-color: rgb(57, 132, 57); color: rgb(255, 255, 255); background-color: rgb(68, 157, 68);
+}
+.focus.btn-success {
+	border-color: rgb(57, 132, 57); color: rgb(255, 255, 255); background-color: rgb(68, 157, 68);
+}
+.btn-success:active {
+	border-color: rgb(57, 132, 57); color: rgb(255, 255, 255); background-color: rgb(68, 157, 68);
+}
+.active.btn-success {
+	border-color: rgb(57, 132, 57); color: rgb(255, 255, 255); background-color: rgb(68, 157, 68);
+}
+.open > .btn-success.dropdown-toggle {
+	border-color: rgb(57, 132, 57); color: rgb(255, 255, 255); background-color: rgb(68, 157, 68);
+}
+.btn-success:active {
+	background-image: none;
+}
+.active.btn-success {
+	background-image: none;
+}
+.open > .btn-success.dropdown-toggle {
+	background-image: none;
+}
+.disabled.btn-success {
+	border-color: rgb(76, 174, 76); background-color: rgb(92, 184, 92);
+}
+[disabled].btn-success {
+	border-color: rgb(76, 174, 76); background-color: rgb(92, 184, 92);
+}
+fieldset[disabled] .btn-success {
+	border-color: rgb(76, 174, 76); background-color: rgb(92, 184, 92);
+}
+.disabled.btn-success:hover {
+	border-color: rgb(76, 174, 76); background-color: rgb(92, 184, 92);
+}
+[disabled].btn-success:hover {
+	border-color: rgb(76, 174, 76); background-color: rgb(92, 184, 92);
+}
+fieldset[disabled] .btn-success:hover {
+	border-color: rgb(76, 174, 76); background-color: rgb(92, 184, 92);
+}
+.disabled.btn-success:focus {
+	border-color: rgb(76, 174, 76); background-color: rgb(92, 184, 92);
+}
+[disabled].btn-success:focus {
+	border-color: rgb(76, 174, 76); background-color: rgb(92, 184, 92);
+}
+fieldset[disabled] .btn-success:focus {
+	border-color: rgb(76, 174, 76); background-color: rgb(92, 184, 92);
+}
+.focus.disabled.btn-success {
+	border-color: rgb(76, 174, 76); background-color: rgb(92, 184, 92);
+}
+[disabled].focus.btn-success {
+	border-color: rgb(76, 174, 76); background-color: rgb(92, 184, 92);
+}
+fieldset[disabled] .focus.btn-success {
+	border-color: rgb(76, 174, 76); background-color: rgb(92, 184, 92);
+}
+.disabled.btn-success:active {
+	border-color: rgb(76, 174, 76); background-color: rgb(92, 184, 92);
+}
+[disabled].btn-success:active {
+	border-color: rgb(76, 174, 76); background-color: rgb(92, 184, 92);
+}
+fieldset[disabled] .btn-success:active {
+	border-color: rgb(76, 174, 76); background-color: rgb(92, 184, 92);
+}
+.active.disabled.btn-success {
+	border-color: rgb(76, 174, 76); background-color: rgb(92, 184, 92);
+}
+[disabled].active.btn-success {
+	border-color: rgb(76, 174, 76); background-color: rgb(92, 184, 92);
+}
+fieldset[disabled] .active.btn-success {
+	border-color: rgb(76, 174, 76); background-color: rgb(92, 184, 92);
+}
+.btn-success .badge {
+	color: rgb(92, 184, 92); background-color: rgb(255, 255, 255);
+}
+.btn-info {
+	border-color: rgb(70, 184, 218); color: rgb(255, 255, 255); background-color: rgb(91, 192, 222);
+}
+.btn-info:hover {
+	border-color: rgb(38, 154, 188); color: rgb(255, 255, 255); background-color: rgb(49, 176, 213);
+}
+.btn-info:focus {
+	border-color: rgb(38, 154, 188); color: rgb(255, 255, 255); background-color: rgb(49, 176, 213);
+}
+.focus.btn-info {
+	border-color: rgb(38, 154, 188); color: rgb(255, 255, 255); background-color: rgb(49, 176, 213);
+}
+.btn-info:active {
+	border-color: rgb(38, 154, 188); color: rgb(255, 255, 255); background-color: rgb(49, 176, 213);
+}
+.active.btn-info {
+	border-color: rgb(38, 154, 188); color: rgb(255, 255, 255); background-color: rgb(49, 176, 213);
+}
+.open > .btn-info.dropdown-toggle {
+	border-color: rgb(38, 154, 188); color: rgb(255, 255, 255); background-color: rgb(49, 176, 213);
+}
+.btn-info:active {
+	background-image: none;
+}
+.active.btn-info {
+	background-image: none;
+}
+.open > .btn-info.dropdown-toggle {
+	background-image: none;
+}
+.disabled.btn-info {
+	border-color: rgb(70, 184, 218); background-color: rgb(91, 192, 222);
+}
+[disabled].btn-info {
+	border-color: rgb(70, 184, 218); background-color: rgb(91, 192, 222);
+}
+fieldset[disabled] .btn-info {
+	border-color: rgb(70, 184, 218); background-color: rgb(91, 192, 222);
+}
+.disabled.btn-info:hover {
+	border-color: rgb(70, 184, 218); background-color: rgb(91, 192, 222);
+}
+[disabled].btn-info:hover {
+	border-color: rgb(70, 184, 218); background-color: rgb(91, 192, 222);
+}
+fieldset[disabled] .btn-info:hover {
+	border-color: rgb(70, 184, 218); background-color: rgb(91, 192, 222);
+}
+.disabled.btn-info:focus {
+	border-color: rgb(70, 184, 218); background-color: rgb(91, 192, 222);
+}
+[disabled].btn-info:focus {
+	border-color: rgb(70, 184, 218); background-color: rgb(91, 192, 222);
+}
+fieldset[disabled] .btn-info:focus {
+	border-color: rgb(70, 184, 218); background-color: rgb(91, 192, 222);
+}
+.focus.disabled.btn-info {
+	border-color: rgb(70, 184, 218); background-color: rgb(91, 192, 222);
+}
+[disabled].focus.btn-info {
+	border-color: rgb(70, 184, 218); background-color: rgb(91, 192, 222);
+}
+fieldset[disabled] .focus.btn-info {
+	border-color: rgb(70, 184, 218); background-color: rgb(91, 192, 222);
+}
+.disabled.btn-info:active {
+	border-color: rgb(70, 184, 218); background-color: rgb(91, 192, 222);
+}
+[disabled].btn-info:active {
+	border-color: rgb(70, 184, 218); background-color: rgb(91, 192, 222);
+}
+fieldset[disabled] .btn-info:active {
+	border-color: rgb(70, 184, 218); background-color: rgb(91, 192, 222);
+}
+.active.disabled.btn-info {
+	border-color: rgb(70, 184, 218); background-color: rgb(91, 192, 222);
+}
+[disabled].active.btn-info {
+	border-color: rgb(70, 184, 218); background-color: rgb(91, 192, 222);
+}
+fieldset[disabled] .active.btn-info {
+	border-color: rgb(70, 184, 218); background-color: rgb(91, 192, 222);
+}
+.btn-info .badge {
+	color: rgb(91, 192, 222); background-color: rgb(255, 255, 255);
+}
+.btn-warning {
+	border-color: rgb(238, 162, 54); color: rgb(255, 255, 255); background-color: rgb(240, 173, 78);
+}
+.btn-warning:hover {
+	border-color: rgb(213, 133, 18); color: rgb(255, 255, 255); background-color: rgb(236, 151, 31);
+}
+.btn-warning:focus {
+	border-color: rgb(213, 133, 18); color: rgb(255, 255, 255); background-color: rgb(236, 151, 31);
+}
+.focus.btn-warning {
+	border-color: rgb(213, 133, 18); color: rgb(255, 255, 255); background-color: rgb(236, 151, 31);
+}
+.btn-warning:active {
+	border-color: rgb(213, 133, 18); color: rgb(255, 255, 255); background-color: rgb(236, 151, 31);
+}
+.active.btn-warning {
+	border-color: rgb(213, 133, 18); color: rgb(255, 255, 255); background-color: rgb(236, 151, 31);
+}
+.open > .btn-warning.dropdown-toggle {
+	border-color: rgb(213, 133, 18); color: rgb(255, 255, 255); background-color: rgb(236, 151, 31);
+}
+.btn-warning:active {
+	background-image: none;
+}
+.active.btn-warning {
+	background-image: none;
+}
+.open > .btn-warning.dropdown-toggle {
+	background-image: none;
+}
+.disabled.btn-warning {
+	border-color: rgb(238, 162, 54); background-color: rgb(240, 173, 78);
+}
+[disabled].btn-warning {
+	border-color: rgb(238, 162, 54); background-color: rgb(240, 173, 78);
+}
+fieldset[disabled] .btn-warning {
+	border-color: rgb(238, 162, 54); background-color: rgb(240, 173, 78);
+}
+.disabled.btn-warning:hover {
+	border-color: rgb(238, 162, 54); background-color: rgb(240, 173, 78);
+}
+[disabled].btn-warning:hover {
+	border-color: rgb(238, 162, 54); background-color: rgb(240, 173, 78);
+}
+fieldset[disabled] .btn-warning:hover {
+	border-color: rgb(238, 162, 54); background-color: rgb(240, 173, 78);
+}
+.disabled.btn-warning:focus {
+	border-color: rgb(238, 162, 54); background-color: rgb(240, 173, 78);
+}
+[disabled].btn-warning:focus {
+	border-color: rgb(238, 162, 54); background-color: rgb(240, 173, 78);
+}
+fieldset[disabled] .btn-warning:focus {
+	border-color: rgb(238, 162, 54); background-color: rgb(240, 173, 78);
+}
+.focus.disabled.btn-warning {
+	border-color: rgb(238, 162, 54); background-color: rgb(240, 173, 78);
+}
+[disabled].focus.btn-warning {
+	border-color: rgb(238, 162, 54); background-color: rgb(240, 173, 78);
+}
+fieldset[disabled] .focus.btn-warning {
+	border-color: rgb(238, 162, 54); background-color: rgb(240, 173, 78);
+}
+.disabled.btn-warning:active {
+	border-color: rgb(238, 162, 54); background-color: rgb(240, 173, 78);
+}
+[disabled].btn-warning:active {
+	border-color: rgb(238, 162, 54); background-color: rgb(240, 173, 78);
+}
+fieldset[disabled] .btn-warning:active {
+	border-color: rgb(238, 162, 54); background-color: rgb(240, 173, 78);
+}
+.active.disabled.btn-warning {
+	border-color: rgb(238, 162, 54); background-color: rgb(240, 173, 78);
+}
+[disabled].active.btn-warning {
+	border-color: rgb(238, 162, 54); background-color: rgb(240, 173, 78);
+}
+fieldset[disabled] .active.btn-warning {
+	border-color: rgb(238, 162, 54); background-color: rgb(240, 173, 78);
+}
+.btn-warning .badge {
+	color: rgb(240, 173, 78); background-color: rgb(255, 255, 255);
+}
+.btn-danger {
+	border-color: rgb(212, 63, 58); color: rgb(255, 255, 255); background-color: rgb(217, 83, 79);
+}
+.btn-danger:hover {
+	border-color: rgb(172, 41, 37); color: rgb(255, 255, 255); background-color: rgb(201, 48, 44);
+}
+.btn-danger:focus {
+	border-color: rgb(172, 41, 37); color: rgb(255, 255, 255); background-color: rgb(201, 48, 44);
+}
+.focus.btn-danger {
+	border-color: rgb(172, 41, 37); color: rgb(255, 255, 255); background-color: rgb(201, 48, 44);
+}
+.btn-danger:active {
+	border-color: rgb(172, 41, 37); color: rgb(255, 255, 255); background-color: rgb(201, 48, 44);
+}
+.active.btn-danger {
+	border-color: rgb(172, 41, 37); color: rgb(255, 255, 255); background-color: rgb(201, 48, 44);
+}
+.open > .btn-danger.dropdown-toggle {
+	border-color: rgb(172, 41, 37); color: rgb(255, 255, 255); background-color: rgb(201, 48, 44);
+}
+.btn-danger:active {
+	background-image: none;
+}
+.active.btn-danger {
+	background-image: none;
+}
+.open > .btn-danger.dropdown-toggle {
+	background-image: none;
+}
+.disabled.btn-danger {
+	border-color: rgb(212, 63, 58); background-color: rgb(217, 83, 79);
+}
+[disabled].btn-danger {
+	border-color: rgb(212, 63, 58); background-color: rgb(217, 83, 79);
+}
+fieldset[disabled] .btn-danger {
+	border-color: rgb(212, 63, 58); background-color: rgb(217, 83, 79);
+}
+.disabled.btn-danger:hover {
+	border-color: rgb(212, 63, 58); background-color: rgb(217, 83, 79);
+}
+[disabled].btn-danger:hover {
+	border-color: rgb(212, 63, 58); background-color: rgb(217, 83, 79);
+}
+fieldset[disabled] .btn-danger:hover {
+	border-color: rgb(212, 63, 58); background-color: rgb(217, 83, 79);
+}
+.disabled.btn-danger:focus {
+	border-color: rgb(212, 63, 58); background-color: rgb(217, 83, 79);
+}
+[disabled].btn-danger:focus {
+	border-color: rgb(212, 63, 58); background-color: rgb(217, 83, 79);
+}
+fieldset[disabled] .btn-danger:focus {
+	border-color: rgb(212, 63, 58); background-color: rgb(217, 83, 79);
+}
+.focus.disabled.btn-danger {
+	border-color: rgb(212, 63, 58); background-color: rgb(217, 83, 79);
+}
+[disabled].focus.btn-danger {
+	border-color: rgb(212, 63, 58); background-color: rgb(217, 83, 79);
+}
+fieldset[disabled] .focus.btn-danger {
+	border-color: rgb(212, 63, 58); background-color: rgb(217, 83, 79);
+}
+.disabled.btn-danger:active {
+	border-color: rgb(212, 63, 58); background-color: rgb(217, 83, 79);
+}
+[disabled].btn-danger:active {
+	border-color: rgb(212, 63, 58); background-color: rgb(217, 83, 79);
+}
+fieldset[disabled] .btn-danger:active {
+	border-color: rgb(212, 63, 58); background-color: rgb(217, 83, 79);
+}
+.active.disabled.btn-danger {
+	border-color: rgb(212, 63, 58); background-color: rgb(217, 83, 79);
+}
+[disabled].active.btn-danger {
+	border-color: rgb(212, 63, 58); background-color: rgb(217, 83, 79);
+}
+fieldset[disabled] .active.btn-danger {
+	border-color: rgb(212, 63, 58); background-color: rgb(217, 83, 79);
+}
+.btn-danger .badge {
+	color: rgb(217, 83, 79); background-color: rgb(255, 255, 255);
+}
+.btn-link {
+	border-radius: 0px; color: rgb(66, 139, 202); font-weight: normal;
+}
+.btn-link {
+	box-shadow: none; background-color: transparent; -webkit-box-shadow: none;
+}
+.btn-link:active {
+	box-shadow: none; background-color: transparent; -webkit-box-shadow: none;
+}
+.active.btn-link {
+	box-shadow: none; background-color: transparent; -webkit-box-shadow: none;
+}
+[disabled].btn-link {
+	box-shadow: none; background-color: transparent; -webkit-box-shadow: none;
+}
+fieldset[disabled] .btn-link {
+	box-shadow: none; background-color: transparent; -webkit-box-shadow: none;
+}
+.btn-link {
+	border-color: transparent;
+}
+.btn-link:hover {
+	border-color: transparent;
+}
+.btn-link:focus {
+	border-color: transparent;
+}
+.btn-link:active {
+	border-color: transparent;
+}
+.btn-link:hover {
+	color: rgb(42, 100, 150); text-decoration: underline; background-color: transparent;
+}
+.btn-link:focus {
+	color: rgb(42, 100, 150); text-decoration: underline; background-color: transparent;
+}
+[disabled].btn-link:hover {
+	color: rgb(119, 119, 119); text-decoration: none;
+}
+fieldset[disabled] .btn-link:hover {
+	color: rgb(119, 119, 119); text-decoration: none;
+}
+[disabled].btn-link:focus {
+	color: rgb(119, 119, 119); text-decoration: none;
+}
+fieldset[disabled] .btn-link:focus {
+	color: rgb(119, 119, 119); text-decoration: none;
+}
+.btn-lg {
+	padding: 10px 16px; border-radius: 6px; line-height: 1.33; font-size: 18px;
+}
+.btn-sm {
+	padding: 5px 10px; border-radius: 3px; line-height: 1.5; font-size: 12px;
+}
+.btn-xs {
+	padding: 1px 5px; border-radius: 3px; line-height: 1.5; font-size: 12px;
+}
+.btn-block {
+	width: 100%; display: block;
+}
+.btn-block + .btn-block {
+	margin-top: 5px;
+}
+input[type='submit'].btn-block {
+	width: 100%;
+}
+input[type='reset'].btn-block {
+	width: 100%;
+}
+input[type='button'].btn-block {
+	width: 100%;
+}
+.btn .label {
+	top: -1px; position: relative;
+}
+.btn .badge {
+	top: -1px; position: relative;
+}
+.btn-xs .badge {
+	padding: 1px 5px; top: 0px;
+}
+.modal-footer .btn + .btn {
+	margin-bottom: 0px; margin-left: 5px;
+}
+.modal-footer .btn-group .btn + .btn {
+	margin-left: -1px;
+}
+.modal-footer .btn-block + .btn-block {
+	margin-left: 0px;
+}
+.carousel-caption .btn {
+	text-shadow: none;
+}
+.media {
+	margin-top: 15px;
+}
+:first-child.media {
+	margin-top: 0px;
+}
+.media-right {
+	padding-left: 10px;
+}
+.media > .pull-right {
+	padding-left: 10px;
+}
+.media-left {
+	padding-right: 10px;
+}
+.media > .pull-left {
+	padding-right: 10px;
+}
+.media-left {
+	vertical-align: top; display: table-cell;
+}
+.media-right {
+	vertical-align: top; display: table-cell;
+}
+.media-body {
+	vertical-align: top; display: table-cell;
+}
+.media-middle {
+	vertical-align: middle;
+}
+.media-bottom {
+	vertical-align: bottom;
+}
+.media-heading {
+	margin-top: 0px; margin-bottom: 5px;
+}
+.media-list {
+	list-style: none; padding-left: 0px;
+}
+.media-body {
+	padding: 15px 0px 0px 10px; width: 75%; height: 55px; color: rgb(0, 0, 0); vertical-align: middle; float: left; position: relative;
+}
+.media-body h4 {
+	font-family: "Î¢ÈíÑÅºÚ"; font-size: 16px;
+}
+.media_link {
+	width: 100%; height: 70px; border-bottom-color: rgb(236, 236, 236); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.media-right {
+	padding-left: 10px;
+}
+.media > .pull-right {
+	padding-left: 10px;
+}
+.media-left {
+	vertical-align: top; display: table-cell;
+}
+.media-right {
+	vertical-align: top; display: table-cell;
+}
+.media-body {
+	vertical-align: top; display: table-cell;
+}
+.media-right {
+	padding: 8px 10px 0px 0px; width: 64px; text-align: right; float: right;
+}
+.media-right img {
+	width: 54px; height: 54px;
+}
+.pager {
+	list-style: none; margin: 20px 0px; text-align: center; padding-left: 0px;
+}
+.pager li {
+	display: inline;
+}
+.pager a {
+	padding: 5px 14px; border-radius: 15px; border: 1px solid rgb(221, 221, 221); text-decoration: none; display: inline-block; background-color: rgb(255, 255, 255);
+}
+.pager span {
+	padding: 5px 14px; border-radius: 15px; border: 1px solid rgb(221, 221, 221); text-decoration: none; display: inline-block; background-color: rgb(255, 255, 255);
+}
+.pager li > a:hover {
+	text-decoration: none; background-color: rgb(238, 238, 238);
+}
+.pager li > a:focus {
+	text-decoration: none; background-color: rgb(238, 238, 238);
+}
+.pager .next > a {
+	float: right;
+}
+.pager .next > span {
+	float: right;
+}
+.pager .previous > a {
+	float: left;
+}
+.pager .previous > span {
+	float: left;
+}
+.pager .disabled > a {
+	color: rgb(119, 119, 119); cursor: not-allowed; background-color: rgb(255, 255, 255);
+}
+.pager .disabled > a:hover {
+	color: rgb(119, 119, 119); cursor: not-allowed; background-color: rgb(255, 255, 255);
+}
+.pager .disabled > a:focus {
+	color: rgb(119, 119, 119); cursor: not-allowed; background-color: rgb(255, 255, 255);
+}
+.pager .disabled > span {
+	color: rgb(119, 119, 119); cursor: not-allowed; background-color: rgb(255, 255, 255);
+}
+#loding {
+	margin: 0px auto; width: 80px;
+}
+#loding img {
+	width: 80px;
+}
+.text-center {
+	text-align: left; font-size: 20px; font-weight: bold;
+}
+.rich_media_tool .media_tool_meta i {
+	top: 1px; margin-right: 3px; vertical-align: 0px; position: relative;
+}
+.rich_media_tool .meta_extra {
+	margin-left: 14px; float: right;
+}
+.categories a {
+	width: 15%;
+}
+.media {
+	background: rgb(255, 255, 255); border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px;
+}
+.btn {
+	padding: 6px 5px;
+}
+.rich_media_tool {
+	height: 30px; line-height: 30px; margin-top: 30px; margin-bottom: 20px;
+}
+.rich_media_tool .meta_primary {
+	margin-right: 14px; float: left;
+}
+.rich_media_tool {
+	line-height: 30px;
+}
+.rich_media_tool .meta_praise {
+	outline: 0px; margin-right: 0px;
+}
+.rich_media_tool .media_tool_meta i {
+	top: 1px; margin-right: 3px; vertical-align: 0px; position: relative;
+}
+.icon_praise_gray {
+	background: url("../images/icon_praise.png") no-repeat 0px 0px / 100% auto; width: 13px; height: 13px; display: inline-block;
+}
+.video_iframe {
+	border: 0px currentColor; width: 100%; height: auto; background-color: rgb(0, 0, 0);
+}
+.top {
+	text-align: left; border-bottom-color: rgb(235, 235, 235); border-bottom-width: 1px; border-bottom-style: solid; background-color: rgb(190, 44, 57);
+}
+.top div {
+	margin: 0px auto; padding: 7px 0px; width: 100%; cursor: pointer;
+}
+.textad a {
+	margin: 5px 0px; padding: 0px 10px; border: 1px solid rgb(204, 204, 204); height: 40px; color: rgb(60, 118, 61); line-height: 40px; overflow: hidden; font-size: 14px; text-decoration: none; display: block;
+}
+.textad a.red {
+	background-color: rgb(255, 201, 187);
+}
+.textad a.yellow {
+	background-color: rgb(255, 255, 193);
+}
+.textad a.blue {
+	background-color: rgb(170, 204, 255);
+}
+.textad a.green {
+	background-color: rgb(223, 240, 216);
+}
+.city_nav {
+	background: rgb(255, 255, 255); border-radius: 3px; display: none; -moz-border-radius: 3px; -webkit-border-radius: 3px;
+}
+.city_nav .pager li a {
+	border-radius: 4px; border: 0px solid currentColor; width: 23%; text-decoration: none;
+}
+.btn {
+	margin: 0px;
+}
+.hidden {
+	display: none;
+}
+.toshare {
+	
+}
+.toshare a {
+	margin: 10px; display: block;
+}

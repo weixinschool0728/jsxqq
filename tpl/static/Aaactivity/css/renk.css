@@ -1,0 +1,24 @@
+.getList{width: 100%;background:#fff;overflow: hidden;margin:0 auto;}
+.swiper-slide{color:#666;float: left;}
+.swipe_con{overflow-y:auto;overflow-x:hidden;max-height: 315px;width: 100%;}
+.luck-manito{padding: 0 3%;}
+.luck-manito .headers img{display:block;border-radius: 100%;max-width: 40px;max-height:40px;}
+.luck-manito ul{display:-webkit-box;padding: 4% 0;border-bottom:1px solid #ECECEC;}
+.luck-manito li{-webkit-box-flex:1;}
+.luck-manito ul li:nth-child(1){overflow: hidden;width: 40px;height:40px;}
+.luck-manito ul li:nth-child(1) img{display:block;border-radius: 100%;max-width: 40px;max-height:40px;}
+.luck-manito li:nth-child(2){width:60%;}
+.luck-manito ul li:nth-child(3){display:-webkit-box;-webkit-box-pack:center;-webkit-box-align:center;color:#cb3f3f;font-family: "Arial"}
+.luck-manito ul li:nth-child(2) div:nth-child(2){color:#818088;margin-top: 5px;}
+.luck-manito ul li:nth-child(2) div:nth-child(2) p{font-size: 14px;}
+.nickname{font-size: 14px;padding-left: 5px;}
+.date{color:#818088;padding-left: 5px;font-size: 12px;}
+.tel{color:#818088;font-size: 12px;}
+.fit-plan .luck-manito ul li:nth-child(2){width: 60%;display: -webkit-box;-webkit-box-align:center;}
+.fit-plan .luck-manito ul li:nth-child(2) p{font-family: "MicrosoftJhengHei";font-size: 14px;}
+.fit-plan_end{width:50%;margin:10% auto 0;text-align: center;color:#b2b2b2;}
+.fit-plan_end img{display:block;width:50%;margin:0 auto 10%;}
+#Tab{padding:5% 0 0;width: 80%;margin:0 auto;}
+#Tab ul{display: -webkit-box;border:1px solid #9997a0;border-radius:3px;}
+#Tab li{color:#fff;-webkit-box-flex:1;text-align: center;padding:3% 5%;background:transparent;color:#9997a0;}
+#Tab li.current{background:#9997a0;color:#000;}
