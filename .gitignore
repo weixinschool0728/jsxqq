@@ -3,3 +3,7 @@
 /nbproject/project.properties
 /nbproject/project.xml
 /nbproject
+/Conf/db.php
+/*.buildpath
+/.project
+/.settings/org.eclipse.php.core.prefs
