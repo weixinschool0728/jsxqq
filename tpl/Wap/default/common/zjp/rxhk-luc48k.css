@@ -1,0 +1,104 @@
+﻿/* common */
+body {font-size:12px;font-family:Microsoft YaHei;color: #333;max-width:720px; margin:0 auto;padding:0;position: relative;}
+body,html{width:100%;height:100%;background:#515363;}
+ul,li,dl,dd,p {padding:0;margin:0;border:0;list-style: none;}
+i,em { font-style: normal;}
+img{ display:block;}
+a{ color: #333; text-decoration: none;}
+.fixed:after { content:""; display: block; clear: both; height: 0; visibility: hidden; }
+.fixed { display: block; min-height: 1%; }
+.clear { diplay: block!important; float: none!important; clear: both; overflow: hidden; width: auto!important; height: 0!important; margin: 0 auto!important; padding: 0!important; font-size: 0; line-height: 0; }
+.hidden {white-space: nowrap; overflow:hidden;text-overflow:ellipsis ;}
+.fl { float: left;}
+.fr { float: right;}
+/* common end*/
+
+.switch-btn{position: absolute; z-index: 999; top: 3%; left: 20px;}
+.word{ position:absolute; top:3%; right:15px; z-index:999;}
+.word a{ border:1px solid #3f548b; width:150px; height:55px; border-radius:25px; background:#202c4d; margin-bottom:20px; display:block; line-height:55px; text-align:center; overflow:hidden; font-size:26px; color:#b8cbff;}
+.word a:hover{ border:1px solid #3f548b; width:150px; height:55px; border-radius:25px; background:#2d3c64; margin-bottom:20px; display:block; line-height:55px; text-align:center; overflow:hidden; font-size:26px; color:#b8cbff;}
+.con{ width:90%; margin:0 auto; position: relative; top:0px; z-index:900; text-align:center; }
+
+.luck-top-bg{position: absolute; top: 0px; overflow: hidden;background-color: #760003}
+.luck-bottom-bg{position: absolute; bottom: 0px;}
+/* 手臂*/
+.arm-area{ position:relative; overflow:hidden;}
+.arm{width:263px;height:100%; position:relative;z-index:99;left:20px;top:-817px;  text-align:center;  margin:0 auto;background-size:80% 50%;background-repeat: repeat-y;}
+.arm-img{width:263px; height:532px; display:block;position:absolute; bottom:-532px; background-size:80% auto;background-repeat: no-repeat;}
+.arm-shake{animation:myfirst 0.5s linear 0.5s infinite alternate;
+-webkit-animation:myfirst 0.5s linear 0.5s infinite alternate;
+}
+@-webkit-keyframes myfirst 
+{
+0%   {left:20px;}
+5%  {left:25px;}
+15%  {left:30px;}
+20%  {left:25px;}
+25%  {left:20px;}
+35%  {left:15px;}
+40%  {left:10px;}
+45%  {left:15px;}
+100%  {left:20px;}
+}
+
+.luck-tips{ background:url(luck-tips.png) no-repeat; width:517px; height:97px; display:block; position: absolute; bottom:30%; left:10%;}
+/* 手指*/
+.finger{ position: absolute; right:20px; top:35%;width:30%; background:url(finger.png) no-repeat; width:190px; height:225px;
+animation:handa 1.5s linear 0.5s infinite alternate;
+-webkit-animation:handa 1.5s linear 0.5s infinite alternate;
+}
+@-webkit-keyframes handa 
+{
+0%   {right:20px; top:35%;}
+100%  {right:20px; top:50%;}
+}
+
+/* 盒子*/
+.box{ position: relative; width:50%; bottom:260px;}
+.box-back{background:url(box-back.png) 0px 0px no-repeat; width:629px; height:606px;text-align:center; margin:0 auto; position:absolute; left:10%; -webkit-transform: scale(0.79, 0.79);}
+.box-front{background:url(box-front.png?v=3) 0px 0px no-repeat; width:629px; height:606px;text-align:center; margin:0 auto; position:absolute; left:10%; z-index:99; -webkit-transform: scale(0.79, 0.79);}
+.box-animation{background:url(box-front.png) 0px 0px no-repeat; width:629px; height:606px;text-align:center; margin:0 auto; position:absolute; left:10%; z-index:99;
+-webkit-transform: scale(0.79, 0.79);
+animation:zana 1s steps(2) infinite;
+-webkit-animation:zana 1s steps(2) infinite;
+}
+@keyframes zana 
+{
+0%{background-position:0px 0px;}
+100%{background-position:-1258px 0px;}
+}
+@-webkit-keyframes zana 
+{
+0%{background-position:0px 0px;}
+100%{background-position:-1258px 0px;}
+}
+
+/* 弹出层 */
+.popup{background:#000;position:absolute; top:0px; z-index:999; width:100%;display: none;}
+.popup-bg{background:url(popup-bg.jpg) no-repeat; width:720px; height:100%;overflow:hidden;}
+.popup-con-wrap{position: absolute;top: 0;}
+.popup-btn{background:url(popup-btn.png) no-repeat; width:386px; height:93px; line-height:93px; text-align:center; font-size:32px; color:#fae0a3; margin:0 auto; display:block;}
+.popup-con-tips{ width:55%; margin:0 auto; text-align:center; font-size:24px; border-top:1px dashed #bda279; padding-top:10px; margin-top:20px;color: #a16123;}
+.popup-con{background:url(popup-cont-bg02.png) no-repeat; width:720px; height:746px; margin-top:0;}
+.popup-con-bg{background:url(popup-cont-bg01.png)}
+.popup-con-img{ padding-top:14%; text-align: center;}
+.popup-con-img img{ margin:0 auto; }
+.popup-con-head{width:60%;margin:0 auto; padding-top:320px; font-size:40px; text-align:center; color:#d14843;}
+.popup-con-word{ width:65%; margin:0 auto; text-align:center; font-size:24px;line-height:32px; padding-top:15px;color: #512b0e;}
+.popup-con-word span{ color:#de5336;}
+.popup-con-box{ width:60%; margin:0 auto;}
+.popup-con-input{ text-align:center; width:60%; margin:0 auto; padding:15px 0px 5px 0px;}
+.popup-con-input input{ border:none; background:none; height:50px; line-height:50px; color:#000; width:100%; margin:0 auto; font-size:42px;position: relative;z-index: 999;top:5px}
+.popup-con-input .phone-border{border:2px solid #8c6239; height:20px; border-top:none; position: relative;bottom:15px;z-index: 99}
+.popup-prize{background:#f8e1b1;position:absolute; top:0px; z-index:999999999; width:100%;}
+.popup-con-error{width:60%;margin:0 auto;color:#d03c3d; font-size:24px;}
+
+/* 遮罩层 */
+.mask {width: 100%; height: 100%;max-width: 720px;  top: 0px; position: fixed; display: none;z-index: 9999;}
+.mask-bg {width: 100%; height: 100%; position: fixed; top: 0; left: 0; -moz-opacity: 0.95; opacity: .95; filter: alpha(opacity = 95); background-color: #000; zoom: 1;}
+.mask-cont {color:#FFFFFF;position: absolute; top: 0;z-index: 22222;padding-top: 10px;}
+.mask-cont .indicate{float: right; padding-right: 50px;width: 20%;}
+.mask-cont-text{width: 80%; line-height: 80px; font-size: 28px; text-indent: 2em; text-align: left; margin: 0 auto;}
+.mask-cont-text img{display: inline-block; margin:0 20px -25px 20px;}
+.mask-close {font-size: 28px; width: 40%; margin: 0 auto; padding-top: 15px;color:#FFFFFF;}
+.mask-close a{display: block; width: 100%; margin: 0 auto; height: 65px; line-height: 65px; text-align: center; border-radius: 8px; border: 2px solid #fff; color: #fff;}

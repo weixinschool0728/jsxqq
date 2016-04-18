@@ -1,0 +1,425 @@
+/*base*/
+body {font:normal 14px/1.5 "\5FAE\8F6F\96C5\9ED1", Helvetica,STHeiti, Droidsansfallback; color:#000;-webkit-user-select: none;-webkit-text-size-adjust: none; }
+body,div,dl,dt,dd,del,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td,figure {margin:0;padding:0;}
+input[type="text"],input[type="number"],input[type="password"],input[type="submit"],input[type="button"],textarea {-webkit-appearance: none; outline-style: none; resize: none; border:0;}
+input{ outline:0 none;}
+table {border-collapse:collapse;border-spacing:0;}
+fieldset,img {border:0;}
+address,caption,cite,code,dfn,em,th,var {font-style:normal;font-weight:normal;}
+ol,ul {list-style:none;}
+li{ list-style-type:none;}
+caption,th {text-align:left;}
+h1,h2,h3,h4,h5,h6 {font-size:100%;	font-weight:normal;	font-style: normal;}
+q:before,q:after {content:'';}
+abbr,acronym {border:0;}
+header, section {display:block;margin:0;padding:0;}
+a{text-decoration: none;}
+.clearfix:after {content: "."; display: block; height: 0; clear: both; visibility: hidden;}
+.unl {text-decoration: underline;}
+.tl {text-align: left;}
+.tc {text-align: center;}
+.tr {text-align: right;}
+.bc {margin-left: auto; margin-right: auto;}
+.fl {float: left;}
+.fr {float: right;}
+.vm {vertical-align: middle;}
+.vt {vertical-align: top;}
+.pr {position: relative;}
+.pa {position: absolute;}
+.none { display: none }
+.mb10{ margin-bottom:10px;}
+.mt10{ margin-top:10px;}
+.mb15{ margin-bottom:15px;}
+.pl15{ padding-left:15px;}
+
+/*js*/
+.byjf strong{display: none !important;}
+.spc strong{display: block !important;}
+.trans1{transition-duration: .2s;-webkit-transition-duration: .3s;}
+/*.trans2{transition:transform .5s linear;-webkit-transition:-webkit-transform .5s linear;transform:scale(.8);-webkit-transform:scale(.8);}*/
+a.more.cur:after,a.more.cur *,a.more2.cur *,a.more3.cur *{visibility: hidden;}
+
+/*公用*/
+body{ background-color:#f2f2f2;}
+.byso .city a:after,
+.byso .sou a,
+.bytp .img p:before,
+.bujg a.gz:before,
+.bujg a.more:after,
+.yumi p.sm:before,
+.bydiy .con2 div a.me:after,
+a.more2 span:after,
+a.more3 span:after,
+.buer i.tb:before,
+.bypai .tou i.pm1,
+.bypai .tou i.pm2,
+.bypai .tou i.pm3{ background:url(bypic.png) no-repeat; background-size:18px 200px;}
+
+/*C系列*/
+.byso{ padding:6px;position:relative; border-bottom:1px solid #d9d9d9; box-shadow:0 1px #f4f4f4; background:#fafafa;}
+.byso .city{ float:left;margin-right:10px; height:32px; line-height:32px; position:relative;}
+.byso .city>a{ display:block; overflow:hidden; position:relative; color:#337ab7; text-indent:4px; font-size:16px; padding-right:22px;}
+.byso .city>a:after{ content:''; position:absolute; width:14px; height:14px; background-position:0 -44px; right:0; top:50%; margin-top:-7px;}
+.byso .sou{ overflow:hidden; position:relative; height:30px; border:1px solid #e6e6e6; border-radius:4px; box-shadow:2px 2px 2px #f9f9f9 inset;}
+.byso .sou p{overflow:hidden; height:30px; position:absolute; right:25px; left:10px; top:0;}
+.byso .sou p input{ margin:0; padding:0; position:absolute; width:100%; height:30px; line-height:30px; left:0; top:0; border:0 none; background:none; color:#333; font-size:14px;}
+.byso .sou p input::-webkit-input-placeholder{ color:#ddd;}
+.byso .sou a{display:block; position:absolute; width:16px; height:16px; overflow:hidden; background-position:0 0; right:10px; top:50%; margin-top:-8px;}
+.byso .cix{ position:absolute; top:38px; left:12px; width:130px; z-index:200; background:rgba(0,0,0,0.85);}
+.byso .cix:before{ content:''; position:absolute; width:0; height:0; border-width:5px; border-style:solid; border-color:transparent transparent rgba(0,0,0,0.85) transparent; top:-10px; left:34px;}
+.byso .cix li{ height:40px; line-height:40px; overflow:hidden;}
+.byso .cix li a{ display:block; overflow:hidden; padding-left:15px; color:#eaeaea; font-size:16px;}
+.byso .cix li.cur{ background:#080d1a;}
+.byso .cix li.cur a{ color:#fe9b00;}
+.bybi{ padding:10px 10px 0; background:#ffffff;border-bottom:1px solid #d9d9d9; margin-bottom:10px; position:relative;}
+.bybi:after{ content:''; position:absolute; width:10px; height:11px; right:0; bottom:-1px; z-index:99; background:url(bian.png) no-repeat 0 0; background-size:10px 11px;}
+.bytp{ overflow:hidden; padding-bottom:14px; position:relative;}
+.bytp:after{ content:''; position:absolute; height:4px; left:0; right:0; bottom:0; background:url(dian.png) repeat-x 0 0; background-size:7px 4px;}
+.bytp .img{ width:115px; height:90px; float:left; overflow:hidden; margin-right:15px; position:relative;}
+.bytp .img img{ width:115px; height:90px; position:relative; z-index:10;}
+.bytp .img p{ position:absolute; height:25px; line-height:25px; padding-left:24px; bottom:0; left:0; right:0; z-index:20; background:url(imgbg.png) repeat-x left bottom; background-size:10px 32px; color:#ffffff; font-size:12px; padding-top:10px;}
+.bytp .img p:before{ content:''; position:absolute; width:13px; height:12px; left:6px; bottom:6px; background-position:0 -17px;}
+.bytp h3{ overflow:hidden; height:24px; line-height:24px; font-size:18px; color:#333333; margin-bottom:6px;}
+.bytp h3 a{ color:#333;}
+.bytp h4{ overflow:hidden; height:24px; line-height:24px; font-size:16px; color:#999999; margin-bottom:6px;}
+.bytp p.sp{ overflow:hidden;height:26px;position:relative;}
+.bytp p.sp a{ display:block; float:left;height:24px; line-height:24px; border:1px solid #e5e5e5; border-radius:4px;background:#fdfdfd; font-size:14px; color:#6880c3; text-align:center; width:70px;}
+.bytp p.sp a:first-child{ margin-right:8px;}
+.byuan{ overflow:hidden; position:relative;}
+.byuan li{ padding:10px 0; overflow:hidden; position:relative;}
+.byuan li a{ display:block; overflow:hidden;}
+.byuan li:after{ content:''; position:absolute; height:1px; left:47px; right:0px; bottom:0; background:#f2f2f2;}
+.byuan li .juan{ width:35px; height:44px; float:left; position:relative; overflow:hidden; background:url(juan.png) no-repeat; background-size:35px 44px; margin-right:12px;}
+.byuan li .juan p{ color:#fff; font-size:15px;text-shadow: 0.819px 0.574px 1px rgb( 254, 108, 0 ); position:absolute; height:23px; line-height:23px; text-align:center; left:0; top:0; right:0;}
+.byuan li .juan p span{ font-size:7px; font-weight:bold;}
+.byuan li h3{overflow:hidden; line-height:21px; font-size:14px; color:#666; margin-bottom:2px; padding-right:52px;}
+.byuan li h4{overflow:hidden; height:23px; line-height:23px; font-size:12px; color:#aaa;}
+.byuan li h4 span{ color:#f1f1f1; padding:0 8px;}
+.byuan li p.p1{ position:absolute; width:47px; height:20px; line-height:20px; text-align:center; border:1px solid #ffc690; border-radius:10px; color:#ff7e00; font-size:12px; right:2px; top:50%; margin-top:-10px;
+background-image: -webkit-linear-gradient( 90deg, rgb(250,250,250) 0%, rgb(255,255,255) 50%);
+background-image: linear-gradient( 90deg, rgb(250,250,250) 0%, rgb(255,255,255) 50%);}
+.byuan li input.p1{ position:absolute; width:47px; height:20px; line-height:20px; text-align:center; border:1px solid #ffc690; border-radius:10px; color:#ff7e00; font-size:12px; right:2px; top:50%; margin-top:-10px;
+background-image: -webkit-linear-gradient( 90deg, rgb(250,250,250) 0%, rgb(255,255,255) 50%);
+background-image: linear-gradient( 90deg, rgb(250,250,250) 0%, rgb(255,255,255) 50%);}
+.bujg{ height:49px; position:relative; border-top:1px solid #f2f2f2; margin-top:-1px; line-height:49px;}
+.bujg a.gz{ padding-left:24px; font-size:14px; color:#7eb9ef; position:relative; overflow:hidden;}
+.bujg a.gz:before{ content:''; position:absolute; width:13px; height:13px; left:6px; top:50%; margin-top:-7px; background-position:0 -30px;}
+.bujg a.more{ float:right; padding-right:24px; font-size:14px; color:#bbbbbb; position:relative; overflow:hidden;}
+.bujg a.more:after{content:''; position:absolute; width:13px; height:13px; right:6px; top:50%; margin-top:-7px; background-position:0 -59px;}
+/*B系列*/
+.byhd{ height:43px; line-height:44px; background:#fff; border-bottom:1px solid #dbdbdb; position:relative;}
+.byhd div{ overflow:hidden; float:left; width:50%; position:relative;}
+.byhd div:first-child:before{ content:''; position:absolute; height:15px; width:1px; background:#dbdbdb; right:0; top:50%; margin-top:-8px;}
+.byhd div a{ display:block; overflow:hidden; text-align:center; line-height:44px; font-size:16px; color:#999999; position:relative; height:44px;}
+.byhd div a.cur{ color:#337ab7;}
+.byhd div a.cur:after{ content:''; position:absolute; height:2px; bottom:0px; left:20px; right:20px; background:#337ab7;}
+.byoy{ padding:16px 0 10px 10px; overflow:hidden; border-bottom:1px dashed #dcdcdc;}
+.byoy p{ line-height:21px; font-size:12px; color:#666666;}
+.byoy p a{ color:#666;}
+.byoy p span{ color:#999;}
+.byguic{ padding-top:13px; overflow:hidden;}
+.byguic h1{ height:22px; line-height:22px; padding-left:16px; overflow:hidden; color:#337ab7; position:relative; font-size:14px; margin-bottom:8px;}
+.byguic h1:before{ content:''; position:absolute; left:0; top:4px; height:14px; width:2px; background:#337ab7;}
+.byguic .con{ padding:0 11px 15px; overflow:hidden; font-size:12px; line-height:21px; color:#666666;}
+h1.byht1{ height:43px; line-height:44px; border-bottom:1px solid #dbdbdb; text-align:center; background:#fff; font-size:16px; color:#337ab7; overflow:hidden;}
+.bysm1{ padding:16px 10px 9px; overflow:hidden; border-bottom:1px dashed #dcdcdc; font-size:12px; color:#666666; line-height:21px;}
+.bysm1 p{ text-indent:2em; margin-bottom:3px;}
+/*D系列*/
+.bydi-box{ padding:14px 12px 2px; background:#fff; position:relative; overflow:hidden;}
+.bydi-box:before{ content:''; position:absolute; height:2px; left:0; right:0; bottom:0; background:url(dxdian.png) repeat-x 0 0; background-size:8px 2px;}
+.bydi-box .di{ overflow:hidden; margin-bottom:12px;}
+.bydi-box .di .jun{ width:35px; height:44px; float:left; position:relative; overflow:hidden; background:url(juan.png) no-repeat; background-size:35px 44px; margin-right:11px;}
+.bydi-box .di .jun p{ color:#fff; font-size:15px;text-shadow: 0.819px 0.574px 1px rgb( 254, 108, 0 ); position:absolute; height:23px; line-height:23px; text-align:center; left:0; top:0; right:0;}
+.bydi-box .di .jun p span,.bydi-box .di2 .jun p span{ font-size:7px; font-weight:bold;}
+.bydi-box .di h3{ overflow:hidden; height:21px; line-height:21px; color:#333333; font-size:16px;}
+.bydi-box .di p{ overflow:hidden; height:23px; line-height:28px; color:#ff7e00; font-size:14px;}
+.bydi-box .di2{ overflow:hidden; margin-bottom:12px; padding:0 3px;}
+.bydi-box .di2 .jun{ width:58px; height:56px; float:left; position:relative; overflow:hidden; background:url(juan2.png) no-repeat; background-size:58px 56px; margin-right:11px;}
+.bydi-box .di2 .jun p{ color:#fff; font-size:15px;text-shadow: 0.819px 0.574px 1px rgb( 254, 108, 0 ); position:absolute; height:23px; line-height:23px; text-align:center; left:0; top:13px; right:0;}
+.bydi-box .di2 h3{ overflow:hidden; height:28px; line-height:32px; color:#ff7e00; font-size:18px;}
+.bydi-box .di2 p{ overflow:hidden; height:28px; line-height:30px; color:#333333; font-size:14px;}
+.bydi-box>p.budi3{ line-height:17px; color:#999999; font-size:12px; padding:10px 3px; overflow:hidden;}
+.bydi-box div.xian{ position:relative; height:3px; overflow:hidden;}
+.bydi-box div.xian:before{ content:''; position:absolute; width:3px; height:3px; left:0; top:0; background:#f2f2f2; border-radius:2px;}
+.bydi-box div.xian:after{ content:''; position:absolute; width:3px; height:3px; right:0; top:0; background:#f2f2f2; border-radius:2px;}
+.bydi-box div.xian p{ position:absolute; height:3px; left:0; right:0; top:0; overflow:hidden;}
+.bydi-box div.xian p:before{ content:''; position:absolute; height:1px; left:3px; right:3px; top:0; border-bottom:1px dashed #f0f0f0;}
+.bydi-box .budi2{ height:39px; overflow:hidden; position:relative;}
+.bydi-box .budi2 p{ height:39px; line-height:39px; float:left; width:50%; font-size:14px; color:#aaaaaa; text-indent:10px; position:relative;}
+.bydi-box .budi2 p:first-child:after{ content:''; position:absolute; height:12px; width:1px; right:0; top:50%; margin-top:-6px; background:#f1f1f1;}
+h1.bysm2{ height:30px; line-height:28px; padding-top:9px; background:#f2f2f2; padding-left:12px; font-size:12px; color:#999999; overflow:hidden;}
+.byye{ overflow:hidden; background:#fff; border-bottom:1px solid #d9d9d9; border-top:1px solid #d9d9d9; padding-left:12px;}
+.byye p{ height:44px; line-height:44px; color:#333333; font-size:14px; padding-right:12px; overflow:hidden;}
+.byye p:first-child{ border-bottom:1px solid #f1f1f1;}
+.byye p span{ display:block; float:right; color:#6880c3; font-size:16px; overflow:hidden; line-height:44px;}
+.byye p em{ display:block; float:right; color:#aaa; font-size:16px; overflow:hidden; line-height:44px;}
+.byxin{ border-bottom:1px solid #d9d9d9; border-top:1px solid #d9d9d9; overflow:hidden; background:#fff; padding-left:12px;}
+.byxin .co{height:44px; line-height:44px; color:#333333;border-bottom:1px solid #f1f1f1; position:relative; overflow:hidden; font-size:14px;}
+.byxin .co span{ display:block; overflow:hidden; color:#333333; float:left;}
+.byxin .co p{ position:absolute; top:0; height:44px; left:56px; right:0; overflow:hidden;}
+.byxin .co p input{margin:0; padding:0; position:absolute; width:100%; height:44px; left:0; top:0; border:0 none; background:none; color:#333; font-size:14px;}
+.byxin .co2{height:44px; line-height:44px;border-bottom:1px solid #f1f1f1; position:relative; overflow:hidden; font-size:14px;}
+.byxin .co2 label{ display:block; overflow:hidden; color:#6880c3;}
+.byxin .co2 label a{ color:#6880c3;}
+.byxin .co2 label input{ display:block; width:20px; height:20px; float:left; margin:11px 6px 0 0; padding:0;border:0 none;-webkit-appearance:none; background:url(inputtype.png) no-repeat 0 -20px; background-size:20px;overflow:hidden; outline:0 none;}
+.byxin .co2 label input:checked{ background:url(inputtype.png) no-repeat 0 0px; background-size:20px;}
+.byxin a.hq{ display:block; overflow:hidden; background:#7eb9ef; height:32px; line-height:32px; text-align:center; border:1px solid #70a5d5; border-radius:16px; font-size:14px; color:#fff; margin:12px 12px 14px 0;}
+.byxin2{ padding:4px 12px 15px; overflow:hidden; background:#ffffff; margin-top:15px; border-top:1px solid #e6e6e6; border-bottom:1px solid #e6e6e6;}
+.byxin2 p{ line-height:30px; height:30px; color:#666666; font-size:14px; overflow:hidden;}
+.byxin2 p a{ color:#666;}
+.byxin2 p span{ color:#999999;}
+.byxin2 a.ck{display:block; overflow:hidden; background:#fff; height:32px; line-height:34px; text-align:center; border:1px solid #7eb9ef; border-radius:16px; font-size:14px; color:#7eb9ef; margin-top:8px;}
+.byk{ padding:15px 12px 0; overflow:hidden; position:relative;}
+.byfx{display:block; overflow:hidden; background:#7eb9ef; height:32px; line-height:34px; text-align:center; border:1px solid #70a5d5; border-radius:16px; font-size:14px; color:#fff;}
+/*F系列*/
+.yumi{ margin:150px 15px 0; overflow:hidden;}
+.yumi .content{ height:45px; position:relative; overflow:hidden;}
+.yumi .content .con1{ position:absolute; top:0; left:0; right:90px; height:43px; border-bottom:1px solid #cccccc; border-top:1px solid #cccccc; border-left:1px solid #cccccc; border-radius:5px 0 0 5px; background:#ffffff;}
+.yumi .content .con1 input{ position:absolute; width:100%; height:43px; left:0; top:0; text-indent:10px; font-size:16px; color:#999999;margin:0; padding:0;border:0 none; background:none;}
+.yumi .content .con1 input::-webkit-input-placeholder{ color:#999;}
+.yumi .content .con2{ position:absolute; top:0; width:88px; right:0; height:43px; background:#7eb9ef; border:1px solid #70a5d5; border-radius:0 5px 5px 0; overflow:hidden;}
+.yumi .content .con2 input{ position:absolute; width:100%; height:43px; left:0; top:0;font-size:18px; color:#f7f7f7;margin:0; padding:0;border:0 none; background:none; text-align:center;text-shadow: 0.5px 0.866px 1px rgb( 105, 169, 227 );}
+.yumi p.sm{ font-size:12px; line-height:34px; height:34px; padding-left:20px; color:#ccc; overflow:hidden; position:relative;}
+.yumi p.sm:before{ content:''; width:14px; height:14px; left:0; top:50%; margin-top:-7px; position:absolute; background-position:0 -158px;}
+.bydi-box .di{ overflow:hidden; margin-bottom:12px;}
+.byj2{ overflow:hidden; padding-bottom:15px;}
+.byj2 .jun{ width:35px; height:44px; float:left; position:relative; overflow:hidden; background:url(juan.png) no-repeat; background-size:35px 44px; margin-right:11px;}
+.byj2 .jun p{ color:#fff; font-size:15px;text-shadow: 0.819px 0.574px 1px rgb( 254, 108, 0 ); position:absolute; height:23px; line-height:23px; text-align:center; left:0; top:0; right:0;}
+.byj2 .jun p span{ font-size:7px; font-weight:bold; color:#fff;}
+.byj2 h3{ overflow:hidden; height:21px; line-height:21px; color:#333333; font-size:16px;}
+.byj2 p{ overflow:hidden; height:23px; line-height:28px;font-size:14px; color:#aaa;}
+.byj2 p span{ color:#ff7e00; }
+.byj2 p em{ color:#f1f1f1; padding:0 10px;}
+.byzt-box{ padding:8px 16px 0; overflow:hidden;}
+.buzt{ padding-left:42px; position:relative; overflow:hidden;}
+.buzt:before{ content:''; position:absolute; left:11px; top:26px; width:1px; bottom:0; background:#fff;}
+.buzt:after{ content:''; position:absolute; left:12px; top:27px; width:1px; bottom:0; background:#d9d9d9;}
+.buzt .con1{ overflow:hidden; border-bottom:1px solid #d9d9d9;padding-bottom:9px; margin-bottom:9px;}
+.buzt p{ height:28px; line-height:28px; color:#666666;}
+.buzt p span{ color:#999;}
+.buzt p em.e1{ color:#6880c3;}
+.buzt p em.e2{ color:#ff5e4c;}
+.buzt p em.e3{ color:#333333;}
+.bt3 p{ color:#999;}
+.buzt span.tp1{ position:absolute; display:block; width:24px; height:24px; line-height:24px; text-align:center; border-radius:12px;color:#ffffff; font-size:9px; left:0px; top:2px;background:#677fc4;}
+.buzt span.tp2{ position:absolute; display:block; width:24px; height:24px; line-height:24px; text-align:center; border-radius:12px;color:#ffffff; font-size:9px; left:0px; top:2px; background:#ff6756;}
+.buzt span.tp3{ position:absolute; display:block; width:24px; height:24px; line-height:24px; text-align:center; border-radius:12px;color:#ffffff; font-size:9px; left:0px; top:2px;background:#bebebe;}
+
+/*A系列，首页，游戏界面*/
+body.bgbai{ background:#fff;}
+.bys-box{ position:relative; overflow:hidden; background:#337ab7;}
+.bys-box .logo{ position:absolute; display:block; width:90px; height:18px; left:10px; top:10px; background:url(logo.png) no-repeat; background-size:90px 18px; z-index:99;}
+.bys{ width:320px; height:355px; margin:0 auto; background:url(sy.png) no-repeat; background-size:320px 355px; overflow:hidden; position:relative;}
+.bys h1{ height:26px; line-height:26px; text-align:center; color:#fd5557; font-size:20px; margin-top:38px;}
+.bys h3{ height:48px; font-weight:bold; line-height:48px; text-align:center; color:#fff; font-size:36px;}
+.bys h3 em{ color:#efd434; font-weight:bold;}
+.bys p{ position:absolute; width:184px; height:20px; text-align:center; line-height:20px; top:116px; left:68px; font-size:11px; color:#7eb9ef; overflow:hidden;}
+.bys a{ display:block; position:absolute; width:160px; height:32px; text-align:center; line-height:32px; bottom:33px; left:80px; font-size:18px; color:#ff300e;}
+.bysg{ padding:20px 20px 0; overflow:hidden; position:relative;}
+.bysg .con1{ overflow:hidden; height:30px; margin-bottom:10px;}
+.bysg .con1 div{ width:50%; float:left; overflow:hidden;}
+.bysg .con1 div a{ display:block; overflow:hidden; height:28px; border:1px solid #7eb9ef; border-radius:15px; text-align:center; line-height:28px; color:#7eb9ef;}
+.bysg .con1 div:first-child a{ margin-right:5px;}
+.bysg .con1 div:last-child a{ margin-left:5px;}
+.bysg p.su{ height:18px; line-height:18px; text-align:center; color:#cccccc; margin:20px 0;}
+body.bglan{ background:#337ab7;}
+.byxk-box{ background:#337ab7; overflow:hidden;}
+.bych{ overflow:hidden; position:relative; z-index:20;}
+.bych h1{ height:76px; line-height:38px; padding-left:10px; text-align:center; color:#ffffff; font-size:30px; font-weight:bold;margin-top:30px;}
+.bych h1 p{ color:#fedf2c; }
+.bych a.qa{ display:block; width:170px; height:24px; line-height:24px; text-align:center; margin:8px auto 0; border-radius:12px; background:#3cc055; font-size:12px; color:#ffffff;}
+.bydf{ overflow:hidden; position:absolute; width:100%; left:0; bottom:0; top:0;z-index:30;}
+.bydf p.sh{ width:56px; height:56px;border-radius:30px; border:2px solid #fedf2c; line-height:56px; color:#fedf2c; text-align:center; font-weight:bold; font-family:'Tahoma'; font-size:36px; position:absolute; bottom:288px; left:50%; margin-left:-28px;}
+.bydf span.jt{ display:block; width:24px; height:35px; overflow:hidden; background:url(sjt2.png) no-repeat; background-size:24px 35px; text-indent:-9999px; position:absolute; left:50%; margin-left:-12px; bottom:228px;}
+.bydf span.jtsq{ bottom:363px!important}
+.bydf .sq{position:absolute; width:200px; height:198px; left:50%; margin-left:-100px; background:url(siqian.png) no-repeat 0 0; background-size:200px 198px; z-index:40; bottom:20px;text-indent:-9999px;}
+.bydf .hb1{ width:280px; height:150px; overflow:hidden; background:url(hb1.png) no-repeat; background-size:280px 150px;text-indent:-9999px;
+position:absolute; bottom:0; left:50%; margin-left:-140px;}
+.bydf .hb2{ width:280px; height:50px; overflow:hidden; background:url(hb2.png) no-repeat; background-size:280px 50px;text-indent:-9999px; z-index:50;position:absolute; bottom:0; left:50%; margin-left:-140px;}
+.bydf .qian{ position:absolute; width:200px; height:400px; left:50%; margin-left:-100px; background:url(qian.png) no-repeat 0 0; background-size:100%; z-index:40; /*top:368px;*/bottom:-198px; text-indent:-9999px;}
+.byfq{ position:fixed; top:0;left:0; width:100%;z-index:10; background:url(fq.jpg) no-repeat top center; background-size:414px 350px; height:350px;-webkit-animation:byfq 5s linear infinite;}
+@-keyframes byfq{0%{top:-500px; opacity:1}100%{ top:100%;margin-top:-350px;opacity:0}}
+@-webkit-keyframes byfq{0%{top:-500px; opacity:1}100%{ top:100%;margin-top:-350px;opacity:0}}
+.byjf-box{ overflow:hidden; padding:22px 0 10px;}
+.byjf{ width:210px; height:64px; margin:0 auto; border-radius:32px; position:relative; padding-left:70px;color:#ffffff; font-size:34px; background:#3cc055;box-shadow: 0px 3px 3px 0px rgb( 28, 45, 95 ); z-index:90;}
+.byjf span{ width:64px; height:64px; position:absolute; border-radius:32px; left:0; top:0; line-height:64px; text-align:center; font-size:20px; color:#fedf2c; font-weight:bold; display:block; background:url(sj.png) no-repeat center center #1ea438; background-size:45px;}
+.byjf p{ overflow:hidden; position:relative; line-height:64px; height:64px;}
+.byjf p.spc{ line-height:75px;}
+.byjf p strong{ display:block; font-size:12px; height:20px; line-height:20px; overflow:hidden; padding-left:5px; position:absolute; left:0; top:3px;}
+h1.bye{ height:25px; line-height:25px; color:#fff09b; text-align:center; overflow:hidden; margin:40px auto 0; font-size:21px; font-weight:bold; padding-left:20px;}
+.buen{width:320px; height:272px; margin:0 auto; background:url(byend.png) no-repeat; overflow:hidden; background-size:320px 272px; position:relative; border-bottom:1px solid #000;}
+.buen h2{ font-size:12px; height:32px; line-height:16px; text-align:center; font-weight:bold; margin:58px 0 1px; color:#138729;}
+.buen h3{ height:38px; line-height:38px; text-align:center; font-size:34px; color:#fff; font-family:'Tahoma'; font-weight:bold;}
+.buen p{ height:16px; line-height:16px; text-align:center; color:#ffe860; font-size:12px; overflow:hidden; margin-top:5px;}
+.buen a.di{ position:absolute; width:160px; height:33px; text-align:center; line-height:34px; font-size:18px; color:#ff300e; left:50%; margin-left:-80px; bottom:29px;}
+.bysg2{ padding:20px 20px 0; overflow:hidden; position:relative; border-top:1px solid rgba(223,223,223,0.1);}
+.bysg2 .con1{ overflow:hidden; height:30px; margin-bottom:10px;}
+.bysg2 .con1 div{ width:50%; float:left; overflow:hidden;}
+.bysg2 .con1 div a{ display:block; overflow:hidden; height:28px; border:1px solid #050507; border-radius:15px; text-align:center; line-height:28px; color:#fff; font-size:12px; background:rgba(0,0,0,0.3);}
+.bysg2 .con1 div:first-child a{ margin-right:5px;}
+.bysg2 .con1 div:last-child a{ margin-left:5px;}
+.bynd{ width:320px; height:320px; margin:0 auto;position:relative; overflow:hidden; background:url(bynd.png) no-repeat; background-size:320px;}
+.bynd h4{ margin-top:64px; padding-left:20px; font-size:12px; height:20px; line-height:20px; color:#fff;}
+.bynd p{ padding-left:20px; line-height:26px; color:#ffffff; font-size:20px; overflow:hidden;}
+.bynd p span{ color:#ffe344;}
+/*E系列*/
+.byq2 div i.i1,.byq2 div i.i2{ background:url(exi.png) no-repeat; background-size:65px;}
+.byq2{ background:#fafafa; overflow:hidden; position:relative;}
+.byq2 div{ float:left; width:50%; height:70px; overflow:hidden; position:relative;}
+.byq2 div i{ display:block; width:32px; height:32px; margin:11px auto 0; overflow:hidden;}
+.byq2 div i.i1{ background-position:0 0;}
+.byq2 div i.i2{ background-position:0 -33px;}
+.byq2 div.cur i.i1{ background-position:-33px 0;}
+.byq2 div.cur i.i2{ background-position:-33px -33px;}
+.byq2 div p{ height:23px; line-height:23px; text-align:center; font-size:12px; color:#999999;}
+.byq2 div.cur p{color:#337ab7;}
+.byq2 div.cur:before{ content:''; position:absolute; left:0; right:0; bottom:0; height:2px; background:#337ab7;}
+.bydiy-box{ overflow:hidden; padding:0 20px; overflow:hidden; background:#385cc0; border-top:1px solid #405ead;}
+.bydiy{ width:280px; margin:0 auto; position:relative; overflow:hidden;}
+.bydiy .con1{ width:130px; float:left; margin-right:20px; overflow:hidden;}
+.bydiy .con2{ overflow:hidden; width:130px;}
+.bydiy .con1 div{ padding:0 0 15px 10px; overflow:hidden;}
+.bydiy .con2 div{ padding:0 0 15px 30px; overflow:hidden;}
+.bydiy .con1 div h5,.bydiy .con2 div h5{ height:18px; line-height:18px; color:#8ca2e0; margin-top:16px;}
+.bydiy .con1 div p,.bydiy .con2 div p{ height:30px; line-height:30px; font-family:'Georgia'; font-style:italic; color:#fff; font-size:26px;}
+.bydiy .con1 div p em,.bydiy .con2 div p em{ font-size:12px; font-family:'STXihei';}
+.bydiy .con1 div:last-child p em{ font-size:14px;}
+.bydiy .con1 div:first-child,.bydiy .con2 div:first-child{ border-bottom:1px solid #4466c4;}
+.bydiy .con1 div:last-child p{ color:#ffed87; font-size:28px; margin-bottom:6px;}
+.bydiy .con1 div:last-child h5{ margin-top:10px;}
+.bydiy .con2 div a.me{ padding-right:18px; color:#ffed87; position:relative;}
+.bydiy .con2 div a.me:after{ content:''; position:absolute; width:14px; height:14px; right:0; top:50%; margin-top:-7px; background-position:0 -172px;}
+.bydiy .con2 div:last-child{ padding-top:40px;}
+.byqa2{ background:#fff; padding:12px; overflow:hidden; position:relative;}
+.byqa2 div{ height:30px; width:50%; float:left; overflow:hidden;}
+.byqa2 div a{display:block; overflow:hidden; background:#7eb9ef; height:28px; line-height:28px; text-align:center; border:1px solid #70a5d5; border-radius:16px; font-size:14px; color:#fff;}
+.byqa2 div:first-child a{ margin-right:5px;}
+.byqa2 div:last-child a{ margin-left:5px;}
+.byhj{ overflow:hidden; background:#fff;}
+.byhj h1{ height:30px; line-height:30px; position:relative; padding-left:12px; color:#337ab7; font-weight:bold; font-size:16px; margin:4px 0 6px;}
+.byhj h1:before{ height:18px; width:2px; content:''; position:absolute; left:0; top:50%; margin-top:-9px; background:#337ab7;}
+.byhj .con{ margin:0 12px; overflow:hidden; position:relative; padding-top:9px; border-top:1px solid #d9d9d9; border-bottom:1px solid #f2f2f2;}
+.byhj .con:before{ position:absolute; content:''; top:14px; bottom:14px; left:50%; width:1px; background:#f2f2f2;margin-left:-4px;}
+.byhj .con ul{ overflow:hidden; width:296px; margin:0 auto;}
+.byhj .con li{ width:50%; float:left; overflow:hidden;position:relative; margin-bottom:14px;}
+.byhj .con li span{ height:18px; line-height:18px; display:block; overflow:hidden; font-size:10px; color:#999;}
+.byhj .con li p{ height:22px; line-height:22px; overflow:hidden; font-size:16px; color:#666;}
+.byhj .con li:nth-child(odd){ text-indent:10px;}
+.byhj .con li:nth-child(even){ text-indent:20px;}
+a.more2{ display:block; overflow:hidden; color:#bbbbbb; height:50px; line-height:50px; text-align:center;}
+a.more2 span,a.more3 span{ position:relative; padding-right:18px;}
+a.more2 span:after,a.more3 span:after{ content:''; position:absolute; right:0; top:50%; width:13px; height:13px; margin-top:-7px; background-position:0 -59px;}
+a.more3{ display:block; overflow:hidden; color:#bbbbbb; height:35px; line-height:35px; text-align:center;}
+.bywd{ background:#fff; padding-top:7px; overflow:hidden;}
+.bywd li{  position:relative; overflow:hidden;}
+.bywd li a{ display:block; overflow:hidden; position:relative;padding:8px 12px 4px;}
+.bywd li i.e1,.bywd li i.e2{ display:block; position:absolute; width:12px; height:12px; border-radius:6px; bottom:0; background:#f2f2f2;}
+.bywd li i.e1{ left:-6px;}
+.bywd li i.e2{ right:-6px;}
+.bywd li:after{ content:''; position:absolute; left:14px; right:14px; bottom:3px; height:4px; background:url(dian.png) repeat-x 0 0; background-size:7px 4px;}
+.bywd li a:after{ content:''; position:absolute; width:7px; height:7px; border-width:1px; border-style:solid; border-color:#e0e0e0 #e0e0e0 transparent transparent; right:18px; top:50%; margin-top:-9px;-webkit-transform:rotate(45deg);}
+.buer{ padding-left:41px; position:relative; overflow:hidden; margin:10px 0 30px;}
+.buer:before{ content:''; position:absolute; left:11px; top:26px; width:1px; bottom:0; background:#fff;}
+.buer:after{ content:''; position:absolute; left:12px; top:27px; width:1px; bottom:0; background:#d9d9d9;}
+.buer i.tb{ position:absolute; display:block; width:24px; height:24px; border-radius:12px;left:0px; top:2px;background:#677fc4;}
+.buer i.tb:before{ content:''; position:absolute; width:12px; height:13px; top:5px; left:6px; background-position:0 -187px;}
+.buer h5{ font-size:13px; color:#666666; line-height:20px; overflow:hidden; height:40px; overflow:hidden;}
+.buer figure{ width:200px; height:200px; box-shadow:0 0 2px #e7e7e7; margin:15px 0 0 0;}
+.buer figure img{ width:200px; height:200px;}
+.buer p{ height:20px; line-height:20px; color:#999999; margin-top:12px;}
+.bypm-box{ background:#385cc0; padding:18px 20px 15px; position:relative;}
+.bypm{ padding:2px; overflow:hidden; position:relative; margin-bottom:13px;}
+.bypm .tx{width:60px; height:60px; float:left; margin-right:17px; padding:2px; background:#fff;box-shadow:0 0 3px #3457b6; border-radius:31px;}
+.bypm figure{overflow:hidden; border-radius:30px; width:60px; height:60px;}
+.bypm figure img{ width:60px; height:60px;}
+.bypm .con1{ float:left; padding-right:19px; border-right:1px solid #4466c4; margin-right:19px; overflow:hidden; margin-top:10px;}
+.bypm .con1 h6,.bypm .con2 h6{ height:17px; line-height:17px; font-size:12px; color:#8ca2e0; overflow:hidden;}
+.bypm .con1 p{ height:28px; line-height:28px; font-size:10px; color:#94a7d7; overflow:hidden; font-family:'Georgia'; font-style:italic;}
+.bypm .con1 p span{ font-size:26px; color:#ffed87;}
+.bypm .con1 p em{ font-size:16px; font-style:italic; margin:0 -2px;}
+.bypm .con2{ float:left;overflow:hidden; margin-top:10px;}
+.bypm .con2 p{ font-size:12px; height:28px; line-height:28px;overflow:hidden; color:#fff; }
+.bypm .con2 p span{ font-size:20px; color:#ffffff; font-family:'Georgia'; font-style:italic; padding-right:2px;}
+.bypm-box a.xf{ display:block; overflow:hidden; height:34px; line-height:34px; text-align:center; border-radius:15px; color:#ffffff; background:#7eb9ef;box-shadow:0 0 3px #3154b4}
+.ybwra{ padding:15px 12px; background:#fff; overflow:hidden;}
+.byqy2{ height:28px; line-height:28px; border:1px solid #385cc0; border-radius:5px; overflow:hidden; position:relative; margin-bottom:10px;}
+.byqy2 a{ display:block; width:50%; height:28px; float:left; text-align:center; overflow:hidden;color:#385cc0; font-size:12px;}
+.byqy2 a.cur{ background:#385cc0; color:#fff;}
+.bypai{ padding-bottom:5px; border-bottom:1px solid #f2f2f2; overflow:hidden;}
+.bypai li{ padding:7px 0 10px; overflow:hidden; position:relative}
+.bypai li.bywo{ background:#fcede4}
+.bypai li:after{ content:''; position:absolute; bottom:0; left:72px; right:0; height:1px; background:#f2f2f2;}
+.bypai li:last-child:after{ display:none;}
+.bypai .tou{ width:52px; height:50px; float:left; margin-right:20px; position:relative; overflow:hidden;}
+.bypai .tou div{ width:42px; height:42px;padding:1px; background:#385cc0; border-radius:22px; position:absolute; z-index:10; top:4px; left:4px; box-shadow:2px 2px 3px #efefef;}
+.bypai .tou div figure{ width:42px; height:42px; border-radius:21px; overflow:hidden;}
+.bypai .tou div figure img{ width:42px; height:42px;}
+.bypai .tou i.pm1,.bypai .tou i.pm2,.bypai .tou i.pm3{ display:block; position:absolute; width:18px; height:18px; left:0; top:0; z-index:20;}
+.bypai .tou i.pm1{ background-position:0 -86px;}
+.bypai .tou i.pm2{ background-position:0 -105px;}
+.bypai .tou i.pm3{ background-position:0 -124px;}
+.bypai .tou span{ display:block; position:absolute; width:18px; height:18px; z-index:20; border-radius:9px; line-height:18px; text-align:center; background:#5776d0; font-family:'Georgia'; font-size:12px; font-style:italic; right:1px; bottom:1px; box-shadow:1px 1px 1px #c6c5c5; color:#fff;}
+.bypai li:nth-child(1) .tou span,
+.bypai li:nth-child(2) .tou span,
+.bypai li:nth-child(3) .tou span{ background:#ff7200;}
+.bypai li .con{ overflow:hidden; padding:6px 0 0;}
+.bypai li .con h4{ font-size:12px; height:18px; line-height:18px; color:#999; overflow:hidden;}
+.bypai li .con p{ height:26px; line-height:26px; overflow:hidden; font-size:16px; color:#666;}
+.byqq2{ padding:16px 0 0; overflow:hidden; position:relative;height:34px;}
+.byqq2 div{ width:50%; float:left; overflow:hidden;}
+.byqq2 div a{ display:block; overflow:hidden; height:32px; border:1px solid #70a5d5; border-radius:15px; text-align:center; line-height:32px; color:#70a5d5;}
+.byqq2 div:first-child a{ margin-right:7px;}
+.byqq2 div:last-child a{ margin-left:7px;}
+.bybf{ height:350px; background:url(bdfx.png) no-repeat top center #385cc0; position:relative; overflow:hidden; background-size:320px 350px;}
+.bybf a{ position:absolute; width:160px; height:32px; line-height:32px; text-align:center; left:50%; margin-left:-80px; bottom:25px; font-size:18px; color:#ff300e;}
+/*弹窗*/
+.buen-box{ position:fixed; z-index:500; background:rgba(8,13,26,0.92); overflow:hidden; width:100%; height:100%;}
+.bytc-box{ overflow:hidden; position:relative; margin-top:130px;}
+a.btcz{ position:absolute; display:block; width:24px; height:24px; right:20px; top:20px; background:url(tcz.png) no-repeat; background-size:24px;}
+.bytc-box i.tu1{ display:block; width:41px; height:56px; margin:0 auto 15px; background:url(tc1.png) no-repeat; background-size:41px 56px;}
+.bytc-box i.tu2{ display:block; width:40px; height:40px; margin:0 auto 15px; background:url(tc2.png) no-repeat; background-size:40px;}
+.bytc-box i.tu3{ display:block; width:40px; height:40px; margin:20px auto 15px; background:url(tc3.png) no-repeat; background-size:40px;}
+.bytc-box .wh{ line-height:23px; color:#ffffff; overflow:hidden; text-align:center;}
+.bytc-box .re{ line-height:27px; color:#fd5557; overflow:hidden; text-align:center; font-size:18px; margin:5px 0 13px;}
+.bytc-box .re em{ color:#fedc19; font-weight:bold;}
+.bytc-box a.ys1{ display:block; width:200px; height:34px; border-radius:16px; margin:0 auto; text-align:center; color:#fff;text-shadow: 0.5px 0.866px 1px rgb( 105, 169, 227 ); line-height:34px; background:#7eb9ef;}
+.bytc-box a.ys2{ display:block; width:200px; height:34px; border-radius:16px; margin:0 auto; text-align:center; color:#ff300e;line-height:34px;
+background-image: -webkit-linear-gradient( 90deg, rgb(254,223,44) 0%, rgb(255,233,104) 100%);
+background-image: linear-gradient( 90deg, rgb(254,223,44) 0%, rgb(255,233,104) 100%);}
+.bytc-box a.ys3{ display:block; width:200px; height:34px; border-radius:16px; margin:0 auto; text-align:center; color:#fff;line-height:34px;
+background-image: -webkit-linear-gradient( 90deg, rgb(30,164,56) 0%, rgb(60,192,85) 100%);
+background-image: linear-gradient( 90deg, rgb(30,164,56) 0%, rgb(60,192,85) 100%);}
+
+/*结束页*/
+.byend-box{ overflow:hidden;}
+.byend{ width:320px; height:322px; margin:0 auto 8px; background:url(wan.png) no-repeat; background-size:320px 322px;}
+.byend-box h5{ line-height:33px; text-align:center; color:#ffffff; font-size:18px;}
+.byend-box h6{ color:#cad3ed; line-height:33px; text-align:center; font-size:18px;}
+/*add*/
+.wuj1{height:200px;background:url(wuji1.png) no-repeat center center; background-size:95px 114px;border-top:1px solid #d9d9d9; margin:0 10px;}
+.wupai{ height:290px; background:url(wupai.png) no-repeat center center #fff; background-size:75px 116px;}
+.wulou{ width:115px; height:134px; margin:100px auto 0; background:url(wulou.png) no-repeat 0 top; background-size:115px 134px;}
+p.ybw{ font-size:16px; color:#999; text-align:center; overflow:hidden; line-height:24px; margin-top:16px;}
+/*二维码*/
+.ybert{ height:46px; line-height:46px; background:#fff; position:relative;font-size:16px; color:#337ab7; overflow:hidden; margin-bottom:10px; text-align:center;}
+.ybert:after{ content:''; position:absolute; left:0; bottom:0; right:0; height:3px; background:url(juchi.png) repeat-x 0 0; background-size:7px 3px;}
+.ybweis{ width:295px; margin:0 auto; overflow:hidden;}
+.ybweis ul{ width:110%; overflow:hidden;}
+.ybweis li{ width:120px; padding:15px 10px 12px; float:left; margin-right:15px; overflow:hidden; position:relative; background:#fff; margin-bottom:10px;}
+.ybweis li:after{ content:''; position:absolute; left:0; bottom:0; right:0; height:3px; background:url(juchi.png) repeat-x 0 0; background-size:7px 3px;}
+.ybweis li figure{ width:120px; height:120px; overflow:hidden; margin-bottom:7px;}
+.ybweis li figure img{ width:120px; height:120px;}
+.ybweis li p{ overflow:hidden; height:32px; line-height:16px; font-size:11px; color:#333;}
+.ybweis li p img{ width:30px; height:30px; float:left; margin-right:5px;}
+.ybweis li p span{ display:block; overflow:hidden;}
+.ybwugong{ width:120px; height:120px; margin:80px auto 0; overflow:hidden; background:url(wugong.png) no-repeat; background-size:120px;}
+
+/*add*/
+.ybp{ height:39px; border-bottom:1px solid #d9d9d9; overflow:hidden; padding-left:12px; font-size:12px; color:#999999; background:#f2f2f2; line-height:45px;}
+.ybch{ background:#fff; padding:0 0 12px 12px; overflow:hidden; border-bottom:1px solid #d9d9d9;}
+.ybch .con{ height:44px; line-height:44px; overflow:hidden; position:relative; border-bottom:1px solid #f1f1f1;}
+.ybch .con span{ display:block; float:left; color:#333;}
+.ybch .con p{ height:44px; overflow:hidden; position:absolute; left:58px; top:0; right:0;}
+.ybch .con p input{ width:100%; height:44px; left:0; top:0; border:0 none; background:none; margin:0; padding:0; outline:none; color:#333;}
+.ybch .ybpa{ margin:12px 12px 0 0; overflow:hidden;}
+

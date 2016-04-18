@@ -1,0 +1,31 @@
+@charset "utf-8";
+/* CSS Document */
+.zhufutitle
+{
+	color:#FFF;
+	background-color:#E69194;
+	text-align:center;
+	line-height:40px;
+	font-size:30px;
+	margin-bottom:2px;
+	margin-top:7px;
+	padding:3px 5px;
+}
+.zhufu
+{
+	border-radius:5px;
+	padding:3px 5px;
+	background:#229806;
+	color:#FFF;
+	font-family:"Segoe UI","Microsoft Yahei","Hiragino Sans GB","WenQuanYi Micro Hei",Arial,Simsun,sans-serif;
+	font-size:25px;
+}
+table,td,tr,th
+{
+	font-size:25px;
+}
+.radio
+{
+	width:20px;
+	height:20px;
+}

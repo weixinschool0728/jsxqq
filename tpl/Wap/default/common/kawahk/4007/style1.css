@@ -1,0 +1,147 @@
+/*
+	 CSS-Tricks Example
+	 by Chris Coyier
+	 http://css-tricks.com
+*/
+
+* { margin: 0; padding: 0; }
+html { background: black; }
+body { 
+	font: 14px Georgia, serif; 
+	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #3b3b3b),color-stop(1, #000000));
+	background-repeat: no-repeat;
+	max-height: 700px;
+	width:500px;
+	font-family: "Microsoft YaHei" ! important;
+	
+}
+#page-wrap { width: 100%; margin: 0 auto; padding-top: 496px; background:url(http://bxjcf.img40.wal8.com/img40/410389_20140325112526/139615212162.jpg) no-repeat;}
+
+#well {
+	padding: 14px 20px 20px 35px;	
+	overflow: hidden; 	
+	-webkit-user-select: none;
+}
+
+#well1 {
+	position: absolute;	
+	display: none;
+	width: 100%; margin: 0 auto; left: 0px; top: 160px;		
+	z-index:2;
+}
+#well2 {
+	position: absolute;	
+	display: none;
+	width: 100%; margin: 0 auto; left: 0px; top: 160px;		
+	z-index:3;
+}
+#well3 {
+	position: absolute;	
+	display: none;
+	width: 100%; margin: 0 auto; left: 0px; top: 160px;		
+	z-index:4;
+}
+#well4 {
+	position: absolute;	
+	display: none;
+	width: 100%; margin: 0 auto; left: 0px; top: 160px;		
+	z-index:5;
+}
+#well5 {
+	position: absolute;	
+	display: none;
+	width: 100%; margin: 0 auto; left: 0px; top: 160px;		
+	z-index:6;
+}
+#well6 {
+	position: absolute;	
+	display: none;
+	width: 100%; margin: 0 auto; left: 0px; top: 160px;		
+	z-index:7;
+}
+#well7 {
+	position: absolute;	
+	display: none;
+	width: 100%; margin: 0 auto; left: 0px; top: 160px;		
+	z-index:8;
+}
+#well8 {
+	position: absolute;	
+	display: none;
+	width: 100%; margin: 0 auto; left: 0px; top: 160px;		
+	z-index:9;
+}
+#well9 {
+	position: absolute;	
+	display: none;
+	width: 100%; margin: 0 auto; left: 0px; top: 0px;		
+	z-index:11;
+}
+
+#well10 {
+	position: absolute;	
+	display: none;
+	width: 100%; margin: 0 auto; left: 0px; top: 0px;		
+	z-index:12;
+}
+
+
+#textsuper 
+{
+	position: absolute;	
+	display: none;
+	width: 450px; margin: 0 auto; left: 0px; top: 440px;		
+	z-index:13;
+}
+#well11 
+{
+	position: absolute;	
+	display: none;
+	width: 200px; margin: 0 auto; left: 150px; top: 280px;		
+	z-index:14;
+}
+#time {
+	position: absolute;	
+	display: block;
+	width: 300px; margin: 0 auto; left: 127px; top: 0px;		
+	z-index:10;
+}
+
+#well h2 {
+ 
+  
+  -moz-background-clip: text;
+  -webkit-background-clip: text;
+  
+  -moz-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent;
+  
+  -webkit-animation: slidetounlock 5s infinite;
+  
+  font-size: 80px;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
+  
+  padding: 0;
+  width: 200%;
+  
+  -webkit-text-size-adjust: none;
+}
+
+#slider {
+	background: url(http://bxjcf.img40.wal8.com/img40/410389_20140325112526/139614274063.png) no-repeat;
+	width: 110px;
+	height: 73px;
+	display: inline-block;
+	vertical-align: middle;
+	line-height: 1;
+}
+
+@-webkit-keyframes slidetounlock {
+	0% {
+		background-position: -250px 0;
+	}
+	100%{
+		background-position: 250px 0;
+	}
+}

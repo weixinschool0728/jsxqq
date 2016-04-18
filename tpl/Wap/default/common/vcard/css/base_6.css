@@ -1,0 +1,198 @@
+
+* { margin: 0; padding: 0; list-style: none; outline: 0;  }
+input, img, i, em, label, div { vertical-align: middle; font-style: normal }
+html { font-size: 10px }
+body { font-family: Microsoft YaHei,Helvitica,Verdana,Tohoma,Arial,san-serif; font-size: 16px; color: #fff; }
+a { color: #fff; text-decoration: none }
+.m-body { min-width: 320px; max-width: 640px; margin: 0 auto; overflow: hidden }
+input, textarea, select { -webkit-appearance: none; outline: none; background: #fff; background-clip: padding-box }
+a,button,input{-webkit-tap-highlight-color:rgba(255,0,0,0);}
+input, textarea, select,button { -webkit-border-radius:0;-webkit-appearance:none; outline: none; }
+
+.wpm3 { width: 88% !important; background: #fff; padding: 0 6%; margin-bottom: 2%; border-bottom-left-radius:10px;border-bottom-right-radius:10px;}
+
+.clr{ clear:both;}
+/* CSS main */
+.carte { width: 100%; margin: 0 auto; height: 100%; position:relative; }
+.photo { FILTER: Blur(direction=15);margin-bottom:20px; }
+.iputenter { width: 96%; margin: 0 auto }
+
+.photo .bg-photo .img-photo { width:80px; margin: 0 10px; position: relative; border: 3px solid rgba(255,255,255,0.4); border-radius: 100%; margin-bottom: 15px ; float:left;}
+
+.photo .bg-photo .img-photo img { width: 80px; height: 80px; box-shadow: 0 0 0 0.2; border-radius: 100%; }
+
+.wmp2_a .text-phosto .colse-text { color: #fdfdfd; margin-bottom:10px;}
+.text-phosto .colse-text { color: rgba(255,255,255,0.8) }
+
+.left-phosto { text-align: left; padding-top: 40px; }
+.wmp2_a .text-phosto { color: rgba(52, 182, 138, 0.56);}
+.wmp1_a .text-phosto { color: rgba(110, 110, 110, 0.56);}
+.text-phosto { color: rgba(255, 255, 255, 0.4); text-align:left; font-size: 14px; }
+.text-phosto ul li { padding: 4px 0 ; color:rgba(255, 255, 255, 0.8)}
+.wmp1_a .text-phosto h1 { color:#009160; font-weight: inherit; font-size: 20px;}
+.wmp2_a .text-phosto h1 { color:#fff; font-weight: inherit; font-size: 20px;}
+.text-phosto h1 { color: rgba(255, 255, 255, 0.89); }
+.wmp2_a .text-phosto .fo20 a{ color: #fff!important;}
+.wmp1_a .text-phosto .fo20 a{ color: #fff!important;}
+.text-phosto .fo20 a{ font-size: 25px;  margin: 10px 0 20px 0; /*padding-left: 10px;*/  color: rgba(255,255,255,0.8);color: rgba(255,255,255,0.8) !important;}
+.text-phosto .fo16 a{ font-size: 18px; margin: 10px 0 20px 0; padding-left: 10px }
+.text-phosto img { width: 22px; height: 20px; margin-bottom: 2px; vertical-align:middle; }
+
+.wpm3 .text-phosto { color: #000 }
+.rank { display: box; display: -webkit-box;display: -webkit-box;
+text-align: center;
+margin-top: 16px;
+position: relative;
+background-color: rgba(255, 255, 255, 0);
+border: 1px solid rgba(255, 255, 255, 0.26);  }
+.rank a { margin:10px 0;color:rgba(255, 255, 255, 0.8); box-flex: 1; -webkit-box-flex: 1; display: block; line-height:25px; }
+.rank a:nth-child(1) { border-right:1px solid rgba(245, 245, 245, 0.18) }
+.border-rank a:nth-child(1) {border-right: 1px dotted rgba(255, 255, 255, 0.4)}
+.rank h2 {  font-size: 18px; color:#fff; font-weight: normal;}
+
+.list-personal {.list-personal { padding: 0 15px;overflow: hidden;background-color: #fff;}}
+.list-personal ul li { padding: 10px 0 13px 38px; margin:10px 0; border-bottom:1px solid  rgba(255, 255, 255, 0.25); }
+.list-personal .weixin-ico,  .list-personal .emial-ico,  .list-personal .map-ico { background-repeat: no-repeat; color: #686868; background-position: left 13px }
+.list-personal .weixin-ico { background-image: url(../img/ico-emial.png); background-size: 21px 13px; }
+.list-personal .emial-ico { background-image: url(../img/ico-weixin.png); background-size: 21px 18px; ; }
+.list-personal .map-ico { background: url(../img/ico-map.png) 5px 13px no-repeat; background-size: 13px 20px }
+.btn { padding:0px 0 10px 0; text-align: center }
+.wmp2_a .btn .btn-btn, .iputenter .btn-btn { background:rgba(255,255,255,0.3); display: block;  height: 52px; display: block; margin: 0 15px; text-align: center; color: #fff; line-height: 52px; font-size: 18px; border-radius:30px; }
+.iputenter .btn-btn { width: 100%; margin-top: 10px; }
+.btn .bottom {  line-height: 25px; padding-top:15px; color:rgba(255, 255, 255, 0.6); font-size:12px;}
+.btn .bottom a {  color: rgba(255, 255, 255, 0.8);   }
+.wmp3_a .btn .bottom a { color: rgba(255, 255, 255, 0.65); }
+
+.iput-card .text-quantity { text-align: center; font-size: 14px; padding: 10px 0; color: #979797; }
+.text-quantity i { background: url(../img/ico-ico.png) no-repeat #fff center center; background-size: 42px 22px; display: block; width: 53px; height: 53px; border-radius: 100%; margin: 10px auto; }
+.iput-card .text-quantity h3 { padding: 10px 0 3px 0; font-size: 20px; color: #686868; font-weight: inherit }
+.orange { color: #ff6600; }
+
+.iputenter { padding-bottom: 20px }
+.iputenter .information { border: 1px solid #bacfaf; border-radius: 10px; height: 45px; line-height: 45x; padding: 0 0 0 4%; margin: 7px auto; width: 100%; color: #979797; font-size: 18px; font-family: 微软雅黑； }
+.select { width: 100%; background: url(../img/select-ico.png) no-repeat right center #fff; background-size: 30px 10px; display: block; line-height: 22px; border: 1px solid #CACACA; padding: 5px; border-radius: 3px; font-size: 16px; position: relative; margin: 5px 0; }
+.wmp2_a  { padding-top:25px;}
+.photo .bg-photo_a { height: auto }
+.wmp3_a .btn_a {color:rgba(255, 255, 255, 0.6); }
+.btn_a { background: none; color: #b5c3ff; margin-top:20px; }
+.wmp2_a .btn_a { color:#000}
+.wmp1_a .btn_a { color:#000}
+
+.list-personal-a ul li { border-bottom: 1px solid #797fe8; padding: 10px 0 13px 48px; }
+.list-personal-a .weixin-ico,  .list-personal-a .emial-ico,  .list-personal-a .map-ico { background-repeat: no-repeat; color: #fff; background-position: 14px 13px }
+.list-personal-a .weixin-ico { background-image: url(../img/ico-emial.png); background-size: 21px 13px; }
+.list-personal-a .emial-ico { background-image: url(../img/ico-weixin.png); background-size: 21px 18px; ; }
+.list-personal-a .map-ico { background: url(../img/ico-map.png) 20px 13px no-repeat; background-size: 13px 20px }
+.share { display: -webkit-box; margin: 5px 0; border: 0; padding: 0; cursor: pointer; }
+.share a { display: block; box-flex: 1; -webkit-box-flex: 1; color: #5b62d3; text-align: center; margin: 10px;border-radius: 10px; background:#f9f9f9; padding:10px 0 }
+.share-colose a { color: #686868 }
+.share img { width: 22px; height: 22px; vertical-align: top; border: 0; }
+#mcover, #wx-ewm { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); display: none; z-index: 20000; }
+#mcover img, #wx-ewm img { position: fixed; right: 18px; top: 5px; width: 260px; height: 180px; z-index: 20001; }
+#wx-ewm img { top: 50%; left: 50%; width: 215px; height: 215px; margin-top: -105px; margin-left: -105px; }
+.img-photo, .img-photo-a { width: 100px; margin: 0 auto; position: relative; border: 3px solid #FFFFFF; border-radius: 100%; margin-bottom: 21px }
+
+.img-photo-a { top: -40px; margin: 0; border: 3px solid #fff; border-radius: 0; left: 13px; position: absolute }
+.img-photo-a img { width: 100px; height: 100px; }
+.tx-img img { height: 50%; width: 100%; }
+.name { position: absolute; top: 10px; left: 140px; color: #686868 }
+.name h1 { color: #00bb90 }
+.bg-photo-b { position: relative; height: 100px;}
+
+.list-text-a ul li a { cursor: pointer; color: #00bb90 }
+.list-text-a ul li { padding: 10px 0 13px 28px; font-size: 16px; border-top: 1px solid #d7d7d7; }
+.list-text-a .weixin-ico,  .list-text-a .emial-ico,  .list-text-a .map-ico, .list-text-a .tel-ico,  .wx-pyq,  .wx-pyq-a { background-repeat: no-repeat; color: #686868; background-position: left 13px }
+.list-text-a .weixin-ico { background-image: url(../img/ico-emial.png); background-size: 21px 13px; }
+.list-text-a .emial-ico { background-image: url(../img/ico-weixin.png); background-size: 21px 18px; }
+.list-text-a .map-ico { background: url(../img/ico-map.png) 5px 23px no-repeat; background-size: 13px 20px }
+.list-text-a .tel-ico {background-image: url(../img/ico-gs1.png); background-size: 21px 17px;}
+li.fo16 { background: url(../img/ico-tel.png) no-repeat left 12px; background-size: 22px 20px; }
+.wx-pyq { background: url(../img/icon_msg-a.png) left 0px no-repeat; }
+.wx-pyq-a { background: url(../img/icon_timeline.png) left 0px no-repeat; }
+.wx-pyq,  .wx-pyq-a { background-size: 22px 22px; display: block; padding: 0px 0 2px 30px }
+.wx { width: 47px; height: 45px; position: absolute; right: 10px; top: 10px }
+.wx img { width: 47px; height: 45px }
+.bottom-bottom {border:1px solid #ddd !important; background: url(../img/bg-bottom.jpg) repeat-x left bottom #fff; background-size: 50% 50%;border-radius: 10px; padding: 12px 0 12px 28px !important; margin-bottom: 15px; color: #00bb90;  }
+.btn .btn-btn-a { width: 100% }
+.bt-bo {border-bottom:0 !important}
+
+.bodybg { position:fixed; z-index:-1; background:url(../template/img/bg-photo-bg.png) fixed; background-size:100% auto;width:100%; height:100%}
+.btn-btn2 {
+background: url(../img/bot_a.png) repeat-x;
+background-size: 2px 51px;
+width: 90%;
+height: 52px;
+display: block;
+margin: 0 auto;
+text-align: center;
+color: #fff;
+line-height: 52px;
+font-size: 18px;
+border-radius: 10px;
+color:#FFF !important;
+}
+
+
+.erweima{ cursor:pointer;border-radius:100%; background: rgba(255, 255, 255, 0.15); width:18px; height:18px; padding:8px;position:absolute; right:10px; top:10px; text-align:center;}
+.erweima img { width:18px; height:18px; }
+.erweima button{ background:none; border:0; cursor:pointer;}
+
+.mcover_zz{ position: fixed;top:0;	left:0;	width:100%;	height:100%;background:rgba(0, 0, 0, 0.7);	display:none;z-index:20000; padding-top:15%;}
+
+.promptbox {
+background: url(../images/box_bg.jpg) repeat;
+border-radius: 10px;
+padding: 2%;
+position: fixed;
+z-index: 20001;
+display: none;
+left: 10%;
+right: 10%;
+top: 10%;
+}
+.mcover_dj {position: fixed;top: 0;left: 0;width: 100%;height: 100%;background: rgba(0, 0, 0, 0.6);display: none;z-index: 20000;padding-top: 15%;}
+.box{ background-color:#fff; border-radius:10px;padding:25px; text-align:center; font-size:12px;color:#969696;}
+.box button{background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#ed6b55), color-stop(100%,#e94e60));
+display: block;
+height: 30px;
+text-align: center;
+color: #fff;
+line-height: 30px;
+font-size: 18px;
+border-radius: 30px; width:100%; border:0; margin-top:20px; }
+.box h1{ font-size:18px; font-weight:normal; }
+.box img{ margin:15px 0;}
+
+
+.mcover01{position: fixed;top: 0;left: 0;width: 100%;height: 100%;background: rgba(0, 0, 0, 0.6);display: none;z-index: 20000;padding-top: 15%;}
+.mcover03{position: fixed;top: 0;left: 0;width: 100%;height: 100%;background: rgba(0, 0, 0, 0.6);display: none;z-index: 20000;padding-top: 15%;}
+.mcover02 {position: fixed;top: 0;left: 0;width: 100%;height: 100%;background: rgba(0, 0, 0, 0.6);display: none;z-index: 20000;padding-top: 15%;}
+.promptbox02 {
+background: url(../images/box_bg.jpg) repeat;
+border-radius: 10px;
+padding: 2%;
+position: fixed;
+z-index: 20001;
+display: none;
+left: 10%;
+right: 10%;
+top: 10%;
+}
+
+.box02{ text-align:center;}
+.box02 h1{ font-size:18px; color:#fff; letter-spacing:2px; font-weight:normal; margin-bottom:20px;}
+.box02 .smk{ position:relative; width:100%; position:relative; padding:2%;}
+.box02 .smk img{ background-color:#fff; width:96%; margin:2% 0;}
+.box02 .kuang{ background:url(../../index/weicard/ewm.png); background-size:100% 100%; z-index:20001;  position:absolute; width:96%; height:96%;}
+.box02 .zw{ position:absolute; margin:1%;width:94%; height:94%; z-index:20002;background:url(../../index/weicard/zw.png);background-size:100% 100%;}
+
+
+
+.halfwid{  height:80px; margin:0 15px;}
+.halfwid ul li{ width:49.7%; float:left; background-color:rgba(249, 249, 249, 0.34); line-height:40px; height:40px; text-align:center;border-bottom: 1px solid rgba(255, 255, 255, 0.25); overflow:hidden;}
+.halfwid ul li img{ width:20px;margin-top: -3px;margin-right: 5px;}
+.halfwid ul li:nth-child(1) { border-right: 1px solid rgba(255, 255, 255, 0.25);}
+.halfwid ul li:nth-child(3){ border-right: 1px solid rgba(255, 255, 255, 0.25);}
+.halfwid a{ color:#fff;}
+.halfwid button{ background:none; border:0; line-height:40px; cursor:pointer;font-family: Microsoft YaHei,Helvitica,Verdana,Tohoma,Arial,san-serif; width:100%;  font-size: 16px; color: #fff;}
+.list-personal ul li:last-child{ margin-bottom:0; padding-bottom:20px;}

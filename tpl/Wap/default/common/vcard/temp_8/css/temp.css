@@ -1,0 +1,153 @@
+﻿body,textarea,input,button,select,keygen,legend{font:14px/1.14 "Microsoft YaHei",\5fae\8f6f\96c5\9ed1,arial,\5b8b\4f53;color:#fff;outline:0;}
+html,body{width:100%; height:100%; background:#fff; }
+a,a:hover{ color:#333; text-decoration:underline }
+.clear:before,.clear:after{display: table;  content: " ";}
+.container{width: 100%; height: 100%; position: relative; -webkit-overflow-scrolling: touch;
+    overflow-scrolling: touch;}
+.ctel{ margin: 10% 0 0 20%; line-height: 24px; height: 63px; }
+.ctel h4{ font-size: 16px; font-weight: normal; color: rgba(255,255,255,0.5); clear: both;margin: 0 0 10px;}
+.ctel a{ color: #fff; font-size: 26px; text-decoration: none; }
+.mpage{overflow: hidden; top:0;background: blue; height: 100%;width: 100%;position:fixed;left: 0;}
+.conbox{margin: 15% 0 0 20%;}
+img{max-width:100%;}
+.cimg{ padding: 2px; border-radius: 50%; height: 100px; width: 100px;box-shadow: 0px 0px 5px rgba(0,0,0,.5); border:1px solid rgba(255,255,255,.7); text-align: center;}
+.cimg img{border-radius: 50%;width: 100px; height: 100px;}
+.cname{font-size: 28px; color: #fff; margin: 15px 0 0 0px; font-weight: normal;}
+.cname span{ color:ghostwhite; font-size: 18px; margin-left: 10px;}
+.conbox ul{ margin: 8% 0 0; border-bottom: 1px solid #30c9f9; padding-bottom: 2%;}
+.conbox ul li{ width: 100%; margin-bottom: 3.5%; font-size: 1em; color:#30c9f9;}
+.conbox ul li i{ margin-right: 5%;}
+@media  screen and (min-width: 641px) {
+	.container{width: 640px; margin: 0 auto;}
+	.mpage{width: 640px; margin-left: -320px; left: 50%;}
+	
+}
+@media  screen and (max-width: 321px) {
+	 .conbox ul{ margin: 5% 0 0; padding-bottom: 2%;}
+	 .conbox ul li{ width: 100%; margin-bottom: 3%; font-size: .9em; color:#30c9f9;}
+
+	
+}
+ 
+
+.conbox li.company{ text-align:left;  }
+
+.conbox a{ color:#30c9f9; text-decoration:none}
+ .address a{ }
+
+.copyright{ padding:5px 0 10px;  margin:15px 0;background:rgba(0,0,0,0.8);}
+.copyright a{color:#F63; font-size:14px; text-decoration:none;}
+.adbox{ margin:0 0 15px 0;}
+.content{width: 100%; background: rgba(8,8,8,.9); position: relative; z-index: 1; padding:15px 0 45px; line-height:25px;}
+
+.downhide{position:absolute;z-index:12;-webkit-animation: downanimation 1s forwards ;}
+@-webkit-keyframes downanimation{
+	from{opacity: 1;-webkit-transform:translate(0,0)}
+	to{opacity: 0;-webkit-transform: translate(0,200px);}
+}
+.upshow{position:absolute;z-index:12;-webkit-animation: upanimation 1s 500ms forwards ;}
+@-webkit-keyframes upanimation{
+	from{opacity: 0;-webkit-transform:translate(0,200px)}
+	to{opacity: 1;-webkit-transform: translate(0,0);}
+}
+.quick_tool{ z-index: 10;opacity: 0; position: fixed; box-shadow: 0 -1px 5px rgba(0,0,0,.5); height: 45px; width: 100%;bottom: -2px; left: 0; background: #FF6633;}
+.quick_tool a{ border-left: 1px solid rgba(255,255,255,.6); box-shadow: -1px 0 1px  rgba(9,9,9,.6); margin-left: -1px; line-height: 45px; color: #fff; text-decoration: none; width: 33.3%; float: left; display: block; height: 45px; text-align: center;}
+.quick_tool a i{ margin-right: 5px;}
+
+.quick_down{-webkit-animation: quick_downanimation 1s 500ms forwards ;}
+@-webkit-keyframes quick_downanimation{
+	from{opacity: 0;-webkit-transform:translate(0,-100px)}
+	to{opacity: 1;-webkit-transform: translate(0,0);}
+}
+.quick_up{-webkit-animation: quick_upanimation 1s 0s forwards ;}
+@-webkit-keyframes quick_upanimation{
+	to{opacity: 0;-webkit-transform:translate(0,-100px)}
+	from{opacity: 1;-webkit-transform: translate(0,0);}
+}
+.arrow{    
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border: 1px solid #ccc;
+    border-width: 1px 0px 0px 1px;
+    left: 5%;
+    bottom: 20px; 
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg) ;
+    -webkit-animation: arrowGo 3s infinite steps(10, end);
+    animation: arrowGo 3s infinite steps(10, end)
+}
+@-webkit-keyframes arrowGo {
+    0%{
+        opacity: 1; 
+    }
+    100%{
+        opacity: 0;
+        bottom: 100px
+    }
+}
+
+@keyframes arrowGo {
+    0%{
+        opacity: 1; 
+    }
+    100%{
+        opacity: 0;
+        bottom: 100px
+    }
+}
+
+
+.qrcode_icon{ left:20px}
+
+ /*地图*/
+.ylmap { display: none; position: absolute; background: #fff;  top: 110%; left: 0; width: 100%; height: 100%; z-index:300; overflow: hidden;  
+	-webkit-transition: all 0.8s;
+	   -moz-transition: all 0.8s;
+	    -ms-transition: all 0.8s;
+	     -o-transition: all 0.8s;
+	        transition: all 0.8s;
+
+	
+}
+.ylmap.mapOpen { 
+	top: 10%;
+}#allmap {width: 100%;height: 100%;margin:0;}.daohang{  background: none repeat scroll 0 0 #fff;    border: 1px solid rgba(0, 0, 0, 0.4);    border-radius: 8px; color: #333;display: inline-block;height:30px; line-height: 30px;position: absolute;right: 10px; top: 80px;    text-align: center;width: 60px; z-index: 10;}
+.closemap{ background: rgba(255,255,255,.9); padding:; height: 35px; line-height: 35px;font-size: 18px; box-shadow: 0 2px 3px #333; z-index: 1;}
+.closemap span{ background: red; display: inline-block;  padding: 0 15px;}
+.ylmap.show { display:block; }
+.ylmap .bk{ position:absolute;width:100%;height:100%;text-align:center;z-index:-1;background: #efebed; }
+.ylmap .bk span{ display: inline-block; margin-top: 48%; width: 59px;height: 49px; background-position: -72px -93px; }
+.ylmap .tit p a span { background-position: -72px -144px; }
+.ylmap .tit p a {font-size: 18px!important;}
+
+ /*sprite图片合并*/
+.css_sprite01 { background-image:url(/tpl/Wap/default/common/vcard/temp_1/images/css_sprite01.png)!important;  background-repeat: no-repeat!important; } 
+
+
+
+ .f-hide { display: none!important; } 	
+ 
+/**
+ * 声音元件
+ * -u-audio
+ */
+.u-audio { position: fixed; top: -15px; right: 5%; width: 102px; height: 73px; z-index: 90; }
+.u-audio .res_audio { position: absolute; top: 0; left: 0; opacity: 0; height: 0; width: 0; }
+.u-audio .btn_audio { width: 100%; padding-top: 39px; height: 44px; }
+.u-audio .btn_audio strong,
+.u-audio .btn_audio .audio_open { display: inline-block; height: 32px; line-height: 32px; vertical-align: middle; }
+.u-audio .btn_audio strong { width: 57px; font-size: 18px;font-weight:normal; color: #fff; opacity: 1; }
+.u-audio .btn_audio .audio_open { position: absolute; bottom: 0; left: 56px; width: 32px; background-size: 90px auto; }
+.u-audio .btn_audio strong.z-hide { opacity: 0; }
+.u-audio .btn_audio strong.z-move { 
+	-webkit-transition:opacity 0.5s;
+  	   -moz-transition:opacity 0.5s;
+	    -ms-transition:opacity 0.5s;
+	     -o-transition:opacity 0.5s;
+	        transition:opacity 0.5s;
+}
+.u-audio.z-low { z-index: 1; }
+
+
+

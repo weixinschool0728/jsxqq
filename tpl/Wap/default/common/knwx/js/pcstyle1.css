@@ -1,0 +1,10 @@
+﻿body{margin: 0;padding: 0;}
+.page-bizinfo{border-bottom: none;}
+.page-bizinfo{width: 640px; margin: 0 auto;padding: 0px;border-left: 1px solid #ccc;border-bottom: 1px solid #ccc;border-right: 1px solid #ccc; box-shadow: 1px 0px 0px rgba(0,0,0,0.1); -webikit-box-shadow: 1px 0px 0px rgba(0,0,0,0.1);}
+.page-content{width: 640px; margin: 0 auto;padding: 0px;border-left: 1px solid #ccc;border-bottom: 1px solid #ccc;border-right: 1px solid #ccc; box-shadow: 1px 0px 0px rgba(0,0,0,0.1); -webikit-box-shadow: 1px 0px 0px rgba(0,0,0,0.1);}
+.page-imgcontent{width: 640px; margin: 0 auto;padding: 0px;border-left: 1px solid #ccc;border-bottom: 1px solid #ccc;border-right: 1px solid #ccc; box-shadow: 1px 0px 0px rgba(0,0,0,0.1); -webikit-box-shadow: 1px 0px 0px rgba(0,0,0,0.1);}
+.page-button{width: 640px; margin: 0 auto;padding: 0px;border-left: 1px solid #ccc;border-bottom: 1px solid #ccc;border-right: 1px solid #ccc; box-shadow: 1px 0px 0px rgba(0,0,0,0.1); -webikit-box-shadow: 1px 0px 0px rgba(0,0,0,0.1);}
+.page-foot{width: 640px; margin: 0 auto;padding: 0px;border-left: 1px solid #ccc;border-bottom: 1px solid #ccc;border-right: 1px solid #ccc; box-shadow: 1px 0px 0px rgba(0,0,0,0.1); -webikit-box-shadow: 1px 0px 0px rgba(0,0,0,0.1);}
+#activity-detail .page-content .text p{padding:8px; *zoom:1;min-height:1.5em;min-height:1.5em;font-size:18px; word-wrap:break-word;}
+#activity-detail .page-bizinfo .header #activity-name{padding-left:20px;color:#000;font-size:32px;font-weight:bold;word-break:normal;word-wrap:break-word;}
+.activity-meta{display:inline-block;padding-left:0px;;padding-top:4px;padding-bottom:15px;color:#666666;font-size:16px;}

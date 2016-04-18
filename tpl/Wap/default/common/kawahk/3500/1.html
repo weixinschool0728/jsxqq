@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<script type="text/javascript">
+		
+		window.shareData = {
+			"imgUrl": "http://img.weimob.com/static/31/59/f2/image/20131226/20131226113738_59412.jpg",
+			"timeLineLink": "http://18692.m.weimob.com/weisite/home?pid=18692&bid=17257&wechatid=fromUsername&wxref=mp.weixin.qq.com",
+			"sendFriendLink": "http://18692.m.weimob.com/weisite/home?pid=18692&bid=17257&wechatid=fromUsername&wxref=mp.weixin.qq.com",
+			"weiboLink": "http://18692.m.weimob.com/weisite/home?pid=18692&bid=17257&wechatid=fromUsername&wxref=mp.weixin.qq.com",
+			"tTitle": "焦作微盟",
+			"tContent": "焦作微盟是微盟焦作指定代理商，提供...",
+			"fTitle": "焦作微盟",
+			"fContent": "焦作微盟是微盟焦作指定代理商，提供...",
+			"wContent": "焦作微盟是微盟焦作指定代理商，提供..."
+		};
+			</script>
+
+	<script type="text/javascript">
+(function() {
+	var wtj = document.createElement('script'); wtj.type = 'text/javascript'; wtj.async = true;
+	wtj.src = 'http://tj.weimob.com/wtj.js?url=' + encodeURIComponent(location.href);
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(wtj, s);
+})();
+function weimobAfterShare(shareFromWechatId,sendFriendLink,shareToPlatform){
+	var wmShare = document.createElement('script'); wmShare.type = 'text/javascript'; wmShare.async = true;
+    wmShare.src = 'http://tj.weimob.com/api-share.js?fromWechatId=' + shareFromWechatId + '&shareToPlatform=';
+	wmShare.src += shareToPlatform + '&pid=18692&sendFriendLink=' + encodeURIComponent(sendFriendLink);
+    var stj = document.getElementsByTagName('script')[0]; stj.parentNode.insertBefore(wmShare, stj);
+}
+
+/**
+ * 默认分享出去的数据
+ *
+ */
+function getShareImageUrl(){
+
+	var share_imgurl = "";
+	if("" == share_imgurl){
+		var shareImgObj = document.getElementsByClassName("shareImgUrl")[0];
+		if('undefined' != typeof(shareImgObj)){
+			share_imgurl = shareImgObj.src;
+		}
+	}
+	return window.shareData.imgUrl || share_imgurl;
+}
+
+window.shareData = window.shareData || {
+		"timeLineLink": "http://18692.m.weimob.com/weisite/home?pid=18692&bid=17257&wechatid=fromUsername&wxref=mp.weixin.qq.com&channel=share%5E%23%5E_f",
+	"sendFriendLink": "http://18692.m.weimob.com/weisite/home?pid=18692&bid=17257&wechatid=fromUsername&wxref=mp.weixin.qq.com&channel=share%5E%23%5E_f",
+	"weiboLink": "http://18692.m.weimob.com/weisite/home?pid=18692&bid=17257&wechatid=fromUsername&wxref=mp.weixin.qq.com&channel=share%5E%23%5E_f",
+	"tTitle": document.title,
+	"tContent": document.title,
+	"fTitle": document.title,
+	"fContent": document.title,
+	"wContent": document.title
+}
+
+
+//loadChangeUrlChannel("timeLineLink","fc");
+//loadChangeUrlChannel("sendFriendLink","f");
+if(!window.pass_share){
+document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+	//loadChangeUrlChannel();
+	// 发送给好友
+	WeixinJSBridge.on('menu:share:appmessage', function (argv) {
+		WeixinJSBridge.invoke('sendAppMessage', { 
+			"img_url": getShareImageUrl(),
+			"img_width": "640",
+			"img_height": "640",
+			"link": window.shareData.sendFriendLink,
+			"desc": window.shareData.fContent,
+			"title": window.shareData.fTitle
+		}, function (res) {
+			if('send_app_msg:cancel' != res.err_msg){
+				weimobAfterShare("",window.shareData.sendFriendLink,'appmessage');
+			}
+			_report('send_msg', res.err_msg);
+		})
+	});
+
+	// 分享到朋友圈
+	WeixinJSBridge.on('menu:share:timeline', function (argv) {
+		
+		WeixinJSBridge.invoke('shareTimeline', {
+			"img_url": getShareImageUrl(),
+			"img_width": "640",
+			"img_height": "640",
+			"link": window.shareData.timeLineLink,
+			"desc": window.shareData.tContent,
+			"title": window.shareData.tTitle
+		}, function (res) {
+			if('share_timeline:cancel' != res.err_msg){
+				//如果用户没有取消
+				weimobAfterShare("",window.shareData.timeLineLink,'timeline');
+			}
+			_report('timeline', res.err_msg);
+		});
+	});
+
+	// 分享到微博
+	WeixinJSBridge.on('menu:share:weibo', function (argv) {
+		WeixinJSBridge.invoke('shareWeibo', {
+			"content": window.shareData.wContent,
+			"url": window.shareData.weiboLink
+		}, function (res) {
+			if('share_weibo:cancel' != res.err_msg){
+				weimobAfterShare("",window.shareData.weiboLink,'weibo');
+			}
+			_report('weibo', res.err_msg);
+		});
+	});
+}, false);
+}
+
+</script>
+</body>
+</html>

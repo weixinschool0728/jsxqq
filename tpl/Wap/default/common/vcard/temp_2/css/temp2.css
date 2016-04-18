@@ -1,0 +1,108 @@
+﻿body,textarea,input,button,select,keygen,legend{font:14px/1.14 "Microsoft YaHei",\5fae\8f6f\96c5\9ed1,arial,\5b8b\4f53;color:#fff;outline:0;}
+body{width:100%; height:100%; }
+img{ max-width:100%;}
+a,a:hover{ color:#ccc;}
+.g-wrap{ width:100%; height:100%;margin:0 auto;background:#43d8f6; position:relative }
+
+.conbox{ background:#87ff14; height:35%; border-top:5px solid #fff; position:absolute; width:100%; bottom:0; left:0}
+
+.m-avatar img{ width:120px; height:120px; border-radius:50%; border:3px solid #fff; margin:0px 0 0 -60px;  position:absolute; left:50%; top:3%; box-shadow:1px 2px 3px 1px rgba(255,255,255,0.8) ; }
+
+.m-avatar img{-webkit-animation:my_avatar 1s ease-in 0.1s forwards;-moz-animation:my_avatar 1s ease-in 0.1s forwards;-o-animation:my_story 1s ease-in 0.1s forwards;-ms-animation:my_story 1s ease-in 0.1s forwards;animation:my_avatar 1s ease-in 0.1s forwards;}
+@-webkit-keyframes my_avatar{0%{-webkit-transform:rotate(-200deg);opacity:0}100%{-webkit-transform:rotate(0);opacity:1}}
+@-moz-keyframes my_avatar{0%{-moz-transform:rotate(-200deg);opacity:0}100%{-moz-transform:rotate(0);opacity:1}}
+@-o-keyframes my_avatar{0%{-o-transform:rotate(-200deg);opacity:0}100%{-o-transform:rotate(0);opacity:1}}
+@-ms-keyframes my_avatar{0%{-ms-transform:rotate(-200deg);opacity:0}100%{-ms-transform:rotate(0);opacity:1}}
+@keyframes my_avatar{0%{transform:rotate(-200deg);opacity:0}100%{transform:rotate(0);opacity:1}}
+.u-username{ height:30px; line-height:30px; margin-top:160px; font-size:16px; text-align:center}
+.u-username span{ font-size:26px}
+.u-username i{ font-size:18px; margin-left:10px; color:#fff;}
+.u-tel{ text-align:center; height:50px; margin:30px 0; position:relative}
+.u-tel a{ height:50px; width:50px; display:inline-block; background:url(../images/qtel.png) no-repeat 0 0; background-size:50px 50px;}
+
+.mnav{ background:#a2ebfe; display:inline-block; width:34%; height:50px; line-height:50px; position:absolute; top:0; font-size:18px; text-align:center; }
+.left_s{ left:0;-ms-border-radius:0 5px 5px 0;-webkit-border-radius:0 5px 5px 0;-o-border-radius:0 5px 5px 0; -moz-border-radius:0 5px 5px 0;border-radius:0 5px 5px 0;-webkit-animation:to_left 1s ease-in 0.1s;-ms-animation:to_left 1s ease-in 0.1s;-o-animation:to_left 1s ease-in 0.1s;-ms-animation:to_left 1s ease-in 0.1s;animation:to_left 1s ease-in 0.1s;}
+.right_s{ right:0;-moz-border-radius:5px 0px 0px 5px;-ms-border-radius:5px 0px 0px 5px;-o-border-radius:5px 0px 0px 5px;-webkit-border-radius:5px 0px 0px 5px;border-radius:5px 0px 0px 5px;-moz-animation:to_right 1s ease-in 0.1s;-ms-animation:to_right 1s ease-in 0.1s;-o-animation:to_right 1s ease-in 0.1s;-webkit-animation:to_right 1s ease-in 0.1s;animation:to_right 1s ease-in 0.1s;}
+@-webkit-keyframes to_left{0%{ left:-34%;opacity:0}100%{left:0;opacity:1}}
+@-moz-keyframes to_left{0%{ left:-34%;opacity:0}100%{left:0;opacity:1}}
+@-o-keyframes to_left{0%{ left:-34%;opacity:0}100%{left:0;opacity:1}}
+@-ms-keyframes to_left{0%{ left:-34%;opacity:0}100%{left:0;opacity:1}}
+@keyframes to_left{0%{ left:-34%;opacity:0}100%{left:0;opacity:1}}
+@-webkit-keyframes to_right{0%{ right:-34%;opacity:0}100%{right:0;opacity:1}}
+@-moz-keyframes to_right{0%{ right:-34%;opacity:0}100%{right:0;opacity:1}}
+@-o-keyframes to_right{0%{ right:-34%;opacity:0}100%{right:0;opacity:1}}
+@-ms-keyframes to_right{0%{ right:-34%;opacity:0}100%{right:0;opacity:1}}
+@keyframes to_right{0%{ right:-34%;opacity:0}100%{right:0;opacity:1}}
+.conbox p{ line-height:23px; font-size:16px; margin-left:15%; padding-left:28px; margin-bottom:2px;}
+.conbox p.company{ text-align:center; font-size:22px; margin:10px 0 20px; padding:0;}
+.conbox .qq{background:url(../images/qq.png) no-repeat 0 0; background-size:22px;}
+.conbox .weixin{background:url(../images/weixin.png) no-repeat 0 0;background-size:22px; }
+.conbox .email{background:url(../images/email.png) no-repeat 0 0;background-size:22px; }
+.conbox .web{background:url(../images/web.png) no-repeat 0 0; background-size:22px;}
+.conbox .tel{background:url(../images/tel.png) no-repeat 0 0; background-size:22px;}
+.conbox .twitter{background:url(../images/twitter.png) no-repeat 0 0; background-size:22px;}
+.conbox .sweibo{background:url(../images/sweibo.png) no-repeat 0 0; background-size:22px;}
+.conbox .facebook{background:url(../images/facebook.png) no-repeat 0 0; background-size:22px;}
+.conbox a{ color:#fff;}
+
+.copyright{ padding:5px 0 10px; background:rgba(0,0,0,0.8);}
+.copyright a{color:#F63; font-size:14px; text-decoration:none;}
+.adbox{ margin:0 0 15px 0;}
+.conbox .address{background:url(../images/address.png) no-repeat 0 0; background-size:22px;}
+.map{ height:100%; width:100%; display:none; position: absolute; top:0; left:0; z-index:99; background:#fff;}
+.map .map-close-img{ position: fixed !important;z-index: 1003; height:50px; width:50px; top:0; left:0;}
+.bus-guide-img {
+	position: fixed !important;
+	right : 17px;
+	top: 20px;
+	z-index: 1003;
+	height: 50px;
+	width: 50px;
+	cursor: pointer;
+}
+.self-guide-img {
+	position: fixed !important;
+	right : 17px;
+	top: 85px;
+	z-index: 1003;
+	height: 50px;
+	width: 50px; 
+	cursor: pointer;
+}
+.allmap{ width:100%; height:100%;}
+.open-road {
+	left: 0px;
+	bottom: 0px;
+	text-align: center;
+	height: 55px;
+	vertical-align: middle;
+	line-height: 55px;
+	background-color: #FFFFFF;
+	opacity: 0.9;
+	z-index: 1003;
+	position: fixed !important;
+	display: none;
+	width: 100%;
+}
+.open-road-btn {
+	display: inline-block;
+	left: 0px;
+	width: 175px;
+	height: 38px;
+	line-height: 38px;
+	border: none;
+	margin-top: 8px;
+	color: #FFFFFF;
+	text-align: center;
+	font-size: 16px;
+	font-weight: bold;
+	background-color: rgb(255, 122, 0);
+	border-radius: 6px;
+	cursor: pointer;
+}
+.abus{ background:rgba(38,38,38,.8); width:100%;  position:absolute; top:0; left:-100%;  min-height:100%; z-index:999; display:none}
+
+@media screen and  (min-width: 640px){
+      .g-wrap{ width:640px; }
+	  .m-avatar img{ width:180px; height:180px;}
+}

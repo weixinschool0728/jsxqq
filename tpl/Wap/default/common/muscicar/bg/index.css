@@ -1,0 +1,125 @@
+.content{
+    min-height: 480px;
+}
+.cardBox{
+	width: 100%;
+	margin:0 auto;
+}
+.cardList{
+	list-style-type:none;
+	padding:0;
+	float:left;
+    width: 92%;
+    margin: 20px 4% 0;
+}
+.cardBox .cardList li {
+    width: 46%;
+    padding: 0 2%;
+    float: left;
+    position: relative;
+}
+.cardBox .cardList a {
+	text-decoration: none !important;
+}
+.panelPop .panel-content li {
+	display:block;
+	padding:0.5em 1em 0.3em;
+	width:80%;
+}
+.panelPop .panel-content a {
+    display: inline-block;
+    padding: 0.6em 1em;
+    font-weight: bold;
+    width: 75%;
+    margin: 0.8em 0 0;
+    border-bottom: 1px solid #eee;
+    height: 1.5em;
+}
+.panelPop .panel-content .active{
+     background-color:#f5a400;
+     color:#242326;
+ }
+.panelPop .panel-content  a:active{
+	background-color:#f5a400;
+	color:#242326;
+}
+.panelPop .panel-content  a:focus{
+	background-color:#f5a400;
+	color:#242326;
+}
+.panelPop .panel-content label{
+    text-align: left;
+    color: #F8FAFC;
+    font-weight: 600;
+    display: block;
+    height: 2em;
+    font-size: 1.3em;
+    line-height: 2em;
+    border-top: 1px solid #2c2b2f;
+    text-indent: 1.2em;
+    background: #70dae4;
+}
+em{
+    background: url(/arrow.png) no-repeat;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    background-size: 80%;
+    top: 5px;
+    position: relative;
+    left: 5px;
+}
+.shade{
+	height: 2em;
+	font-size: 1em;
+	background: rgba(255,255,255,0.8);
+	width: 100%;
+    position: relative;
+	color: #929191;
+    float: left;
+	text-align: center;
+	line-height: 2em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.cardNum{
+    font-size: 0.5em;
+    margin-left: 5px;
+    color: #dedede;
+    float: right;
+    right: 15%;
+    line-height: 3em;
+    position: relative;
+    /*display: block;*/
+    width: 10%;
+}
+.card{
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    width: 100%;
+    height: auto;
+    position: relative;
+    float: left;
+}
+.card li:first-child{
+    width: 85%;
+    padding: 7.5%;
+    margin: 0;
+    background: url(borderImg.png) no-repeat;
+    background-size: 100% 100%;
+}
+.card li:last-child{
+    width: 85%;
+    margin: 0;
+    padding: 0 7.5%;
+}
+.btnBack {
+    height: 35px;
+    width: 70px;
+    border: none;
+    float:left;
+    background: url(back.png)  no-repeat 10px center;
+}
+	

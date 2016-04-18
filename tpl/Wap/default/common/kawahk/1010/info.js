@@ -1,0 +1,1 @@
+BCMain.Info.ads90919367={sn:"ads90919367",error:"no adinfo",errno:1,data:{}};

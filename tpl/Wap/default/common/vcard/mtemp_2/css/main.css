@@ -1,0 +1,138 @@
+
+/**
+ * = global 统一样式
+ *******************************************************************************************************/
+/* 改变动画的效果方式*/
+* {
+  -webkit-transition-timing-function: ease-in-out;
+     -moz-transition-timing-function: ease-in-out;
+      -ms-transition-timing-function: ease-in-out;
+       -o-transition-timing-function: ease-in-out;
+          transition-timing-function: ease-in-out;
+}
+
+/*sprite图片合并*/
+.css_sprite01 { background-image:url(/tpl/Wap/default/common/vcard/temp_1/images/css_sprite01.png)!important;  background-repeat: no-repeat!important; } 
+
+
+/**
+ * = function 功能样式
+ *******************************************************************************************************/
+.f-ofh {overflow: hidden; height: 100%!important; } 		/*隐藏内容-overflow-hidden*/
+.f-hide { display: none!important; } 						/*隐藏内容*/
+
+.f-tc { text-align: center; }
+.f-tr { text-align: right; }
+.f-fl { float: left; }
+.f-fr { float: right; }
+.f-fixed { position: fixed;}
+.f-cur { cursor: pointer; }
+
+ 
+ 
+/**
+ * 声音元件
+ * -u-audio
+ */
+.u-audio { position: absolute; top: -15px; right: 5%; width: 102px; height: 73px; z-index: 90; }
+.u-audio .res_audio { position: absolute; top: 0; left: 0; opacity: 0; height: 0; width: 0; }
+.u-audio .btn_audio { width: 100%; padding-top: 39px; height: 44px; }
+.u-audio .btn_audio strong,
+.u-audio .btn_audio .audio_open { display: inline-block; height: 32px; line-height: 32px; vertical-align: middle; }
+.u-audio .btn_audio strong { width: 57px; font-size: 18px;font-weight:normal; color: #fff; opacity: 1; }
+.u-audio .btn_audio .audio_open { position: absolute; bottom: 0; left: 56px; width: 32px; background-size: 90px auto; }
+.u-audio .btn_audio strong.z-hide { opacity: 0; }
+.u-audio .btn_audio strong.z-move { 
+	-webkit-transition:opacity 0.5s;
+  	   -moz-transition:opacity 0.5s;
+	    -ms-transition:opacity 0.5s;
+	     -o-transition:opacity 0.5s;
+	        transition:opacity 0.5s;
+}
+.u-audio.z-low { z-index: 1; }
+/**
+ * loading
+ * -u-pageLoading
+ */
+.u-pageLoading { display:none; position:fixed; top:0; left:0; z-index:99999; height:100%; width:100%; background:rgba(0,0,0,0.6); }
+.u-pageLoading img { position:absolute; top:40%; left:50%; height:100px; width:100px; margin:-50px 0 0 -50px; }
+
+
+/**
+ * = Layout 布局样式
+ *******************************************************************************************************/
+
+
+.translate-front { position: fixed; top: 0; left: 0; z-index: 100; height: 100%; width: 100%; opacity: 0; 
+	-webkit-transition: opacity 1s;
+	   -moz-transition: opacity 1s;
+	    -ms-transition: opacity 1s;
+	     -o-transition: opacity 1s;
+	        transition: opacity 1s;
+}
+.translate-front .mengban-warn { position: absolute; }
+.translate-front.z-show { opacity: 1; }
+
+.translate-back { position: relative; width: 100%; height: 100%; }
+
+/**
+ * = modle 模块样式
+ *******************************************************************************************************/
+/**
+ * 单页面page模块
+ * -m-page
+ */
+.m-page { position: absolute; top:0; left: 0; width:100%; height: 100%; z-index: 9; background: #ddd; }
+.m-page .page-con { position: relative; width: 100%; height: 100%; overflow: hidden; }
+.m-page.active { z-index:40; }
+.m-page.fixed { position: fixed; }
+.m-page.move {
+	-webkit-transition:all 0.3s;
+  	   -moz-transition:all 0.3s;
+	    -ms-transition:all 0.3s;
+	     -o-transition:all 0.3s;
+	        transition:all 0.3s;
+}
+
+
+/**
+ * = pluns 插件样式
+ *******************************************************************************************************/
+/*lazy-img*/
+.lazy-img,
+.lazy-finish { background-size: cover; background-repeat: no-repeat; background-position: center;}
+
+/*声音*/
+.coffee-steam-box { display: none; }
+
+/*轮播图*/
+.m-imgBox { height: 380px; width: 640px; }
+
+/*地图*/
+.ylmap { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index:300; overflow: hidden;  
+	-webkit-transition: all 0.8s;
+	   -moz-transition: all 0.8s;
+	    -ms-transition: all 0.8s;
+	     -o-transition: all 0.8s;
+	        transition: all 0.8s;
+
+	-webkit-transform: translate(0,100%);
+	   -moz-transform: translate(0,100%);
+	    -ms-transform: translate(0,100%);
+	     -o-transform: translate(0,100%);
+	        transform: translate(0,100%);
+}
+.ylmap.mapOpen { 
+	-webkit-transform: translate(0,0);
+	   -moz-transform: translate(0,0);
+	    -ms-transform: translate(0,0);
+	     -o-transform: translate(0,0);
+	        transform: translate(0,0);
+}
+.ylmap.show { display:block; }
+.ylmap .bk{ position:absolute;width:100%;height:100%;text-align:center;z-index:-1;background: #efebed; }
+.ylmap .bk span{ display: inline-block; margin-top: 48%; width: 59px;height: 49px; background-position: -72px -93px; }
+.ylmap .tit p a span { background-position: -72px -144px; }
+.ylmap .tit p a {font-size: 18px!important;}
+
+

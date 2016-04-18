@@ -1,0 +1,115 @@
+@charset "utf-8";
+HTML {
+	OVERFLOW-X: hidden; 
+}
+* {
+	LIST-STYLE-TYPE: none; BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN: 0px; BORDER-LEFT: 0px; PADDING-RIGHT: 0px
+}
+BODY {
+	BACKGROUND: #fff; POSITION: relative; COLOR: #333; OUTLINE-WIDTH: medium; FONT: 24px/1.8 "Hiragino Sans GB", "微软雅黑", "Lucida Grande", "Lucida Sans Unicode", "Helvetica", "Arial", "Verdana", "sans-serif"; OUTLINE-STYLE: none; MARGIN: 0px auto; OUTLINE-COLOR: invert; WIDTH: 640px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-text-size-adjust: none
+}
+a
+{
+	list-style-type:none;
+	color:#FFF;
+}
+.biaoti
+{
+	text-align:center;
+	font-size:30px;
+}
+.phone
+{
+	text-align:center;
+	margin-top:20px;
+}
+.text
+{
+	width:600px;
+	height:70px;
+	border:#F00 solid 2px;
+	font-weight:bold;
+	font-size:30px;
+}
+.button
+{
+	height:60px;
+	width:580px;
+	color:#FFF;
+	margin-top:10px;
+	background-color:#F33;
+	font-size:30px;
+}
+.daohang
+{
+	width:640px;
+	height:250px;
+	position:fixed;
+	bottom:0px;
+}
+.daohang ul
+{
+	height:100px;
+	line-height:100px;
+	width:100%;
+	float:left;
+	color:#FFF;
+	border:#FFF solid 1px;
+}
+.daohang .li1,.daohang .li2,.daohang .li3
+{
+	line-height:100px;
+	float:left;
+	text-align:center;
+	width:24.8%;
+	border-right:#666 solid 1px;
+		background:#000;
+}
+.li4
+{
+	line-height:100px;
+	float:left;
+	text-align:center;
+	width:24.8%;
+		background:#000;
+}
+.daohang .zixun
+{
+	height:150px;
+	width:25%;
+	float:left;
+	color:#FFF;
+	border:#F00;
+	float:right;
+	margin-top:-30px;
+	padding-bottom:30px;
+	display:none;
+		
+}
+.zixun li
+{
+	height:50px;
+	background:#000;
+	margin-left:30px;
+	
+}
+.zixunbg
+{
+	display:block;
+	background:#000;
+}
+
+.clear {
+	clear: both;
+	
+}
+.topd {
+	background: 0px 0px rgb(255, 255, 255); margin: 10px; padding: 15px; border-radius: 5px; border: 1px solid rgb(221, 221, 221); border-image: none; text-align: center; display: block; cursor: pointer; box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.15); -moz-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15); -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15); -webkit-border-radius: 5px; -moz-border-radius: 5px;
+	color:#999;
+}
+a
+{
+	text-decoration:none;
+	list-style-type:none;
+}
+
