@@ -1,0 +1,16 @@
+﻿#cate16 .mainmenu {
+right: 0;
+} 
+#cate16 .mainmenu li {
+float: right;
+} 
+#cate16 .mainmenu li .menubtn {
+margin-left: 0;
+margin-right: 8px;
+} 
+.btn_music {
+left: 15px !important;
+} 
+
+#cate16 .mainmenu li .menubtn{background-color:rgba(255, 255, 255, 0.8);}
+#cate16 .menutitle {color: #333;}

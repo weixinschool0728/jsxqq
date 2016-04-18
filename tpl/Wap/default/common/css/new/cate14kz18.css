@@ -1,0 +1,21 @@
+#cate14 .mainmenu li:last-of-type {
+margin-bottom: 0;
+}
+#cate14 .mainmenu {
+margin: 0 5% 0 0;
+position: absolute;
+bottom: auto;
+top:0;
+right:0;
+width:150px;
+}
+#cate14 .mainmenu ul {
+margin:65px 0 0 0;
+}
+#cate14 .mainmenu ul li {
+float:none; width:100%;
+}
+#cate14 .mainmenu li a {
+background-color: rgba(255, 255, 255, 0.7);
+color:#000;
+} 

@@ -1,0 +1,358 @@
+.gift-detail-wrap .cBox {
+}
+i{font-style:normal}
+.gift-detail-wrap .imgBox {
+    max-width: 394px;
+    margin: 0 auto;
+    overflow: hidden
+}
+.gift-detail-wrap .imgBox img{
+    max-width: 360px;
+	max-height:200px;
+}
+.imgBox-wrap {
+    border-bottom: 1px solid #c8cacc
+}
+
+.imgBox-img {
+    display: block;
+    height: 100%;
+    margin: 0 auto
+}
+
+.gift-detail-info-wrap {
+    padding: 0 19px;
+    background-color: #fff;
+    border-bottom: 1px solid #c8cacc
+}
+
+.gift-detail-btns-wrap {
+    display: -webkit-box;
+    -webkit-box-pack: justify;
+    height: 3rem;
+    line-height: 58px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #ddd
+}
+
+.gift-detail-btn-group {
+    height: 42px;
+    width: 91px;
+    margin-top: 8px;
+    border: 1px solid #fab03b;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    text-align: center
+}
+
+.detail-gift-status {
+    height: 18px;
+    line-height: 18px;
+    color: #7a7c80
+}
+
+.detail-gift-btn {
+    height: 23px;
+    line-height: 23px;
+    background-color: #fab03b;
+    border-top: 1px solid #fab03b;
+    font-weight: 700;
+    border-radius: 0 0 3px 3px;
+    -webkit-border-radius: 0 0 3px 3px;
+    color: #fff
+}
+
+.detail-gift-btn.disabled {
+    background-color: #fff;
+    color: #fab03b
+}
+
+.gift-detail-need {
+    display: block;
+    position: relative;
+    padding-left: 1.1rem;
+    font-size: 1.5em;
+    color: #fab03b
+}
+
+.gift-detail-need:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 19px;
+    width: 20px;
+    height: 20px;
+    background-image: url(../images/test_ff31963.png);
+    background-size: 20px 20px
+}
+
+.gift-detail-discount-wrap {
+    background-image: url(../images/promote_6d2a0e1.png?__sprite);
+    background-repeat: no-repeat;
+    background-size: 1.8rem 1.8rem
+}
+
+.gift-detail-discount {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-pack: center;
+    line-height: 1rem;
+    color: #7a7c80
+}
+
+.gift-detail-origin {
+    font-weight: 700;
+    text-decoration: line-through
+}
+
+.gift-detail-origin:before {
+    content: '';
+    display: inline-block;
+    vertical-align: baseline;
+    width: .6rem;
+    height: .6rem;
+    margin-right: .1rem;
+    background-image: url(../images/coin_7fa973a.png?__sprite);
+    background-repeat: no-repeat;
+    background-size: .6rem .6rem
+}
+
+.gift-detail-discount-time {
+}
+
+.gift-detail-discount-time span {
+    color: #f36969
+}
+
+.gift-detail-wrap .btn, .gift-detail-wrap .activity-btn {
+    box-sizing: border-box;
+    width: 5.6rem;
+    margin: .5rem 0;
+    height: 1.9rem;
+    line-height: 1.8rem;
+    background-color: #fab03b;
+    border: 1px solid #fab03b;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    text-align: center;
+    color: #fff
+}
+
+.gift-detail-wrap .noGift {
+    background-color: #ccc;
+    border-color: #ccc
+}
+
+.gift-detail-wrap .a-btn {
+    background-color: #fab03b;
+    border: 1px solid #fab03b;
+	color: #fff
+}
+
+.gift-detail-wrap .js-lottery a{
+	color: #fff;
+}
+	
+.gift-detail-wrap .activity-noGift {
+    background-color: #fab03b;
+    border-color: #fab03b
+}
+
+.gift-detail-info-wrap > p {
+    margin: 0 0 .25rem;
+    font-size: 14px;
+    line-height: 18px;
+    color: #7a7c80
+}
+
+.gift-detail-wrap .title {
+    margin: .1rem 0 0;
+    font-weight: 700;
+    line-height: 33px;
+    color: #333;
+    font-size: 15px
+}
+
+.gift-detail-wrap .mark {
+}
+
+.gift-detail-wrap .condition{
+	line-height: 20px;
+    color: #333;
+    font-size: 15px
+}
+
+.gift-detail-wrap .link {
+    color: #838383
+}
+
+.gift-detail-wrap .link a {
+    color: #00f;
+    text-decoration: none
+}
+
+.gift-detail-extra-box {
+    margin: 8px 7px;
+    padding: 0 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    background-color: #fff
+}
+
+.gift-detail-box-title {
+    border-bottom: 1px solid #ddd;
+    height: 39px;
+    line-height: 39px;
+    font-size: 15px;
+    font-weight: 700
+}
+
+.gift-detail-extra-content {
+    margin: 0 0 5px;
+    padding: 8px 0 4px;
+    line-height: 18px;
+    color: #7a7c80
+}
+
+.gift-detail-vcode-img-wrap {
+    text-align: left;
+    background-color: #fff
+}
+
+.gift-detail-vcode-img {
+    display: block;
+    margin: 0 auto;
+    height: 40px
+}
+
+.gift-detail-vcode, .gift-detail-vcode-text {
+    display: block;
+    margin: 0 auto;
+    height: 40px;
+    line-height: 40px;
+    width: 230px;
+    text-align: left
+}
+
+.gift-detail-vcode {
+    box-sizing: border-box;
+    border: 1px solid #c9c9c9;
+    border-radius: 4px;
+    padding: 0 5px;
+    font-size: 18px;
+    line-height: 1em
+}
+
+.noDate {
+    text-align: center;
+    margin-top: 20px
+}
+
+#mask {
+    width: 100% !important;
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #000;
+    opacity: .3;
+    z-index: 1000;
+    -webkit-transform: translateZ(0);
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-user-select: none;
+    -webkit-user-drag: none
+}
+
+#dialog-wrap {
+    background: #f5f5f5;
+    -webkit-border-radius: 7px;
+    width: 280px;
+    height: auto;
+    left: 50%;
+    margin-left: -140px;
+    top: 50%;
+    overflow: hidden;
+    z-index: 1002;
+    position: absolute;
+    display: none
+}
+
+.dialog-title {
+    height: auto;
+    min-height: 15px;
+    line-height: 50px;
+    font-size: 16px;
+    text-align: center;
+    font-weight: 700;
+    -webkit-border-radius: 3px 3px 0 0
+}
+
+.dialog-content {
+    padding: 10px;
+    position: relative;
+    text-align: center;
+    color: #333
+}
+
+.dialog-btns {
+    table-layout: fixed;
+    display: table;
+    border-collapse: collapse;
+    margin: 10px 0 0;
+    width: 100%
+}
+
+.dialog-btns .dialog-btn {
+    padding: 0;
+    font-size: 18px;
+    width: 100%;
+    display: table-cell;
+    float: none;
+    text-align: center;
+    height: 44px;
+    line-height: 44px;
+    color: #0079FF;
+    border-top: 1px solid #B1B1B1;
+    background-color: #f7f7f7;
+    border-bottom: 0 none;
+    cursor: pointer
+}
+
+.dialog-btn-0 {
+    border-right: 1px solid #B1B1B1;
+    -webkit-border-bottom-left-radius: 7px
+}
+
+.dialog-btn-1 {
+    border-left: 1px solid #B1B1B1;
+    -webkit-border-bottom-right-radius: 7px
+}
+
+.noticed-wrap {
+    display: none
+}
+
+.noticed, .noticed-bg {
+    width: 213px !important;
+    height: 52px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -26px -106px;
+    background-color: transparent;
+    z-index: 100;
+    text-align: center;
+    line-height: 52px;
+    color: #fff;
+    border-radius: 4px;
+    -webkit-transform: translateZ(0);
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-user-select: none;
+    -webkit-user-drag: none
+}
+
+.noticed-bg {
+    background-color: #000;
+    opacity: .7
+}

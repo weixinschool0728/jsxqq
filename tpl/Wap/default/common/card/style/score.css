@@ -1,0 +1,344 @@
+.white-line {
+    height: 1px;
+    overflow: hidden;
+    background-color: #fbfbfc
+}
+i{font-style:normal}
+#activity-shop {
+    padding: 7px 7px 0
+}
+
+.activity-shop-banner {
+    width: 100%;
+    max-height: 150px;
+    display: block
+}
+
+#mask {
+    width: 100% !important;
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #000;
+    opacity: .3;
+    z-index: 1000;
+    -webkit-transform: translateZ(0);
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-user-select: none;
+    -webkit-user-drag: none
+}
+
+#dialog-wrap {
+    background: #f5f5f5;
+    -webkit-border-radius: 7px;
+    width: 280px;
+    height: auto;
+    left: 50%;
+    margin-left: -140px;
+    top: 50%;
+    overflow: hidden;
+    z-index: 1002;
+    position: absolute;
+    display: none
+}
+
+.dialog-title {
+    height: auto;
+    min-height: 15px;
+    line-height: 50px;
+    font-size: 16px;
+    text-align: center;
+    font-weight: 700;
+    -webkit-border-radius: 3px 3px 0 0
+}
+
+.dialog-content {
+    padding: 10px;
+    position: relative;
+    text-align: center;
+    color: #333
+}
+
+.dialog-btns {
+    table-layout: fixed;
+    display: table;
+    border-collapse: collapse;
+    margin: 10px 0 0;
+    width: 100%
+}
+
+.dialog-btns .dialog-btn {
+    padding: 0;
+    font-size: 18px;
+    width: 100%;
+    display: table-cell;
+    float: none;
+    text-align: center;
+    height: 44px;
+    line-height: 44px;
+    color: #0079FF;
+    border-top: 1px solid #B1B1B1;
+    background-color: #f7f7f7;
+    border-bottom: 0 none;
+    cursor: pointer
+}
+
+.dialog-btn-0 {
+    -webkit-border-bottom-left-radius: 7px
+}
+
+.dialog-btn-1 {
+    border-left: 1px solid #B1B1B1;
+    -webkit-border-bottom-right-radius: 7px
+}
+
+.giftListBox {
+    margin: 0 7px 8px;
+    overflow: hidden
+}
+
+.giftListBox li {
+    float: left;
+    width: 50%;
+    overflow: hidden;
+    margin-top: 8px
+}
+
+.giftListBox li .liBox {
+    margin-right: 3px;
+    margin-left: 0;
+    background: #FFF;
+    overflow: hidden
+}
+
+.giftListBox li:nth-child(2n) .liBox {
+    margin-right: 0;
+    margin-left: 3px
+}
+
+.liBox {
+    border: 1px solid #c8cacc;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    background: #f8f8f8
+}
+
+.imgBox-wrap {
+    max-width: 300px;
+    min-width: 135px;
+    min-height: 112px;
+    margin: 0 auto;
+    overflow: hidden
+}
+
+.imgBox {
+    height: 0
+}
+
+.imgBox-img {
+    width: 100%;
+    -webkit-border-radius: 4px 4px 0 0
+}
+
+.giftListBox .info {
+    margin: 7px 5px 10px;
+    border-top: 1px solid #ddd
+}
+
+.giftListBox li  {
+    font-size: 14px;
+    -webkit-box-flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.giftListBox li .need {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: end
+}
+
+.gift-detail-origin-integral {
+    text-decoration: line-through
+}
+
+.giftListBox li .title {
+    font-weight: 700;
+    line-height: 27px;
+    height: 27px;
+}
+
+.giftListBox li .ext {
+    display: -webkit-box;
+    -webkit-box-pack: justify;
+    height: 1.5rem;
+    line-height: 1.5rem
+}
+.giftListBox li .gift-list-need{
+    padding:0 0 0 50px ;
+}
+.gift-promotion-wrap {
+    line-height: .75rem
+}
+
+.gift-promote {
+    display: inline-block;
+    height: 12px;
+    width: 12px;
+    float: left;
+    margin: .05rem .1rem 0 0;
+    background-repeat: no-repeat;
+}
+
+.giftListBox li .nums {
+    color: #838383
+}
+
+.giftListBox li .needs{
+    color: #f88e74;
+    font-weight: 700
+}
+
+.giftListBox li .activity-btn {
+    color: #FFF;
+    background: #f55925;
+    margin: -8px 12px 8px 12px;
+    height: 31px;
+    line-height: 31px;
+    border-radius: 16px;
+    -webkit-border-radius: 16px;
+    text-align: center;
+    font-size: 14px;
+    border: 1px solid #f55925
+}
+
+.giftListBox li .activity-noGift {
+    color: #FFF;
+    background: #fab03b;
+    border: 1px solid #fab03b
+}
+
+.loading {
+    height: 1.2rem;
+    text-align: center
+}
+
+.loading img {
+    height: 1rem
+}
+
+.gift-promote {
+    background-position: 0px 0px
+}
+
+.gift-promote {
+    background-size: 12px 12px;
+    background-image: url(/static/integral/pkg/giftlist_0.5_z_7148e62.png)
+}
+
+
+.contents .content-wrapper {
+    margin-left: 7px;
+    margin-right: 7px;
+    margin-bottom: 16.5px
+}
+
+.contents .article {
+    min-height: 90px;
+    margin-top: 8px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    background-color: #fff;
+    border: solid 1px #c8cacc
+}
+
+.article-content {
+    position: relative;
+    padding: 10px
+}
+
+.article-logo-wrapper {
+    float: left;
+    height: 68px;
+    width: 68px;
+	border:1px solid #ccc;
+	text-align:center;
+}
+
+.article-logo-wrapper  img{
+	max-height: 68px;
+    max-width: 68px;
+    vertical-align:middle
+}
+
+.article-logo.logo-card {
+    background-image: url(../images/card.jpg)
+}
+
+.article-logo.logo-cash {
+    background-image: url(../images/cash.jpg)
+}
+
+.bg-img {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.btn-container {
+    position: absolute;
+    right: 10px;
+    width: 71.5px;
+    height: 28px;
+    margin-top: 39.5px;
+    background-color: #fab03b;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 14px;
+    text-align: center
+}
+
+.btn-container .exchange-btn {
+    display: inline-block;
+    padding: 4.5px;
+}
+
+.btn-container .disabled {
+    background-color: #fab03b
+}
+
+.article-info-container {
+    margin: 0 0 0 68px;
+    padding-left: 9px
+}
+
+.article-info-container .info-inline-container {
+    min-height: 32px
+}
+
+.article-info-container .info-title {
+    font-size: 14px;
+    font-weight: bolder;
+    color: #313233
+}
+
+.article-info-container .info-inline {
+    font-size: 12px;
+    color: #7a7c80;
+	line-height:20px;
+}
+
+.article-info-container .info-inline.text-warning {
+    color: red
+}
+
+.article-info-container .info-explain {
+    font-size: 12px;
+    color: #fab03b;
+	line-height:20px;
+}
