@@ -1,0 +1,23 @@
+﻿.banner{height:200px; text-align:center; border-bottom:2px solid #ddd;}
+.hbanner{ background: url(img/h2003070126.jpg) center no-repeat #B4B4B4;}
+.gbanner{ background: url(img/h2003070127.jpg) center no-repeat #264C79;}
+.jbanner{ background: url(img/h2003070128.jpg) center no-repeat #E2EAD5;}
+.dbanner{ background: url(img/h2003070129.jpg) center no-repeat #009ADA;}
+.nbanner{ background: url(img/h2003070130.jpg) center no-repeat #ffca22;}
+/*????????*/
+#copyright{ float:right; width:380px; text-align:right; font-size:12px; color:#FFF;}
+.main{ width:980px; margin:0px auto;}
+
+/*??????????*/
+.pos{ height:30px; line-height:30px; margin:10px 0; color:#666; font-size:14px;}
+.wxgzbox{ border:1px solid #EEE; margin-bottom:10px; background:#FFF;}
+.wxgzbox-top{ height:40px; line-height:40px; border-bottom:1px solid #EEE;}
+.wxgzbox-top h3{ float:left; font-size:16px; font-weight:normal; margin-left:10px;}
+.wxgzbor1{ border-bottom:2px solid #393;}
+.wxgzlist{ width:948px;overflow:hidden; padding:15px;}
+.wxgzlist ul{width:980px;}
+.wxgzlist li{ float:left;margin-right:24px; margin-bottom:20px; font-size:14px;}
+.wxgzlist li img{width:150px; height:130px;}
+.wxgzlist li span{ display:block; text-align:center; margin-top:3px; line-height:22px;}
+.wxgzlist li a{color:#666; display:block; width:150px; height:170px; background:#EFF1F5;padding:10px;overflow:hidden;}
+.wxgzlist li a:hover{background:#EDF8E6; color:#4F8C23;}

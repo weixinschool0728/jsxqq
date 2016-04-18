@@ -1,0 +1,24 @@
+*{ 
+	padding:0; margin:0; 
+	list-style: none;
+	/*font-family: "helvetica neue", segoe, helvetica, arial;*/
+}
+/*body, textarea{font-family: "helvetica neue", helvetica, arial;}*/
+body, textarea{font-family: "helvetica neue", helvetica, arial, "Hiragino Sans GB", "Hiragino Sans GB W3", "Microsoft Yahei", "SimHei", Sans-serif;}
+.backup{/*font-family:"Helvetica Neue", "Hiragino Sans GB", "Segoe UI", "Microsoft Yahei", "微软雅黑", Tahoma, Arial, STHeiti, sans-serif;*/}
+a,img{ border:0; text-decoration:none;}
+
+body{ background:#FFF;}
+/*h1,h2,h3,h4,h5,h6,dt{font-family: "Helvetica-Neue", "Hiragino Sans GB W3",  "Hiragino Sans GB", "Microsoft Yahei", "SimHei", arial, Sans-serif;}*/
+h1,h2,h3,h4,h5,h6,dt,a { font-family: "helvetica neue", helvetica, arial, "Hiragino Sans GB", "Hiragino Sans GB W3", "Microsoft Yahei", "SimHei", Sans-serif; }
+.topNavBox{ position:fixed; top:0; left:0; width:100%; height:40px; background:url(/tpl/Home/zuixin/common/images/topOpacityBG.png);z-index:1000;}
+.topNavCenterBox{ width:960px; margin:0 auto; line-height:50px;}
+.topNavCenterBox a{ display:block; float:left;}
+.nav{height:40px; float:right;}
+.nav li{ height:100%; margin: 0 4px; float:left; list-style:none;}
+.nav li a{ font-size:16px;letter-spacing: 1px; display:block; line-height:40px; padding-left:22px; color:#DEDEDE; text-decoration:none; text-shadow:-1px 0 1px #333;}
+.nav li.login a, .nav li.register a {color: #C0C0C0;font-size: 13px;}
+.nav li.cur a {color: #4ACFC4;}
+.nav li.register a {padding-left: 10px;}
+.nav li a:hover{ color:#fff;}
+.nav li.cur a:hover{ color:#4ACFC4;}

@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<title>案例展示_微信公众号导航_{weimicms::C('site_title')}</title>
+<meta name="keywords" content="案例展示,微信公众号导航,{weimicms::C('keyword')}"/>
+<meta name="description" content="{weimicms::C('content')}"/>
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/index.css" media="all" />
+<script type="text/javascript" src="{weimicms::RES}/js/jquery.js"></script>
+<include file="Public:header"/>
+<style type="text/css">
+.wxgzlist ul li img{
+width:208px;
+height:208px;
+}
+</style>
+<div class="banner dbanner"></div>
+<div class="main">
+    <div class="pos">当前位置: <a href="/">首页</a> &raquo; <a href="">微信公众号</a>&raquo; </div>
+    
+    <div class="wxgzbox">
+        <div class="wxgzbox-top"><h3>全部案例</h3></div>
+        <div class="wxgzlist">
+        <ul>
+	<volist name="case" id="vo">
+<li><div style="width:208px;height:208px;"><div><img src="{weimicms:$vo.img}"  /></div><div style="text-align:center;">{weimicms:$vo.name}</div></div></li>
+</volist>
+                        </ul>
+        </div>
+    </div>
+    
+    </div>
+<include file="Public:footer"/>

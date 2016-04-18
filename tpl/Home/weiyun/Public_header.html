@@ -1,0 +1,44 @@
+    <link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/mk_z.css" /> 
+	<link rel="stylesheet" type="text/css" href="{weimicms::RES}/css/public.css" /> 
+    <link rel="shortcut icon" href="{weimicms::RES}/css/img/favicon.ico" />
+</head>
+
+<body>
+    
+    <!--头部-->
+    <div class="mk_z_header">
+        <div class="mk_z_header_con fix">
+            <h1 class="f_l">
+                <a href="/" class="f_l" style="font-size: 50px;"><img src="{weimicms::RES}/images/logo.jpg" /></a>
+            </h1>
+			<div class="mk_z_header_right">
+                <div class="mk_z_header_phone"><h2>{weimicms::C('site_mp')}</h2></div>
+            <div style=" float:left; margin-top:17px;margin-right:100px;">
+            <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={weimicms::C('site_qq')}&site=qq&menu=yes"><img border="0"  src="/img/qq.png" title="点击这里给我发消息"/></a>
+            </div>
+			<div style=" float:left; margin-top:20px;margin-right:100px;">
+               <if condition="$_SESSION[uid]==false">
+			<a href="{weimicms::U('Home/Index/login')}">登录</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+			<a href="{weimicms::U('Home/Index/register')}">注册</a>
+			<else/>
+			您好,<a href="/#" hidefocus="true"  ><span style="color:red">{weimicms:$Think.session.uname}</span></a>（uid:{weimicms:$Think.session.uid}）
+			| <a href="/#" onClick="Javascript:window.open('{weimicms::U('System/Admin/logout')}','_blank')" >退出</a>
+	</if>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="mk_z_banner_rel">
+        <div class="mk_z_banner_abs">
+            <a href="/" class="">首页</a> 
+            <a href="{weimicms::U('Home/Index/guide')}" class="" >产品介绍</a> 
+            <a href="{weimicms::U('Home/Index/price')}" class="" >资费说明</a> 
+            <a href="{weimicms::U('Home/Index/hezuo')}" class="" >渠道合作</a> 
+			<a href="{weimicms::U('Home/Index/common')}" class="" >成功案例</a> 
+            <a href="{weimicms::U('Home/Index/about')}" class="" >关于我们</a> 
+            <a href="{weimicms::U('User/Index/index')}" class="" >管理中心</a> 
+            <a href="{weimicms::U('Home/Index/help')}" class="" >帮助中心</a>  
+        </div>
+    </div>
+
+    <!--头部-->

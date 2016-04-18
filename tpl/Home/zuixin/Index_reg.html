@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<!-- saved from url=(0065){weimicms:$f_siteUrl}bbs/member.php?mod=logging&action=login -->
+
+<html>
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>{weimicms:$f_siteName}-用户登入</title>
+
+<link rel="stylesheet" href="{weimicms::RES}/css/newlogin.css" media="screen">
+
+<link rel="icon" href="{weimicms:$f_siteUrl}favicon.ico" type="image/x-icon">
+
+<meta name="description" content="{weimicms:$content}">
+
+<meta name="keywords" content="{weimicms:$keyword}">
+
+<script src="{weimicms::RES}/js/jquery-1.4.4.min.js" type="text/javascript"></script>
+
+<style>
+
+.pns ul{ margin-bottom:20px;color: white;
+
+font-size: 20px;
+
+font-family: 微软雅黑;}
+
+</style>
+
+</head>
+
+<body >
+
+<div id="wxj-header">
+
+  <div class="container"> <a href="{weimicms:$f_siteUrl}"><img id="logo" src="{weimicms::RES}/images/logo2.png" alt="{weimicms:$f_siteName}"></a>
+
+    <div class="hdc cl"> 
+
+      <script src="{weimicms::RES}/js/logging.js" type="text/javascript"></script>
+
+      <form method="post" autocomplete="off" id="lsform" action="{weimicms::U('Users/checkreg')}" onsubmit="return lsSubmit();">
+
+        <div class="fastlg cl"> <span id="return_ls" style="display:none"></span>
+
+          <div class="y pns" style="background: rgba(15, 15, 15, 0.56);
+
+padding-top: 90px;
+
+padding-bottom: 40px;
+
+border-radius: 5px;"> <span class="ftid">
+
+            <select style="display: none;" selecti="0" name="fastloginfield" width="40" tabindex="900" id="ls_fastloginfield">
+
+              <option value="username"></option>
+
+            </select>
+
+            <a tabindex="900" style="width:40px" href="javascript:;" id="ls_fastloginfield_ctrl"></a> </span>
+
+           <ul>输入用户名：<input type="text" tabindex="901" onblur="if(this.value == &#39;&#39;){this.value = &#39;UID/用户名/Email&#39;;}" onfocus="if(this.value == &#39;UID/用户名/Email&#39;){this.value = &#39;&#39;;}" value="UID/用户名/Email" class="signin-text" autocomplete="off" id="ls_username" name="username"></ul>
+
+            <label for="ls_cookietime">
+
+              <input style="display:none" type="checkbox" tabindex="903" value="2592000" class="pc" id="ls_cookietime" name="cookietime">
+
+            </label>
+
+            <a onclick="showWindow(&#39;login&#39;, &#39;member.php?mod=logging&amp;action=login&amp;viewlostpw=1&#39;)" href="javascript:;"></a>
+
+            <input type="hidden" name="formhash" value="2bc9dad7">
+
+            <input type="hidden" name="referer" value="{weimicms:$f_siteUrl}index.php?con=user">
+
+            
+
+            <ul>&nbsp;&nbsp;&nbsp;输入密码：<input onblur="if(this.value == &#39;&#39;){this.value = &#39;请输入密码&#39;;this.type ='text'}" onfocus="if(this.value == &#39;请输入密码&#39;){this.value = &#39;&#39;;this.type ='password'}" type="text" value="请输入密码" tabindex="902" autocomplete="off" class="signin-text" id="ls_password" name="text"></ul>
+
+            
+
+            
+
+            <ul>&nbsp;&nbsp;&nbsp;确认密码：<input onblur="if(this.value == &#39;&#39;){this.value = &#39;请确认密码&#39;;this.type ='text'}" onfocus="if(this.value == &#39;请确认密码&#39;){this.value = &#39;&#39;;this.type ='password'}" type="text"  value="请确认密码" tabindex="902" autocomplete="off" class="signin-text" id="ls_password" name="password"></ul>
+
+            
+
+             <ul>&nbsp;&nbsp;&nbsp;输入邮箱： <input onblur="if(this.value == &#39;&#39;){this.value = &#39;请输入邮箱&#39;;}" onfocus="if(this.value == &#39;请输入邮箱&#39;){this.value = &#39;&#39;;}"  type="text" value="请输入邮箱" tabindex="902" autocomplete="off" class="signin-text" id="ls_password" name="email"></ul>
+            
+
+            <ul><button tabindex="904" class="green-btn" type="submit"><em>注册</em></button></ul>
+<input class="text" type="hidden" name="invitecode" value="<?php echo $_GET['invitecode'];?>">
+            <input type="hidden" name="quickforward" value="yes">
+
+            <input type="hidden" name="handlekey" value="ls">
+
+          </div>
+
+        </div>
+
+      </form>
+
+    </div>
+
+    <img id="mark-m1" class="mark" src="{weimicms::RES}/images/mark_1.png" style="display: block; opacity: 0.534530012857203;"> </div>
+
+</div>
+
+
+
+<div id="wxj-footer">
+
+  <div class="container"> <a target="_blank" style="font-size: 14px; margin-left: 46px;" href="{weimicms:$f_siteUrl}">{weimicms:$f_siteName}</a> <span class="sep"></span> <a target="_blank" href="{weimicms:$f_siteUrl}"></a> <span class="sep"></span><br>
+
+    <a target="_blank" href="{weimicms:$f_siteUrl}"></a> <span class="light"> © {weimicms:$f_copyright}&nbsp;&nbsp;&nbsp;{weimicms:$f_ipc}</span> <img alt="可信网址,诚信网址" src="{weimicms::RES}/images/cxwz.png" class="cxwz"> </div>
+
+</div>
+
+<div class="overlay"></div>
+
+<div id="reg-select">
+
+  <div class="container">
+
+    <div id="overlay-content">
+
+      <div class="close-btn"></div>
+
+      <div class="title">
+
+        <h1>请选择你的微信公众号类型：</h1>
+
+        <h2>注：不同的类型在营销平台中提供的服务模块会有所区别,请按您的公众号类型选择。</h2>
+
+      </div>
+
+      <div id="reg-type" class="fn-clear"> <a href="{weimicms:$f_siteUrl}" id="t-merchant"></a> <a href="{weimicms:$f_siteUrl}bbs/member.php?mod=logging&action=login#" id="t-taobao"></a> </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script type="text/javascript">
+
+var  count = 0;
+
+function changesrc() {  
+
+$('#mark-m1').attr("src","/bbs/template/weiqianlong/member/mark_"+(count%4)+".png");
+
+count++;
+
+}  
+
+$(document).ready(function(){  
+
+setInterval(changesrc, 2000);  
+
+}); 
+
+</script>
+
+
+</body>
+
+</html>
