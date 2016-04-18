@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title> {weimicms::C('site_title')} {weimicms::C('site_name')}</title>
+
+    <meta name="keywords" content="{weimicms::C('keyword')}" />
+    <meta name="description" content="{weimicms::C('content')}" />
+    <link href="{weimicms::RES}/css/global.css" rel="stylesheet" type="text/css" />
+    <link href="{weimicms::RES}/css/login.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="{weimicms::RES}/js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="{weimicms::RES}/js/jquery-ui.js"></script>
+    <script type="text/javascript" src="{weimicms::RES}/js/cj-lib.js"></script>
+    <script type="text/javascript" src="{weimicms::RES}/js/validate.js?ver=2013.1.23"></script>
+    <script type="text/javascript" src="{weimicms::RES}/js/md5.js"></script>
+
+</head>
+<body>
+<style>
+    .top1000{ width:1000px; margin:0 auto;}
+    .top_l{ padding-top:6px;}
+</style>
+
+
+<div class="top">
+    <div class="top1000"><div class="top_l"><a href=""><img src="{weimicms::RES}/images/logo2.png"/></a></div></div>
+</div>
+
+<div class="main-content">
+    <div class="main1000">
+        <div class="bg50"></div>
+        <form action="{weimicms::U('Users/resetpwd')}" enctype="multipart/form-data"  onsubmit="return onpost()" id="registerform" name="register" autocomplete="off" method="post">
+            <input name="step" value="2" type="hidden"/>
+            <input name="invite" value="" type="hidden"/>
+            <div class="reg_index">
+                <p>
+                    <label>新密码</label>
+                    <input type="text" required="" maxlength="15" size="25" autocomplete="off" tabindex="1" class="px er" name="password" placeholder="请输入新密码" id="idname"/>
+                </p>
+                <p>
+                    <label>确认密码</label>
+                    <input type="text" required="" class="px" tabindex="1" size="25" name="repassword" placeholder="确认密码要与新密码一致" id="pwd"}">
+                </p>
+                <input type="hidden" name="uid" value="{weimicms:$uid}">
+                <!--  <p>
+                   <label>验证码</label>
+                   <input name="" type="text" />
+                   <span></span>
+                 </p>-->
+                <button tabindex="1" value="true" name="regsubmit" type="submit" id="registerformsubmit" class="reg_rp"></button>
+
+            </div>
+            </form>
+        <div class="foot">{weimicms::C('copyright')} {weimicms::C('ipc')} <a href="#" target="_blank">微信接口</a>| <a href="#" target="_blank">微信第三方接口</a> | <a href="#" target="_blank">微信机器人</a> | 联系我们 隐私条款 </div>
+    </div>
+</div>
+</body>
+</html>

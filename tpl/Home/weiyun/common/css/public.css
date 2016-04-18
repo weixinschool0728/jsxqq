@@ -1,0 +1,67 @@
+﻿@charset "utf-8";
+/*全局样式*/
+body{margin:0px;text-align:left;font:12px"\5B8B\4F53",Arial,Verdana;}
+div, dl, dt,td, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, p, blockquote{list-style:none;margin:0px;padding:0px;}
+h1,h2,h3,h4,h5,h6{margin:0px;padding:0px;font-size:14px}
+Form, Select{margin:0px;padding:0px;}
+input, textarea{padding:2px;font-size:12px;resize:none;outline:none;}
+a img {border:0;}
+div, h1, h2, p, Table, Tr, Td{word-wrap:break-word;word-break:break-all;}
+address, button, caption, cite, code, dfn, em, input, optgroup, option, select, strong, textarea, th, var{font-style:normal;}
+.size960{position:relative;width:960px;margin:0 auto;}
+.pos_r{position:relative;}
+.font_arial{font-family:'Arial',sans-serif;}
+/*链接样式*/
+a{color:#327bb9;}
+a:focus{outline:0;}
+a:link,a:visited{text-decoration:none;vertical-align:baseline;word-break:break-all;outline:none;}
+a:hover{text-decoration:underline;vertical-align:baseline;word-break:break-all;}
+a:hover span{cursor:pointer;text-decoration:none;}
+/*全局清除浮动样式*/
+.fix{display:inline-block;}
+.fix{display:block;}
+.fix:after{content:""; display:block; height:0px; clear:both; visibility:hidden;}
+/*元素隐藏*/
+.ndis{display:none;}
+.bdis{display:block;}
+/*浮动方向*/
+.f_l{float:left;}
+.f_r{float:right;}
+/*对齐方向*/
+.t_c{text-align:center;}
+.t_l{text-align:left;}
+.t_r{text-align:right;}
+/*基本文字颜色*/
+.color333{color:#333;}
+.color666{color:#666;}
+.color999{color:#999;}
+.color48{color:#484848;}
+.blue{color:#327bb9;}
+.red{color:#da4545;}
+
+/*基本文字大小*/
+.size12{font-size:12px;}
+.size14{font-size:14px;}
+.size16{font-size:16px;}
+/*基本文字状态*/
+.fwn{font-weight:normal;} 
+.fwb{font-weight:bold;}
+/*常规文本缩进*/
+.t_indt{text-indent:2em;}
+/*边距样式*/
+.pl10{padding-left:10px;}
+.pr10{padding-right:10px;}
+.pt10{padding-top:10px;}
+.pb10{padding-bottom:10px;}
+.pad10{padding:10px;}
+.pad20{padding:20px;}
+.pad30{padding:30px;}
+.pl15{padding-left:15px;}
+.pr36{padding-right:36px;}
+/*行间距样式*/
+.line18{line-height:18px;}
+.line20{line-height:20px;}
+.line22{line-height:22px;}
+.line24{line-height:24px;}
+/*760结构框架*/
+.w760{width:760px;margin:0 auto;position:relative;_zoom:1;}

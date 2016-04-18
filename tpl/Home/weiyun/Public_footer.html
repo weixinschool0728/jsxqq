@@ -1,0 +1,101 @@
+ <!--底部 -->
+    
+<div class="mk_z_footer">
+        <div class="mk_z_footer_link">
+            <a href="{weimicms::U('Home/Index/about')}" target="_blank">关于我们</a> &nbsp;|&nbsp;
+			<a href="../weixin/Index_reg.html" target="_blank">申请入驻</a>&nbsp;|&nbsp;
+            <a href="{weimicms::U('Home/Index/guide')}" target="_blank">产品介绍</a> &nbsp;|&nbsp;     
+            <a href="{weimicms::U('Index/login')}"  target="_blank" >企业登录</a>        </div>
+        <div class="">&nbsp;联系电话：{weimicms::C('site_hm')}&nbsp;&nbsp;&nbsp;邮箱：{weimicms::C('site_email')} </div>
+        <div class=""> Copyright<span class="font_arial"> © </span> 2013 {weimicms::C('site_name')} {weimicms::C('site_url')}. All Rights Reserved.{weimicms::C('ipc')}&nbsp; <script src="http://s17.cnzz.com/stat.php?id=5761792&web_id=5761792" language="JavaScript"></script>
+
+  </div>
+
+</div>
+<div class="erwei" title="微信扫一扫">
+	<span class="hudongzhushou">官方微信</span>
+	<div class="erwei_big" style="display: none;">
+		<p>扫一扫，关注云微官方微信，体验智能服务</p>
+	</div>
+</div>
+<script type="text/javascript">
+    $("#wxbqusetion").click(function () {
+        $("#Suggestion").modal("show");
+        $("#Suggestion").attr("sta", "show");
+    });
+    $("#wxbqusetion").mouseenter(function () {
+        document.getElementById("img").src = "images/feedbackhover.png";
+ //       $("#img").css('src', 'images/feedbackhover.png');
+    });
+    $("#wxbqusetion").mouseleave(function () {
+        document.getElementById("img").src = "{weimicms::RES}/images/feedback.png";
+       // $("#img").css("src", "{weimicms::RES}/images/feedback.png");
+    });
+    $(document).ready(function () {
+        var erwei_time = null;
+        $(".erwei").hover(function () {
+            $(".erwei_big").show();
+        }).mouseleave(function () {
+            erwei_time = setTimeout(function () {
+                $(".erwei_big").hide();
+            }, 1000);
+        });
+        $(".erwei_big").mouseenter(function () {
+            if (erwei_time) {
+                clearTimeout(erwei_time);
+            }
+        }).mouseleave(function () {
+            erwei_time = setTimeout(function () {
+                $(".erwei_big").hide();
+            }, 1000);
+        });
+    });
+</script>
+<!--公告信息-->
+	<div id="notice_mask"></div>
+	<div id="notice_message" style="position: absolute; left: 373.5px; top: 20%;">
+		<div class="title">公 告<a onClick="javascript:jQuery('#notice_mask').hide(),jQuery('#notice_message').hide();">×</a></div>
+		<div class="content">
+			<pre style="white-space:pre-wrap;"><strong>尊敬的云微用户：</strong><br />
+&nbsp; &nbsp; &nbsp; 2015的最后一天，这样的年终惊喜是不是让您们都手舞足蹈了？不要太兴奋哦！云微得知后面还有更精彩的，准备好迎接2016年更多更牛的惊喜吧！在此云微及全体员工祝贺大家马年“马上有一切”！
+<p>
+	<img src="{weimicms::RES}/images/20131231152720_66877.jpg" alt="" /> 
+</p>
+<div style="text-align:right;">
+	<span style="line-height:1.5;">云微</span> 
+</div>
+<div style="text-align:right;">
+	<span style="line-height:1.5;">2013-12-31</span> 
+</div>
+<div>
+	<br />
+</div></pre>
+		</div>
+	</div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#notice_mask').click(function(){
+			$('#notice_mask').hide();
+			$('#notice_qrcode').hide();
+			$('#notice_message').hide();
+		});
+
+		$(window).resize(function(){
+			$('#notice_qrcode').css({
+				position:'absolute',
+				left: ($(window).width() - $('#notice_qrcode').outerWidth())/2,
+				top: ($(window).height() - $('#notice_qrcode').outerHeight())/2
+			});
+
+			$('#notice_message').css({
+				position:'absolute',
+				left: ($(window).width() - $('#notice_message').outerWidth())/2,
+				top: ($(window).height() - $('#notice_message').outerHeight())/2
+			});
+		});
+	});
+</script>
+    <!--底部 -->
+</body>
+</html>

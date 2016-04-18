@@ -1,0 +1,228 @@
+body{padding-bottom: 80px;}
+.banner{position: relative}
+.banner .bannertit{position: absolute;top: 20px;left: 50%;margin-left: -118.5px}
+.banner .yellowtit{position: absolute;left: 50%;margin-left: 35px;top: 5px;}
+.banner .boom{position: absolute;bottom: 0;left: 50%;margin-left: -90px;width: 221px;height: 180px;}
+.oTime .timeBox{border-radius: 10px;position: absolute;top: 52px;left: 0;width: 78%;}
+.oTime .timeBox h2{color: #feec26;text-align: center;font-size: 1.6rem;font-weight: normal;line-height: 2rem;    padding-bottom: .5rem;}
+.oTime .timeBox ul{display: block;overflow: hidden;text-align:center}
+.oTime .timeBox ul li{display: inline-block;vertical-align: middle;}
+.oTime .timeBox ul li.bg{font-size: 1.3rem;color: #fff;}
+.oTime .timeBox ul li.oText{color: #000;font-size: 1.1rem;vertical-align: bottom;}
+.coupon{height: 112px;width: 344px;background: url("../images/couponbg.png") no-repeat top center;background-size: cover;margin: 0 auto}
+.coupon .fl{width: 145px;margin-left: 5px;}
+.coupon .fl .avatar{}
+.coupon .fl .avatar img{width: 50px;height: 50px;border-radius: 100%;display: block;margin: 0.5rem auto}
+.coupon .fl .avatar h2{font-size: 1.2rem;color: #ca1d24;text-align: center;font-weight: normal}
+.coupon .fl p.endTime{color: #452a07;font-size: 1rem;text-align: center;padding-top: .5rem}
+.coupon .rightPart{overflow: hidden;height: 112px;}
+.coupon .limit{text-align: center;color: #ca1d24;    padding: 2px 0;}
+.coupon .limit i{font-size: 1.6rem;}
+.coupon .limit em{font-size: 2.8rem;vertical-align: bottom}
+.coupon .rightPart p{font-size: 1.2rem;color: #452a07;text-align: center;line-height: 1.8rem}
+.coupon .rightPart .code{font-size: 1.2rem;color: #2f244f;text-align: center}
+.coupon .rightPart .code em{color: #fff;padding: 5px 8px;border-radius: 5px;vertical-align: middle;background-color: rgba(172,157,80,.7);display: inline-block;margin-left: 5px}
+.coupon .rightPart .cut{color:#ca1d24;font-size: 5.6rem;text-align: center}
+.coupon .rightPart .cut i{font-size: 1.5rem}
+
+.aBtn{text-align: center}
+.aBtn a{display: block;width: 204px;height: 40px;background: url("../images/abtn.png") no-repeat;background-size: cover;margin: 10px auto;text-align: center;line-height: 3.5rem;font-size: 1.6rem;color: #fff}
+.aBtn a:nth-child(1){background-position: 0 0}
+.aBtn a:nth-child(2){background-position: 0 -40.5px}
+.otherUser{width: 95%;margin: 0 auto;}
+.otherUser .hd{position: relative;height: 22px;}
+.otherUser .hd .line{margin-top: 25px;text-align: center;}
+.otherUser .hd .line i{width: 6px;height: 6px;background:#fff;border-radius: 100%;margin-top: -2px;}
+.otherUser .hd .line .lineThis{background: #fff;height: 2px;width: 100%;-webkit-animation: line-fadeIn 4s;position: absolute;display: inline-block;left: 0;-webkit-animation: line-fadeIn 4s;}
+@-webkit-keyframes line-fadeIn{from{width: 0;}
+    to{width: 100%;}}
+.otherUser .hd .tit{position:absolute;width: 100%;top: 10px;left: 0;z-index: 5;text-align: center;top: -13px;}
+.otherUser .hd .tit h2{display: inline-block;font-size: 1.87rem;color: #fff;font-weight: normal;background: #2f244f;padding: 0 10px;}
+.otherUser .bd li{background: #3a2f58;margin-top: 10px;position: relative;padding: 10px 0;}
+.otherUser .bd li .liwrap{width: 86%;margin: 0 auto;}
+.otherUser .bd .userAvatar{margin-right: 5px;overflow: hidden}
+.otherUser .bd .userAvatar img{border-radius: 100%;width: 60px;height: 60px}
+.otherUser .bd .desc{color: #fff;position: relative}
+.otherUser .bd .desc h3{font-weight: normal;font-size: 1.4rem;color: #ffed51}
+.otherUser .bd .desc p.money{font-size: 1.6rem}
+.otherUser .bd .desc p.money i{font-size: 1rem}
+.otherUser .bd .desc p.tipText{font-size: 1rem}
+.otherUser .bd .desc>a{position: absolute;transition:all 0s ease;-webkit-transition:all 0s ease;-moz-transition:all 0s ease;-ms-transition:all 0s ease;}
+.otherUser .bd .desc>a.texta{color: #d12730;font-size: 1.2rem;top: 0;right: 15%;    border-bottom: 1px solid #d12730}
+.otherUser .bd .desc>a.arrowa{width: 17.5px;height: 10px;background: url("../images/arrow.png") no-repeat 0 -12px;background-size: cover;top: 22px;right: 0px;}
+.otherUser .bd .desc>a.arrowa.on{background-position: 0 0;}
+.otherUser .bd li .no{width: 48px;height: 49px;position: absolute;top: 0;left: 0;background: url("../images/nobg.png") no-repeat top center;}
+.otherUser .bd li .no i{font-size: 1.8rem;color: #fff;font-style: italic;width: 24px;display: block;text-align: center;line-height: 32px;}
+.otherUser .bd li:nth-child(1) .no{background: url("../images/nobg01.png") no-repeat top center;}
+.otherUser .bd li:nth-child(2) .no{background: url("../images/nobg02.png") no-repeat top center;}
+.otherUser .bd li:nth-child(2) .no i{color: #dd262e;}
+.otherUser .bd li:nth-child(3) .no{background: url("../images/nobg03.png") no-repeat top center;}
+.otherUser .bd li .subInfo{border-top: 2px solid #534a6e;margin-top: 10px;overflow: hidden;display: none}
+.otherUser .bd li .subInfo ol li{padding: 0;margin: 0;width: 100%;border-bottom: 1px dashed #534a6e;padding: 10px 0}
+.otherUser .bd li .subInfo ol li span{display: inline-block;text-align: center;overflow: hidden;color: #fff;font-size: 1.2rem}
+.otherUser .bd li .subInfo ol li span:nth-child(1){width: 43%;text-align: left;}
+.otherUser .bd li .subInfo ol li span:nth-child(2){width: 17%;}
+.otherUser .bd li .subInfo ol li span:nth-child(3){width: 35%;text-align: right;}
+.noData{text-align: center;margin: 20px 40px}
+.backTo{width: 50px;height: 50px;position: fixed;right: 10px;bottom: 20px;z-index: 99;background: #E94D7F;border-radius: 100%}
+.backTo i{    padding: 8px 9px;
+    display: inline-block;
+    text-align: center;
+    color: #fff;
+    font-size: 1.4rem;}
+.wRule{width: 290px;border: 5px solid rgba(46,37,79,.8);border-radius: 5px;background:#463870 url("../images/ball.png") no-repeat left bottom; background-size:50px 50px;color: #fff}
+.wRule .addPad{padding: 15px 20px 50px 20px;background: url("../images/rulebg.png") repeat top center;}
+.wRule h2{color: #ffde20;font-size: 16px;font-weight: normal}
+.wRule p{padding-top: 15px;}
+.wRule .xClosed,.oLogin .oClosed {position: absolute;top:-12px;right:-12px;width: 20px;height: 20px;background:#ffea73 url("../images/xclosed.png") center center no-repeat;background-size: 15px 15px;border-radius: 100%;padding: 5px; }
+
+.aRule{position: absolute;
+    top: 0;right: 20px;height:36px;width: 33px;background: url("../images/rulebtn.png") no-repeat top center;background-size: 33px 36px }
+
+.oLogin{width: 290px;    display: none;  top: 20px;left:50%;margin-left:-145px;position:fixed}
+.oLogin .windowThis .bd{background:#2F244F;border-radius: 5px;padding: 10% 0;}
+.oLogin .windowThis .bd .adMargin{margin: 0 10%}
+.oLogin .windowThis .bd .row{padding: 5px 0 20px 0}
+.oLogin .windowThis .bd .row:nth-child(3){padding-bottom: 10px}
+.oLogin .windowThis .bd .row p{font-size: 12px;color: #fff;text-align: center}
+.oLogin .windowThis .bd .row .putBorder{border: 2px solid #635B7B;border-radius: 3px;}
+.oLogin .windowThis .bd .row .putBorder i{display: inline-block;width: 24px;height: 18px;vertical-align: middle;margin: 0 5px 0 10px}
+.oLogin .windowThis .bd .row:nth-child(1) .putBorder i{height: 21px;background: url("../images/phone@2x.png") no-repeat 2px center;background-size: 16px 21px}
+.oLogin .windowThis .bd .row:nth-child(2) .putBorder i{height: 17px;background:url("../images/code@2x.png") no-repeat;background-size: 22px 17px}
+.oLogin .windowThis .bd .row:nth-child(2) .putBorder input{width: 90px}
+.oLogin .windowThis .bd .row .putBorder input{border: 0;background: none;padding: 7px 5px;color: #fff;font-size: 13px}
+.oLogin .windowThis .bd .row .putBorder .getCode{float: right;background: #F8BF13;border-radius: 5px;padding: 4px;margin: 2px 3px 0 0;color: #fff;font-size: 12px;}
+.oLogin .windowThis .bd .row button {  width: 100%;  height: 37px;text-align: center;  line-height: 33px;  font-size: 18px;  color: #fff;  border-radius: 5px;  border:0;background: url("../images/loginbtn.png") no-repeat top center;background-size: 100% 37px}
+.window{-webkit-animation:bounceInDown 1s .2s ease both;-moz-animation:bounceInDown 1s .2s ease both}
+
+
+
+@media screen and (min-width:320px){.banner .bannertit{top: 20px;margin-left: -90px;height: 60px;}
+    .banner .yellowtit{margin-left: 35px;top: 4px;height: 45px;}
+    .banner .boom{margin-left: -84px;width: 205px;height: 167px;}
+    .coupon{height: 112px;width: 300px;background: url("../images/couponbg.png") no-repeat top center;background-size: 100% 100%;}
+    .coupon .fl{width: 120px;}
+    .coupon .rightPart p{font-size: 1.2rem;}
+    .coupon .fl p.endTime{color: #452a07;font-size: 1rem;text-align: center;padding-top: .5rem;}
+    .aRule{
+        right: 8px;}
+}
+@media screen and (min-width:360px){.banner .bannertit{top: 20px;left: 50%;margin-left: -118.5px;height: 78.5px;}
+    .banner .yellowtit{left: 50%;margin-left: 35px;top: 5px;height: 50px;}
+    .coupon{width: 344px;}
+    .coupon .fl{width: 145px;margin-left: 5px;}
+    .coupon .fl p.endTime{color: #452a07;font-size: 1rem;text-align: center;padding-top: .5rem;}
+    .coupon .rightPart p{font-size: 1rem;}
+
+    .aRule{
+        right: 20px;
+        width: 37px;height: 47px;background-size: cover;
+    }
+
+}
+@media screen and (min-width:412px){.banner .boom{margin-left: -102px;width: 250px;height: 204px;}
+    .oTime .timeBox h2{font-size: 3rem;line-height: 4rem;}
+    .oTime .timeBox ul li.bg{font-size: 1.8rem;}
+    .oTime .timeBox ul li.oText{font-size: 1.4rem;}
+    .coupon{width: 390px;height: 135px;}
+    .coupon .fl{width: 165px;}
+    .coupon .rightPart{height: 135px;}
+    .coupon .fl .avatar img{width: 60px;height: 60px;margin: 0.8rem auto;}
+    .coupon .limit em{font-size: 4rem;}
+    .aRule{
+        right: 20px;
+        width: 47px;height: 57px;background-size: cover;
+    }
+    .coupon .rightPart .cut {
+        font-size: 7rem;
+    }
+    .coupon .rightPart .cut i{font-size: 3rem}
+}
+@media screen and (min-width:480px){.banner .bannertit{margin-left: -150px;height: 100px;}
+    .banner .yellowtit{margin-left: 50px;height: 60px;}
+    .banner .boom{margin-left: -118px;width: 290px;height: 236px;}
+    .oTime .timeBox ul li.bg{font-size: 2.2rem;}
+    .oTime .timeBox ul li.oText{font-size: 1.8rem;}
+    .oTime .timeBox{top: 62px;}
+    .tip img{height: 160px}
+    .aRule{
+        right: 20px;
+        width: 57px;height: 67px;background-size: cover;
+    }
+
+    .coupon .rightPart .cut {
+        font-size: 7rem;
+    }
+    .coupon .rightPart .cut i{font-size: 3rem}
+
+
+}
+@media screen and (min-width:720px){.banner .bannertit{margin-left: -236.5px;height: 157px;top: 48px;}
+    .banner .yellowtit{margin-left: 72px;height: 100px;top: 20px;}
+    .banner .boom{margin-left: -168px;width: 400px;height: 326px;}
+    .oTime .timeBox{top: 100px;}
+    .oTime .timeBox h2{margin-bottom: 14px;font-size: 3.8rem;}
+    .oTime .timeBox ul li.bg{font-size: 3rem;}
+    .oTime .timeBox ul li.oText{font-size: 2.5rem;}
+    .coupon{width: 688px;height: 224px;}
+    .coupon .fl{width: 295px;}
+    .coupon .fl .avatar img{width: 100px;height: 100px;margin: 1.5rem auto;}
+    .coupon .fl .avatar h2{font-size: 2rem;margin-bottom: 5px;}
+    .coupon .fl p.endTime{font-size: 2rem;}
+    .coupon .rightPart{height: 224px;}
+    .coupon .limit{margin: 15px 0;}
+    .coupon .limit em{font-size: 6rem;line-height: 5rem;}
+    .coupon .limit i{font-size: 3rem;}
+    .coupon .rightPart p{font-size: 2rem;line-height: 2.5rem;}
+    .coupon .rightPart .code{font-size: 2rem;margin: 5px 0;}
+    .tip img{height: 240px;}
+    .aRule{
+        right: 40px;
+        width: 67px;height: 77px;background-size: cover;
+    }
+    .coupon .rightPart .cut {
+        font-size: 11rem;
+    }
+    .coupon .rightPart .cut i{font-size: 5rem}
+
+
+}
+.banner .boom{-webkit-animation:pulse 2s .2s ease both infinite;-moz-animation:pulse 2s .2s ease both infinite;}
+@-webkit-keyframes pulse{0%{-webkit-transform:scale(1)}
+    50%{-webkit-transform:scale(1.1)}
+    100%{-webkit-transform:scale(1)}}
+@-moz-keyframes pulse{0%{-moz-transform:scale(1)}
+    50%{-moz-transform:scale(1.1)}
+    100%{-moz-transform:scale(1)}}
+.banner .bannertit{-webkit-animation:bounceInDown 1s .2s ease both;-moz-animation:bounceInDown 1s .2s ease both;}
+@-webkit-keyframes bounceInDown{0%{opacity:0;-webkit-transform:translateY(-2000px)}
+    60%{opacity:1;-webkit-transform:translateY(30px)}
+    80%{-webkit-transform:translateY(-10px)}
+    100%{-webkit-transform:translateY(0)}}
+@-moz-keyframes bounceInDown{0%{opacity:0;-moz-transform:translateY(-2000px)}
+    60%{opacity:1;-moz-transform:translateY(30px)}
+    80%{-moz-transform:translateY(-10px)}
+    100%{-moz-transform:translateY(0)}}
+.banner .yellowtit{-webkit-animation:bounceInRight 1s 1s ease both;-moz-animation:bounceInRight 1s 1s ease both;}
+@-webkit-keyframes bounceInRight{0%{opacity:0;-webkit-transform:translateX(2000px)}
+    60%{opacity:1;-webkit-transform:translateX(-30px)}
+    80%{-webkit-transform:translateX(10px)}
+    100%{-webkit-transform:translateX(0)}}
+@-moz-keyframes bounceInRight{0%{opacity:0;-moz-transform:translateX(2000px)}
+    60%{opacity:1;-moz-transform:translateX(-30px)}
+    80%{-moz-transform:translateX(10px)}
+    100%{-moz-transform:translateX(0)}}
+.coupon{-webkit-animation:fadeInUp 1s .2s ease both;-moz-animation:fadeInUp 1s .2s ease both;}
+@-webkit-keyframes fadeInUp{0%{opacity:0;-webkit-transform:translateY(20px)}
+    100%{opacity:1;-webkit-transform:translateY(0)}}
+@-moz-keyframes fadeInUp{0%{opacity:0;-moz-transform:translateY(20px)}
+    100%{opacity:1;-moz-transform:translateY(0)}}
+.tip{-webkit-animation:flipInX .5s .2s ease both;-moz-animation:flipInX .5s .2s ease both;}
+@-webkit-keyframes flipInX{0%{-webkit-transform:perspective(400px) rotateX(90deg);opacity:0}
+    40%{-webkit-transform:perspective(400px) rotateX(-10deg)}
+    70%{-webkit-transform:perspective(400px) rotateX(10deg)}
+    100%{-webkit-transform:perspective(400px) rotateX(0deg);opacity:1}}
+@-moz-keyframes flipInX{0%{-moz-transform:perspective(400px) rotateX(90deg);opacity:0}
+    40%{-moz-transform:perspective(400px) rotateX(-10deg)}
+    70%{-moz-transform:perspective(400px) rotateX(10deg)}
+    100%{-moz-transform:perspective(400px) rotateX(0deg);opacity:1}}

@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <include file="Public:header" />
+<link href="./tpl/Home/weimi/common/css/help.css" rel="stylesheet" type="text/css" />
+<link href="./tpl/Home/weimi/common/css/zifei.css" rel="stylesheet" type="text/css" />
+<link href="./tpl/Home/weimi/common/css/case.css" rel="stylesheet" type="text/css" />
+<link href="./tpl/Home/weimi/common/css/about us.css" rel="stylesheet" type="text/css" />
+    <body style="background:#fff;">
+        <!---header begin--->
+        <include file="Public:menu" />
+        <!---header end--->
+        <div class="banner_agency">
+            <img src="{weimicms::STATICS}/Home/summer/images/3.png" width="1440" height="399" />
+        </div>
+
+            <div class="congtX clr" style="width:1004px; overflow:hidden; margin:18px auto 0;">
+            	<div class="guanyu clr"><span>资费说明 TARIFF DESCRIPTION</span></div>
+                <!--表格-->
+                <div class="biaoge clr">
+                	<table>
+                    	<tr class="oneth clr">
+                        	<td class="teshu clr">微信号流量套餐</td>
+                            <weimicmslist array="groups" foreach="g">
+                                <td <weimicmsif where="$i eq $count"> class="norightborder"</weimicmsif>>{weimicms:$g.name}</th>
+                            </weimicmslist>
+                        </tr>
+                        <tr class="twoth clr">
+                        	<td class="teshu clr">
+                            	vip价格
+                                <a  class="tooltips" ><img src="./tpl/Home/weimi/common/images/img/biaoge_18.png" align="absmiddle" />
+                                <span><p>VIP只是流量套餐！</p></span></a>
+                            </td>
+                            <weimicmslist array="prices" foreach="g">
+                                <td class="price clr">
+                                    {weimicms:$g}<br />
+                                    <span>元/月</span>
+                                </td>
+                            </weimicmslist>
+                        </tr>
+                        <tr class="others clr">
+                        	<td class="teshu clr" align="absmiddle">
+                            	允许创建公众号数量
+                                <a  class="tooltips" ><img src="./tpl/Home/weimi/common/images/img/biaoge_18.png" align="absmiddle"/>
+                                <span><p>最多允许创建公众号的数量</p></span></a>
+                            </td>
+                            <weimicmslist array="wechatNums" foreach="g">
+                                <td>{weimicms:$g}</td>
+                            </weimicmslist>
+                        </tr>
+                        <tr class="others clr">
+                        	<td class="teshu clr" align="absmiddle">
+                            	自定义图文条数
+                                <a  class="tooltips" ><img src="./tpl/Home/weimi/common/images/img/biaoge_18.png" align="absmiddle"/>
+                                <span><p>每个月可以创建的图文回复数量</p></span></a>
+                            </td>
+                            <weimicmslist array="diynums" foreach="g">
+                                <td >{weimicms:$g}</td>
+                            </weimicmslist>
+                        </tr>
+                        <tr class="others clr">
+                        	<td class="teshu clr" align="absmiddle">
+                            	请求数
+                                <a  class="tooltips" ><img src="./tpl/Home/weimi/common/images/img/biaoge_18.png" align="absmiddle"/>
+                                <span><p>每个月可以进行多少次回复请求</p></span></a>
+                            </td>
+                            <weimicmslist array="connectnums" foreach="g">
+                                <td>{weimicms:$g}</td>
+                            </weimicmslist>
+                        </tr>
+                        <tr class="others clr">
+                        	<td class="teshu clr" align="absmiddle">
+                            	每月活动创建次数
+                                <a  class="tooltips" ><img src="./tpl/Home/weimi/common/images/img/biaoge_18.png" align="absmiddle"/>
+                                <span><p><strong>什么是活动创建数量？</strong></p>
+                                <p>每月允许创建的大转盘等互动活动数量</p></span></a>
+                            </td>
+                            <weimicmslist array="activitynums" foreach="g">
+                                <td>{weimicms:$g}</td>
+                            </weimicmslist>
+                        </tr>
+                        <tr class="others clr">
+                        	<td class="teshu clr" align="absmiddle">
+                            	每月会员卡开卡数量
+                                <a  class="tooltips" ><img src="./tpl/Home/weimi/common/images/img/biaoge_18.png" align="absmiddle"/>
+                                <span>
+	                                <p><strong>什么是每月会员卡开卡数量？</strong></p>
+	                                <p>每个月允许创建多少张会员卡提供给会员领取</p>
+                                </span></a>
+                            </td>
+                            <weimicmslist array="create_card_nums" foreach="g">
+                                <td >{weimicms:$g}</td>
+                            </weimicmslist>
+                        </tr>
+                        <tr class="others clr">
+                        	<td class="teshu clr" align="absmiddle">
+                            	自定义版权信息
+                                <a  class="tooltips" ><img src="./tpl/Home/weimi/common/images/img/biaoge_18.png" align="absmiddle"/>
+                                <span>
+                                	<p><strong>自定义版权信息？</strong></p>
+                                	<p>如果不能自定义，将在微网站底部显示页面有:此页面是由【{weimicms:$f_siteName}接口平台】系统生成 版权信息</p>
+                                </span></a>
+                            </td>
+                            <weimicmslist array="copyrights" foreach="g">
+                                <td><weimicmsif where="$g">可以<else/>不能</weimicmsif></td>
+                            </weimicmslist>
+                        </tr>
+                        <tr class="others clr">
+                        	<td class="teshu red clr" align="absmiddle">
+                            	购买VIP套餐
+                                <a  class="tooltips" ><img src="./tpl/Home/weimi/common/images/img/biaoge_18.png" align="absmiddle"/>
+                                <span><p><strong>简单购买流程提醒</strong></p></span></a>
+                            </td>
+                            <weimicmslist array="create_card_nums" foreach="g">
+                                <td>
+                                    <a href="{weimicms::U('User/Alipay/index',array('gid'=>0))}" class="buys clr"><span>立即充值</span></a>
+                                </td>
+                            </weimicmslist>
+                        </tr>
+                        <tr style="border-bottom:1px solid #fff;">
+                        	<td colspan="6" height="50px" style="line-height:50px; font-size:16px;">功能列表及套餐对比</td>
+                        </tr>
+                        <weimicmslist foreach="f" array="funs">
+                            <tr class="checked clr">
+                            	<td class="teshu clr" align="absmiddle">
+                                	{weimicms:$f.name}
+                                    <a  class="tooltips" ><img src="./tpl/Home/weimi/common/images/img/biaoge_18.png" align="absmiddle"/>
+                                    <span><p>{weimicms:$f.info}</p></span></a>
+                                </td>
+                                <?php 
+                                    if ($f['access']){
+                                        $i=1;
+                                        foreach ($f['access'] as $v){
+                                ?>
+                                
+                                  <td class="<?php if ($v){echo '';}else{echo 'wrong';}?><?php if ($i==$count){echo ' norightborder';}?>">&nbsp;</td>
+                                 <?php 
+                                        $i++;
+                                        }
+                                    }
+                                ?>
+                            </tr>
+                        </weimicmslist>
+                    </table>
+					<p style="padding-left:20px; padding-top:20px;"></p>
+                </div>
+            </div>
+          
+        <!---底部 begin--->
+        <include file="Public:footer" />
+       {weimicms:$validate}
+       <script>
+            $("#email").formValidator({defaultvalue:""}).inputValidator({min:6,max:100,onerror:"你输入的邮箱长度非法,请确认"}).regexValidator({regexp:"^([\\w-.]+)@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.)|(([\\w-]+.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(]?)$",onerror:"你输入的邮箱格式不正确"});
+            $("#area").formValidator({
+            tipid:"regionTip",
+            onshow:"请选择区",
+            onfocus:"请选择区",
+            oncorrect:"&nbsp;"
+            }).inputValidator({
+            min:1,
+            max:50,
+            onerror:"请选择业务区域"
+            });
+       </script>
+    </body>
+</html>

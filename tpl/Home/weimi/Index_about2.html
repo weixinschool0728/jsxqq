@@ -1,0 +1,42 @@
+    <include file="Public:header" />
+    <body style="background:#fff;">
+        <!---header begin--->
+        <include file="Public:menu" />
+        <!---header end--->
+        <!---content begin--->
+        <div class="banner_contact">
+            <img src="{weimicms::STATICS}/Home/summer/images/banner_contact.png" width="1440" height="168" />
+        </div>
+        <div class="main_contact">
+            <div class="nav_contact">
+			                <a href="#" class="hover">关于{weimicms::C('site_name')}</a><a href="#contact">联系我们</a>
+            </div>
+            <if condition="$img eq '' && $fun eq ''">
+                <div class="congtX clr">
+                	<p class="guanyu clr">{weimicms:$fun['title']}</p>
+                    <p class="duanluo clr">{weimicms:$fun['content']}</P>
+                </div>
+            <else/>
+                <div class="congtX clr">
+                    <p class="guanyu clr">{weimicms:$img['title']}</p>
+                    <p class="duanluo clr">{weimicms:$img['info']}</P>
+                </div>
+            </if>
+        </div>
+        <if condition="$img eq '' && $fun eq ''">
+        <!-- 照片展示 开始 -->
+            <div></div>
+        <elseif condition="$img eq ''" />
+            <div></div>
+        <else/>
+            <div style="text-align:center;margin: 0 auto;margin:20px 0 10px 0">
+                <img src="{weimicms:$img['pic']}">
+            </div>
+        </if>
+        <!--footer-->
+        <!---content end--->
+        <!---底部 begin--->
+        <include file="Public:footer" />
+    </body>
+</html>
+

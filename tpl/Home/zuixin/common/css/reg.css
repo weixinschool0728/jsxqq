@@ -1,0 +1,37 @@
+.guideBox{width: 100%;height: 366px;background-color: #FFF;}
+.guide{width: 960px;margin: 0 auto;height: 366px;}
+.fee{padding: 40px 0 4px;}
+.fee p, .case p{color: #9ABE53;font-size:30px;text-align: center; letter-spacing: 1px; }
+.case{padding-bottom: 20px;}
+.case p{color: #456B6A;font-size: 26px;}
+.guide-features{width: 626px; height: 43px;margin: 0 auto;padding-top: 10px;}
+.guide-features ul{ width:684px; margin:0 auto; overflow: hidden;zoom: 1;}
+.guide-features li {float: left;overflow: hidden;zoom: 1;width: 170px;}
+.guide-features .gnIcon {float: left;width: 25px;height: 25px;background:url('/tpl/Home/zuixin/common/images/icn_sprites.png') no-repeat 0 0 transparent;}
+.ssl .gnIcon {background-position: 0 0;}
+.everywhere .gnIcon {background-position: 0 -25px;}
+.limit .gnIcon {background-position: 0 -50px;}
+.mail .gnIcon {background-position: 0 -75px;}
+.guide-features .gnText {float: left;color: #AAA;padding-top: 5px; padding-left: 12px; font-size: 14px;font-weight: bold;}
+
+.guide-link-index{padding: 36px 0;}
+.guide-link-index a{margin: 0 auto; display: block; width: 177px; height: 60px; background:url('/tpl/Home/zuixin/common/images/home_btn_reg.png') no-repeat 0 0 transparent;color: #FFF;text-shadow: 0 1px 0 rgba(0,0,0,0.7);text-align: center;}
+.guide-link-index a span{display: block;padding-top: 18px;}
+.guide-link-index a:hover{background-position: 0 -61px;}
+
+.guide-link{padding: 36px 0;}
+.guide-link a{
+	margin: 0 auto; 
+	display: block; 
+	padding:18px 50px; 
+	background-color: #F09043;color: #FFF;
+	text-align: center;font-size: 22px;letter-spacing: 1px;
+	width: 218px;
+	-webkit-border-radius: 12px;
+	-moz-border-radius: 12px;
+	border-radius: 12px;
+}
+.guide-link a:hover{background-color: #FDBF23;}
+
+
+

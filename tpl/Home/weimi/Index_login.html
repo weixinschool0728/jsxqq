@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<include file="Public:header" />
+    <body>
+        <!---header begin--->
+        <include file="Public:menu" />
+<div class="header_login">
+	<div class="header_login_main">
+    	
+  </div>
+</div>
+
+<div class="bg_login_main">
+	<div class="login_main">
+      <div class="img">
+        <img src="{weimicms::STATICS}/Home/summer/images/login/img.png" width="485" height="485"/>
+      </div>
+      <div class="img02">
+        <img src="{weimicms::STATICS}/Home/summer/images/login/img02.png" width="127" height="127"/>
+      </div>
+      
+      <form action="{weimicms::U('Users/checklogin')}" method="post">
+   	  <input name="username" type="text" class="txt_name" placeholder="平台账号" />
+      <input name="password" type="password" class="txt_pwd" placeholder="密码" /> 
+	 <!-- <a href="{weimicms::U('Index/regpwd')}" style="position:relative; top:15px; left:10px;">找回密码？</a>
+     <div class="code">
+	 <span style="padding-right:2px;padding-left:10px;">验证码</span> 
+                        <script>
+                        function refreshImg2(){
+                        	document.getElementById("txtCheckCode2").src="/index.php?m=Index&a=verifyLogin&s="+Math.random();
+                        }
+                        </script>
+                        <input name="verifycode2" type="text" size="8" style="width:80px;" class="text" maxlength="4" />&nbsp;<img src="{weimicms::U('Index/verifyLogin')}" id="txtCheckCode2"/>&nbsp;<a href="javascript:refreshImg2();" style="color:#fff">看不清？换一张</a>
+      	</div>-->
+		
+		<div class="op">
+        	<span><input name="" type="checkbox" value="" />下次自动登录</span>
+        </div>
+      <input type="submit" class="btn_login" value="" />
+      <a href="{weimicms::U('Index/reg')}" class="btn_reg">新用户注册</a>
+	 
+      </form>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function(){
+	$(".img").addClass("active");
+	$(".btn_reg").animate({right:"22px"},"slow");
+
+    //刷新验证码
+    $('#J_captcha_img').click(function(){
+        var timenow = new Date().getTime(),
+            url = $(this).attr('data-url').replace(/js_rand/g,timenow);
+        $(this).attr("src", url);
+    });
+    $('#J_captcha_change').click(function(){
+        $('#J_captcha_img').trigger('click');
+    }); 
+
+})
+</script>
+
+
+
+         <include file="Public:footer" />
+
+
+    </body>
+</html>
