@@ -1,0 +1,280 @@
+#news{background-color:#F0EFEF;margin: 0 auto;
+    max-width: 640px;
+    min-width: 320px;
+}
+.page{
+	padding:15px;
+	}
+.page .page-error, .page .page-loading {
+	text-align:center;
+	position:relative;
+	line-height:30px;
+}
+.btn {
+	display:block;
+	color:#222;
+	text-decoration:none;
+	font-size:15px;
+	/*font-weight:bold;*/
+	background-color:#fcfcfc;
+	margin:0 0 15px 0;
+	padding:10px;
+	text-align:center;
+	cursor:pointer;
+}
+.icons {
+	position:relative;
+	border-radius:5px;
+	width:25px;
+	height:25px;
+	overflow:hidden;
+}
+.icons.arrow-r {
+	background:url(img/2000) no-repeat center center;
+	width:12px;
+	height:16px;
+	background-size:100%;
+}
+
+.page-content {
+	margin:18px 0; display:none;
+}
+.page-content .media {
+	margin:18px 0;
+}
+.page-content .media img, .page-content .text img {
+	width:100%;
+}
+.page-content .text {
+	font-size:12px;
+	line-height:20px;
+	color:#3e3e3e;
+	word-break:normal;
+	word-wrap:word-break;
+}
+#activity-list .header {
+	font-size:20px;
+}
+#activity-list .page-list {
+	margin:18px 0;
+	border-radius:5px;
+	border:1px solid #ccc;
+	overflow:hidden;
+}
+#activity-list .page-list .line.btn {
+	border-radius:0;
+	margin:0;
+	text-align:left;
+}
+#activity-list .page-list .line.btn .checkbox {
+	height:25px;
+	line-height:25px;
+	position:relative;
+	padding-left:35px;
+}
+#activity-list .page-list .line.btn .checkbox .icons {
+	background-color:#ccc;
+	position:absolute;
+	top:0;
+	left:0;
+}
+#activity-list .page-list .line.btn.off .icons {
+	background-image:none;
+}
+#activity-list #save.btn {
+	background-image:-webkit-gradient(linear, left top, left bottom, from(#22dd22), to(#009900));
+	background-image:-webkit-linear-gradient(#22dd22, #009900);
+	background-image:-moz-linear-gradient(#22dd22, #009900);
+	background-image:-ms-linear-gradient(#22dd22, #009900);
+	background-image:-o-linear-gradient(#22dd22, #009900);
+	background-image:linear-gradient(#22dd22, #009900);
+}
+
+#activity-detail{background:#F0EFEF;}
+.text{ margin:15px 10px; word-wrap: break-word;line-height:30px;font-size:12px;}
+.text em{ font-style:italic}
+.text p{line-height:30px}
+.showpic img{
+    width: 100%;margin-top: 5px;
+}
+.page-bizinfo{padding:15px 9px 0 10px;}
+.page-bizinfo .header #activity-name {
+	font-size:20px;
+	color:#000;
+	/*font-weight:bold;*/
+	word-break:normal;
+	word-wrap:break-word;
+}
+.page-bizinfo .header #post-date{
+	font-size:11px;
+	color:#8c8c8c;
+	margin:0;
+}
+.page-bizinfo .header .commentNum{
+	font-size:11px;
+	color:#8c8c8c;
+	margin:0;
+	display:none;
+}
+.page-bizinfo #biz-link.btn {
+	background:url(http://t2.qpic.cn/mblogpic/426c637092f06ffde172/2000) no-repeat center center;
+	background-size:100% 100%;
+	border:none;
+	height:42px;
+	position:relative;
+	text-align:left;
+	padding:12px;
+	padding-left:62px;
+}
+.page-bizinfo #biz-link.btn .arrow {
+	position:absolute;
+	top:22px;
+	right:15px;
+}
+.page-bizinfo #biz-link.btn .logo {
+	position:absolute;
+	padding:6px;
+	width:42px;
+	height:42px;
+	overflow:hidden;
+	top:6px;
+	left:5px;
+}
+.page-bizinfo #biz-link.btn .logo img {
+	width:42px;
+	height:42px;
+	position:relative;
+	z-index:10;
+	border-radius:15px;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+}
+.page-bizinfo #biz-link.btn .logo .circle {
+	position:absolute;
+	top:0;
+	left:0;
+	width:54px;
+	height:54px;
+	background:url(http://t2.qpic.cn/mblogpic/9d348430a143c680b1e4/2000) no-repeat center center;
+	z-index:100;
+	background-size:100% 100%;
+}
+.page-bizinfo #biz-link.btn #nickname {
+	font-size:15px;
+	color:#454545;
+	/*text-shadow:0 1px 1px white;*/
+}
+.page-bizinfo #biz-link.btn #weixinid {
+	font-size:12px;
+	color:#a3a3a3;
+	line-height:20px;
+	/*text-shadow:0 1px 1px white;*/
+}
+.text img {
+    max-width: 100%;
+}
+#news .list{
+	border:0px solid #D1D1D1;
+	box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.15);
+	-moz-box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.15);
+	-webkit-box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.15);
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	border-radius:5px;
+	background-color:#FFFFFF;
+	margin:10px;
+	padding:10px 15px;
+}
+#news #recommend{
+	display: block;
+	color: #535353;
+	border: 0;
+	text-align: left;
+	font-size: 16px;
+	border-radius: 0;
+	height: 33px;
+	line-height: 33px;
+	text-decoration: none;
+	margin: 0;
+	text-indent:25px;
+	background: url("img/ttext.png") no-repeat scroll left center transparent;
+	background-size: 20px auto;
+}
+#news #olload{
+	display: block;
+	color: #535353;
+	border: 0;
+	text-align: left;
+	font-size: 16px;
+	border-radius: 0;
+	height: 33px;
+	line-height: 33px;
+	text-decoration: none;
+	margin: 0;
+	text-indent:25px;
+	background: url("img/recommend.png") no-repeat scroll left center transparent;
+	background-size: 20px auto;
+}
+#news .newsmore{
+	display:block;
+	margin-top: 0;
+	cursor: pointer;
+	border-top:1px solid #E0E0E0;
+}
+#news .olditem {
+	display: block;
+	padding: 10px 0 9px 0;
+	background-color: #ffffff;
+	line-height:25px;
+    border-radius: 0;
+    box-shadow: 0;
+	text-align: left;
+	background: url("img/ico-next.png") no-repeat scroll right center transparent;
+	background-size: 7px auto;
+}
+#news .title {
+    display: block;
+	margin-left:0;
+	color: #535353;
+    font-size: 14px;
+	padding-right: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap !important;
+}
+#news .more{
+    border: 1px solid #E0E0E0;
+	-webkit-border-radius:26px;
+	-moz-border-radius:26px;
+	border-radius:26px;
+	cursor: pointer;
+	background-color:#FFFFFF;
+	margin:10px 0;
+	padding:10px;
+	text-align:center;
+	display: block;
+}
+#news .footer {
+    /*box-shadow:0 3px 6px #e2e2e2;*/
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	border-radius:5px;
+	cursor: pointer;
+	background: none repeat scroll 0 0 #ffffff;
+    border: 1px solid #DDDDDD;
+	box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.15);
+	-moz-box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.15);
+	-webkit-box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.15);
+	margin:10px;
+	padding:15px;
+	text-align:center;
+	display: block;
+}
+.footer .top{
+	background: url("img/newstop.png") no-repeat scroll left center transparent;
+	background-size: 11px auto;
+	display: block;
+    margin: 0 auto;
+    text-indent: 15px;
+    width: 85px;
+}

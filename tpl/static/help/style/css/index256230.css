@@ -1,0 +1,2151 @@
+/*============================================================
+   样式重置
+   ============================================================ */
+
+body,p,ul,ol,li,h1,h2,h3,dl,dt,dd{margin:0;padding:0;}
+h2{font-size:100%;}
+ul,dl,ol{list-style:none;}
+em{font-style: normal;}
+img{border:0 none;}
+img{display:inline-block;overflow:hidden;vertical-align:top;}
+body{-webkit-text-size-adjust:100%!important;font-family:Helvetica;}
+a,button,input,img{-webkit-touch-callout:none;}
+input,select,textarea{outline:none;}
+table{border-collapse:collapse;border-spacing:0;}
+a,button,input{-webkit-tap-highlight-color:rgba(0,0,0,0);}
+@media all and (-webkit-transform-3d){a,button,input{-webkit-tap-highlight-color:rgba(130,130,130,.52);}} 
+html,body{height:100%;}
+a{text-decoration:none; color:#07A451}
+/* ============================================================
+   公用
+   ============================================================ */
+.hide{display: none!important;}
+.bodybg-gray{background-color: #ECEDEE;}
+.flex{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}
+.flex-v{-webkit-box-orient:vertical;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;}
+.flex-1{-webkit-box-flex:1;-webkit-flex:1;-ms-flex:1;flex:1;}
+.flex-align-center{-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;align-items:center;}
+.flex-pack-center{-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}
+.flex-pack-justify{-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;}
+.mod{height: 282px;}
+.mod-img { -webkit-box-sizing: border-box; box-sizing: border-box; padding-top: 39px; height: 195px; }
+.mod-img img{display: block;margin: 0 auto;}
+.mod-title{font-size: 22px;text-align: center;}
+.mod-info{font-size: 12px;text-align: center;color: #999999;margin-top: 13px;}
+.mod-info-padding-lr{padding-left:25px;padding-right:25px;}
+.tr{padding-bottom: 22px;}
+.tr-title{color: #333333;padding-left: 15px;}
+.tr-main{background-color: #FFFFFF;border-top: 1px solid rgba(222,222,220,0.8);border-bottom: 1px solid rgba(222,222,220,0.8);padding-left: 15px;margin-top: 20px;}
+.tr-main a{display: block;height: 44px;line-height: 44px;border-bottom: 1px solid rgba(222,222,220,0.8);color: #333333;position: relative;}
+.tr-main a:last-child{border-bottom:none;}
+.tr-main a:after{content: '';position: absolute;right: 15px;top: 50%;margin-top: -7px;width:9px;height:13px;background:url("img/MsSAKEBihc7FbaR0pYAAAAASUVORK5CYII=") 0 0 no-repeat;-webkit-background-size:9px 13px;background-size:9px 13px;text-indent:-9999px;}
+
+.btn{display:block;width:100%;height:42px;line-height:42px;text-align:center;-webkit-border-radius:5px;border-radius:5px;font-size:18px;-webkit-box-sizing:border-box;box-sizing:border-box;-webkit-tap-highlight-color:rgba(0,0,0,0);}
+.btn-green{color:#FFFFFF !important;background-color: #04BE02;}
+.btn-green:fcous,.btn-green.on{background-color: #039702;color:rgba(255,255,255,0.6);}
+.btn:active{color:#fff;}
+/* ============================================================
+   内容
+   ============================================================ */
+
+/*微信支付优势*/
+.advantage{padding-top: 44px;width: 100%;}
+.advantage-banner{display:block;margin: 0 auto 45px;}
+.advantage-line{margin-bottom: 2px;text-align: center;font-size: 20px;}
+.advantage-info{width: 100%;margin-top: 39px;}
+.advantage-info li{
+    width: 100%;
+}
+.advantage-info li.li-1,.advantage-info li.li-3,.advantage-info li.li-5{
+    background:#ecedee;
+}
+.advantage-info li.li-2,.advantage-info li.li-4{
+    background:#f6f7f7;
+}
+.advantage-info .info{
+    width: 320px;
+    position: relative;
+    margin:0 auto;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-size: 320px auto;
+}
+.advantage-info .li-1 .info,.advantage-info .li-2 .info{
+    background-image:url(img/adv1256230.png);
+}
+.advantage-info .li-1 .info{
+    height: 172px;
+}
+.advantage-info .li-2 .info{
+    height: 212px;
+    background-position: 0 -172px;
+}
+.advantage-info .li-3 .info,.advantage-info .li-4 .info,.advantage-info .li-5 .info{
+    background-image: url(img/adv2256230.png);
+}
+.advantage-info .li-3 .info{
+    height: 207px;
+}
+.advantage-info .li-4 .info{
+    height: 211px;
+    background-position: 0 -207px;
+}
+.advantage-info .li-5 .info{
+    height: 254px;
+    background-position: 0 -418px;
+}
+
+.advantage-info .inner-info{
+    position: absolute;
+}
+.advantage-info .inner-info p{
+    font-size: 11px;
+    color:#999;
+    line-height: 1.6em;
+}
+.advantage-info .inner-info .green{
+    color:#21ab38;
+}
+.advantage-info .title{
+    font-size: 18px;
+    color:#000;
+    line-height: 2em;
+}
+
+.advantage-info .inner-info-1{
+    width: 154px;
+    left:150px;top: 44px;
+}
+
+.advantage-info .inner-info-2{
+    width: 200px;  top:40px;
+}
+.inner-info-2 p ,.inner-info-2 .title{
+    text-align: right;
+}
+
+.advantage-info .inner-info-3{
+    width: 157px;
+    left:140px;
+    top:70px;
+}
+.advantage-info .inner-info-4{
+    width: 165px;
+    top:60px;
+    left:20px;
+}
+.advantage-info .inner-info-4 .title,.advantage-info .inner-info-4 p{text-align: right;}
+.advantage-info .inner-info-5{
+    width: 170px;
+    top:60px;
+    left:130px;
+}
+/* [[icons */
+.banner-toggle { background: #22ac38 url(img/ico_toggle256230.png) no-repeat center center; }
+.banner-scan { background: #22ac38 url(img/ico_scan256230.png) no-repeat center center; }
+.banner-app { background: #22ac38 url(img/ico_app256230.png) no-repeat center center; }
+.banner-card { background: #22ac38 url(img/ico_card256230.png) no-repeat center center; }
+.banner { border-radius: 159px; width: 159px; height: 159px; background-size: 159px auto; }
+/* icons]] */
+/* [[细则页面 */
+.header { width: 100%; height: 233px; background: #ecedee; position: relative; }
+.main { width: 320px; margin: 0 auto; }
+.banner { position: absolute; top: 50%; margin-top: -80px; left: 50%; margin-left: -80px; }
+.banner-txt { text-align: center; color: #fff; line-height: 227px; font-size: 18px; }
+.cnt { margin-top: 25px; }
+.cnt-item-title { width: 100%; font-weight: bold; text-align: center; font-size: 18px; }
+.num { font-size: 18px; color: #22ac38; border: 2px solid #22AC38; width: 23px; height: 23px; display: inline-block; border-radius: 99px; vertical-align: baseline; line-height: 23px; font-style: normal; margin-right: 10px; text-align: center; background-color: #fff; }
+.cnt-item-img { width: 100%; height: 255px; background-size: 320px auto; background-repeat: no-repeat; margin-top: 25px; margin-bottom: 50px; }
+/* [[细则页面 - 公众号内商品消息推送 */
+.img-1-1 { background-image: url(img/p1.1256230.png); }
+.img-1-2 { background-image: url(img/p1.2256230.png); }
+.img-1-3 { background-image: url(img/p1.3256230.png); }
+.img-1-4 { background-image: url(img/p1.4256230.png); }
+/* 细则页面 - 公众号内商品消息推送]] */
+/* [[细则页面 - 扫码支付演示 */
+.img-2-1 { background-image: url(img/p2.1256230.jpg); }
+.img-2-2 { background-image: url(img/p2.2256230.png); }
+.img-2-3 { background-image: url(img/p2.3256230.png); }
+/* 细则页面 - 扫码支付演示]] */
+/* [[细则页面 - APP支付演示 */
+.img-3-1 { background-image: url(img/p3.1256230.png); }
+.img-3-2 { background-image: url(img/p3.2256230.png); }
+.img-3-3 { background-image: url(img/p3.3256230.png); }
+/* 细则页面 - APP支付演示]] */
+/* [[细则页面 - 刷卡支付演示 */
+.img-4-1 { background-image: url(img/p4.1256230.png); }
+.img-4-2 { background-image: url(img/p4.2256230.jpg); }
+.img-4-3 { background-image: url(img/p4.3256230.png); }
+/* 细则页面 - 刷卡支付演示]] */
+
+/* 细则页面]] */
+
+/* [[教程页面 */
+.tutor-title { font-weight: bold; font-size: 16px; color: #333333; display: inline-block; margin: 30px auto 30px 10px; }
+.tutor-detal { padding: 0 18px 0 12px; }
+.tutor-item-title { width: 100%; font-weight: bold; text-align: left; font-size: 18px; }
+.tutor-contents { padding-top: 7px; padding-bottom: 52px; }
+.tutor-content { font-size: 10px; padding-left: 37px; color: #333333; line-height: 1.8em; }
+.tutor-link { color: #22ac38; }
+.tutor-item { position: relative; overflow: hidden; }
+.line { position: absolute; width: 2px; height: 9999px; background: #22ac38; top: 26px; left: 12px; }
+.ico_succeed { background-image: url(img/FbPgHn0bma9FdnFZmFKrTJ7GFh70HhKJQrgopMuigtL4SxOD4SjNtjXRabQbha1HDX0tp4phoKuLNYNN8BYcoEv8ZopSsAAAAASUVORK5CYII=); background-size: 16px auto; background-position: center center; background-repeat: no-repeat; }
+/* 教程页面]] */
+.footer { padding: 50px 10px; }
+
+/*[[业务问题页面*/
+.inner-link-block{
+    margin:37px 16px auto 16px;
+    border-top:2px solid #22ac38;
+}
+.inner-link-block .links{
+    border-bottom:1px solid #ccc;
+    position: relative;
+}
+.inner-link-block .links a{
+    height:40px;
+    display:block;
+    width:auto;
+    line-height:40px;
+    padding-left:1.2em;
+    color:#666;
+    font-size:10px;
+}
+.inner-link-block .ico-arrow-right{
+    background:url(img/v7GxsvOztL4Pjo6Ork5Ofs7O76vrQ0NTHx8zIyM3h4eQv4k7JAAAAWUlEQVQI12NgCDJgAANWQWUIY6OgEEQoUBAoBJGCCTnChFjgQp4wIbaJMKEsuNBCDCFuQUEJuAiKtkyoAAtMwBEmIIgkAHNPAdSF7VCnShRAnAoUgAAPiAAAzDYQR38FG80AAAAASUVORK5CYII=) no-repeat;
+    background-size:8px auto;
+    position: absolute;
+    display: block;
+    width:8px;height:13px;
+    right:10px;
+    top:50%;
+    margin-top:-6px;
+}
+
+
+.q-and-a-muds{margin:37px 16px 0 16px;}
+    .q-and-a-title{font-size:16px;font-weight:bold;}
+    .q-and-a-muds-body{}
+        .q-and-a-muds-body dl{
+            padding-left:22px;
+            margin:37px auto;
+            background-image: url(img/IKTgD7FxoarJMCQGrRwgo1JDHDGS0WADzoKXzdUNseAAAAAElFTkSuQmCC);
+            background-repeat:no-repeat;
+            background-size:14px auto;
+        }
+        .q-and-a-muds-body dt{font-size:10px;font-weight:bold;margin:1.2em auto;word-wrap:break-word;word-break:normal;}
+        .q-and-a-muds-body dd{font-size:10px;line-height:1.9em;word-wrap:break-word;word-break:normal;}
+    .q-and-a-muds .strong-tips,.demo-mod .strong-tips{font-weight:bolder;color:#22AC38;line-height:2em;}
+
+    .q-and-a-muds-body .no-ico{background:none;}
+    .q-and-a-muds-body .no-ico dt,.q-and-a-muds-body .no-ico dd{
+    text-indent:1em;
+    background-position:left center;
+    background-repeat:no-repeat;
+    background-image: url(img/a6PZP2mNHDAAAAABJRU5ErkJggg==);
+    background-size:5px 5px;
+}
+.back-to-top{
+    display:block;
+    opacity:0.5;
+    position:fixed;
+    width:48px; height:48px;
+    border-radius:58px;
+    background-color:#c1c1c1;
+    background-image: url(img/4AJBAFPrXZUgoAAAAASUVORK5CYII=);
+    background-repeat:no-repeat;
+    background-size:23px auto;
+    background-position:center center;
+    right:25px;bottom:25px;
+}
+/*业务问题页面]]*/
+
+
+
+/*[[三个DEMO页面*/
+.posr{position:relative;overflow:hidden;min-height:100%;height:auto;}
+.demo-mod{
+    padding-top:36px;
+    text-align:center;
+}
+.demo-mod-img{
+    margin-bottom:20px;
+}
+
+.demo-price{
+    font-weight:normal;
+    text-align:center;
+    color:#ff6600;
+    font-size:36px;
+}
+.demo-pay-pic{ height:183px;}
+.btn-pay{padding:0 10px 40px 10px;}
+.demo-footer{
+    width:100%;font-size:10px;text-align:center; position:absolute;bottom:10px;color:#999999;
+}
+.demo-scan-tips{margin-top:20px;text-align:center;}
+.demo-app-title{font-size:18px;color:#666666;text-align:center;}
+.demo-mod-img-app{padding-bottom:40px;}
+.demo-app-tr{margin-top:50px;}
+.demo-mod-app{padding-top:72px;}
+
+/*三个DEMO页面]]*/
+
+.footer { padding: 50px 10px 45px; }
+/* 内容建设中 */
+.wait{text-align: center;padding-top: 87px;}
+.wait-info{color: #999999;font-size: 18px;margin-top: 30px;}
+
+/*行业解决方案公共页脚[[*/
+.proj-footer-area{
+    background-image: url(img/AS91tdHOdgMPAAAAAElFTkSuQmCC);
+    background-repeat: no-repeat;
+    background-size: 62px auto;
+    background-position: center 33px;
+    overflow: hidden;
+    width: 100%;
+    height: 225px;
+    position: relative;
+    display: block;
+}
+.proj-footer-area span{
+    text-decoration: none;
+    color:#00c800;
+    font-size: 18px;
+    position: relative;
+    display: inline-block;
+    top:115px;
+    left:50%;
+    -webkit-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+}
+
+.proj-footer-area p{
+    text-align: center;
+    position: absolute;
+    top:140px;
+    width: 100%;
+    font-size: 14px;
+    color:#666666;
+}
+/*行业解决方案公共页脚]]*/
+
+/* 线上行业解决方案 [[ */
+.online_proj{
+    width: 100%;
+    max-width: 640px;
+    margin:0 auto;
+}
+
+.offline_proj .br-line,.online_proj .br-line{/*分割线*/
+    display:block;
+    border:none;
+    border-top: 1px dotted #d5d5d5;
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    -webkit-margin-start: auto;
+    -webkit-margin-end: auto;
+    margin:30px 0.5em;
+}
+
+.online_proj .header{
+    width: 100%;
+    height: auto;
+    padding-bottom: 72.5%;
+    background-size:100% auto;
+    background-repeat: no-repeat;
+    position: relative;
+}
+.online_proj .header h1{
+    position: absolute;
+    color:#fff;
+    left:50%;
+    transform: translate(-50%,0);
+    -webkit-transform: translate(-50%,0);
+    -ms-transform: translate(-50%,0);
+    bottom:29%;
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.online_proj .index{
+    padding:25px 20px 0 20px;
+}
+.online_proj .index-title{
+    color:#333;
+    font-size: 20px;
+}
+.online_proj .index-list{
+    margin-top:2em;
+}
+.online_proj .index-list-item{
+    font-size:14px ;
+    color:#666;
+    line-height: 2em;
+    margin:0.5em 0;
+}   
+.online_proj .li-num{
+    display: inline-block;
+    color:#fff;
+    background:#28953c;
+    border-radius: 999px;
+    text-align: center;
+    width: 1.5em;
+    height: 1.5em;
+    margin-right:0.5em;
+    line-height: 1.5em;
+}
+
+.online_proj .detail-block{
+    text-align: center;
+    margin:0.1em;
+}
+
+.online_proj .detail-title{
+    font-size: 20px;
+    margin:0.5em auto;
+    text-align: center;
+    font-weight: normal;
+}
+.online_proj .highlight{
+    font-size: 30px;
+    color:#ff8400;
+    font-weight: bold;
+}
+.online_proj .detail-intro-strong{
+    color:#28953c;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+    line-height: 2em;
+}
+.online_proj .detail-intro-normal{
+    font-size: 12px;
+    color:#666;
+    text-align: center;
+    margin-top:1em;
+}
+
+.online_proj .detail-img-sprite{
+    display: inline-block;
+    overflow: hidden;
+    margin:30px auto;
+    background-repeat: no-repeat;
+}
+.offline_proj .step-intro-cnt{
+    position: relative;
+}
+.offline_proj .step-intro-cnt h4.float-left{
+    display: inline-block;
+    line-height: 1.6em;
+    position: absolute;
+    left:0;
+    top:0;
+    margin:0;
+}
+.offline_proj .step-intro-cnt h4.title{
+    display: inline-block;
+    margin:0;
+    padding-left:1.6em;
+}
+.offline_proj .step-intro-cnt h4 .light{
+    color:#a9a9a9;
+    font-weight: normal;
+}
+.offline_proj .step-intro-cnt h4 .green{
+    color:#22ac38;
+    font-weight: normal;
+}
+.offline_proj .step-intro-cnt h4.float-num em{float: left;}
+.offline_proj .step-intro-cnt h4.float-num span{display: block;overflow: hidden;}
+    /*电商部分[[*/
+    .online_proj .header.e_b{
+        background-image: url(img/e_business_title_bg256230.jpg);
+    }
+
+    .online_proj .detail-img-sprite.e_b {
+        background-image: url(img/eb_sprite256230.jpg);
+        background-size: 750px auto;
+    }
+    .online_proj .detail-img-sprite.e_b.detail-img-1{
+        width:150px;
+        height:256px;
+        background-position: -599px -1px;
+    }
+    .online_proj .detail-img-sprite.e_b.detail-img-2{
+        width:210px;
+        height:283px;
+        background-position: -2px -1px;
+    }
+    .online_proj .detail-img-sprite.e_b.detail-img-3{
+        background-image: url(img/eb_detail_img3256230.jpg);
+        background-size: 190px auto;
+        background-repeat: no-repeat;
+        width:190px;
+        height:262px;
+        background-position: 0 0;
+    }
+    .online_proj .detail-img-sprite.e_b.detail-img-4{
+        width:200px;
+        height:283px;
+        background-position:-214px -1px;
+    }
+    .online_proj .detail-img-sprite.e_b.detail-img-5{
+        width: 172px;
+        height: 245px;
+        background-image: url(img/__e_business_arrow256230.png);
+        -webkit-background-size: 100% auto;
+        background-size: 100% auto;
+    }
+    
+    /*电商部分]]*/
+
+/* 线上行业解决方案 ]] */
+
+/* 线下行业解决方案 [[ */
+.offline_proj{
+    width: 100%;
+    max-width: 640px;
+    margin:0 auto;
+}
+.offline_proj .mglr{/*margin-left & margin-right*/
+    margin-left: 15px;
+    margin-right: 15px;
+    overflow: hidden;
+}
+
+.offline_proj .header{
+    width: 100%;
+    height: auto;
+    padding-bottom: 72.5%;
+    background-size:100% auto;
+    background-repeat: no-repeat;
+    position: relative;
+}
+.offline_proj .header h1{
+    position: absolute;
+    color:#fff;
+    left:50%;
+    transform: translate(-50%,0);
+    -webkit-transform: translate(-50%,0);
+    -ms-transform: translate(-50%,0);
+    bottom:29%;
+    font-size: 18px;
+    font-weight: normal;
+}
+.offline_proj .intro-cnt{
+    margin-top:30px;
+    margin-bottom:15px;
+}
+.offline_proj .intro{
+    text-indent: 2em;
+    margin-bottom: 0.5em;
+    font-size: 14px;
+    line-height: 2em;
+    color:#333;
+}
+
+.offline_proj .table{
+    border-top:2px solid #22ac38;
+    border-bottom:2px solid #22ac38;
+    margin-top:30px;
+    margin-bottom:30px;
+}
+.offline_proj .table-no-bottom{
+    border-bottom: none;
+}
+.offline_proj .table th{
+    color:#22ac38;
+    font-size: 13px;
+    padding:12px;
+    text-align: left;
+}
+.offline_proj .table td{
+    color:#333;
+    font-size: 13px;
+    padding:12px;   
+}
+.offline_proj .table tr{
+    /*empty*/
+}
+.offline_proj .table tr.odd-row,.offline_proj .table tr:nth-child(even){
+    background:#ededed;
+}
+.offline_proj .detail-banner{
+    width: auto;
+    height: 221px;
+    text-align: center;
+}
+.offline_proj .detail-banner-logo{
+    display: inline-block;
+    width: 82px;
+    height: 82px;
+    -wekbit-background-size:100% auto;
+    background-size:100% auto;
+    background-repeat: no-repeat;
+    margin-top:50px;
+    margin-bottom: 20px;
+}
+.offline_proj .detail-banner h2{
+    font-weight: normal;
+    font-size: 18px;
+    color:#333333;
+}
+.offline_proj .detail-title{
+    height: 56px;
+    text-align: center;
+    border-top: 1px dashed #d6d6d6;
+    border-bottom: 1px dashed #d6d6d6;
+    line-height: 56px;
+    margin:20px 3%;
+}
+.offline_proj .txt-hide{display: none;}
+.offline_proj .step{
+    width: 320px;
+    margin:30px auto;
+    overflow: hidden;
+}
+.offline_proj .step-img{
+    width: 100%;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+}
+.offline_proj .detail-img{
+    display: block;
+    margin:40px auto 60px auto;
+    -webkit-background-size: 100% auto;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+.offline_proj .detail-normal-text{
+    margin-top:30px;
+    margin-bottom:15px;
+    font-size: 14px;
+    line-height: 2em;
+    text-indent: 2em;
+    color:#333;
+}
+.offline_proj .step-intro-cnt{
+    margin-top:40px;
+    margin-bottom: 20px;
+}
+.offline_proj .step-intro-cnt h4{
+    font-size: 16px;
+    font-weight: bold;
+    color:#333;
+    line-height: 1.6em;
+    text-align: left;
+}
+.offline_proj .step-intro-cnt h4 em{
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 99em;
+    border:2px solid #22ac38;
+    font-weight: bold;
+    color:#22ac38;
+    text-align: center;
+    line-height: 1.5em;
+    font-size: 12px;
+    margin-right: 0.5em;
+    vertical-align: 1px;
+}
+
+.offline_proj .step-intro-detail-cnt{
+    margin-top:5px;
+    margin-bottom:10px;
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    -webkit-margin-start: auto;
+    -webkit-margin-end: auto;
+}
+.offline_proj .step-intro-detail-cnt p{
+    color:#333;
+    font-size: 14px;
+    line-height: 1.4em;
+}
+
+.offline_proj .step-large-item{
+    position:relative;
+    overflow:hidden;
+}
+.offline_proj .step-large-title{
+    width:100%;
+    font-weight:bold;
+    text-align:left;
+    font-size:18px;
+    line-height: 28px;
+}
+
+.offline_proj .step-large-title .num{
+    font-size:18px;
+    color:#22ac38;
+    border:2px solid #22AC38;
+    width:23px; height:23px;
+    display:inline-block;
+    border-radius:99px;
+    vertical-align:baseline;
+    line-height:23px;
+    font-style:normal;
+    margin-right:10px;
+    text-align:center;
+    background-color:#fff;
+    float:left;
+}
+.offline_proj .step-large-title .num-other{
+    background-image: url(img/GVAAAAAElFTkSuQmCC);
+    background-repeat: no-repeat;
+    background-position: center center;
+    -webkit-background-size: 6px auto;
+    background-size: 6px auto;
+}
+.offline_proj .step-larger-content-cnt{
+    padding-top:7px;
+    padding-bottom:52px;
+}
+.offline_proj .step-larger-content{
+    font-size:13px;
+    padding-left:37px;
+    color:#333333;
+    line-height: 1.8em;
+}
+.offline_proj .step-large .line{
+    position:absolute;
+    width:2px;
+    height:9999px;
+    background:#22ac38;
+    top:26px;
+    left:12px;
+}
+.offline_proj .step-large-item{
+    min-height: 50px;
+}
+.offline_proj .step-large-item span{
+    display: block;
+    padding-bottom: 30px;
+    overflow: hidden;
+}
+.offline_proj .step-large-item:last-child span{
+    padding-bottom: 0;
+}
+.offline_proj .step-large-title-with-no-detail{
+    font-size: 14px;
+    color:#a9a9a9;
+    font-weight: normal;
+    line-height: 1.5em;
+}
+.offline_proj .step-intro-detail-cnt h5.sub-title{
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom:1em;
+}
+.offline_proj .step-intro-detail-cnt h5.sub-title:before{
+    display: inline-block;
+    content: ' ';
+    width: 0.5em;
+    height: 0.5em;
+    border-radius: 999em;
+    background:#22ac38;
+    margin-right:0.4em;
+    line-height: 1em;
+}
+.offline_proj .step-intro-detail-cnt h5.sub-title-squ:before{
+    border-radius: 0.15em;
+    vertical-align: middle;
+    margin-top: -0.2em;
+}
+.offline_proj .step-intro-detail-cnt h5.sub-title-left:before{float: left;margin-top: 0.35em;}
+.offline_proj .step-intro-detail-cnt h5.sub-title-left span{display: block;overflow: hidden;}
+.offline_proj .contract-email{
+    line-height: 300%;
+    font-size: 14px;
+    text-align: center;
+    color: #666;
+}
+    /*快递行业部分[[*/
+    .offline_proj .header.express{
+        background-image:url(img/express_title_bg256230.jpg);
+    }
+    .offline_proj .table.express .th-1{
+        width:35%;
+    }
+    .offline_proj .table.express .th-2{
+        width: 8%;
+    }
+    .offline_proj .table.express .th-3{
+        width: 57%;
+    }
+    .offline_proj .table.express .vs{
+        display: inline-block;
+        width: 2em;
+        height: 2em;
+        border-radius: 4em;
+        color:#fff;
+        background:#d5d5d5;
+        line-height: 2em;
+        text-align: center;
+        overflow: hidden;
+    }
+    .offline_proj .detail-banner-logo.express{
+        background-image: url(img/proj-express-logo256230.png);
+    }
+    .offline_proj .step-img-1.express{
+        height: 53px;
+        background-image: url(img/express_detail_step_img_1256230.png);
+    }
+    .offline_proj .step-img-2.express{
+        height:64px;
+        background-image: url(img/express_detail_step_img_2256230.png);
+    }
+    .offline_proj .detail-img-1.express{
+        width: 320px;
+        height: 537px;
+        background-image: url(img/express_detail_img_1256230.jpg);
+    }
+    .offline_proj .detail-img-2.express{
+        width: 320px;
+        height: 537px;
+        background-image: url(img/express_detail_img_2256230.jpg);
+    }
+    .offline_proj .detail-img-3.express{
+        width: 320px;
+        height: 538px;
+        background-image: url(img/express_detail_img_3256230.jpg);
+    }
+    .detail-list-with-ico{
+        padding-left:30px;
+        padding-top:40px;
+        padding-bottom: 40px;
+    }
+    .detail-list-with-ico li{
+        display: block;
+        position: relative;
+        height: 73px;
+        width: auto;
+    }
+    .offline_proj .ico-sprite-express{
+        position: absolute;
+        top:0;left:0;
+        display: inline-block;
+        overflow: hidden;
+        background-repeat: no-repeat;
+        background-size: 124px auto;
+        background-image: url(img/ico-sprite-express256230.png);
+        width: 40px;
+        height: 40px;
+    }
+
+    .detail-list-with-ico h4{
+        position: absolute;
+        color:#333;
+        font-size: 16px;
+        top:4px;
+        left:50px;
+        margin:0;padding:0;
+    }
+    .detail-list-with-ico p{
+        position: absolute;
+        color:#999999;
+        font-size: 12px;
+        top:28px;
+        left:50px;
+        line-height: 1.7em;
+    }
+    .offline_proj .ico-sprite-express.ico-1{
+        background-position: -1px -1px;
+    }
+    .offline_proj .ico-sprite-express.ico-2{
+        background-position: -42px -1px;
+    }
+    .offline_proj .ico-sprite-express.ico-3{
+        background-position: -83px -1px;
+    }
+    /*快递行业部分]]*/
+
+
+    /*智慧售货机行业部分[[*/
+    .offline_proj .header.nder{
+        background-image:url(img/nder_title_bg256230.jpg);
+    }
+    .offline_proj .table.nder .th-1{
+        width:35%;
+    }
+    .offline_proj .table.nder .th-2{
+        width: 8%;
+    }
+    .offline_proj .table.nder .th-3{
+        width: 57%;
+    }
+    .offline_proj .table.nder .vs{
+        display: inline-block;
+        width: 2em;
+        height: 2em;
+        border-radius: 4em;
+        color:#fff;
+        background:#d5d5d5;
+        line-height: 2em;
+        text-align: center;
+        overflow: hidden;
+    }
+    .offline_proj .detail-banner-logo.nder{
+        background-image: url(img/proj-detail-logo256230.png);
+    }
+    .offline_proj .step-img-1.nder{
+        height: 66px;
+        background-image: url(img/nder_detail_step_img_1256230.png);
+    }
+    .offline_proj .step-img-2.nder{
+        height:67px;
+        background-image: url(img/nder_detail_step_img_2256230.png);
+    }
+    .offline_proj .detail-img-1.nder{
+        width: 320px;
+        height: 215px;
+        background-image: url(img/nder_detail_img_1256230.jpg);
+    }
+    .offline_proj .detail-img-2.nder{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/nder_detail_img_2256230.jpg);
+    }
+    .offline_proj .detail-img-3.nder{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/nder_detail_img_3256230.jpg);
+    }
+    .offline_proj .detail-img-4.nder{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/nder_detail_img_4256230.jpg);
+    }
+    .offline_proj .detail-img-5.nder{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/nder_detail_img_5256230.jpg);
+    }
+    .offline_proj .detail-img-6.nder{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/nder_detail_img_6256230.jpg);
+    }
+    .offline_proj .detail-img-7.nder{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/nder_detail_img_7256230.jpg);
+    }
+    .offline_proj .detail-img-8.nder{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/nder_detail_img_8256230.jpg);
+    }
+    .offline_proj .detail-img-9.nder{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/nder_detail_img_9256230.jpg);
+    }
+    .offline_proj .detail-img-3.express{
+        width: 320px;
+        height: 538px;
+        background-image: url(img/express_detail_img_3256230.jpg);
+    }
+
+    /*智慧售货机行业部分]]*/
+
+    /*智慧百货行业部分[[*/
+    .offline_proj .header.supermarket{
+        background-image:url(img/supermarket_title_bg256230.jpg);
+    }
+    .offline_proj .table.supermarket .th-1{
+        width:35%;
+    }
+    .offline_proj .table.supermarket .th-2{
+        width: 8%;
+    }
+    .offline_proj .table.supermarket .th-3{
+        width: 57%;
+    }
+    .offline_proj .table.supermarket .vs{
+        display: inline-block;
+        width: 2em;
+        height: 2em;
+        border-radius: 4em;
+        color:#fff;
+        background:#d5d5d5;
+        line-height: 2em;
+        text-align: center;
+        overflow: hidden;
+    }
+    .offline_proj .detail-banner-logo.supermarket{
+        background-image: url(img/proj-detail-logo256230.png);
+    }
+    .offline_proj .detail-img-1.supermarket{
+        width: 320px;
+        height: 144px;
+        background-image: url(img/supermarket_detail_img_1256230.jpg);
+    }
+    .offline_proj .detail-img-2.supermarket{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/supermarket_detail_img_2256230.jpg);
+    }
+    .offline_proj .detail-img-3.supermarket{
+        width: 320px;
+        height: 163px;
+        background-image: url(img/supermarket_detail_img_3256230.jpg);
+    }
+    .offline_proj .detail-img-4.supermarket{
+        width: 320px;
+        height: 20px;
+        /*无图*/
+        /* background-image: url(img/supermarket_detail_img_4256230.jpg); */
+    }
+    .offline_proj .detail-img-5.supermarket{
+        width: 320px;
+        height: 536px;
+        background-image: url(img/supermarket_detail_img_5256230.jpg);
+    }
+    .offline_proj .detail-img-6.supermarket{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/supermarket_detail_img_6256230.jpg);
+    }
+    .offline_proj .detail-img-7.supermarket{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/supermarket_detail_img_7256230.jpg);
+    }
+    .offline_proj .detail-img-8.supermarket{
+        width: 320px;
+        height: 536px;
+        background-image: url(img/supermarket_detail_img_8256230.jpg);
+    }
+    .offline_proj .detail-img-9.supermarket{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/supermarket_detail_img_9256230.jpg);
+    }
+    /*智慧百货行业部分]]*/
+
+    /*智慧餐厅部分[[*/
+    .offline_proj .header.cater{
+        background-image:url(img/cater_title_bg256230.jpg);
+    }
+    .offline_proj .table.cater .th-1{
+        width:35%;
+    }
+    .offline_proj .table.cater .th-2{
+        width: 8%;
+    }
+    .offline_proj .table.cater .th-3{
+        width: 57%;
+    }
+    .offline_proj .table.cater .vs{
+        display: inline-block;
+        width: 2em;
+        height: 2em;
+        border-radius: 4em;
+        color:#fff;
+        background:#d5d5d5;
+        line-height: 2em;
+        text-align: center;
+        overflow: hidden;
+    }
+    .offline_proj .step-intro-detail-cnt.cater{
+        margin-top:10px;
+        margin-bottom: 10px;
+    }
+    .offline_proj .step-intro-detail-cnt.cater p{
+        font-size: 14px;
+        color:#a9a9a9;
+        margin-bottom:1.6em;
+        line-height: 1.6em;
+    }
+    .offline_proj .step-intro-detail-cnt.cater em{
+        color:#333;
+    }
+    .offline_proj .detail-banner-logo.cater{
+        background-image: url(img/proj-detail-logo256230.png);
+    }
+    .offline_proj .detail-img-1.cater{
+        width: 320px;
+        height: 150px;
+        background-image: url(img/cater_detail_img_1256230.jpg);
+    }
+    .offline_proj .detail-img-2.cater{
+        width: 320px;
+        height: 150px;
+        background-image: url(img/cater_detail_img_2256230.jpg);
+    }
+    .offline_proj .detail-img-3.cater{
+        width: 320px;
+        height: 397px;
+        background-image: url(img/cater_detail_img_3256230.jpg);
+    }
+    .offline_proj .detail-img-4.cater{
+        width: 320px;
+        height: 452px;
+        background-image: url(img/cater_detail_img_4256230.jpg);
+    }
+    .offline_proj .detail-img-5.cater{
+        width: 320px;
+        height: 320px;
+        background-image: url(img/cater_detail_img_5256230.jpg);
+    }
+    .offline_proj .detail-img-6.cater{
+        width: 320px;
+        height: 131px;
+        background-image: url(img/cater_detail_img_6256230.jpg);
+    }
+    .offline_proj .detail-img-7.cater{
+        width: 320px;
+        height: 166px;
+        background-image: url(img/cater_detail_img_7256230.jpg);
+    }
+    .offline_proj .detail-img-8.cater{
+        width: 320px;
+        height: 165px;
+        background-image: url(img/cater_detail_img_8256230.jpg);
+    }
+    .offline_proj .detail-img-9.cater{
+        width: 320px;
+        height: 169px;
+        background-image: url(img/cater_detail_img_9256230.jpg);
+    }
+    /*智慧餐厅部分]]*/
+    /*智慧便利店部分[[*/
+    .offline_proj .header.store{
+        background-image:url(img/store_title_bg256230.jpg);
+    }
+    .offline_proj .table.store .th-1{
+        width:35%;
+    }
+    .offline_proj .table.store .th-2{
+        width: 8%;
+    }
+    .offline_proj .table.store .th-3{
+        width: 57%;
+    }
+    .offline_proj .table.store .vs{
+        display: inline-block;
+        width: 2em;
+        height: 2em;
+        border-radius: 4em;
+        color:#fff;
+        background:#d5d5d5;
+        line-height: 2em;
+        text-align: center;
+        overflow: hidden;
+    }
+    .offline_proj .step-intro-detail-cnt.store{
+        margin-top:10px;
+        margin-bottom: 10px;
+    }
+    .offline_proj .step-intro-detail-cnt.store p{
+        font-size: 12px;
+        color:#a9a9a9;
+        margin-bottom:1.6em;
+        line-height: 1.6em;
+    }
+    .offline_proj .step-intro-detail-cnt.store em{
+        color:#333;
+    }
+    .offline_proj .detail-banner-logo.store{
+        background-image: url(img/proj-detail-logo256230.png);
+    }
+    .offline_proj .step-img-1.store{
+        height: 66px;
+        background-image: url(img/store_detail_step_img_1256230.png);
+    }
+    .offline_proj .detail-img-1.store{
+        width: 320px;
+        height: 525px;
+        background-image: url(img/store_detail_img_1256230.jpg);
+    }
+    .offline_proj .detail-img-2.store{
+        width: 320px;
+        height: 256px;
+        background-image: url(img/store_detail_img_2256230.jpg);
+    }
+    .offline_proj .detail-img-22.store{
+        width: 320px;
+        height: 182px;
+        background-image: url(img/store_detail_img_22256230.jpg);
+    }
+    .offline_proj .detail-img-3.store{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/store_detail_img_3256230.jpg);
+    }
+    .offline_proj .detail-img-4.store{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/store_detail_img_4256230.jpg);
+    }
+    /*智慧便利店部分]]*/
+
+        /*智慧超市行业部分[[*/
+    .offline_proj .header.chaoshi{
+        background-image:url(img/chaoshi_title_bg256230.jpg);
+    }
+    .offline_proj .table.chaoshi .th-1{
+        width:35%;
+    }
+    .offline_proj .table.chaoshi .th-2{
+        width: 8%;
+    }
+    .offline_proj .table.chaoshi .th-3{
+        width: 57%;
+    }
+    .offline_proj .table.chaoshi .vs{
+        display: inline-block;
+        width: 2em;
+        height: 2em;
+        border-radius: 4em;
+        color:#fff;
+        background:#d5d5d5;
+        line-height: 2em;
+        text-align: center;
+        overflow: hidden;
+    }
+    .offline_proj .detail-banner-logo.chaoshi{
+        background-image: url(img/proj-detail-logo256230.png);
+    }
+    .offline_proj .detail-img-1.chaoshi{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/chaoshi_detail_img_1256230.jpg);
+    }
+    .offline_proj .detail-img-2.chaoshi{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/chaoshi_detail_img_2256230.jpg);
+    }
+    .offline_proj .detail-img-3.chaoshi{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/chaoshi_detail_img_3256230.jpg);
+    }
+    .offline_proj .detail-img-4.chaoshi{
+        width: 320px;
+        height: 164px;
+        background-image: url(img/chaoshi_detail_img_4256230.jpg);
+    }
+    .offline_proj .detail-img-5.chaoshi{
+        width: 320px;
+        height: 164px;
+        background-image: url(img/chaoshi_detail_img_5256230.jpg);
+    }
+    .offline_proj .detail-img-6.chaoshi{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/chaoshi_detail_img_6256230.jpg);
+    }
+    .offline_proj .detail-img-7.chaoshi{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/chaoshi_detail_img_7256230.jpg);
+    }
+
+    .offline_proj .detail-img-8.chaoshi{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/chaoshi_detail_img_8256230.jpg);
+    }
+    /*智慧超市行业部分]]*/
+
+        /*智慧票务部分[[*/
+    .offline_proj .header.ticket{
+        background-image:url(img/ticket_title_bg256230.jpg);
+    }
+    .offline_proj .table.ticket .th-1{
+        width:35%;
+    }
+    .offline_proj .table.ticket .th-2{
+        width: 8%;
+    }
+    .offline_proj .table.ticket .th-3{
+        width: 57%;
+    }
+    .offline_proj .table.ticket .vs{
+        display: inline-block;
+        width: 2em;
+        height: 2em;
+        border-radius: 4em;
+        color:#fff;
+        background:#d5d5d5;
+        line-height: 2em;
+        text-align: center;
+        overflow: hidden;
+    }
+    .offline_proj .detail-banner-logo.ticket{
+        background-image: url(img/proj-detail-logo256230.png);
+    }
+    .offline_proj .detail-img-1.ticket{
+        width: 320px;
+        height: 190px;
+        background-image: url(img/ticket_detail_img_1256230.jpg);
+    }
+    .offline_proj .detail-img-2.ticket{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/ticket_detail_img_2256230.jpg);
+    }
+
+    .offline_proj .detail-img-3.ticket{
+        width: 320px;
+        height: 532px;
+        background-image: url(img/ticket_detail_img_3256230.jpg);
+    }
+    .offline_proj .detail-img-4.ticket{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/ticket_detail_img_4256230.jpg);
+    }
+    .offline_proj .detail-img-5.ticket{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/ticket_detail_img_5256230.jpg);
+    }
+    .offline_proj .detail-img-6.ticket{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/ticket_detail_img_6256230.jpg);
+    }
+
+    .offline_proj .detail-img-7.ticket{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/ticket_detail_img_7256230.jpg);
+    }
+
+    .offline_proj .detail-img-8.ticket{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/ticket_detail_img_8256230.jpg);
+    }
+    .offline_proj .detail-img-9.ticket{
+        width: 320px;
+        height: 536px;
+        background-image: url(img/ticket_detail_img_9256230.jpg);
+    }
+    /*智慧票务部分]]*/
+    /*智慧酒店部分[[*/
+    .offline_proj .header.hotel{
+        background-image:url(img/hotel_title_bg256230.jpg);
+    }
+    .offline_proj .header.hotel h1{
+        bottom: 38%;
+    }
+    .offline_proj .header.hotel p{
+        position: absolute;
+        color:#fff;
+        font-size: 12px;
+        text-align: center;
+        left:50%;
+        bottom:31%;
+        -webkit-transform: translate(-50%,0);
+        transform: translate(-50%,0);
+    }
+
+    .offline_proj .table.hotel .th-1{
+        width:35%;
+    }
+    .offline_proj .table.hotel .th-2{
+        width: 8%;
+    }
+    .offline_proj .table.hotel .th-3{
+        width: 57%;
+    }
+    .offline_proj .table.hotel .vs{
+        display: inline-block;
+        width: 2em;
+        height: 2em;
+        border-radius: 4em;
+        color:#fff;
+        background:#d5d5d5;
+        line-height: 2em;
+        text-align: center;
+        overflow: hidden;
+    }
+    .offline_proj .detail-banner-logo.hotel{
+        background-image: url(img/proj-detail-logo256230.png);
+    }
+    .offline_proj .detail-img-1.hotel{
+        width: 320px;
+        height: 372px;
+        background-image: url(img/hotel_detail_img_1256230.png);
+    }
+    .offline_proj .detail-img-2.hotel{
+        width: 320px;
+        height: 148px;
+        background-image: url(img/hotel_detail_img_2256230.png);
+    }
+    .offline_proj .detail-img-3.hotel{
+        width: 320px;
+        height: 224px;
+        background-image: url(img/hotel_detail_img_3256230.png);
+    }
+    .offline_proj .detail-img-4.hotel{
+        width: 320px;
+        height: 302px;
+        background-image: url(img/hotel_detail_img_4256230.png);
+    }
+    .offline_proj .detail-img-5.hotel{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/hotel_detail_img_5256230.png);
+    }
+    .offline_proj .detail-img-6.hotel{
+        width: 320px;
+        height: 367px;
+        background-image: url(img/hotel_detail_img_6256230.png);
+    }
+    .offline_proj .detail-img-7.hotel{
+        width: 320px;
+        height: 166px;
+        background-image: url(img/hotel_detail_img_7256230.png);
+    }
+    .offline_proj .detail-img-8.hotel{
+        width: 320px;
+        height: 203px;
+        background-image: url(img/hotel_detail_img_8256230.png);
+    }
+    .offline_proj .detail-img-9.hotel{
+        width: 320px;
+        height: 166px;
+        background-image: url(img/hotel_detail_img_9256230.png);
+    }
+    .offline_proj .detail-img-10.hotel{
+        width: 320px;
+        height: 361px;
+        background-image: url(img/hotel_detail_img_10256230.png);
+    }
+    .offline_proj .detail-img-11.hotel{
+        width: 320px;
+        height: 166px;
+        background-image: url(img/hotel_detail_img_11256230.png);
+    }
+    /*智慧票务部分]]*/
+    /*智慧景区行业部分[[*/
+    .offline_proj .header.scenic-spot{
+        background-image:url(img/scenic_spot_title_bg256230.jpg);
+    }
+    .offline_proj .table.scenic-spot .th-1{
+        width:35%;
+    }
+    .offline_proj .table.scenic-spot .th-2{
+        width: 8%;
+    }
+    .offline_proj .table.scenic-spot .th-3{
+        width: 57%;
+    }
+    .offline_proj .table.scenic-spot .vs{
+        display: inline-block;
+        width: 2em;
+        height: 2em;
+        border-radius: 4em;
+        color:#fff;
+        background:#d5d5d5;
+        line-height: 2em;
+        text-align: center;
+        overflow: hidden;
+    }
+    .offline_proj .detail-banner-logo.scenic-spot{
+        background-image: url(img/proj-detail-logo256230.png);
+    }
+    .offline_proj .step-img-1.scenic-spot{
+        height: 52px;
+        background-image: url(img/scenic_spot_detail_step_img_1256230.png);
+    }
+    .offline_proj .detail-img-1.scenic-spot{
+        width: 320px;
+        height: 442px;
+        background-image: url(img/scenic_spot_detail_img_1256230.jpg);
+    }
+    .offline_proj .detail-img-2.scenic-spot{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/scenic_spot_detail_img_2256230.jpg);
+    }
+
+    .offline_proj .detail-img-3.scenic-spot{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/scenic_spot_detail_img_3256230.jpg);
+    }
+    .offline_proj .detail-img-4.scenic-spot{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/scenic_spot_detail_img_4256230.jpg);
+    }
+    .offline_proj .detail-img-5.scenic-spot{
+        width: 320px;
+        height: 143px;
+        background-image: url(img/scenic_spot_detail_img_5256230.jpg);
+    }
+
+    .offline_proj .detail-img-6.scenic-spot{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/scenic_spot_detail_img_6256230.jpg);
+    }
+    .offline_proj .detail-img-7.scenic-spot{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/scenic_spot_detail_img_7256230.jpg);
+    }
+    .offline_proj .detail-img-8.scenic-spot{
+        width: 320px;
+        height: 203px;
+        background-image: url(img/scenic_spot_detail_img_8256230.jpg);
+    }
+    .offline_proj .detail-img-9.scenic-spot{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/scenic_spot_detail_img_9256230.jpg);
+    }
+    /*智慧景区行业部分]]*/
+    /*智慧医院部分[[*/
+    .offline_proj .header.hospital{
+        background-image:url(img/hospital_title_bg256230.jpg);
+    }
+    .offline_proj .table.hospital .th-1{
+        width:35%;
+    }
+    .offline_proj .table.hospital .th-2{
+        width: 8%;
+    }
+    .offline_proj .table.hospital .th-3{
+        width: 57%;
+    }
+    .offline_proj .table.hospital .vs{
+        display: inline-block;
+        width: 2em;
+        height: 2em;
+        border-radius: 4em;
+        color:#fff;
+        background:#d5d5d5;
+        line-height: 2em;
+        text-align: center;
+        overflow: hidden;
+    }
+    .offline_proj .detail-banner-logo.hospital{
+        background-image: url(img/proj-detail-logo256230.png);
+    }
+    .offline_proj .detail-img-1.hospital{
+        width: 320px;
+        height: 831px;
+        background-image: url(img/hospital_detail_img_1256230.png);
+    }
+    .offline_proj .detail-img-2.hospital{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/hospital_detail_img_2256230.png);
+    }
+    .offline_proj .detail-img-3.hospital{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/hospital_detail_img_3256230.png);
+    }
+    .offline_proj .detail-img-4.hospital{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/hospital_detail_img_4256230.png);
+    }
+    .offline_proj .detail-img-5.hospital{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/hospital_detail_img_5256230.png);
+    }
+    .offline_proj .detail-img-6.hospital{
+        width: 320px;
+        height: 538px;
+        background-image: url(img/hospital_detail_img_6256230.png);
+    }
+    .offline_proj .detail-img-7.hospital{
+        width: 320px;
+        height: 521px;
+        background-image: url(img/hospital_detail_img_7256230.png);
+    }
+
+    .offline_proj .detail-img-8.hospital{
+        width: 320px;
+        height: 414px;
+        background-image: url(img/hospital_detail_img_8256230.png);
+    }
+    /*智慧医院部分]]*/
+
+    /*智慧社区行业部分]]*/
+    /*智慧社区部分[[*/
+    .offline_proj .header.community{
+        background-image:url(img/community_title_bg256230.jpg);
+    }
+    .offline_proj .detail-img-1.community{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/community_detail_img_1256230.jpg);
+    }
+    .offline_proj .detail-img-2.community{
+        width: 320px;
+        height: 157px;
+        background-image: url(img/community_detail_img_2256230.jpg);
+    }
+    .offline_proj .detail-img-3.community{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/community_detail_img_3256230.jpg);
+    }
+    .offline_proj .detail-img-4.community{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/community_detail_img_4256230.jpg);
+    }
+    .offline_proj .detail-img-5.community{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/community_detail_img_5256230.jpg);
+    }
+    .offline_proj .detail-img-6.community{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/community_detail_img_6256230.jpg);
+    }
+    .offline_proj .detail-img-7.community{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/community_detail_img_7256230.jpg);
+    }
+    .offline_proj .detail-img-8.community{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/community_detail_img_8256230.jpg);
+    }
+    /*智慧社区部分]]*/
+    /*智慧ktv部分[[*/
+    .offline_proj .header.ktv{
+        background-image:url(img/ktv_title_bg256230.jpg);
+    }
+    .offline_proj .step-img-1.ktv {
+        height: 40px;
+        background-image: url(img/ktv_detail_step_img_1256230.png);
+    }
+    .offline_proj .detail-img-1.ktv{
+        width: 320px;
+        height: 160px;
+        background-image: url(img/ktv_detail_img_1256230.jpg);
+    }
+    .offline_proj .step-img-2.ktv {
+        height: 40px;
+        background-image: url(img/ktv_detail_step_img_2256230.png);
+    }
+    .offline_proj .detail-img-2.ktv{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/ktv_detail_img_2256230.jpg);
+    }
+    .offline_proj .step-img-3.ktv {
+        height: 40px;
+        background-image: url(img/ktv_detail_step_img_3256230.png);
+    }
+    .offline_proj .detail-img-3.ktv{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/ktv_detail_img_3256230.jpg);
+    }
+    .offline_proj .step-img-4.ktv {
+        height: 41px;
+        background-image: url(img/ktv_detail_step_img_4256230.png);
+    }
+    .offline_proj .detail-img-4.ktv{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/ktv_detail_img_4256230.jpg);
+    }
+    .offline_proj .step-img-5.ktv {
+        height: 41px;
+        background-image: url(img/ktv_detail_step_img_5256230.png);
+    }
+    .offline_proj .detail-img-5.ktv{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/ktv_detail_img_5256230.jpg);
+    }
+    .offline_proj .detail-img-6.ktv{
+        width: 320px;
+        height: 253px;
+        background-image: url(img/ktv_detail_img_6256230.jpg);
+    }
+    .offline_proj .detail-img-7.ktv{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/ktv_detail_img_7256230.jpg);
+    }
+    .offline_proj .detail-img-8.ktv{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/ktv_detail_img_8256230.jpg);
+    }
+
+    /*智慧ktv部分]]*/
+    /*智慧公益部分[[*/
+    .offline_proj .header.commonweal{
+        background-image:url(img/commonweal_title_bg256230.jpg);
+    }
+    .offline_proj .step-img-1.commonweal {
+        height: 67px;
+        background-image: url(img/commonweal_detail_step_img_1256230.png);
+    }
+    .offline_proj .detail-img-1.commonweal{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/commonweal_detail_img_1256230.jpg);
+    }
+    .offline_proj .detail-img-2.commonweal{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/commonweal_detail_img_2256230.jpg);
+    }
+    .offline_proj .detail-img-3.commonweal{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/commonweal_detail_img_3256230.jpg);
+    }
+    .offline_proj .detail-img-4.commonweal{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/commonweal_detail_img_4256230.jpg);
+    }
+    .offline_proj .detail-img-5.commonweal{
+        width: 320px;
+        height: 114px;
+        background-image: url(img/commonweal_detail_img_5256230.jpg);
+    }
+    .offline_proj .detail-img-6.commonweal{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/commonweal_detail_img_6256230.jpg);
+    }
+    .offline_proj .detail-img-7.commonweal{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/commonweal_detail_img_7256230.jpg);
+    }
+    .commonweal-bold{font-weight: bold;}
+    .offline_proj .step-intro-detail-cnt p.commonweal-bold a{color: #007AFF;}
+    .commonweal-step{color: #007AFF;margin: 25px 0;display: inline-block;font-size: 14px;}
+    .offline_proj .step-intro-detail-cnt p.commonweal-10{padding: 10px 0;}
+
+    /*智慧公益部分]]*/
+    /*智慧客运部分[[*/
+    .offline_proj .header.passenger-trans{
+        background-image:url(img/passenger_trans_title_bg256230.jpg);
+    }
+    .offline_proj .detail-img-1.passenger-trans{
+        width: 320px;
+        height: 140px;
+        background-image: url(img/passenger_trans_detail_img_1256230.jpg);
+    }
+    .offline_proj .detail-img-2.passenger-trans{
+        width: 320px;
+        height: 237px;
+        background-image: url(img/passenger_trans_detail_img_2256230.jpg);
+    }
+    .offline_proj .detail-img-3.passenger-trans{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/passenger_trans_detail_img_3256230.jpg);
+    }
+    .offline_proj .detail-img-4.passenger-trans{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/passenger_trans_detail_img_4256230.jpg);
+    }
+    .offline_proj .detail-img-5.passenger-trans{
+        width: 320px;
+        height: 145px;
+        background-image: url(img/passenger_trans_detail_img_5256230.jpg);
+    }
+    .offline_proj .detail-img-6.passenger-trans{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/passenger_trans_detail_img_6256230.jpg);
+    }
+    .offline_proj .detail-img-7.passenger-trans{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/passenger_trans_detail_img_7256230.jpg);
+    }
+    .offline_proj .detail-img-8.passenger-trans{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/passenger_trans_detail_img_8256230.jpg);
+    }
+    .offline_proj .detail-img-9.passenger-trans{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/passenger_trans_detail_img_9256230.jpg);
+    }
+    .offline_proj .detail-img-10.passenger-trans{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/passenger_trans_detail_img_10256230.jpg);
+    }
+    .offline_proj .detail-img-11.passenger-trans{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/passenger_trans_detail_img_11256230.jpg);
+    }
+    .offline_proj .detail-img-12.passenger-trans{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/passenger_trans_detail_img_12256230.jpg);
+    }
+
+    /*智慧客运部分]]*/
+
+    /*智慧电视互动部分[[*/
+    .offline_proj .header .title-bg{
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .offline_proj .detail-img-1.interactive-tv{
+        width: 320px;
+        height: 174px;
+        background-image: url(img/interactive_tv_detail_img_1256230.jpg);
+    }
+    .offline_proj .detail-img-2.interactive-tv{
+        width: 320px;
+        height: 174px;
+        background-image: url(img/interactive_tv_detail_img_2256230.jpg);
+    }
+    .offline_proj .detail-img-3.interactive-tv{
+        width: 320px;
+        height: 174px;
+        background-image: url(img/interactive_tv_detail_img_3256230.jpg);
+    }
+    .offline_proj .detail-img-4.interactive-tv{
+        width: 320px;
+        height: 174px;
+        background-image: url(img/interactive_tv_detail_img_4256230.jpg);
+    }
+    .offline_proj .step-img-1.interactive-tv{
+        height: 55px;
+        background-image: url(img/interactive_tv_detail_step_img_1256230.png);
+    }
+    .offline_proj .detail-img-5.interactive-tv{
+        width: 320px;
+        height: 181px;
+        background-image: url(img/interactive_tv_detail_img_5256230.jpg);
+    }
+    .offline_proj .detail-img-6.interactive-tv{
+        width: 320px;
+        height: 181px;
+        background-image: url(img/interactive_tv_detail_img_6256230.jpg);
+    }
+    .offline_proj .detail-img-7.interactive-tv{
+        width: 320px;
+        height: 253px;
+        background-image: url(img/interactive_tv_detail_img_7256230.jpg);
+    }
+
+    .step-cnt-box{font-size: 10px;line-height: 18px;padding-bottom: 7px;}
+    .step-cnt-tit{width: 46px;height: 18px;color: #FFFFFF;text-align: center;background-color: #22AC38;float: left;margin-right: 12px;}
+    .step-cnt-cnt{overflow: hidden;color: #333333;}
+    .interactive-tv-link{font-size: 12px;color: #333333;font-weight: bold;text-align: center;display: block;height: 46px;vertical-align: middle;margin: 0 26px 25px;border: 2px dashed #CCCCCC;}
+    .interactive-tv-link span{display: inline-block;vertical-align: middle;padding-top: 9px;}
+    .interactive-tv-link em{color: #007AFF;}
+    /*智慧电视互动部分]]*/
+
+    /*智慧机场部分[[*/
+    /*.offline_proj .header .title-bg{
+        position: absolute;
+        top: 0;
+        left: 0;
+    }*/
+    .offline_proj .step-img-1.airport{
+        height: 293px;
+        background-image: url(img/airport_detail_step_img_1256230.png);
+    }
+    .offline_proj .detail-img-1.airport{
+        width: 320px;
+        height: 174px;
+        background-image: url(img/airport_detail_img_1256230.jpg);
+    }
+    .offline_proj .detail-img-2.airport{
+        width: 320px;
+        height: 174px;
+        background-image: url(img/airport_detail_img_2256230.jpg);
+    }
+    .offline_proj .detail-img-3.airport{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/airport_detail_img_3256230.jpg);
+    }
+    .offline_proj .detail-img-4.airport{
+        width: 320px;
+        height: 174px;
+        background-image: url(img/airport_detail_img_4256230.jpg);
+    }
+    .offline_proj .detail-img-5.airport{
+        width: 320px;
+        height: 174px;
+        background-image: url(img/airport_detail_img_5256230.jpg);
+    }
+    .offline_proj .detail-img-6.airport{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/airport_detail_img_6256230.jpg);
+    }
+    .offline_proj .step-img-2.airport{
+        height: 60px;
+        background-image: url(img/airport_detail_step_img_2256230.png);
+    }
+    .offline_proj .detail-img-7.airport{
+        width: 320px;
+        height: 155px;
+        background-image: url(img/airport_detail_img_7256230.jpg);
+    }
+    .offline_proj .detail-img-8.airport{
+        width: 320px;
+        height: 263px;
+        background-image: url(img/airport_detail_img_8256230.jpg);
+    }
+    .offline_proj .detail-img-9.airport{
+        width: 320px;
+        height: 96px;
+        background-image: url(img/airport_detail_img_9256230.jpg);
+    }
+    .offline_proj .detail-img-10.airport{
+        width: 320px;
+        height: 174px;
+        background-image: url(img/airport_detail_img_10256230.jpg);
+    }
+    .offline_proj .detail-img-11.airport{
+        width: 320px;
+        height: 252px;
+        background-image: url(img/airport_detail_img_11256230.jpg);
+    }
+    .detail-step-intro-des{font-size: 10px;color: #22AC38;margin-left: 15px;margin-right: 15px;line-height: 16px;}
+    .step-solution-cnt{font-size: 10px;color: #333333;padding-left: 18px;line-height: 15px;}
+    .step-solution-num{font-style: normal;margin-left: -18px;float: left;}
+    .step-guess{overflow: hidden;padding-bottom: 10px;}
+    .step-guess-num{font-size: 12px;color: #FFFFFF;line-height: 14px;width: 50px;padding: 11px 0;background-color: #22AC38;display: block;text-align: center;float: left;margin-right: 15px;border-radius: 25px;-webkit-border-radius: 25px;}
+    .step-guess-cnt{display: block;overflow: hidden;font-size: 11px;color: #333333;padding-top: 11px;}
+    /*智慧机场部分]]*/
+
+/*智慧停车场部分[[*/
+.offline_proj .header.parkinglot {
+    background-image: url(img/parkinglot_title_bg256230.jpg);
+}
+
+.offline_proj .table.parkinglot .th-1 {
+    width: 35%;
+}
+
+.offline_proj .table.parkinglot .th-2 {
+    width: 8%;
+}
+
+.offline_proj .table.parkinglot .th-3 {
+    width: 57%;
+}
+
+.offline_proj .table.parkinglot .vs {
+    display: inline-block;
+    width: 2em;
+    height: 2em;
+    border-radius: 4em;
+    color: #fff;
+    background: #d5d5d5;
+    line-height: 2em;
+    text-align: center;
+    overflow: hidden;
+}
+
+.offline_proj .detail-banner-logo.parkinglot {
+    background-image: url(img/proj-detail-logo256230.png);
+}
+
+.offline_proj .detail-img-1.parkinglot {
+    width: 320px;
+    height: 252px;
+    background-image: url(img/parkinglot_detail_img_1256230.jpg);
+}
+
+.offline_proj .detail-img-2.parkinglot {
+    width: 320px;
+    height: 165px;
+    background-image: url(img/parkinglot_detail_img_2256230.jpg);
+}
+
+.offline_proj .detail-img-3.parkinglot {
+    width: 320px;
+    height: 315px;
+    background-image: url(img/parkinglot_detail_img_3256230.jpg);
+}
+
+.offline_proj .detail-img-4.parkinglot {
+    width: 320px;
+    height: 138px;
+    background-image: url(img/parkinglot_detail_img_4256230.jpg);
+}
+
+.offline_proj .detail-img-5.parkinglot {
+    width: 320px;
+    height: 252px;
+    background-image: url(img/parkinglot_detail_img_5256230.jpg);
+}
+
+.offline_proj .detail-img-6.parkinglot {
+    width: 320px;
+    height: 252px;
+    background-image: url(img/parkinglot_detail_img_6256230.png);
+}
+
+.offline_proj .detail-img-7.parkinglot {
+    width: 320px;
+    height: 121px;
+    background-image: url(img/parkinglot_detail_img_7256230.jpg);
+}
+
+.offline_proj .detail-img-8.parkinglot {
+    width: 320px;
+    height: 252px;
+    background-image: url(img/parkinglot_detail_img_8256230.png);
+}
+.offline_proj .detail-img-9.parkinglot {
+    width: 320px;
+    height: 252px;
+    background-image: url(img/parkinglot_detail_img_9256230.png);
+}
+.offline_proj .detail-img-10.parkinglot {
+    width: 320px;
+    height: 310px;
+    background-image: url(img/parkinglot_detail_img_10256230.jpg);
+}
+.offline_proj .detail-img-11.parkinglot {
+    width: 320px;
+    height: 252px;
+    background-image: url(img/parkinglot_detail_img_11256230.jpg);
+}
+.offline_proj .detail-img-12.parkinglot {
+    width: 320px;
+    height: 167px;
+    background-image: url(img/parkinglot_detail_img_12256230.jpg);
+}
+.offline_proj .step-intro-detail-cnt .subtitle-bold{
+    font-weight: bold;
+}
+
+/*智慧停车场部分]]*/
+/* 线下行业解决方案 ]] */
+
+/*支付能力[[*/
+    /*运营能力[[*/
+    /*红包*/
+.banner-hongbao{
+    background:#22ac38 url(img/ico_hongbao256230.png) no-repeat center center;
+    background-size: 159px auto;
+}
+    
+    .hongbao-img-1{background-image:url(img/hongbao_img_1256230.png);}
+.hongbao-img-2{background-image:url(img/hongbao_img_2256230.png);}
+.hongbao-img-3{background-image:url(img/hongbao_img_3256230.png);}
+.hongbao-img-4{background-image:url(img/hongbao_img_4256230.png);}
+.hongbao .mglr{/*margin-left & margin-right*/
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.hongbao .intro-cnt{
+    margin-top:30px;
+    margin-bottom:15px;
+}
+.hongbao .intro{
+    text-indent: 2em;
+    margin-bottom: 0.5em;
+    font-size: 12px;
+    line-height: 2em;
+    color:#333;
+}
+.hongbao .detail-title{
+    height: 56px;
+    text-align: center;
+    border-top: 1px dashed #d6d6d6;
+    border-bottom: 1px dashed #d6d6d6;
+    line-height: 56px;
+    margin:20px 3%;
+    margin-top:40px;
+}
+.detail-list-with-ico{
+        padding-left:30px;
+        padding-top:40px;
+        padding-bottom: 40px;
+    }
+    .detail-list-with-ico li{
+        display: block;
+        position: relative;
+        height: 73px;
+        width: auto;
+    }
+    .hongbao .hongbao-ico-sprite{
+        position: absolute;
+        top:0;left:0;
+        display: inline-block;
+        overflow: hidden;
+        background-repeat: no-repeat;
+        background-size: 201px auto;
+        background-image: url(img/hongbao-ico-sprite256230.png);
+        width: 40px;
+        height: 40px;
+    }
+
+    .detail-list-with-ico h4{
+        position: absolute;
+        color:#333;
+        font-size: 16px;
+        top:4px;
+        left:50px;
+        margin:0;padding:0;
+    }
+    .detail-list-with-ico p{
+        position: absolute;
+        color:#999999;
+        font-size: 12px;
+        top:28px;
+        left:50px;
+        line-height: 1.7em;
+    }
+    .hongbao .hongbao-ico-sprite.ico-1{
+        background-position: 0 0;
+    }
+    .hongbao .hongbao-ico-sprite.ico-2{
+        background-position: -40px 0;
+    }
+    .hongbao .hongbao-ico-sprite.ico-3{
+        background-position: -80px 0;
+    }
+    .hongbao .hongbao-ico-sprite.ico-4{
+        background-position: -120px 0;
+    }
+    .hongbao .hongbao-ico-sprite.ico-5{
+        background-position: -160px 0;
+    }
+    /*运营能力[[*/
+
+
+/*支付能力]]*/
+
+p.suggest-to-follow{
+    margin-top: 0px;  
+    margin-bottom: 20px;  font-size: 14px;  line-height: 2em;  
+    text-align: center;
+    color: #333;
+    margin-left: 15px;  margin-right: 15px;
+    padding-bottom: 40px;
+}
+p.suggest-to-follow a,p.suggest-to-follow a:visited{
+    color: #00c800;
+}

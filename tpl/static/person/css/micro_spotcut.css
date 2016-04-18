@@ -1,0 +1,58 @@
+  .img_s{cursor:pointer;}
+
+.layweb { width:740px;}
+.uploadbg {display:block; float:left; width:420px; height:340px; background:#e9e9e9;margin: auto;}
+.uploadbg img{max-width: 100%!important;height: auto!important;width:expression(this.width > 420 ? "420px" : this.width)!important;}
+.pictips {line-height:20px;}
+.picview {display:block; width:180px; height:320px; background:#e9e9e9;}
+.uploadbtn {display:block; margin:0 auto; margin-top:150px; width:132px; height:40px;}
+.uploadbg2{
+	float:left;
+	display:block;
+	width:420px;
+	height:340px;
+	line-height:340px;
+	background:#eee;
+	overflow:hidden;	
+}
+.uploadbg2 img{
+	margin:0 auto;
+	max-width:420px;
+	max-height:340px;
+	width:expression(this.width >420 ?"420px" :this.width);
+	height:e­xpression(this.height>340?"340px":this.height);
+}
+
+.uploadbg3{
+	float:left;
+	display:block;
+	width:420px;
+	height:340px;
+	line-height:340px;
+	background:#eee;
+	overflow:hidden;	
+}
+.uploadbg3 img{
+	margin:0 auto;
+	max-width:420px;
+	max-height:340px;
+	width:expression(this.width >420 ?"420px" :this.width);
+	height:e­xpression(this.height>340?"340px":this.height);
+}
+
+
+.picview2{
+	display:block;
+	width:180px;
+}
+
+.laybtm {padding-top:10px; border-top:1px solid #ddd;}
+.lay-btm {background: none repeat scroll 0 0 #FFFFFF;display: block;height: 60px;line-height: 60px;}
+.layconts {height:350px; overflow:hidden;}
+.box_swipe{
+		padding-left:7px;width:274px;
+		overflow:hidden;
+		position:relative;
+		word-break:break-all;
+		z-index:1;
+}
