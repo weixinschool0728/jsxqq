@@ -7,3 +7,5 @@
 /*.buildpath
 /.project
 /.settings/org.eclipse.php.core.prefs
+/Conf/db.php
+/Conf/logs
