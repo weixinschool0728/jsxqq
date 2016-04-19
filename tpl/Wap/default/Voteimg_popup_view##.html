@@ -26,23 +26,6 @@ $(function(){
 #faq ul{margin: 0;padding: 0;display: inline;}
 #faq li{line-height: 30px;padding: 0 0 5px 22px;border-bottom:1px #ccc solid;height:30px;}
 .content_sou{background-color: #fff;width: 98%;height: auto;float: left;padding: 1%;border: 1px #CCCCCC solid; margin-bottom: 1%;margin-top:2%; overflow: hidden;min-height:100px;}
- .myapply dt{
-
-    padding: 5px 22px 5px 22px !important;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 10px;
-    width: 100px;
-    background: #f00;
-    border-radius: 10px;
-}
-.myapply dt > #article_word{color: #fff;font-size: 22px;}
-#div #main{background: #BFDEED;}
-#div #article{background: #CAE2ED;}
-#div #contentla{background: #CAE2ED;color: #3A6514;}
-#jiandiv2 #jiandiv{background:#CAE2ED;}
-#article_word{color:#C18B0C;font-size:18px;}
-
 </style>
 </head>
 <body id="body">
@@ -113,17 +96,6 @@ $(function(){
   <!--参与 -->
   <nav id="article">
    <div id="faq">
-   
-   	<if condition="$menu[4]['hide'] eq 1">
-              <ul class="myapply">
-                <a href="javascript:;" onclick="apply()">  <dt><div id="article_pic"><!-- <img src="<php>if(strpos($menu[4]['menu_icon'],'http') !== false){ echo $menu[4]['menu_icon'];}else{ echo $staticPath.$menu[4]['menu_icon'];}</php>"/> --></div>
-                  <div id="article_word">
-                   {weimicms:$menu[4]['menu_name']}
-                  </div></dt>
-                </a>    
-              </ul><div style="clear: both;"></div>
-			  </if>
-   
    <if condition="$menu[0]['hide'] eq 1">
     <ul>
       <li <if condition="$menu[0]['menu_link'] neq ''">onclick="window.location.href='{weimicms:$menu[0]['menu_link']}'"</if>>
@@ -131,27 +103,33 @@ $(function(){
         <div id="article_word">{weimicms:$menu[0]['menu_name']}</div></li>
       </ul><div style="clear: both;"></div>
 	  </if>
-	  
+	  <if condition="$menu[1]['hide'] eq 1">
+      <ul>
+        <li class="jiajian">
+          <div id="article_pic"><img src="<php>if(strpos($menu[1]['menu_icon'],'http') !== false){ echo $menu[1]['menu_icon'];}else{ echo $staticPath.$menu[1]['menu_icon'];}</php>"/></div>
+          <div id="article_word">
+           {weimicms:$menu[1]['menu_name']}</div></li>
+		    <dd id="date" style="display:none;"   class="qiehuan_s"> <div id="jiandiv1" >
+				<div id="jiandiv2">
+                  <div id="jiandiv">
+                     活动时间
+                  </div>
+                  <div class="toupiao_s">
+                   投票时间：<br> {weimicms:$action_info['start_time']|date='Y-m-d H:i',###}到{weimicms:$action_info['end_time']|date="Y-m-d H:i",###}<br>
+				   报名时间： <br>{weimicms:$action_info['apply_start_time']|date='Y-m-d H:i',###}到{weimicms:$action_info['apply_end_time']|date="Y-m-d H:i",###}<br>
+                  </div>
+                </div>
+                </div></dd>    
+          </ul><div style="clear: both;"></div>
+		  </if>
 		  <if condition="$menu[2]['hide'] eq 1">
           <dl>
             <dt class="jiajian">
               <div id="article_pic"><img src="<php>if(strpos($menu[2]['menu_icon'],'http') !== false){ echo $menu[2]['menu_icon'];}else{ echo $staticPath.$menu[2]['menu_icon'];}</php>"   /></div>
-              <div id="article_word" style="color:#E0572A;font-size:20px;">
+              <div id="article_word">
                 {weimicms:$menu[2]['menu_name']}
               </div></dt>
               <dd  style="display:none;" class="qiehuan_s"> <div  id="jiandiv1" >
-              
-              <if condition="strip_tags($action_info['award_desc']) neq ''">
-				<div id="jiandiv2">
-                  <div id="jiandiv">
-                     奖品介绍
-                  </div>
-                  <div class="toupiao_s">
-                    {weimicms:$action_info['award_desc']|html_entity_decode}<br>
-                  </div>
-                </div>
-		</if>
-              
                 <div  id="jiandiv2">
                   <div id="jiandiv">
                     活动介绍
@@ -183,31 +161,19 @@ $(function(){
                   </div>
                 </div> 
 		</if>
-                
+                <if condition="strip_tags($action_info['award_desc']) neq ''">
+				<div id="jiandiv2">
+                  <div id="jiandiv">
+                     奖品介绍
+                  </div>
+                  <div class="toupiao_s">
+                    {weimicms:$action_info['award_desc']|html_entity_decode}<br>
+                  </div>
+                </div>
+		</if>
                 </div></dd>    
               </dl><div style="clear: both;"></div>
 			</if>
-			
-			<if condition="$menu[1]['hide'] eq 1">
-      <ul>
-        <li class="jiajian jianjian shijian">
-          <div id="article_pic"><img src="<php>if(strpos($menu[1]['menu_icon'],'http') !== false){ echo $menu[1]['menu_icon'];}else{ echo $staticPath.$menu[1]['menu_icon'];}</php>"/></div>
-          <div id="article_word">
-           {weimicms:$menu[1]['menu_name']}</div></li>
-		    <dd id="date" style="display:block;"   class="qiehuan_s shijiandd"> <div id="jiandiv1" >
-				<div id="jiandiv2">
-                  <div id="jiandiv">
-                     活动时间
-                  </div>
-                  <div class="toupiao_s">
-                   投票时间：<br> {weimicms:$action_info['start_time']|date='Y-m-d H:i',###}到{weimicms:$action_info['end_time']|date="Y-m-d H:i",###}<br>
-				   报名时间： <br>{weimicms:$action_info['apply_start_time']|date='Y-m-d H:i',###}到{weimicms:$action_info['apply_end_time']|date="Y-m-d H:i",###}<br>
-                  </div>
-                </div>
-                </div></dd>    
-          </ul><div style="clear: both;"></div>
-		  </if>
-			
 		  <if condition="$menu[3]['hide'] eq 1">
               <dl>
                 <dt class="jiajian"><div id="article_pic"><img src="<php>if(strpos($menu[3]['menu_icon'],'http') !== false){ echo $menu[3]['menu_icon'];}else{ echo $staticPath.$menu[3]['menu_icon'];}</php>"   /></div>
@@ -218,7 +184,15 @@ $(function(){
                 <dd id="vote_record"  style="display:none;" class="qiehuan_s"></dd>   
               </dl><div style="clear: both;"></div>
 			</if>
-		  
+		  <if condition="$menu[4]['hide'] eq 1">
+              <ul>
+                <a href="javascript:;" onclick="apply()">  <dt><div id="article_pic"><img src="<php>if(strpos($menu[4]['menu_icon'],'http') !== false){ echo $menu[4]['menu_icon'];}else{ echo $staticPath.$menu[4]['menu_icon'];}</php>"/></div>
+                  <div id="article_word">
+                   {weimicms:$menu[4]['menu_name']}
+                  </div></dt>
+                </a>    
+              </ul><div style="clear: both;"></div>
+			  </if>
 			  <volist name="custom_menu" id="me">
 			   <dl>
 			    <a href="javascript:;" onclick="window.location.href='{weimicms:$me.menu_link}'">
@@ -243,7 +217,7 @@ $(function(){
         <div id="contentla" >               
 		<!--主体 -->
 		<div style="width:80%; margin:0 auto;">
-		<div style="width:100%; background:#F9CC9D; ">
+		<div style="width:100%; background:#eee; ">
 		{weimicms:$item['vote_title']|mb_substr=0,8,'utf-8'}
 		</div>
 		<div style="width:100%; text-align:left;padding-bottom:20px;">
@@ -396,11 +370,8 @@ $(function(){
 		var index=$('.jiajian').index(this);
 	　　$(this).toggleClass('jianjian');
 		$('.qiehuan_s').eq(index).toggle();
-		
 　　})
-  $('shijiandd').show();
 });
-
 //报名判断
 function apply(){
 	var allow_apply = '{weimicms:$allow_apply}';
@@ -499,10 +470,6 @@ function vote(id,obj){
 				$("#last_notice").val(data.data);
 				$("#last_id").val(id);
 				votenotice(data.data);
-                               var url=data.url?data.url:"";
-                                if(url){
-                                    window.location.href=url;
-                                }
 			}
 		  },
 		  complete: function(){$(obj).removeAttr("disabled");$(obj).text('给ta投票');}
