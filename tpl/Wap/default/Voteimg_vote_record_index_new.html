@@ -24,13 +24,13 @@
 		   <if condition="$banner neq ''">
 		   <volist name="banner" id="vo">
 		   <if condition="$vo.external_links neq ''">
-            <div data-index="0" style="width:100%;height:auto;overflow:hidden;left: 0px; transition-duration: 300ms; -webkit-transition-duration: 300ms; -webkit-transform: translate(0px, 0px) translateZ(0px);"onclick="window.location.href='{weimicms:$vo.external_links}';"><img class="img-responsive" src="{weimicms:$vo.img_url}"></div>
+            <div data-index="0" style="width:100%;height:130px;overflow:hidden;left: 0px; transition-duration: 300ms; -webkit-transition-duration: 300ms; -webkit-transform: translate(0px, 0px) translateZ(0px);"onclick="window.location.href='{weimicms:$vo.external_links}';"><img class="img-responsive" src="{weimicms:$vo.img_url}"></div>
 			<else />
-			 <div data-index="0" style="width:100%;height:auto;overflow:hidden;left: 0px; transition-duration: 300ms; -webkit-transition-duration: 300ms; -webkit-transform: translate(0px, 0px) translateZ(0px);"><img class="img-responsive" src="{weimicms:$vo.img_url}"></div>
+			 <div data-index="0" style="width:100%;height:130px;overflow:hidden;left: 0px; transition-duration: 300ms; -webkit-transition-duration: 300ms; -webkit-transform: translate(0px, 0px) translateZ(0px);"><img class="img-responsive" src="{weimicms:$vo.img_url}"></div>
 			</if>
 			</volist>
 			<else />
-			 <div data-index="0" style="width:100%;height:auto;overflow:hidden; left: 0px; transition-duration: 300ms; -webkit-transition-duration: 300ms; -webkit-transform: translate(0px, 0px) translateZ(0px);"><img class="img-responsive" src="{weimicms:$action_info.reply_pic}"></div>
+			 <div data-index="0" style="width:100%;height:130px;overflow:hidden; left: 0px; transition-duration: 300ms; -webkit-transition-duration: 300ms; -webkit-transform: translate(0px, 0px) translateZ(0px);"><img class="img-responsive" src="{weimicms:$action_info.reply_pic}"></div>
 			</if>
           </div>
         </div>

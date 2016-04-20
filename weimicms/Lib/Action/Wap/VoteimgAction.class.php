@@ -187,20 +187,11 @@ class VoteimgAction extends WapAction
 		$id = $this->_get("id", "intval");
 
 		if (empty($this->wecha_id)) {
-          $result =  array("status" => "fail", "data" => "投票失败,参数错误,请先关注");
-//            echo '<scrip> window.location.href=="";</script>';
-            $nowechajump_url = M("voteimg")->where(array("id" => $vote_id))->find();
-            if (!empty($nowechajump_url['follow_url'])) {
-                $url=$nowechajump_url['follow_url'];
-            } else {
-                $url='http://mp.weixin.qq.com/s?__biz=MzI0NDI4ODE1MQ==&mid=100000010&idx=1&sn=4a8e312a4137319f6e640243bdb5fba2&scene=0&previewkey=FUD81xbzVwSnsDZ6Zamlb8NS9bJajjJKzz%2F0By7ITJA%3D#wechat_redirect';
-            }
-            $result['url']=$url;
-            echo json_encode($result);
-            exit();
-        }
+			echo json_encode(array("status" => "fail", "data" => "投票失败,参数错误"));
+			exit();
+		}
 
-        $voteimg = M("voteimg")->where(array("id" => $vote_id))->find();
+		$voteimg = M("voteimg")->where(array("id" => $vote_id))->find();
 		if (!empty($voteimg) && ($voteimg["display"] != 1)) {
 			echo json_encode(array("status" => "fail", "data" => "投票失败,活动已关闭"));
 			exit();
@@ -326,13 +317,7 @@ class VoteimgAction extends WapAction
 
 			if (empty($this->wecha_id)) {
 				$this->del_upload($img);
-                $nowechajump_url = M("voteimg")->where(array("id" => $vote_id))->find();
-                if (!empty($nowechajump_url['follow_url'])) {
-                    $url = $nowechajump_url['follow_url'];
-                } else {
-                    $url = 'http://mp.weixin.qq.com/s?__biz=MzI0NDI4ODE1MQ==&mid=100000010&idx=1&sn=4a8e312a4137319f6e640243bdb5fba2&scene=0&previewkey=FUD81xbzVwSnsDZ6Zamlb8NS9bJajjJKzz%2F0By7ITJA%3D#wechat_redirect';
-                }
-				$this->error("报名失败,参数错误。请先关注后再试",$url);
+				$this->error("报名失败,参数错误。");
 				exit();
 			}
 
@@ -773,7 +758,7 @@ class VoteimgAction extends WapAction
 			mkdir($upload_dir, 511, true);
 		}
 
-		$newfilename = "voteimg_" . date("YmdHis") .uniqid().$this->createRandom(). ".jpg";
+		$newfilename = "voteimg_" . date("YmdHis") . ".jpg";
 		$save = file_put_contents($upload_dir . "/big_" . $newfilename, $imgdata);
 		$image = new Image();
 		$thumb = $image->thumb($upload_dir . "/big_" . $newfilename, $upload_dir . "/thumb_" . $newfilename, "", 650, 950);
@@ -813,19 +798,6 @@ class VoteimgAction extends WapAction
 	));
 		}
 	}
-/**
- * 获取随机码
- * @param type $length
- * @return string
- */
-public function createRandom($length = 8) {
-    $str = "qwertyuipasdfghjkzxcvbnmQWERTYUIPASDFGHJKLZXCVBNM23456789";
-    $tempstr = "";
-    for ($i = 0; $i < $length; $i++) {
-        $tempstr.=$str{rand(0, strlen($str) - 1)};
-    }
-    return $tempstr;
-}
 
 	public function Upyun_upload($resource)
 	{
